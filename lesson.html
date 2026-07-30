@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AksharGyan Lesson — Interactive learning exercises." />
+  <title>AksharGyan — Lesson</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+</head>
+<body id="page-lesson" class="fade-in-up light-theme">
+  
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Generating lesson content...</div>
+  </div>
+
+  <main class="lesson-layout">
+    
+    <!-- Lesson Header -->
+    <header class="lesson-header">
+      <a href="dashboard.html" class="lesson-back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span data-i18n="backToDashboard">Back</span>
+      </a>
+      <div class="lesson-header-info">
+        <h2 id="lesson-title" class="lesson-title">Lesson</h2>
+        <div class="lesson-meta">
+          <span id="lesson-level-badge" class="rec-card-tag beginner">Beginner</span>
+          <span id="lesson-type-badge" class="lesson-type-badge">📖 Reading</span>
+        </div>
+      </div>
+      <div class="lesson-xp-earned" id="lesson-xp-display">
+        <span>⚡</span>
+        <span id="lesson-xp-value">0</span>
+        <span>XP</span>
+      </div>
+    </header>
+
+    <!-- Lesson Progress Bar -->
+    <div class="lesson-progress">
+      <div class="lesson-progress-bar">
+        <div id="lesson-progress-fill" class="lesson-progress-fill" style="width: 0%"></div>
+      </div>
+      <span id="lesson-progress-text" class="lesson-progress-text">0/5</span>
+    </div>
+
+    <!-- Lesson Content Area -->
+    <div class="lesson-content" id="lesson-content">
+      
+      <!-- Exercise Card (replaced dynamically) -->
+      <div id="exercise-card" class="exercise-card">
+        
+        <!-- Exercise Instruction -->
+        <div class="exercise-instruction">
+          <p id="exercise-instruction-text">Loading exercise...</p>
+          <button class="exercise-tts-btn" id="exercise-tts-btn" title="Listen">
+            🔊
+          </button>
+        </div>
+
+        <!-- Exercise Content (dynamic based on type) -->
+        <div id="exercise-body" class="exercise-body">
+          <!-- Filled by lesson.js -->
+        </div>
+
+        <!-- Feedback Area -->
+        <div id="exercise-feedback" class="exercise-feedback hidden">
+          <div id="feedback-icon" class="feedback-icon">✅</div>
+          <p id="feedback-text" class="feedback-text">Correct!</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="lesson-actions">
+        <button id="check-btn" class="btn-primary" disabled>
+          <span data-i18n="lessonCheck">Check</span>
+        </button>
+        <button id="continue-lesson-btn" class="btn-primary hidden">
+          <span data-i18n="lessonContinue">Continue</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Lesson Complete Screen -->
+    <div id="lesson-complete" class="lesson-complete hidden">
+      <div class="lesson-complete-card">
+        <div class="lesson-complete-icon">🎉</div>
+        <h2 data-i18n="lessonComplete">Lesson Complete!</h2>
+        <div class="lesson-complete-stats">
+          <div class="complete-stat">
+            <div class="complete-stat-value" id="complete-score">0</div>
+            <div class="complete-stat-label" data-i18n="lessonAccuracy">Accuracy</div>
+          </div>
+          <div class="complete-stat">
+            <div class="complete-stat-value" id="complete-xp">+0</div>
+            <div class="complete-stat-label">XP</div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="window.location.href='dashboard.html'">
+          <span data-i18n="backToDashboard">Back to Dashboard</span>
+        </button>
+        <button class="btn-secondary" id="next-lesson-btn" style="margin-top: 1rem; width: 100%;">
+          <span data-i18n="lessonNext">Next Lesson</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Firebase SDK + our scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="config.js"></script>
+  <script src="translations.js"></script>
+  <script src="auth.js"></script>
+  <script src="tts.js"></script>
+  <script src="theme.js"></script>
+  <script src="celebrations.js"></script>
+  <script src="lesson.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

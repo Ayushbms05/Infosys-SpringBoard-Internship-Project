@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AksharGyan — AI-powered literacy platform for adult and first-generation learners. Choose your language to get started."
+    />
+    <title>AksharGyan — Choose Your Language</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json">
+    <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+  </head>
+  <body id="page-index" class="fade-in-up light-theme">
+    <main class="page-container">
+      <div class="auth-float-icon fi-1">📖</div>
+      <div class="auth-float-icon fi-2">✏️</div>
+      <div class="auth-float-icon fi-3">💡</div>
+      <div class="auth-float-icon fi-4">🔤</div>
+
+      <div class="card auth-card-index">
+        <div class="auth-brand-badge">✨ AI-Powered Literacy Learning</div>
+
+        <div class="logo-area">
+          <div class="logo-icon-badge">
+            <div class="logo-icon">📖</div>
+          </div>
+          <h1 class="logo-title">
+            <span class="brand-gradient" data-i18n="langScreenTitle"
+              >Welcome to AksharGyan</span
+            >
+          </h1>
+          <p class="logo-subtitle" data-i18n="langScreenSubtitle">
+            Choose your preferred language to continue
+          </p>
+        </div>
+
+        <div class="lang-grid">
+          <button class="lang-btn" data-lang="en" id="lang-en">
+            <span class="lang-native">English</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn" data-lang="hi" id="lang-hi">
+            <span class="lang-native">हिन्दी</span>
+            <span class="lang-english">Hindi</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn" data-lang="ta" id="lang-ta">
+            <span class="lang-native">தமிழ்</span>
+            <span class="lang-english">Tamil</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn" data-lang="te" id="lang-te">
+            <span class="lang-native">తెలుగు</span>
+            <span class="lang-english">Telugu</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn" data-lang="kn" id="lang-kn">
+            <span class="lang-native">ಕನ್ನಡ</span>
+            <span class="lang-english">Kannada</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn" data-lang="bn" id="lang-bn">
+            <span class="lang-native">বাংলা</span>
+            <span class="lang-english">Bengali</span>
+            <div class="lang-check">✓</div>
+          </button>
+
+          <button class="lang-btn lang-full" data-lang="mr" id="lang-mr">
+            <span class="lang-native">मराठी</span>
+            <span class="lang-english">Marathi</span>
+            <div class="lang-check">✓</div>
+          </button>
+        </div>
+
+        <div class="nav-link-area" style="margin-top: 1.5rem">
+          <a href="login.html" data-i18n="goToLogin"
+            >Already have an account? Login</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <script src="config.js"></script>
+    <script src="translations.js"></script>
+    <script src="tts.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

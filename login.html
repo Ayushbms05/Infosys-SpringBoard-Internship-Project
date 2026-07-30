@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login to AksharGyan — Your AI-powered literacy learning platform." />
+  <title>AksharGyan — Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+</head>
+<body id="page-login" class="fade-in-up light-theme">
+  <div class="split-layout">
+    <!-- Left Side: Form -->
+    <div class="split-left">
+      <div class="card">
+
+      <div class="logo-area">
+        <h1 class="logo-title" data-i18n="loginTitle">Login to Your Account</h1>
+        <p class="logo-subtitle"><span class="brand-gradient">AksharGyan</span></p>
+      </div>
+
+      <form id="login-form" novalidate>
+
+        <div class="form-group">
+          <label for="login-email" data-i18n="emailLabel">Email</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <input
+            type="email"
+            id="login-email"
+            name="email"
+            required
+            data-i18n-placeholder="loginEmailPlaceholder"
+            placeholder="Enter your email"
+          />
+          </div>
+          <span class="error-text" id="login-email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password" data-i18n="passwordLabel">Password</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+            <input
+            type="password"
+            id="login-password"
+            name="password"
+            required
+            data-i18n-placeholder="loginPasswordPlaceholder"
+            placeholder="Enter your password"
+          />
+            <button type="button" class="password-toggle" tabindex="-1" aria-label="Toggle password visibility">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            </button>
+          </div>
+          <span class="error-text" id="login-password-error"></span>
+        </div>
+
+        <button type="submit" class="btn-primary" id="login-btn" data-i18n="loginBtn">
+          Login
+        </button>
+
+        <div id="status-message" class="status-message"></div>
+      </form>
+
+      <div class="nav-link-area">
+        <a href="register.html" data-i18n="goToRegister">Don't have an account? Register</a>
+      </div>
+
+      </div>
+    </div>
+
+    <!-- Right Side: Brand Panel -->
+    <div class="split-right">
+      <div class="auth-brand-panel">
+        <div class="auth-brand-blob blob-1"></div>
+        <div class="auth-brand-blob blob-2"></div>
+        <div class="auth-brand-content">
+          <div class="auth-brand-logo">📖 AksharGyan</div>
+          <h2>Welcome back to your learning journey</h2>
+          <p>Pick up right where you left off — every lesson brings you closer to confident reading and writing.</p>
+        </div>
+        <div class="auth-illustration-frame">
+          <img src="assets/login_illustration.png" alt="Login Illustration" class="split-illustration">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="config.js"></script>
+  <script src="translations.js"></script>
+  <script src="auth.js"></script>
+  <script src="tts.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

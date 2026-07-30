@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AksharGyan Literacy Assessment — Find your current level." />
+  <title>AksharGyan — Assessment</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+</head>
+<body id="page-assessment" class="fade-in-up light-theme">
+  
+  <div id="loading-overlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" data-i18n="loadingText">Loading...</div>
+  </div>
+
+  <main class="page-container">
+    
+    <!-- Assessment Introduction -->
+    <div id="assessment-intro" class="card text-center">
+      <div class="logo-area">
+        <div class="logo-icon">🎯</div>
+        <h1 class="logo-title" data-i18n="assessmentTitle">Literacy Assessment</h1>
+        <p class="logo-subtitle"><span class="brand-gradient" data-i18n="assessmentSubtitle">Let's understand your current level to personalize your learning</span></p>
+      </div>
+      
+      <p class="section-subtext" style="margin-bottom: 2rem;" data-i18n="assessmentInstructions">
+        Answer each question to the best of your ability. There are no wrong answers — this helps us tailor your experience.
+      </p>
+
+      <button id="start-btn" class="btn-primary" data-i18n="assessmentStartBtn">Start Assessment</button>
+      <p id="loading-hint" class="hidden section-subtext" style="margin-top: 1rem;">⏳ Generating personalized questions using AI...</p>
+    </div>
+
+    <!-- Question Container -->
+    <div id="assessment-quiz" class="assessment-container hidden">
+      
+      <!-- Progress -->
+      <div class="assessment-progress">
+        <div class="progress-info">
+          <span class="progress-label" data-i18n="assessmentTitle">Literacy Assessment</span>
+          <span class="progress-count"><span data-i18n="assessmentQuestion">Question</span> <span id="current-q-num">1</span> <span data-i18n="assessmentOf">of</span> <span id="total-q-num">10</span></span>
+        </div>
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill" ></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card">
+        <div class="question-number"><span data-i18n="assessmentQuestion">Question</span> <span id="card-q-num">1</span></div>
+        <div class="assessment-question-header">
+          <h2 id="question-text" class="question-text" >Loading question...</h2>
+          <button id="tts-question-btn" class="icon-btn tts-inline-btn" title="Read Question" >🔊</button>
+        </div>
+        
+        <div id="options-container" class="options-grid">
+          <!-- Options injected via JS -->
+        </div>
+
+        <div id="assessment-error" class="error-text"  data-i18n="assessmentSelectPrompt">
+          Please select an answer to continue.
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="assessment-nav">
+        <div ></div>
+        <button id="next-btn" class="btn-primary" data-i18n="assessmentNextBtn">Next</button>
+      </div>
+      
+    </div>
+
+    <!-- Score Screen -->
+    <div id="assessment-score" class="card score-screen hidden">
+      <div class="logo-area">
+        <div class="logo-icon">🎉</div>
+        <h1 class="logo-title" data-i18n="scoreTitle">Assessment Complete!</h1>
+      </div>
+
+      <div class="score-circle-wrapper">
+        <svg viewBox="0 0 180 180">
+          <defs>
+            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--color-primary)" />
+              <stop offset="100%" stop-color="var(--color-accent)" />
+            </linearGradient>
+          </defs>
+          <circle class="score-circle-bg" cx="90" cy="90" r="80"></circle>
+          <circle id="score-circle" class="score-circle-fill" cx="90" cy="90" r="80"></circle>
+        </svg>
+        <div class="score-text">
+          <div id="final-score" class="score-value">0</div>
+          <div class="score-percent">%</div>
+        </div>
+      </div>
+
+      <div id="score-level-badge" class="score-level beginner">
+        <span data-i18n="scoreLevelBeginner">🌱 Beginner Level</span>
+      </div>
+
+      <!-- AI Loading State -->
+      <div id="assessment-ai-loading" class="hidden" class="assessment-ai-loading-container">
+        <div class="assessment-ai-spinner"></div>
+        <p class="assessment-ai-loading-text">✨ Gemini is analyzing your strengths and weaknesses...</p>
+      </div>
+
+      <!-- Gemini Insights Result Container -->
+      <div id="assessment-ai-insights" class="hidden" class="assessment-ai-insights-container">
+        <p id="score-summary-message" class="assessment-ai-summary-msg">Analyzing your results...</p>
+        
+        <div class="assessment-ai-boxes">
+          <div class="assessment-ai-box-strengths">
+            <h4 >✅ Strengths</h4>
+            <ul id="ai-good-points" ></ul>
+          </div>
+          <div class="assessment-ai-box-weaknesses">
+            <h4 >🎯 Areas to Improve</h4>
+            <ul id="ai-weak-points" ></ul>
+          </div>
+        </div>
+      </div>
+
+      <button id="continue-btn" class="btn-primary" data-i18n="scoreContinueBtn" >Continue to Dashboard</button>
+    </div>
+
+  </main>
+
+  <!-- Firebase SDK + our scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="config.js"></script>
+  <script src="translations.js"></script>
+  <script src="auth.js"></script>
+  <script src="tts.js"></script>
+  <script src="assessment.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

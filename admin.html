@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="AksharGyan — Admin Dashboard" />
+    <title>AksharGyan — Admin</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
+  </head>
+  <body id="page-admin" class="fade-in-up light-theme">
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+
+    <main class="dashboard-layout hidden" id="admin-content">
+      <div class="dash-shell">
+        <!-- ═══════════ ACCESS DENIED (shown instead of everything else) ═══════════ -->
+        <div id="admin-access-denied" class="admin-access-denied hidden">
+          <div class="admin-access-denied-card">
+            <div style="font-size: 3rem">🔒</div>
+            <h2>Access Restricted</h2>
+            <p>
+              This area is for administrators only. Redirecting you back to your
+              dashboard…
+            </p>
+          </div>
+        </div>
+
+        <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
+        <aside class="dash-sidebar">
+          <div class="sidebar-brand">
+            <span class="sidebar-brand-icon">🛡️</span>
+            <span class="sidebar-brand-text">AksharGyan Admin</span>
+          </div>
+
+          <div class="sidebar-user">
+            <div class="dash-avatar" id="admin-avatar">?</div>
+            <div class="sidebar-user-info">
+              <div class="sidebar-user-name" id="admin-name">Admin</div>
+              <div class="dash-level-badge intermediate">
+                🛡️ <span>Administrator</span>
+              </div>
+            </div>
+          </div>
+
+          <nav class="dash-nav">
+            <button class="dash-nav-item active" data-section="overview">
+              <span class="dash-nav-icon">📊</span>
+              <span>Overview</span>
+            </button>
+            <button class="dash-nav-item" data-section="users">
+              <span class="dash-nav-icon">👥</span>
+              <span>Users</span>
+            </button>
+            <button class="dash-nav-item" data-section="announcements">
+              <span class="dash-nav-icon">📢</span><span>Announcements</span>
+            </button>
+            <button class="dash-nav-item" data-section="feedback">
+              <span class="dash-nav-icon">💬</span><span>Feedback</span>
+            </button>
+            <button class="dash-nav-item" data-section="errors">
+              <span class="dash-nav-icon">🐞</span><span>Error Logs</span>
+            </button>
+          </nav>
+
+          <div class="sidebar-footer">
+            <button class="btn-logout" id="admin-logout-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                />
+              </svg>
+              <span>Logout</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- ═══════════ MAIN CONTENT ═══════════ -->
+        <main class="dash-main-wrap" id="admin-main-body">
+          <div class="dash-topbar">
+            <div class="dash-topbar-title">
+              <h1>Admin Dashboard</h1>
+              <p class="dash-topbar-sub">
+                Platform overview and user management
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem">
+              <button
+                id="admin-refresh-btn"
+                class="btn-secondary"
+                style="padding: 0.5rem 1rem; font-size: 0.85rem"
+              >
+                🔄 Refresh
+              </button>
+              <div class="dash-topbar-date" id="topbar-date"></div>
+            </div>
+          </div>
+
+          <!-- ═══════════ OVERVIEW SECTION ═══════════ -->
+          <section id="admin-section-overview" class="admin-section">
+            <div class="analysis-stats-row">
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">👥</div>
+                <div class="analysis-stat-value" id="admin-stat-total-users">
+                  0
+                </div>
+                <div class="analysis-stat-label">Total Users</div>
+              </div>
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">🟢</div>
+                <div class="analysis-stat-value" id="admin-stat-active-today">
+                  0
+                </div>
+                <div class="analysis-stat-label">Active Today</div>
+              </div>
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">📅</div>
+                <div class="analysis-stat-value" id="admin-stat-active-week">
+                  0
+                </div>
+                <div class="analysis-stat-label">Active This Week</div>
+              </div>
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">🎯</div>
+                <div class="analysis-stat-value" id="admin-stat-avg-score">
+                  —
+                </div>
+                <div class="analysis-stat-label">Avg. Assessment Score</div>
+              </div>
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">📚</div>
+                <div class="analysis-stat-value" id="admin-stat-lessons">0</div>
+                <div class="analysis-stat-label">Lessons Completed</div>
+              </div>
+              <div class="analysis-stat-card">
+                <div class="analysis-stat-icon">⚡</div>
+                <div class="analysis-stat-value" id="admin-stat-xp">0</div>
+                <div class="analysis-stat-label">Total XP Awarded</div>
+              </div>
+            </div>
+
+            <div class="analysis-grid">
+              <div class="dash-card analysis-section-card">
+                <div class="dash-card-header">
+                  <h3 class="dash-card-title">
+                    <span class="dash-card-title-icon">🗺️</span>
+                    <span>Level Distribution</span>
+                  </h3>
+                  <p class="dash-card-subtitle">
+                    Where every user currently sits in the curriculum
+                  </p>
+                </div>
+                <div id="admin-level-distribution" class="skill-bd-bars"></div>
+              </div>
+
+              <div class="dash-card analysis-section-card">
+                <div class="dash-card-header">
+                  <h3 class="dash-card-title">
+                    <span class="dash-card-title-icon">📈</span>
+                    <span>New Signups</span>
+                  </h3>
+                  <p class="dash-card-subtitle">Last 14 days</p>
+                </div>
+                <div class="weekly-chart-container">
+                  <div
+                    id="admin-signup-chart"
+                    class="chart-container weekly-chart-inner"
+                  ></div>
+                </div>
+              </div>
+
+              <div class="dash-card analysis-section-card analysis-card-full">
+                <div class="dash-card-header">
+                  <h3 class="dash-card-title">
+                    <span class="dash-card-title-icon">🕒</span>
+                    <span>Recent Activity</span>
+                  </h3>
+                  <p class="dash-card-subtitle">
+                    Latest 20 lesson completions across all users
+                  </p>
+                </div>
+                <div id="admin-activity-feed"></div>
+                <div
+                  id="admin-activity-empty"
+                  class="analysis-empty-state hidden"
+                >
+                  No recent activity yet.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ═══════════ USERS SECTION ═══════════ -->
+          <section id="admin-section-users" class="admin-section hidden">
+            <div class="dash-card analysis-section-card">
+              <div class="admin-controls-row">
+                <input
+                  type="text"
+                  id="admin-search-input"
+                  class="admin-search-input"
+                  placeholder="Search by name or email…"
+                />
+                <select id="admin-sort-select" class="admin-sort-select">
+                  <option value="xp_desc">Sort: XP (high to low)</option>
+                  <option value="streak_desc">
+                    Sort: Streak (high to low)
+                  </option>
+                  <option value="score_desc">Sort: Assessment Score</option>
+                  <option value="active_desc">Sort: Last Active</option>
+                  <option value="name_asc">Sort: Name (A–Z)</option>
+                </select>
+                <button
+                  id="admin-export-btn"
+                  class="btn-secondary"
+                  style="padding: 0.6rem 1.2rem; font-size: 0.85rem"
+                >
+                  ⬇ Export CSV
+                </button>
+              </div>
+
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Level</th>
+                      <th>Score</th>
+                      <th>XP</th>
+                      <th>Streak</th>
+                      <th>Lessons</th>
+                      <th>Last Active</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-users-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <section
+            id="admin-section-announcements"
+            class="admin-section hidden"
+          >
+            <div class="dash-card analysis-section-card">
+              <div class="dash-card-header">
+                <h3 class="dash-card-title">
+                  <span class="dash-card-title-icon">📢</span
+                  ><span>Post an Announcement</span>
+                </h3>
+                <p class="dash-card-subtitle">
+                  Shows as a dismissible banner to every user on their
+                  dashboard.
+                </p>
+              </div>
+              <div class="input-group">
+                <label>Message</label>
+                <textarea
+                  id="admin-announcement-input"
+                  class="input-field"
+                  rows="3"
+                  placeholder="e.g. Scheduled maintenance tonight 11pm–1am"
+                ></textarea>
+              </div>
+              <button
+                id="admin-post-announcement-btn"
+                class="btn-primary"
+                style="margin-top: 0.75rem"
+              >
+                Post Announcement
+              </button>
+            </div>
+            <div class="dash-card analysis-section-card">
+              <div class="dash-card-header">
+                <h3 class="dash-card-title">
+                  <span class="dash-card-title-icon">🗂️</span
+                  ><span>Past Announcements</span>
+                </h3>
+              </div>
+              <div id="admin-announcements-list"></div>
+            </div>
+          </section>
+
+          <section id="admin-section-feedback" class="admin-section hidden">
+            <div class="dash-card analysis-section-card">
+              <div class="dash-card-header">
+                <h3 class="dash-card-title">
+                  <span class="dash-card-title-icon">💬</span
+                  ><span>User Feedback</span>
+                </h3>
+                <p class="dash-card-subtitle">Newest first.</p>
+              </div>
+              <div id="admin-feedback-list"></div>
+            </div>
+          </section>
+
+          <section id="admin-section-errors" class="admin-section hidden">
+            <div class="dash-card analysis-section-card">
+              <div class="dash-card-header">
+                <h3 class="dash-card-title">
+                  <span class="dash-card-title-icon">🐞</span
+                  ><span>Recent Client Errors</span>
+                </h3>
+                <p class="dash-card-subtitle">
+                  Captured automatically from the dashboard page.
+                </p>
+              </div>
+              <div id="admin-errors-list"></div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </main>
+
+    <!-- ═══════════ USER DETAIL MODAL ═══════════ -->
+    <div id="admin-user-modal" class="modal-overlay hidden">
+      <div class="admin-modal-card">
+        <button id="admin-modal-close" class="icon-btn">✕</button>
+
+        <div class="admin-modal-header">
+          <div
+            class="dash-avatar"
+            id="admin-modal-avatar"
+            style="width: 60px; height: 60px; font-size: 1.5rem"
+          >
+            ?
+          </div>
+          <div>
+            <h2 id="admin-modal-name" style="margin: 0">User</h2>
+            <p
+              id="admin-modal-email"
+              style="
+                margin: 0;
+                color: var(--color-text-muted);
+                font-size: 0.9rem;
+              "
+            ></p>
+            <span
+              id="admin-modal-level"
+              class="rec-card-tag beginner"
+              style="margin-top: 0.4rem; display: inline-block"
+              >Beginner</span
+            >
+          </div>
+        </div>
+
+        <div class="admin-modal-stats-row">
+          <div class="admin-modal-stat">
+            <span id="admin-modal-xp">0</span><label>XP</label>
+          </div>
+          <div class="admin-modal-stat">
+            <span id="admin-modal-streak">0</span><label>Streak</label>
+          </div>
+          <div class="admin-modal-stat">
+            <span id="admin-modal-lessons">0</span><label>Lessons</label>
+          </div>
+          <div class="admin-modal-stat">
+            <span id="admin-modal-badges">0</span><label>Badges</label>
+          </div>
+        </div>
+
+        <h4 style="margin: 1.5rem 0 0.75rem">Skill Breakdown</h4>
+        <div id="admin-modal-skill-bars" class="skill-bd-bars"></div>
+
+        <h4 style="margin: 1.5rem 0 0.75rem">
+          Accuracy Trend (last 10 attempts)
+        </h4>
+        <h4 style="margin: 1.5rem 0 0.75rem">Edit User</h4>
+        <div class="admin-edit-grid">
+          <div class="input-group admin-edit-fullwidth">
+            <label>Full Name</label>
+            <input type="text" id="admin-edit-name" class="input-field" />
+          </div>
+          <div class="input-group">
+            <label>Level</label>
+            <select id="admin-edit-level" class="input-field">
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>XP</label>
+            <input type="number" id="admin-edit-xp" class="input-field" />
+          </div>
+          <div class="input-group">
+            <label>Streak</label>
+            <input type="number" id="admin-edit-streak" class="input-field" />
+          </div>
+          <div class="input-group">
+            <label>Coins</label>
+            <input type="number" id="admin-edit-coins" class="input-field" />
+          </div>
+        </div>
+        <button
+          id="admin-save-edit-btn"
+          class="btn-primary"
+          style="margin-top: 0.5rem"
+        >
+          Save Changes
+        </button>
+
+        <h4 style="margin: 1.5rem 0 0.75rem; color: var(--color-error)">
+          Danger Zone
+        </h4>
+        <div class="admin-danger-actions">
+          <button id="admin-ban-btn" class="btn-secondary"></button>
+          <button id="admin-reset-btn" class="btn-secondary">
+            Reset Progress
+          </button>
+          <button id="admin-toggle-admin-btn" class="btn-secondary"></button>
+          <button
+            id="admin-delete-btn"
+            class="btn-secondary"
+            style="border-color: var(--color-error); color: var(--color-error)"
+          >
+            Delete User
+          </button>
+        </div>
+        <div class="weekly-chart-container">
+          <div
+            id="admin-modal-trend-chart"
+            class="chart-container weekly-chart-inner"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
