@@ -66,17 +66,23 @@ window.GamesHub = (function () {
     'game-word-race', 'game-word-search', 'game-crossword', 'game-complete'
   ];
 
-  const games = [
-    { id: 'word-match',   title: getTranslation(selectedLang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', desc: getTranslation(selectedLang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
-    { id: 'word-builder',  title: getTranslation(selectedLang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', desc: getTranslation(selectedLang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
-    { id: 'word-safari',   title: getTranslation(selectedLang, "gameWordSafariTitle") || 'Word Safari',   icon: '🦁', desc: getTranslation(selectedLang, "gameWordSafariDesc") || 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
-    { id: 'word-race',     title: getTranslation(selectedLang, "gameWordRaceTitle") || 'Word Race',     icon: '⏱️', desc: getTranslation(selectedLang, "gameWordRaceDesc") || 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
-  ];
+  function getGames() {
+    const lang = localStorage.getItem("appLang") || "en";
+    return [
+      { id: 'word-match',   title: getTranslation(lang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', desc: getTranslation(lang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
+      { id: 'word-builder',  title: getTranslation(lang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', desc: getTranslation(lang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
+      { id: 'word-safari',   title: getTranslation(lang, "gameWordSafariTitle") || 'Word Safari',   icon: '🦁', desc: getTranslation(lang, "gameWordSafariDesc") || 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
+      { id: 'word-race',     title: getTranslation(lang, "gameWordRaceTitle") || 'Word Race',     icon: '⏱️', desc: getTranslation(lang, "gameWordRaceDesc") || 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
+    ];
+  }
 
-  const puzzles = [
-    { id: 'word-search', title: 'Word Search',  icon: '🔍', desc: 'Find hidden words in the grid.',   init: () => { lastGameInit = () => WordSearchGame.init(profileRef); lastGameInit(); } },
-    { id: 'crossword',   title: 'Vocabulary Crossword', icon: '🧩', desc: 'Solve clues to fill the grid.', init: () => { lastGameInit = () => CrosswordGame.init(profileRef); lastGameInit(); } },
-  ];
+  function getPuzzles() {
+    const lang = localStorage.getItem("appLang") || "en";
+    return [
+      { id: 'word-search', title: getTranslation(lang, "gameWordSearchTitle") || 'Word Search',  icon: '🔍', desc: getTranslation(lang, "gameWordSearchDesc") || 'Find hidden words in the grid.',   init: () => { lastGameInit = () => WordSearchGame.init(profileRef); lastGameInit(); } },
+      { id: 'crossword',   title: getTranslation(lang, "gameCrosswordTitle") || 'Vocabulary Crossword', icon: '🧩', desc: getTranslation(lang, "gameCrosswordDesc") || 'Solve clues to fill the grid.', init: () => { lastGameInit = () => CrosswordGame.init(profileRef); lastGameInit(); } },
+    ];
+  }
 
   function init(profile) {
     profileRef = profile;
@@ -108,10 +114,10 @@ window.GamesHub = (function () {
     gamesGrid.innerHTML = '';
     puzzlesGrid.innerHTML = '';
 
-    games.forEach(g => {
+    getGames().forEach(g => {
       gamesGrid.appendChild(makeCard(g));
     });
-    puzzles.forEach(p => {
+    getPuzzles().forEach(p => {
       puzzlesGrid.appendChild(makeCard(p));
     });
   }
