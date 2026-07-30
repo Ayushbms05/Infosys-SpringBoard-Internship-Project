@@ -18,46 +18,49 @@ window.ChatSimulator = (function () {
   let chatInitialized = false;
 
   // Hybrid Dictionary: Hardcoded + AI Free-Text
-  const SCENARIOS = {
-    banking: {
-      type: "hardcoded",
-      title: "Bank Alert",
-      desc: "Handle a 3-step security check.",
-      contactName: "Bank Alerts",
-      contactIcon: "🏦",
-      task: "Read the security alerts and protect your account.",
-      turns: [
-        { incoming: "ALERT: A login attempt was made from a new device. If this was not you, please reply to lock your account immediately.", options: ["Yes, this was me.", "No, lock my account.", "What is my balance?"], correctIndex: 1 },
-        { incoming: "Your account is temporarily locked. To protect your funds, do you want us to block your current debit card?", options: ["Yes, block the card.", "No, leave it active.", "Send me a pizza."], correctIndex: 0 },
-        { incoming: "Card blocked successfully. We will mail a replacement to your registered address. Reply 'CONFIRM' to finalize.", options: ["CANCEL", "CONFIRM", "LATER"], correctIndex: 1 }
-      ],
-      successMessage: "Great job! You successfully completed all security checks."
-    },
-    recharge: {
-      type: "hardcoded",
-      title: "Mobile Recharge",
-      desc: "Renew your data plan in 3 steps.",
-      contactName: "Network Provider",
-      contactIcon: "📱",
-      task: "Navigate the menus to renew your data plan.",
-      turns: [
-        { incoming: "Dear customer, your prepaid plan is expiring today. Reply '1' to view plans or '2' to ignore.", options: ["1", "2", "Call me."], correctIndex: 0 },
-        { incoming: "Here are the plans: A) ₹299 for 28 Days. B) ₹499 for 56 Days. Which plan do you want to select?", options: ["Plan A", "Plan B", "Neither"], correctIndex: 0 },
-        { incoming: "You selected the ₹299 plan. Please reply 'PAY' to receive your payment link.", options: ["NO", "MAYBE", "PAY"], correctIndex: 2 }
-      ],
-      successMessage: "Perfect! You successfully managed your prepaid service."
-    },
-    friend: {
-      type: "free-text",
-      title: "Chat with a Friend",
-      desc: "Practice typing your own replies.",
-      contactName: "Rahul (Friend)",
-      contactIcon: "🧑🏽",
-      task: "Type your own replies. Practice your spelling and grammar!",
-      incomingMessage: "Hey! It's been a while. How are you doing?",
-      successMessage: "Awesome conversation! Your typing is getting much better."
-    }
-  };
+  function getScenarios() {
+    const lang = localStorage.getItem("appLang") || "en";
+    return {
+      banking: {
+        type: "hardcoded",
+        title: getTranslation(lang, "chatBankTitle") || "Bank Alert",
+        desc: getTranslation(lang, "chatBankDesc") || "Handle a 3-step security check.",
+        contactName: getTranslation(lang, "chatBankContactName") || "Bank Alerts",
+        contactIcon: "🏦",
+        task: getTranslation(lang, "chatBankTask") || "Read the security alerts and protect your account.",
+        turns: [
+          { incoming: getTranslation(lang, "chatBankTurn0Inc") || "ALERT: A login attempt was made from a new device. If this was not you, please reply to lock your account immediately.", options: [getTranslation(lang, "chatBankTurn0Opt0") || "Yes, this was me.", getTranslation(lang, "chatBankTurn0Opt1") || "No, lock my account.", getTranslation(lang, "chatBankTurn0Opt2") || "What is my balance?"], correctIndex: 1 },
+          { incoming: getTranslation(lang, "chatBankTurn1Inc") || "Your account is temporarily locked. To protect your funds, do you want us to block your current debit card?", options: [getTranslation(lang, "chatBankTurn1Opt0") || "Yes, block the card.", getTranslation(lang, "chatBankTurn1Opt1") || "No, leave it active.", getTranslation(lang, "chatBankTurn1Opt2") || "Send me a pizza."], correctIndex: 0 },
+          { incoming: getTranslation(lang, "chatBankTurn2Inc") || "Card blocked successfully. We will mail a replacement to your registered address. Reply 'CONFIRM' to finalize.", options: [getTranslation(lang, "chatBankTurn2Opt0") || "CANCEL", getTranslation(lang, "chatBankTurn2Opt1") || "CONFIRM", getTranslation(lang, "chatBankTurn2Opt2") || "LATER"], correctIndex: 1 }
+        ],
+        successMessage: getTranslation(lang, "chatBankSuccess") || "Great job! You successfully completed all security checks."
+      },
+      recharge: {
+        type: "hardcoded",
+        title: getTranslation(lang, "chatRechargeTitle") || "Mobile Recharge",
+        desc: getTranslation(lang, "chatRechargeDesc") || "Renew your data plan in 3 steps.",
+        contactName: getTranslation(lang, "chatRechargeContactName") || "Network Provider",
+        contactIcon: "📱",
+        task: getTranslation(lang, "chatRechargeTask") || "Navigate the menus to renew your data plan.",
+        turns: [
+          { incoming: getTranslation(lang, "chatRechargeTurn0Inc") || "Dear customer, your prepaid plan is expiring today. Reply '1' to view plans or '2' to ignore.", options: [getTranslation(lang, "chatRechargeTurn0Opt0") || "1", getTranslation(lang, "chatRechargeTurn0Opt1") || "2", getTranslation(lang, "chatRechargeTurn0Opt2") || "Call me."], correctIndex: 0 },
+          { incoming: getTranslation(lang, "chatRechargeTurn1Inc") || "Here are the plans: A) ₹299 for 28 Days. B) ₹499 for 56 Days. Which plan do you want to select?", options: [getTranslation(lang, "chatRechargeTurn1Opt0") || "Plan A", getTranslation(lang, "chatRechargeTurn1Opt1") || "Plan B", getTranslation(lang, "chatRechargeTurn1Opt2") || "Neither"], correctIndex: 0 },
+          { incoming: getTranslation(lang, "chatRechargeTurn2Inc") || "You selected the ₹299 plan. Please reply 'PAY' to receive your payment link.", options: [getTranslation(lang, "chatRechargeTurn2Opt0") || "NO", getTranslation(lang, "chatRechargeTurn2Opt1") || "MAYBE", getTranslation(lang, "chatRechargeTurn2Opt2") || "PAY"], correctIndex: 2 }
+        ],
+        successMessage: getTranslation(lang, "chatRechargeSuccess") || "Perfect! You successfully managed your prepaid service."
+      },
+      friend: {
+        type: "free-text",
+        title: getTranslation(lang, "chatFriendTitle") || "Chat with a Friend",
+        desc: getTranslation(lang, "chatFriendDesc") || "Practice typing your own replies.",
+        contactName: getTranslation(lang, "chatFriendContactName") || "Rahul (Friend)",
+        contactIcon: "🧑🏽",
+        task: getTranslation(lang, "chatFriendTask") || "Type your own replies. Practice your spelling and grammar!",
+        incomingMessage: getTranslation(lang, "chatFriendInc") || "Hey! It's been a while. How are you doing?",
+        successMessage: getTranslation(lang, "chatFriendSuccess") || "Awesome conversation! Your typing is getting much better."
+      }
+    };
+  }
 
   // ── Public: Init (called lazily by dashboard.js) ──
   function init(profile) {
@@ -98,8 +101,8 @@ window.ChatSimulator = (function () {
     const grid = document.getElementById("scenario-grid");
     grid.innerHTML = '';
 
-    Object.keys(SCENARIOS).forEach(key => {
-      const data = SCENARIOS[key];
+    Object.keys(getScenarios()).forEach(key => {
+      const data = getScenarios()[key];
       const card = document.createElement("div");
       card.className = "scenario-card";
       const aiBadge = data.type === "free-text"
@@ -119,7 +122,7 @@ window.ChatSimulator = (function () {
   }
 
   function startScenario(scenarioKey) {
-    currentScenario = SCENARIOS[scenarioKey];
+    currentScenario = getScenarios()[scenarioKey];
     currentTurnIndex = 0;
     totalXPEarned = 0;
     totalCoinsEarned = 0;

@@ -67,10 +67,10 @@ window.GamesHub = (function () {
   ];
 
   const games = [
-    { id: 'word-match',   title: 'Word Match',   icon: '🧠', desc: 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
-    { id: 'word-builder',  title: 'Word Builder',  icon: '🔨', desc: 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
-    { id: 'word-safari',   title: 'Word Safari',   icon: '🦁', desc: 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
-    { id: 'word-race',     title: 'Word Race',     icon: '⏱️', desc: 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
+    { id: 'word-match',   title: getTranslation(selectedLang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', desc: getTranslation(selectedLang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
+    { id: 'word-builder',  title: getTranslation(selectedLang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', desc: getTranslation(selectedLang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
+    { id: 'word-safari',   title: getTranslation(selectedLang, "gameWordSafariTitle") || 'Word Safari',   icon: '🦁', desc: getTranslation(selectedLang, "gameWordSafariDesc") || 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
+    { id: 'word-race',     title: getTranslation(selectedLang, "gameWordRaceTitle") || 'Word Race',     icon: '⏱️', desc: getTranslation(selectedLang, "gameWordRaceDesc") || 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
   ];
 
   const puzzles = [

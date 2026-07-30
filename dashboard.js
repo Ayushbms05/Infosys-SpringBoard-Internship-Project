@@ -749,7 +749,13 @@ function manageDailyQuests(profile) {
         <div class="quest-item-top">
           <div class="quest-item-left">
             <div class="quest-check">${isDone ? "✓" : ""}</div>
-            <span class="quest-title">${q.title}</span>
+            <span class="quest-title">${
+              q.id === "q1"
+                ? getTranslation(selectedLang, "questEarnXP") || "Earn 20 XP"
+                : q.id === "q2"
+                ? getTranslation(selectedLang, "questPlayGame") || "Play Word Match"
+                : getTranslation(selectedLang, "questCompleteLesson") || "Complete 1 Lesson"
+            }</span>
           </div>
           <span class="quest-reward">+${q.reward} 🪙</span>
         </div>
@@ -938,19 +944,19 @@ function setupFeedbackForm() {
 
 function renderWordOfTheDay() {
   const dictionary = [
-    { word: "Sign", meaning: "To write your name on a document." },
-    { word: "Deposit", meaning: "To put money into a bank account." },
-    { word: "Prescription", meaning: "A doctor's written note for medicine." },
+    { word: getTranslation(selectedLang, "wotd_0_word") || "Sign", meaning: getTranslation(selectedLang, "wotd_0_desc") || "To write your name on a document." },
+    { word: getTranslation(selectedLang, "wotd_1_word") || "Deposit", meaning: getTranslation(selectedLang, "wotd_1_desc") || "To put money into a bank account." },
+    { word: getTranslation(selectedLang, "wotd_2_word") || "Prescription", meaning: getTranslation(selectedLang, "wotd_2_desc") || "A doctor's written note for medicine." },
     {
-      word: "Receipt",
-      meaning: "A piece of paper proving you paid for something.",
+      word: getTranslation(selectedLang, "wotd_3_word") || "Receipt",
+      meaning: getTranslation(selectedLang, "wotd_3_desc") || "A piece of paper proving you paid for something.",
     },
     {
-      word: "Platform",
-      meaning: "The area at a station where you wait for a train.",
+      word: getTranslation(selectedLang, "wotd_4_word") || "Platform",
+      meaning: getTranslation(selectedLang, "wotd_4_desc") || "The area at a station where you wait for a train.",
     },
-    { word: "Verify", meaning: "To make sure something is true or accurate." },
-    { word: "Balance", meaning: "The amount of money left in your account." },
+    { word: getTranslation(selectedLang, "wotd_5_word") || "Verify", meaning: getTranslation(selectedLang, "wotd_5_desc") || "To make sure something is true or accurate." },
+    { word: getTranslation(selectedLang, "wotd_6_word") || "Balance", meaning: getTranslation(selectedLang, "wotd_6_desc") || "The amount of money left in your account." },
   ];
 
   // Pick one based on the current day of the year
