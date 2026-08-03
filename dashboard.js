@@ -988,6 +988,9 @@ function renderWordOfTheDay() {
 // ─── Dashboard Events ─────────────────────────────────────────
 
 function setupDashboardEvents(profile) {
+  // Sidebar collapse/expand + mobile drawer
+  setupSidebarToggle();
+
   // Logout button
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
@@ -1510,5 +1513,96 @@ async function equipItem(itemId) {
     await db.collection("users").doc(user.uid).update({ activeTheme: itemId });
   } catch (e) {
     console.error("Equip failed", e);
+  }
+}
+
+// ─── Sidebar Icon-Rail Toggle ──────────────────────────────────
+// Purely additive: desktop collapse/expand + mobile drawer.
+// Does NOT modify any existing event handlers or logic.
+function setupSidebarToggle() {
+  const body = document.body;
+  const collapseBtn = document.getElementById("sidebar-collapse-btn");
+  const menuBtn = document.getElementById("mobile-menu-btn");
+  const backdrop = document.getElementById("sidebar-backdrop");
+  const avatarSlot = document.querySelector(".mobile-topbar-avatar-slot");
+  const sidebar = document.querySelector(".dash-sidebar");
+
+  // ── Desktop: collapse / expand ──
+  if (localStorage.getItem("sidebar_collapsed") === "true") {
+    body.classList.add("sidebar-collapsed");
+  }
+
+  if (collapseBtn) {
+    collapseBtn.addEventListener("click", function () {
+      if (window.innerWidth <= 900) {
+        closeDrawer();
+      } else {
+        const isCollapsed = body.classList.toggle("sidebar-collapsed");
+        localStorage.setItem("sidebar_collapsed", isCollapsed);
+        collapseBtn.setAttribute(
+          "aria-label",
+          isCollapsed ? "Expand sidebar" : "Collapse sidebar"
+        );
+      }
+    });
+    // Set initial aria-label
+    if (body.classList.contains("sidebar-collapsed")) {
+      collapseBtn.setAttribute("aria-label", "Expand sidebar");
+    }
+  }
+
+  // ── Mobile: drawer open / close ──
+  function openDrawer() {
+    body.classList.add("sidebar-drawer-open");
+    if (sidebar) sidebar.focus();
+  }
+
+  function closeDrawer() {
+    body.classList.remove("sidebar-drawer-open");
+    if (menuBtn) menuBtn.focus();
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener("click", openDrawer);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", closeDrawer);
+  }
+
+  // Close drawer when a nav item is clicked (in addition to its existing handler)
+  document.querySelectorAll(".dash-nav-item").forEach(function (item) {
+    item.addEventListener("click", function () {
+      if (body.classList.contains("sidebar-drawer-open")) {
+        closeDrawer();
+      }
+    });
+  });
+
+  // ── Avatar: single source of truth ──
+  // On mobile, move #user-avatar into the topbar slot.
+  // On desktop, keep it in .sidebar-user.
+  var mobileQuery = window.matchMedia("(max-width: 900px)");
+
+  function placeAvatar(mq) {
+    var avatar = document.getElementById("user-avatar");
+    if (!avatar) return;
+    var sidebarUser = document.querySelector(".sidebar-user");
+
+    if (mq.matches && avatarSlot) {
+      // Mobile: move avatar to topbar slot
+      avatarSlot.appendChild(avatar);
+    } else if (sidebarUser) {
+      // Desktop: move avatar back to sidebar-user (prepend so it's before user-info)
+      sidebarUser.prepend(avatar);
+    }
+  }
+
+  placeAvatar(mobileQuery);
+  mobileQuery.addEventListener("change", placeAvatar);
+
+  // Re-initialize Lucide icons if loaded (they may have been added dynamically)
+  if (window.lucide) {
+    lucide.createIcons();
   }
 }

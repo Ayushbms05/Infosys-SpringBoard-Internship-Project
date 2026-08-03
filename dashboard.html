@@ -9,6 +9,7 @@
   <title>AksharGyan — Dashboard</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json" />
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
@@ -23,12 +24,31 @@
   </div>
 
   <main class="dashboard-layout hidden" id="dashboard-content">
+    <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
+    <div id="mobile-topbar" class="mobile-topbar">
+      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu">
+        <i data-lucide="menu" aria-hidden="true"></i>
+      </button>
+      <div class="mobile-topbar-brand">
+        <i data-lucide="book-marked" class="mobile-topbar-brand-icon" aria-hidden="true"></i>
+        <span class="sidebar-brand-text">AksharGyan</span>
+      </div>
+      <div class="mobile-topbar-avatar-slot"></div>
+    </div>
+    <!-- ═══════════ SIDEBAR BACKDROP (mobile) ═══════════ -->
+    <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
     <div class="dash-shell">
       <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
       <aside class="dash-sidebar">
-        <div class="sidebar-brand">
-          <span class="sidebar-brand-icon">📖</span>
-          <span class="sidebar-brand-text">AksharGyan</span>
+        <div class="sidebar-header">
+          <div class="sidebar-brand">
+            <span class="sidebar-brand-icon"><i data-lucide="book-marked" aria-hidden="true"></i></span>
+            <span class="sidebar-brand-text">AksharGyan</span>
+          </div>
+          <button id="sidebar-collapse-btn" class="sidebar-collapse-btn" aria-label="Collapse sidebar">
+            <i data-lucide="panel-left-close" aria-hidden="true"></i>
+          </button>
         </div>
 
         <div class="sidebar-user">
@@ -60,33 +80,33 @@
         </div>
 
         <nav class="dash-nav">
-          <button class="dash-nav-item active" data-section="learn">
-            <span class="dash-nav-icon">📚</span>
-            <span data-i18n="navLearn">Learn</span>
+          <button class="dash-nav-item active" data-section="learn" title="Learn">
+            <span class="dash-nav-icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navLearn">Learn</span>
           </button>
-          <button class="dash-nav-item" data-section="practice">
-            <span class="dash-nav-icon">🎯</span>
-            <span data-i18n="navPractice">Practice</span>
+          <button class="dash-nav-item" data-section="practice" title="Practice">
+            <span class="dash-nav-icon"><i data-lucide="target" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navPractice">Practice</span>
           </button>
-          <button class="dash-nav-item" data-section="chat">
-            <span class="dash-nav-icon">💬</span>
-            <span data-i18n="navChatSimulator">Chat Simulator</span>
+          <button class="dash-nav-item" data-section="chat" title="Chat Simulator">
+            <span class="dash-nav-icon"><i data-lucide="message-circle" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navChatSimulator">Chat Simulator</span>
           </button>
-          <button class="dash-nav-item" data-section="games">
-            <span class="dash-nav-icon">🎮</span>
-            <span data-i18n="navGames">Games</span>
+          <button class="dash-nav-item" data-section="games" title="Games">
+            <span class="dash-nav-icon"><i data-lucide="gamepad-2" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navGames">Games</span>
           </button>
-          <button class="dash-nav-item" data-section="profile">
-            <span class="dash-nav-icon">👤</span>
-            <span data-i18n="navProfile">Profile</span>
+          <button class="dash-nav-item" data-section="profile" title="Profile">
+            <span class="dash-nav-icon"><i data-lucide="user" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navProfile">Profile</span>
           </button>
-          <button class="dash-nav-item" data-section="feedback">
-            <span class="dash-nav-icon">💡</span>
-            <span data-i18n="navFeedback">Feedback</span>
+          <button class="dash-nav-item" data-section="feedback" title="Feedback">
+            <span class="dash-nav-icon"><i data-lucide="lightbulb" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navFeedback">Feedback</span>
           </button>
-          <button class="dash-nav-item" data-section="analysis">
-            <span class="dash-nav-icon">📊</span>
-            <span data-i18n="navAnalysis">Analysis</span>
+          <button class="dash-nav-item" data-section="analysis" title="Analysis">
+            <span class="dash-nav-icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navAnalysis">Analysis</span>
           </button>
         </nav>
 
@@ -909,6 +929,7 @@
   <script src="analysis.js"></script>
   <script src="dashboard.js"></script>
   <script src="main.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => { if (window.lucide) lucide.createIcons(); });</script>
 </body>
 
 </html>

@@ -69,18 +69,18 @@ window.GamesHub = (function () {
   function getGames() {
     const lang = localStorage.getItem("appLang") || "en";
     return [
-      { id: 'word-match',   title: getTranslation(lang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', desc: getTranslation(lang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
-      { id: 'word-builder',  title: getTranslation(lang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', desc: getTranslation(lang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
-      { id: 'word-safari',   title: getTranslation(lang, "gameWordSafariTitle") || 'Word Safari',   icon: '🦁', desc: getTranslation(lang, "gameWordSafariDesc") || 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
-      { id: 'word-race',     title: getTranslation(lang, "gameWordRaceTitle") || 'Word Race',     icon: '⏱️', desc: getTranslation(lang, "gameWordRaceDesc") || 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
+      { id: 'word-match',   titleKey: 'gameWordMatchTitle', title: getTranslation(lang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', descKey: 'gameWordMatchDesc', desc: getTranslation(lang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
+      { id: 'word-builder',  titleKey: 'gameWordBuilderTitle', title: getTranslation(lang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', descKey: 'gameWordBuilderDesc', desc: getTranslation(lang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
+      { id: 'word-safari',   titleKey: 'gameWordSafariTitle', title: getTranslation(lang, "gameWordSafariTitle") || 'Word Safari',   icon: '🦁', descKey: 'gameWordSafariDesc', desc: getTranslation(lang, "gameWordSafariDesc") || 'Spot the right word for the icon.',  init: () => { lastGameInit = () => WordSafari.init(profileRef); lastGameInit(); } },
+      { id: 'word-race',     titleKey: 'gameWordRaceTitle', title: getTranslation(lang, "gameWordRaceTitle") || 'Word Race',     icon: '⏱️', descKey: 'gameWordRaceDesc', desc: getTranslation(lang, "gameWordRaceDesc") || 'Pick words against the clock!',     init: () => { lastGameInit = () => WordRace.init(profileRef); lastGameInit(); } },
     ];
   }
 
   function getPuzzles() {
     const lang = localStorage.getItem("appLang") || "en";
     return [
-      { id: 'word-search', title: getTranslation(lang, "gameWordSearchTitle") || 'Word Search',  icon: '🔍', desc: getTranslation(lang, "gameWordSearchDesc") || 'Find hidden words in the grid.',   init: () => { lastGameInit = () => WordSearchGame.init(profileRef); lastGameInit(); } },
-      { id: 'crossword',   title: getTranslation(lang, "gameCrosswordTitle") || 'Vocabulary Crossword', icon: '🧩', desc: getTranslation(lang, "gameCrosswordDesc") || 'Solve clues to fill the grid.', init: () => { lastGameInit = () => CrosswordGame.init(profileRef); lastGameInit(); } },
+      { id: 'word-search', titleKey: 'gameWordSearchTitle', title: getTranslation(lang, "gameWordSearchTitle") || 'Word Search',  icon: '🔍', descKey: 'gameWordSearchDesc', desc: getTranslation(lang, "gameWordSearchDesc") || 'Find hidden words in the grid.',   init: () => { lastGameInit = () => WordSearchGame.init(profileRef); lastGameInit(); } },
+      { id: 'crossword',   titleKey: 'gameCrosswordTitle', title: getTranslation(lang, "gameCrosswordTitle") || 'Vocabulary Crossword', icon: '🧩', descKey: 'gameCrosswordDesc', desc: getTranslation(lang, "gameCrosswordDesc") || 'Solve clues to fill the grid.', init: () => { lastGameInit = () => CrosswordGame.init(profileRef); lastGameInit(); } },
     ];
   }
 
@@ -127,8 +127,8 @@ window.GamesHub = (function () {
     card.className = "scenario-card";
     card.innerHTML = `
       <div class="scenario-icon">${item.icon}</div>
-      <h3 style="margin:0 0 .5rem 0;">${item.title}</h3>
-      <p style="margin:0;color:#64748b;font-size:.9rem;">${item.desc}</p>
+      <h3 style="margin:0 0 .5rem 0;" data-i18n="${item.titleKey}">${item.title}</h3>
+      <p style="margin:0;color:#64748b;font-size:.9rem;" data-i18n="${item.descKey}">${item.desc}</p>
     `;
     card.onclick = () => {
       document.getElementById("games-hub-screen").classList.add("hidden");

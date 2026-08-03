@@ -392,6 +392,11 @@ const translations = {
   
     gamesCategoryGames: "Games",
     gamesCategoryPuzzles: "Puzzles",
+  
+    gameWordSearchTitle: "Word Search",
+    gameWordSearchDesc: "Find hidden words in the grid.",
+    gameCrosswordTitle: "Vocabulary Crossword",
+    gameCrosswordDesc: "Solve clues to fill the grid.",
   },
 
   // ─── HINDI ──────────────────────────────────────────────────
@@ -745,6 +750,11 @@ const translations = {
   
     gamesCategoryGames: "गेम्स",
     gamesCategoryPuzzles: "पहेलियाँ",
+  
+    gameWordSearchTitle: "शब्द खोज",
+    gameWordSearchDesc: "ग्रिड में छिपे हुए शब्द खोजें।",
+    gameCrosswordTitle: "शब्दावली वर्ग पहेली",
+    gameCrosswordDesc: "ग्रिड भरने के लिए सुराग हल करें।",
   },
 
   // ─── TAMIL ──────────────────────────────────────────────────
@@ -1107,6 +1117,11 @@ const translations = {
   
     gamesCategoryGames: "விளையாட்டுகள்",
     gamesCategoryPuzzles: "புதிர்கள்",
+  
+    gameWordSearchTitle: "சொல் தேடல்",
+    gameWordSearchDesc: "கிரிட்டில் மறைந்திருக்கும் சொற்களைக் கண்டறியவும்.",
+    gameCrosswordTitle: "சொல்லகராதி குறுக்கெழுத்து",
+    gameCrosswordDesc: "கிரிட்டை நிரப்ப தடயங்களை தீர்க்கவும்.",
   },
 
   // ─── TELUGU ─────────────────────────────────────────────────
@@ -1462,6 +1477,11 @@ const translations = {
   
     gamesCategoryGames: "ఆటలు",
     gamesCategoryPuzzles: "పజిల్స్",
+  
+    gameWordSearchTitle: "పద శోధన",
+    gameWordSearchDesc: "గ్రిడ్‌లో దాచిన పదాలను కనుగొనండి.",
+    gameCrosswordTitle: "పదజాలం క్రాస్వర్డ్",
+    gameCrosswordDesc: "గ్రిడ్‌ను పూరించడానికి ఆధారాలను పరిష్కరించండి.",
   },
 
   // ─── KANNADA ────────────────────────────────────────────────
@@ -1818,6 +1838,11 @@ const translations = {
   
     gamesCategoryGames: "ಆಟಗಳು",
     gamesCategoryPuzzles: "ಒಗಟುಗಳು",
+  
+    gameWordSearchTitle: "ಪದ ಹುಡುಕಾಟ",
+    gameWordSearchDesc: "ಗ್ರಿಡ್‌ನಲ್ಲಿ ಅಡಗಿರುವ ಪದಗಳನ್ನು ಹುಡುಕಿ.",
+    gameCrosswordTitle: "ಶಬ್ದಕೋಶ ಕ್ರಾಸ್‌ವರ್ಡ್",
+    gameCrosswordDesc: "ಗ್ರಿಡ್ ತುಂಬಲು ಸುಳಿವುಗಳನ್ನು ಬಿಡಿಸಿ.",
   },
 
   // ─── BENGALI ────────────────────────────────────────────────
@@ -2170,6 +2195,11 @@ const translations = {
   
     gamesCategoryGames: "গেমস",
     gamesCategoryPuzzles: "ধাঁধা",
+  
+    gameWordSearchTitle: "শব্দ অনুসন্ধান",
+    gameWordSearchDesc: "গ্রিডে লুকানো শব্দ খুঁজুন।",
+    gameCrosswordTitle: "শব্দভান্ডার শব্দগুচ্ছ",
+    gameCrosswordDesc: "গ্রিড পূরণ করতে সূত্র সমাধান করুন।",
   },
 
   // ─── MARATHI ────────────────────────────────────────────────
@@ -2429,8 +2459,6 @@ const translations = {
     age41to60: "41–60",
     ageAbove60: "60 पेक्षा जास्त",
     ageSelectPlaceholder: "— तुमचा वयोगट निवडा —",
-  },
-
     navChatSimulator: "चॅट सिम्युलेटर",
     navGames: "खेळ",
     navFeedback: "अभिप्राय",
@@ -2522,6 +2550,14 @@ const translations = {
   
     gamesCategoryGames: "खेळ",
     gamesCategoryPuzzles: "कोडी",
+  },
+
+    
+  
+    gameWordSearchTitle: "शब्द शोध",
+    gameWordSearchDesc: "ग्रीडमध्ये लपलेले शब्द शोधा.",
+    gameCrosswordTitle: "शब्दसंग्रह शब्दकोडे",
+    gameCrosswordDesc: "ग्रीड भरण्यासाठी संकेत सोडवा.",
   };
 
 // ────────────────────────────────────────────────────────────────

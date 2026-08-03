@@ -247,7 +247,7 @@ window.ChatSimulator = (function () {
 
     try {
       const idToken = await firebase.auth().currentUser.getIdToken();
-      const response = await fetch('/api/callGemini', {
+      const response = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
         body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.5 } })

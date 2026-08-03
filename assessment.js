@@ -145,7 +145,7 @@ Each object MUST have this exact structure:
   while (attempts <= maxRetries) {
     try {
       const idToken = await firebase.auth().currentUser.getIdToken();
-      const response = await fetch('/api/callGemini', {
+      const response = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
         body: JSON.stringify({
@@ -296,7 +296,7 @@ RESPOND ONLY with this exact JSON structure (no markdown, no extra text):
 
   try {
     const idToken = await firebase.auth().currentUser.getIdToken();
-    const resp = await fetch('/api/callGemini', {
+    const resp = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer " + idToken },
       body: JSON.stringify({
@@ -691,7 +691,7 @@ RESPOND ONLY with this exact JSON structure (no markdown, no extra text):
 
   try {
     const idToken = await firebase.auth().currentUser.getIdToken();
-    const resp = await fetch('/api/callGemini', {
+    const resp = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer " + idToken },
       body: JSON.stringify({

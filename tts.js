@@ -170,7 +170,7 @@ class TextToSpeechManager {
 
     try {
       const idToken = await firebase.auth().currentUser.getIdToken();
-      const response = await fetch('/api/callTextToSpeech', {
+      const response = await fetch(APP_CONFIG.CLOUD_FN_TTS, {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
         body: JSON.stringify({
@@ -381,7 +381,7 @@ function startSpeechToText(lang, onResult, onError) {
         const base64Audio = reader.result.split(',')[1];
         try {
           const idToken = await firebase.auth().currentUser.getIdToken();
-          const response = await fetch('/api/callSpeechToText', {
+          const response = await fetch(APP_CONFIG.CLOUD_FN_STT, {
             method: 'POST',
             headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
             body: JSON.stringify({
