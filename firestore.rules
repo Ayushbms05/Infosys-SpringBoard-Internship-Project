@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() { return request.auth != null; }
+    function isAdmin() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    function isOwner(uid) { return isSignedIn() && request.auth.uid == uid; }
+    function notChangingProtectedFields() {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isAdmin', 'disabled']);
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(userId);
+      allow update: if (isOwner(userId) && notChangingProtectedFields()) || isAdmin();
+      
+      // FIXED: Allow admins to delete users
+      allow delete: if isAdmin();
+
+      match /{subcollection}/{docId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow write: if isOwner(userId) || isAdmin();
+      }
+    }
+
+    // FIXED: Allow admins to query lessonHistory across all users (collection group query)
+    match /{path=**}/lessonHistory/{docId} {
+      allow read: if isAdmin();
+    }
+
+    // FIXED: Announcements permissions
+    match /announcements/{docId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // FIXED: Feedback permissions
+    match /feedback/{docId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    // FIXED: Error logs permissions
+    match /errorLogs/{docId} {
+      allow read: if isAdmin();
+      allow create: if isSignedIn();
+      allow update, delete: if isAdmin();
+    }
+
+    match /adminActions/{docId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /sharedLessonContent/{docId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+                   && request.resource.data.keys().hasAll(['targetLanguage', 'level', 'skill', 'lessonIndex', 'exercises'])
+                   && request.resource.data.targetLanguage is string
+                   && request.resource.data.level is string
+                   && request.resource.data.skill is string
+                   && request.resource.data.lessonIndex is number
+                   && request.resource.data.exercises is list
+                   && request.resource.data.exercises.size() > 0;
+      allow update, delete: if isAdmin();
+    }
+  }
+}

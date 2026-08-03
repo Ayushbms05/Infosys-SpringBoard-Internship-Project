@@ -10,6 +10,7 @@ let lessonScore = 0;
 let totalExercises = 5;
 let selectedAnswer = null;
 let lessonUserProfile = null;
+let lessonStartTime = 0;
 
 const typeIcons = {
   reading: "📖",
@@ -31,8 +32,9 @@ function setupLesson() {
   const params = new URLSearchParams(window.location.search);
   lessonParams = {
     level: params.get("level") || "beginner",
-    unit: params.get("unit") || "alphabets",
+    unit: params.get("unit") || "alphabets",  // kept for backward compat, ignored by blueprint
     type: params.get("type") || "reading",
+    lessonIndex: parseInt(params.get("lessonIndex"), 10) || 1,
   };
 
   const titleEl = document.getElementById("lesson-title");
@@ -60,12 +62,14 @@ function setupLesson() {
       exercises = await generateExercises();
       totalExercises = exercises.length;
       document.getElementById("loading-overlay").classList.add("hidden");
+      lessonStartTime = Date.now();
       renderExercise();
     } catch (error) {
       console.error("Lesson generation failed, using fallbacks:", error);
       exercises = getFallbackExercises(lessonParams.type);
       totalExercises = exercises.length;
       document.getElementById("loading-overlay").classList.add("hidden");
+      lessonStartTime = Date.now();
       renderExercise();
     }
   });
@@ -76,7 +80,7 @@ function setupLesson() {
     .addEventListener("click", nextExercise);
 }
 
-// ─── Gemini AI Generator ────────────────────────────────
+// ─── Gemini AI Generator (Blueprint + Cache-First) ──────────
 async function generateExercises() {
   const langNames = { en: "English", hi: "Hindi", ta: "Tamil", te: "Telugu", kn: "Kannada", bn: "Bengali", mr: "Marathi" };
   const knownLang = lessonUserProfile?.preferredLanguage || "en";
@@ -85,6 +89,36 @@ async function generateExercises() {
   const targetLangName = langNames[targetLang] || "English";
   const litLevel = lessonUserProfile?.literacyLevel || "canRecognize";
   const ageGroup = lessonUserProfile?.ageGroup || "26-40";
+
+  const level = lessonParams.level;
+  const skill = lessonParams.type;
+  const lessonIndex = lessonParams.lessonIndex;
+
+  // ── 1. Look up the blueprint for this lesson slot ──
+  const blueprintSlots = CURRICULUM_BLUEPRINT?.[level]?.[skill];
+  const blueprint = blueprintSlots?.find(b => b.lessonIndex === lessonIndex);
+  if (!blueprint) {
+    console.warn(`No blueprint found for ${level}/${skill}/lesson ${lessonIndex}, using fallback`);
+    return getFallbackExercises(skill);
+  }
+
+  // ── 2. Check Firestore cache ──
+  const cacheDocId = `${targetLang}_${level}_${skill}_${lessonIndex}`;
+  try {
+    const cachedDoc = await db.collection("sharedLessonContent").doc(cacheDocId).get();
+    if (cachedDoc.exists) {
+      const cachedData = cachedDoc.data();
+      if (cachedData.exercises && cachedData.exercises.length > 0) {
+        console.log(`✅ Cache hit: ${cacheDocId} — skipping Gemini`);
+        return cachedData.exercises;
+      }
+    }
+  } catch (cacheErr) {
+    console.warn("Cache read failed, will generate fresh:", cacheErr);
+  }
+
+  // ── 3. No cache → build a focused Gemini prompt using the blueprint ──
+  console.log(`🔄 Cache miss: ${cacheDocId} — generating via Gemini`);
 
   const ageContext = {
     "below18": "a teenage learner — keep examples relatable to school, family, and everyday teenage life, but never childish",
@@ -103,19 +137,22 @@ async function generateExercises() {
   }[litLevel] || "an adult learner building foundational literacy";
 
   const prompts = {
-    reading: `Generate 5 Duolingo-style reading exercises. JSON: [{"content": "ONE short sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "A short question in ${targetLangName} about the content", "questionTranslation": "The ${knownLangName} translation of the question", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Why this is correct, written in ${knownLangName}"}]`,
+    reading: `Generate ${blueprint.exampleCount} Duolingo-style reading exercises. JSON: [{"content": "ONE short sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "A short question in ${targetLangName} about the content", "questionTranslation": "The ${knownLangName} translation of the question", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Why this is correct, written in ${knownLangName}"}]`,
 
-    listening: `Generate 5 Duolingo-style listening exercises. JSON: [{"content": "ONE short spoken sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "What did the audio say? (in ${knownLangName})", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Audio translation, in ${knownLangName}"}]`,
+    listening: `Generate ${blueprint.exampleCount} Duolingo-style listening exercises. JSON: [{"content": "ONE short spoken sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "What did the audio say? (in ${knownLangName})", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Audio translation, in ${knownLangName}"}]`,
 
-    speaking: `Generate 5 Duolingo-style speaking exercises. JSON: [{"content": "ONE short practical sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "Repeat this sentence aloud", "options": [], "answerIndex": 0, "explanation": "Great pronunciation!"}]`,
+    speaking: `Generate ${blueprint.exampleCount} Duolingo-style speaking exercises. JSON: [{"content": "ONE short practical sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "Repeat this sentence aloud", "options": [], "answerIndex": 0, "explanation": "Great pronunciation!"}]`,
 
-    pronunciation: `Generate 5 Duolingo-style pronunciation exercises. JSON: [{"content": "ONE single challenging word in ${targetLangName}", "translation": "The ${knownLangName} translation of that word", "question": "Pronounce this word", "options": [], "answerIndex": 0, "explanation": "Perfect!"}]`,
+    pronunciation: `Generate ${blueprint.exampleCount} Duolingo-style pronunciation exercises. JSON: [{"content": "ONE single challenging word in ${targetLangName}", "translation": "The ${knownLangName} translation of that word", "question": "Pronounce this word", "options": [], "answerIndex": 0, "explanation": "Perfect!"}]`,
 
-    writing: `Generate 5 Duolingo-style sentence building exercises. JSON: [{"content": "A plain description of the sentence's meaning, in ${knownLangName} — written as a completely different set of words than the target sentence itself", "question": "The correct SHORT sentence (max 6-8 words) in ${targetLangName}, written normally (NOT an instruction, NOT containing 'Arrange', NOT separated by slashes)", "questionTranslation": "The ${knownLangName} translation of that exact sentence", "options": ["singleWord1", "singleWord2", "singleWord3", "singleWord4", "singleWord5"], "answerIndex": 0, "explanation": "Correct structure, in ${knownLangName}"}]. CRITICAL RULES: "options" must be SINGLE INDIVIDUAL WORDS ONLY, in ${targetLangName}, and together must contain every word needed to build "question" exactly. "content" must NEVER reuse the same words as "question".`
+    writing: `Generate ${blueprint.exampleCount} Duolingo-style sentence building exercises. JSON: [{"content": "A plain description of the sentence's meaning, in ${knownLangName} — written as a completely different set of words than the target sentence itself", "question": "The correct SHORT sentence (max 6-8 words) in ${targetLangName}, written normally (NOT an instruction, NOT containing 'Arrange', NOT separated by slashes)", "questionTranslation": "The ${knownLangName} translation of that exact sentence", "options": ["singleWord1", "singleWord2", "singleWord3", "singleWord4", "singleWord5"], "answerIndex": 0, "explanation": "Correct structure, in ${knownLangName}"}]. CRITICAL RULES: "options" must be SINGLE INDIVIDUAL WORDS ONLY, in ${targetLangName}, and together must contain every word needed to build "question" exactly. "content" must NEVER reuse the same words as "question".`
   };
 
+  const focusInstruction = `LESSON FOCUS: This is lesson ${lessonIndex} of 5 in the "${level}" level "${skill}" skill track. The specific pedagogical focus for this lesson is: "${blueprint.focus}". ALL ${blueprint.exampleCount} exercises MUST be directly about this focus topic — do not generate generic exercises.`;
+
   const prompt = `You are a language tutor teaching ${targetLangName} to ${ageContext}, who already knows ${knownLangName} and ${litContext}. Every exercise must include BOTH the ${targetLangName} content AND a ${knownLangName} translation field, as specified below. Generate SHORT, bite-sized exercises — never long paragraphs. Difficulty should come from vocabulary complexity and grammar, NOT sentence length.
-  ${prompts[lessonParams.type]}
+  ${focusInstruction}
+  ${prompts[skill]}
   RESPOND ONLY WITH THE RAW JSON ARRAY. NO MARKDOWN. NO CODE BLOCKS.`;
 
   const idToken = await firebase.auth().currentUser.getIdToken();
@@ -129,9 +166,10 @@ async function generateExercises() {
   text = text.replace(/```(json)?/gi, '').trim();
 
   let parsed = JSON.parse(text);
-  parsed = parsed.slice(0, 5);
+  parsed = parsed.slice(0, blueprint.exampleCount);
 
-  if (lessonParams.type === 'writing') {
+  // ── 4. Existing validation logic (writing exercises) ──
+  if (skill === 'writing') {
     parsed = parsed.map(item => {
       const optionsLookLikeSentences = (item.options || []).some(o => o.trim().split(/\s+/).length > 2);
       const questionLooksMalformed = !item.question || /arrange|\//i.test(item.question);
@@ -154,6 +192,21 @@ async function generateExercises() {
       }
       return item;
     });
+  }
+
+  // ── 5. Write validated result to shared cache ──
+  try {
+    await db.collection("sharedLessonContent").doc(cacheDocId).set({
+      targetLanguage: targetLang,
+      level: level,
+      skill: skill,
+      lessonIndex: lessonIndex,
+      exercises: parsed,
+      generatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    console.log(`💾 Cached: ${cacheDocId}`);
+  } catch (writeErr) {
+    console.warn("Cache write failed (exercises still usable):", writeErr);
   }
 
   return parsed;
@@ -289,7 +342,7 @@ function renderExercise() {
 
       if (typeof startSpeechToText === "function") {
         startSpeechToText(
-          lessonUserProfile?.preferredLanguage || "en",
+          lessonUserProfile?.targetLanguage || "en-IN",
           (transcript) => {
             micBtn.style.background = "white";
             micBtn.style.color = "var(--color-primary)";
@@ -464,7 +517,7 @@ async function showLessonComplete() {
       lessonParams.level,
       lessonParams.type,
       lessonParams.unit,
-      1,
+      lessonParams.lessonIndex,
       accuracy,
     );
 
@@ -476,12 +529,14 @@ async function showLessonComplete() {
     }
 
     // Log this attempt for the Analysis page
+    const durationSeconds = Math.round((Date.now() - lessonStartTime) / 1000);
     await db.collection("users").doc(user.uid).collection("lessonHistory").add({
       type: lessonParams.type,
       level: lessonParams.level,
       unit: lessonParams.unit,
       accuracy: accuracy,
       xpEarned: xpEarned,
+      durationSeconds: durationSeconds,
       completedAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 

@@ -57,6 +57,7 @@ function setupAdminPage() {
       await loadAllUsers();
       renderOverview();
       renderUsersTable();
+      renderAdminLeaderboard();
       setupAdminEvents();
       setupAnnouncementPosting();
       loadAnnouncements();
@@ -435,6 +436,11 @@ function setupAdminEvents() {
     });
   }
 
+  const awardBtn = document.getElementById("admin-award-top3-btn");
+  if (awardBtn) {
+    awardBtn.addEventListener("click", awardTopThree);
+  }
+
   const exportBtn = document.getElementById("admin-export-btn");
   if (exportBtn) exportBtn.addEventListener("click", exportUsersCSV);
 
@@ -462,6 +468,7 @@ function setupAdminEvents() {
       await loadAllUsers();
       renderOverview();
       renderUsersTable();
+      renderAdminLeaderboard();
       refreshBtn.disabled = false;
       refreshBtn.textContent = "🔄 Refresh";
     });
@@ -1005,4 +1012,119 @@ async function loadErrorLogs() {
     listEl.innerHTML =
       '<div class="analysis-empty-state">Could not load error logs.</div>';
   }
+}
+
+function renderAdminLeaderboard() {
+  const tbody = document.getElementById("admin-leaderboard-tbody");
+  const loading = document.getElementById("admin-leaderboard-loading");
+  const empty = document.getElementById("admin-leaderboard-empty");
+  
+  if (!tbody) return;
+  
+  tbody.innerHTML = "";
+  if (loading) loading.classList.remove("hidden");
+  if (empty) empty.classList.add("hidden");
+  
+  db.collection("users")
+    .orderBy("xp", "desc")
+    .limit(50)
+    .get()
+    .then(snap => {
+      if (loading) loading.classList.add("hidden");
+      if (snap.empty) {
+        if (empty) empty.classList.remove("hidden");
+        return;
+      }
+      
+      let html = "";
+      let rank = 1;
+      snap.forEach(doc => {
+        const data = doc.data();
+        const xp = data.xp || 0;
+        const name = data.fullName || "Learner";
+        const initial = name.charAt(0).toUpperCase();
+        const streak = data.currentStreak || data.streak || 0;
+        const coins = data.coins || 0;
+        
+        html += '<tr class="leaderboard-row rank-' + rank + '">';
+        html += '  <td><div class="leaderboard-rank-badge">' + rank + '</div></td>';
+        html += '  <td>';
+        html += '    <div class="leaderboard-user-cell">';
+        html += '      <div class="leaderboard-avatar">' + initial + '</div>';
+        html += '      <div style="font-weight: 500;">' + name + '</div>';
+        html += '    </div>';
+        html += '  </td>';
+        html += '  <td style="text-align: center; color: var(--color-warning);">🔥 ' + streak + '</td>';
+        html += '  <td style="text-align: center; color: #f59e0b;">🪙 ' + coins + '</td>';
+        html += '  <td class="leaderboard-xp">' + xp + ' XP</td>';
+        html += '</tr>';
+        rank++;
+      });
+      tbody.innerHTML = html;
+    })
+    .catch(err => {
+      if (loading) loading.classList.add("hidden");
+      console.error("Error loading leaderboard:", err);
+      if (empty) {
+        empty.textContent = "Error loading leaderboard.";
+        empty.classList.remove("hidden");
+      }
+    });
+}
+
+function awardTopThree() {
+  const adminBtn = document.getElementById("admin-award-top3-btn");
+  if (adminBtn) {
+    adminBtn.disabled = true;
+    adminBtn.innerHTML = "Awarding...";
+  }
+  
+  db.collection("users")
+    .orderBy("xp", "desc")
+    .limit(3)
+    .get()
+    .then(snap => {
+      if (snap.empty) return;
+      
+      const batch = db.batch();
+      const rewards = [
+        { coins: 500, xp: 500 }, // 1st
+        { coins: 300, xp: 300 }, // 2nd
+        { coins: 100, xp: 100 }  // 3rd
+      ];
+      
+      let i = 0;
+      snap.forEach(doc => {
+        if (i < 3) {
+          const reward = rewards[i];
+          batch.update(doc.ref, {
+            coins: firebase.firestore.FieldValue.increment(reward.coins),
+            xp: firebase.firestore.FieldValue.increment(reward.xp)
+          });
+          i++;
+        }
+      });
+      
+      return batch.commit();
+    })
+    .then(() => {
+      alert("Top 3 learners have been awarded their Coins and XP!");
+      if (adminBtn) {
+        adminBtn.innerHTML = "Awarded!";
+        setTimeout(() => {
+          adminBtn.disabled = false;
+          adminBtn.innerHTML = "<i data-lucide='gift' style='margin-right: 6px;'></i> <span>Award Top 3 Users</span>";
+          if (window.lucide) lucide.createIcons();
+        }, 3000);
+      }
+    })
+    .catch(err => {
+      console.error("Error awarding top 3:", err);
+      alert("Failed to award users.");
+      if (adminBtn) {
+        adminBtn.disabled = false;
+        adminBtn.innerHTML = "<i data-lucide='gift' style='margin-right: 6px;'></i> <span>Award Top 3 Users</span>";
+        if (window.lucide) lucide.createIcons();
+      }
+    });
 }

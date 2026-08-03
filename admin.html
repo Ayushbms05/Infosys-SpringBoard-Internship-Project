@@ -60,6 +60,10 @@
               <span class="dash-nav-icon">👥</span>
               <span>Users</span>
             </button>
+            <button class="dash-nav-item" data-section="leaderboard">
+              <span class="dash-nav-icon">🏆</span>
+              <span>Leaderboard</span>
+            </button>
             <button class="dash-nav-item" data-section="announcements">
               <span class="dash-nav-icon">📢</span><span>Announcements</span>
             </button>
@@ -116,6 +120,9 @@
 
           <!-- ═══════════ OVERVIEW SECTION ═══════════ -->
           <section id="admin-section-overview" class="admin-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+              <h2 style="margin: 0; font-size: 1.5rem; color: var(--color-text-main);">Platform Overview</h2>
+            </div>
             <div class="analysis-stats-row">
               <div class="analysis-stat-card">
                 <div class="analysis-stat-icon">👥</div>
@@ -203,6 +210,41 @@
                   class="analysis-empty-state hidden"
                 >
                   No recent activity yet.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ═══════════ LEADERBOARD SECTION ═══════════ -->
+          <section id="admin-section-leaderboard" class="admin-section hidden">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+              <h2 style="margin: 0; font-size: 1.5rem; color: var(--color-text-main);">Leaderboard</h2>
+              <button id="admin-award-top3-btn" class="btn-primary" style="background: var(--color-accent); border: none; padding: 8px 16px; font-size: 0.85rem; height: auto; border-radius: 6px; width: auto; min-width: unset; max-width: max-content;">
+                <i data-lucide="gift" style="margin-right: 6px; width: 16px; height: 16px;"></i> <span>Award Top 3 Users</span>
+              </button>
+            </div>
+
+            <div class="dash-card">
+              <div class="leaderboard-table-container">
+                <table class="leaderboard-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                  <thead>
+                    <tr>
+                      <th>RANK</th>
+                      <th>LEARNER NAME</th>
+                      <th style="text-align: center;">STREAK</th>
+                      <th style="text-align: center;">COINS</th>
+                      <th class="leaderboard-xp-header">TOTAL XP</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-leaderboard-tbody">
+                    <!-- Dynamic -->
+                  </tbody>
+                </table>
+                <div id="admin-leaderboard-loading" style="text-align:center; padding:2rem; color:#94a3b8;">
+                  Loading leaderboard...
+                </div>
+                <div id="admin-leaderboard-empty" class="hidden" style="text-align:center; padding:2rem; color:#94a3b8;">
+                  No users found.
                 </div>
               </div>
             </div>

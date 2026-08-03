@@ -8,7 +8,7 @@
  * Cache is versioned so future deploys can bust it cleanly.
  */
 
-var CACHE_NAME = "infosyssb-cache-v2";
+var CACHE_NAME = "infosyssb-cache-v3";
 
 // Static assets to precache on install
 var PRECACHE_URLS = [
@@ -149,7 +149,7 @@ self.addEventListener("fetch", function (event) {
       // Not in cache — fetch from network, cache the response
       return fetch(event.request)
         .then(function (networkResponse) {
-          if (networkResponse && networkResponse.status === 200) {
+          if (networkResponse && networkResponse.status === 200 && event.request.method === "GET") {
             var responseToCache = networkResponse.clone();
             caches.open(CACHE_NAME).then(function (cache) {
               cache.put(event.request, responseToCache);

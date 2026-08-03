@@ -101,6 +101,7 @@ function initDashboard(profile) {
   setupFeedbackForm();
 
   manageDailyQuests(profile); // 🌟 ADD THIS EXACT LINE RIGHT HERE!
+  initPhraseOfDay(profile);
 
   setupDashboardEvents(profile);
 
@@ -475,160 +476,113 @@ function renderLearningPath(profile) {
   const pathContainer = document.getElementById("learning-path");
   if (!pathContainer) return;
 
-  let analysis = profile.geminiAnalysis;
-  const currentTier =
-    profile.currentLevel || profile.assessmentLevel || "beginner";
+  const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const completedLessons = profile.completedLessons || [];
+  const curriculum = profile.curriculum || {};
 
-  // LOCAL EMERGENCY BACKUP GENERATION (If user's database entry was somehow corrupted)
-  if (!analysis || !analysis.customPath) {
-    const backupRoadmaps = {
-      beginner: [
-        {
-          title: "Step 1: Letter Outlines",
-          desc: "Practice basic letter identification structure loops.",
-          level: "beginner",
-          unit: "alphabets",
-          type: "pronunciation",
-        },
-        {
-          title: "Step 2: Label Vocabulary",
-          desc: "Recognize structural sight vocabulary markers.",
-          level: "beginner",
-          unit: "words",
-          type: "reading",
-        },
-        {
-          title: "Step 3: Alert Audio Systems",
-          desc: "Listen closely to direct command strings.",
-          level: "beginner",
-          unit: "words",
-          type: "listening",
-        },
-        {
-          title: "Step 4: Syntax Assembly",
-          desc: "Arrange core phrases into clean syntax lines.",
-          level: "beginner",
-          unit: "sentences",
-          type: "writing",
-        },
-        {
-          title: "Step 5: Signpost Analysis",
-          desc: "Read and break down simple signs on public streets.",
-          level: "beginner",
-          unit: "sentences",
-          type: "reading",
-        },
-      ],
-      intermediate: [
-        {
-          title: "Step 1: Scenario Meanings",
-          desc: "Learn transactional terms used in business spaces.",
-          level: "intermediate",
-          unit: "words",
-          type: "reading",
-        },
-        {
-          title: "Step 2: Active Phrase Structure",
-          desc: "Construct multi-word structural clauses easily.",
-          level: "intermediate",
-          unit: "sentences",
-          type: "writing",
-        },
-        {
-          title: "Step 3: Extended Instruction Audit",
-          desc: "Follow long spoken multi-step instructions.",
-          level: "intermediate",
-          unit: "sentences",
-          type: "listening",
-        },
-        {
-          title: "Step 4: Narrative Speaking",
-          desc: "Practice reading conversational passages aloud.",
-          level: "intermediate",
-          unit: "sentences",
-          type: "speaking",
-        },
-        {
-          title: "Step 5: Application Parsing",
-          desc: "Read and fill complete document application spaces.",
-          level: "intermediate",
-          unit: "paragraphs",
-          type: "reading",
-        },
-      ],
-      advanced: [
-        {
-          title: "Step 1: Advanced Text Analysis",
-          desc: "Parse complex data notices and structural tables.",
-          level: "advanced",
-          unit: "sentences",
-          type: "reading",
-        },
-        {
-          title: "Step 2: Composition Exercise",
-          desc: "Write fluid paragraph responses to scenario prompts.",
-          level: "advanced",
-          unit: "sentences",
-          type: "writing",
-        },
-        {
-          title: "Step 3: Oratory Articulation",
-          desc: "Practice pronouncing technical and legal jargon.",
-          level: "advanced",
-          unit: "paragraphs",
-          type: "pronunciation",
-        },
-        {
-          title: "Step 4: Analytical Audio Review",
-          desc: "Listen to and break down continuous broadcast speech.",
-          level: "advanced",
-          unit: "paragraphs",
-          type: "listening",
-        },
-        {
-          title: "Step 5: Critical Clause Reading",
-          desc: "Deconstruct complicated informational documents.",
-          level: "advanced",
-          unit: "paragraphs",
-          type: "reading",
-        },
-      ],
-    };
+  const levels = ['beginner', 'intermediate', 'advanced'];
+  const skills = ['reading', 'writing', 'listening', 'speaking', 'pronunciation'];
+  
+  const skillIcons = {
+    reading: "📖",
+    writing: "✍️",
+    listening: "🎧",
+    speaking: "🗣️",
+    pronunciation: "🎙️"
+  };
 
-    analysis = {
-      customPath: backupRoadmaps[currentTier] || backupRoadmaps.beginner,
-    };
-  }
-
-  // Draw the custom path on screen
+  // 1. Render the Explainer Card at the top
   let html = `
-    <div class="path-intro-banner">
-      <h3><span>✨</span> Your Personalized Learning Path</h3>
-      <p>Tailored explicitly to support your current capability level and maximize practice value.</p>
+    <div class="roadmap-explainer">
+      <div class="roadmap-explainer-content">
+        <h4 data-i18n="howItWorksTitle">How This Works</h4>
+        <p data-i18n="howItWorksBody">Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.</p>
+      </div>
+      <button class="roadmap-tts-btn" id="roadmap-tts-btn" aria-label="Listen">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+      </button>
     </div>
-    <div class="path-nodes-column">
+    <div class="roadmap-container">
   `;
 
-  analysis.customPath.forEach((step, idx) => {
-    if (idx > 0) {
-      html += `<div class="path-connector-line"></div>`;
-    }
+  // 2. Render the Levels and Skills
+  levels.forEach(level => {
+    // Level Header
+    const levelKey = `roadmapLevel${level.charAt(0).toUpperCase() + level.slice(1)}`;
+    html += `
+      <div class="roadmap-level-block">
+        <h3 class="roadmap-level-title">
+          <span data-i18n="${levelKey}">${level.charAt(0).toUpperCase() + level.slice(1)} Level</span>
+          ${level === currentLevel ? `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>` : ''}
+        </h3>
+        <div class="roadmap-skills-wrapper">
+    `;
 
-    const unitIcons = {
-      alphabets: "🔤",
-      words: "📝",
-      sentences: "📄",
-      paragraphs: "📚",
-    };
-    const icon = unitIcons[step.unit] || "🎯";
-    const side = idx % 2 === 0 ? "path-node-left" : "path-node-right";
+    skills.forEach(skill => {
+      // Find unit from auth.js logic (fallback to alphabets if not known)
+      const lit = profile.literacyLevel || 'preferNot';
+      const unitByLiteracy = {
+        neverLearned:   'alphabets',
+        canRecognize:   'words',
+        canReadSimple:  'sentences',
+        canReadComfort: 'paragraphs',
+        preferNot:      'alphabets'
+      };
+      const unit = unitByLiteracy[lit] || 'alphabets';
+      
+      const skillStatus = curriculum[level]?.[skill]?.status || 'locked';
+      const skillKey = `roadmapSkill${skill.charAt(0).toUpperCase() + skill.slice(1)}`;
+      
+      html += `
+        <div class="roadmap-skill-row">
+          <div class="roadmap-skill-label">
+            <span class="roadmap-skill-icon">${skillIcons[skill]}</span>
+            <span data-i18n="${skillKey}">${skill.charAt(0).toUpperCase() + skill.slice(1)}</span>
+          </div>
+          <div class="roadmap-dots">
+      `;
+
+      // Render the 5 lesson dots
+      for (let i = 1; i <= 5; i++) {
+        const lessonId = `${level}_${skill}_${unit}_${i}`;
+        const isCompleted = completedLessons.includes(lessonId);
+        
+        let state = 'locked';
+        if (isCompleted) {
+          state = 'completed';
+        } else if (skillStatus === 'available') {
+          // If skill is available, allow any dot (or enforce order if preferred, for now all available)
+          state = 'available';
+        } else if (skillStatus === 'skipped' || skillStatus === 'completed') {
+           // If the whole skill was skipped/completed by assessment, mark dots as completed
+           state = 'completed';
+        }
+
+        const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(b => b.lessonIndex === i);
+        const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
+        
+        html += `
+          <div class="roadmap-dot ${state}" 
+               data-level="${level}" 
+               data-skill="${skill}" 
+               data-unit="${unit}" 
+               data-index="${i}" 
+               title="${focusText}">
+          </div>
+        `;
+      }
+
+      html += `
+          </div>
+        </div>
+      `;
+    });
 
     html += `
-      <div class="custom-path-node ${side}" data-level="${step.level}" data-unit="${step.unit}" data-type="${step.type}">
-        <div class="path-node-circle-lg">${icon}</div>
-        <div class="path-node-card">
-          <strong>${step.title}</strong>
-          <span>${step.desc}</span>
         </div>
       </div>
     `;
@@ -637,11 +591,36 @@ function renderLearningPath(profile) {
   html += `</div>`;
   pathContainer.innerHTML = html;
 
-  pathContainer.querySelectorAll(".custom-path-node").forEach((node) => {
-    node.addEventListener("click", () => {
-      window.location.href = `lesson.html?level=${node.dataset.level}&unit=${node.dataset.unit}&type=${node.dataset.type}`;
+  // 3. Attach click handlers to available/completed dots
+  pathContainer.querySelectorAll('.roadmap-dot:not(.locked)').forEach(dot => {
+    dot.addEventListener("click", () => {
+      const { level, skill, unit, index } = dot.dataset;
+      window.location.href = `lesson.html?level=${level}&type=${skill}&unit=${unit}&lessonIndex=${index}`;
     });
   });
+
+  // 4. Attach TTS handler to the explainer card
+  const ttsBtn = document.getElementById("roadmap-tts-btn");
+  if (ttsBtn) {
+    ttsBtn.addEventListener("click", () => {
+      // Read the localized text using the user's *preferred* language
+      const title = getTranslation(selectedLang, "howItWorksTitle") || "How This Works";
+      const body = getTranslation(selectedLang, "howItWorksBody") || "Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.";
+      
+      const langMap = { en: "en-IN", hi: "hi-IN", ta: "ta-IN", te: "te-IN", kn: "kn-IN", bn: "bn-IN", mr: "mr-IN" };
+      const voiceLang = langMap[selectedLang] || "en-IN";
+      
+      ttsBtn.style.color = "var(--color-primary)";
+      ttsBtn.style.animation = "pulse 1.5s infinite";
+      
+      if (typeof speakText === "function") {
+        speakText(`${title}. ${body}`, voiceLang).finally(() => {
+          ttsBtn.style.color = "";
+          ttsBtn.style.animation = "none";
+        });
+      }
+    });
+  }
 }
 
 // ─── Skill Practice Cards ─────────────────────────────────────
@@ -1045,6 +1024,7 @@ function setupDashboardEvents(profile) {
       renderSidePanel(profile);
       renderProfile(profile);
       manageDailyQuests(profile);
+      initPhraseOfDay(profile);
       if (window.Analysis) {
         window.Analysis.reRenderLang(profile);
       }
@@ -1076,6 +1056,9 @@ function setupDashboardEvents(profile) {
       }
       if (section === "analysis" && window.Analysis) {
         window.Analysis.init(profile);
+      }
+      if (section === "leaderboard") {
+        initLeaderboard(profile);
       }
     });
   });
@@ -1605,4 +1588,221 @@ function setupSidebarToggle() {
   if (window.lucide) {
     lucide.createIcons();
   }
+}
+
+// ─── Phrase of the Day Logic ──────────────────────────────
+const DAILY_PHRASES = [
+  "How much does this cost?",
+  "Where is the nearest hospital?",
+  "I would like to open a bank account.",
+  "Can you help me with this form?",
+  "What time does the bus arrive?",
+  "I need to buy some groceries.",
+  "Could you please repeat that?",
+  "Is there a pharmacy nearby?",
+  "How do I get to the train station?",
+  "Thank you for your help."
+];
+
+function initPhraseOfDay(profile) {
+  const dayIndex = Math.floor(Date.now() / 86400000) % DAILY_PHRASES.length;
+  const todayPhrase = DAILY_PHRASES[dayIndex];
+  
+  const textEl = document.getElementById("phrase-of-day-text");
+  if (textEl) textEl.textContent = todayPhrase;
+  
+  // Try to translate the phrase via free Google Translate API or fallback
+  const targetLang = profile.preferredLanguage || "hi";
+  if (targetLang !== "en") {
+    fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`)
+      .then(r => r.json())
+      .then(data => {
+        const trEl = document.getElementById("phrase-of-day-translation");
+        if (trEl) trEl.textContent = data[0][0][0];
+      }).catch(() => {
+        const trEl = document.getElementById("phrase-of-day-translation");
+        if (trEl) trEl.textContent = "Practice speaking this phrase in English!";
+      });
+  } else {
+    const trEl = document.getElementById("phrase-of-day-translation");
+    if (trEl) trEl.textContent = "Practice speaking this phrase!";
+  }
+
+  const listenBtn = document.getElementById("phrase-listen-btn");
+  const speakBtn = document.getElementById("phrase-speak-btn");
+  const feedbackEl = document.getElementById("phrase-feedback");
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  const todayStr = `${year}-${month}-${day}`;
+  
+  let isAlreadyCompleted = profile.phraseCompletedOn === todayStr || localStorage.getItem("phraseCompletedOn") === todayStr;
+
+  if (isAlreadyCompleted && speakBtn) {
+    speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
+    speakBtn.classList.add("completed");
+    speakBtn.disabled = true;
+    if (window.lucide) lucide.createIcons();
+  }
+
+  if (listenBtn) {
+    listenBtn.onclick = () => {
+      if (typeof speakText === "function") {
+        speakText(todayPhrase, "en");
+      }
+    };
+  }
+
+  if (speakBtn) {
+    speakBtn.onclick = () => {
+      if (speakBtn.disabled || isAlreadyCompleted) return;
+      if (feedbackEl) feedbackEl.classList.add("hidden");
+      speakBtn.style.animation = "pulse 1.5s infinite";
+      speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Listening...</span>";
+      if (window.lucide) lucide.createIcons();
+      
+      if (typeof startSpeechToText === "function") {
+        startSpeechToText(
+          "en-IN",
+          (transcript) => {
+            speakBtn.style.animation = "none";
+            if (transcript) {
+              const expected = todayPhrase.toLowerCase().replace(/[.,?]/g, "").trim();
+              const actual = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
+              
+              const expectedWords = expected.split(/\s+/).filter(Boolean);
+              const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
+              const matchedCount = expectedWords.filter(w => actualWords.has(w)).length;
+              const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
+              
+              if (matchRatio >= 0.6) {
+                if (feedbackEl) {
+                  feedbackEl.textContent = getTranslation(profile.preferredLanguage || "en", "phraseOfDaySuccess") || "Perfect! You earned +20 XP.";
+                  feedbackEl.className = "phrase-feedback success";
+                  feedbackEl.classList.remove("hidden");
+                }
+                
+                speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
+                speakBtn.classList.add("completed");
+                speakBtn.disabled = true;
+                if (window.lucide) lucide.createIcons();
+
+                // Grant 20 XP
+                const user = auth.currentUser;
+                if (user) {
+                  // Update memory so it persists across soft navigation
+                  profile.phraseCompletedOn = todayStr;
+                  localStorage.setItem("phraseCompletedOn", todayStr);
+                  isAlreadyCompleted = true;
+                  
+                  db.collection("users").doc(user.uid).update({
+                    xp: firebase.firestore.FieldValue.increment(20),
+                    phraseCompletedOn: todayStr
+                  }).catch(err => console.error("XP update error", err));
+                  
+                  // Show floating XP if celebration exists
+                  if (typeof showFloatingXP === "function") {
+                    showFloatingXP(20);
+                  }
+                }
+              } else {
+                if (feedbackEl) {
+                  feedbackEl.textContent = `${getTranslation(profile.preferredLanguage || "en", "phraseOfDayTryAgain") || "Didn't catch that. Try again."} (You said: "${transcript}")`;
+                  feedbackEl.className = "phrase-feedback error";
+                  feedbackEl.classList.remove("hidden");
+                }
+                speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+                if (window.lucide) lucide.createIcons();
+              }
+            } else {
+              if (feedbackEl) {
+                feedbackEl.textContent = getTranslation(profile.preferredLanguage || "en", "phraseOfDayTryAgain") || "Didn't catch that. Try again.";
+                feedbackEl.className = "phrase-feedback error";
+                feedbackEl.classList.remove("hidden");
+              }
+              speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+              if (window.lucide) lucide.createIcons();
+            }
+          },
+          (err) => {
+            speakBtn.style.animation = "none";
+            speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+            if (window.lucide) lucide.createIcons();
+            if (feedbackEl) {
+              feedbackEl.textContent = "Mic error. Try again.";
+              feedbackEl.className = "phrase-feedback error";
+              feedbackEl.classList.remove("hidden");
+            }
+            console.error("STT error:", err);
+          }
+        );
+      }
+    };
+  }
+}
+
+// ─── Leaderboard Logic ────────────────────────────────────
+let leaderboardLoaded = false;
+
+function initLeaderboard(profile) {
+  if (leaderboardLoaded) return;
+  leaderboardLoaded = true;
+  
+  const tbody = document.getElementById("leaderboard-tbody");
+  const loading = document.getElementById("leaderboard-loading");
+  const empty = document.getElementById("leaderboard-empty");
+  const adminBtn = document.getElementById("admin-award-top3-btn");
+  
+  if (profile.isAdmin && adminBtn) {
+    adminBtn.classList.remove("hidden");
+    adminBtn.onclick = awardTopThree;
+  }
+
+  db.collection("users")
+    .orderBy("xp", "desc")
+    .limit(20)
+    .get()
+    .then(snap => {
+      if (loading) loading.classList.add("hidden");
+      if (snap.empty) {
+        if (empty) empty.classList.remove("hidden");
+        return;
+      }
+      
+      let html = "";
+      let rank = 1;
+      snap.forEach(doc => {
+        const data = doc.data();
+        const xp = data.xp || 0;
+        const name = data.fullName || "Learner";
+        const initial = name.charAt(0).toUpperCase();
+        const streak = data.currentStreak || data.streak || 0;
+        const coins = data.coins || 0;
+        
+        html += '<tr class="leaderboard-row rank-' + rank + '">';
+        html += '  <td><div class="leaderboard-rank-badge">' + rank + '</div></td>';
+        html += '  <td>';
+        html += '    <div class="leaderboard-user-cell">';
+        html += '      <div class="leaderboard-avatar">' + initial + '</div>';
+        html += '      <div style="font-weight: 500;">' + name + '</div>';
+        html += '    </div>';
+        html += '  </td>';
+        html += '  <td style="text-align: center; color: var(--color-warning);">🔥 ' + streak + '</td>';
+        html += '  <td style="text-align: center; color: #f59e0b;">🪙 ' + coins + '</td>';
+        html += '  <td class="leaderboard-xp">' + xp + ' XP</td>';
+        html += '</tr>';
+        rank++;
+      });
+      if (tbody) tbody.innerHTML = html;
+    })
+    .catch(err => {
+      if (loading) loading.classList.add("hidden");
+      console.error("Error loading leaderboard:", err);
+      if (empty) {
+        empty.textContent = "Error loading leaderboard.";
+        empty.classList.remove("hidden");
+      }
+    });
 }

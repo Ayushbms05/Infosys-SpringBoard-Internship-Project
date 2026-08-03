@@ -320,6 +320,7 @@ const translations = {
     navGames: "Games",
     navFeedback: "Feedback",
     navAnalysis: "Analysis",
+    navLeaderboard: "Leaderboard",
     chatSimulatorDesc: "Practice real-world conversations with an AI.",
     gamesHubDesc: "Play mini-games to improve vocabulary.",
     dashBadges: "Badges",
@@ -397,6 +398,22 @@ const translations = {
     gameWordSearchDesc: "Find hidden words in the grid.",
     gameCrosswordTitle: "Vocabulary Crossword",
     gameCrosswordDesc: "Solve clues to fill the grid.",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "How This Works",
+    howItWorksBody: "Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.",
+    roadmapLevelBeginner: "Beginner Level",
+    roadmapLevelIntermediate: "Intermediate Level",
+    roadmapLevelAdvanced: "Advanced Level",
+    roadmapSkillReading: "Reading",
+    roadmapSkillWriting: "Writing",
+    roadmapSkillListening: "Listening",
+    roadmapSkillSpeaking: "Speaking",
+    roadmapSkillPronunciation: "Pronunciation",
+    youAreHere: "You are here",
+    speakNow: "Please tap the mic and speak the phrase to continue.",
+    listening: "Listening...",
+    tryAgain: "Didn't catch that. Tap mic to try again."
   },
 
   // ─── HINDI ──────────────────────────────────────────────────
@@ -663,6 +680,7 @@ const translations = {
     navGames: "गेम्स",
     navFeedback: "प्रतिक्रिया",
     navAnalysis: "विश्लेषण",
+    navLeaderboard: "लीडरबोर्ड",
     chatSimulatorDesc: "AI के साथ वास्तविक दुनिया की बातचीत का अभ्यास करें।",
     gamesHubDesc: "शब्दावली में सुधार के लिए मिनी-गेम खेलें।",
     dashBadges: "बैज",
@@ -755,6 +773,22 @@ const translations = {
     gameWordSearchDesc: "ग्रिड में छिपे हुए शब्द खोजें।",
     gameCrosswordTitle: "शब्दावली वर्ग पहेली",
     gameCrosswordDesc: "ग्रिड भरने के लिए सुराग हल करें।",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "यह कैसे काम करता है",
+    howItWorksBody: "बाएं से दाएं पथ का अनुसरण करें। एक कौशल में महारत हासिल करने के लिए सभी 5 बिंदुओं को पूरा करें। अगले स्तर को अनलॉक करने के लिए सभी 5 कौशलों को पूरा करें।",
+    roadmapLevelBeginner: "शुरुआती स्तर",
+    roadmapLevelIntermediate: "मध्यम स्तर",
+    roadmapLevelAdvanced: "उन्नत स्तर",
+    roadmapSkillReading: "पढ़ना",
+    roadmapSkillWriting: "लिखना",
+    roadmapSkillListening: "सुनना",
+    roadmapSkillSpeaking: "बोलना",
+    roadmapSkillPronunciation: "उच्चारण",
+    youAreHere: "आप यहाँ हैं",
+    speakNow: "कृपया माइक टैप करें और जारी रखने के लिए वाक्यांश बोलें।",
+    listening: "सुन रहा हूँ...",
+    tryAgain: "समझ नहीं आया। पुनः प्रयास करने के लिए माइक टैप करें।"
   },
 
   // ─── TAMIL ──────────────────────────────────────────────────
@@ -1030,6 +1064,7 @@ const translations = {
     navGames: "விளையாட்டுகள்",
     navFeedback: "பின்னூட்டம்",
     navAnalysis: "பகுப்பாய்வு",
+    navLeaderboard: "லீடர்போர்டு",
     chatSimulatorDesc: "AI உடன் நிஜ உலக உரையாடல்களைப் பயிற்சி செய்யுங்கள்.",
     gamesHubDesc: "சொல்லகராதியை மேம்படுத்த சிறு விளையாட்டுகளை விளையாடுங்கள்.",
     dashBadges: "பேட்ஜ்கள்",
@@ -1122,6 +1157,22 @@ const translations = {
     gameWordSearchDesc: "கிரிட்டில் மறைந்திருக்கும் சொற்களைக் கண்டறியவும்.",
     gameCrosswordTitle: "சொல்லகராதி குறுக்கெழுத்து",
     gameCrosswordDesc: "கிரிட்டை நிரப்ப தடயங்களை தீர்க்கவும்.",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "இது எவ்வாறு செயல்படுகிறது",
+    howItWorksBody: "இடமிருந்து வலமாகப் பாதையைப் பின்பற்றவும். ஒரு திறனைக் கற்க அனைத்து 5 புள்ளிகளையும் முடிக்கவும். அடுத்த நிலையைத் திறக்க அனைத்து 5 திறன்களையும் முடிக்கவும்.",
+    roadmapLevelBeginner: "தொடக்க நிலை",
+    roadmapLevelIntermediate: "இடைநிலை",
+    roadmapLevelAdvanced: "உயர் நிலை",
+    roadmapSkillReading: "படித்தல்",
+    roadmapSkillWriting: "எழுதுதல்",
+    roadmapSkillListening: "கேட்டல்",
+    roadmapSkillSpeaking: "பேசுதல்",
+    roadmapSkillPronunciation: "உச்சரிப்பு",
+    youAreHere: "நீங்கள் இங்கே இருக்கிறீர்கள்",
+    speakNow: "தொடர மைக்கைத் தட்டி சொற்றொடரைப் பேசவும்.",
+    listening: "கேட்கிறது...",
+    tryAgain: "புரியவில்லை. மீண்டும் முயற்சிக்க மைக்கைத் தட்டவும்."
   },
 
   // ─── TELUGU ─────────────────────────────────────────────────
@@ -1390,6 +1441,7 @@ const translations = {
     navGames: "ఆటలు",
     navFeedback: "అభిప్రాయం",
     navAnalysis: "విశ్లేషణ",
+    navLeaderboard: "లీడర్‌బోర్డ్",
     chatSimulatorDesc: "AI తో వాస్తవ ప్రపంచ సంభాషణలను ప్రాక్టీస్ చేయండి.",
     gamesHubDesc: "పదజాలాన్ని మెరుగుపరచడానికి మినీ-గేమ్స్ ఆడండి.",
     dashBadges: "బ్యాడ్జీలు",
@@ -1482,6 +1534,22 @@ const translations = {
     gameWordSearchDesc: "గ్రిడ్‌లో దాచిన పదాలను కనుగొనండి.",
     gameCrosswordTitle: "పదజాలం క్రాస్వర్డ్",
     gameCrosswordDesc: "గ్రిడ్‌ను పూరించడానికి ఆధారాలను పరిష్కరించండి.",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "ఇది ఎలా పనిచేస్తుంది",
+    howItWorksBody: "ఎడమ నుండి కుడికి మార్గాన్ని అనుసరించండి. ఒక నైపుణ్యాన్ని సాధించడానికి మొత్తం 5 చుక్కలను పూర్తి చేయండి. తదుపరి స్థాయిని అన్‌లాక్ చేయడానికి మొత్తం 5 నైపుణ్యాలను పూర్తి చేయండి.",
+    roadmapLevelBeginner: "ప్రారంభ స్థాయి",
+    roadmapLevelIntermediate: "మధ్య స్థాయి",
+    roadmapLevelAdvanced: "అధునాతన స్థాయి",
+    roadmapSkillReading: "చదవడం",
+    roadmapSkillWriting: "రాయడం",
+    roadmapSkillListening: "వినడం",
+    roadmapSkillSpeaking: "మాట్లాడటం",
+    roadmapSkillPronunciation: "ఉచ్చారణ",
+    youAreHere: "మీరు ఇక్కడ ఉన్నారు",
+    speakNow: "కొనసాగించడానికి దయచేసి మైక్ నొక్కి వాక్యాన్ని మాట్లాడండి.",
+    listening: "వింటున్నది...",
+    tryAgain: "అర్థం కాలేదు. మళ్లీ ప్రయత్నించడానికి మైక్ నొక్కండి."
   },
 
   // ─── KANNADA ────────────────────────────────────────────────
@@ -1751,6 +1819,7 @@ const translations = {
     navGames: "ಆಟಗಳು",
     navFeedback: "ಪ್ರತಿಕ್ರಿಯೆ",
     navAnalysis: "ವಿಶ್ಲೇಷಣೆ",
+    navLeaderboard: "ಲೀಡರ್‌ಬೋರ್ಡ್",
     chatSimulatorDesc: "AI ನೊಂದಿಗೆ ನೈಜ ಪ್ರಪಂಚದ ಸಂಭಾಷಣೆಗಳನ್ನು ಅಭ್ಯಾಸ ಮಾಡಿ.",
     gamesHubDesc: "ಶಬ್ದಕೋಶವನ್ನು ಸುಧಾರಿಸಲು ಮಿನಿ-ಗೇಮ್‌ಗಳನ್ನು ಆಡಿ.",
     dashBadges: "ಬ್ಯಾಡ್ಜ್‌ಗಳು",
@@ -1843,6 +1912,22 @@ const translations = {
     gameWordSearchDesc: "ಗ್ರಿಡ್‌ನಲ್ಲಿ ಅಡಗಿರುವ ಪದಗಳನ್ನು ಹುಡುಕಿ.",
     gameCrosswordTitle: "ಶಬ್ದಕೋಶ ಕ್ರಾಸ್‌ವರ್ಡ್",
     gameCrosswordDesc: "ಗ್ರಿಡ್ ತುಂಬಲು ಸುಳಿವುಗಳನ್ನು ಬಿಡಿಸಿ.",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
+    howItWorksBody: "ಎಡದಿಂದ ಬಲಕ್ಕೆ ಮಾರ್ಗವನ್ನು ಅನುಸರಿಸಿ. ಕೌಶಲ್ಯವನ್ನು ಕರಗತ ಮಾಡಿಕೊಳ್ಳಲು ಎಲ್ಲಾ 5 ಚುಕ್ಕೆಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ. ಮುಂದಿನ ಹಂತವನ್ನು ಅನ್ಲಾಕ್ ಮಾಡಲು ಎಲ್ಲಾ 5 ಕೌಶಲ್ಯಗಳನ್ನು ಪೂರ್ಣಗೊಳಿಸಿ.",
+    roadmapLevelBeginner: "ಆರಂಭಿಕ ಹಂತ",
+    roadmapLevelIntermediate: "ಮಧ್ಯಮ ಹಂತ",
+    roadmapLevelAdvanced: "ಸುಧಾರಿತ ಹಂತ",
+    roadmapSkillReading: "ಓದುವಿಕೆ",
+    roadmapSkillWriting: "ಬರೆಯುವಿಕೆ",
+    roadmapSkillListening: "ಆಲಿಸುವಿಕೆ",
+    roadmapSkillSpeaking: "ಮಾತನಾಡುವಿಕೆ",
+    roadmapSkillPronunciation: "ಉಚ್ಚಾರಣೆ",
+    youAreHere: "ನೀವು ಇಲ್ಲಿದ್ದೀರಿ",
+    speakNow: "ಮುಂದುವರಿಯಲು ದಯವಿಟ್ಟು ಮೈಕ್ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ವಾಕ್ಯವನ್ನು ಮಾತನಾಡಿ.",
+    listening: "ಆಲಿಸುತ್ತಿದೆ...",
+    tryAgain: "ಅರ್ಥವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲು ಮೈಕ್ ಟ್ಯಾಪ್ ಮಾಡಿ."
   },
 
   // ─── BENGALI ────────────────────────────────────────────────
@@ -2108,6 +2193,7 @@ const translations = {
     navGames: "গেমস",
     navFeedback: "মতামত",
     navAnalysis: "বিশ্লেষণ",
+    navLeaderboard: "লিডারবোর্ড",
     chatSimulatorDesc: "AI এর সাথে বাস্তব বিশ্বের কথোপকথন অনুশীলন করুন।",
     gamesHubDesc: "শব্দভাণ্ডার উন্নত করতে মিনি-গেম খেলুন।",
     dashBadges: "ব্যাজ",
@@ -2200,6 +2286,22 @@ const translations = {
     gameWordSearchDesc: "গ্রিডে লুকানো শব্দ খুঁজুন।",
     gameCrosswordTitle: "শব্দভান্ডার শব্দগুচ্ছ",
     gameCrosswordDesc: "গ্রিড পূরণ করতে সূত্র সমাধান করুন।",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "এটি কীভাবে কাজ করে",
+    howItWorksBody: "বাম থেকে ডান দিকের পথ অনুসরণ করুন। একটি দক্ষতা আয়ত্ত করতে ৫টি বিন্দু সম্পূর্ণ করুন। পরবর্তী স্তর আনলক করতে ৫টি দক্ষতা সম্পূর্ণ করুন।",
+    roadmapLevelBeginner: "প্রাথমিক স্তর",
+    roadmapLevelIntermediate: "মধ্যম স্তর",
+    roadmapLevelAdvanced: "উন্নত স্তর",
+    roadmapSkillReading: "পড়া",
+    roadmapSkillWriting: "লেখা",
+    roadmapSkillListening: "শোনা",
+    roadmapSkillSpeaking: "কথা বলা",
+    roadmapSkillPronunciation: "উচ্চারণ",
+    youAreHere: "আপনি এখানে আছেন",
+    speakNow: "এগিয়ে যেতে দয়া করে মাইকে ট্যাপ করুন এবং বাক্যটি বলুন।",
+    listening: "শুনছি...",
+    tryAgain: "বুঝতে পারিনি। আবার চেষ্টা করতে মাইকে ট্যাপ করুন।"
   },
 
   // ─── MARATHI ────────────────────────────────────────────────
@@ -2463,6 +2565,7 @@ const translations = {
     navGames: "खेळ",
     navFeedback: "अभिप्राय",
     navAnalysis: "विश्लेषण",
+    navLeaderboard: "लीडरबोर्ड",
     chatSimulatorDesc: "AI सोबत वास्तविक जगातील संवादाचा सराव करा.",
     gamesHubDesc: "शब्दसंग्रह सुधारण्यासाठी मिनी-गेम खेळा.",
     dashBadges: "बॅजेस",
@@ -2550,6 +2653,22 @@ const translations = {
   
     gamesCategoryGames: "खेळ",
     gamesCategoryPuzzles: "कोडी",
+
+    // Roadmap & Assessment Speaking
+    howItWorksTitle: "हे कसे कार्य करते",
+    howItWorksBody: "डावीकडून उजवीकडे मार्गाचे अनुसरण करा. कौशल्य प्राप्त करण्यासाठी सर्व 5 ठिपके पूर्ण करा. पुढील स्तर उघडण्यासाठी सर्व 5 कौशल्ये पूर्ण करा.",
+    roadmapLevelBeginner: "सुरुवातीचा स्तर",
+    roadmapLevelIntermediate: "मध्यम स्तर",
+    roadmapLevelAdvanced: "प्रगत स्तर",
+    roadmapSkillReading: "वाचन",
+    roadmapSkillWriting: "लेखन",
+    roadmapSkillListening: "ऐकणे",
+    roadmapSkillSpeaking: "बोलणे",
+    roadmapSkillPronunciation: "उच्चार",
+    youAreHere: "तुम्ही येथे आहात",
+    speakNow: "पुढे जाण्यासाठी कृपया माइक टॅप करा आणि वाक्य बोला.",
+    listening: "ऐकत आहे...",
+    tryAgain: "समजले नाही. पुन्हा प्रयत्न करण्यासाठी माइक टॅप करा."
   },
 
     

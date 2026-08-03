@@ -108,6 +108,10 @@
             <span class="dash-nav-icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></span>
             <span class="sidebar-nav-label" data-i18n="navAnalysis">Analysis</span>
           </button>
+          <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
+            <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navLeaderboard">Leaderboard</span>
+          </button>
         </nav>
 
         <div class="sidebar-footer">
@@ -171,6 +175,27 @@
               </div>
 
               <div id="view-results" class="learn-sub-view" role="tabpanel" aria-labelledby="sub-tab-results">
+                
+                <!-- ════ Phrase of the Day ════ -->
+                <div class="dash-card phrase-of-day-card" id="phrase-of-day-card">
+                  <div class="phrase-header">
+                    <h3 data-i18n="phraseOfDayTitle">Phrase of the Day</h3>
+                    <span class="phrase-xp-badge">+20 XP</span>
+                  </div>
+                  <div class="phrase-content">
+                    <p class="phrase-text" id="phrase-of-day-text">Loading...</p>
+                    <p class="phrase-translation" id="phrase-of-day-translation"></p>
+                  </div>
+                  <div class="phrase-actions">
+                    <button class="btn-secondary phrase-listen-btn" id="phrase-listen-btn">
+                      <i data-lucide="volume-2"></i> <span data-i18n="phraseOfDayListen">Listen</span>
+                    </button>
+                    <button class="btn-primary phrase-speak-btn" id="phrase-speak-btn">
+                      <i data-lucide="mic"></i> <span data-i18n="phraseOfDaySpeak">Speak to earn XP</span>
+                    </button>
+                  </div>
+                  <div class="phrase-feedback hidden" id="phrase-feedback"></div>
+                </div>
                 <div class="dash-card recommendation-card" id="recommendation-card">
                   <div class="rec-score-row">
                     <div class="rec-score-ring-wrap">
@@ -805,6 +830,42 @@
 
               </div><!-- /.analysis-grid -->
             </div>
+            
+            <!-- ═══════════ LEADERBOARD SECTION ═══════════ -->
+            <div id="section-leaderboard" class="dash-main-section hidden">
+              <div class="leaderboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                  <h2 data-i18n="leaderboardTitle">Community Leaderboard</h2>
+                  <p class="text-secondary" data-i18n="leaderboardSubtitle">Top learners ranked by XP</p>
+                </div>
+                <button id="admin-award-top3-btn" class="btn-primary hidden" style="background: var(--color-accent); border: none;">
+                  <i data-lucide="gift" style="margin-right: 6px;"></i> <span data-i18n="leaderboardAwardBtn">Award Top 3 (Admin)</span>
+                </button>
+              </div>
+              
+              <div class="dash-card leaderboard-card">
+                <table class="leaderboard-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                  <thead>
+                    <tr style="border-bottom: 2px solid var(--color-border); color: var(--color-text-light);">
+                      <th data-i18n="leaderboardRank" style="padding: 1rem;">Rank</th>
+                      <th data-i18n="leaderboardName" style="padding: 1rem;">Learner Name</th>
+                      <th data-i18n="leaderboardStreak" style="padding: 1rem; text-align: center;">Streak</th>
+                      <th data-i18n="leaderboardCoins" style="padding: 1rem; text-align: center;">Coins</th>
+                      <th data-i18n="leaderboardXP" style="padding: 1rem; text-align: right;">Total XP</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leaderboard-tbody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+                <div id="leaderboard-empty" class="hidden text-secondary" style="text-align: center; padding: 2rem;" data-i18n="leaderboardEmpty">
+                  No users found on the leaderboard.
+                </div>
+                <div id="leaderboard-loading" class="text-secondary" style="text-align: center; padding: 2rem;">
+                  <div class="loading-spinner" style="border-top-color: var(--color-primary); width: 24px; height: 24px; margin: 0 auto 10px;"></div>
+                </div>
+              </div>
+            </div>
 
           </div>
 
@@ -923,6 +984,7 @@
   <script src="tts.js"></script>
   <script src="theme.js"></script>
   <script src="celebrations.js"></script>
+  <script src="curriculum-blueprint.js"></script>
   <script src="chat.js"></script>
   <script src="game.js"></script>
   <script src="games-hub.js"></script>
