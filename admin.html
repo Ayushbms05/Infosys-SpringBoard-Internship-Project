@@ -8,6 +8,7 @@
     <title>AksharGyan — Admin</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="manifest" href="/manifest.json" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js");
@@ -42,24 +43,24 @@
               <span class="sidebar-brand-text">AksharGyan Admin</span>
             </div>
 
-            <nav class="dash-nav desktop-nav">
+            <nav class="dash-nav desktop-nav admin-desktop-nav">
               <button class="dash-nav-item active" data-section="overview">
-                <span class="dash-nav-icon">📊</span><span>Overview</span>
+                <span class="dash-nav-icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span><span>Overview</span>
               </button>
               <button class="dash-nav-item" data-section="users">
-                <span class="dash-nav-icon">👥</span><span>Users</span>
+                <span class="dash-nav-icon"><i data-lucide="users" aria-hidden="true"></i></span><span>Users</span>
               </button>
               <button class="dash-nav-item" data-section="leaderboard">
-                <span class="dash-nav-icon">🏆</span><span>Leaderboard</span>
+                <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span><span>Leaderboard</span>
               </button>
               <button class="dash-nav-item" data-section="announcements">
-                <span class="dash-nav-icon">📢</span><span>Announcements</span>
+                <span class="dash-nav-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span><span>Announcements</span>
               </button>
               <button class="dash-nav-item" data-section="feedback">
-                <span class="dash-nav-icon">💬</span><span>Feedback</span>
+                <span class="dash-nav-icon"><i data-lucide="message-square" aria-hidden="true"></i></span><span>Feedback</span>
               </button>
               <button class="dash-nav-item" data-section="errors">
-                <span class="dash-nav-icon">🐞</span><span>Error Logs</span>
+                <span class="dash-nav-icon"><i data-lucide="bug" aria-hidden="true"></i></span><span>Error Logs</span>
               </button>
             </nav>
 
@@ -99,22 +100,22 @@
         <!-- ═══════════ FLIPKART/DUOLINGO STYLE MOBILE BOTTOM NAVBAR ═══════════ -->
         <nav class="mobile-bottom-nav" id="admin-mobile-bottom-nav">
           <button class="dash-nav-item active" data-section="overview" title="Overview">
-            <span class="dash-nav-icon">📊</span><span class="mobile-nav-label">Overview</span>
+            <span class="dash-nav-icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span><span class="mobile-nav-label">Overview</span>
           </button>
           <button class="dash-nav-item" data-section="users" title="Users">
-            <span class="dash-nav-icon">👥</span><span class="mobile-nav-label">Users</span>
+            <span class="dash-nav-icon"><i data-lucide="users" aria-hidden="true"></i></span><span class="mobile-nav-label">Users</span>
           </button>
           <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
-            <span class="dash-nav-icon">🏆</span><span class="mobile-nav-label">Leaderboard</span>
+            <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span><span class="mobile-nav-label">Leaderboard</span>
           </button>
           <button class="dash-nav-item" data-section="announcements" title="Announcements">
-            <span class="dash-nav-icon">📢</span><span class="mobile-nav-label">Announce</span>
+            <span class="dash-nav-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span><span class="mobile-nav-label">Announce</span>
           </button>
           <button class="dash-nav-item" data-section="feedback" title="Feedback">
-            <span class="dash-nav-icon">💬</span><span class="mobile-nav-label">Feedback</span>
+            <span class="dash-nav-icon"><i data-lucide="message-square" aria-hidden="true"></i></span><span class="mobile-nav-label">Feedback</span>
           </button>
           <button class="dash-nav-item" data-section="errors" title="Error Logs">
-            <span class="dash-nav-icon">🐞</span><span class="mobile-nav-label">Errors</span>
+            <span class="dash-nav-icon"><i data-lucide="bug" aria-hidden="true"></i></span><span class="mobile-nav-label">Errors</span>
           </button>
         </nav>
 

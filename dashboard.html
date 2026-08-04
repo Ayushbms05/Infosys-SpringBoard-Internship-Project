@@ -28,13 +28,7 @@
     <main class="dashboard-layout hidden" id="dashboard-content">
       <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
       <div id="mobile-topbar" class="mobile-topbar">
-        <button
-          id="mobile-menu-btn"
-          class="mobile-menu-btn"
-          aria-label="Open navigation menu"
-        >
-          <i data-lucide="menu" aria-hidden="true"></i>
-        </button>
+        <!-- Hamburger menu removed as per user request (sidebar no longer needed on mobile) -->
         <div class="mobile-topbar-brand">
           <i
             data-lucide="book-marked"
@@ -305,6 +299,32 @@
         <div id="mobile-more-backdrop" class="mobile-more-backdrop"></div>
         <div id="mobile-more-sheet" class="mobile-more-sheet">
           <div class="mobile-more-sheet-handle"></div>
+          <!-- Mobile Stats Header -->
+          <div class="mobile-sheet-stats" style="display:flex; justify-content:space-around; padding: 1rem 0; border-bottom: 1px solid var(--color-border); margin-bottom: 0.5rem;">
+            <div class="dash-stat-pill streak-pill" title="Daily Streak" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fff1ee; border:1px solid #ffd9cf; color:#e8582f; display:flex; align-items:center; gap:0.25rem; font-weight:700;">
+              <span class="stat-icon">🌱</span><span id="mobile-streak-count" class="stat-value">0</span>
+            </div>
+            <div class="dash-stat-pill xp-pill" title="Experience Points" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#f1efff; border:1px solid #ddd7ff; color:var(--color-primary); display:flex; align-items:center; gap:0.25rem; font-weight:700;">
+              <span class="stat-icon">⚡</span><span id="mobile-xp-count" class="stat-value">0</span>
+            </div>
+            <div class="dash-stat-pill coins-pill" title="Open Gyan Market" id="mobile-open-shop-btn" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fdf6e3; border:1px solid #f3e3ad; color:#9c7a12; display:flex; align-items:center; gap:0.25rem; font-weight:700; cursor:pointer;">
+              <span class="stat-icon">🪙</span><span id="mobile-coin-count" class="stat-value">0</span>
+            </div>
+          </div>
+          
+          <div style="padding: 0.5rem 1rem; border-bottom: 1px solid var(--color-border); margin-bottom: 0.5rem; display:flex; justify-content:space-between; align-items:center;">
+             <span style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary);">Language</span>
+             <select id="mobile-dash-lang-select" class="dash-lang-select" style="padding:0.3rem; font-size:0.85rem; border-radius:8px; border:1px solid var(--color-border);">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी</option>
+                <option value="ta">தமிழ்</option>
+                <option value="te">తెలుగు</option>
+                <option value="kn">ಕನ್ನಡ</option>
+                <option value="bn">বাংলা</option>
+                <option value="mr">मराठी</option>
+             </select>
+          </div>
+
           <button class="dash-nav-item" data-section="profile" title="Profile">
             <span class="dash-nav-icon"
               ><i data-lucide="user" aria-hidden="true"></i
@@ -334,6 +354,11 @@
             <span class="mobile-nav-label" data-i18n="navAnalysis"
               >Analysis</span
             >
+          </button>
+          
+          <button class="dash-nav-item" id="mobile-logout-btn" style="color:#e11d48; margin-top:0.5rem; border-top:1px solid var(--color-border); border-radius:0; padding-top:1rem;">
+             <span class="dash-nav-icon"><i data-lucide="log-out" aria-hidden="true"></i></span>
+             <span class="mobile-nav-label" data-i18n="logoutBtn">Logout</span>
           </button>
         </div>
 

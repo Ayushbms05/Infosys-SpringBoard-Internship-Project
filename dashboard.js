@@ -111,6 +111,8 @@ function initDashboard(profile) {
     updateStreak(user.uid).then((streak) => {
       if (typeof streak === "number") {
         document.getElementById("streak-count").textContent = streak;
+        const mobileStreakEl = document.getElementById("mobile-streak-count");
+        if (mobileStreakEl) mobileStreakEl.textContent = streak;
         // Also keep strip in sync
         const stripStreak = document.getElementById("strip-streak");
         if (stripStreak) stripStreak.textContent = streak;
@@ -128,7 +130,9 @@ function initDashboard(profile) {
         if (!doc.exists) return;
         const liveCoins = doc.data().coins || 0;
         const coinEl = document.getElementById("coin-count");
-        if (coinEl) coinEl.textContent = liveCoins;
+        if (coinEl) coinEl.textContent = Number(liveCoins).toLocaleString();
+        const mobileCoinEl = document.getElementById("mobile-coin-count");
+        if (mobileCoinEl) mobileCoinEl.textContent = Number(liveCoins).toLocaleString();
         if (shopUserProfile) shopUserProfile.coins = liveCoins;
       });
   }
@@ -450,15 +454,15 @@ function renderTopBar(profile) {
 
   // XP
   const xpCount = document.getElementById("xp-count");
-  if (xpCount) {
-    xpCount.textContent = profile.xp || 0;
-  }
+  if (xpCount) xpCount.textContent = profile.xp || 0;
+  const mobileXpCount = document.getElementById("mobile-xp-count");
+  if (mobileXpCount) mobileXpCount.textContent = profile.xp || 0;
 
   // Streak
   const streakCount = document.getElementById("streak-count");
-  if (streakCount) {
-    streakCount.textContent = profile.streak || 0;
-  }
+  if (streakCount) streakCount.textContent = profile.streak || 0;
+  const mobileStreakCount = document.getElementById("mobile-streak-count");
+  if (mobileStreakCount) mobileStreakCount.textContent = profile.streak || 0;
 
   // Level badge
   const levelBadge = document.getElementById("user-level-badge");
@@ -770,7 +774,9 @@ function manageDailyQuests(profile) {
   questContainer.innerHTML = html;
 
   const coinEl = document.getElementById("coin-count");
-  if (coinEl) coinEl.textContent = profile.coins || 0;
+  if (coinEl) coinEl.textContent = Number(profile.coins || 0).toLocaleString();
+  const mobileCoinEl = document.getElementById("mobile-coin-count");
+  if (mobileCoinEl) mobileCoinEl.textContent = Number(profile.coins || 0).toLocaleString();
 
   if (needsSave) {
     const user = auth.currentUser;
@@ -1030,6 +1036,15 @@ function setupDashboardEvents(profile) {
       });
     });
   }
+  
+  const mobileLogoutBtn = document.getElementById("mobile-logout-btn");
+  if (mobileLogoutBtn) {
+    mobileLogoutBtn.addEventListener("click", () => {
+      logoutUser().then(() => {
+        window.location.href = "login.html";
+      });
+    });
+  }
 
   // Accessibility Toggles
   const fontBtn = document.getElementById("toggle-font-btn");
@@ -1079,6 +1094,28 @@ function setupDashboardEvents(profile) {
       if (window.Analysis) {
         window.Analysis.reRenderLang(profile);
       }
+      if (mobileLangSelect) mobileLangSelect.value = selectedLang;
+    });
+  }
+  
+  const mobileLangSelect = document.getElementById("mobile-dash-lang-select");
+  if (mobileLangSelect) {
+    mobileLangSelect.value = selectedLang;
+    mobileLangSelect.addEventListener("change", function () {
+      selectedLang = this.value;
+      localStorage.setItem("saksharLang", selectedLang);
+      applyTranslations(selectedLang);
+      renderRecommendation(profile);
+      renderLearningPath(profile);
+      renderSkillCards(profile);
+      renderSidePanel(profile);
+      renderProfile(profile);
+      manageDailyQuests(profile);
+      initPhraseOfDay(profile);
+      if (window.Analysis) {
+        window.Analysis.reRenderLang(profile);
+      }
+      if (langSelect) langSelect.value = selectedLang;
     });
   }
 

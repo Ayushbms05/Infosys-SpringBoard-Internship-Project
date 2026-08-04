@@ -24,6 +24,7 @@ const ADMIN_SKILL_META = {
 };
 
 function setupAdminPage() {
+  if (window.lucide) lucide.createIcons();
   auth.onAuthStateChanged(async (user) => {
     if (!user) {
       window.location.href = "login.html";

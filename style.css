@@ -5518,6 +5518,12 @@ button {
   flex-shrink: 0 !important;
 }
 
+.admin-desktop-nav .dash-nav-item {
+  padding: 0.55rem 1rem !important;
+  font-size: 0.95rem !important;
+  gap: 0.5rem !important;
+}
+
 /* ─── overflow "More" menu ─── */
 .nav-more-wrap {
   position: relative;
