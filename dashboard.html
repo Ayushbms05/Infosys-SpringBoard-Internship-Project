@@ -1,997 +1,1653 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AksharGyan Dashboard — Your Duolingo-style personalized literacy learning space."
+    />
+    <title>AksharGyan — Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js");
+      }
+    </script>
+  </head>
 
-<head>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AksharGyan Dashboard — Your Duolingo-style personalized literacy learning space." />
-  <title>AksharGyan — Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="/manifest.json" />
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js");
-    }
-  </script>
-</head>
-
-<body id="page-dashboard" class="fade-in-up light-theme">
-  <div id="loading-overlay" class="loading-overlay">
-    <div class="loading-spinner"></div>
-    <div class="loading-text" data-i18n="loadingText">Loading...</div>
-  </div>
-
-  <main class="dashboard-layout hidden" id="dashboard-content">
-    <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
-    <div id="mobile-topbar" class="mobile-topbar">
-      <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu">
-        <i data-lucide="menu" aria-hidden="true"></i>
-      </button>
-      <div class="mobile-topbar-brand">
-        <i data-lucide="book-marked" class="mobile-topbar-brand-icon" aria-hidden="true"></i>
-        <span class="sidebar-brand-text">AksharGyan</span>
-      </div>
-      <div class="mobile-topbar-avatar-slot"></div>
+  <body id="page-dashboard" class="fade-in-up light-theme">
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <div class="loading-text" data-i18n="loadingText">Loading...</div>
     </div>
-    <!-- ═══════════ SIDEBAR BACKDROP (mobile) ═══════════ -->
-    <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
 
-    <div class="dash-shell">
-      <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
-      <aside class="dash-sidebar">
-        <div class="sidebar-header">
-          <div class="sidebar-brand">
-            <span class="sidebar-brand-icon"><i data-lucide="book-marked" aria-hidden="true"></i></span>
-            <span class="sidebar-brand-text">AksharGyan</span>
-          </div>
-          <button id="sidebar-collapse-btn" class="sidebar-collapse-btn" aria-label="Collapse sidebar">
-            <i data-lucide="panel-left-close" aria-hidden="true"></i>
-          </button>
+    <main class="dashboard-layout hidden" id="dashboard-content">
+      <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
+      <div id="mobile-topbar" class="mobile-topbar">
+        <button
+          id="mobile-menu-btn"
+          class="mobile-menu-btn"
+          aria-label="Open navigation menu"
+        >
+          <i data-lucide="menu" aria-hidden="true"></i>
+        </button>
+        <div class="mobile-topbar-brand">
+          <i
+            data-lucide="book-marked"
+            class="mobile-topbar-brand-icon"
+            aria-hidden="true"
+          ></i>
+          <span class="sidebar-brand-text">AksharGyan</span>
         </div>
+        <div class="mobile-topbar-avatar-slot"></div>
+      </div>
+      <!-- ═══════════ SIDEBAR BACKDROP (mobile) ═══════════ -->
+      <div
+        id="sidebar-backdrop"
+        class="sidebar-backdrop"
+        aria-hidden="true"
+      ></div>
 
-        <div class="sidebar-user">
-          <div class="dash-avatar" id="user-avatar">?</div>
-          <div class="sidebar-user-info">
-            <div class="sidebar-user-greeting" data-i18n="greeting">
-              Welcome back
+      <div class="dash-shell">
+        <!-- ═══════════ MODERN TOP NAVBAR (DESKTOP) ═══════════ -->
+        <header class="dash-top-navbar dash-sidebar" id="dash-top-navbar">
+          <div class="navbar-container">
+            <!-- Brand Logo -->
+            <div class="sidebar-brand">
+              <span class="sidebar-brand-icon"
+                ><i data-lucide="book-marked" aria-hidden="true"></i
+              ></span>
+              <span class="sidebar-brand-text">AksharGyan</span>
             </div>
-            <div class="sidebar-user-name" id="welcome-name">User</div>
-            <div id="user-level-badge" class="dash-level-badge beginner">
-              🌱 <span data-i18n="scoreLevelBeginner">Beginner</span>
+
+            <!-- Central Desktop Navigation Links -->
+            <nav class="dash-nav desktop-nav">
+              <button
+                class="dash-nav-item active"
+                data-section="learn"
+                title="Learn"
+              >
+                <span class="dash-nav-icon"
+                  ><i data-lucide="book-open" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navLearn"
+                  >Learn</span
+                >
+              </button>
+              <button
+                class="dash-nav-item"
+                data-section="practice"
+                title="Practice"
+              >
+                <span class="dash-nav-icon"
+                  ><i data-lucide="target" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navPractice"
+                  >Practice</span
+                >
+              </button>
+              <button
+                class="dash-nav-item"
+                data-section="chat"
+                title="Chat Simulator"
+              >
+                <span class="dash-nav-icon"
+                  ><i data-lucide="message-circle" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navChatSimulator"
+                  >Chat Simulator</span
+                >
+              </button>
+              <button class="dash-nav-item" data-section="games" title="Games">
+                <span class="dash-nav-icon"
+                  ><i data-lucide="gamepad-2" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navGames"
+                  >Games</span
+                >
+              </button>
+              <button
+                class="dash-nav-item"
+                data-section="leaderboard"
+                title="Leaderboard"
+              >
+                <span class="dash-nav-icon"
+                  ><i data-lucide="trophy" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navLeaderboard"
+                  >Leaderboard</span
+                >
+              </button>
+
+              <div class="nav-more-wrap" id="nav-more-wrap">
+                <button class="nav-more-btn" id="nav-more-btn">
+                  <span>More</span>
+                  <i
+                    data-lucide="chevron-down"
+                    style="
+                      width: 14px;
+                      height: 14px;
+                      transition: transform 0.2s;
+                    "
+                  ></i>
+                </button>
+                <div class="nav-more-menu">
+                  <button
+                    class="dash-nav-item"
+                    data-section="profile"
+                    title="Profile"
+                  >
+                    <span class="dash-nav-icon"
+                      ><i data-lucide="user" aria-hidden="true"></i
+                    ></span>
+                    <span class="sidebar-nav-label" data-i18n="navProfile"
+                      >Profile</span
+                    >
+                  </button>
+                  <button
+                    class="dash-nav-item"
+                    data-section="feedback"
+                    title="Feedback"
+                  >
+                    <span class="dash-nav-icon"
+                      ><i data-lucide="lightbulb" aria-hidden="true"></i
+                    ></span>
+                    <span class="sidebar-nav-label" data-i18n="navFeedback"
+                      >Feedback</span
+                    >
+                  </button>
+                  <button
+                    class="dash-nav-item"
+                    data-section="analysis"
+                    title="Analysis"
+                  >
+                    <span class="dash-nav-icon"
+                      ><i data-lucide="bar-chart-2" aria-hidden="true"></i
+                    ></span>
+                    <span class="sidebar-nav-label" data-i18n="navAnalysis"
+                      >Analysis</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </nav>
+
+            <!-- Right Side: Stats, Controls, Profile & Logout -->
+            <div class="navbar-right">
+              <div class="sidebar-stats-row">
+                <div class="dash-stat-pill streak-pill" title="Daily Streak">
+                  <span class="stat-icon">🌱</span>
+                  <span id="streak-count" class="stat-value">0</span>
+                </div>
+                <div class="dash-stat-pill xp-pill" title="Experience Points">
+                  <span class="stat-icon">⚡</span>
+                  <span id="xp-count" class="stat-value">0</span>
+                </div>
+                <div
+                  id="open-shop-btn"
+                  class="dash-stat-pill coins-pill"
+                  title="Open Gyan Market"
+                >
+                  <span class="stat-icon">🪙</span>
+                  <span id="coin-count" class="stat-value">0</span>
+                </div>
+              </div>
+
+              <div class="navbar-controls">
+                <select id="dash-lang-select" class="dash-lang-select">
+                  <option value="en">English</option>
+                  <option value="hi">हिन्दी</option>
+                  <option value="ta">தமிழ்</option>
+                  <option value="te">తెలుగు</option>
+                  <option value="kn">ಕನ್ನಡ</option>
+                  <option value="bn">বাংলা</option>
+                  <option value="mr">मराठी</option>
+                </select>
+
+                <div class="sidebar-user">
+                  <div class="dash-avatar" id="user-avatar">?</div>
+                  <div class="sidebar-user-info">
+                    <div class="sidebar-user-name" id="welcome-name">User</div>
+                    <div
+                      id="user-level-badge"
+                      class="dash-level-badge beginner"
+                    >
+                      🌱 <span data-i18n="scoreLevelBeginner">Beginner</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="btn-logout" id="logout-btn" title="Logout">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <span data-i18n="logoutBtn">Logout</span>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </header>
 
-        <div class="sidebar-stats-row">
-          <div class="dash-stat-pill streak-pill" title="Daily Streak">
-            <span class="stat-icon">🌱</span>
-            <span id="streak-count" class="stat-value">0</span>
-          </div>
-          <div class="dash-stat-pill xp-pill" title="Experience Points">
-            <span class="stat-icon">⚡</span>
-            <span id="xp-count" class="stat-value">0</span>
-          </div>
-          <div id="open-shop-btn" class="dash-stat-pill coins-pill" title="Open Gyan Market">
-            <span class="stat-icon">🪙</span>
-            <span id="coin-count" class="stat-value">0</span>
-          </div>
-        </div>
-
-        <nav class="dash-nav">
-          <button class="dash-nav-item active" data-section="learn" title="Learn">
-            <span class="dash-nav-icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navLearn">Learn</span>
+        <!-- ═══════════ FLIPKART/DUOLINGO STYLE MOBILE BOTTOM NAVBAR ═══════════ -->
+        <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+          <button
+            class="dash-nav-item active"
+            data-section="learn"
+            title="Learn"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="book-open" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navLearn">Learn</span>
           </button>
-          <button class="dash-nav-item" data-section="practice" title="Practice">
-            <span class="dash-nav-icon"><i data-lucide="target" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navPractice">Practice</span>
+          <button
+            class="dash-nav-item"
+            data-section="practice"
+            title="Practice"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="target" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navPractice"
+              >Practice</span
+            >
           </button>
-          <button class="dash-nav-item" data-section="chat" title="Chat Simulator">
-            <span class="dash-nav-icon"><i data-lucide="message-circle" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navChatSimulator">Chat Simulator</span>
+          <button class="dash-nav-item" data-section="chat" title="Chat">
+            <span class="dash-nav-icon"
+              ><i data-lucide="message-circle" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navChatSimulator"
+              >Chat</span
+            >
           </button>
           <button class="dash-nav-item" data-section="games" title="Games">
-            <span class="dash-nav-icon"><i data-lucide="gamepad-2" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navGames">Games</span>
+            <span class="dash-nav-icon"
+              ><i data-lucide="gamepad-2" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navGames">Games</span>
           </button>
-          <button class="dash-nav-item" data-section="profile" title="Profile">
-            <span class="dash-nav-icon"><i data-lucide="user" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navProfile">Profile</span>
+          <button
+            class="dash-nav-item"
+            data-section="leaderboard"
+            title="Leaderboard"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="trophy" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navLeaderboard"
+              >Ranks</span
+            >
           </button>
-          <button class="dash-nav-item" data-section="feedback" title="Feedback">
-            <span class="dash-nav-icon"><i data-lucide="lightbulb" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navFeedback">Feedback</span>
-          </button>
-          <button class="dash-nav-item" data-section="analysis" title="Analysis">
-            <span class="dash-nav-icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navAnalysis">Analysis</span>
-          </button>
-          <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
-            <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span>
-            <span class="sidebar-nav-label" data-i18n="navLeaderboard">Leaderboard</span>
+          <button class="dash-nav-item" id="mobile-more-btn" title="More">
+            <span class="dash-nav-icon"
+              ><i data-lucide="more-horizontal" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label">More</span>
           </button>
         </nav>
 
-        <div class="sidebar-footer">
-          <select id="dash-lang-select" class="dash-lang-select">
-            <option value="en">English</option>
-            <option value="hi">हिन्दी</option>
-            <option value="ta">தமிழ்</option>
-            <option value="te">తెలుగు</option>
-            <option value="kn">ಕನ್ನಡ</option>
-            <option value="bn">বাংলা</option>
-            <option value="mr">मराठी</option>
-          </select>
-          <div class="sidebar-a11y-row">
-            <button class="icon-btn icon-btn-large" id="toggle-font-btn" title="Toggle Large Font">
-              A+
-            </button>
-            <button class="icon-btn icon-btn-large" id="toggle-dyslexia-btn" title="Toggle Dyslexia Font">
-              D
-            </button>
-          </div>
-          <button class="btn-logout" id="logout-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-            <span data-i18n="logoutBtn">Logout</span>
+        <div id="mobile-more-backdrop" class="mobile-more-backdrop"></div>
+        <div id="mobile-more-sheet" class="mobile-more-sheet">
+          <div class="mobile-more-sheet-handle"></div>
+          <button class="dash-nav-item" data-section="profile" title="Profile">
+            <span class="dash-nav-icon"
+              ><i data-lucide="user" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navProfile">Profile</span>
+          </button>
+          <button
+            class="dash-nav-item"
+            data-section="feedback"
+            title="Feedback"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="lightbulb" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navFeedback"
+              >Feedback</span
+            >
+          </button>
+          <button
+            class="dash-nav-item"
+            data-section="analysis"
+            title="Analysis"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="bar-chart-2" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navAnalysis"
+              >Analysis</span
+            >
           </button>
         </div>
-      </aside>
 
-      <!-- ═══════════ MAIN CONTENT ═══════════ -->
-      <main class="dash-main-wrap">
-        <div class="dash-topbar">
-          <div class="dash-topbar-title">
-            <h1 data-i18n="dashTopbarLearn">Learn</h1>
-            <p class="dash-topbar-sub">Pick up right where you left off</p>
+        <!-- ═══════════ MAIN CONTENT ═══════════ -->
+        <main class="dash-main-wrap">
+          <div class="dash-topbar">
+            <div class="dash-topbar-title">
+              <h1 data-i18n="dashTopbarLearn">Learn</h1>
+              <p class="dash-topbar-sub">Pick up right where you left off</p>
+            </div>
+            <div class="dash-topbar-date" id="topbar-date"></div>
           </div>
-          <div class="dash-topbar-date" id="topbar-date"></div>
-        </div>
-        <div id="announcement-banner" class="announcement-banner hidden">
-          <span id="announcement-text"></span>
-          <button id="announcement-dismiss" class="announcement-dismiss">
-            ✕
-          </button>
-        </div>
-        <div class="dash-content-grid">
-          <div class="dash-main-col">
-            <div id="section-learn" class="dash-main-section">
-              <div class="learn-sub-tabs" role="tablist" aria-label="Learn sections">
-                <button class="learn-sub-tab active" id="sub-tab-results" data-view="view-results" role="tab"
-                  aria-selected="true" aria-controls="view-results">
-                  <span class="sub-tab-icon">✨</span>
-                  <span data-i18n="dashMyResults">My Results</span>
-                </button>
-                <button class="learn-sub-tab" id="sub-tab-path" data-view="view-path" role="tab" aria-selected="false"
-                  aria-controls="view-path">
-                  <span class="sub-tab-icon">🗺️</span>
-                  <span data-i18n="dashLearningPath">Learning Path</span>
-                </button>
-              </div>
-
-              <div id="view-results" class="learn-sub-view" role="tabpanel" aria-labelledby="sub-tab-results">
-                
-                <!-- ════ Phrase of the Day ════ -->
-                <div class="dash-card phrase-of-day-card" id="phrase-of-day-card">
-                  <div class="phrase-header">
-                    <h3 data-i18n="phraseOfDayTitle">Phrase of the Day</h3>
-                    <span class="phrase-xp-badge">+20 XP</span>
-                  </div>
-                  <div class="phrase-content">
-                    <p class="phrase-text" id="phrase-of-day-text">Loading...</p>
-                    <p class="phrase-translation" id="phrase-of-day-translation"></p>
-                  </div>
-                  <div class="phrase-actions">
-                    <button class="btn-secondary phrase-listen-btn" id="phrase-listen-btn">
-                      <i data-lucide="volume-2"></i> <span data-i18n="phraseOfDayListen">Listen</span>
-                    </button>
-                    <button class="btn-primary phrase-speak-btn" id="phrase-speak-btn">
-                      <i data-lucide="mic"></i> <span data-i18n="phraseOfDaySpeak">Speak to earn XP</span>
-                    </button>
-                  </div>
-                  <div class="phrase-feedback hidden" id="phrase-feedback"></div>
+          <div id="announcement-banner" class="announcement-banner hidden">
+            <span id="announcement-text"></span>
+            <button id="announcement-dismiss" class="announcement-dismiss">
+              ✕
+            </button>
+          </div>
+          <div class="dash-content-grid">
+            <div class="dash-main-col">
+              <div id="section-learn" class="dash-main-section">
+                <div
+                  class="learn-sub-tabs"
+                  role="tablist"
+                  aria-label="Learn sections"
+                >
+                  <button
+                    class="learn-sub-tab active"
+                    id="sub-tab-results"
+                    data-view="view-results"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="view-results"
+                  >
+                    <span class="sub-tab-icon">✨</span>
+                    <span data-i18n="dashMyResults">My Results</span>
+                  </button>
+                  <button
+                    class="learn-sub-tab"
+                    id="sub-tab-path"
+                    data-view="view-path"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="view-path"
+                  >
+                    <span class="sub-tab-icon">🗺️</span>
+                    <span data-i18n="dashLearningPath">Learning Path</span>
+                  </button>
                 </div>
-                <div class="dash-card recommendation-card" id="recommendation-card">
-                  <div class="rec-score-row">
-                    <div class="rec-score-ring-wrap">
-                      <svg class="rec-score-svg" viewBox="0 0 120 120">
-                        <defs>
-                          <linearGradient id="recScoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="var(--color-primary)" />
-                            <stop offset="100%" stop-color="var(--color-accent)" />
-                          </linearGradient>
-                        </defs>
-                        <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(108,99,255,0.10)" stroke-width="9">
-                        </circle>
-                        <circle id="rec-score-circle" cx="60" cy="60" r="50" fill="none" stroke="url(#recScoreGrad)"
-                          stroke-width="9" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" style="
+
+                <div
+                  id="view-results"
+                  class="learn-sub-view"
+                  role="tabpanel"
+                  aria-labelledby="sub-tab-results"
+                >
+                  <!-- ════ Phrase of the Day ════ -->
+                  <div
+                    class="dash-card phrase-of-day-card"
+                    id="phrase-of-day-card"
+                  >
+                    <div class="phrase-header">
+                      <h3 data-i18n="phraseOfDayTitle">Phrase of the Day</h3>
+                      <span class="phrase-xp-badge">+20 XP</span>
+                    </div>
+                    <div class="phrase-content">
+                      <p class="phrase-text" id="phrase-of-day-text">
+                        Loading...
+                      </p>
+                      <p
+                        class="phrase-translation"
+                        id="phrase-of-day-translation"
+                      ></p>
+                    </div>
+                    <div class="phrase-actions">
+                      <button
+                        class="btn-secondary phrase-listen-btn"
+                        id="phrase-listen-btn"
+                      >
+                        <i data-lucide="volume-2"></i>
+                        <span data-i18n="phraseOfDayListen">Listen</span>
+                      </button>
+                      <button
+                        class="btn-primary phrase-speak-btn"
+                        id="phrase-speak-btn"
+                      >
+                        <i data-lucide="mic"></i>
+                        <span data-i18n="phraseOfDaySpeak"
+                          >Speak to earn XP</span
+                        >
+                      </button>
+                    </div>
+                    <div
+                      class="phrase-feedback hidden"
+                      id="phrase-feedback"
+                    ></div>
+                  </div>
+                  <div
+                    class="dash-card recommendation-card"
+                    id="recommendation-card"
+                  >
+                    <div class="rec-score-row">
+                      <div class="rec-score-ring-wrap">
+                        <svg class="rec-score-svg" viewBox="0 0 120 120">
+                          <defs>
+                            <linearGradient
+                              id="recScoreGrad"
+                              x1="0%"
+                              y1="0%"
+                              x2="100%"
+                              y2="100%"
+                            >
+                              <stop
+                                offset="0%"
+                                stop-color="var(--color-primary)"
+                              />
+                              <stop
+                                offset="100%"
+                                stop-color="var(--color-accent)"
+                              />
+                            </linearGradient>
+                          </defs>
+                          <circle
+                            cx="60"
+                            cy="60"
+                            r="50"
+                            fill="none"
+                            stroke="rgba(108,99,255,0.10)"
+                            stroke-width="9"
+                          ></circle>
+                          <circle
+                            id="rec-score-circle"
+                            cx="60"
+                            cy="60"
+                            r="50"
+                            fill="none"
+                            stroke="url(#recScoreGrad)"
+                            stroke-width="9"
+                            stroke-linecap="round"
+                            stroke-dasharray="314"
+                            stroke-dashoffset="314"
+                            style="
                               transform: rotate(-90deg);
                               transform-origin: center;
                               transition: stroke-dashoffset 1.2s
                                 cubic-bezier(0.34, 1.56, 0.64, 1);
-                            "></circle>
-                      </svg>
-                      <div class="rec-score-text">
-                        <span id="rec-score-value" class="rec-score-number">0</span>
-                        <span class="rec-score-percent">%</span>
-                      </div>
-                    </div>
-                    <div class="rec-score-meta">
-                      <p class="rec-score-headline" id="rec-score-headline">
-                        You scored 0% on your initial assessment.
-                      </p>
-                      <span id="rec-level-tag" class="rec-card-tag beginner">Beginner</span>
-                    </div>
-                  </div>
-
-                  <div class="rec-divider"></div>
-
-                  <p class="rec-interpretation" id="rec-interpretation">
-                    Loading your personalised recommendation…
-                  </p>
-
-                  <div id="rec-ai-loading" class="rec-ai-loading hidden" aria-live="polite">
-                    <div class="ai-loading-header">
-                      <span class="ai-loading-icon">✨</span>
-                      <span data-i18n="dashGeminiAnalyzing">Gemini is analysing your results…</span>
-                    </div>
-                    <div class="ai-shimmer-bar"></div>
-                    <div class="ai-shimmer-bar" style="width: 75%"></div>
-                    <div class="ai-shimmer-bar" style="width: 55%"></div>
-                    <div class="ai-shimmer-bar" style="width: 80%; margin-top: 0.5rem"></div>
-                    <div class="ai-shimmer-bar" style="width: 65%"></div>
-                    <div class="ai-shimmer-bar" style="width: 70%"></div>
-                  </div>
-
-                  <div id="skill-breakdown-section" class="skill-breakdown-section hidden">
-                    <div class="skill-bd-header">
-                      <span class="gemini-badge">✨ Gemini Analysis</span>
-                      <span class="skill-bd-title">Skill Breakdown</span>
-                    </div>
-                    <div id="skill-bd-bars" class="skill-bd-bars"></div>
-                    <p id="rec-motivational" class="rec-motivational"></p>
-                  </div>
-
-                  <div class="rec-cta-block">
-                    <div class="rec-cta-label">
-                      <span class="rec-cta-dot"></span>
-                      <span id="rec-cta-label-text" data-i18n="dashRecommendedStart">
-                        Recommended starting point</span>
-                    </div>
-                    <div class="rec-cta-row">
-                      <div class="rec-cta-lesson-info">
-                        <span class="rec-cta-lesson-icon" id="rec-cta-icon">🔤</span>
-                        <div>
-                          <div class="rec-cta-lesson-title" id="rec-cta-title">
-                            Alphabets — Letter Recognition
-                          </div>
-                          <div class="rec-cta-lesson-sub" id="rec-cta-sub">
-                            Beginner Level
-                          </div>
+                            "
+                          ></circle>
+                        </svg>
+                        <div class="rec-score-text">
+                          <span id="rec-score-value" class="rec-score-number"
+                            >0</span
+                          >
+                          <span class="rec-score-percent">%</span>
                         </div>
                       </div>
-                      <a id="rec-start-btn" href="lesson.html?level=beginner&unit=alphabets&type=reading"
-                        class="btn-rec-start">
-                        ▶ Start Here
-                      </a>
+                      <div class="rec-score-meta">
+                        <p class="rec-score-headline" id="rec-score-headline">
+                          You scored 0% on your initial assessment.
+                        </p>
+                        <span id="rec-level-tag" class="rec-card-tag beginner"
+                          >Beginner</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="rec-divider"></div>
+
+                    <p class="rec-interpretation" id="rec-interpretation">
+                      Loading your personalised recommendation…
+                    </p>
+
+                    <div
+                      id="rec-ai-loading"
+                      class="rec-ai-loading hidden"
+                      aria-live="polite"
+                    >
+                      <div class="ai-loading-header">
+                        <span class="ai-loading-icon">✨</span>
+                        <span data-i18n="dashGeminiAnalyzing"
+                          >Gemini is analysing your results…</span
+                        >
+                      </div>
+                      <div class="ai-shimmer-bar"></div>
+                      <div class="ai-shimmer-bar" style="width: 75%"></div>
+                      <div class="ai-shimmer-bar" style="width: 55%"></div>
+                      <div
+                        class="ai-shimmer-bar"
+                        style="width: 80%; margin-top: 0.5rem"
+                      ></div>
+                      <div class="ai-shimmer-bar" style="width: 65%"></div>
+                      <div class="ai-shimmer-bar" style="width: 70%"></div>
+                    </div>
+
+                    <div
+                      id="skill-breakdown-section"
+                      class="skill-breakdown-section hidden"
+                    >
+                      <div class="skill-bd-header">
+                        <span class="gemini-badge">✨ Gemini Analysis</span>
+                        <span class="skill-bd-title">Skill Breakdown</span>
+                      </div>
+                      <div id="skill-bd-bars" class="skill-bd-bars"></div>
+                      <p id="rec-motivational" class="rec-motivational"></p>
+                    </div>
+
+                    <div class="rec-cta-block">
+                      <div class="rec-cta-label">
+                        <span class="rec-cta-dot"></span>
+                        <span
+                          id="rec-cta-label-text"
+                          data-i18n="dashRecommendedStart"
+                        >
+                          Recommended starting point</span
+                        >
+                      </div>
+                      <div class="rec-cta-row">
+                        <div class="rec-cta-lesson-info">
+                          <span class="rec-cta-lesson-icon" id="rec-cta-icon"
+                            >🔤</span
+                          >
+                          <div>
+                            <div
+                              class="rec-cta-lesson-title"
+                              id="rec-cta-title"
+                            >
+                              Alphabets — Letter Recognition
+                            </div>
+                            <div class="rec-cta-lesson-sub" id="rec-cta-sub">
+                              Beginner Level
+                            </div>
+                          </div>
+                        </div>
+                        <a
+                          id="rec-start-btn"
+                          href="lesson.html?level=beginner&unit=alphabets&type=reading"
+                          class="btn-rec-start"
+                        >
+                          ▶ Start Here
+                        </a>
+                      </div>
+                    </div>
+
+                    <div id="ai-extra-recs" class="ai-extra-recs hidden">
+                      <div class="ai-extra-recs-header">
+                        <span class="ai-extra-recs-icon">📚</span>
+                        <span data-i18n="dashMoreLessons"
+                          >More lessons targeting your gaps</span
+                        >
+                      </div>
+                      <div
+                        id="ai-extra-recs-list"
+                        class="ai-extra-recs-list"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="stats-strip">
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon streak-col">🔥</div>
+                      <div class="stats-strip-val" id="strip-streak">0</div>
+                      <div class="stats-strip-label" data-i18n="statDayStreak">
+                        Day Streak
+                      </div>
+                    </div>
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon xp-col">⚡</div>
+                      <div class="stats-strip-val" id="strip-xp">0</div>
+                      <div class="stats-strip-label" data-i18n="statTotalXP">
+                        Total XP
+                      </div>
+                    </div>
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon lessons-col">📚</div>
+                      <div class="stats-strip-val" id="strip-lessons">0</div>
+                      <div
+                        class="stats-strip-label"
+                        data-i18n="statLessonsDone"
+                      >
+                        Lessons Done
+                      </div>
+                    </div>
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon badges-col">🏅</div>
+                      <div class="stats-strip-val" id="strip-badges">0</div>
+                      <div class="stats-strip-label" data-i18n="statBadges">
+                        Badges
+                      </div>
                     </div>
                   </div>
 
-                  <div id="ai-extra-recs" class="ai-extra-recs hidden">
-                    <div class="ai-extra-recs-header">
-                      <span class="ai-extra-recs-icon">📚</span>
-                      <span data-i18n="dashMoreLessons">More lessons targeting your gaps</span>
+                  <div class="dash-section">
+                    <div class="section-heading-container">
+                      <div>
+                        <h3
+                          class="section-heading"
+                          data-i18n="dashPracticalSkills"
+                        >
+                          🌍 Practical Life Skills
+                        </h3>
+                        <p
+                          class="section-subtext"
+                          data-i18n="dashPracticalSkillsDesc"
+                        >
+                          Apply your reading to real-world situations.
+                        </p>
+                      </div>
+                      <a href="#" class="section-view-all" data-i18n="viewAll"
+                        >View All →</a
+                      >
                     </div>
-                    <div id="ai-extra-recs-list" class="ai-extra-recs-list"></div>
-                  </div>
-                </div>
-                <div class="stats-strip">
-                  <div class="stats-strip-item">
-                    <div class="stats-strip-icon streak-col">🔥</div>
-                    <div class="stats-strip-val" id="strip-streak">0</div>
-                    <div class="stats-strip-label" data-i18n="statDayStreak">
-                      Day Streak
-                    </div>
-                  </div>
-                  <div class="stats-strip-divider"></div>
-                  <div class="stats-strip-item">
-                    <div class="stats-strip-icon xp-col">⚡</div>
-                    <div class="stats-strip-val" id="strip-xp">0</div>
-                    <div class="stats-strip-label" data-i18n="statTotalXP">
-                      Total XP
-                    </div>
-                  </div>
-                  <div class="stats-strip-divider"></div>
-                  <div class="stats-strip-item">
-                    <div class="stats-strip-icon lessons-col">📚</div>
-                    <div class="stats-strip-val" id="strip-lessons">0</div>
-                    <div class="stats-strip-label" data-i18n="statLessonsDone">
-                      Lessons Done
-                    </div>
-                  </div>
-                  <div class="stats-strip-divider"></div>
-                  <div class="stats-strip-item">
-                    <div class="stats-strip-icon badges-col">🏅</div>
-                    <div class="stats-strip-val" id="strip-badges">0</div>
-                    <div class="stats-strip-label" data-i18n="statBadges">
-                      Badges
-                    </div>
-                  </div>
-                </div>
 
-                <div class="dash-section">
-                  <div class="section-heading-container">
-                    <div>
-                      <h3 class="section-heading" data-i18n="dashPracticalSkills">
-                        🌍 Practical Life Skills
-                      </h3>
-                      <p class="section-subtext" data-i18n="dashPracticalSkillsDesc">
-                        Apply your reading to real-world situations.
-                      </p>
-                    </div>
-                    <a href="#" class="section-view-all" data-i18n="viewAll">View All →</a>
-                  </div>
-
-                  <div class="explore-grid">
-                    <div class="explore-card" onclick="
+                    <div class="explore-grid">
+                      <div
+                        class="explore-card"
+                        onclick="
                           window.location.href =
                             'lesson.html?type=reading&unit=banking'
-                        ">
-                      <div class="explore-icon">🏦</div>
-                      <h4 data-i18n="bankingTitle">Banking & Forms</h4>
-                      <p data-i18n="bankingDesc">
-                        Learn to read deposit slips and account balances.
-                      </p>
-                    </div>
+                        "
+                      >
+                        <div class="explore-icon">🏦</div>
+                        <h4 data-i18n="bankingTitle">Banking & Forms</h4>
+                        <p data-i18n="bankingDesc">
+                          Learn to read deposit slips and account balances.
+                        </p>
+                      </div>
 
-                    <div class="explore-card" onclick="
+                      <div
+                        class="explore-card"
+                        onclick="
                           window.location.href =
                             'lesson.html?type=reading&unit=transit'
-                        ">
-                      <div class="explore-icon">🚌</div>
-                      <h4 data-i18n="transitTitle">Transit & Travel</h4>
-                      <p data-i18n="transitDesc">
-                        Read bus numbers, train tickets, and station signs.
-                      </p>
-                    </div>
+                        "
+                      >
+                        <div class="explore-icon">🚌</div>
+                        <h4 data-i18n="transitTitle">Transit & Travel</h4>
+                        <p data-i18n="transitDesc">
+                          Read bus numbers, train tickets, and station signs.
+                        </p>
+                      </div>
 
-                    <div class="explore-card" onclick="
+                      <div
+                        class="explore-card"
+                        onclick="
                           window.location.href =
                             'lesson.html?type=reading&unit=health'
-                        ">
-                      <div class="explore-icon">💊</div>
-                      <h4 data-i18n="healthTitle">Health & Medicine</h4>
-                      <p data-i18n="healthDesc">
-                        Understand prescriptions and medicine labels safely.
-                      </p>
+                        "
+                      >
+                        <div class="explore-icon">💊</div>
+                        <h4 data-i18n="healthTitle">Health & Medicine</h4>
+                        <p data-i18n="healthDesc">
+                          Understand prescriptions and medicine labels safely.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div
+                  id="view-path"
+                  class="learn-sub-view hidden"
+                  role="tabpanel"
+                  aria-labelledby="sub-tab-path"
+                >
+                  <div class="dash-card learning-path-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">🗺️</span>
+                        <span data-i18n="dashLearningPath">Learning Path</span>
+                      </h3>
+                    </div>
+                    <div id="learning-path" class="learning-path"></div>
+                  </div>
+                </div>
+                <svg class="hidden" aria-hidden="true">
+                  <circle id="dash-score-circle" class="hidden"></circle>
+                </svg>
+                <span id="dash-score-value" class="hidden">0</span>
               </div>
-              <div id="view-path" class="learn-sub-view hidden" role="tabpanel" aria-labelledby="sub-tab-path">
-                <div class="dash-card learning-path-card">
+              <div id="section-practice" class="dash-main-section hidden">
+                <div class="dash-card">
                   <div class="dash-card-header">
                     <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">🗺️</span>
-                      <span data-i18n="dashLearningPath">Learning Path</span>
+                      <span class="dash-card-title-icon">🎯</span>
+                      <span data-i18n="dashSkillPractice">Skill Practice</span>
+                    </h3>
+                    <p
+                      class="dash-card-subtitle"
+                      data-i18n="dashSkillPracticeDesc"
+                    >
+                      Choose a skill to practice at your level
+                    </p>
+                  </div>
+                  <div id="skill-cards" class="skill-cards-grid"></div>
+                </div>
+              </div>
+
+              <div id="section-profile" class="dash-main-section hidden">
+                <div class="dash-card">
+                  <div class="profile-header">
+                    <div class="profile-avatar" id="profile-avatar">?</div>
+                    <div class="profile-info">
+                      <h2 id="profile-name">User</h2>
+                      <p id="profile-email" class="profile-email">
+                        user@email.com
+                      </p>
+                      <button
+                        id="edit-profile-btn"
+                        class="btn-secondary"
+                        data-i18n="editProfileBtn"
+                      >
+                        ✏️ Edit Profile
+                      </button>
+                    </div>
+                  </div>
+
+                  <form id="edit-profile-form" class="hidden">
+                    <div class="input-group">
+                      <label data-i18n="fullNameLabel">Full Name</label>
+                      <input
+                        type="text"
+                        id="edit-fullname"
+                        class="input-field"
+                        required
+                      />
+                    </div>
+                    <div class="input-group">
+                      <label data-i18n="preferredLangLabel"
+                        >Preferred Language</label
+                      >
+                      <select id="edit-language" class="input-field">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="mr">मराठी</option>
+                      </select>
+                    </div>
+                    <div class="input-group">
+                      <label data-i18n="learningLanguageLabel">Learning</label>
+                      <select id="edit-target-language" class="input-field">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="mr">मराठी</option>
+                      </select>
+                    </div>
+                    <div class="input-group">
+                      <label data-i18n="ageGroupLabel">Age Group</label>
+                      <select id="edit-age" class="input-field">
+                        <option value="below18" data-i18n-option="ageBelow18">
+                          Below 18
+                        </option>
+                        <option value="18-25" data-i18n-option="age18to25">
+                          18–25
+                        </option>
+                        <option value="26-40" data-i18n-option="age26to40">
+                          26–40
+                        </option>
+                        <option value="41-60" data-i18n-option="age41to60">
+                          41–60
+                        </option>
+                        <option value="60+" data-i18n-option="ageAbove60">
+                          Above 60
+                        </option>
+                      </select>
+                    </div>
+                    <div class="input-group">
+                      <label data-i18n="literacyLevelLabel"
+                        >Literacy Level</label
+                      >
+                      <select id="edit-literacy" class="input-field">
+                        <option
+                          value="neverLearned"
+                          data-i18n-option="litNeverLearned"
+                        >
+                          Never learned to read/write
+                        </option>
+                        <option
+                          value="canRecognize"
+                          data-i18n-option="litCanRecognize"
+                        >
+                          Can recognize some letters/words
+                        </option>
+                        <option
+                          value="canReadSimple"
+                          data-i18n-option="litCanReadSimple"
+                        >
+                          Can read/write simple sentences
+                        </option>
+                        <option
+                          value="canReadComfort"
+                          data-i18n-option="litCanReadComfort"
+                        >
+                          Can read/write comfortably
+                        </option>
+                        <option
+                          value="preferNot"
+                          data-i18n-option="litPreferNot"
+                        >
+                          Prefer not to say
+                        </option>
+                      </select>
+                    </div>
+                    <div>
+                      <button
+                        type="submit"
+                        id="save-profile-btn"
+                        class="btn-primary"
+                        data-i18n="saveChangesBtn"
+                      >
+                        Save Changes
+                      </button>
+                      <button
+                        type="button"
+                        id="cancel-edit-btn"
+                        class="btn-secondary"
+                        data-i18n="cancelBtn"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+
+                  <div class="profile-stats" id="profile-stats-container">
+                    <div class="profile-stat">
+                      <div class="profile-stat-value" id="profile-xp">0</div>
+                      <div class="profile-stat-label" data-i18n="profileXP">
+                        Total XP
+                      </div>
+                    </div>
+                    <div class="profile-stat">
+                      <div class="profile-stat-value" id="profile-streak">
+                        0
+                      </div>
+                      <div class="profile-stat-label" data-i18n="profileStreak">
+                        Day Streak
+                      </div>
+                    </div>
+                    <div class="profile-stat">
+                      <div class="profile-stat-value" id="profile-lessons">
+                        0
+                      </div>
+                      <div
+                        class="profile-stat-label"
+                        data-i18n="profileLessons"
+                      >
+                        Lessons Done
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dash-card">
+                  <div class="dash-card-header">
+                    <h3 class="dash-card-title">
+                      <span class="dash-card-title-icon">🏅</span>
+                      <span data-i18n="dashBadges">My Badges</span>
                     </h3>
                   </div>
-                  <div id="learning-path" class="learning-path"></div>
+                  <div id="badge-shelf" class="badge-shelf"></div>
                 </div>
               </div>
-              <svg class="hidden" aria-hidden="true">
-                <circle id="dash-score-circle" class="hidden"></circle>
-              </svg>
-              <span id="dash-score-value" class="hidden">0</span>
-            </div>
-            <div id="section-practice" class="dash-main-section hidden">
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <span class="dash-card-title-icon">🎯</span>
-                    <span data-i18n="dashSkillPractice">Skill Practice</span>
-                  </h3>
-                  <p class="dash-card-subtitle" data-i18n="dashSkillPracticeDesc">
-                    Choose a skill to practice at your level
-                  </p>
-                </div>
-                <div id="skill-cards" class="skill-cards-grid"></div>
-              </div>
-            </div>
-
-            <div id="section-profile" class="dash-main-section hidden">
-              <div class="dash-card">
-                <div class="profile-header">
-                  <div class="profile-avatar" id="profile-avatar">?</div>
-                  <div class="profile-info">
-                    <h2 id="profile-name">User</h2>
-                    <p id="profile-email" class="profile-email">
-                      user@email.com
+              <div id="section-feedback" class="dash-main-section hidden">
+                <div class="dash-card">
+                  <div class="dash-card-header">
+                    <h3 class="dash-card-title">
+                      <span class="dash-card-title-icon">💬</span>
+                      <span data-i18n="feedbackTitle">Send Feedback</span>
+                    </h3>
+                    <p class="dash-card-subtitle" data-i18n="feedbackSubtitle">
+                      Tell us what's working or what's not — we read every
+                      message.
                     </p>
-                    <button id="edit-profile-btn" class="btn-secondary" data-i18n="editProfileBtn">
-                      ✏️ Edit Profile
-                    </button>
                   </div>
+                  <div class="input-group">
+                    <label data-i18n="feedbackLabel">Your message</label>
+                    <textarea
+                      id="feedback-message"
+                      class="input-field"
+                      rows="5"
+                      placeholder="Type your feedback here..."
+                    ></textarea>
+                  </div>
+                  <button
+                    id="feedback-submit-btn"
+                    class="btn-primary"
+                    style="margin-top: 0.75rem"
+                    data-i18n="feedbackSubmitBtn"
+                  >
+                    Send Feedback
+                  </button>
+                  <p id="feedback-status" class="feedback-status hidden"></p>
+                </div>
+              </div>
+
+              <!-- ═══ CHAT SIMULATOR SECTION ═══ -->
+              <div id="section-chat" class="dash-main-section hidden">
+                <div id="chat-scenario-screen" class="scenario-screen">
+                  <h2 class="chat-title" data-i18n="chatSimulatorLabel">
+                    Chat Simulator
+                  </h2>
+                  <p class="chat-subtitle" data-i18n="chatSimulatorDesc">
+                    Choose a real-world scenario to practice your reading and
+                    replying skills.
+                  </p>
+                  <div class="scenario-grid" id="scenario-grid"></div>
                 </div>
 
-                <form id="edit-profile-form" class="hidden">
-                  <div class="input-group">
-                    <label data-i18n="fullNameLabel">Full Name</label>
-                    <input type="text" id="edit-fullname" class="input-field" required />
-                  </div>
-                  <div class="input-group">
-                    <label data-i18n="preferredLangLabel">Preferred Language</label>
-                    <select id="edit-language" class="input-field">
-                      <option value="en">English</option>
-                      <option value="hi">हिन्दी</option>
-                      <option value="ta">தமிழ்</option>
-                      <option value="te">తెలుగు</option>
-                      <option value="kn">ಕನ್ನಡ</option>
-                      <option value="bn">বাংলা</option>
-                      <option value="mr">मराठी</option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <label data-i18n="learningLanguageLabel">Learning</label>
-                    <select id="edit-target-language" class="input-field">
-                      <option value="en">English</option>
-                      <option value="hi">हिन्दी</option>
-                      <option value="ta">தமிழ்</option>
-                      <option value="te">తెలుగు</option>
-                      <option value="kn">ಕನ್ನಡ</option>
-                      <option value="bn">বাংলা</option>
-                      <option value="mr">मराठी</option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <label data-i18n="ageGroupLabel">Age Group</label>
-                    <select id="edit-age" class="input-field">
-                      <option value="below18" data-i18n-option="ageBelow18">
-                        Below 18
-                      </option>
-                      <option value="18-25" data-i18n-option="age18to25">
-                        18–25
-                      </option>
-                      <option value="26-40" data-i18n-option="age26to40">
-                        26–40
-                      </option>
-                      <option value="41-60" data-i18n-option="age41to60">
-                        41–60
-                      </option>
-                      <option value="60+" data-i18n-option="ageAbove60">
-                        Above 60
-                      </option>
-                    </select>
-                  </div>
-                  <div class="input-group">
-                    <label data-i18n="literacyLevelLabel">Literacy Level</label>
-                    <select id="edit-literacy" class="input-field">
-                      <option value="neverLearned" data-i18n-option="litNeverLearned">
-                        Never learned to read/write
-                      </option>
-                      <option value="canRecognize" data-i18n-option="litCanRecognize">
-                        Can recognize some letters/words
-                      </option>
-                      <option value="canReadSimple" data-i18n-option="litCanReadSimple">
-                        Can read/write simple sentences
-                      </option>
-                      <option value="canReadComfort" data-i18n-option="litCanReadComfort">
-                        Can read/write comfortably
-                      </option>
-                      <option value="preferNot" data-i18n-option="litPreferNot">
-                        Prefer not to say
-                      </option>
-                    </select>
-                  </div>
-                  <div>
-                    <button type="submit" id="save-profile-btn" class="btn-primary" data-i18n="saveChangesBtn">
-                      Save Changes
-                    </button>
-                    <button type="button" id="cancel-edit-btn" class="btn-secondary" data-i18n="cancelBtn">
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-
-                <div class="profile-stats" id="profile-stats-container">
-                  <div class="profile-stat">
-                    <div class="profile-stat-value" id="profile-xp">0</div>
-                    <div class="profile-stat-label" data-i18n="profileXP">
-                      Total XP
+                <div class="chat-phone hidden" id="chat-phone">
+                  <div class="chat-header">
+                    <button class="chat-back" id="chat-back-btn">←</button>
+                    <div class="contact-avatar" id="contact-icon">📱</div>
+                    <div class="contact-info">
+                      <h3 id="contact-name">Loading...</h3>
+                      <p>Online</p>
+                    </div>
+                    <div class="chat-tts-container">
+                      <button class="icon-btn tts-btn" id="read-chat-btn">
+                        🔊
+                      </button>
                     </div>
                   </div>
-                  <div class="profile-stat">
-                    <div class="profile-stat-value" id="profile-streak">
+                  <div class="chat-body" id="chat-body">
+                    <div class="task-banner" id="task-banner">
+                      <strong>Goal:</strong>
+                      <span id="task-text">Setting up scenario...</span>
+                    </div>
+                    <div class="typing hidden" id="typing-indicator">
+                      <span></span><span></span><span></span>
+                    </div>
+                  </div>
+                  <div class="chat-footer hidden" id="chat-footer">
+                    <p class="chat-reply-prompt">Choose your reply:</p>
+                    <div id="options-container"></div>
+                  </div>
+                  <div
+                    class="chat-footer chat-free-text-container hidden"
+                    id="chat-footer-typing"
+                  >
+                    <input
+                      type="text"
+                      id="free-text-input"
+                      placeholder="Type a message..."
+                      class="chat-free-text-input"
+                    />
+                    <button id="free-text-send" class="chat-free-text-send">
+                      ➤
+                    </button>
+                  </div>
+                  <div id="success-overlay" class="chat-success-overlay hidden">
+                    <div class="chat-success-icon">🎉</div>
+                    <h2 class="chat-success-title">Message Sent!</h2>
+                    <p id="success-text" class="chat-success-text">
+                      Great job responding correctly.
+                    </p>
+                    <div class="chat-success-reward">+20 XP & +15 🪙</div>
+                    <button
+                      class="btn-primary chat-success-btn-primary"
+                      id="chat-play-again-btn"
+                    >
+                      Play Another Scenario
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ═══ GAMES & PUZZLES SECTION ═══ -->
+              <div id="section-games" class="dash-main-section hidden">
+                <!-- Hub Screen -->
+                <div id="games-hub-screen" class="scenario-screen">
+                  <h2 class="chat-title" data-i18n="navGames">
+                    Games & Puzzles
+                  </h2>
+                  <p class="chat-subtitle" data-i18n="gamesHubDesc">
+                    Practice vocabulary and memory with fun games.
+                  </p>
+                  <h3 class="games-hub-heading">
+                    <span data-i18n="gamesCategoryGames">🎮 Games</span>
+                  </h3>
+                  <div
+                    id="games-grid"
+                    class="scenario-grid"
+                    style="margin-top: 1rem"
+                  ></div>
+
+                  <h3 class="games-hub-heading" style="margin-top: 2rem">
+                    <span data-i18n="gamesCategoryPuzzles">🧩 Puzzles</span>
+                  </h3>
+                  <div class="scenario-grid" id="puzzles-grid"></div>
+                </div>
+
+                <!-- Word Match play area -->
+                <div id="game-word-match" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="game-back-btn" class="chat-back">←</button>
+                    <h2 id="active-game-title">Word Match</h2>
+                  </header>
+                  <div class="game-stats">
+                    <div class="stat-badge">
+                      Matches: <span id="match-count">0</span> / 6
+                    </div>
+                    <div class="stat-badge">
+                      ⚡ <span id="game-xp">0 XP</span>
+                    </div>
+                  </div>
+                  <div id="options-grid" class="word-options-grid"></div>
+                </div>
+
+                <!-- Shared Game Complete Overlay -->
+                <div id="game-complete" class="game-loading-container hidden">
+                  <div class="game-complete-icon">🎉</div>
+                  <h2 class="game-complete-title">Excellent!</h2>
+                  <p class="game-complete-subtitle" id="game-complete-subtitle">
+                    You did a great job!
+                  </p>
+                  <div class="game-complete-actions">
+                    <button class="btn-primary" id="game-play-again-btn">
+                      Play Again
+                    </button>
+                    <button class="btn-secondary" id="game-back-hub-btn">
+                      Back to Games
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Word Builder play area -->
+                <div id="game-word-builder" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="wb-back-btn" class="chat-back">←</button>
+                    <h2>Word Builder</h2>
+                  </header>
+                  <div class="game-stats">
+                    <div class="stat-badge">
+                      Round: <span id="wb-round">1</span>/5
+                    </div>
+                    <div class="stat-badge">
+                      ⏱ <span id="wb-timer">30</span>s
+                    </div>
+                  </div>
+                  <div class="wb-icon-display" id="wb-icon">🍎</div>
+                  <p class="wb-hint" id="wb-hint">Hint here</p>
+                  <div id="wb-slots" class="wb-slots"></div>
+                  <div id="wb-letters" class="wb-letters"></div>
+                </div>
+
+                <!-- Word Safari play area -->
+                <div id="game-word-safari" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="ws-back-btn" class="chat-back">←</button>
+                    <h2>Word Safari</h2>
+                  </header>
+                  <div class="game-stats">
+                    <div class="stat-badge">
+                      🦁 Streak: <span id="ws-streak">0</span>
+                    </div>
+                    <div class="stat-badge">
+                      Round: <span id="ws-round">1</span>/8
+                    </div>
+                  </div>
+                  <div class="ws-icon-display" id="ws-icon">🍎</div>
+                  <div id="ws-options" class="ws-options-grid"></div>
+                </div>
+
+                <!-- Word Race play area -->
+                <div id="game-word-race" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="wr-back-btn" class="chat-back">←</button>
+                    <h2>Word Race</h2>
+                  </header>
+                  <div class="game-stats">
+                    <div class="stat-badge">
+                      Score: <span id="wr-score">0</span>
+                    </div>
+                    <div class="stat-badge">
+                      ⏱ <span id="wr-timer">60</span>s
+                    </div>
+                  </div>
+                  <div id="wr-prompt" class="wr-prompt">Meaning here</div>
+                  <div id="wr-options" class="ws-options-grid"></div>
+                </div>
+
+                <!-- Word Search play area -->
+                <div id="game-word-search" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="wsr-back-btn" class="chat-back">←</button>
+                    <h2>Word Search</h2>
+                  </header>
+                  <div class="game-stats">
+                    <div class="stat-badge">
+                      Found: <span id="wsr-found">0</span>/<span id="wsr-total"
+                        >6</span
+                      >
+                    </div>
+                    <div class="stat-badge">
+                      💡 Hints: <span id="wsr-hints">3</span>
+                    </div>
+                    <div class="stat-badge">
+                      ⏱ <span id="wsr-timer">120</span>s
+                    </div>
+                  </div>
+                  <button class="btn-secondary wsr-hint-btn" id="wsr-hint-btn">
+                    💡 Hint
+                  </button>
+                  <div id="wsr-grid" class="wsr-grid"></div>
+                  <div id="wsr-words" class="wsr-word-bank"></div>
+                </div>
+
+                <!-- Vocabulary Crossword play area -->
+                <div id="game-crossword" class="game-play-area hidden">
+                  <header class="game-play-header">
+                    <button id="cw-back-btn" class="chat-back">←</button>
+                    <h2>Vocabulary Crossword</h2>
+                  </header>
+                  <div id="cw-clue" class="cw-clue">
+                    Select a cell to see the clue
+                  </div>
+                  <div id="cw-grid" class="cw-grid"></div>
+                  <button
+                    class="btn-primary"
+                    id="cw-check-btn"
+                    style="margin-top: 1rem"
+                  >
+                    Check Answers
+                  </button>
+                </div>
+              </div>
+              <!-- ═══ ANALYSIS SECTION ═══ -->
+              <div id="section-analysis" class="dash-main-section hidden">
+                <div class="dash-topbar" style="margin-bottom: 2rem">
+                  <div class="dash-topbar-title">
+                    <h1
+                      data-i18n="analysisTitle"
+                      style="margin: 0; font-size: 1.8rem"
+                    >
+                      Analysis
+                    </h1>
+                    <p
+                      class="dash-topbar-sub"
+                      data-i18n="analysisSubtitle"
+                      style="margin: 0; color: var(--color-text-secondary)"
+                    >
+                      Your learning insights, all in one place
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Overview stat cards -->
+                <div class="analysis-stats-row" id="analysis-stats-row">
+                  <div class="analysis-stat-card">
+                    <div class="analysis-stat-icon">📚</div>
+                    <div class="analysis-stat-value" id="stat-total-lessons">
                       0
                     </div>
-                    <div class="profile-stat-label" data-i18n="profileStreak">
+                    <div
+                      class="analysis-stat-label"
+                      data-i18n="statLessonsCompleted"
+                    >
+                      Lessons Completed
+                    </div>
+                  </div>
+                  <div class="analysis-stat-card">
+                    <div class="analysis-stat-icon">🎯</div>
+                    <div class="analysis-stat-value" id="stat-avg-accuracy">
+                      —
+                    </div>
+                    <div
+                      class="analysis-stat-label"
+                      data-i18n="statAvgAccuracy"
+                    >
+                      Average Accuracy
+                    </div>
+                  </div>
+                  <div class="analysis-stat-card">
+                    <div class="analysis-stat-icon">⭐</div>
+                    <div class="analysis-stat-value" id="stat-best-skill">
+                      —
+                    </div>
+                    <div
+                      class="analysis-stat-label"
+                      data-i18n="statStrongestSkill"
+                    >
+                      Strongest Skill
+                    </div>
+                  </div>
+                  <div class="analysis-stat-card">
+                    <div class="analysis-stat-icon">🔥</div>
+                    <div class="analysis-stat-value" id="stat-current-streak">
+                      0
+                    </div>
+                    <div class="analysis-stat-label" data-i18n="statDayStreak">
                       Day Streak
                     </div>
                   </div>
-                  <div class="profile-stat">
-                    <div class="profile-stat-value" id="profile-lessons">
-                      0
+                </div>
+
+                <div class="analysis-grid">
+                  <!-- Skill Breakdown -->
+                  <div class="dash-card analysis-section-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">🧩</span>
+                        <span data-i18n="skillBreakdownTitle"
+                          >Skill Breakdown</span
+                        >
+                      </h3>
+                      <p
+                        class="dash-card-subtitle"
+                        data-i18n="skillBreakdownDesc"
+                      >
+                        Average accuracy per skill, based on every lesson you've
+                        completed
+                      </p>
                     </div>
-                    <div class="profile-stat-label" data-i18n="profileLessons">
-                      Lessons Done
+                    <div id="skill-breakdown-bars" class="skill-bd-bars"></div>
+                    <div
+                      id="skill-breakdown-empty"
+                      class="analysis-empty-state hidden"
+                      data-i18n="skillBreakdownEmpty"
+                    >
+                      Complete a few lessons across different skills (Reading,
+                      Writing, Listening, Speaking, Pronunciation) to see your
+                      breakdown here.
+                    </div>
+                  </div>
+
+                  <!-- Accuracy Trend -->
+                  <div class="dash-card analysis-section-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">📈</span>
+                        <span data-i18n="accuracyTrendTitle"
+                          >Accuracy Trend</span
+                        >
+                      </h3>
+                      <p
+                        class="dash-card-subtitle"
+                        data-i18n="accuracyTrendDesc"
+                      >
+                        Your last 12 lesson attempts, most recent on the right
+                      </p>
+                    </div>
+                    <div class="weekly-chart-container">
+                      <div
+                        id="accuracy-trend-chart"
+                        class="chart-container weekly-chart-inner"
+                      ></div>
+                      <div
+                        class="weekly-chart-summary"
+                        id="accuracy-trend-summary"
+                      ></div>
+                    </div>
+                    <div
+                      id="accuracy-trend-empty"
+                      class="analysis-empty-state hidden"
+                      data-i18n="accuracyTrendEmpty"
+                    >
+                      No lesson attempts yet — finish a lesson and your accuracy
+                      trend will start appearing here.
+                    </div>
+                  </div>
+
+                  <!-- Activity Calendar -->
+                  <div class="dash-card analysis-section-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">📅</span>
+                        <span data-i18n="practiceActivityTitle"
+                          >Practice Activity</span
+                        >
+                      </h3>
+                      <div class="calendar-streak-badge">
+                        🔥 <span id="analysis-cal-streak-count">0</span> Day
+                        Streak
+                      </div>
+                    </div>
+                    <div
+                      id="analysis-cal-month-year"
+                      class="calendar-month-year"
+                    >
+                      Month 202X
+                    </div>
+                    <div class="full-calendar">
+                      <div class="cal-header">
+                        <span>S</span><span>M</span><span>T</span><span>W</span
+                        ><span>T</span><span>F</span><span>S</span>
+                      </div>
+                      <div id="analysis-cal-grid" class="cal-grid"></div>
+                    </div>
+                  </div>
+
+                  <!-- Curriculum Progress -->
+                  <div class="dash-card analysis-section-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">🗺️</span>
+                        <span data-i18n="curriculumProgressTitle"
+                          >Curriculum Progress</span
+                        >
+                      </h3>
+                      <p
+                        class="dash-card-subtitle"
+                        data-i18n="curriculumProgressDesc"
+                      >
+                        How far you've come across every level and unit
+                      </p>
+                    </div>
+                    <div
+                      id="curriculum-progress-list"
+                      class="progress-items"
+                    ></div>
+                  </div>
+
+                  <!-- Initial Assessment Snapshot -->
+                  <div
+                    class="dash-card analysis-section-card analysis-card-full"
+                  >
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon">✨</span>
+                        <span data-i18n="assessmentSnapshotTitle"
+                          >Initial Assessment Snapshot</span
+                        >
+                      </h3>
+                      <p
+                        class="dash-card-subtitle"
+                        data-i18n="assessmentSnapshotDesc"
+                      >
+                        A one-time snapshot from the day you took your
+                        assessment — not updated since
+                      </p>
+                    </div>
+                    <div id="assessment-snapshot-content"></div>
+                    <div
+                      id="assessment-snapshot-empty"
+                      class="analysis-empty-state hidden"
+                      data-i18n="assessmentSnapshotEmpty"
+                    >
+                      No assessment analysis available for this account yet.
                     </div>
                   </div>
                 </div>
+                <!-- /.analysis-grid -->
               </div>
 
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <span class="dash-card-title-icon">🏅</span>
-                    <span data-i18n="dashBadges">My Badges</span>
-                  </h3>
+              <!-- ═══════════ LEADERBOARD SECTION ═══════════ -->
+              <div id="section-leaderboard" class="dash-main-section hidden">
+                <div
+                  class="leaderboard-header"
+                  style="
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 2rem;
+                  "
+                >
+                  <div>
+                    <h2 data-i18n="leaderboardTitle">Community Leaderboard</h2>
+                    <p class="text-secondary" data-i18n="leaderboardSubtitle">
+                      Top learners ranked by XP
+                    </p>
+                  </div>
+                  <button
+                    id="admin-award-top3-btn"
+                    class="btn-primary hidden"
+                    style="background: var(--color-accent); border: none"
+                  >
+                    <i data-lucide="gift" style="margin-right: 6px"></i>
+                    <span data-i18n="leaderboardAwardBtn"
+                      >Award Top 3 (Admin)</span
+                    >
+                  </button>
                 </div>
-                <div id="badge-shelf" class="badge-shelf"></div>
+
+                <div class="dash-card leaderboard-card">
+                  <table
+                    class="leaderboard-table"
+                    style="
+                      width: 100%;
+                      border-collapse: collapse;
+                      text-align: left;
+                    "
+                  >
+                    <thead>
+                      <tr
+                        style="
+                          border-bottom: 2px solid var(--color-border);
+                          color: var(--color-text-light);
+                        "
+                      >
+                        <th data-i18n="leaderboardRank" style="padding: 1rem">
+                          Rank
+                        </th>
+                        <th data-i18n="leaderboardName" style="padding: 1rem">
+                          Learner Name
+                        </th>
+                        <th
+                          data-i18n="leaderboardStreak"
+                          style="padding: 1rem; text-align: center"
+                        >
+                          Streak
+                        </th>
+                        <th
+                          data-i18n="leaderboardCoins"
+                          style="padding: 1rem; text-align: center"
+                        >
+                          Coins
+                        </th>
+                        <th
+                          data-i18n="leaderboardXP"
+                          style="padding: 1rem; text-align: right"
+                        >
+                          Total XP
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="leaderboard-tbody">
+                      <!-- Loaded dynamically -->
+                    </tbody>
+                  </table>
+                  <div
+                    id="leaderboard-empty"
+                    class="hidden text-secondary"
+                    style="text-align: center; padding: 2rem"
+                    data-i18n="leaderboardEmpty"
+                  >
+                    No users found on the leaderboard.
+                  </div>
+                  <div
+                    id="leaderboard-loading"
+                    class="text-secondary"
+                    style="text-align: center; padding: 2rem"
+                  >
+                    <div
+                      class="loading-spinner"
+                      style="
+                        border-top-color: var(--color-primary);
+                        width: 24px;
+                        height: 24px;
+                        margin: 0 auto 10px;
+                      "
+                    ></div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div id="section-feedback" class="dash-main-section hidden">
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <span class="dash-card-title-icon">💬</span>
-                    <span data-i18n="feedbackTitle">Send Feedback</span>
-                  </h3>
-                  <p class="dash-card-subtitle" data-i18n="feedbackSubtitle">
-                    Tell us what's working or what's not — we read every
-                    message.
-                  </p>
+
+            <div class="dash-side-col">
+              <div class="dash-card side-card wotd-card">
+                <div class="wotd-card-header">
+                  <span data-i18n="wotdTitle">Word of the Day</span>
+                  <span>💡</span>
                 </div>
-                <div class="input-group">
-                  <label data-i18n="feedbackLabel">Your message</label>
-                  <textarea id="feedback-message" class="input-field" rows="5"
-                    placeholder="Type your feedback here..."></textarea>
-                </div>
-                <button id="feedback-submit-btn" class="btn-primary" style="margin-top: 0.75rem"
-                  data-i18n="feedbackSubmitBtn">
-                  Send Feedback
+                <h3 id="wotd-word" class="wotd-word">...</h3>
+                <p id="wotd-meaning" class="wotd-meaning">...</p>
+                <button
+                  id="wotd-listen"
+                  class="btn-secondary"
+                  class="btn-secondary wotd-listen-btn"
+                  data-i18n="wotdListenBtn"
+                >
+                  🔊 Listen & Practice
                 </button>
-                <p id="feedback-status" class="feedback-status hidden"></p>
-              </div>
-            </div>
-
-            <!-- ═══ CHAT SIMULATOR SECTION ═══ -->
-            <div id="section-chat" class="dash-main-section hidden">
-              <div id="chat-scenario-screen" class="scenario-screen">
-                <h2 class="chat-title" data-i18n="chatSimulatorLabel">Chat Simulator</h2>
-                <p class="chat-subtitle" data-i18n="chatSimulatorDesc">Choose a real-world scenario to practice your reading and replying skills.</p>
-                <div class="scenario-grid" id="scenario-grid"></div>
               </div>
 
-              <div class="chat-phone hidden" id="chat-phone">
-                <div class="chat-header">
-                  <button class="chat-back" id="chat-back-btn">←</button>
-                  <div class="contact-avatar" id="contact-icon">📱</div>
-                  <div class="contact-info">
-                    <h3 id="contact-name">Loading...</h3>
-                    <p>Online</p>
-                  </div>
-                  <div class="chat-tts-container">
-                    <button class="icon-btn tts-btn" id="read-chat-btn">🔊</button>
-                  </div>
-                </div>
-                <div class="chat-body" id="chat-body">
-                  <div class="task-banner" id="task-banner">
-                    <strong>Goal:</strong> <span id="task-text">Setting up scenario...</span>
-                  </div>
-                  <div class="typing hidden" id="typing-indicator">
-                    <span></span><span></span><span></span>
-                  </div>
-                </div>
-                <div class="chat-footer hidden" id="chat-footer">
-                  <p class="chat-reply-prompt">Choose your reply:</p>
-                  <div id="options-container"></div>
-                </div>
-                <div class="chat-footer chat-free-text-container hidden" id="chat-footer-typing">
-                  <input type="text" id="free-text-input" placeholder="Type a message..." class="chat-free-text-input">
-                  <button id="free-text-send" class="chat-free-text-send">➤</button>
-                </div>
-                <div id="success-overlay" class="chat-success-overlay hidden">
-                  <div class="chat-success-icon">🎉</div>
-                  <h2 class="chat-success-title">Message Sent!</h2>
-                  <p id="success-text" class="chat-success-text">Great job responding correctly.</p>
-                  <div class="chat-success-reward">+20 XP & +15 🪙</div>
-                  <button class="btn-primary chat-success-btn-primary" id="chat-play-again-btn">Play Another Scenario</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- ═══ GAMES & PUZZLES SECTION ═══ -->
-            <div id="section-games" class="dash-main-section hidden">
-              <!-- Hub Screen -->
-              <div id="games-hub-screen" class="scenario-screen">
-                <h2 class="chat-title" data-i18n="navGames">Games & Puzzles</h2>
-                <p class="chat-subtitle" data-i18n="gamesHubDesc">Practice vocabulary and memory with fun games.</p>
-                <h3 class="games-hub-heading"><span data-i18n="gamesCategoryGames">🎮 Games</span></h3>
-                <div id="games-grid" class="scenario-grid" style="margin-top: 1rem;"></div>
-
-                <h3 class="games-hub-heading" style="margin-top:2rem;"><span data-i18n="gamesCategoryPuzzles">🧩 Puzzles</span></h3>
-                <div class="scenario-grid" id="puzzles-grid"></div>
-              </div>
-
-              <!-- Word Match play area -->
-              <div id="game-word-match" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="game-back-btn" class="chat-back">←</button>
-                  <h2 id="active-game-title">Word Match</h2>
-                </header>
-                <div class="game-stats">
-                  <div class="stat-badge">Matches: <span id="match-count">0</span> / 6</div>
-                  <div class="stat-badge">⚡ <span id="game-xp">0 XP</span></div>
-                </div>
-                <div id="options-grid" class="word-options-grid"></div>
-              </div>
-
-              <!-- Shared Game Complete Overlay -->
-              <div id="game-complete" class="game-loading-container hidden">
-                <div class="game-complete-icon">🎉</div>
-                <h2 class="game-complete-title">Excellent!</h2>
-                <p class="game-complete-subtitle" id="game-complete-subtitle">You did a great job!</p>
-                <div class="game-complete-actions">
-                  <button class="btn-primary" id="game-play-again-btn">Play Again</button>
-                  <button class="btn-secondary" id="game-back-hub-btn">Back to Games</button>
-                </div>
-              </div>
-
-              <!-- Word Builder play area -->
-              <div id="game-word-builder" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="wb-back-btn" class="chat-back">←</button>
-                  <h2>Word Builder</h2>
-                </header>
-                <div class="game-stats">
-                  <div class="stat-badge">Round: <span id="wb-round">1</span>/5</div>
-                  <div class="stat-badge">⏱ <span id="wb-timer">30</span>s</div>
-                </div>
-                <div class="wb-icon-display" id="wb-icon">🍎</div>
-                <p class="wb-hint" id="wb-hint">Hint here</p>
-                <div id="wb-slots" class="wb-slots"></div>
-                <div id="wb-letters" class="wb-letters"></div>
-              </div>
-
-              <!-- Word Safari play area -->
-              <div id="game-word-safari" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="ws-back-btn" class="chat-back">←</button>
-                  <h2>Word Safari</h2>
-                </header>
-                <div class="game-stats">
-                  <div class="stat-badge">🦁 Streak: <span id="ws-streak">0</span></div>
-                  <div class="stat-badge">Round: <span id="ws-round">1</span>/8</div>
-                </div>
-                <div class="ws-icon-display" id="ws-icon">🍎</div>
-                <div id="ws-options" class="ws-options-grid"></div>
-              </div>
-
-              <!-- Word Race play area -->
-              <div id="game-word-race" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="wr-back-btn" class="chat-back">←</button>
-                  <h2>Word Race</h2>
-                </header>
-                <div class="game-stats">
-                  <div class="stat-badge">Score: <span id="wr-score">0</span></div>
-                  <div class="stat-badge">⏱ <span id="wr-timer">60</span>s</div>
-                </div>
-                <div id="wr-prompt" class="wr-prompt">Meaning here</div>
-                <div id="wr-options" class="ws-options-grid"></div>
-              </div>
-
-              <!-- Word Search play area -->
-              <div id="game-word-search" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="wsr-back-btn" class="chat-back">←</button>
-                  <h2>Word Search</h2>
-                </header>
-                <div class="game-stats">
-                  <div class="stat-badge">Found: <span id="wsr-found">0</span>/<span id="wsr-total">6</span></div>
-                  <div class="stat-badge">💡 Hints: <span id="wsr-hints">3</span></div>
-                  <div class="stat-badge">⏱ <span id="wsr-timer">120</span>s</div>
-                </div>
-                <button class="btn-secondary wsr-hint-btn" id="wsr-hint-btn">💡 Hint</button>
-                <div id="wsr-grid" class="wsr-grid"></div>
-                <div id="wsr-words" class="wsr-word-bank"></div>
-              </div>
-
-              <!-- Vocabulary Crossword play area -->
-              <div id="game-crossword" class="game-play-area hidden">
-                <header class="game-play-header">
-                  <button id="cw-back-btn" class="chat-back">←</button>
-                  <h2>Vocabulary Crossword</h2>
-                </header>
-                <div id="cw-clue" class="cw-clue">Select a cell to see the clue</div>
-                <div id="cw-grid" class="cw-grid"></div>
-                <button class="btn-primary" id="cw-check-btn" style="margin-top:1rem;">Check Answers</button>
-              </div>
-            </div>
-            <!-- ═══ ANALYSIS SECTION ═══ -->
-            <div id="section-analysis" class="dash-main-section hidden">
-              <div class="dash-topbar" style="margin-bottom: 2rem;">
-                <div class="dash-topbar-title">
-                  <h1 data-i18n="analysisTitle" style="margin:0;font-size:1.8rem;">Analysis</h1>
-                  <p class="dash-topbar-sub" data-i18n="analysisSubtitle" style="margin:0;color:var(--color-text-secondary);">Your learning insights, all in one place</p>
-                </div>
-              </div>
-
-              <!-- Overview stat cards -->
-              <div class="analysis-stats-row" id="analysis-stats-row">
-                <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon">📚</div>
-                  <div class="analysis-stat-value" id="stat-total-lessons">0</div>
-                  <div class="analysis-stat-label" data-i18n="statLessonsCompleted">Lessons Completed</div>
-                </div>
-                <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon">🎯</div>
-                  <div class="analysis-stat-value" id="stat-avg-accuracy">—</div>
-                  <div class="analysis-stat-label" data-i18n="statAvgAccuracy">Average Accuracy</div>
-                </div>
-                <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon">⭐</div>
-                  <div class="analysis-stat-value" id="stat-best-skill">—</div>
-                  <div class="analysis-stat-label" data-i18n="statStrongestSkill">Strongest Skill</div>
-                </div>
-                <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon">🔥</div>
-                  <div class="analysis-stat-value" id="stat-current-streak">0</div>
-                  <div class="analysis-stat-label" data-i18n="statDayStreak">Day Streak</div>
-                </div>
-              </div>
-
-              <div class="analysis-grid">
-
-                <!-- Skill Breakdown -->
-                <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">🧩</span>
-                      <span data-i18n="skillBreakdownTitle">Skill Breakdown</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="skillBreakdownDesc">Average accuracy per skill, based on every lesson you've completed</p>
-                  </div>
-                  <div id="skill-breakdown-bars" class="skill-bd-bars"></div>
-                  <div id="skill-breakdown-empty" class="analysis-empty-state hidden" data-i18n="skillBreakdownEmpty">
-                    Complete a few lessons across different skills (Reading, Writing, Listening, Speaking, Pronunciation) to see your breakdown here.
-                  </div>
+              <div class="dash-card side-card">
+                <div class="daily-goal-header">
+                  <h4 class="side-card-title">
+                    <span>⏱️</span>
+                    <span data-i18n="dailyGoalTitle">Daily Goal</span>
+                  </h4>
+                  <button
+                    id="edit-goal-btn"
+                    class="edit-goal-btn"
+                    data-i18n="editBtn"
+                  >
+                    Edit
+                  </button>
                 </div>
 
-                <!-- Accuracy Trend -->
-                <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">📈</span>
-                      <span data-i18n="accuracyTrendTitle">Accuracy Trend</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="accuracyTrendDesc">Your last 12 lesson attempts, most recent on the right</p>
-                  </div>
-                  <div class="weekly-chart-container">
-                    <div id="accuracy-trend-chart" class="chart-container weekly-chart-inner"></div>
-                    <div class="weekly-chart-summary" id="accuracy-trend-summary"></div>
-                  </div>
-                  <div id="accuracy-trend-empty" class="analysis-empty-state hidden" data-i18n="accuracyTrendEmpty">
-                    No lesson attempts yet — finish a lesson and your accuracy trend will start appearing here.
-                  </div>
+                <div id="goal-edit-container" class="hidden">
+                  <select
+                    id="goal-select"
+                    class="form-input"
+                    class="form-input goal-select-input"
+                  >
+                    <option value="5" data-i18n-option="goalOption5">
+                      5 mins / day
+                    </option>
+                    <option value="10" data-i18n-option="goalOption10">
+                      10 mins / day
+                    </option>
+                    <option value="15" data-i18n-option="goalOption15">
+                      15 mins / day
+                    </option>
+                    <option value="30" data-i18n-option="goalOption30">
+                      30 mins / day
+                    </option>
+                  </select>
                 </div>
 
-                <!-- Activity Calendar -->
-                <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">📅</span>
-                      <span data-i18n="practiceActivityTitle">Practice Activity</span>
-                    </h3>
-                    <div class="calendar-streak-badge">
-                      🔥 <span id="analysis-cal-streak-count">0</span> Day Streak
+                <div class="goal-ring-container">
+                  <div class="goal-ring-svg-container">
+                    <svg viewBox="0 0 36 36" class="goal-ring-svg">
+                      <circle
+                        cx="18"
+                        cy="18"
+                        r="16"
+                        fill="none"
+                        stroke="rgba(108, 99, 255, 0.1)"
+                        stroke-width="3.5"
+                      ></circle>
+                      <circle
+                        id="goal-ring-fill"
+                        cx="18"
+                        cy="18"
+                        r="16"
+                        fill="none"
+                        stroke="var(--color-primary)"
+                        stroke-width="3.5"
+                        stroke-dasharray="100"
+                        stroke-dashoffset="100"
+                        stroke-linecap="round"
+                      ></circle>
+                    </svg>
+                    <div class="goal-ring-text">
+                      <span id="goal-ring-text">0%</span>
                     </div>
                   </div>
-                  <div id="analysis-cal-month-year" class="calendar-month-year">Month 202X</div>
-                  <div class="full-calendar">
-                    <div class="cal-header">
-                      <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                  <div>
+                    <div class="goal-progress-numbers">
+                      <span id="daily-mins-spent">0</span>
+                      <span class="goal-progress-target"
+                        >/ <span id="daily-mins-target">15</span> mins</span
+                      >
                     </div>
-                    <div id="analysis-cal-grid" class="cal-grid"></div>
+                    <div
+                      id="goal-status-text"
+                      class="goal-status-text"
+                      data-i18n="goalGetStarted"
+                    >
+                      Let's get started!
+                    </div>
                   </div>
                 </div>
-
-                <!-- Curriculum Progress -->
-                <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">🗺️</span>
-                      <span data-i18n="curriculumProgressTitle">Curriculum Progress</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="curriculumProgressDesc">How far you've come across every level and unit</p>
-                  </div>
-                  <div id="curriculum-progress-list" class="progress-items"></div>
+              </div>
+              <div class="dash-card side-card">
+                <div class="daily-goal-header">
+                  <h4 class="side-card-title">
+                    <span>📜</span>
+                    <span data-i18n="dailyQuestsTitle">Daily Quests</span>
+                  </h4>
+                  <span class="quest-header-note" data-i18n="questResetNote"
+                    >Resets at Midnight</span
+                  >
                 </div>
 
-                <!-- Initial Assessment Snapshot -->
-                <div class="dash-card analysis-section-card analysis-card-full">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">✨</span>
-                      <span data-i18n="assessmentSnapshotTitle">Initial Assessment Snapshot</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="assessmentSnapshotDesc">A one-time snapshot from the day you took your assessment — not updated since</p>
-                  </div>
-                  <div id="assessment-snapshot-content"></div>
-                  <div id="assessment-snapshot-empty" class="analysis-empty-state hidden" data-i18n="assessmentSnapshotEmpty">
-                    No assessment analysis available for this account yet.
-                  </div>
+                <div id="quest-list" class="quest-list-container">
+                  <!-- Quests injected by JS -->
                 </div>
-
-              </div><!-- /.analysis-grid -->
+              </div>
             </div>
-            
-            <!-- ═══════════ LEADERBOARD SECTION ═══════════ -->
-            <div id="section-leaderboard" class="dash-main-section hidden">
-              <div class="leaderboard-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          </div>
+          <div id="shop-modal" class="modal-overlay hidden">
+            <div class="shop-card">
+              <div class="shop-header">
                 <div>
-                  <h2 data-i18n="leaderboardTitle">Community Leaderboard</h2>
-                  <p class="text-secondary" data-i18n="leaderboardSubtitle">Top learners ranked by XP</p>
+                  <h2 data-i18n="shopTitle">🛒 Gyan Market</h2>
+                  <p data-i18n="shopSubtitle">Spend your coins on rewards!</p>
                 </div>
-                <button id="admin-award-top3-btn" class="btn-primary hidden" style="background: var(--color-accent); border: none;">
-                  <i data-lucide="gift" style="margin-right: 6px;"></i> <span data-i18n="leaderboardAwardBtn">Award Top 3 (Admin)</span>
-                </button>
-              </div>
-              
-              <div class="dash-card leaderboard-card">
-                <table class="leaderboard-table" style="width: 100%; border-collapse: collapse; text-align: left;">
-                  <thead>
-                    <tr style="border-bottom: 2px solid var(--color-border); color: var(--color-text-light);">
-                      <th data-i18n="leaderboardRank" style="padding: 1rem;">Rank</th>
-                      <th data-i18n="leaderboardName" style="padding: 1rem;">Learner Name</th>
-                      <th data-i18n="leaderboardStreak" style="padding: 1rem; text-align: center;">Streak</th>
-                      <th data-i18n="leaderboardCoins" style="padding: 1rem; text-align: center;">Coins</th>
-                      <th data-i18n="leaderboardXP" style="padding: 1rem; text-align: right;">Total XP</th>
-                    </tr>
-                  </thead>
-                  <tbody id="leaderboard-tbody">
-                    <!-- Loaded dynamically -->
-                  </tbody>
-                </table>
-                <div id="leaderboard-empty" class="hidden text-secondary" style="text-align: center; padding: 2rem;" data-i18n="leaderboardEmpty">
-                  No users found on the leaderboard.
-                </div>
-                <div id="leaderboard-loading" class="text-secondary" style="text-align: center; padding: 2rem;">
-                  <div class="loading-spinner" style="border-top-color: var(--color-primary); width: 24px; height: 24px; margin: 0 auto 10px;"></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="dash-side-col">
-            <div class="dash-card side-card wotd-card">
-              <div class="wotd-card-header">
-                <span data-i18n="wotdTitle">Word of the Day</span>
-                <span>💡</span>
-              </div>
-              <h3 id="wotd-word" class="wotd-word">...</h3>
-              <p id="wotd-meaning" class="wotd-meaning">...</p>
-              <button id="wotd-listen" class="btn-secondary" class="btn-secondary wotd-listen-btn"
-                data-i18n="wotdListenBtn">
-                🔊 Listen & Practice
-              </button>
-            </div>
-
-            <div class="dash-card side-card">
-              <div class="daily-goal-header">
-                <h4 class="side-card-title">
-                  <span>⏱️</span>
-                  <span data-i18n="dailyGoalTitle">Daily Goal</span>
-                </h4>
-                <button id="edit-goal-btn" class="edit-goal-btn" data-i18n="editBtn">
-                  Edit
+                <button id="close-shop-btn" class="icon-btn" class="icon-btn">
+                  ✕
                 </button>
               </div>
 
-              <div id="goal-edit-container" class="hidden">
-                <select id="goal-select" class="form-input" class="form-input goal-select-input">
-                  <option value="5" data-i18n-option="goalOption5">
-                    5 mins / day
-                  </option>
-                  <option value="10" data-i18n-option="goalOption10">
-                    10 mins / day
-                  </option>
-                  <option value="15" data-i18n-option="goalOption15">
-                    15 mins / day
-                  </option>
-                  <option value="30" data-i18n-option="goalOption30">
-                    30 mins / day
-                  </option>
-                </select>
+              <div class="shop-balance-indicator">
+                Your Balance: <span id="shop-balance">0</span> 🪙
               </div>
 
-              <div class="goal-ring-container">
-                <div class="goal-ring-svg-container">
-                  <svg viewBox="0 0 36 36" class="goal-ring-svg">
-                    <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(108, 99, 255, 0.1)" stroke-width="3.5">
-                    </circle>
-                    <circle id="goal-ring-fill" cx="18" cy="18" r="16" fill="none" stroke="var(--color-primary)"
-                      stroke-width="3.5" stroke-dasharray="100" stroke-dashoffset="100" stroke-linecap="round"></circle>
-                  </svg>
-                  <div class="goal-ring-text">
-                    <span id="goal-ring-text">0%</span>
-                  </div>
-                </div>
-                <div>
-                  <div class="goal-progress-numbers">
-                    <span id="daily-mins-spent">0</span>
-                    <span class="goal-progress-target">/ <span id="daily-mins-target">15</span> mins</span>
-                  </div>
-                  <div id="goal-status-text" class="goal-status-text" data-i18n="goalGetStarted">
-                    Let's get started!
-                  </div>
-                </div>
-              </div>
+              <div id="shop-items-grid" class="shop-items-grid"></div>
             </div>
-            <div class="dash-card side-card">
-              <div class="daily-goal-header">
-                <h4 class="side-card-title">
-                  <span>📜</span>
-                  <span data-i18n="dailyQuestsTitle">Daily Quests</span>
-                </h4>
-                <span class="quest-header-note" data-i18n="questResetNote">Resets at Midnight</span>
-              </div>
-
-              <div id="quest-list" class="quest-list-container">
-                <!-- Quests injected by JS -->
-              </div>
-            </div>
-
           </div>
-        </div>
-        <div id="shop-modal" class="modal-overlay hidden">
-          <div class="shop-card">
-            <div class="shop-header">
-              <div>
-                <h2 data-i18n="shopTitle">🛒 Gyan Market</h2>
-                <p data-i18n="shopSubtitle">Spend your coins on rewards!</p>
-              </div>
-              <button id="close-shop-btn" class="icon-btn" class="icon-btn">
-                ✕
-              </button>
-            </div>
+        </main>
+      </div>
+    </main>
 
-            <div class="shop-balance-indicator">
-              Your Balance: <span id="shop-balance">0</span> 🪙
-            </div>
-
-            <div id="shop-items-grid" class="shop-items-grid"></div>
-          </div>
-        </div>
-      </main>
-    </div>
-  </main>
-
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
-  <script src="config.js"></script>
-  <script src="error-logger.js"></script>
-  <script src="translations.js"></script>
-  <script src="auth.js"></script>
-  <script src="tts.js"></script>
-  <script src="theme.js"></script>
-  <script src="celebrations.js"></script>
-  <script src="curriculum-blueprint.js"></script>
-  <script src="chat.js"></script>
-  <script src="game.js"></script>
-  <script src="games-hub.js"></script>
-  <script src="analysis.js"></script>
-  <script src="dashboard.js"></script>
-  <script src="main.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", () => { if (window.lucide) lucide.createIcons(); });</script>
-</body>
-
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="config.js"></script>
+    <script src="error-logger.js"></script>
+    <script src="translations.js"></script>
+    <script src="auth.js"></script>
+    <script src="tts.js"></script>
+    <script src="theme.js"></script>
+    <script src="celebrations.js"></script>
+    <script src="curriculum-blueprint.js"></script>
+    <script src="chat.js"></script>
+    <script src="game.js"></script>
+    <script src="games-hub.js"></script>
+    <script src="analysis.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide) lucide.createIcons();
+      });
+    </script>
+  </body>
 </html>

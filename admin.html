@@ -34,68 +34,89 @@
           </div>
         </div>
 
-        <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
-        <aside class="dash-sidebar">
-          <div class="sidebar-brand">
-            <span class="sidebar-brand-icon">🛡️</span>
-            <span class="sidebar-brand-text">AksharGyan Admin</span>
-          </div>
+        <!-- ═══════════ MODERN TOP NAVBAR (DESKTOP) ═══════════ -->
+        <header class="dash-top-navbar dash-sidebar" id="admin-top-navbar">
+          <div class="navbar-container">
+            <div class="sidebar-brand">
+              <span class="sidebar-brand-icon">🛡️</span>
+              <span class="sidebar-brand-text">AksharGyan Admin</span>
+            </div>
 
-          <div class="sidebar-user">
-            <div class="dash-avatar" id="admin-avatar">?</div>
-            <div class="sidebar-user-info">
-              <div class="sidebar-user-name" id="admin-name">Admin</div>
-              <div class="dash-level-badge intermediate">
-                🛡️ <span>Administrator</span>
+            <nav class="dash-nav desktop-nav">
+              <button class="dash-nav-item active" data-section="overview">
+                <span class="dash-nav-icon">📊</span><span>Overview</span>
+              </button>
+              <button class="dash-nav-item" data-section="users">
+                <span class="dash-nav-icon">👥</span><span>Users</span>
+              </button>
+              <button class="dash-nav-item" data-section="leaderboard">
+                <span class="dash-nav-icon">🏆</span><span>Leaderboard</span>
+              </button>
+              <button class="dash-nav-item" data-section="announcements">
+                <span class="dash-nav-icon">📢</span><span>Announcements</span>
+              </button>
+              <button class="dash-nav-item" data-section="feedback">
+                <span class="dash-nav-icon">💬</span><span>Feedback</span>
+              </button>
+              <button class="dash-nav-item" data-section="errors">
+                <span class="dash-nav-icon">🐞</span><span>Error Logs</span>
+              </button>
+            </nav>
+
+            <div class="navbar-right">
+              <div class="sidebar-user">
+                <div class="dash-avatar" id="admin-avatar">?</div>
+                <div class="sidebar-user-info">
+                  <div class="sidebar-user-name" id="admin-name">Admin</div>
+                  <div class="dash-level-badge intermediate">
+                    🛡️ <span>Administrator</span>
+                  </div>
+                </div>
               </div>
+
+              <button class="btn-logout" id="admin-logout-btn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
+                <span>Logout</span>
+              </button>
             </div>
           </div>
+        </header>
 
-          <nav class="dash-nav">
-            <button class="dash-nav-item active" data-section="overview">
-              <span class="dash-nav-icon">📊</span>
-              <span>Overview</span>
-            </button>
-            <button class="dash-nav-item" data-section="users">
-              <span class="dash-nav-icon">👥</span>
-              <span>Users</span>
-            </button>
-            <button class="dash-nav-item" data-section="leaderboard">
-              <span class="dash-nav-icon">🏆</span>
-              <span>Leaderboard</span>
-            </button>
-            <button class="dash-nav-item" data-section="announcements">
-              <span class="dash-nav-icon">📢</span><span>Announcements</span>
-            </button>
-            <button class="dash-nav-item" data-section="feedback">
-              <span class="dash-nav-icon">💬</span><span>Feedback</span>
-            </button>
-            <button class="dash-nav-item" data-section="errors">
-              <span class="dash-nav-icon">🐞</span><span>Error Logs</span>
-            </button>
-          </nav>
-
-          <div class="sidebar-footer">
-            <button class="btn-logout" id="admin-logout-btn">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
-              <span>Logout</span>
-            </button>
-          </div>
-        </aside>
+        <!-- ═══════════ FLIPKART/DUOLINGO STYLE MOBILE BOTTOM NAVBAR ═══════════ -->
+        <nav class="mobile-bottom-nav" id="admin-mobile-bottom-nav">
+          <button class="dash-nav-item active" data-section="overview" title="Overview">
+            <span class="dash-nav-icon">📊</span><span class="mobile-nav-label">Overview</span>
+          </button>
+          <button class="dash-nav-item" data-section="users" title="Users">
+            <span class="dash-nav-icon">👥</span><span class="mobile-nav-label">Users</span>
+          </button>
+          <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
+            <span class="dash-nav-icon">🏆</span><span class="mobile-nav-label">Leaderboard</span>
+          </button>
+          <button class="dash-nav-item" data-section="announcements" title="Announcements">
+            <span class="dash-nav-icon">📢</span><span class="mobile-nav-label">Announce</span>
+          </button>
+          <button class="dash-nav-item" data-section="feedback" title="Feedback">
+            <span class="dash-nav-icon">💬</span><span class="mobile-nav-label">Feedback</span>
+          </button>
+          <button class="dash-nav-item" data-section="errors" title="Error Logs">
+            <span class="dash-nav-icon">🐞</span><span class="mobile-nav-label">Errors</span>
+          </button>
+        </nav>
 
         <!-- ═══════════ MAIN CONTENT ═══════════ -->
         <main class="dash-main-wrap" id="admin-main-body">

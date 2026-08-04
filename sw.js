@@ -8,7 +8,7 @@
  * Cache is versioned so future deploys can bust it cleanly.
  */
 
-var CACHE_NAME = "infosyssb-cache-v3";
+var CACHE_NAME = "infosyssb-cache-v5";
 
 // Static assets to precache on install
 var PRECACHE_URLS = [

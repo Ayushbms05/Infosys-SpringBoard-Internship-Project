@@ -449,7 +449,10 @@ function setupAdminEvents() {
       document
         .querySelectorAll(".dash-nav-item[data-section]")
         .forEach((n) => n.classList.remove("active"));
-      item.classList.add("active");
+      const targetSec = item.dataset.section;
+      document
+        .querySelectorAll(`.dash-nav-item[data-section="${targetSec}"]`)
+        .forEach((n) => n.classList.add("active"));
       document
         .querySelectorAll(".admin-section")
         .forEach((s) => s.classList.add("hidden"));

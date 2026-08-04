@@ -476,19 +476,26 @@ function renderLearningPath(profile) {
   const pathContainer = document.getElementById("learning-path");
   if (!pathContainer) return;
 
-  const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const currentLevel =
+    profile.currentLevel || profile.assessmentLevel || "beginner";
   const completedLessons = profile.completedLessons || [];
   const curriculum = profile.curriculum || {};
 
-  const levels = ['beginner', 'intermediate', 'advanced'];
-  const skills = ['reading', 'writing', 'listening', 'speaking', 'pronunciation'];
-  
+  const levels = ["beginner", "intermediate", "advanced"];
+  const skills = [
+    "reading",
+    "writing",
+    "listening",
+    "speaking",
+    "pronunciation",
+  ];
+
   const skillIcons = {
     reading: "📖",
     writing: "✍️",
     listening: "🎧",
     speaking: "🗣️",
-    pronunciation: "🎙️"
+    pronunciation: "🎙️",
   };
 
   // 1. Render the Explainer Card at the top
@@ -510,33 +517,33 @@ function renderLearningPath(profile) {
   `;
 
   // 2. Render the Levels and Skills
-  levels.forEach(level => {
+  levels.forEach((level) => {
     // Level Header
     const levelKey = `roadmapLevel${level.charAt(0).toUpperCase() + level.slice(1)}`;
     html += `
       <div class="roadmap-level-block">
         <h3 class="roadmap-level-title">
           <span data-i18n="${levelKey}">${level.charAt(0).toUpperCase() + level.slice(1)} Level</span>
-          ${level === currentLevel ? `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>` : ''}
+          ${level === currentLevel ? `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>` : ""}
         </h3>
         <div class="roadmap-skills-wrapper">
     `;
 
-    skills.forEach(skill => {
+    skills.forEach((skill) => {
       // Find unit from auth.js logic (fallback to alphabets if not known)
-      const lit = profile.literacyLevel || 'preferNot';
+      const lit = profile.literacyLevel || "preferNot";
       const unitByLiteracy = {
-        neverLearned:   'alphabets',
-        canRecognize:   'words',
-        canReadSimple:  'sentences',
-        canReadComfort: 'paragraphs',
-        preferNot:      'alphabets'
+        neverLearned: "alphabets",
+        canRecognize: "words",
+        canReadSimple: "sentences",
+        canReadComfort: "paragraphs",
+        preferNot: "alphabets",
       };
-      const unit = unitByLiteracy[lit] || 'alphabets';
-      
-      const skillStatus = curriculum[level]?.[skill]?.status || 'locked';
+      const unit = unitByLiteracy[lit] || "alphabets";
+
+      const skillStatus = curriculum[level]?.[skill]?.status || "locked";
       const skillKey = `roadmapSkill${skill.charAt(0).toUpperCase() + skill.slice(1)}`;
-      
+
       html += `
         <div class="roadmap-skill-row">
           <div class="roadmap-skill-label">
@@ -550,21 +557,23 @@ function renderLearningPath(profile) {
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${level}_${skill}_${unit}_${i}`;
         const isCompleted = completedLessons.includes(lessonId);
-        
-        let state = 'locked';
+
+        let state = "locked";
         if (isCompleted) {
-          state = 'completed';
-        } else if (skillStatus === 'available') {
+          state = "completed";
+        } else if (skillStatus === "available") {
           // If skill is available, allow any dot (or enforce order if preferred, for now all available)
-          state = 'available';
-        } else if (skillStatus === 'skipped' || skillStatus === 'completed') {
-           // If the whole skill was skipped/completed by assessment, mark dots as completed
-           state = 'completed';
+          state = "available";
+        } else if (skillStatus === "skipped" || skillStatus === "completed") {
+          // If the whole skill was skipped/completed by assessment, mark dots as completed
+          state = "completed";
         }
 
-        const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(b => b.lessonIndex === i);
+        const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(
+          (b) => b.lessonIndex === i,
+        );
         const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
-        
+
         html += `
           <div class="roadmap-dot ${state}" 
                data-level="${level}" 
@@ -592,7 +601,7 @@ function renderLearningPath(profile) {
   pathContainer.innerHTML = html;
 
   // 3. Attach click handlers to available/completed dots
-  pathContainer.querySelectorAll('.roadmap-dot:not(.locked)').forEach(dot => {
+  pathContainer.querySelectorAll(".roadmap-dot:not(.locked)").forEach((dot) => {
     dot.addEventListener("click", () => {
       const { level, skill, unit, index } = dot.dataset;
       window.location.href = `lesson.html?level=${level}&type=${skill}&unit=${unit}&lessonIndex=${index}`;
@@ -604,15 +613,26 @@ function renderLearningPath(profile) {
   if (ttsBtn) {
     ttsBtn.addEventListener("click", () => {
       // Read the localized text using the user's *preferred* language
-      const title = getTranslation(selectedLang, "howItWorksTitle") || "How This Works";
-      const body = getTranslation(selectedLang, "howItWorksBody") || "Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.";
-      
-      const langMap = { en: "en-IN", hi: "hi-IN", ta: "ta-IN", te: "te-IN", kn: "kn-IN", bn: "bn-IN", mr: "mr-IN" };
+      const title =
+        getTranslation(selectedLang, "howItWorksTitle") || "How This Works";
+      const body =
+        getTranslation(selectedLang, "howItWorksBody") ||
+        "Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.";
+
+      const langMap = {
+        en: "en-IN",
+        hi: "hi-IN",
+        ta: "ta-IN",
+        te: "te-IN",
+        kn: "kn-IN",
+        bn: "bn-IN",
+        mr: "mr-IN",
+      };
       const voiceLang = langMap[selectedLang] || "en-IN";
-      
+
       ttsBtn.style.color = "var(--color-primary)";
       ttsBtn.style.animation = "pulse 1.5s infinite";
-      
+
       if (typeof speakText === "function") {
         speakText(`${title}. ${body}`, voiceLang).finally(() => {
           ttsBtn.style.color = "";
@@ -732,8 +752,10 @@ function manageDailyQuests(profile) {
               q.id === "q1"
                 ? getTranslation(selectedLang, "questEarnXP") || "Earn 20 XP"
                 : q.id === "q2"
-                ? getTranslation(selectedLang, "questPlayGame") || "Play Word Match"
-                : getTranslation(selectedLang, "questCompleteLesson") || "Complete 1 Lesson"
+                  ? getTranslation(selectedLang, "questPlayGame") ||
+                    "Play Word Match"
+                  : getTranslation(selectedLang, "questCompleteLesson") ||
+                    "Complete 1 Lesson"
             }</span>
           </div>
           <span class="quest-reward">+${q.reward} 🪙</span>
@@ -923,28 +945,57 @@ function setupFeedbackForm() {
 
 function renderWordOfTheDay() {
   const dictionary = [
-    { word: getTranslation(selectedLang, "wotd_0_word") || "Sign", meaning: getTranslation(selectedLang, "wotd_0_desc") || "To write your name on a document." },
-    { word: getTranslation(selectedLang, "wotd_1_word") || "Deposit", meaning: getTranslation(selectedLang, "wotd_1_desc") || "To put money into a bank account." },
-    { word: getTranslation(selectedLang, "wotd_2_word") || "Prescription", meaning: getTranslation(selectedLang, "wotd_2_desc") || "A doctor's written note for medicine." },
+    {
+      word: getTranslation(selectedLang, "wotd_0_word") || "Sign",
+      meaning:
+        getTranslation(selectedLang, "wotd_0_desc") ||
+        "To write your name on a document.",
+    },
+    {
+      word: getTranslation(selectedLang, "wotd_1_word") || "Deposit",
+      meaning:
+        getTranslation(selectedLang, "wotd_1_desc") ||
+        "To put money into a bank account.",
+    },
+    {
+      word: getTranslation(selectedLang, "wotd_2_word") || "Prescription",
+      meaning:
+        getTranslation(selectedLang, "wotd_2_desc") ||
+        "A doctor's written note for medicine.",
+    },
     {
       word: getTranslation(selectedLang, "wotd_3_word") || "Receipt",
-      meaning: getTranslation(selectedLang, "wotd_3_desc") || "A piece of paper proving you paid for something.",
+      meaning:
+        getTranslation(selectedLang, "wotd_3_desc") ||
+        "A piece of paper proving you paid for something.",
     },
     {
       word: getTranslation(selectedLang, "wotd_4_word") || "Platform",
-      meaning: getTranslation(selectedLang, "wotd_4_desc") || "The area at a station where you wait for a train.",
+      meaning:
+        getTranslation(selectedLang, "wotd_4_desc") ||
+        "The area at a station where you wait for a train.",
     },
-    { word: getTranslation(selectedLang, "wotd_5_word") || "Verify", meaning: getTranslation(selectedLang, "wotd_5_desc") || "To make sure something is true or accurate." },
-    { word: getTranslation(selectedLang, "wotd_6_word") || "Balance", meaning: getTranslation(selectedLang, "wotd_6_desc") || "The amount of money left in your account." },
+    {
+      word: getTranslation(selectedLang, "wotd_5_word") || "Verify",
+      meaning:
+        getTranslation(selectedLang, "wotd_5_desc") ||
+        "To make sure something is true or accurate.",
+    },
+    {
+      word: getTranslation(selectedLang, "wotd_6_word") || "Balance",
+      meaning:
+        getTranslation(selectedLang, "wotd_6_desc") ||
+        "The amount of money left in your account.",
+    },
   ];
 
   // Pick one based on the current day of the year
   const dayOfYear = Math.floor(
     (new Date() - new Date(new Date().getFullYear(), 0, 0)) /
-    1000 /
-    60 /
-    60 /
-    24,
+      1000 /
+      60 /
+      60 /
+      24,
   );
   const wotd = dictionary[dayOfYear % dictionary.length];
 
@@ -1031,6 +1082,43 @@ function setupDashboardEvents(profile) {
     });
   }
 
+  // "More" dropdown logic
+  const navMoreWrap = document.getElementById("nav-more-wrap");
+  const navMoreBtn = document.getElementById("nav-more-btn");
+  if (navMoreBtn && navMoreWrap) {
+    navMoreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navMoreWrap.classList.toggle("open");
+    });
+    document.addEventListener("click", () =>
+      navMoreWrap.classList.remove("open"),
+    );
+  }
+
+  // ── Mobile "More" sheet ──
+  const mobileMoreBtn = document.getElementById("mobile-more-btn");
+  const mobileMoreSheet = document.getElementById("mobile-more-sheet");
+  const mobileMoreBackdrop = document.getElementById("mobile-more-backdrop");
+
+  function closeMobileMoreSheet() {
+    if (mobileMoreSheet) mobileMoreSheet.classList.remove("open");
+    if (mobileMoreBackdrop) mobileMoreBackdrop.classList.remove("open");
+    if (mobileMoreBtn) mobileMoreBtn.classList.remove("active");
+  }
+
+  if (mobileMoreBtn && mobileMoreSheet && mobileMoreBackdrop) {
+    mobileMoreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = mobileMoreSheet.classList.toggle("open");
+      mobileMoreBackdrop.classList.toggle("open", isOpen);
+      mobileMoreBtn.classList.toggle("active", isOpen);
+    });
+    mobileMoreBackdrop.addEventListener("click", closeMobileMoreSheet);
+    mobileMoreSheet.querySelectorAll(".dash-nav-item").forEach((item) => {
+      item.addEventListener("click", closeMobileMoreSheet);
+    });
+  }
+
   // ── Main navigation tabs ──
   document.querySelectorAll(".dash-nav-item").forEach((navItem) => {
     navItem.addEventListener("click", () => {
@@ -1038,7 +1126,11 @@ function setupDashboardEvents(profile) {
       document
         .querySelectorAll(".dash-nav-item")
         .forEach((n) => n.classList.remove("active"));
-      navItem.classList.add("active");
+      document
+        .querySelectorAll(`.dash-nav-item[data-section="${section}"]`)
+        .forEach((n) => n.classList.add("active"));
+
+      if (navMoreWrap) navMoreWrap.classList.remove("open");
 
       // Show/hide sections
       document
@@ -1196,68 +1288,106 @@ function renderProfile(profile) {
       {
         id: "assessmentDone",
         icon: "🎯",
-        label: getTranslation(selectedLang, "badgeEvaluatedLabel") || "Evaluated",
-        desc: getTranslation(selectedLang, "badgeEvaluatedDesc") || "Completed initial assessment",
+        label:
+          getTranslation(selectedLang, "badgeEvaluatedLabel") || "Evaluated",
+        desc:
+          getTranslation(selectedLang, "badgeEvaluatedDesc") ||
+          "Completed initial assessment",
       },
       {
         id: "firstLesson",
         icon: "🌱",
-        label: getTranslation(selectedLang, "badgeFirstStepsLabel") || "First Steps",
-        desc: getTranslation(selectedLang, "badgeFirstStepsDesc") || "Completed your first lesson",
+        label:
+          getTranslation(selectedLang, "badgeFirstStepsLabel") || "First Steps",
+        desc:
+          getTranslation(selectedLang, "badgeFirstStepsDesc") ||
+          "Completed your first lesson",
       },
       {
         id: "alphabetMaster",
         icon: "🔤",
-        label: getTranslation(selectedLang, "badgeLetterKingLabel") || "Letter King",
-        desc: getTranslation(selectedLang, "badgeLetterKingDesc") || "Mastered the alphabets unit",
+        label:
+          getTranslation(selectedLang, "badgeLetterKingLabel") || "Letter King",
+        desc:
+          getTranslation(selectedLang, "badgeLetterKingDesc") ||
+          "Mastered the alphabets unit",
       },
       {
         id: "beginnerGraduate",
         icon: "🥉",
-        label: getTranslation(selectedLang, "badgeBeginnerGradLabel") || "Beginner Graduate",
-        desc: getTranslation(selectedLang, "badgeBeginnerGradDesc") || "Mastered all beginner skills",
+        label:
+          getTranslation(selectedLang, "badgeBeginnerGradLabel") ||
+          "Beginner Graduate",
+        desc:
+          getTranslation(selectedLang, "badgeBeginnerGradDesc") ||
+          "Mastered all beginner skills",
       },
       {
         id: "intermediateGraduate",
         icon: "🥈",
-        label: getTranslation(selectedLang, "badgeIntermediateGradLabel") || "Intermediate Graduate",
-        desc: getTranslation(selectedLang, "badgeIntermediateGradDesc") || "Mastered all intermediate skills",
+        label:
+          getTranslation(selectedLang, "badgeIntermediateGradLabel") ||
+          "Intermediate Graduate",
+        desc:
+          getTranslation(selectedLang, "badgeIntermediateGradDesc") ||
+          "Mastered all intermediate skills",
       },
       {
         id: "advancedGraduate",
         icon: "🥇",
-        label: getTranslation(selectedLang, "badgeAdvancedGradLabel") || "Advanced Graduate",
-        desc: getTranslation(selectedLang, "badgeAdvancedGradDesc") || "Mastered all advanced skills",
+        label:
+          getTranslation(selectedLang, "badgeAdvancedGradLabel") ||
+          "Advanced Graduate",
+        desc:
+          getTranslation(selectedLang, "badgeAdvancedGradDesc") ||
+          "Mastered all advanced skills",
       },
       {
         id: "streak5",
         icon: "🔥",
-        label: getTranslation(selectedLang, "badgeStreak5Label") || "5-Day Streak",
-        desc: getTranslation(selectedLang, "badgeStreak5Desc") || "Practiced 5 days in a row",
+        label:
+          getTranslation(selectedLang, "badgeStreak5Label") || "5-Day Streak",
+        desc:
+          getTranslation(selectedLang, "badgeStreak5Desc") ||
+          "Practiced 5 days in a row",
       },
       {
         id: "streak10",
         icon: "🔥",
-        label: getTranslation(selectedLang, "badgeStreak10Label") || "10-Day Streak",
-        desc: getTranslation(selectedLang, "badgeStreak10Desc") || "Practiced 10 days in a row",
+        label:
+          getTranslation(selectedLang, "badgeStreak10Label") || "10-Day Streak",
+        desc:
+          getTranslation(selectedLang, "badgeStreak10Desc") ||
+          "Practiced 10 days in a row",
       },
       {
         id: "streak30",
         icon: "🔥",
-        label: getTranslation(selectedLang, "badgeStreak30Label") || "30-Day Streak",
-        desc: getTranslation(selectedLang, "badgeStreak30Desc") || "Practiced 30 days in a row",
+        label:
+          getTranslation(selectedLang, "badgeStreak30Label") || "30-Day Streak",
+        desc:
+          getTranslation(selectedLang, "badgeStreak30Desc") ||
+          "Practiced 30 days in a row",
       },
       {
         id: "gameWinner",
         icon: "🎮",
-        label: getTranslation(selectedLang, "badgeMatchMasterLabel") || "Match Master",
-        desc: getTranslation(selectedLang, "badgeMatchMasterDesc") || "Won a Word Match game",
+        label:
+          getTranslation(selectedLang, "badgeMatchMasterLabel") ||
+          "Match Master",
+        desc:
+          getTranslation(selectedLang, "badgeMatchMasterDesc") ||
+          "Won a Word Match game",
       },
       {
         id: "gameChampion",
         icon: "🏆",
-        label: getTranslation(selectedLang, "badgeGameChampionLabel") || "Game Champion",
-        desc: getTranslation(selectedLang, "badgeGameChampionDesc") || "Won 10 games",
+        label:
+          getTranslation(selectedLang, "badgeGameChampionLabel") ||
+          "Game Champion",
+        desc:
+          getTranslation(selectedLang, "badgeGameChampionDesc") ||
+          "Won 10 games",
       },
     ];
 
@@ -1510,10 +1640,9 @@ function setupSidebarToggle() {
   const avatarSlot = document.querySelector(".mobile-topbar-avatar-slot");
   const sidebar = document.querySelector(".dash-sidebar");
 
-  // ── Desktop: collapse / expand ──
-  if (localStorage.getItem("sidebar_collapsed") === "true") {
-    body.classList.add("sidebar-collapsed");
-  }
+  // Clear legacy sidebar collapsed state if present
+  body.classList.remove("sidebar-collapsed");
+  localStorage.removeItem("sidebar_collapsed");
 
   if (collapseBtn) {
     collapseBtn.addEventListener("click", function () {
@@ -1524,7 +1653,7 @@ function setupSidebarToggle() {
         localStorage.setItem("sidebar_collapsed", isCollapsed);
         collapseBtn.setAttribute(
           "aria-label",
-          isCollapsed ? "Expand sidebar" : "Collapse sidebar"
+          isCollapsed ? "Expand sidebar" : "Collapse sidebar",
         );
       }
     });
@@ -1601,27 +1730,31 @@ const DAILY_PHRASES = [
   "Could you please repeat that?",
   "Is there a pharmacy nearby?",
   "How do I get to the train station?",
-  "Thank you for your help."
+  "Thank you for your help.",
 ];
 
 function initPhraseOfDay(profile) {
   const dayIndex = Math.floor(Date.now() / 86400000) % DAILY_PHRASES.length;
   const todayPhrase = DAILY_PHRASES[dayIndex];
-  
+
   const textEl = document.getElementById("phrase-of-day-text");
   if (textEl) textEl.textContent = todayPhrase;
-  
+
   // Try to translate the phrase via free Google Translate API or fallback
   const targetLang = profile.preferredLanguage || "hi";
   if (targetLang !== "en") {
-    fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`)
-      .then(r => r.json())
-      .then(data => {
+    fetch(
+      `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`,
+    )
+      .then((r) => r.json())
+      .then((data) => {
         const trEl = document.getElementById("phrase-of-day-translation");
         if (trEl) trEl.textContent = data[0][0][0];
-      }).catch(() => {
+      })
+      .catch(() => {
         const trEl = document.getElementById("phrase-of-day-translation");
-        if (trEl) trEl.textContent = "Practice speaking this phrase in English!";
+        if (trEl)
+          trEl.textContent = "Practice speaking this phrase in English!";
       });
   } else {
     const trEl = document.getElementById("phrase-of-day-translation");
@@ -1637,8 +1770,10 @@ function initPhraseOfDay(profile) {
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
   const todayStr = `${year}-${month}-${day}`;
-  
-  let isAlreadyCompleted = profile.phraseCompletedOn === todayStr || localStorage.getItem("phraseCompletedOn") === todayStr;
+
+  let isAlreadyCompleted =
+    profile.phraseCompletedOn === todayStr ||
+    localStorage.getItem("phraseCompletedOn") === todayStr;
 
   if (isAlreadyCompleted && speakBtn) {
     speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
@@ -1660,31 +1795,47 @@ function initPhraseOfDay(profile) {
       if (speakBtn.disabled || isAlreadyCompleted) return;
       if (feedbackEl) feedbackEl.classList.add("hidden");
       speakBtn.style.animation = "pulse 1.5s infinite";
-      speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Listening...</span>";
+      speakBtn.innerHTML =
+        "<i data-lucide='mic'></i> <span>Listening...</span>";
       if (window.lucide) lucide.createIcons();
-      
+
       if (typeof startSpeechToText === "function") {
         startSpeechToText(
           "en-IN",
           (transcript) => {
             speakBtn.style.animation = "none";
             if (transcript) {
-              const expected = todayPhrase.toLowerCase().replace(/[.,?]/g, "").trim();
-              const actual = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
-              
+              const expected = todayPhrase
+                .toLowerCase()
+                .replace(/[.,?]/g, "")
+                .trim();
+              const actual = transcript
+                .toLowerCase()
+                .replace(/[.,?]/g, "")
+                .trim();
+
               const expectedWords = expected.split(/\s+/).filter(Boolean);
               const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-              const matchedCount = expectedWords.filter(w => actualWords.has(w)).length;
-              const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
-              
+              const matchedCount = expectedWords.filter((w) =>
+                actualWords.has(w),
+              ).length;
+              const matchRatio = expectedWords.length
+                ? matchedCount / expectedWords.length
+                : 0;
+
               if (matchRatio >= 0.6) {
                 if (feedbackEl) {
-                  feedbackEl.textContent = getTranslation(profile.preferredLanguage || "en", "phraseOfDaySuccess") || "Perfect! You earned +20 XP.";
+                  feedbackEl.textContent =
+                    getTranslation(
+                      profile.preferredLanguage || "en",
+                      "phraseOfDaySuccess",
+                    ) || "Perfect! You earned +20 XP.";
                   feedbackEl.className = "phrase-feedback success";
                   feedbackEl.classList.remove("hidden");
                 }
-                
-                speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
+
+                speakBtn.innerHTML =
+                  "<i data-lucide='check'></i> <span>Completed</span>";
                 speakBtn.classList.add("completed");
                 speakBtn.disabled = true;
                 if (window.lucide) lucide.createIcons();
@@ -1696,12 +1847,15 @@ function initPhraseOfDay(profile) {
                   profile.phraseCompletedOn = todayStr;
                   localStorage.setItem("phraseCompletedOn", todayStr);
                   isAlreadyCompleted = true;
-                  
-                  db.collection("users").doc(user.uid).update({
-                    xp: firebase.firestore.FieldValue.increment(20),
-                    phraseCompletedOn: todayStr
-                  }).catch(err => console.error("XP update error", err));
-                  
+
+                  db.collection("users")
+                    .doc(user.uid)
+                    .update({
+                      xp: firebase.firestore.FieldValue.increment(20),
+                      phraseCompletedOn: todayStr,
+                    })
+                    .catch((err) => console.error("XP update error", err));
+
                   // Show floating XP if celebration exists
                   if (typeof showFloatingXP === "function") {
                     showFloatingXP(20);
@@ -1713,22 +1867,29 @@ function initPhraseOfDay(profile) {
                   feedbackEl.className = "phrase-feedback error";
                   feedbackEl.classList.remove("hidden");
                 }
-                speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+                speakBtn.innerHTML =
+                  "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
                 if (window.lucide) lucide.createIcons();
               }
             } else {
               if (feedbackEl) {
-                feedbackEl.textContent = getTranslation(profile.preferredLanguage || "en", "phraseOfDayTryAgain") || "Didn't catch that. Try again.";
+                feedbackEl.textContent =
+                  getTranslation(
+                    profile.preferredLanguage || "en",
+                    "phraseOfDayTryAgain",
+                  ) || "Didn't catch that. Try again.";
                 feedbackEl.className = "phrase-feedback error";
                 feedbackEl.classList.remove("hidden");
               }
-              speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+              speakBtn.innerHTML =
+                "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
               if (window.lucide) lucide.createIcons();
             }
           },
           (err) => {
             speakBtn.style.animation = "none";
-            speakBtn.innerHTML = "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+            speakBtn.innerHTML =
+              "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
             if (window.lucide) lucide.createIcons();
             if (feedbackEl) {
               feedbackEl.textContent = "Mic error. Try again.";
@@ -1736,7 +1897,7 @@ function initPhraseOfDay(profile) {
               feedbackEl.classList.remove("hidden");
             }
             console.error("STT error:", err);
-          }
+          },
         );
       }
     };
@@ -1749,12 +1910,12 @@ let leaderboardLoaded = false;
 function initLeaderboard(profile) {
   if (leaderboardLoaded) return;
   leaderboardLoaded = true;
-  
+
   const tbody = document.getElementById("leaderboard-tbody");
   const loading = document.getElementById("leaderboard-loading");
   const empty = document.getElementById("leaderboard-empty");
   const adminBtn = document.getElementById("admin-award-top3-btn");
-  
+
   if (profile.isAdmin && adminBtn) {
     adminBtn.classList.remove("hidden");
     adminBtn.onclick = awardTopThree;
@@ -1764,40 +1925,47 @@ function initLeaderboard(profile) {
     .orderBy("xp", "desc")
     .limit(20)
     .get()
-    .then(snap => {
+    .then((snap) => {
       if (loading) loading.classList.add("hidden");
       if (snap.empty) {
         if (empty) empty.classList.remove("hidden");
         return;
       }
-      
+
       let html = "";
       let rank = 1;
-      snap.forEach(doc => {
+      snap.forEach((doc) => {
         const data = doc.data();
         const xp = data.xp || 0;
         const name = data.fullName || "Learner";
         const initial = name.charAt(0).toUpperCase();
         const streak = data.currentStreak || data.streak || 0;
         const coins = data.coins || 0;
-        
+
         html += '<tr class="leaderboard-row rank-' + rank + '">';
-        html += '  <td><div class="leaderboard-rank-badge">' + rank + '</div></td>';
-        html += '  <td>';
+        html +=
+          '  <td><div class="leaderboard-rank-badge">' + rank + "</div></td>";
+        html += "  <td>";
         html += '    <div class="leaderboard-user-cell">';
-        html += '      <div class="leaderboard-avatar">' + initial + '</div>';
-        html += '      <div style="font-weight: 500;">' + name + '</div>';
-        html += '    </div>';
-        html += '  </td>';
-        html += '  <td style="text-align: center; color: var(--color-warning);">🔥 ' + streak + '</td>';
-        html += '  <td style="text-align: center; color: #f59e0b;">🪙 ' + coins + '</td>';
-        html += '  <td class="leaderboard-xp">' + xp + ' XP</td>';
-        html += '</tr>';
+        html += '      <div class="leaderboard-avatar">' + initial + "</div>";
+        html += '      <div style="font-weight: 500;">' + name + "</div>";
+        html += "    </div>";
+        html += "  </td>";
+        html +=
+          '  <td style="text-align: center; color: var(--color-warning);">🔥 ' +
+          streak +
+          "</td>";
+        html +=
+          '  <td style="text-align: center; color: #f59e0b;">🪙 ' +
+          coins +
+          "</td>";
+        html += '  <td class="leaderboard-xp">' + xp + " XP</td>";
+        html += "</tr>";
         rank++;
       });
       if (tbody) tbody.innerHTML = html;
     })
-    .catch(err => {
+    .catch((err) => {
       if (loading) loading.classList.add("hidden");
       console.error("Error loading leaderboard:", err);
       if (empty) {
