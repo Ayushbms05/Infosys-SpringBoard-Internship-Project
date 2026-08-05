@@ -273,13 +273,29 @@ function setupLoginForm() {
 
         // Check admin status FIRST, then assessment status, to determine routing
         getUserProfile(userCredential.user.uid).then(profile => {
+          if (!profile) {
+            // Firestore profile was deleted (e.g. by admin) but Auth still exists.
+            // Sign out, clean up the orphaned Auth account if possible, and show error.
+            var currentUser = auth.currentUser;
+            var cleanupPromise = currentUser ? currentUser.delete().catch(function () {
+              return auth.signOut();
+            }) : auth.signOut();
+
+            cleanupPromise.then(function () {
+              showStatus(statusMsg, "error", "Your account has been deleted. Please register again.");
+              submitBtn.classList.remove("loading");
+              submitBtn.disabled = false;
+            });
+            return;
+          }
+
           setTimeout(function () {
             // NEW: admins skip the assessment check entirely and go
             // straight to the admin dashboard — admin.js itself will
             // re-verify isAdmin on load as a second layer of defense.
-            if (profile && profile.isAdmin === true) {
+            if (profile.isAdmin === true) {
               window.location.href = "admin.html";
-            } else if (profile && profile.assessmentCompleted) {
+            } else if (profile.assessmentCompleted) {
               window.location.href = "dashboard.html";
             } else {
               window.location.href = "assessment.html";

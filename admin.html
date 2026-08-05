@@ -26,7 +26,7 @@
         <!-- ═══════════ ACCESS DENIED (shown instead of everything else) ═══════════ -->
         <div id="admin-access-denied" class="admin-access-denied hidden">
           <div class="admin-access-denied-card">
-            <div style="font-size: 3rem">🔒</div>
+            <div style="font-size: 3rem"><i data-lucide="lock" style="width: 48px; height: 48px;"></i></div>
             <h2>Access Restricted</h2>
             <p>
               This area is for administrators only. Redirecting you back to your
@@ -39,7 +39,9 @@
         <header class="dash-top-navbar dash-sidebar" id="admin-top-navbar">
           <div class="navbar-container">
             <div class="sidebar-brand">
-              <span class="sidebar-brand-icon">🛡️</span>
+              <span class="sidebar-brand-icon"
+                ><i data-lucide="book-marked" aria-hidden="true"></i
+              ></span>
               <span class="sidebar-brand-text">AksharGyan Admin</span>
             </div>
 
@@ -70,7 +72,7 @@
                 <div class="sidebar-user-info">
                   <div class="sidebar-user-name" id="admin-name">Admin</div>
                   <div class="dash-level-badge intermediate">
-                    🛡️ <span>Administrator</span>
+                    <i data-lucide="shield-check" style="width:14px;height:14px;"></i> <span>Administrator</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +136,7 @@
                 class="btn-secondary"
                 style="padding: 0.5rem 1rem; font-size: 0.85rem"
               >
-                🔄 Refresh
+                <i data-lucide="refresh-cw" class="inline-icon"></i> Refresh
               </button>
               <div class="dash-topbar-date" id="topbar-date"></div>
             </div>
@@ -219,7 +221,7 @@
               <div class="dash-card analysis-section-card analysis-card-full">
                 <div class="dash-card-header">
                   <h3 class="dash-card-title">
-                    <span class="dash-card-title-icon">🕒</span>
+                    <span class="dash-card-title-icon"><i data-lucide="clock"></i></span>
                     <span>Recent Activity</span>
                   </h3>
                   <p class="dash-card-subtitle">
@@ -253,9 +255,9 @@
                     <tr>
                       <th>RANK</th>
                       <th>LEARNER NAME</th>
-                      <th style="text-align: center;">STREAK</th>
-                      <th style="text-align: center;">COINS</th>
-                      <th class="leaderboard-xp-header">TOTAL XP</th>
+                      <th style="text-align: center;"><i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> STREAK</th>
+                      <th style="text-align: center;"><i data-lucide="coins" class="inline-icon" style="color:#f59e0b;"></i> COINS</th>
+                      <th class="leaderboard-xp-header" style="text-align: right;"><i data-lucide="zap" class="inline-icon" style="color:var(--color-primary);"></i> TOTAL XP</th>
                     </tr>
                   </thead>
                   <tbody id="admin-leaderboard-tbody">
@@ -326,7 +328,7 @@
             <div class="dash-card analysis-section-card">
               <div class="dash-card-header">
                 <h3 class="dash-card-title">
-                  <span class="dash-card-title-icon">📢</span
+                  <span class="dash-card-title-icon"><i data-lucide="megaphone"></i></span
                   ><span>Post an Announcement</span>
                 </h3>
                 <p class="dash-card-subtitle">
@@ -354,7 +356,7 @@
             <div class="dash-card analysis-section-card">
               <div class="dash-card-header">
                 <h3 class="dash-card-title">
-                  <span class="dash-card-title-icon">🗂️</span
+                  <span class="dash-card-title-icon"><i data-lucide="folder"></i></span
                   ><span>Past Announcements</span>
                 </h3>
               </div>
@@ -366,7 +368,7 @@
             <div class="dash-card analysis-section-card">
               <div class="dash-card-header">
                 <h3 class="dash-card-title">
-                  <span class="dash-card-title-icon">💬</span
+                  <span class="dash-card-title-icon"><i data-lucide="message-square"></i></span
                   ><span>User Feedback</span>
                 </h3>
                 <p class="dash-card-subtitle">Newest first.</p>
@@ -379,7 +381,7 @@
             <div class="dash-card analysis-section-card">
               <div class="dash-card-header">
                 <h3 class="dash-card-title">
-                  <span class="dash-card-title-icon">🐞</span
+                  <span class="dash-card-title-icon"><i data-lucide="bug"></i></span
                   ><span>Recent Client Errors</span>
                 </h3>
                 <p class="dash-card-subtitle">
@@ -396,7 +398,7 @@
     <!-- ═══════════ USER DETAIL MODAL ═══════════ -->
     <div id="admin-user-modal" class="modal-overlay hidden">
       <div class="admin-modal-card">
-        <button id="admin-modal-close" class="icon-btn">✕</button>
+        <button id="admin-modal-close" class="icon-btn"><i data-lucide="x"></i></button>
 
         <div class="admin-modal-header">
           <div

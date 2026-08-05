@@ -83,7 +83,24 @@ function loginUser(email, password) {
   return auth.signInWithEmailAndPassword(email, password).then(function (userCredential) {
     var user = userCredential.user;
     return db.collection("users").doc(user.uid).get().then(function (doc) {
-      if (doc.exists && doc.data().isBanned === true) {
+      if (!doc.exists) {
+        // User was deleted from Firestore (e.g. by admin) but Auth still exists.
+        // We must clean up the Auth session and reject so the user sees an error.
+        var cleanupErr = new Error("Your account has been deleted. Please register again.");
+        cleanupErr.code = "auth/user-not-found";
+
+        // Try to fully delete the orphaned Auth account.
+        // If that fails, just sign out so they aren't stuck authenticated.
+        var cleanup = user.delete().catch(function () {
+          return auth.signOut();
+        });
+
+        return cleanup.then(function () {
+          return Promise.reject(cleanupErr);
+        });
+      }
+
+      if (doc.data().isBanned === true) {
         return auth.signOut().then(function () {
           var err = new Error("This account has been suspended.");
           err.code = "auth/user-disabled";

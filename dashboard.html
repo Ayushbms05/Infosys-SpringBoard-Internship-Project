@@ -174,19 +174,15 @@
             <div class="navbar-right">
               <div class="sidebar-stats-row">
                 <div class="dash-stat-pill streak-pill" title="Daily Streak">
-                  <span class="stat-icon">🌱</span>
+                  <span class="stat-icon"><i data-lucide="flame"></i></span>
                   <span id="streak-count" class="stat-value">0</span>
                 </div>
                 <div class="dash-stat-pill xp-pill" title="Experience Points">
-                  <span class="stat-icon">⚡</span>
+                  <span class="stat-icon"><i data-lucide="zap"></i></span>
                   <span id="xp-count" class="stat-value">0</span>
                 </div>
-                <div
-                  id="open-shop-btn"
-                  class="dash-stat-pill coins-pill"
-                  title="Open Gyan Market"
-                >
-                  <span class="stat-icon">🪙</span>
+                <div class="dash-stat-pill coins-pill" title="Open Gyan Market" id="open-shop-btn">
+                  <span class="stat-icon"><i data-lucide="coins"></i></span>
                   <span id="coin-count" class="stat-value">0</span>
                 </div>
               </div>
@@ -206,33 +202,32 @@
                   <div class="dash-avatar" id="user-avatar">?</div>
                   <div class="sidebar-user-info">
                     <div class="sidebar-user-name" id="welcome-name">User</div>
-                    <div
-                      id="user-level-badge"
-                      class="dash-level-badge beginner"
-                    >
-                      🌱 <span data-i18n="scoreLevelBeginner">Beginner</span>
-                    </div>
                   </div>
                 </div>
 
-                <button class="btn-logout" id="logout-btn" title="Logout">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
-                  </svg>
-                  <span data-i18n="logoutBtn">Logout</span>
-                </button>
+                <div class="logout-level-container" style="display: flex; flex-direction: column; align-items: center; gap: 0.25rem;">
+                  <button class="btn-logout" id="logout-btn" title="Logout">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
+                    </svg>
+                    <span data-i18n="logoutBtn">Logout</span>
+                  </button>
+                  <div id="user-level-badge" class="dash-level-badge beginner" style="font-size: 0.65rem !important; padding: 0.2rem 0.5rem !important;">
+                    <i data-lucide="sprout"></i> <span data-i18n="scoreLevelBeginner">Beginner</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -302,13 +297,13 @@
           <!-- Mobile Stats Header -->
           <div class="mobile-sheet-stats" style="display:flex; justify-content:space-around; padding: 1rem 0; border-bottom: 1px solid var(--color-border); margin-bottom: 0.5rem;">
             <div class="dash-stat-pill streak-pill" title="Daily Streak" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fff1ee; border:1px solid #ffd9cf; color:#e8582f; display:flex; align-items:center; gap:0.25rem; font-weight:700;">
-              <span class="stat-icon">🌱</span><span id="mobile-streak-count" class="stat-value">0</span>
+              <span class="stat-icon"><i data-lucide="flame" style="width: 14px; height: 14px;"></i></span><span id="mobile-streak-count" class="stat-value">0</span>
             </div>
             <div class="dash-stat-pill xp-pill" title="Experience Points" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#f1efff; border:1px solid #ddd7ff; color:var(--color-primary); display:flex; align-items:center; gap:0.25rem; font-weight:700;">
-              <span class="stat-icon">⚡</span><span id="mobile-xp-count" class="stat-value">0</span>
+              <span class="stat-icon"><i data-lucide="zap" style="width: 14px; height: 14px;"></i></span><span id="mobile-xp-count" class="stat-value">0</span>
             </div>
             <div class="dash-stat-pill coins-pill" title="Open Gyan Market" id="mobile-open-shop-btn" style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fdf6e3; border:1px solid #f3e3ad; color:#9c7a12; display:flex; align-items:center; gap:0.25rem; font-weight:700; cursor:pointer;">
-              <span class="stat-icon">🪙</span><span id="mobile-coin-count" class="stat-value">0</span>
+              <span class="stat-icon"><i data-lucide="coins" style="width: 14px; height: 14px;"></i></span><span id="mobile-coin-count" class="stat-value">0</span>
             </div>
           </div>
           
@@ -393,7 +388,7 @@
                     aria-selected="true"
                     aria-controls="view-results"
                   >
-                    <span class="sub-tab-icon">✨</span>
+                    <span class="sub-tab-icon"><i data-lucide="sparkles"></i></span>
                     <span data-i18n="dashMyResults">My Results</span>
                   </button>
                   <button
@@ -404,7 +399,7 @@
                     aria-selected="false"
                     aria-controls="view-path"
                   >
-                    <span class="sub-tab-icon">🗺️</span>
+                    <span class="sub-tab-icon"><i data-lucide="map"></i></span>
                     <span data-i18n="dashLearningPath">Learning Path</span>
                   </button>
                 </div>
@@ -537,7 +532,7 @@
                       aria-live="polite"
                     >
                       <div class="ai-loading-header">
-                        <span class="ai-loading-icon">✨</span>
+                        <span class="ai-loading-icon"><i data-lucide="sparkles"></i></span>
                         <span data-i18n="dashGeminiAnalyzing"
                           >Gemini is analysing your results…</span
                         >
@@ -558,7 +553,7 @@
                       class="skill-breakdown-section hidden"
                     >
                       <div class="skill-bd-header">
-                        <span class="gemini-badge">✨ Gemini Analysis</span>
+                        <span class="gemini-badge"><i data-lucide="sparkles"></i> Gemini Analysis</span>
                         <span class="skill-bd-title">Skill Breakdown</span>
                       </div>
                       <div id="skill-bd-bars" class="skill-bd-bars"></div>
@@ -578,7 +573,7 @@
                       <div class="rec-cta-row">
                         <div class="rec-cta-lesson-info">
                           <span class="rec-cta-lesson-icon" id="rec-cta-icon"
-                            >🔤</span
+                            ><i data-lucide="type"></i></span
                           >
                           <div>
                             <div
@@ -604,7 +599,7 @@
 
                     <div id="ai-extra-recs" class="ai-extra-recs hidden">
                       <div class="ai-extra-recs-header">
-                        <span class="ai-extra-recs-icon">📚</span>
+                        <span class="ai-extra-recs-icon"><i data-lucide="book-open"></i></span>
                         <span data-i18n="dashMoreLessons"
                           >More lessons targeting your gaps</span
                         >
@@ -617,7 +612,7 @@
                   </div>
                   <div class="stats-strip">
                     <div class="stats-strip-item">
-                      <div class="stats-strip-icon streak-col">🔥</div>
+                      <div class="stats-strip-icon streak-col"><i data-lucide="flame"></i></div>
                       <div class="stats-strip-val" id="strip-streak">0</div>
                       <div class="stats-strip-label" data-i18n="statDayStreak">
                         Day Streak
@@ -625,7 +620,7 @@
                     </div>
                     <div class="stats-strip-divider"></div>
                     <div class="stats-strip-item">
-                      <div class="stats-strip-icon xp-col">⚡</div>
+                      <div class="stats-strip-icon xp-col"><i data-lucide="zap"></i></div>
                       <div class="stats-strip-val" id="strip-xp">0</div>
                       <div class="stats-strip-label" data-i18n="statTotalXP">
                         Total XP
@@ -633,7 +628,7 @@
                     </div>
                     <div class="stats-strip-divider"></div>
                     <div class="stats-strip-item">
-                      <div class="stats-strip-icon lessons-col">📚</div>
+                      <div class="stats-strip-icon lessons-col"><i data-lucide="book-open"></i></div>
                       <div class="stats-strip-val" id="strip-lessons">0</div>
                       <div
                         class="stats-strip-label"
@@ -644,7 +639,7 @@
                     </div>
                     <div class="stats-strip-divider"></div>
                     <div class="stats-strip-item">
-                      <div class="stats-strip-icon badges-col">🏅</div>
+                      <div class="stats-strip-icon badges-col"><i data-lucide="award"></i></div>
                       <div class="stats-strip-val" id="strip-badges">0</div>
                       <div class="stats-strip-label" data-i18n="statBadges">
                         Badges
@@ -659,7 +654,7 @@
                           class="section-heading"
                           data-i18n="dashPracticalSkills"
                         >
-                          🌍 Practical Life Skills
+                          <i data-lucide="globe"></i> Practical Life Skills
                         </h3>
                         <p
                           class="section-subtext"
@@ -681,7 +676,7 @@
                             'lesson.html?type=reading&unit=banking'
                         "
                       >
-                        <div class="explore-icon">🏦</div>
+                        <div class="explore-icon"><i data-lucide="landmark"></i></div>
                         <h4 data-i18n="bankingTitle">Banking & Forms</h4>
                         <p data-i18n="bankingDesc">
                           Learn to read deposit slips and account balances.
@@ -695,7 +690,7 @@
                             'lesson.html?type=reading&unit=transit'
                         "
                       >
-                        <div class="explore-icon">🚌</div>
+                        <div class="explore-icon"><i data-lucide="bus"></i></div>
                         <h4 data-i18n="transitTitle">Transit & Travel</h4>
                         <p data-i18n="transitDesc">
                           Read bus numbers, train tickets, and station signs.
@@ -709,7 +704,7 @@
                             'lesson.html?type=reading&unit=health'
                         "
                       >
-                        <div class="explore-icon">💊</div>
+                        <div class="explore-icon"><i data-lucide="pill"></i></div>
                         <h4 data-i18n="healthTitle">Health & Medicine</h4>
                         <p data-i18n="healthDesc">
                           Understand prescriptions and medicine labels safely.
@@ -727,7 +722,7 @@
                   <div class="dash-card learning-path-card">
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">🗺️</span>
+                        <span class="dash-card-title-icon"><i data-lucide="map"></i></span>
                         <span data-i18n="dashLearningPath">Learning Path</span>
                       </h3>
                     </div>
@@ -743,7 +738,7 @@
                 <div class="dash-card">
                   <div class="dash-card-header">
                     <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">🎯</span>
+                      <span class="dash-card-title-icon"><i data-lucide="target"></i></span>
                       <span data-i18n="dashSkillPractice">Skill Practice</span>
                     </h3>
                     <p
@@ -771,7 +766,7 @@
                         class="btn-secondary"
                         data-i18n="editProfileBtn"
                       >
-                        ✏️ Edit Profile
+                        <i data-lucide="edit-2" class="inline-icon"></i> Edit Profile
                       </button>
                     </div>
                   </div>
@@ -921,7 +916,7 @@
                 <div class="dash-card">
                   <div class="dash-card-header">
                     <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">🏅</span>
+                      <span class="dash-card-title-icon"><i data-lucide="award"></i></span>
                       <span data-i18n="dashBadges">My Badges</span>
                     </h3>
                   </div>
@@ -932,7 +927,7 @@
                 <div class="dash-card">
                   <div class="dash-card-header">
                     <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon">💬</span>
+                      <span class="dash-card-title-icon"><i data-lucide="message-square"></i></span>
                       <span data-i18n="feedbackTitle">Send Feedback</span>
                     </h3>
                     <p class="dash-card-subtitle" data-i18n="feedbackSubtitle">
@@ -977,14 +972,14 @@
                 <div class="chat-phone hidden" id="chat-phone">
                   <div class="chat-header">
                     <button class="chat-back" id="chat-back-btn">←</button>
-                    <div class="contact-avatar" id="contact-icon">📱</div>
+                    <div class="contact-avatar" id="contact-icon"><i data-lucide="smartphone"></i></div>
                     <div class="contact-info">
                       <h3 id="contact-name">Loading...</h3>
                       <p>Online</p>
                     </div>
                     <div class="chat-tts-container">
                       <button class="icon-btn tts-btn" id="read-chat-btn">
-                        🔊
+                        <i data-lucide="volume-2" class="inline-icon"></i>
                       </button>
                     </div>
                   </div>
@@ -1016,7 +1011,7 @@
                     </button>
                   </div>
                   <div id="success-overlay" class="chat-success-overlay hidden">
-                    <div class="chat-success-icon">🎉</div>
+                    <div class="chat-success-icon"><i data-lucide="party-popper"></i></div>
                     <h2 class="chat-success-title">Message Sent!</h2>
                     <p id="success-text" class="chat-success-text">
                       Great job responding correctly.
@@ -1043,7 +1038,7 @@
                     Practice vocabulary and memory with fun games.
                   </p>
                   <h3 class="games-hub-heading">
-                    <span data-i18n="gamesCategoryGames">🎮 Games</span>
+                    <span data-i18n="gamesCategoryGames"><i data-lucide="gamepad-2"></i> Games</span>
                   </h3>
                   <div
                     id="games-grid"
@@ -1052,7 +1047,7 @@
                   ></div>
 
                   <h3 class="games-hub-heading" style="margin-top: 2rem">
-                    <span data-i18n="gamesCategoryPuzzles">🧩 Puzzles</span>
+                    <span data-i18n="gamesCategoryPuzzles"><i data-lucide="puzzle"></i> Puzzles</span>
                   </h3>
                   <div class="scenario-grid" id="puzzles-grid"></div>
                 </div>
@@ -1068,7 +1063,7 @@
                       Matches: <span id="match-count">0</span> / 6
                     </div>
                     <div class="stat-badge">
-                      ⚡ <span id="game-xp">0 XP</span>
+                      <i data-lucide="zap" class="inline-icon"></i> <span id="game-xp">0 XP</span>
                     </div>
                   </div>
                   <div id="options-grid" class="word-options-grid"></div>
@@ -1076,7 +1071,7 @@
 
                 <!-- Shared Game Complete Overlay -->
                 <div id="game-complete" class="game-loading-container hidden">
-                  <div class="game-complete-icon">🎉</div>
+                  <div class="game-complete-icon"><i data-lucide="party-popper"></i></div>
                   <h2 class="game-complete-title">Excellent!</h2>
                   <p class="game-complete-subtitle" id="game-complete-subtitle">
                     You did a great job!
@@ -1119,7 +1114,7 @@
                   </header>
                   <div class="game-stats">
                     <div class="stat-badge">
-                      🦁 Streak: <span id="ws-streak">0</span>
+                      <i data-lucide="flame" class="inline-icon"></i> Streak: <span id="ws-streak">0</span>
                     </div>
                     <div class="stat-badge">
                       Round: <span id="ws-round">1</span>/8
@@ -1160,14 +1155,14 @@
                       >
                     </div>
                     <div class="stat-badge">
-                      💡 Hints: <span id="wsr-hints">3</span>
+                      <i data-lucide="lightbulb" class="inline-icon"></i> Hints: <span id="wsr-hints">3</span>
                     </div>
                     <div class="stat-badge">
                       ⏱ <span id="wsr-timer">120</span>s
                     </div>
                   </div>
                   <button class="btn-secondary wsr-hint-btn" id="wsr-hint-btn">
-                    💡 Hint
+                    <i data-lucide="lightbulb" class="inline-icon"></i> Hint
                   </button>
                   <div id="wsr-grid" class="wsr-grid"></div>
                   <div id="wsr-words" class="wsr-word-bank"></div>
@@ -1215,7 +1210,7 @@
                 <!-- Overview stat cards -->
                 <div class="analysis-stats-row" id="analysis-stats-row">
                   <div class="analysis-stat-card">
-                    <div class="analysis-stat-icon">📚</div>
+                    <div class="analysis-stat-icon"><i data-lucide="book-open"></i></div>
                     <div class="analysis-stat-value" id="stat-total-lessons">
                       0
                     </div>
@@ -1227,7 +1222,7 @@
                     </div>
                   </div>
                   <div class="analysis-stat-card">
-                    <div class="analysis-stat-icon">🎯</div>
+                    <div class="analysis-stat-icon"><i data-lucide="target"></i></div>
                     <div class="analysis-stat-value" id="stat-avg-accuracy">
                       —
                     </div>
@@ -1239,7 +1234,7 @@
                     </div>
                   </div>
                   <div class="analysis-stat-card">
-                    <div class="analysis-stat-icon">⭐</div>
+                    <div class="analysis-stat-icon"><i data-lucide="star"></i></div>
                     <div class="analysis-stat-value" id="stat-best-skill">
                       —
                     </div>
@@ -1251,7 +1246,7 @@
                     </div>
                   </div>
                   <div class="analysis-stat-card">
-                    <div class="analysis-stat-icon">🔥</div>
+                    <div class="analysis-stat-icon"><i data-lucide="flame"></i></div>
                     <div class="analysis-stat-value" id="stat-current-streak">
                       0
                     </div>
@@ -1266,7 +1261,7 @@
                   <div class="dash-card analysis-section-card">
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">🧩</span>
+                        <span class="dash-card-title-icon"><i data-lucide="puzzle"></i></span>
                         <span data-i18n="skillBreakdownTitle"
                           >Skill Breakdown</span
                         >
@@ -1295,7 +1290,7 @@
                   <div class="dash-card analysis-section-card">
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">📈</span>
+                        <span class="dash-card-title-icon"><i data-lucide="trending-up"></i></span>
                         <span data-i18n="accuracyTrendTitle"
                           >Accuracy Trend</span
                         >
@@ -1331,13 +1326,13 @@
                   <div class="dash-card analysis-section-card">
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">📅</span>
+                        <span class="dash-card-title-icon"><i data-lucide="calendar"></i></span>
                         <span data-i18n="practiceActivityTitle"
                           >Practice Activity</span
                         >
                       </h3>
                       <div class="calendar-streak-badge">
-                        🔥 <span id="analysis-cal-streak-count">0</span> Day
+                        <i data-lucide="flame" class="inline-icon"></i> <span id="analysis-cal-streak-count">0</span> Day
                         Streak
                       </div>
                     </div>
@@ -1360,7 +1355,7 @@
                   <div class="dash-card analysis-section-card">
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">🗺️</span>
+                        <span class="dash-card-title-icon"><i data-lucide="map"></i></span>
                         <span data-i18n="curriculumProgressTitle"
                           >Curriculum Progress</span
                         >
@@ -1384,7 +1379,7 @@
                   >
                     <div class="dash-card-header">
                       <h3 class="dash-card-title">
-                        <span class="dash-card-title-icon">✨</span>
+                        <span class="dash-card-title-icon"><i data-lucide="sparkles"></i></span>
                         <span data-i18n="assessmentSnapshotTitle"
                           >Initial Assessment Snapshot</span
                         >
@@ -1465,19 +1460,19 @@
                           data-i18n="leaderboardStreak"
                           style="padding: 1rem; text-align: center"
                         >
-                          Streak
+                          <i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> Streak
                         </th>
                         <th
                           data-i18n="leaderboardCoins"
                           style="padding: 1rem; text-align: center"
                         >
-                          Coins
+                          <i data-lucide="coins" class="inline-icon" style="color:#f59e0b;"></i> Coins
                         </th>
                         <th
                           data-i18n="leaderboardXP"
                           style="padding: 1rem; text-align: right"
                         >
-                          Total XP
+                          <i data-lucide="zap" class="inline-icon" style="color:var(--color-primary);"></i> Total XP
                         </th>
                       </tr>
                     </thead>
@@ -1516,7 +1511,7 @@
               <div class="dash-card side-card wotd-card">
                 <div class="wotd-card-header">
                   <span data-i18n="wotdTitle">Word of the Day</span>
-                  <span>💡</span>
+                  <span><i data-lucide="lightbulb" class="inline-icon"></i></span>
                 </div>
                 <h3 id="wotd-word" class="wotd-word">...</h3>
                 <p id="wotd-meaning" class="wotd-meaning">...</p>
@@ -1526,7 +1521,7 @@
                   class="btn-secondary wotd-listen-btn"
                   data-i18n="wotdListenBtn"
                 >
-                  🔊 Listen & Practice
+                  <i data-lucide="volume-2" class="inline-icon"></i> Listen & Practice
                 </button>
               </div>
 
@@ -1614,7 +1609,7 @@
               <div class="dash-card side-card">
                 <div class="daily-goal-header">
                   <h4 class="side-card-title">
-                    <span>📜</span>
+                    <span><i data-lucide="scroll" class="inline-icon"></i></span>
                     <span data-i18n="dailyQuestsTitle">Daily Quests</span>
                   </h4>
                   <span class="quest-header-note" data-i18n="questResetNote"
@@ -1632,7 +1627,7 @@
             <div class="shop-card">
               <div class="shop-header">
                 <div>
-                  <h2 data-i18n="shopTitle">🛒 Gyan Market</h2>
+                  <h2 data-i18n="shopTitle"><i data-lucide="shopping-cart"></i> Gyan Market</h2>
                   <p data-i18n="shopSubtitle">Spend your coins on rewards!</p>
                 </div>
                 <button id="close-shop-btn" class="icon-btn" class="icon-btn">
@@ -1641,7 +1636,7 @@
               </div>
 
               <div class="shop-balance-indicator">
-                Your Balance: <span id="shop-balance">0</span> 🪙
+                Your Balance: <span id="shop-balance">0</span> <i data-lucide="coins" class="inline-icon"></i>
               </div>
 
               <div id="shop-items-grid" class="shop-items-grid"></div>

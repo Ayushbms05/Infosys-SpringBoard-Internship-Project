@@ -7,11 +7,11 @@
 
 // ─── Unit Configuration ───────────────────────────────────────
 const UNIT_CONFIG = {
-  alphabets: { icon: "🔤", label: "dashUnitAlphabets", fallback: "Alphabets" },
-  words: { icon: "📝", label: "dashUnitWords", fallback: "Words" },
-  sentences: { icon: "📄", label: "dashUnitSentences", fallback: "Sentences" },
+  alphabets: { icon: "<i data-lucide=\"type\"></i>", label: "dashUnitAlphabets", fallback: "Alphabets" },
+  words: { icon: "<i data-lucide=\"edit-3\"></i>", label: "dashUnitWords", fallback: "Words" },
+  sentences: { icon: "<i data-lucide=\"file-text\"></i>", label: "dashUnitSentences", fallback: "Sentences" },
   paragraphs: {
-    icon: "📚",
+    icon: "<i data-lucide=\"book-open\"></i>",
     label: "dashUnitParagraphs",
     fallback: "Paragraphs",
   },
@@ -19,19 +19,19 @@ const UNIT_CONFIG = {
 
 const LEVEL_CONFIG = {
   beginner: {
-    icon: "🌱",
+    icon: "<i data-lucide=\"sprout\"></i>",
     label: "scoreLevelBeginner",
     fallback: "Beginner",
     color: "amber",
   },
   intermediate: {
-    icon: "📘",
+    icon: "<i data-lucide=\"book\"></i>",
     label: "scoreLevelIntermediate",
     fallback: "Intermediate",
     color: "purple",
   },
   advanced: {
-    icon: "🚀",
+    icon: "<i data-lucide=\"rocket\"></i>",
     label: "scoreLevelAdvanced",
     fallback: "Advanced",
     color: "teal",
@@ -41,7 +41,7 @@ const LEVEL_CONFIG = {
 const SKILL_CONFIG = [
   {
     id: "reading",
-    icon: "📖",
+    icon: "<i data-lucide=\"book-open\"></i>",
     label: "skillReading",
     fallback: "Reading",
     color: "purple",
@@ -50,7 +50,7 @@ const SKILL_CONFIG = [
   },
   {
     id: "writing",
-    icon: "✍️",
+    icon: "<i data-lucide=\"pen-tool\"></i>",
     label: "skillWriting",
     fallback: "Writing",
     color: "teal",
@@ -59,7 +59,7 @@ const SKILL_CONFIG = [
   },
   {
     id: "speaking",
-    icon: "🗣️",
+    icon: "<i data-lucide=\"mic\"></i>",
     label: "skillSpeaking",
     fallback: "Speaking",
     color: "amber",
@@ -68,7 +68,7 @@ const SKILL_CONFIG = [
   },
   {
     id: "pronunciation",
-    icon: "🔤",
+    icon: "<i data-lucide=\"type\"></i>",
     label: "skillPronunciation",
     fallback: "Pronunciation",
     color: "pink",
@@ -77,7 +77,7 @@ const SKILL_CONFIG = [
   },
   {
     id: "listening",
-    icon: "🎧",
+    icon: "<i data-lucide=\"headphones\"></i>",
     label: "skillListening",
     fallback: "Listening",
     color: "blue",
@@ -168,10 +168,10 @@ function computeRecommendation(score, literacyLevel) {
   // row.level/row.unit.
 
   const unitLabels = {
-    alphabets: { label: "Alphabets — Letter Recognition", icon: "🔤" },
-    words: { label: "Words — Vocabulary Building", icon: "📝" },
-    sentences: { label: "Sentences — Reading Practice", icon: "📄" },
-    paragraphs: { label: "Paragraphs — Comprehension", icon: "📚" },
+    alphabets: { label: "Alphabets — Letter Recognition", icon: "<i data-lucide=\"type\"></i>" },
+    words: { label: "Words — Vocabulary Building", icon: "<i data-lucide=\"edit-3\"></i>" },
+    sentences: { label: "Sentences — Reading Practice", icon: "<i data-lucide=\"file-text\"></i>" },
+    paragraphs: { label: "Paragraphs — Comprehension", icon: "<i data-lucide=\"book-open\"></i>" },
   };
   const levelLabels = {
     beginner: { label: "Beginner Level", tag: "beginner" },
@@ -237,7 +237,7 @@ function renderRecommendation(profile) {
   const ctaTitle = document.getElementById("rec-cta-title");
   const ctaSub = document.getElementById("rec-cta-sub");
   const ctaBtn = document.getElementById("rec-start-btn");
-  if (ctaIcon) ctaIcon.textContent = rec.unitIcon;
+  if (ctaIcon) ctaIcon.innerHTML = rec.unitIcon;
   if (ctaTitle) ctaTitle.textContent = rec.unitLabel;
   if (ctaSub) ctaSub.textContent = rec.levelLabel;
   if (ctaBtn) ctaBtn.href = rec.url;
@@ -321,7 +321,7 @@ function renderAIAnalysis(analysis, rec) {
         const pct = Math.max(5, Math.min(100, skill.estimatedScore || 50));
         return `<div class="skill-bar-item">
         <div class="skill-bar-meta">
-          <span class="skill-bar-label"><span class="skill-bar-icon">${skill.icon || "📌"}</span> ${skill.skill}</span>
+          <span class="skill-bar-label"><span class="skill-bar-icon">${skill.icon || "<i data-lucide='pin'></i>"}</span> ${skill.skill}</span>
           <span class="skill-bar-status-tag" style="background:${cfg.bg};color:${cfg.color}">${cfg.label}</span>
         </div>
         <div class="skill-bar-track">
@@ -347,16 +347,16 @@ function renderAIAnalysis(analysis, rec) {
   // Motivational note
   const motivEl = document.getElementById("rec-motivational");
   if (motivEl && analysis.motivationalNote) {
-    motivEl.textContent = "💡 " + analysis.motivationalNote;
+    motivEl.innerHTML = "<i data-lucide='lightbulb' class='inline-icon'></i> " + analysis.motivationalNote;
   }
 
   // Update primary CTA if Gemini gives a better recommendation
   if (analysis.recommendedLevel && analysis.recommendedUnit) {
     const unitLabels = {
-      alphabets: { label: "Alphabets — Letter Recognition", icon: "🔤" },
-      words: { label: "Words — Vocabulary Building", icon: "📝" },
-      sentences: { label: "Sentences — Reading Practice", icon: "📄" },
-      paragraphs: { label: "Paragraphs — Comprehension", icon: "📚" },
+      alphabets: { label: "Alphabets — Letter Recognition", icon: "<i data-lucide=\"type\"></i>" },
+      words: { label: "Words — Vocabulary Building", icon: "<i data-lucide=\"edit-3\"></i>" },
+      sentences: { label: "Sentences — Reading Practice", icon: "<i data-lucide=\"file-text\"></i>" },
+      paragraphs: { label: "Paragraphs — Comprehension", icon: "<i data-lucide=\"book-open\"></i>" },
     };
     const levelLabels = {
       beginner: "Beginner Level",
@@ -368,13 +368,13 @@ function renderAIAnalysis(analysis, rec) {
 
     const ctaLabelEl = document.getElementById("rec-cta-label-text");
     if (ctaLabelEl)
-      ctaLabelEl.textContent = "🎯 Best starting point based on your results";
+      ctaLabelEl.innerHTML = "<i data-lucide='target' class='inline-icon'></i> Best starting point based on your results";
 
     const ctaIcon = document.getElementById("rec-cta-icon");
     const ctaTitle = document.getElementById("rec-cta-title");
     const ctaSub = document.getElementById("rec-cta-sub");
     const ctaBtn = document.getElementById("rec-start-btn");
-    if (ctaIcon) ctaIcon.textContent = uInfo.icon;
+    if (ctaIcon) ctaIcon.innerHTML = uInfo.icon;
     if (ctaTitle) ctaTitle.textContent = uInfo.label;
     if (ctaSub)
       ctaSub.textContent =
@@ -394,15 +394,15 @@ function renderAIAnalysis(analysis, rec) {
   ) {
     const extraRecs = analysis.topRecommendations.slice(1, 4); // up to 3 extras
     const unitLabels = {
-      alphabets: { icon: "🔤", name: "Alphabets" },
-      words: { icon: "📝", name: "Words" },
-      sentences: { icon: "📄", name: "Sentences" },
-      paragraphs: { icon: "📚", name: "Paragraphs" },
+      alphabets: { icon: "<i data-lucide=\"type\"></i>", name: "Alphabets" },
+      words: { icon: "<i data-lucide=\"edit-3\"></i>", name: "Words" },
+      sentences: { icon: "<i data-lucide=\"file-text\"></i>", name: "Sentences" },
+      paragraphs: { icon: "<i data-lucide=\"book-open\"></i>", name: "Paragraphs" },
     };
     const level = analysis.recommendedLevel || rec.level;
     extraListEl.innerHTML = extraRecs
       .map((r) => {
-        const uInfo = unitLabels[r.unit] || { icon: "📖", name: r.unit };
+        const uInfo = unitLabels[r.unit] || { icon: "<i data-lucide=\"book-open\"></i>", name: r.unit };
         const url = `lesson.html?level=${level}&unit=${r.unit}&type=${r.lessonType || "reading"}`;
         return `<div class="ai-rec-item">
         <div class="ai-rec-item-left">
@@ -495,11 +495,11 @@ function renderLearningPath(profile) {
   ];
 
   const skillIcons = {
-    reading: "📖",
-    writing: "✍️",
-    listening: "🎧",
-    speaking: "🗣️",
-    pronunciation: "🎙️",
+    reading: "<i data-lucide='book-open'></i>",
+    writing: "<i data-lucide='pen-tool'></i>",
+    listening: "<i data-lucide='headphones'></i>",
+    speaking: "<i data-lucide='mic'></i>",
+    pronunciation: "<i data-lucide='mic'></i>",
   };
 
   // 1. Render the Explainer Card at the top
@@ -751,7 +751,7 @@ function manageDailyQuests(profile) {
       <div class="quest-item ${isDone ? "quest-done" : ""}">
         <div class="quest-item-top">
           <div class="quest-item-left">
-            <div class="quest-check">${isDone ? "✓" : ""}</div>
+            <div class="quest-check">${isDone ? "<i data-lucide=\"check\"></i>" : ""}</div>
             <span class="quest-title">${
               q.id === "q1"
                 ? getTranslation(selectedLang, "questEarnXP") || "Earn 20 XP"
@@ -762,7 +762,7 @@ function manageDailyQuests(profile) {
                     "Complete 1 Lesson"
             }</span>
           </div>
-          <span class="quest-reward">+${q.reward} 🪙</span>
+          <span class="quest-reward">+${q.reward} <i data-lucide="coins" style="width: 14px; height: 14px; vertical-align: middle;"></i></span>
         </div>
         <div class="quest-progress-track">
           <div class="quest-progress-fill" style="width: ${progressPct}%;"></div>
@@ -772,6 +772,7 @@ function manageDailyQuests(profile) {
   });
 
   questContainer.innerHTML = html;
+  if (window.lucide) lucide.createIcons();
 
   const coinEl = document.getElementById("coin-count");
   if (coinEl) coinEl.textContent = Number(profile.coins || 0).toLocaleString();
@@ -823,12 +824,13 @@ function renderSidePanel(profile) {
     }, 300);
 
     if (percent >= 100) {
-      statusText.textContent = getTranslation(selectedLang, "goalReached");
+      statusText.innerHTML = getTranslation(selectedLang, "goalReached");
       statusText.style.color = "var(--color-success)";
     } else if (percent > 0) {
-      statusText.textContent = getTranslation(selectedLang, "goalKeepItUp");
+      statusText.innerHTML = getTranslation(selectedLang, "goalKeepItUp");
       statusText.style.color = "var(--color-primary)";
     }
+    if (window.lucide) lucide.createIcons();
   }
 
   // Edit Goal Setup
@@ -865,7 +867,7 @@ function renderSidePanel(profile) {
   }
 
   // 3. Word of the Day Logic
-  renderWordOfTheDay();
+  renderWordOfTheDay(profile);
 }
 
 // ─── Announcement Banner ────────────────────────────────────────
@@ -949,48 +951,51 @@ function setupFeedbackForm() {
   });
 }
 
-function renderWordOfTheDay() {
+function renderWordOfTheDay(profile) {
+  const targetLang = (profile && profile.targetLanguage) || (profile && profile.preferredLanguage) || "en";
+  const prefLang = (profile && profile.preferredLanguage) || "en";
+
   const dictionary = [
     {
-      word: getTranslation(selectedLang, "wotd_0_word") || "Sign",
+      word: getTranslation(targetLang, "wotd_0_word") || "Sign",
       meaning:
-        getTranslation(selectedLang, "wotd_0_desc") ||
+        getTranslation(prefLang, "wotd_0_desc") ||
         "To write your name on a document.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_1_word") || "Deposit",
+      word: getTranslation(targetLang, "wotd_1_word") || "Deposit",
       meaning:
-        getTranslation(selectedLang, "wotd_1_desc") ||
+        getTranslation(prefLang, "wotd_1_desc") ||
         "To put money into a bank account.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_2_word") || "Prescription",
+      word: getTranslation(targetLang, "wotd_2_word") || "Prescription",
       meaning:
-        getTranslation(selectedLang, "wotd_2_desc") ||
+        getTranslation(prefLang, "wotd_2_desc") ||
         "A doctor's written note for medicine.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_3_word") || "Receipt",
+      word: getTranslation(targetLang, "wotd_3_word") || "Receipt",
       meaning:
-        getTranslation(selectedLang, "wotd_3_desc") ||
+        getTranslation(prefLang, "wotd_3_desc") ||
         "A piece of paper proving you paid for something.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_4_word") || "Platform",
+      word: getTranslation(targetLang, "wotd_4_word") || "Platform",
       meaning:
-        getTranslation(selectedLang, "wotd_4_desc") ||
+        getTranslation(prefLang, "wotd_4_desc") ||
         "The area at a station where you wait for a train.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_5_word") || "Verify",
+      word: getTranslation(targetLang, "wotd_5_word") || "Verify",
       meaning:
-        getTranslation(selectedLang, "wotd_5_desc") ||
+        getTranslation(prefLang, "wotd_5_desc") ||
         "To make sure something is true or accurate.",
     },
     {
-      word: getTranslation(selectedLang, "wotd_6_word") || "Balance",
+      word: getTranslation(targetLang, "wotd_6_word") || "Balance",
       meaning:
-        getTranslation(selectedLang, "wotd_6_desc") ||
+        getTranslation(prefLang, "wotd_6_desc") ||
         "The amount of money left in your account.",
     },
   ];
@@ -1015,7 +1020,8 @@ function renderWordOfTheDay() {
   if (listenBtn) {
     listenBtn.onclick = () => {
       if (typeof speakText === "function") {
-        speakText(`${wotd.word}. ${wotd.meaning}`, selectedLang || "en");
+        speakText(wotd.word, targetLang);
+        setTimeout(() => speakText(wotd.meaning, prefLang), 1500);
       }
     };
   }
@@ -1324,7 +1330,7 @@ function renderProfile(profile) {
     const allBadges = [
       {
         id: "assessmentDone",
-        icon: "🎯",
+        icon: "<i data-lucide=\"target\"></i>",
         label:
           getTranslation(selectedLang, "badgeEvaluatedLabel") || "Evaluated",
         desc:
@@ -1333,7 +1339,7 @@ function renderProfile(profile) {
       },
       {
         id: "firstLesson",
-        icon: "🌱",
+        icon: "<i data-lucide=\"sprout\"></i>",
         label:
           getTranslation(selectedLang, "badgeFirstStepsLabel") || "First Steps",
         desc:
@@ -1342,7 +1348,7 @@ function renderProfile(profile) {
       },
       {
         id: "alphabetMaster",
-        icon: "🔤",
+        icon: "<i data-lucide=\"type\"></i>",
         label:
           getTranslation(selectedLang, "badgeLetterKingLabel") || "Letter King",
         desc:
@@ -1351,7 +1357,7 @@ function renderProfile(profile) {
       },
       {
         id: "beginnerGraduate",
-        icon: "🥉",
+        icon: "<i data-lucide=\"medal\"></i>",
         label:
           getTranslation(selectedLang, "badgeBeginnerGradLabel") ||
           "Beginner Graduate",
@@ -1361,7 +1367,7 @@ function renderProfile(profile) {
       },
       {
         id: "intermediateGraduate",
-        icon: "🥈",
+        icon: "<i data-lucide=\"medal\"></i>",
         label:
           getTranslation(selectedLang, "badgeIntermediateGradLabel") ||
           "Intermediate Graduate",
@@ -1371,7 +1377,7 @@ function renderProfile(profile) {
       },
       {
         id: "advancedGraduate",
-        icon: "🥇",
+        icon: "<i data-lucide=\"medal\"></i>",
         label:
           getTranslation(selectedLang, "badgeAdvancedGradLabel") ||
           "Advanced Graduate",
@@ -1381,7 +1387,7 @@ function renderProfile(profile) {
       },
       {
         id: "streak5",
-        icon: "🔥",
+        icon: "<i data-lucide=\"flame\"></i>",
         label:
           getTranslation(selectedLang, "badgeStreak5Label") || "5-Day Streak",
         desc:
@@ -1390,7 +1396,7 @@ function renderProfile(profile) {
       },
       {
         id: "streak10",
-        icon: "🔥",
+        icon: "<i data-lucide=\"flame\"></i>",
         label:
           getTranslation(selectedLang, "badgeStreak10Label") || "10-Day Streak",
         desc:
@@ -1399,7 +1405,7 @@ function renderProfile(profile) {
       },
       {
         id: "streak30",
-        icon: "🔥",
+        icon: "<i data-lucide=\"flame\"></i>",
         label:
           getTranslation(selectedLang, "badgeStreak30Label") || "30-Day Streak",
         desc:
@@ -1408,7 +1414,7 @@ function renderProfile(profile) {
       },
       {
         id: "gameWinner",
-        icon: "🎮",
+        icon: "<i data-lucide=\"gamepad-2\"></i>",
         label:
           getTranslation(selectedLang, "badgeMatchMasterLabel") ||
           "Match Master",
@@ -1418,7 +1424,7 @@ function renderProfile(profile) {
       },
       {
         id: "gameChampion",
-        icon: "🏆",
+        icon: "<i data-lucide=\"trophy\"></i>",
         label:
           getTranslation(selectedLang, "badgeGameChampionLabel") ||
           "Game Champion",
@@ -1436,7 +1442,7 @@ function renderProfile(profile) {
         return `
         <div class="badge-card-item ${isEarned ? "earned" : "locked"}" title="${b.desc}">
           <div class="badge-icon-circle">${b.icon}</div>
-          ${!isEarned ? '<div class="badge-lock-overlay">🔒</div>' : ""}
+          ${!isEarned ? '<div class="badge-lock-overlay"><i data-lucide="lock" class="inline-icon"></i></div>' : ""}
           <div class="badge-card-label">${b.label}</div>
         </div>
       `;
@@ -1488,7 +1494,7 @@ const SHOP_CATALOG = [
   {
     id: "freeze",
     type: "consumable",
-    icon: "🧊",
+    icon: "<i data-lucide=\"snowflake\"></i>",
     title: "Streak Freeze",
     desc: "Miss a day of practice without losing your streak! Protects your progress.",
     price: 50,
@@ -1496,7 +1502,7 @@ const SHOP_CATALOG = [
   {
     id: "theme_emerald",
     type: "theme",
-    icon: "🌲",
+    icon: "<i data-lucide=\"tree-pine\"></i>",
     title: "Emerald Theme",
     desc: "A calming green color layout for your dashboard.",
     price: 100,
@@ -1505,7 +1511,7 @@ const SHOP_CATALOG = [
   {
     id: "theme_sunset",
     type: "theme",
-    icon: "🌅",
+    icon: "<i data-lucide=\"sun\"></i>",
     title: "Sunset Theme",
     desc: "A warm, energetic orange layout for your dashboard.",
     price: 100,
@@ -1514,7 +1520,7 @@ const SHOP_CATALOG = [
   {
     id: "theme_rose",
     type: "theme",
-    icon: "💎",
+    icon: "<i data-lucide=\"gem\"></i>",
     title: "Ruby Theme",
     desc: "A bold, beautiful red layout for your dashboard.",
     price: 100,
@@ -1573,14 +1579,14 @@ function renderShopItems(profile) {
       } else if (isOwned) {
         btnHtml = `<button class="shop-buy-btn" onclick="equipItem('${item.id}')" style="background:#6c63ff;">Equip</button>`;
       } else {
-        btnHtml = `<button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} 🪙</button>`;
+        btnHtml = `<button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} <i data-lucide="coins" class="inline-icon"></i></button>`;
       }
     } else if (item.type === "consumable") {
       const ownedCount = profile.streakFreezes || 0;
       if (ownedCount > 0) {
-        btnHtml = `<div style="text-align: right;"><span style="font-size:0.8rem;color:#64748b;">Owned: ${ownedCount}</span><br><button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} 🪙</button></div>`;
+        btnHtml = `<div style="text-align: right;"><span style="font-size:0.8rem;color:#64748b;">Owned: ${ownedCount}</span><br><button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} <i data-lucide="coins" class="inline-icon"></i></button></div>`;
       } else {
-        btnHtml = `<button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} 🪙</button>`;
+        btnHtml = `<button class="shop-buy-btn" ${!canAfford ? "disabled" : ""} onclick="buyItem('${item.id}', ${item.price})">${item.price} <i data-lucide="coins" class="inline-icon"></i></button>`;
       }
     }
 
@@ -1597,6 +1603,7 @@ function renderShopItems(profile) {
       </div>
     `;
   });
+  if (window.lucide) lucide.createIcons();
 }
 
 /**
@@ -1774,133 +1781,152 @@ function initPhraseOfDay(profile) {
   const dayIndex = Math.floor(Date.now() / 86400000) % DAILY_PHRASES.length;
   const todayPhrase = DAILY_PHRASES[dayIndex];
 
-  const textEl = document.getElementById("phrase-of-day-text");
-  if (textEl) textEl.textContent = todayPhrase;
+  const targetLang = profile.targetLanguage || profile.preferredLanguage || "en";
+  const prefLang = profile.preferredLanguage || "en";
 
-  // Try to translate the phrase via free Google Translate API or fallback
-  const targetLang = profile.preferredLanguage || "hi";
-  if (targetLang !== "en") {
-    fetch(
-      `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`,
-    )
+  const fetchTarget = targetLang === "en" ? Promise.resolve(todayPhrase) :
+    fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`)
       .then((r) => r.json())
-      .then((data) => {
-        const trEl = document.getElementById("phrase-of-day-translation");
-        if (trEl) trEl.textContent = data[0][0][0];
-      })
-      .catch(() => {
-        const trEl = document.getElementById("phrase-of-day-translation");
-        if (trEl)
-          trEl.textContent = "Practice speaking this phrase in English!";
-      });
-  } else {
+      .then((data) => data[0][0][0])
+      .catch(() => todayPhrase);
+
+  const fetchPref = prefLang === "en" ? Promise.resolve(todayPhrase) :
+    fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${prefLang}&dt=t&q=${encodeURIComponent(todayPhrase)}`)
+      .then((r) => r.json())
+      .then((data) => data[0][0][0])
+      .catch(() => todayPhrase);
+
+  Promise.all([fetchTarget, fetchPref]).then(([translatedTarget, translatedPref]) => {
+    const textEl = document.getElementById("phrase-of-day-text");
+    if (textEl) textEl.textContent = translatedTarget;
+
     const trEl = document.getElementById("phrase-of-day-translation");
-    if (trEl) trEl.textContent = "Practice speaking this phrase!";
-  }
-
-  const listenBtn = document.getElementById("phrase-listen-btn");
-  const speakBtn = document.getElementById("phrase-speak-btn");
-  const feedbackEl = document.getElementById("phrase-feedback");
-
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  const todayStr = `${year}-${month}-${day}`;
-
-  let isAlreadyCompleted =
-    profile.phraseCompletedOn === todayStr ||
-    localStorage.getItem("phraseCompletedOn") === todayStr;
-
-  if (isAlreadyCompleted && speakBtn) {
-    speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
-    speakBtn.classList.add("completed");
-    speakBtn.disabled = true;
-    if (window.lucide) lucide.createIcons();
-  }
-
-  if (listenBtn) {
-    listenBtn.onclick = () => {
-      if (typeof speakText === "function") {
-        speakText(todayPhrase, "en");
+    if (trEl) {
+      if (targetLang === prefLang && targetLang !== "en") {
+        trEl.textContent = getTranslation(prefLang, "phraseOfDayTitle") || "Practice speaking this phrase!";
+      } else if (targetLang === "en" && prefLang === "en") {
+        trEl.textContent = "Practice speaking this phrase!";
+      } else {
+        trEl.textContent = translatedPref;
       }
-    };
-  }
+    }
 
-  if (speakBtn) {
-    speakBtn.onclick = () => {
-      if (speakBtn.disabled || isAlreadyCompleted) return;
-      if (feedbackEl) feedbackEl.classList.add("hidden");
-      speakBtn.style.animation = "pulse 1.5s infinite";
-      speakBtn.innerHTML =
-        "<i data-lucide='mic'></i> <span>Listening...</span>";
+    const listenBtn = document.getElementById("phrase-listen-btn");
+    const speakBtn = document.getElementById("phrase-speak-btn");
+    const feedbackEl = document.getElementById("phrase-feedback");
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const todayStr = `${year}-${month}-${day}`;
+
+    let isAlreadyCompleted =
+      profile.phraseCompletedOn === todayStr ||
+      localStorage.getItem("phraseCompletedOn") === todayStr;
+
+    if (isAlreadyCompleted && speakBtn) {
+      speakBtn.innerHTML = "<i data-lucide='check'></i> <span>Completed</span>";
+      speakBtn.classList.add("completed");
+      speakBtn.disabled = true;
       if (window.lucide) lucide.createIcons();
+    }
 
-      if (typeof startSpeechToText === "function") {
-        startSpeechToText(
-          "en-IN",
-          (transcript) => {
-            speakBtn.style.animation = "none";
-            if (transcript) {
-              const expected = todayPhrase
-                .toLowerCase()
-                .replace(/[.,?]/g, "")
-                .trim();
-              const actual = transcript
-                .toLowerCase()
-                .replace(/[.,?]/g, "")
-                .trim();
+    if (listenBtn) {
+      listenBtn.onclick = () => {
+        if (typeof speakText === "function") {
+          speakText(translatedTarget, targetLang);
+        }
+      };
+    }
 
-              const expectedWords = expected.split(/\s+/).filter(Boolean);
-              const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-              const matchedCount = expectedWords.filter((w) =>
-                actualWords.has(w),
-              ).length;
-              const matchRatio = expectedWords.length
-                ? matchedCount / expectedWords.length
-                : 0;
+    if (speakBtn) {
+      speakBtn.onclick = () => {
+        if (speakBtn.disabled || isAlreadyCompleted) return;
+        if (feedbackEl) feedbackEl.classList.add("hidden");
+        speakBtn.style.animation = "pulse 1.5s infinite";
+        speakBtn.innerHTML =
+          "<i data-lucide='mic'></i> <span>Listening...</span>";
+        if (window.lucide) lucide.createIcons();
 
-              if (matchRatio >= 0.6) {
-                if (feedbackEl) {
-                  feedbackEl.textContent =
-                    getTranslation(
-                      profile.preferredLanguage || "en",
-                      "phraseOfDaySuccess",
-                    ) || "Perfect! You earned +20 XP.";
-                  feedbackEl.className = "phrase-feedback success";
-                  feedbackEl.classList.remove("hidden");
-                }
+        if (typeof startSpeechToText === "function") {
+          const locale = targetLang === "en" ? "en-IN" : targetLang;
+          startSpeechToText(
+            locale,
+            (transcript) => {
+              speakBtn.style.animation = "none";
+              if (transcript) {
+                const expected = translatedTarget
+                  .toLowerCase()
+                  .replace(/[.,?]/g, "")
+                  .trim();
+                const actual = transcript
+                  .toLowerCase()
+                  .replace(/[.,?]/g, "")
+                  .trim();
 
-                speakBtn.innerHTML =
-                  "<i data-lucide='check'></i> <span>Completed</span>";
-                speakBtn.classList.add("completed");
-                speakBtn.disabled = true;
-                if (window.lucide) lucide.createIcons();
+                const expectedWords = expected.split(/\s+/).filter(Boolean);
+                const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
+                const matchedCount = expectedWords.filter((w) =>
+                  actualWords.has(w),
+                ).length;
+                const matchRatio = expectedWords.length
+                  ? matchedCount / expectedWords.length
+                  : 0;
 
-                // Grant 20 XP
-                const user = auth.currentUser;
-                if (user) {
-                  // Update memory so it persists across soft navigation
-                  profile.phraseCompletedOn = todayStr;
-                  localStorage.setItem("phraseCompletedOn", todayStr);
-                  isAlreadyCompleted = true;
-
-                  db.collection("users")
-                    .doc(user.uid)
-                    .update({
-                      xp: firebase.firestore.FieldValue.increment(20),
-                      phraseCompletedOn: todayStr,
-                    })
-                    .catch((err) => console.error("XP update error", err));
-
-                  // Show floating XP if celebration exists
-                  if (typeof showFloatingXP === "function") {
-                    showFloatingXP(20);
+                if (matchRatio >= 0.6) {
+                  if (feedbackEl) {
+                    feedbackEl.textContent =
+                      getTranslation(
+                        prefLang,
+                        "phraseOfDaySuccess",
+                      ) || "Perfect! You earned +20 XP.";
+                    feedbackEl.className = "phrase-feedback success";
+                    feedbackEl.classList.remove("hidden");
                   }
+
+                  speakBtn.innerHTML =
+                    "<i data-lucide='check'></i> <span>Completed</span>";
+                  speakBtn.classList.add("completed");
+                  speakBtn.disabled = true;
+                  if (window.lucide) lucide.createIcons();
+
+                  // Grant 20 XP
+                  const user = auth.currentUser;
+                  if (user) {
+                    profile.phraseCompletedOn = todayStr;
+                    localStorage.setItem("phraseCompletedOn", todayStr);
+                    isAlreadyCompleted = true;
+
+                    db.collection("users")
+                      .doc(user.uid)
+                      .update({
+                        xp: firebase.firestore.FieldValue.increment(20),
+                        phraseCompletedOn: todayStr,
+                      })
+                      .catch((err) => console.error("XP update error", err));
+
+                    if (typeof showFloatingXP === "function") {
+                      showFloatingXP(20);
+                    }
+                  }
+                } else {
+                  if (feedbackEl) {
+                    feedbackEl.textContent = `${getTranslation(prefLang, "phraseOfDayTryAgain") || "Didn't catch that. Try again."} (You said: "${transcript}")`;
+                    feedbackEl.className = "phrase-feedback error";
+                    feedbackEl.classList.remove("hidden");
+                  }
+                  speakBtn.innerHTML =
+                    "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
+                  if (window.lucide) lucide.createIcons();
                 }
               } else {
                 if (feedbackEl) {
-                  feedbackEl.textContent = `${getTranslation(profile.preferredLanguage || "en", "phraseOfDayTryAgain") || "Didn't catch that. Try again."} (You said: "${transcript}")`;
+                  feedbackEl.textContent =
+                    getTranslation(
+                      prefLang,
+                      "phraseOfDayTryAgain",
+                    ) || "Didn't catch that. Try again.";
                   feedbackEl.className = "phrase-feedback error";
                   feedbackEl.classList.remove("hidden");
                 }
@@ -1908,37 +1934,24 @@ function initPhraseOfDay(profile) {
                   "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
                 if (window.lucide) lucide.createIcons();
               }
-            } else {
-              if (feedbackEl) {
-                feedbackEl.textContent =
-                  getTranslation(
-                    profile.preferredLanguage || "en",
-                    "phraseOfDayTryAgain",
-                  ) || "Didn't catch that. Try again.";
-                feedbackEl.className = "phrase-feedback error";
-                feedbackEl.classList.remove("hidden");
-              }
+            },
+            (err) => {
+              speakBtn.style.animation = "none";
               speakBtn.innerHTML =
                 "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
               if (window.lucide) lucide.createIcons();
-            }
-          },
-          (err) => {
-            speakBtn.style.animation = "none";
-            speakBtn.innerHTML =
-              "<i data-lucide='mic'></i> <span>Speak to earn XP</span>";
-            if (window.lucide) lucide.createIcons();
-            if (feedbackEl) {
-              feedbackEl.textContent = "Mic error. Try again.";
-              feedbackEl.className = "phrase-feedback error";
-              feedbackEl.classList.remove("hidden");
-            }
-            console.error("STT error:", err);
-          },
-        );
-      }
-    };
-  }
+              if (feedbackEl) {
+                feedbackEl.textContent = "Mic error. Try again.";
+                feedbackEl.className = "phrase-feedback error";
+                feedbackEl.classList.remove("hidden");
+              }
+              console.error("STT error:", err);
+            },
+          );
+        }
+      };
+    }
+  });
 }
 
 // ─── Leaderboard Logic ────────────────────────────────────
@@ -1989,18 +2002,19 @@ function initLeaderboard(profile) {
         html += "    </div>";
         html += "  </td>";
         html +=
-          '  <td style="text-align: center; color: var(--color-warning);">🔥 ' +
+          '  <td style="text-align: center; color: var(--color-warning);"><i data-lucide="flame" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;"></i> ' +
           streak +
           "</td>";
         html +=
-          '  <td style="text-align: center; color: #f59e0b;">🪙 ' +
+          '  <td style="text-align: center; color: #f59e0b;"><i data-lucide="coins" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;"></i> ' +
           coins +
           "</td>";
-        html += '  <td class="leaderboard-xp">' + xp + " XP</td>";
+        html += '  <td class="leaderboard-xp"><i data-lucide="zap" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;color:var(--color-primary);"></i> ' + xp + " XP</td>";
         html += "</tr>";
         rank++;
       });
       if (tbody) tbody.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
     })
     .catch((err) => {
       if (loading) loading.classList.add("hidden");

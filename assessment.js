@@ -2,14 +2,16 @@
  * assessment.js — AI-Powered Literacy Assessment using Gemini API.
  *
  * Fetches user profile, sends education level + language to Gemini API
- * to generate 10 personalized MCQ questions, renders the quiz,
- * calculates score, and saves results to Firestore.
+ * to generate 12 personalized questions (6 MCQ, 3 listening, 3 speaking),
+ * renders the quiz, calculates score, and saves results to Firestore.
  *
  * Falls back to hardcoded questions if Gemini API is unavailable.
  */
 
 // ─── Fallback Question Banks ──────────────────────────────────
-// Used only if Gemini API call fails
+// English-only safety net; used only if Gemini API call fails.
+// NOTE: Does not yet reflect the new 3-type (mcq/listening/speaking) mix —
+// only contains basic MCQ questions. This is acceptable as a last-resort fallback.
 
 const fallbackQuestions = {
   beginner: [
@@ -70,6 +72,25 @@ const literacyDescriptions = {
   preferNot: "literacy level not specified, treat as beginner"
 };
 
+// ─── Age & Literacy Context for Prompt Variation ──────────────
+// (Same pattern as lesson.js's ageContext / litContext objects)
+
+const ASSESSMENT_AGE_CONTEXT = {
+  below18: "a teenage learner — use vocabulary/scenarios relatable to school, family, friends, hobbies",
+  "18-25": "a young adult learner — use vocabulary/scenarios about first jobs, further study, city life, socializing",
+  "26-40": "a working-age adult learner — use vocabulary/scenarios about work, family responsibilities, banking, errands",
+  "41-60": "a middle-aged adult learner — use vocabulary/scenarios about established work life, healthcare, family, community",
+  "60+": "an older adult learner — keep pacing calm; use vocabulary/scenarios about healthcare, family, community; avoid fast-paced slang"
+};
+
+const ASSESSMENT_LITERACY_PACING = {
+  neverLearned: "This learner has never read or written in ANY language before. Start at the absolute simplest possible level (single common words, very short phrases) and increase difficulty VERY gradually and gently across the 12 questions. Provide maximum context/scaffolding in the known-language instructions.",
+  canRecognize: "This learner can recognize some letters/words in their own language but not full sentences. Start simple and increase difficulty gradually.",
+  canReadSimple: "This learner can read/write simple sentences in their own language with some difficulty. Can start at a slightly higher baseline and ramp at a moderate pace.",
+  canReadComfort: "This learner reads/writes comfortably in their own language. Can start at a moderate baseline and ramp up difficulty at a faster pace, since general literacy skills transfer.",
+  preferNot: "Literacy level not specified — treat as a cautious beginner, gentle ramp."
+};
+
 // ─── Assessment State ─────────────────────────────────────────
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -80,29 +101,17 @@ let isLoadingQuestions = false;
 // ─── Gemini API Integration ───────────────────────────────────
 
 /**
- * Fetches 10 assessment questions from Gemini API based on the user's
- * literacy level, age group, and preferred language.
+ * Fetches 12 assessment questions (6 mcq, 3 listening, 3 speaking) from
+ * Gemini API based on the user's literacy level, age group, and languages.
+ * No caching — the assessment must always generate fresh questions.
  */
 async function fetchQuestionsFromGemini(literacyLevel, ageGroup, knownLang, targetLang, motherTongue) {
 
-  const cacheKey = `gemini_assessment_${literacyLevel}_${ageGroup}_${knownLang}_${targetLang}_${motherTongue}`;
-  const cached = sessionStorage.getItem(cacheKey);
-  if (cached) {
-    try { return JSON.parse(cached); } catch (e) {}
-  }
-
-  // CHANGED: now takes BOTH languages. knownLangName is what the learner
-  // already understands (instructions/options go here); targetLangName is
-  // what's being assessed (the specific word/phrase under test goes here).
   const knownLangName = languageNames[knownLang] || "English";
   const targetLangName = languageNames[targetLang] || "English";
   const litDesc = literacyDescriptions[literacyLevel] || literacyDescriptions.neverLearned;
-
-  const isChild = ageGroup === 'below18';
-  const learnerType = isChild ? "child/young learner" : "adult learner";
-  const contextRule = isChild
-    ? "IMPORTANT: Use child-friendly contexts (e.g., school, animals, playing, family, colors) suitable for kids or young teens. Keep the tone encouraging and simple."
-    : "IMPORTANT: Use real-world adult contexts (e.g., bus tickets, medicine labels, bank forms, ration cards, market shopping). Adjust the tone to be respectful for adult learners.";
+  const ageInstruction = ASSESSMENT_AGE_CONTEXT[ageGroup] || ASSESSMENT_AGE_CONTEXT["26-40"];
+  const pacingInstruction = ASSESSMENT_LITERACY_PACING[literacyLevel] || ASSESSMENT_LITERACY_PACING.preferNot;
 
   // CHANGED: this is now a PLACEMENT TEST for a new language, not a
   // literacy test in the learner's own language. The learner already
@@ -111,7 +120,7 @@ async function fetchQuestionsFromGemini(literacyLevel, ageGroup, knownLang, targ
   // must stay in ${knownLangName} (so they can understand what's being
   // asked), while the specific word/phrase under test is shown in
   // ${targetLangName}.
-  const prompt = `You are designing a placement test to measure how much ${targetLangName} a learner already knows, BEFORE they start lessons. The learner's known language is ${knownLangName} — they may know ZERO ${targetLangName} yet. Generate exactly 10 questions: 7 multiple-choice questions (MCQ) and 3 speaking questions.
+  const prompt = `You are designing a placement test to measure how much ${targetLangName} a learner already knows, BEFORE they start lessons. The learner's known language is ${knownLangName} — they may know ZERO ${targetLangName} yet. Generate exactly 12 questions: 6 multiple-choice questions (MCQ), 3 listening questions, and 3 speaking questions.
 
 LEARNER PROFILE:
 - Self-reported starting literacy level: ${litDesc}
@@ -121,8 +130,13 @@ LEARNER PROFILE:
 
 CRITICAL FORMAT RULES:
 
-For the 7 "mcq" questions:
+For the 6 "mcq" questions:
 - The "question" field itself must be written in ${knownLangName}, and must embed the specific ${targetLangName} word/phrase being tested inside it. Example: "What does the ${targetLangName} word '____' mean?"
+- The 4 "options" must be written in ${knownLangName}.
+
+For the 3 "listening" questions:
+- The "question" field must be written in ${knownLangName}, e.g. "Listen to the phrase and select the correct meaning:"
+- The "audioText" field MUST contain the specific ${targetLangName} text that the user will listen to.
 - The 4 "options" must be written in ${knownLangName}.
 
 For the 3 "speaking" questions:
@@ -130,11 +144,12 @@ For the 3 "speaking" questions:
 - The "targetPhrase" field MUST contain the specific ${targetLangName} text (max 4-5 words) that the user is supposed to say. DO NOT put ${knownLangName} text here.
 
 REQUIREMENTS:
-1. ${contextRule}
-2. Questions should progressively increase in difficulty from question 1 to 10.
-3. Each question must be SHORT — one sentence, never a scenario or paragraph.
+1. ${ageInstruction}
+2. ${pacingInstruction}
+3. Questions should progressively increase in difficulty from question 1 to 12.
+4. Each question must be SHORT — one sentence, never a scenario or paragraph.
 
-RESPOND WITH ONLY a valid JSON array of 10 objects. Do NOT include markdown code fences.
+RESPOND WITH ONLY a valid JSON array of 12 objects. Do NOT include markdown code fences.
 Format:
 [
   {
@@ -143,7 +158,13 @@ Format:
     "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
     "correctAnswer": "A" | "B" | "C" | "D"
   },
-  ...
+  {
+    "type": "listening",
+    "question": "string",
+    "audioText": "string",
+    "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
+    "correctAnswer": "A" | "B" | "C" | "D"
+  },
   {
     "type": "speaking",
     "question": "string",
@@ -191,6 +212,14 @@ Format:
             text: q.question,
             targetPhrase: q.targetPhrase
           });
+        } else if (q.type === 'listening' && q.question && q.audioText && q.options && typeof letterToIndex[q.correctAnswer] !== 'undefined') {
+          validQuestions.push({
+            type: "listening",
+            text: q.question,
+            audioText: q.audioText,
+            options: [q.options.A, q.options.B, q.options.C, q.options.D],
+            answerIndex: letterToIndex[q.correctAnswer]
+          });
         } else if ((q.type === 'mcq' || !q.type) && q.question && q.options && typeof letterToIndex[q.correctAnswer] !== 'undefined') {
           validQuestions.push({
             type: "mcq",
@@ -201,8 +230,7 @@ Format:
         }
       }
 
-      const finalQuestions = validQuestions.slice(0, 10);
-      sessionStorage.setItem(cacheKey, JSON.stringify(finalQuestions));
+      const finalQuestions = validQuestions.slice(0, 12);
       return finalQuestions;
 
     } catch (error) {
@@ -536,10 +564,22 @@ function setupAssessment() {
   if (ttsBtn) {
     ttsBtn.addEventListener("click", () => {
       const qData = currentQuestions[currentQuestionIndex];
-      let text = qData.text;
-      qData.options.forEach(opt => text += ". " + opt);
-      if (typeof speakText === "function") {
-        speakText(text, userProfile?.preferredLanguage || selectedLang);
+      if (qData.type === 'listening') {
+        if (typeof speakText === "function") {
+          speakText(qData.audioText, userProfile?.targetLanguage || "en-IN");
+        }
+      } else if (qData.type === 'speaking') {
+        if (typeof speakText === "function") {
+          speakText(qData.targetPhrase, userProfile?.targetLanguage || "en-IN");
+        }
+      } else {
+        let text = qData.text;
+        if (qData.options) {
+          qData.options.forEach(opt => text += ". " + opt);
+        }
+        if (typeof speakText === "function") {
+          speakText(text, userProfile?.preferredLanguage || selectedLang);
+        }
       }
     });
   }
@@ -634,8 +674,8 @@ function renderQuestion() {
             micBtn.style.animation = "none";
             
             if (transcript) {
-              const expected = qData.targetPhrase.toLowerCase().replace(/[.,?]/g, "").trim();
-              const actual = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
+              const expected = qData.targetPhrase.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
+              const actual = transcript.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
               
               const expectedWords = expected.split(/\s+/).filter(Boolean);
               const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
@@ -670,6 +710,51 @@ function renderQuestion() {
       }
     };
 
+  } else if (qData.type === "listening") {
+    // Listening MCQ
+    const letters = ['A', 'B', 'C', 'D'];
+
+    // Add the play button at the top
+    const playContainer = document.createElement("div");
+    playContainer.style.display = "flex";
+    playContainer.style.justifyContent = "center";
+    playContainer.style.marginBottom = "1.5rem";
+    
+    const playBtn = document.createElement("button");
+    playBtn.className = "exercise-tts-btn";
+    playBtn.innerHTML = "🔊";
+    playBtn.onclick = () => {
+      if (typeof speakText === "function") {
+        speakText(qData.audioText, userProfile?.targetLanguage || "en-IN");
+      }
+    };
+    playContainer.appendChild(playBtn);
+    optionsContainer.appendChild(playContainer);
+
+    qData.options.forEach((optText, index) => {
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
+
+      // Retain selection if they go back
+      if (userAnswers[currentQuestionIndex] === index) {
+        btn.classList.add("selected");
+      }
+
+      btn.innerHTML = `
+        <div class="option-letter">${letters[index]}</div>
+        <span>${optText}</span>
+      `;
+
+      btn.addEventListener("click", () => {
+        // Clear other selections
+        document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+        btn.classList.add("selected");
+        userAnswers[currentQuestionIndex] = index;
+        document.getElementById("assessment-error").style.display = "none";
+      });
+
+      optionsContainer.appendChild(btn);
+    });
   } else {
     // Standard MCQ
     const letters = ['A', 'B', 'C', 'D'];

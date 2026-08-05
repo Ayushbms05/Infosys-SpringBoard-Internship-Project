@@ -16,11 +16,11 @@ let currentSort = "xp_desc";
 let currentSearch = "";
 
 const ADMIN_SKILL_META = {
-  reading: { icon: "📖", label: "Reading" },
-  writing: { icon: "✍️", label: "Writing" },
-  listening: { icon: "🎧", label: "Listening" },
-  speaking: { icon: "🗣️", label: "Speaking" },
-  pronunciation: { icon: "🔤", label: "Pronunciation" },
+  reading: { icon: "<i data-lucide=\"book-open\"></i>", label: "Reading" },
+  writing: { icon: "<i data-lucide=\"pen-tool\"></i>", label: "Writing" },
+  listening: { icon: "<i data-lucide=\"headphones\"></i>", label: "Listening" },
+  speaking: { icon: "<i data-lucide=\"mic\"></i>", label: "Speaking" },
+  pronunciation: { icon: "<i data-lucide=\"type\"></i>", label: "Pronunciation" },
 };
 
 function setupAdminPage() {
@@ -189,19 +189,19 @@ function renderLevelDistribution() {
     {
       key: "beginner",
       label: "Beginner",
-      icon: "🌱",
+      icon: "<i data-lucide=\"sprout\"></i>",
       color: "var(--color-warm-light,#f59e0b)",
     },
     {
       key: "intermediate",
       label: "Intermediate",
-      icon: "📘",
+      icon: "<i data-lucide=\"book\"></i>",
       color: "var(--color-primary)",
     },
     {
       key: "advanced",
       label: "Advanced",
-      icon: "🚀",
+      icon: "<i data-lucide=\"rocket\"></i>",
       color: "var(--color-accent)",
     },
   ];
@@ -304,7 +304,7 @@ async function renderRecentActivity() {
         const user = userMap[uid];
         const name = user ? user.fullName : "Unknown user";
         const meta = ADMIN_SKILL_META[d.type] || {
-          icon: "📌",
+          icon: "<i data-lucide=\"pin\"></i>",
           label: d.type || "",
         };
         const when =
@@ -404,7 +404,7 @@ function renderUsersTable() {
       <td><span class="rec-card-tag ${u.currentLevel}">${LEVEL_LABELS[u.currentLevel] || u.currentLevel}</span></td>
       <td>${u.assessmentScore !== null ? u.assessmentScore + "%" : "—"}</td>
       <td>${u.xp}</td>
-      <td>🔥 ${u.streak}</td>
+      <td><i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> ${u.streak}</td>
       <td>${u.completedLessons.length}</td>
       <td>${u.lastActiveDate || "Never"}</td>
       <td><button class="admin-view-btn" data-uid="${u.uid}">View</button></td>
@@ -416,6 +416,7 @@ function renderUsersTable() {
   tbody.querySelectorAll(".admin-view-btn").forEach((btn) => {
     btn.addEventListener("click", () => openUserDetailModal(btn.dataset.uid));
   });
+  if (window.lucide) lucide.createIcons();
 }
 
 // ─── Events ─────────────────────────────────────────────────
@@ -474,7 +475,8 @@ function setupAdminEvents() {
       renderUsersTable();
       renderAdminLeaderboard();
       refreshBtn.disabled = false;
-      refreshBtn.textContent = "🔄 Refresh";
+      refreshBtn.innerHTML = "<i data-lucide='refresh-cw' class='inline-icon'></i> Refresh";
+      if (window.lucide) lucide.createIcons();
     });
   }
 
@@ -616,17 +618,18 @@ function updateModalDangerButtons(user) {
   const banBtn = document.getElementById("admin-ban-btn");
   const adminBtn = document.getElementById("admin-toggle-admin-btn");
   if (banBtn)
-    banBtn.textContent = user.isBanned
-      ? "🔓 Reinstate User"
-      : "🚫 Suspend User";
+    banBtn.innerHTML = user.isBanned
+      ? "<i data-lucide='unlock' class='inline-icon'></i> Reinstate User"
+      : "<i data-lucide='ban' class='inline-icon'></i> Suspend User";
   if (adminBtn)
-    adminBtn.textContent = user.isAdmin ? "⬇ Revoke Admin" : "⬆ Make Admin";
+    adminBtn.innerHTML = user.isAdmin ? "<i data-lucide='arrow-down' class='inline-icon'></i> Revoke Admin" : "<i data-lucide='arrow-up' class='inline-icon'></i> Make Admin";
+  if (window.lucide) lucide.createIcons();
 }
 
 async function saveUserEdits(uid) {
   const btn = document.getElementById("admin-save-edit-btn");
-  const original = btn.textContent;
-  btn.textContent = "Saving…";
+  const original = btn.innerHTML;
+  btn.innerHTML = "Saving…";
   btn.disabled = true;
 
   const updates = {
@@ -643,14 +646,15 @@ async function saveUserEdits(uid) {
     const cached = allUsersCache.find((u) => u.uid === uid);
     if (cached) Object.assign(cached, updates);
     renderUsersTable();
-    btn.textContent = "Saved ✓";
+    btn.innerHTML = "Saved <i data-lucide='check' class='inline-icon'></i>";
   } catch (err) {
     console.error("Failed to save user edits:", err);
-    btn.textContent = "Error — see console";
+    btn.innerHTML = "Error — see console";
   } finally {
     setTimeout(() => {
-      btn.textContent = original;
+      btn.innerHTML = original;
       btn.disabled = false;
+      if (window.lucide) lucide.createIcons();
     }, 1500);
   }
 }
@@ -817,7 +821,7 @@ function renderModalAccuracyTrend(history) {
   container.innerHTML = recent
     .map((h, idx) => {
       const isLast = idx === recent.length - 1;
-      const meta = ADMIN_SKILL_META[h.type] || { icon: "📖" };
+      const meta = ADMIN_SKILL_META[h.type] || { icon: "<i data-lucide=\"book-open\"></i>" };
       return `<div class="bar-col" title="${h.accuracy}%">
       <div class="bar-fill ${isLast ? "active" : ""}" style="height:${Math.max(h.accuracy, 3)}%;"></div>
       <span class="bar-label ${isLast ? "active" : ""}">${meta.icon}</span>
@@ -853,7 +857,7 @@ async function loadAnnouncements() {
             ? d.createdAt.toDate().toLocaleString()
             : "";
         return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">${d.active ? "🟢" : "⚪"}</span>
+        <span class="admin-activity-icon">${d.active ? "<i data-lucide='circle-dot' class='inline-icon' style='color:var(--color-success);'></i>" : "<i data-lucide='circle' class='inline-icon'></i>"}</span>
         <div class="admin-activity-info">
           <div class="admin-activity-main">${d.message}</div>
           <div class="admin-activity-time">${when}</div>
@@ -868,6 +872,7 @@ async function loadAnnouncements() {
         deactivateAnnouncement(btn.dataset.deactivate),
       );
     });
+    if (window.lucide) lucide.createIcons();
   } catch (err) {
     console.error("Failed to load announcements:", err);
     listEl.innerHTML =
@@ -948,7 +953,7 @@ async function loadFeedback() {
             ? timeAgo(d.createdAt.toDate())
             : "";
         return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">${d.status === "reviewed" ? "✅" : "🆕"}</span>
+        <span class="admin-activity-icon">${d.status === "reviewed" ? "<i data-lucide='check-circle' class='inline-icon' style='color:var(--color-success);'></i>" : "<i data-lucide='sparkles' class='inline-icon' style='color:var(--color-primary);'></i>"}</span>
         <div class="admin-activity-info">
           <div class="admin-activity-main"><strong>${d.email || "Unknown user"}</strong>: ${d.message}</div>
           <div class="admin-activity-time">${when}</div>
@@ -992,7 +997,7 @@ async function loadErrorLogs() {
       .get();
     if (snap.empty) {
       listEl.innerHTML =
-        '<div class="analysis-empty-state">No errors logged. 🎉</div>';
+        '<div class="analysis-empty-state">No errors logged. <i data-lucide="party-popper" class="inline-icon"></i></div>';
       return;
     }
     listEl.innerHTML = snap.docs
@@ -1003,7 +1008,7 @@ async function loadErrorLogs() {
             ? timeAgo(d.createdAt.toDate())
             : "";
         return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">🐞</span>
+        <span class="admin-activity-icon"><i data-lucide="bug"></i></span>
         <div class="admin-activity-info">
           <div class="admin-activity-main">${d.message}</div>
           <div class="admin-activity-time">${d.email || "Unknown user"} · ${when}</div>
@@ -1058,13 +1063,14 @@ function renderAdminLeaderboard() {
         html += '      <div style="font-weight: 500;">' + name + '</div>';
         html += '    </div>';
         html += '  </td>';
-        html += '  <td style="text-align: center; color: var(--color-warning);">🔥 ' + streak + '</td>';
-        html += '  <td style="text-align: center; color: #f59e0b;">🪙 ' + coins + '</td>';
-        html += '  <td class="leaderboard-xp">' + xp + ' XP</td>';
+        html += '  <td style="text-align: center; color: var(--color-warning);"><i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> ' + streak + '</td>';
+        html += '  <td style="text-align: center; color: #f59e0b;"><i data-lucide="coins" class="inline-icon" style="color:#f59e0b;"></i> ' + coins + '</td>';
+        html += '  <td class="leaderboard-xp" style="text-align: right;"><i data-lucide="zap" class="inline-icon" style="color:var(--color-primary);"></i> ' + xp + ' XP</td>';
         html += '</tr>';
         rank++;
       });
       tbody.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
     })
     .catch(err => {
       if (loading) loading.classList.add("hidden");
