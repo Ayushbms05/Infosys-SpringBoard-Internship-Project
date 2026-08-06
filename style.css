@@ -4971,14 +4971,22 @@ button {
 
 .word-options-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin: 0 auto;
+  max-width: 680px;
+}
+
+@media (max-width: 768px) {
+  .word-options-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
   .word-options-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 }
 
@@ -5097,6 +5105,10 @@ button {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+}
+
+.game-play-header .chat-back {
+  color: var(--color-text-primary);
 }
 
 .game-play-header h2 {
@@ -7047,6 +7059,11 @@ body.sidebar-collapsed .dash-top-navbar .dash-nav-item .sidebar-nav-label {
 
   .dash-side-col {
     position: static;
+  }
+
+  /* Hide Word of the Day, Daily Quests, etc. on non-Learn tabs on mobile */
+  body[data-active-section]:not([data-active-section="learn"]) .dash-side-col {
+    display: none;
   }
 }
 
@@ -9776,6 +9793,12 @@ body#page-register {
 
 .roadmap-dot.available:hover {
   transform: scale(1.2);
+}
+
+.roadmap-dot.skipped {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  opacity: 0.4;
 }
 
 .roadmap-dot.completed {

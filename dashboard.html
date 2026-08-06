@@ -359,13 +359,7 @@
 
         <!-- ═══════════ MAIN CONTENT ═══════════ -->
         <main class="dash-main-wrap">
-          <div class="dash-topbar">
-            <div class="dash-topbar-title">
-              <h1 data-i18n="dashTopbarLearn">Learn</h1>
-              <p class="dash-topbar-sub">Pick up right where you left off</p>
-            </div>
-            <div class="dash-topbar-date" id="topbar-date"></div>
-          </div>
+
           <div id="announcement-banner" class="announcement-banner hidden">
             <span id="announcement-text"></span>
             <button id="announcement-dismiss" class="announcement-dismiss">
@@ -567,7 +561,7 @@
                           id="rec-cta-label-text"
                           data-i18n="dashRecommendedStart"
                         >
-                          Recommended starting point</span
+                          Pick up where you left off</span
                         >
                       </div>
                       <div class="rec-cta-row">
@@ -610,109 +604,9 @@
                       ></div>
                     </div>
                   </div>
-                  <div class="stats-strip">
-                    <div class="stats-strip-item">
-                      <div class="stats-strip-icon streak-col"><i data-lucide="flame"></i></div>
-                      <div class="stats-strip-val" id="strip-streak">0</div>
-                      <div class="stats-strip-label" data-i18n="statDayStreak">
-                        Day Streak
-                      </div>
-                    </div>
-                    <div class="stats-strip-divider"></div>
-                    <div class="stats-strip-item">
-                      <div class="stats-strip-icon xp-col"><i data-lucide="zap"></i></div>
-                      <div class="stats-strip-val" id="strip-xp">0</div>
-                      <div class="stats-strip-label" data-i18n="statTotalXP">
-                        Total XP
-                      </div>
-                    </div>
-                    <div class="stats-strip-divider"></div>
-                    <div class="stats-strip-item">
-                      <div class="stats-strip-icon lessons-col"><i data-lucide="book-open"></i></div>
-                      <div class="stats-strip-val" id="strip-lessons">0</div>
-                      <div
-                        class="stats-strip-label"
-                        data-i18n="statLessonsDone"
-                      >
-                        Lessons Done
-                      </div>
-                    </div>
-                    <div class="stats-strip-divider"></div>
-                    <div class="stats-strip-item">
-                      <div class="stats-strip-icon badges-col"><i data-lucide="award"></i></div>
-                      <div class="stats-strip-val" id="strip-badges">0</div>
-                      <div class="stats-strip-label" data-i18n="statBadges">
-                        Badges
-                      </div>
-                    </div>
+
+
                   </div>
-
-                  <div class="dash-section">
-                    <div class="section-heading-container">
-                      <div>
-                        <h3
-                          class="section-heading"
-                          data-i18n="dashPracticalSkills"
-                        >
-                          <i data-lucide="globe"></i> Practical Life Skills
-                        </h3>
-                        <p
-                          class="section-subtext"
-                          data-i18n="dashPracticalSkillsDesc"
-                        >
-                          Apply your reading to real-world situations.
-                        </p>
-                      </div>
-                      <a href="#" class="section-view-all" data-i18n="viewAll"
-                        >View All →</a
-                      >
-                    </div>
-
-                    <div class="explore-grid">
-                      <div
-                        class="explore-card"
-                        onclick="
-                          window.location.href =
-                            'lesson.html?type=reading&unit=banking'
-                        "
-                      >
-                        <div class="explore-icon"><i data-lucide="landmark"></i></div>
-                        <h4 data-i18n="bankingTitle">Banking & Forms</h4>
-                        <p data-i18n="bankingDesc">
-                          Learn to read deposit slips and account balances.
-                        </p>
-                      </div>
-
-                      <div
-                        class="explore-card"
-                        onclick="
-                          window.location.href =
-                            'lesson.html?type=reading&unit=transit'
-                        "
-                      >
-                        <div class="explore-icon"><i data-lucide="bus"></i></div>
-                        <h4 data-i18n="transitTitle">Transit & Travel</h4>
-                        <p data-i18n="transitDesc">
-                          Read bus numbers, train tickets, and station signs.
-                        </p>
-                      </div>
-
-                      <div
-                        class="explore-card"
-                        onclick="
-                          window.location.href =
-                            'lesson.html?type=reading&unit=health'
-                        "
-                      >
-                        <div class="explore-icon"><i data-lucide="pill"></i></div>
-                        <h4 data-i18n="healthTitle">Health & Medicine</h4>
-                        <p data-i18n="healthDesc">
-                          Understand prescriptions and medicine labels safely.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <div
                   id="view-path"
                   class="learn-sub-view hidden"
@@ -750,6 +644,69 @@
                   </div>
                   <div id="skill-cards" class="skill-cards-grid"></div>
                 </div>
+
+                <div class="dash-card" style="margin-top: 1.5rem;">
+                  <div class="dash-card-header" style="align-items: center; padding: 1.5rem 1.5rem 0 1.5rem;">
+                    <div>
+                      <h3 class="dash-card-title" data-i18n="dashPracticalSkills">
+                        <span class="dash-card-title-icon"><i data-lucide="earth"></i></span>
+                        Practical Life Skills
+                      </h3>
+                      <p class="dash-card-subtitle" data-i18n="dashPracticalSkillsDesc">
+                        Apply your reading to real-world situations.
+                      </p>
+                    </div>
+                    <a href="#" class="view-all-link" style="margin-left: auto;"
+                      >View All <i data-lucide="arrow-right"></i
+                    ></a>
+                  </div>
+                  <div class="explore-grid" style="padding: 1.5rem;">
+                    <div
+                      class="explore-card"
+                      onclick="
+                        window.location.href =
+                          'lesson.html?type=reading&unit=banking&mode=practice'
+                      "
+                    >
+                      <div class="explore-icon">
+                        <i data-lucide="landmark"></i>
+                      </div>
+                      <h4 data-i18n="bankingTitle">Banking & Forms</h4>
+                      <p data-i18n="bankingDesc">
+                        Learn to read deposit slips and account balances.
+                      </p>
+                    </div>
+
+                    <div
+                      class="explore-card"
+                      onclick="
+                        window.location.href =
+                          'lesson.html?type=reading&unit=transit&mode=practice'
+                      "
+                    >
+                      <div class="explore-icon"><i data-lucide="bus"></i></div>
+                      <h4 data-i18n="transitTitle">Transit & Travel</h4>
+                      <p data-i18n="transitDesc">
+                        Read bus numbers, train tickets, and station signs.
+                      </p>
+                    </div>
+
+                    <div
+                      class="explore-card"
+                      onclick="
+                        window.location.href =
+                          'lesson.html?type=reading&unit=health&mode=practice'
+                      "
+                    >
+                      <div class="explore-icon"><i data-lucide="pill"></i></div>
+                      <h4 data-i18n="healthTitle">Health & Medicine</h4>
+                      <p data-i18n="healthDesc">
+                        Understand prescriptions and medicine labels safely.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
               </div>
 
               <div id="section-profile" class="dash-main-section hidden">
@@ -884,30 +841,39 @@
                     </div>
                   </form>
 
-                  <div class="profile-stats" id="profile-stats-container">
-                    <div class="profile-stat">
-                      <div class="profile-stat-value" id="profile-xp">0</div>
-                      <div class="profile-stat-label" data-i18n="profileXP">
-                        Total XP
-                      </div>
-                    </div>
-                    <div class="profile-stat">
-                      <div class="profile-stat-value" id="profile-streak">
-                        0
-                      </div>
-                      <div class="profile-stat-label" data-i18n="profileStreak">
+                  <div class="stats-strip" id="profile-stats-container">
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon streak-col"><i data-lucide="flame"></i></div>
+                      <div class="stats-strip-val" id="strip-streak">0</div>
+                      <div class="stats-strip-label" data-i18n="statDayStreak">
                         Day Streak
                       </div>
                     </div>
-                    <div class="profile-stat">
-                      <div class="profile-stat-value" id="profile-lessons">
-                        0
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon xp-col"><i data-lucide="zap"></i></div>
+                      <div class="stats-strip-val" id="strip-xp">0</div>
+                      <div class="stats-strip-label" data-i18n="statTotalXP">
+                        Total XP
                       </div>
+                    </div>
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon lessons-col"><i data-lucide="book-open"></i></div>
+                      <div class="stats-strip-val" id="strip-lessons">0</div>
                       <div
-                        class="profile-stat-label"
-                        data-i18n="profileLessons"
+                        class="stats-strip-label"
+                        data-i18n="statLessonsDone"
                       >
                         Lessons Done
+                      </div>
+                    </div>
+                    <div class="stats-strip-divider"></div>
+                    <div class="stats-strip-item">
+                      <div class="stats-strip-icon badges-col"><i data-lucide="award"></i></div>
+                      <div class="stats-strip-val" id="strip-badges">0</div>
+                      <div class="stats-strip-label" data-i18n="statBadges">
+                        Badges
                       </div>
                     </div>
                   </div>

@@ -203,10 +203,69 @@ function computeRecommendation(score, literacyLevel) {
  * Populates the #view-results recommendation card with the computed
  * score ring, headline, interpretation, and Start Here CTA.
  */
+
+function computeNextIncompleteLesson(profile) {
+  const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const completedLessons = profile.completedLessons || [];
+  const curriculum = profile.curriculum || {};
+  
+  const levels = ["beginner", "intermediate", "advanced"];
+  const skills = ["reading", "writing", "listening", "speaking", "pronunciation"];
+  
+  const lit = profile.literacyLevel || "preferNot";
+  const unitByLiteracy = {
+    neverLearned: "alphabets",
+    canRecognize: "words",
+    canReadSimple: "sentences",
+    canReadComfort: "paragraphs",
+    preferNot: "alphabets",
+  };
+  const unit = unitByLiteracy[lit] || "alphabets";
+  
+  for (const lvl of levels) {
+    for (const skill of skills) {
+      const skillStatus = curriculum[lvl]?.[skill]?.status || "locked";
+      if (skillStatus === "locked" || skillStatus === "skipped") continue;
+      
+      for (let i = 1; i <= 5; i++) {
+        const lessonId = `${lvl}_${skill}_${unit}_${i}`;
+        if (!completedLessons.includes(lessonId)) {
+          const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
+          const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
+          
+          return {
+            level: lvl,
+            unit: unit,
+            lessonType: skill,
+            lessonIndex: i,
+            title: `${skill.charAt(0).toUpperCase() + skill.slice(1)} — Lesson ${i}`,
+            sub: `${lvl.charAt(0).toUpperCase() + lvl.slice(1)} Level`,
+            url: `lesson.html?level=${lvl}&unit=${unit}&type=${skill}&lessonIndex=${i}`,
+            icon: "<i data-lucide='play-circle'></i>"
+          };
+        }
+      }
+    }
+  }
+  
+  return {
+    level: "advanced",
+    unit: unit,
+    lessonType: "reading",
+    lessonIndex: 1,
+    title: "All caught up!",
+    sub: "You've completed everything!",
+    url: "#",
+    icon: "<i data-lucide='check-circle'></i>",
+    isFinished: true
+  };
+}
+
 function renderRecommendation(profile) {
   const score = profile.assessmentScore || 0;
   const litLvl = profile.literacyLevel || "preferNot";
   const rec = computeRecommendation(score, litLvl);
+  const nextLesson = computeNextIncompleteLesson(profile);
 
   // ── Static content (renders immediately) ──────────────────────
   const headline = document.getElementById("rec-score-headline");
@@ -237,10 +296,19 @@ function renderRecommendation(profile) {
   const ctaTitle = document.getElementById("rec-cta-title");
   const ctaSub = document.getElementById("rec-cta-sub");
   const ctaBtn = document.getElementById("rec-start-btn");
-  if (ctaIcon) ctaIcon.innerHTML = rec.unitIcon;
-  if (ctaTitle) ctaTitle.textContent = rec.unitLabel;
-  if (ctaSub) ctaSub.textContent = rec.levelLabel;
-  if (ctaBtn) ctaBtn.href = rec.url;
+  if (ctaIcon) ctaIcon.innerHTML = nextLesson.icon;
+  if (ctaTitle) ctaTitle.textContent = nextLesson.title;
+  if (ctaSub) ctaSub.textContent = nextLesson.sub;
+  if (ctaBtn) {
+    ctaBtn.href = nextLesson.url;
+    if (nextLesson.isFinished) {
+      ctaBtn.style.pointerEvents = "none";
+      ctaBtn.textContent = "✔ Completed";
+      ctaBtn.style.opacity = "0.5";
+    } else {
+      ctaBtn.textContent = "▶ Resume";
+    }
+  }
 
   // Animate score ring
   const circle = document.getElementById("rec-score-circle");
@@ -351,37 +419,8 @@ function renderAIAnalysis(analysis, rec) {
   }
 
   // Update primary CTA if Gemini gives a better recommendation
-  if (analysis.recommendedLevel && analysis.recommendedUnit) {
-    const unitLabels = {
-      alphabets: { label: "Alphabets — Letter Recognition", icon: "<i data-lucide=\"type\"></i>" },
-      words: { label: "Words — Vocabulary Building", icon: "<i data-lucide=\"edit-3\"></i>" },
-      sentences: { label: "Sentences — Reading Practice", icon: "<i data-lucide=\"file-text\"></i>" },
-      paragraphs: { label: "Paragraphs — Comprehension", icon: "<i data-lucide=\"book-open\"></i>" },
-    };
-    const levelLabels = {
-      beginner: "Beginner Level",
-      intermediate: "Intermediate Level",
-      advanced: "Advanced Level",
-    };
-    const uInfo = unitLabels[analysis.recommendedUnit] || unitLabels.alphabets;
-    const lType = analysis.recommendedLessonType || "reading";
+  // [Gemini CTA override removed so Continue Learning remains live-computed]
 
-    const ctaLabelEl = document.getElementById("rec-cta-label-text");
-    if (ctaLabelEl)
-      ctaLabelEl.innerHTML = "<i data-lucide='target' class='inline-icon'></i> Best starting point based on your results";
-
-    const ctaIcon = document.getElementById("rec-cta-icon");
-    const ctaTitle = document.getElementById("rec-cta-title");
-    const ctaSub = document.getElementById("rec-cta-sub");
-    const ctaBtn = document.getElementById("rec-start-btn");
-    if (ctaIcon) ctaIcon.innerHTML = uInfo.icon;
-    if (ctaTitle) ctaTitle.textContent = uInfo.label;
-    if (ctaSub)
-      ctaSub.textContent =
-        levelLabels[analysis.recommendedLevel] || "Beginner Level";
-    if (ctaBtn)
-      ctaBtn.href = `lesson.html?level=${analysis.recommendedLevel}&unit=${analysis.recommendedUnit}&type=${lType}`;
-  }
 
   // Render extra lesson recommendations (topRecommendations[1..] to avoid duplicating the primary)
   const extraListEl = document.getElementById("ai-extra-recs-list");
@@ -508,6 +547,12 @@ function renderLearningPath(profile) {
       <div class="roadmap-explainer-content">
         <h4 data-i18n="howItWorksTitle">How This Works</h4>
         <p data-i18n="howItWorksBody">Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.</p>
+        <div class="roadmap-legend" style="margin-top: 0.75rem; display: flex; gap: 1rem; font-size: 0.8rem; color: var(--color-text-light); align-items: center; flex-wrap: wrap;">
+          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot completed" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Completed</span>
+          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot skipped" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Placed Above (Skipped)</span>
+          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot available" style="width:12px; height:12px; border-width:1px; min-width: 12px; box-shadow:none;"></div> Available</span>
+          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot locked" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Locked</span>
+        </div>
       </div>
       <button class="roadmap-tts-btn" id="roadmap-tts-btn" aria-label="Listen">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -568,8 +613,9 @@ function renderLearningPath(profile) {
         } else if (skillStatus === "available") {
           // If skill is available, allow any dot (or enforce order if preferred, for now all available)
           state = "available";
-        } else if (skillStatus === "skipped" || skillStatus === "completed") {
-          // If the whole skill was skipped/completed by assessment, mark dots as completed
+        } else if (skillStatus === "skipped") {
+          state = "skipped";
+        } else if (skillStatus === "completed") {
           state = "completed";
         }
 
@@ -691,7 +737,7 @@ function renderSkillCards(profile) {
           }
         }
       }
-      window.location.href = `lesson.html?level=${level}&unit=${targetUnit}&type=${skill}`;
+      window.location.href = `lesson.html?level=${level}&unit=${targetUnit}&type=${skill}&mode=practice`;
     });
   });
 }
@@ -1181,6 +1227,8 @@ function setupDashboardEvents(profile) {
         .forEach((s) => s.classList.add("hidden"));
       const target = document.getElementById(`section-${section}`);
       if (target) target.classList.remove("hidden");
+      
+      document.body.dataset.activeSection = section;
 
       // Lazy-init merged sub-apps on first visit
       if (section === "chat" && window.ChatSimulator) {
