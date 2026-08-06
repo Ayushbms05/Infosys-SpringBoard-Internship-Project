@@ -1605,19 +1605,22 @@ function setupShop(profile) {
   shopUserProfile = profile; // keep a live reference, not a copy
 
   const shopBtn = document.getElementById("open-shop-btn");
+  const mobileShopBtn = document.getElementById("mobile-open-shop-btn");
   const closeBtn = document.getElementById("close-shop-btn");
   const shopModal = document.getElementById("shop-modal");
 
   applyTheme(profile.activeTheme || "default");
 
-  if (shopBtn && closeBtn && shopModal) {
-    shopBtn.addEventListener("click", () => {
-      renderShopItems(shopUserProfile);
-      document.getElementById("shop-balance").textContent =
-        shopUserProfile.coins || 0;
-      shopModal.classList.remove("hidden");
-    });
+  function openShop() {
+    renderShopItems(shopUserProfile);
+    document.getElementById("shop-balance").textContent =
+      shopUserProfile.coins || 0;
+    shopModal.classList.remove("hidden");
+  }
 
+  if (shopBtn) shopBtn.addEventListener("click", openShop);
+  if (mobileShopBtn) mobileShopBtn.addEventListener("click", openShop);
+  if (closeBtn && shopModal) {
     closeBtn.addEventListener("click", () => shopModal.classList.add("hidden"));
     shopModal.addEventListener("click", (e) => {
       if (e.target === shopModal) shopModal.classList.add("hidden");
