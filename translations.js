@@ -215,7 +215,7 @@ const translations = {
     dashTopbarSub: "Pick up right where you left off",
     dashMyResults: "My Results",
     dashGeminiAnalyzing: "Gemini is analysing your results…",
-    dashRecommendedStart: "Recommended starting point",
+    dashRecommendedStart: "Pick up where you left off",
     dashMoreLessons: "More lessons targeting your gaps",
     dashScoredHeadline: "You scored {score}% on your initial assessment.",
     statDayStreak: "Day Streak",

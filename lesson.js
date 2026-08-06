@@ -35,6 +35,7 @@ function setupLesson() {
     unit: params.get("unit") || "alphabets",  // kept for backward compat, ignored by blueprint
     type: params.get("type") || "reading",
     lessonIndex: parseInt(params.get("lessonIndex"), 10) || 1,
+    mode: params.get("mode") || "learning",
   };
 
   const titleEl = document.getElementById("lesson-title");
@@ -505,22 +506,23 @@ async function showLessonComplete() {
   const user = auth.currentUser;
   if (user) {
     await addXP(user.uid, xpEarned);
+    let levelResult = { leveledUp: false, newLevel: null };
+    if (lessonParams.mode !== "practice") {
+      levelResult = await completeLesson(
+        user.uid,
+        lessonParams.level,
+        lessonParams.type,
+        lessonParams.unit,
+        lessonParams.lessonIndex,
+        accuracy
+      );
 
-    // CHANGED: completeLesson() now needs the skill type (lessonParams.type)
-    // and the accuracy just scored, since leveling up now requires genuine
-    // mastery (5+ lessons AND 60%+ average accuracy) per skill, not just
-    // attendance. It's no longer gated behind "accuracy >= 50" here either
-    // — every attempt gets logged toward lessonsCompleted regardless of
-    // score, but only a strong average actually earns "completed" status.
-    const levelResult = await completeLesson(
-      user.uid,
-      lessonParams.level,
-      lessonParams.type,
-      lessonParams.unit,
-      lessonParams.lessonIndex,
-      accuracy,
-    );
-
+      if (levelResult && levelResult.leveledUp) {
+        document.getElementById("level-up-modal").classList.remove("hidden");
+        document.getElementById("new-level-text").textContent =
+          levelResult.newLevel.toUpperCase();
+      }
+    }
     await updateStreak(user.uid);
 
     if (typeof updateQuestProgress === "function") {
