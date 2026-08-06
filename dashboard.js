@@ -208,10 +208,10 @@ function computeNextIncompleteLesson(profile) {
   const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
   const completedLessons = profile.completedLessons || [];
   const curriculum = profile.curriculum || {};
-  
+
   const levels = ["beginner", "intermediate", "advanced"];
   const skills = ["reading", "writing", "listening", "speaking", "pronunciation"];
-  
+
   const lit = profile.literacyLevel || "preferNot";
   const unitByLiteracy = {
     neverLearned: "alphabets",
@@ -221,18 +221,18 @@ function computeNextIncompleteLesson(profile) {
     preferNot: "alphabets",
   };
   const unit = unitByLiteracy[lit] || "alphabets";
-  
+
   for (const lvl of levels) {
     for (const skill of skills) {
       const skillStatus = curriculum[lvl]?.[skill]?.status || "locked";
       if (skillStatus === "locked" || skillStatus === "skipped") continue;
-      
+
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${lvl}_${skill}_${unit}_${i}`;
         if (!completedLessons.includes(lessonId)) {
           const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
           const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
-          
+
           return {
             level: lvl,
             unit: unit,
@@ -247,7 +247,7 @@ function computeNextIncompleteLesson(profile) {
       }
     }
   }
-  
+
   return {
     level: "advanced",
     unit: unit,
@@ -798,15 +798,14 @@ function manageDailyQuests(profile) {
         <div class="quest-item-top">
           <div class="quest-item-left">
             <div class="quest-check">${isDone ? "<i data-lucide=\"check\"></i>" : ""}</div>
-            <span class="quest-title">${
-              q.id === "q1"
-                ? getTranslation(selectedLang, "questEarnXP") || "Earn 20 XP"
-                : q.id === "q2"
-                  ? getTranslation(selectedLang, "questPlayGame") ||
-                    "Play Word Match"
-                  : getTranslation(selectedLang, "questCompleteLesson") ||
-                    "Complete 1 Lesson"
-            }</span>
+            <span class="quest-title">${q.id === "q1"
+        ? getTranslation(selectedLang, "questEarnXP") || "Earn 20 XP"
+        : q.id === "q2"
+          ? getTranslation(selectedLang, "questPlayGame") ||
+          "Play Word Match"
+          : getTranslation(selectedLang, "questCompleteLesson") ||
+          "Complete 1 Lesson"
+      }</span>
           </div>
           <span class="quest-reward">+${q.reward} <i data-lucide="coins" style="width: 14px; height: 14px; vertical-align: middle;"></i></span>
         </div>
@@ -1049,10 +1048,10 @@ function renderWordOfTheDay(profile) {
   // Pick one based on the current day of the year
   const dayOfYear = Math.floor(
     (new Date() - new Date(new Date().getFullYear(), 0, 0)) /
-      1000 /
-      60 /
-      60 /
-      24,
+    1000 /
+    60 /
+    60 /
+    24,
   );
   const wotd = dictionary[dayOfYear % dictionary.length];
 
@@ -1088,7 +1087,7 @@ function setupDashboardEvents(profile) {
       });
     });
   }
-  
+
   const mobileLogoutBtn = document.getElementById("mobile-logout-btn");
   if (mobileLogoutBtn) {
     mobileLogoutBtn.addEventListener("click", () => {
@@ -1149,7 +1148,7 @@ function setupDashboardEvents(profile) {
       if (mobileLangSelect) mobileLangSelect.value = selectedLang;
     });
   }
-  
+
   const mobileLangSelect = document.getElementById("mobile-dash-lang-select");
   if (mobileLangSelect) {
     mobileLangSelect.value = selectedLang;
@@ -1227,7 +1226,7 @@ function setupDashboardEvents(profile) {
         .forEach((s) => s.classList.add("hidden"));
       const target = document.getElementById(`section-${section}`);
       if (target) target.classList.remove("hidden");
-      
+
       document.body.dataset.activeSection = section;
 
       // Lazy-init merged sub-apps on first visit
@@ -1574,6 +1573,26 @@ const SHOP_CATALOG = [
     price: 100,
     color: "#e11d48",
   },
+  // ── Premium Themes ──
+  {
+    id: "theme_ocean",
+    type: "theme",
+    icon: '<i data-lucide="waves"></i>',
+    title: "Ocean Theme",
+    desc: "Dive into a serene deep-sea world with calming cyan waves and floating bubbles.",
+    price: 200,
+    color: "#0891B2",
+  },
+  {
+    id: "theme_amethyst",
+    type: "theme",
+    icon: '<i data-lucide="sparkles"></i>',
+    title: "Amethyst Theme",
+    desc: "A magical purple galaxy with twinkling stars, golden crystals, and aurora lights.",
+    price: 200,
+    color: "#7C3AED",
+  },
+
 ];
 
 // Holds the ONE live copy of the user's profile that the whole dashboard

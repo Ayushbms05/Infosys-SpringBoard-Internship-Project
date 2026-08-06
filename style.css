@@ -8184,6 +8184,48 @@ body#page-register {
   transform-origin: center;
 }
 
+/* Ocean: floating bubble drift */
+@keyframes themeOceanBubble {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translateY(-18px) scale(1.1);
+    opacity: 0.25;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.15;
+  }
+}
+
+.theme-ocean-bubble {
+  animation: themeOceanBubble 4.5s ease-in-out infinite;
+}
+
+/* Amethyst: gentle star twinkling */
+@keyframes themeAmethystTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.2);
+  }
+}
+
+.theme-amethyst-star {
+  animation: themeAmethystTwinkle 3.5s ease-in-out infinite;
+}
+
+
 /* ════════════════════════════════════════════════════════════════
    THEME-AWARE ACCENTS — Chat Simulator, Word Match, Quests, Calendar
    These are decorative/gamification elements, so they follow the
@@ -10133,6 +10175,7 @@ body#page-register {
     justify-content: center;
   }
 }
+
 .inline-icon {
   width: 1em !important;
   height: 1em !important;
