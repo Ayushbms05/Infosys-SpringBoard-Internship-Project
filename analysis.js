@@ -96,8 +96,12 @@ window.Analysis = (function () {
 
     if (!history.length) {
       if (totalLessonsEl) totalLessonsEl.textContent = "0";
-      if (avgAccuracyEl) avgAccuracyEl.textContent = "—";
-      if (bestSkillEl) bestSkillEl.textContent = "—";
+      const emptyHtml = `<div style="display:flex; flex-direction:column; align-items:center; gap:0.25rem;">
+        <span style="font-size:1.5rem;">🌱</span>
+        <span style="font-size:0.75rem; color:var(--color-text-light); font-weight:500;">No data</span>
+      </div>`;
+      if (avgAccuracyEl) avgAccuracyEl.innerHTML = emptyHtml;
+      if (bestSkillEl) bestSkillEl.innerHTML = emptyHtml;
       return;
     }
 
@@ -288,6 +292,8 @@ window.Analysis = (function () {
 
   // ─── Accuracy Trend ───────────────────────────────────────────
 
+  let accuracyChartInstance = null;
+
   function renderAccuracyTrend(history) {
     const container = document.getElementById("accuracy-trend-chart");
     const summaryEl = document.getElementById("accuracy-trend-summary");
@@ -297,31 +303,111 @@ window.Analysis = (function () {
     if (!history.length) {
       container.innerHTML = "";
       if (summaryEl) summaryEl.textContent = "";
-      if (emptyState) emptyState.classList.remove("hidden");
+      if (emptyState) {
+        emptyState.innerHTML = `
+          <div class="analysis-empty-container">
+            <div class="analysis-empty-icon">📈</div>
+            <h4 style="margin:0; font-size:1.1rem; color:var(--color-text);">Your journey begins here!</h4>
+            <p style="margin:0; font-size:0.9rem;">Complete your first lesson to unlock insights and track your accuracy trend.</p>
+            <button class="btn-primary analysis-empty-btn" onclick="document.querySelector('[data-section=\\'learn\\']').click()">Start your first lesson</button>
+          </div>
+        `;
+        emptyState.classList.remove("hidden");
+      }
       return;
     }
     if (emptyState) emptyState.classList.add("hidden");
 
     const recent = history.slice(-12);
+    
+    // Check if we need to initialize canvas
+    let canvas = document.getElementById("accuracy-trend-canvas");
+    if (!canvas) {
+      container.innerHTML = '<canvas id="accuracy-trend-canvas" style="width:100%; height:100%;"></canvas>';
+      canvas = document.getElementById("accuracy-trend-canvas");
+    }
 
-    const html = recent
-      .map((h, idx) => {
-        const isLast = idx === recent.length - 1;
-        const meta = SKILL_META[h.type] || { icon: "📖", label: h.type };
-        const dateLabel = h.completedAt
-          ? h.completedAt.toLocaleDateString(undefined, {
-              month: "short",
-              day: "numeric",
-            })
-          : "";
-        return `<div class="bar-col" title="${meta.label} — ${h.accuracy}% — ${dateLabel}">
-        <div class="bar-fill ${isLast ? "active" : ""}" style="height:${Math.max(h.accuracy, 3)}%;"></div>
-        <span class="bar-label ${isLast ? "active" : ""}">${meta.icon}</span>
-      </div>`;
-      })
-      .join("");
+    const labels = recent.map(h => {
+      const meta = SKILL_META[h.type] || { icon: "📖", label: h.type };
+      const dateLabel = h.completedAt
+        ? h.completedAt.toLocaleDateString(undefined, { month: "short", day: "numeric" })
+        : "";
+      return `${meta.label} (${dateLabel})`;
+    });
 
-    container.innerHTML = html;
+    const dataPoints = recent.map(h => h.accuracy);
+
+    // Chart.js initialization
+    if (window.Chart) {
+      if (accuracyChartInstance) {
+        accuracyChartInstance.destroy();
+      }
+      
+      const ctx = canvas.getContext('2d');
+      
+      // Create gradient for the line
+      const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(108, 99, 255, 0.4)');
+      gradient.addColorStop(1, 'rgba(108, 99, 255, 0.0)');
+
+      accuracyChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Accuracy %',
+            data: dataPoints,
+            borderColor: '#6C63FF',
+            backgroundColor: gradient,
+            borderWidth: 3,
+            pointBackgroundColor: '#fff',
+            pointBorderColor: '#6C63FF',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            fill: true,
+            tension: 0.3 // Smooth curves
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: 'rgba(255, 255, 255, 0.95)',
+              titleColor: '#1e293b',
+              bodyColor: '#6C63FF',
+              borderColor: '#e2e8f0',
+              borderWidth: 1,
+              padding: 10,
+              displayColors: false,
+              callbacks: {
+                label: function(context) {
+                  return `Accuracy: ${context.parsed.y}%`;
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: { color: 'rgba(0,0,0,0.04)', drawBorder: false },
+              ticks: { color: '#94a3b8', font: { size: 11 }, callback: function(value) { return value + "%" } }
+            },
+            x: {
+              grid: { display: false, drawBorder: false },
+              ticks: { display: false } // Hide x-axis labels to keep it clean, tooltips will show them
+            }
+          },
+          interaction: {
+            mode: 'index',
+            intersect: false,
+          },
+        }
+      });
+    }
 
     const avgRecent = Math.round(
       recent.reduce((s, h) => s + h.accuracy, 0) / recent.length,

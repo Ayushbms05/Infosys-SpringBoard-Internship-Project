@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AksharGyan Units Lesson — Themed interactive exercises." />
+  <title>AksharGyan — Units Lesson</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="/manifest.json">
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+</head>
+<!--
+  unit-lesson.html — Units Tab Lesson Page
+  ══════════════════════════════════════════
+  This page is ONLY used by the Units tab.
+  It does NOT load lesson.js.
+  It does NOT read from or write to sharedLessonContent.
+  It does NOT call generateExercises() or the Gemini API.
+  Content source: UNITS_CONTENT (units-content.js) — fully hardcoded.
+  Completion tracking: profile.unitProgress (separate from completedLessons).
+-->
+<body id="page-unit-lesson" class="fade-in-up light-theme">
+
+  <div id="ul-loading-overlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading lesson...</div>
+  </div>
+
+  <main class="lesson-layout">
+
+    <!-- Header -->
+    <header class="lesson-header">
+      <a href="dashboard.html" class="lesson-back-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back</span>
+      </a>
+      <div class="lesson-header-info">
+        <h2 id="ul-lesson-title" class="lesson-title">Lesson</h2>
+        <div class="lesson-meta">
+          <span id="ul-level-badge" class="rec-card-tag beginner">Beginner</span>
+          <span id="ul-type-badge" class="lesson-type-badge">📖 Reading</span>
+        </div>
+      </div>
+      <div class="lesson-xp-earned" id="ul-xp-display">
+        <span>⚡</span>
+        <span id="ul-xp-value">0</span>
+        <span>XP</span>
+      </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="lesson-progress">
+      <div class="lesson-progress-bar">
+        <div id="ul-progress-fill" class="lesson-progress-fill" style="width: 0%"></div>
+      </div>
+      <span id="ul-progress-text" class="lesson-progress-text">0/5</span>
+    </div>
+
+    <!-- Exercise Area -->
+    <div class="lesson-content" id="ul-lesson-content">
+      <div id="ul-exercise-card" class="exercise-card">
+
+        <div class="exercise-instruction">
+          <p id="ul-instruction-text">Loading exercise...</p>
+          <button class="exercise-tts-btn" id="ul-tts-btn" title="Listen">🔊</button>
+        </div>
+
+        <div id="ul-exercise-body" class="exercise-body"></div>
+
+        <div id="ul-feedback" class="exercise-feedback hidden">
+          <div id="ul-feedback-icon" class="feedback-icon">✅</div>
+          <p id="ul-feedback-text" class="feedback-text">Correct!</p>
+        </div>
+      </div>
+
+      <div class="lesson-actions">
+        <button id="ul-check-btn" class="btn-primary" disabled>Check</button>
+        <button id="ul-continue-btn" class="btn-primary hidden">Continue</button>
+      </div>
+    </div>
+
+    <!-- Complete Screen -->
+    <div id="ul-lesson-complete" class="lesson-complete hidden">
+      <div class="lesson-complete-card">
+        <div class="lesson-complete-icon">🎉</div>
+        <h2>Lesson Complete!</h2>
+        <div class="lesson-complete-stats">
+          <div class="complete-stat">
+            <div class="complete-stat-value" id="ul-complete-score">0</div>
+            <div class="complete-stat-label">Accuracy</div>
+          </div>
+          <div class="complete-stat">
+            <div class="complete-stat-value" id="ul-complete-xp">+0</div>
+            <div class="complete-stat-label">XP</div>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="window.location.href='dashboard.html'">
+          Back to Dashboard
+        </button>
+        <button class="btn-secondary" id="ul-next-btn" style="margin-top: 1rem; width: 100%;">
+          Next Lesson →
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Firebase SDK (needed for addXP / updateStreak / markUnitLessonComplete) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="config.js"></script>
+  <script src="translations.js"></script>
+  <script src="auth.js"></script>
+  <script src="tts.js"></script>
+  <script src="theme.js"></script>
+  <script src="celebrations.js"></script>
+  <!-- Units-specific scripts ONLY — lesson.js is NOT loaded here -->
+  <script src="curriculum.js"></script>
+  <script src="units-content.js"></script>
+  <script src="unit-lesson.js"></script>
+</body>
+</html>

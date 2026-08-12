@@ -6,96 +6,416 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Login to AksharGyan — Your AI-powered literacy learning platform." />
   <title>AksharGyan — Login</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Core & Landing Stylesheets -->
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="landing.css" />
+
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+
+  <style>
+    /* Force Light Theme Background matching landing.html & index.html */
+    html, body#page-login {
+      background-color: #f8fafc !important;
+      background: #f8fafc !important;
+      color: #0f172a !important;
+    }
+
+    body#page-login::before {
+      display: none !important;
+    }
+
+    .auth-hero-section {
+      min-height: 100vh;
+      padding-top: 7.5rem;
+      padding-bottom: 4rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .auth-container-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 900px) {
+      .auth-container-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .auth-card-modern {
+      background: #ffffff !important;
+      border: 2px solid #e2e8f0 !important;
+      border-radius: 24px !important;
+      padding: 2.5rem !important;
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08) !important;
+      position: relative;
+      z-index: 10;
+    }
+
+    .auth-card-modern .logo-area {
+      margin-bottom: 1.8rem;
+      text-align: left;
+    }
+
+    .auth-card-modern .logo-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.25;
+    }
+
+    .auth-card-modern .logo-subtitle {
+      font-size: 1rem;
+      color: #64748b;
+      margin-top: 0.3rem;
+      font-weight: 600;
+    }
+
+    .auth-card-modern .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .auth-card-modern label {
+      display: block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #334155;
+      margin-bottom: 0.45rem;
+    }
+
+    .auth-card-modern .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-card-modern .input-icon {
+      position: absolute;
+      left: 1rem;
+      width: 20px;
+      height: 20px;
+      color: #64748b;
+      pointer-events: none;
+    }
+
+    .auth-card-modern input[type="text"],
+    .auth-card-modern input[type="email"],
+    .auth-card-modern input[type="password"] {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.8rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #0f172a;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 14px;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .auth-card-modern input:focus {
+      background: #ffffff;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+    }
+
+    .auth-card-modern .password-toggle {
+      position: absolute;
+      right: 0.8rem;
+      background: transparent;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      padding: 0.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      transition: color 0.2s;
+    }
+
+    .auth-card-modern .password-toggle:hover {
+      color: #6366f1;
+    }
+
+    .auth-card-modern .btn-primary {
+      width: 100%;
+      padding: 0.95rem 1.5rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    .auth-card-modern .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .auth-card-modern .nav-link-area {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .auth-card-modern .nav-link-area a {
+      color: #6366f1;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .auth-card-modern .nav-link-area a:hover {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
+
+    .auth-brand-showcase {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 28px;
+      padding: 2.5rem;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+    }
+
+    .auth-brand-showcase h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 900;
+      margin-bottom: 0.8rem;
+      line-height: 1.25;
+    }
+
+    .auth-brand-showcase p {
+      font-size: 0.98rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  </style>
 </head>
-<body id="page-login" class="fade-in-up light-theme">
-  <div class="split-layout">
-    <!-- Left Side: Form -->
-    <div class="split-left">
-      <div class="card">
+<body id="page-login" class="light-theme">
 
-      <div class="logo-area">
-        <h1 class="logo-title" data-i18n="loginTitle">Login to Your Account</h1>
-        <p class="logo-subtitle"><span class="brand-gradient">AksharGyan</span></p>
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- Sticky Navbar -->
+  <nav class="landing-nav" id="landing-nav">
+    <div class="nav-container">
+      <a href="landing.html" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="lp-btn lp-btn-outline" data-i18n="ctaBtnLang">Select Language</a>
+        <a href="register.html" class="lp-btn lp-btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+          <span data-i18n="footerLinkSignUp">Sign Up Free</span>
+          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+        </a>
       </div>
+    </div>
+  </nav>
 
-      <form id="login-form" novalidate>
+  <!-- ── MAIN LOGIN HERO ─────────────────────────────────────────── -->
+  <section class="auth-hero-section">
+    <!-- Ambient Background Glow Orbs -->
+    <div class="bg-orb bg-orb-purple" style="top: -5%; left: -5%;"></div>
+    <div class="bg-orb bg-orb-emerald" style="bottom: 10%; right: -5%;"></div>
 
-        <div class="form-group">
-          <label for="login-email" data-i18n="emailLabel">Email</label>
-          <div class="input-wrapper">
-            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <input
-            type="email"
-            id="login-email"
-            name="email"
-            required
-            data-i18n-placeholder="loginEmailPlaceholder"
-            placeholder="Enter your email"
-          />
+    <div class="section-container" style="position: relative; z-index: 10; width: 100%;">
+      
+      <div class="auth-container-grid">
+        
+        <!-- Left Column: Form Card -->
+        <div class="auth-card-modern">
+          
+          <div class="hero-badge" style="margin-bottom: 1.2rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+            <i data-lucide="sparkles" style="width: 16px; height: 16px; color: #6366f1;"></i>
+            <span>WELCOME BACK</span>
           </div>
-          <span class="error-text" id="login-email-error"></span>
-        </div>
 
-        <div class="form-group">
-          <label for="login-password" data-i18n="passwordLabel">Password</label>
-          <div class="input-wrapper">
-            <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
-            <input
-            type="password"
-            id="login-password"
-            name="password"
-            required
-            data-i18n-placeholder="loginPasswordPlaceholder"
-            placeholder="Enter your password"
-          />
-            <button type="button" class="password-toggle" tabindex="-1" aria-label="Toggle password visibility">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
+          <div class="logo-area">
+            <h1 class="logo-title" data-i18n="loginTitle">Login to Your Account</h1>
+            <p class="logo-subtitle"><span class="brand-gradient">AksharGyan</span> Literacy Platform</p>
+          </div>
+
+          <form id="login-form" novalidate>
+
+            <div class="form-group">
+              <label for="login-email" data-i18n="emailLabel">Email</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <input
+                  type="email"
+                  id="login-email"
+                  name="email"
+                  required
+                  data-i18n-placeholder="loginEmailPlaceholder"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <span class="error-text" id="login-email-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="login-password" data-i18n="passwordLabel">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                <input
+                  type="password"
+                  id="login-password"
+                  name="password"
+                  required
+                  data-i18n-placeholder="loginPasswordPlaceholder"
+                  placeholder="Enter your password"
+                />
+                <button type="button" class="password-toggle" tabindex="-1" aria-label="Toggle password visibility">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+                </button>
+              </div>
+              <span class="error-text" id="login-password-error"></span>
+            </div>
+
+            <button type="submit" class="btn-primary" id="login-btn" data-i18n="loginBtn">
+              Login
             </button>
+
+            <div id="status-message" class="status-message"></div>
+          </form>
+
+          <div class="nav-link-area">
+            <a href="register.html" data-i18n="goToRegister">Don't have an account? Register</a>
           </div>
-          <span class="error-text" id="login-password-error"></span>
+
         </div>
 
-        <button type="submit" class="btn-primary" id="login-btn" data-i18n="loginBtn">
-          Login
-        </button>
+        <!-- Right Column: Glassmorphic Brand Showcase Card -->
+        <div class="auth-brand-showcase">
+          <div class="bg-orb bg-orb-purple" style="top: -20%; right: -20%; opacity: 0.3;"></div>
+          
+          <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <div style="background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #818cf8; display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="flame" style="width: 14px; height: 14px;"></i>
+              <span data-i18n="brandStreakBadge">🔥 7 Days Streak</span>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+              <span data-i18n="brandXpBadge">⚡ 150 XP Earned</span>
+            </div>
+          </div>
 
-        <div id="status-message" class="status-message"></div>
-      </form>
+          <h2 data-i18n="brandLoginTitle">Welcome back to your learning journey</h2>
+          <p data-i18n="brandLoginDesc">Pick up right where you left off — every lesson brings you closer to confident reading, writing, and real-world independence.</p>
 
-      <div class="nav-link-area">
-        <a href="register.html" data-i18n="goToRegister">Don't have an account? Register</a>
+          <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.25rem;">
+            <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #818cf8; letter-spacing: 0.5px; margin-bottom: 0.4rem;" data-i18n="brandPersonalizedLabel">
+              Personalized Learning
+            </div>
+            <h4 style="font-size: 1.15rem; font-weight: 800; color: white; margin-bottom: 0.4rem;" data-i18n="brandPersonalizedTitle">
+              AI Speech & Handwriting Practice
+            </h4>
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; margin: 0;" data-i18n="brandPersonalizedDesc">
+              Instant feedback in 7 major Indian languages tailored to your personal pace.
+            </p>
+          </div>
+        </div>
+
       </div>
 
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="landing-footer">
+    <div class="footer-grid">
+      
+      <div>
+        <div class="footer-brand-title">📖 AksharGyan</div>
+        <p class="footer-desc" data-i18n="footerBrandDesc">
+          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and community practice.
+        </p>
       </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColPlatform">Platform</div>
+        <ul class="footer-links">
+          <li><a href="landing.html#mission" data-i18n="navMission">Mission</a></li>
+          <li><a href="landing.html#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="landing.html#languages" data-i18n="navLanguages">Languages</a></li>
+          <li><a href="landing.html#stats" data-i18n="navImpact">Impact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColLearners">Learners</div>
+        <ul class="footer-links">
+          <li><a href="login.html" data-i18n="navLogin">Login</a></li>
+          <li><a href="register.html" data-i18n="footerLinkSignUp">Sign Up Free</a></li>
+          <li><a href="index.html" data-i18n="footerLinkSelectLang">Select Language</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColSupport">Support</div>
+        <ul class="footer-links">
+          <li><a href="#" data-i18n="footerLinkHelp">Help Center</a></li>
+          <li><a href="#" data-i18n="footerLinkForum">Community Forum</a></li>
+          <li><a href="#" data-i18n="footerLinkPrivacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
     </div>
 
-    <!-- Right Side: Brand Panel -->
-    <div class="split-right">
-      <div class="auth-brand-panel">
-        <div class="auth-brand-blob blob-1"></div>
-        <div class="auth-brand-blob blob-2"></div>
-        <div class="auth-brand-content">
-          <div class="auth-brand-logo">📖 AksharGyan</div>
-          <h2>Welcome back to your learning journey</h2>
-          <p>Pick up right where you left off — every lesson brings you closer to confident reading and writing.</p>
-        </div>
-        <div class="auth-illustration-frame">
-          <img src="assets/login_illustration.png" alt="Login Illustration" class="split-illustration">
-        </div>
+    <div class="footer-bottom">
+      <div data-i18n="footerCopyright">© 2026 AksharGyan Literacy Project. All rights reserved.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkPrivacy">Privacy</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkTerms">Terms</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkContact">Contact</a>
       </div>
     </div>
-  </div>
+  </footer>
 
+  <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -105,5 +425,10 @@
   <script src="auth.js"></script>
   <script src="tts.js"></script>
   <script src="main.js"></script>
+  <script>
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

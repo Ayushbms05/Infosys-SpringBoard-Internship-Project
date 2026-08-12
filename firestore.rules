@@ -68,5 +68,87 @@ service cloud.firestore {
                    && request.resource.data.exercises.size() > 0;
       allow update, delete: if isAdmin();
     }
+
+    // Units tab cache — used exclusively by units.js, never by lesson.js
+    match /levels/{level}/units/{unitId}/lessons/{lessonId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+                   && request.resource.data.keys().hasAll(['targetLanguage', 'level', 'unit', 'skill', 'exercises'])
+                   && request.resource.data.targetLanguage is string
+                   && request.resource.data.level is string
+                   && request.resource.data.unit is string
+                   && request.resource.data.skill is string
+                   && request.resource.data.exercises is list
+                   && request.resource.data.exercises.size() > 0;
+      allow update, delete: if isAdmin();
+    }
+
+    // unitProgress field in /users/{uid} — written by units.js only
+    // (reads/writes to the users doc are already covered by the /users/{uid} match above)
+
+    // Weekly Leagues — cohort group collection
+    match /leagueGroups/{groupId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn();
+      allow delete: if isAdmin();
+    }
+
+    // Study Groups — public group discovery & membership collection
+    match /studyGroups/{groupId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn()
+                   && request.resource.data.keys().hasAll(['name', 'description', 'nativeLanguage', 'learningLanguage', 'createdBy', 'members', 'memberCount', 'isPublic'])
+                   && request.resource.data.name is string
+                   && request.resource.data.description is string
+                   && request.resource.data.nativeLanguage is string
+                   && request.resource.data.learningLanguage is string
+                   && request.resource.data.createdBy == request.auth.uid
+                   && request.resource.data.memberCount is number
+                   && request.resource.data.memberCount <= 50;
+      allow update: if isSignedIn()
+                   && (
+                     // Joining group (adding self if memberCount < 50)
+                     (request.resource.data.memberCount <= 50 && request.resource.data.members.hasAll(resource.data.members))
+                     // Leaving group (removing self)
+                     || resource.data.members.removeAll(request.resource.data.members).hasOnly([request.auth.uid])
+                     // Group creator or Admin editing
+                     || resource.data.createdBy == request.auth.uid
+                     || isAdmin()
+                   );
+      allow delete: if (isSignedIn() && resource.data.createdBy == request.auth.uid) || isAdmin();
+
+      // Subcollection: Posts feed (member access required for read & create)
+      match /posts/{postId} {
+        allow read: if isSignedIn() 
+                     && request.auth.uid in get(/databases/$(database)/documents/studyGroups/$(groupId)).data.members;
+        allow create: if isSignedIn()
+                     && request.auth.uid in get(/databases/$(database)/documents/studyGroups/$(groupId)).data.members
+                     && request.resource.data.authorUid == request.auth.uid
+                     && request.resource.data.text is string;
+        allow update: if isSignedIn()
+                     && request.auth.uid in get(/databases/$(database)/documents/studyGroups/$(groupId)).data.members;
+        allow delete: if (isSignedIn() && resource.data.authorUid == request.auth.uid) || isAdmin();
+
+        // Subcollection: Nested replies under posts
+        match /replies/{replyId} {
+          allow read: if isSignedIn() 
+                       && request.auth.uid in get(/databases/$(database)/documents/studyGroups/$(groupId)).data.members;
+          allow create: if isSignedIn()
+                       && request.auth.uid in get(/databases/$(database)/documents/studyGroups/$(groupId)).data.members
+                       && request.resource.data.authorUid == request.auth.uid
+                       && request.resource.data.text is string;
+          allow update: if isSignedIn()
+                       && (resource.data.authorUid == request.auth.uid || isAdmin());
+          allow delete: if (isSignedIn() && resource.data.authorUid == request.auth.uid) || isAdmin();
+        }
+      }
+    }
+
+    // Weekly Snapshots — historical end-of-week metrics
+    match /weeklySnapshots/{snapshotId} {
+      allow read: if isSignedIn() && (resource == null || resource.data.uid == request.auth.uid || isAdmin());
+      allow create, update: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow delete: if isAdmin();
+    }
   }
 }

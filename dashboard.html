@@ -10,13 +10,1389 @@
     />
     <title>AksharGyan — Dashboard</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="landing.css" />
     <link rel="manifest" href="/manifest.json" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/sw.js");
       }
     </script>
+    <style>
+      /* Single Unified Landing Theme for Dashboard */
+      html, body#page-dashboard {
+        background-color: #f8fafc !important;
+        background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                    radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                    #f8fafc !important;
+        color: #0f172a !important;
+        font-family: 'Inter', sans-serif !important;
+        min-height: 100vh;
+      }
+
+      body#page-dashboard::before {
+        display: none !important;
+      }
+
+      /* Logo Consistency */
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        color: #0f172a;
+        text-decoration: none;
+      }
+
+      .nav-logo-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4);
+      }
+
+      .brand-gradient {
+        background: linear-gradient(135deg, #6366f1, #a855f7);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ULTRA GLASSMORPHIC NAVBAR & FLUID NAVIGATION
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .dash-top-navbar {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 1000 !important;
+        background: rgba(255, 255, 255, 0.75) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+        backdrop-filter: blur(24px) saturate(200%) !important;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+        box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.08), inset 0 -1px 0 0 rgba(255, 255, 255, 0.5) !important;
+      }
+
+      .dash-shell {
+        padding-top: 90px !important;
+      }
+
+      /* Navigation Items */
+      .dash-nav-item {
+        background: rgba(241, 245, 249, 0.6) !important;
+        border: 1px solid rgba(226, 232, 240, 0.8) !important;
+        border-radius: 9999px !important;
+        font-weight: 800 !important;
+        padding: 0.55rem 1.25rem !important;
+        color: #334155 !important;
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .dash-nav-item:hover {
+        background: rgba(99, 102, 241, 0.1) !important;
+        color: #6366f1 !important;
+        border-color: rgba(99, 102, 241, 0.3) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      .dash-nav-item.active {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        border-color: transparent !important;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4) !important;
+      }
+
+      .dash-nav-item.active .dash-nav-icon,
+      .dash-nav-item.active .sidebar-nav-label {
+        color: #ffffff !important;
+      }
+
+      /* Desktop More Dropdown Menu */
+      .desktop-more-menu {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12) !important;
+        backdrop-filter: blur(20px) !important;
+        padding: 1.25rem !important;
+      }
+
+      /* Language Select */
+      .dash-lang-select {
+        background: rgba(255, 255, 255, 0.85) !important;
+        border: 1.5px solid rgba(203, 213, 225, 0.9) !important;
+        border-radius: 9999px !important;
+        padding: 0.45rem 1.1rem !important;
+        font-weight: 800 !important;
+        font-size: 0.88rem !important;
+        color: #0f172a !important;
+        backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+      }
+
+      /* Logout Button */
+      .btn-logout {
+        background: rgba(239, 68, 68, 0.08) !important;
+        color: #ef4444 !important;
+        border: 1.5px solid rgba(239, 68, 68, 0.2) !important;
+        border-radius: 9999px !important;
+        padding: 0.5rem 1.1rem !important;
+        font-weight: 800 !important;
+        transition: all 0.25s ease !important;
+      }
+
+      .btn-logout:hover {
+        background: #ef4444 !important;
+        color: #ffffff !important;
+        border-color: #ef4444 !important;
+        box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35) !important;
+        transform: translateY(-2px) !important;
+      }
+
+      /* Sub-tabs Pills (My Results, Learning Path, Units) */
+      .learn-sub-tab {
+        background: rgba(255, 255, 255, 0.8) !important;
+        border: 1.5px solid #e2e8f0 !important;
+        color: #64748b !important;
+        font-weight: 700 !important;
+        border-radius: 9999px !important;
+        padding: 0.55rem 1.3rem !important;
+        transition: all 0.25s ease !important;
+      }
+
+      .learn-sub-tab:hover {
+        background: #ffffff !important;
+        border-color: #6366f1 !important;
+        color: #6366f1 !important;
+      }
+
+      .learn-sub-tab.active {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        border-color: #6366f1 !important;
+        color: #ffffff !important;
+        box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4) !important;
+      }
+
+      /* Glassmorphic White Cards */
+      .dash-card,
+      .phrase-of-day-card,
+      .recommendation-card,
+      .learning-path-card,
+      .analysis-section-card,
+      .leaderboard-card,
+      .side-card,
+      .explore-card,
+      .analysis-stat-card {
+        background: rgba(255, 255, 255, 0.9) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.06) !important;
+        color: #0f172a !important;
+      }
+
+      /* Stat Pills */
+      .dash-stat-pill {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 9999px !important;
+        padding: 0.45rem 0.85rem !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+        font-weight: 800 !important;
+        font-size: 0.88rem !important;
+      }
+
+      .streak-pill { color: #ea580c !important; border-color: #ffedd5 !important; background: #fff7ed !important; }
+      .xp-pill { color: #6366f1 !important; border-color: #e0e7ff !important; background: #eef2ff !important; }
+      .coins-pill { color: #d97706 !important; border-color: #fef3c7 !important; background: #fffbeb !important; }
+
+      /* User Level Badge */
+      .dash-level-badge {
+        background: #f1f5f9 !important;
+        border: 1.5px solid #cbd5e1 !important;
+        color: #475569 !important;
+        border-radius: 9999px !important;
+        font-weight: 800 !important;
+      }
+
+      /* Headings & Text */
+      .dash-card-title,
+      .logo-title,
+      .wotd-word,
+      .rec-score-number,
+      .analysis-stat-value {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        color: #0f172a !important;
+        font-weight: 800 !important;
+      }
+
+      .dash-card-subtitle,
+      .text-secondary,
+      .rec-interpretation,
+      .phrase-translation {
+        color: #64748b !important;
+      }
+
+      /* Primary Buttons */
+      .btn-primary,
+      .phrase-speak-btn,
+      .btn-rec-start {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 14px !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 800 !important;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3) !important;
+        transition: all 0.25s ease !important;
+      }
+
+      .btn-primary:hover,
+      .btn-rec-start:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 15px 30px rgba(99, 102, 241, 0.45) !important;
+      }
+
+      .btn-secondary {
+        background: #f1f5f9 !important;
+        color: #475569 !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 14px !important;
+        font-weight: 700 !important;
+      }
+
+      .btn-secondary:hover {
+        background: #e2e8f0 !important;
+        color: #0f172a !important;
+      }
+
+      /* Units Section & Unit Card UI */
+      .units-unit-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 2rem !important;
+        box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06) !important;
+        margin-bottom: 2rem !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+      }
+
+      .units-unit-card:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 20px 45px -10px rgba(99, 102, 241, 0.12) !important;
+      }
+
+      .units-unit-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.25rem !important;
+        margin-bottom: 1.75rem !important;
+        padding-bottom: 1.25rem !important;
+        border-bottom: 1.5px dashed #e2e8f0 !important;
+      }
+
+      .units-unit-emoji {
+        font-size: 2.5rem !important;
+        width: 64px !important;
+        height: 64px !important;
+        border-radius: 20px !important;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1)) !important;
+        border: 1.5px solid rgba(99, 102, 241, 0.2) !important;
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.12) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+      }
+
+      .units-unit-label {
+        font-size: 0.82rem !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1.5px !important;
+        color: #6366f1 !important;
+        margin-bottom: 0.2rem !important;
+      }
+
+      .units-unit-title {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.4rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+      }
+
+      /* Fancy Winding Zigzag / Serpentine Learning Path & Units UI */
+      .units-dots-row,
+      .zigzag-dots-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2.25rem !important;
+        padding: 2.5rem 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+
+      /* Glowing serpentine connector line behind dots */
+      .units-dots-row::before,
+      .zigzag-dots-container::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 20px !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        width: 6px !important;
+        transform: translateX(-50%) !important;
+        background: linear-gradient(180deg, 
+          rgba(99, 102, 241, 0.25) 0%, 
+          rgba(168, 85, 247, 0.25) 50%, 
+          rgba(16, 185, 129, 0.25) 100%) !important;
+        border-radius: 9999px !important;
+        z-index: 1 !important;
+      }
+
+      .zigzag-node-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.6rem !important;
+        cursor: pointer !important;
+        position: relative !important;
+        z-index: 2 !important;
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .zigzag-node-wrap:hover {
+        transform: scale(1.18) !important;
+        z-index: 10 !important;
+      }
+
+      .units-dot,
+      .roadmap-dot {
+        width: 64px !important;
+        height: 64px !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.35rem !important;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        position: relative !important;
+      }
+
+      .roadmap-dot.available,
+      .units-dot.available {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        box-shadow: 0 12px 30px rgba(99, 102, 241, 0.45), 0 0 0 6px rgba(99, 102, 241, 0.15) !important;
+        border: 4px solid #ffffff !important;
+      }
+
+      .roadmap-dot.available:hover,
+      .units-dot.available:hover {
+        box-shadow: 0 16px 36px rgba(99, 102, 241, 0.6), 0 0 0 10px rgba(99, 102, 241, 0.25) !important;
+      }
+
+      .roadmap-dot.completed,
+      .units-dot.completed {
+        background: linear-gradient(135deg, #10b981, #059669) !important;
+        color: #ffffff !important;
+        box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45), 0 0 0 6px rgba(16, 185, 129, 0.15) !important;
+        border: 4px solid #ffffff !important;
+      }
+
+      .units-dot-label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.85rem !important;
+        font-weight: 800 !important;
+        color: #1e293b !important;
+        text-align: center !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        padding: 0.35rem 0.85rem !important;
+        border-radius: 9999px !important;
+        border: 1.5px solid #e2e8f0 !important;
+        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+        white-space: nowrap !important;
+      }
+
+      .roadmap-you-are-here,
+      .roadmap-placed-above {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        padding: 0.4rem 1.1rem !important;
+        border-radius: 9999px !important;
+        font-size: 0.82rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .roadmap-level-locked {
+        background: #f1f5f9 !important;
+        color: #64748b !important;
+        border: 1.5px solid #cbd5e1 !important;
+        padding: 0.35rem 0.9rem !important;
+        border-radius: 9999px !important;
+        font-size: 0.8rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+      }
+
+      .roadmap-dot.skipped {
+        background: linear-gradient(135deg, #818cf8, #6366f1) !important;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25) !important;
+        border: 4px solid #ffffff !important;
+        opacity: 0.85 !important;
+      }
+
+      .roadmap-dot.locked {
+        background: #cbd5e1 !important;
+        color: #64748b !important;
+        box-shadow: none !important;
+        border: 4px solid #ffffff !important;
+        cursor: not-allowed !important;
+      }
+
+      /* Learning Path Section UI */
+      .zigzag-skill-group {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 1.75rem !important;
+        margin-bottom: 2rem !important;
+        box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.06) !important;
+      }
+
+      .zigzag-skill-label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.2rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
+        border-bottom: 1.5px dashed #e2e8f0 !important;
+      }
+
+      /* Language Selector */
+      .dash-lang-select {
+        background: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+        padding: 0.45rem 0.9rem !important;
+      }
+
+      /* Inputs & Selects */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      select.input-field,
+      textarea.input-field {
+        background: #f8fafc !important;
+        border: 1.5px solid #cbd5e1 !important;
+        color: #0f172a !important;
+        border-radius: 14px !important;
+      }
+
+      input:focus, select.input-field:focus, textarea.input-field:focus {
+        background: #ffffff !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED LEAGUES & GROUP STUDY UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .leagues-card,
+      .studygroups-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        backdrop-filter: blur(16px) !important;
+      }
+
+      .league-member-row {
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .league-member-row:hover {
+        transform: translateY(-2px) scale(1.008) !important;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08) !important;
+      }
+
+      .league-rank-1 {
+        background: linear-gradient(135deg, #fffbeb, #fef3c7) !important;
+        border: 1.5px solid #f59e0b !important;
+        color: #854d0e !important;
+        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
+      }
+
+      .league-rank-2 {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9) !important;
+        border: 1.5px solid #94a3b8 !important;
+        color: #334155 !important;
+      }
+
+      .league-rank-3 {
+        background: linear-gradient(135deg, #fff7ed, #ffedd5) !important;
+        border: 1.5px solid #fdba74 !important;
+        color: #9a3412 !important;
+      }
+
+      .sg-group-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .sg-sub-tabs,
+      .hw-category-tabs {
+        background: rgba(241, 245, 249, 0.8) !important;
+        padding: 0.35rem !important;
+        border-radius: 9999px !important;
+        border: 1.5px solid #e2e8f0 !important;
+        display: inline-flex !important;
+        gap: 0.25rem !important;
+      }
+
+      .sg-tab,
+      .hw-cat-tab {
+        border-radius: 9999px !important;
+        font-weight: 800 !important;
+        font-size: 0.88rem !important;
+        padding: 0.5rem 1.2rem !important;
+        transition: all 0.25s ease !important;
+      }
+
+      .sg-tab.active,
+      .hw-cat-tab.active {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.3) !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED ANALYSIS & FEEDBACK SECTION UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .analysis-section-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06) !important;
+        padding: 2rem !important;
+        backdrop-filter: blur(16px) !important;
+      }
+
+      .analysis-stat-card {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 22px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05) !important;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .analysis-stat-card:hover {
+        transform: translateY(-5px) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 16px 36px -10px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .analysis-stat-icon {
+        width: 48px !important;
+        height: 48px !important;
+        border-radius: 14px !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.25rem !important;
+        box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.35) !important;
+        margin-bottom: 0.85rem !important;
+      }
+
+      .analysis-stat-value {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 2rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        line-height: 1.1 !important;
+      }
+
+      .analysis-stat-label {
+        font-size: 0.88rem !important;
+        font-weight: 800 !important;
+        color: #64748b !important;
+        margin-top: 0.35rem !important;
+      }
+
+      /* Feedback Card Styling */
+      #section-feedback .dash-card {
+        max-width: 680px !important;
+        margin: 0 auto !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        padding: 2.5rem !important;
+      }
+
+      #feedback-message {
+        background: #f8fafc !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 18px !important;
+        padding: 1.25rem !important;
+        font-size: 1rem !important;
+        color: #0f172a !important;
+        transition: all 0.25s ease !important;
+      }
+
+      #feedback-message:focus {
+        background: #ffffff !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      #feedback-submit-btn {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        border: none !important;
+        border-radius: 16px !important;
+        padding: 0.95rem 2.25rem !important;
+        font-size: 1.05rem !important;
+        font-weight: 800 !important;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35) !important;
+        transition: transform 0.25s ease !important;
+        cursor: pointer !important;
+      }
+
+      #feedback-submit-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 14px 30px rgba(99, 102, 241, 0.45) !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED CHAT SIMULATOR & GAMES UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      /* Chat Simulator Screen & Phone */
+      .scenario-card {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 24px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05) !important;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .scenario-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .chat-phone {
+        max-width: 480px !important;
+        margin: 0 auto !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        border: 2px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 36px !important;
+        box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.12) !important;
+        overflow: hidden !important;
+      }
+
+      .chat-header {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        padding: 1rem 1.25rem !important;
+      }
+
+      .message-bubble.other {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border-radius: 20px 20px 20px 4px !important;
+        font-weight: 600 !important;
+      }
+
+      .message-bubble.user {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        border-radius: 20px 20px 4px 20px !important;
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3) !important;
+        font-weight: 600 !important;
+      }
+
+      .chat-option-btn {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        padding: 0.85rem 1.25rem !important;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        transition: all 0.25s ease !important;
+      }
+
+      .chat-option-btn:hover {
+        border-color: #6366f1 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      /* Games & Puzzles */
+      .game-play-area {
+        max-width: 720px !important;
+        margin: 0 auto !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 2.25rem !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+      }
+
+      .word-options-grid .word-card {
+        background: #ffffff !important;
+        border: 2px solid #e2e8f0 !important;
+        border-radius: 18px !important;
+        padding: 1.25rem !important;
+        font-weight: 800 !important;
+        font-size: 1.05rem !important;
+        color: #0f172a !important;
+        box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04) !important;
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      }
+
+      .word-options-grid .word-card:hover {
+        transform: scale(1.04) !important;
+        border-color: #6366f1 !important;
+      }
+
+      .word-options-grid .word-card.selected {
+        border-color: #6366f1 !important;
+        background: rgba(99, 102, 241, 0.08) !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .word-options-grid .word-card.matched {
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+        border-color: #10b981 !important;
+        color: #065f46 !important;
+        box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25) !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED PRACTICE SECTION UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .skill-cards-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+        gap: 1.5rem !important;
+      }
+
+      .skill-card {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 24px !important;
+        padding: 1.5rem !important;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05) !important;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: flex-start !important;
+        cursor: pointer !important;
+        position: relative !important;
+      }
+
+      .rec-card-tag {
+        position: static !important;
+        background: #e0e7ff !important;
+        color: #4338ca !important;
+        border: 1.5px solid #c7d2fe !important;
+        padding: 0.3rem 0.8rem !important;
+        border-radius: 9999px !important;
+        font-size: 0.72rem !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        text-transform: uppercase !important;
+        box-shadow: none !important;
+        display: inline-block !important;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .skill-card-icon {
+        width: 52px !important;
+        height: 52px !important;
+        border-radius: 16px !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.35rem !important;
+        box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.35) !important;
+        flex-shrink: 0 !important;
+      }
+
+      .skill-card-content h4 {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.15rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        margin: 0 0 0.35rem !important;
+      }
+
+      .skill-card-content p {
+        font-size: 0.88rem !important;
+        color: #475569 !important;
+        margin: 0 0 0.85rem !important;
+        line-height: 1.4 !important;
+        font-weight: 500 !important;
+      }
+
+      .skill-progress-track {
+        background: #f1f5f9 !important;
+        height: 8px !important;
+        border-radius: 9999px !important;
+        overflow: hidden !important;
+        margin-top: 0.35rem !important;
+      }
+
+      .skill-progress-fill {
+        height: 100% !important;
+        background: linear-gradient(90deg, #6366f1, #a855f7) !important;
+        border-radius: 9999px !important;
+        transition: width 0.4s ease !important;
+      }
+
+      .skill-progress-text {
+        font-size: 0.78rem !important;
+        font-weight: 800 !important;
+        color: #64748b !important;
+        display: flex !important;
+        justify-content: space-between !important;
+      }
+
+      /* Practical Life Skills Grid */
+      .explore-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+        gap: 1.5rem !important;
+      }
+
+      .explore-card {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 24px !important;
+        padding: 1.75rem !important;
+        box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05) !important;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        cursor: pointer !important;
+      }
+
+      .explore-card:hover {
+        transform: translateY(-6px) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 20px 40px -12px rgba(99, 102, 241, 0.2) !important;
+      }
+
+      .explore-icon {
+        width: 52px !important;
+        height: 52px !important;
+        border-radius: 16px !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.35rem !important;
+        box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.35) !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .explore-card h4 {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.15rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        margin: 0 0 0.4rem !important;
+      }
+
+      .explore-card p {
+        font-size: 0.88rem !important;
+        color: #475569 !important;
+        margin: 0 !important;
+        line-height: 1.45 !important;
+        font-weight: 500 !important;
+      }
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED PROFILE SECTION UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      #section-profile .dash-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 2.25rem !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        backdrop-filter: blur(16px) !important;
+        margin-bottom: 2rem !important;
+      }
+
+      .profile-header {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.75rem !important;
+        padding-bottom: 1.75rem !important;
+        border-bottom: 1.5px dashed #e2e8f0 !important;
+        margin-bottom: 1.75rem !important;
+      }
+
+      .profile-avatar {
+        width: 84px !important;
+        height: 84px !important;
+        border-radius: 50% !important;
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 2.25rem !important;
+        font-weight: 900 !important;
+        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4) !important;
+        border: 4px solid #ffffff !important;
+        flex-shrink: 0 !important;
+      }
+
+      .profile-info h2 {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.6rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+        margin: 0 0 0.25rem !important;
+      }
+
+      .profile-email {
+        font-size: 0.92rem !important;
+        color: #64748b !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.85rem !important;
+      }
+
+      #edit-profile-btn {
+        background: rgba(99, 102, 241, 0.08) !important;
+        color: #6366f1 !important;
+        border: 1.5px solid rgba(99, 102, 241, 0.2) !important;
+        border-radius: 14px !important;
+        padding: 0.55rem 1.25rem !important;
+        font-weight: 800 !important;
+        font-size: 0.88rem !important;
+        transition: all 0.25s ease !important;
+        cursor: pointer !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
+      }
+
+      #edit-profile-btn:hover {
+        background: #6366f1 !important;
+        color: #ffffff !important;
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.3) !important;
+      }
+
+      .stats-strip {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+        gap: 1.25rem !important;
+        background: transparent !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+
+      .stats-strip-item {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 20px !important;
+        padding: 1.25rem 1rem !important;
+        text-align: center !important;
+        box-shadow: 0 8px 20px -5px rgba(15, 23, 42, 0.05) !important;
+        transition: transform 0.25s ease !important;
+      }
+
+      .stats-strip-item:hover {
+        transform: translateY(-4px) !important;
+        border-color: #6366f1 !important;
+      }
+
+      .stats-strip-divider {
+        display: none !important;
+      }
+
+      .stats-strip-icon {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 14px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto 0.6rem !important;
+        font-size: 1.15rem !important;
+        color: #ffffff !important;
+      }
+
+      .stats-strip-icon.streak-col {
+        background: linear-gradient(135deg, #f97316, #ea580c) !important;
+        box-shadow: 0 6px 16px rgba(249, 115, 22, 0.3) !important;
+      }
+
+      .stats-strip-icon.xp-col {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3) !important;
+      }
+
+      .stats-strip-icon.lessons-col {
+        background: linear-gradient(135deg, #10b981, #059669) !important;
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3) !important;
+      }
+
+      .stats-strip-icon.badges-col {
+        background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+        box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3) !important;
+      }
+
+      .stats-strip-val {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.5rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+      }
+
+      .stats-strip-label {
+        font-size: 0.8rem !important;
+        font-weight: 800 !important;
+        color: #64748b !important;
+        margin-top: 0.2rem !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ENHANCED BADGES SHELF UI
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .badge-summary-text {
+        background: rgba(241, 245, 249, 0.8) !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 9999px !important;
+        padding: 0.5rem 1.25rem !important;
+        font-weight: 800 !important;
+        font-size: 0.9rem !important;
+        color: #6366f1 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .badge-shelf {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+        gap: 1.25rem !important;
+        padding: 0.5rem 0 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .badge-card-item {
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 22px !important;
+        padding: 1.25rem 0.85rem !important;
+        text-align: center !important;
+        position: relative !important;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        box-shadow: 0 8px 20px -5px rgba(15, 23, 42, 0.04) !important;
+        width: 100% !important;
+        min-width: 130px !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .badge-card-item.earned {
+        background: linear-gradient(135deg, #ffffff, #faf5ff) !important;
+        border: 1.5px solid #e9d5ff !important;
+        box-shadow: 0 10px 25px -5px rgba(168, 85, 247, 0.15) !important;
+      }
+
+      .badge-card-item.earned:hover {
+        transform: translateY(-6px) scale(1.04) !important;
+        border-color: #a855f7 !important;
+        box-shadow: 0 16px 35px -8px rgba(168, 85, 247, 0.3) !important;
+      }
+
+      .badge-card-item.locked {
+        background: #f8fafc !important;
+        border: 1.5px dashed #cbd5e1 !important;
+        opacity: 0.65 !important;
+      }
+
+      .badge-icon-circle {
+        width: 54px !important;
+        height: 54px !important;
+        border-radius: 18px !important;
+        background: linear-gradient(135deg, #fffbeb, #fef08a) !important;
+        border: 2px solid #f59e0b !important;
+        color: #854d0e !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 1.4rem !important;
+        margin: 0 auto 0.75rem !important;
+        box-shadow: 0 8px 20px rgba(245, 158, 11, 0.25) !important;
+        transition: transform 0.3s ease !important;
+      }
+
+      .badge-card-item.locked .badge-icon-circle {
+        background: #e2e8f0 !important;
+        border-color: #94a3b8 !important;
+        color: #64748b !important;
+        box-shadow: none !important;
+      }
+
+      .badge-lock-overlay {
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        background: #cbd5e1 !important;
+        color: #475569 !important;
+        border-radius: 50% !important;
+        width: 22px !important;
+        height: 22px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.7rem !important;
+      }
+
+      .badge-card-label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.88rem !important;
+        font-weight: 800 !important;
+        color: #0f172a !important;
+        line-height: 1.35 !important;
+        word-break: keep-all !important;
+        overflow-wrap: break-word !important;
+        hyphens: manual !important;
+        margin-top: 0.25rem !important;
+      }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         FULL USER DASHBOARD GLASSMORPHISM UI ENHANCEMENTS
+         ═══════════════════════════════════════════════════════════════════ */
+      
+      .bg-orb {
+        position: fixed !important;
+        border-radius: 50% !important;
+        filter: blur(110px) !important;
+        opacity: 0.45 !important;
+        pointer-events: none !important;
+        z-index: 0 !important;
+      }
+
+      .bg-orb-purple {
+        width: 550px !important;
+        height: 550px !important;
+        background: radial-gradient(circle, #818cf8, #6366f1) !important;
+      }
+
+      .bg-orb-emerald {
+        width: 500px !important;
+        height: 500px !important;
+        background: radial-gradient(circle, #34d399, #059669) !important;
+      }
+
+      .bg-orb-pink {
+        width: 450px !important;
+        height: 450px !important;
+        background: radial-gradient(circle, #f472b6, #e11d48) !important;
+      }
+
+      /* Phrase of the Day Card */
+      .phrase-of-day-card {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.9)) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 1.75rem !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        backdrop-filter: blur(16px) !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      .phrase-header h3 {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.35rem !important;
+        font-weight: 900 !important;
+        color: #0f172a !important;
+      }
+
+      .phrase-xp-badge {
+        background: linear-gradient(135deg, #fffbeb, #fef08a) !important;
+        border: 1.5px solid #f59e0b !important;
+        color: #854d0e !important;
+        font-weight: 900 !important;
+        font-size: 0.85rem !important;
+        padding: 0.35rem 0.85rem !important;
+        border-radius: 9999px !important;
+        box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25) !important;
+      }
+
+      .phrase-text {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.6rem !important;
+        font-weight: 900 !important;
+        color: #6366f1 !important;
+        line-height: 1.3 !important;
+      }
+
+      .phrase-translation {
+        font-size: 1.05rem !important;
+        font-weight: 600 !important;
+        color: #64748b !important;
+      }
+
+      .phrase-listen-btn {
+        background: #f1f5f9 !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 14px !important;
+        color: #334155 !important;
+        font-weight: 800 !important;
+        padding: 0.6rem 1.25rem !important;
+        transition: all 0.2s ease !important;
+      }
+
+      .phrase-listen-btn:hover {
+        background: #e2e8f0 !important;
+        transform: translateY(-2px) !important;
+      }
+
+      .phrase-speak-btn {
+        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        border: none !important;
+        border-radius: 14px !important;
+        color: #ffffff !important;
+        font-weight: 800 !important;
+        padding: 0.6rem 1.4rem !important;
+        box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35) !important;
+        transition: transform 0.2s ease !important;
+      }
+
+      .phrase-speak-btn:hover {
+        transform: translateY(-2px) !important;
+      }
+
+      /* Recommendation Card */
+      .recommendation-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 2rem !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        backdrop-filter: blur(16px) !important;
+      }
+
+      .rec-score-number {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 2.2rem !important;
+        font-weight: 900 !important;
+        color: #6366f1 !important;
+      }
+
+      .rec-score-headline {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.2rem !important;
+        font-weight: 800 !important;
+        color: #0f172a !important;
+      }
+
+      /* Right Sidebar Widgets */
+      .dash-side-col .dash-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 28px !important;
+        padding: 1.75rem !important;
+        box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07) !important;
+        backdrop-filter: blur(16px) !important;
+        margin-bottom: 1.75rem !important;
+      }
+
+      /* Game & Scenario Hub Cards - ALWAYS 100% SOLID OPAQUE WHITE */
+      .scenario-card,
+      .game-card,
+      .hub-card,
+      .practice-card,
+      #games-grid .scenario-card,
+      #puzzles-grid .scenario-card,
+      #scenario-grid .scenario-card {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        opacity: 1 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 24px !important;
+        padding: 1.75rem 1.5rem !important;
+        box-shadow: 0 10px 28px -6px rgba(15, 23, 42, 0.06) !important;
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease !important;
+      }
+
+      .scenario-card:hover,
+      .game-card:hover,
+      #games-grid .scenario-card:hover,
+      #puzzles-grid .scenario-card:hover,
+      #scenario-grid .scenario-card:hover {
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        opacity: 1 !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transform: translateY(-6px) scale(1.02) !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 18px 40px -8px rgba(99, 102, 241, 0.22) !important;
+      }
+    </style>
   </head>
 
   <body id="page-dashboard" class="fade-in-up light-theme">
@@ -26,16 +1402,18 @@
     </div>
 
     <main class="dashboard-layout hidden" id="dashboard-content">
+      <!-- Ambient Background Glow Orbs -->
+      <div class="bg-orb bg-orb-purple" style="top: 5%; left: 5%;"></div>
+      <div class="bg-orb bg-orb-emerald" style="top: 45%; right: 5%;"></div>
+      <div class="bg-orb bg-orb-pink" style="bottom: 10%; left: 35%;"></div>
       <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
       <div id="mobile-topbar" class="mobile-topbar">
         <!-- Hamburger menu removed as per user request (sidebar no longer needed on mobile) -->
         <div class="mobile-topbar-brand">
-          <i
-            data-lucide="book-marked"
-            class="mobile-topbar-brand-icon"
-            aria-hidden="true"
-          ></i>
-          <span class="sidebar-brand-text">AksharGyan</span>
+          <a href="landing.html" class="nav-logo" style="font-size: 1.25rem; text-decoration: none;">
+            <div class="nav-logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">📖</div>
+            <span>Akshar<span class="brand-gradient">Gyan</span></span>
+          </a>
         </div>
         <div class="mobile-topbar-avatar-slot"></div>
       </div>
@@ -51,12 +1429,10 @@
         <header class="dash-top-navbar dash-sidebar" id="dash-top-navbar">
           <div class="navbar-container">
             <!-- Brand Logo -->
-            <div class="sidebar-brand">
-              <span class="sidebar-brand-icon"
-                ><i data-lucide="book-marked" aria-hidden="true"></i
-              ></span>
-              <span class="sidebar-brand-text">AksharGyan</span>
-            </div>
+            <a href="landing.html" class="nav-logo">
+              <div class="nav-logo-icon">📖</div>
+              <span>Akshar<span class="brand-gradient">Gyan</span></span>
+            </a>
 
             <!-- Central Desktop Navigation Links -->
             <nav class="dash-nav desktop-nav">
@@ -86,106 +1462,105 @@
               </button>
               <button
                 class="dash-nav-item"
-                data-section="chat"
-                title="Chat Simulator"
+                data-section="handwriting"
+                title="Handwriting"
               >
                 <span class="dash-nav-icon"
-                  ><i data-lucide="message-circle" aria-hidden="true"></i
+                  ><i data-lucide="edit-3" aria-hidden="true"></i
                 ></span>
-                <span class="sidebar-nav-label" data-i18n="navChatSimulator"
-                  >Chat Simulator</span
-                >
-              </button>
-              <button class="dash-nav-item" data-section="games" title="Games">
-                <span class="dash-nav-icon"
-                  ><i data-lucide="gamepad-2" aria-hidden="true"></i
-                ></span>
-                <span class="sidebar-nav-label" data-i18n="navGames"
-                  >Games</span
-                >
-              </button>
-              <button
-                class="dash-nav-item"
-                data-section="leaderboard"
-                title="Leaderboard"
-              >
-                <span class="dash-nav-icon"
-                  ><i data-lucide="trophy" aria-hidden="true"></i
-                ></span>
-                <span class="sidebar-nav-label" data-i18n="navLeaderboard"
-                  >Leaderboard</span
+                <span class="sidebar-nav-label" data-i18n="navHandwriting"
+                  >Handwriting</span
                 >
               </button>
 
-              <div class="nav-more-wrap" id="nav-more-wrap">
-                <button class="nav-more-btn" id="nav-more-btn">
-                  <span>More</span>
-                  <i
-                    data-lucide="chevron-down"
-                    style="
-                      width: 14px;
-                      height: 14px;
-                      transition: transform 0.2s;
-                    "
-                  ></i>
+              <!-- Desktop More Dropdown -->
+              <div class="dash-nav-more-wrap" style="position: relative;">
+                <button
+                  class="dash-nav-item"
+                  id="desktop-more-btn"
+                  title="More"
+                >
+                  <span class="dash-nav-icon"
+                    ><i data-lucide="more-horizontal" aria-hidden="true"></i
+                  ></span>
+                  <span class="sidebar-nav-label" data-i18n="navMore">More ▼</span>
                 </button>
-                <div class="nav-more-menu">
-                  <button
-                    class="dash-nav-item"
-                    data-section="profile"
-                    title="Profile"
-                  >
-                    <span class="dash-nav-icon"
-                      ><i data-lucide="user" aria-hidden="true"></i
-                    ></span>
-                    <span class="sidebar-nav-label" data-i18n="navProfile"
-                      >Profile</span
-                    >
-                  </button>
-                  <button
-                    class="dash-nav-item"
-                    data-section="feedback"
-                    title="Feedback"
-                  >
-                    <span class="dash-nav-icon"
-                      ><i data-lucide="lightbulb" aria-hidden="true"></i
-                    ></span>
-                    <span class="sidebar-nav-label" data-i18n="navFeedback"
-                      >Feedback</span
-                    >
-                  </button>
-                  <button
-                    class="dash-nav-item"
-                    data-section="analysis"
-                    title="Analysis"
-                  >
-                    <span class="dash-nav-icon"
-                      ><i data-lucide="bar-chart-2" aria-hidden="true"></i
-                    ></span>
-                    <span class="sidebar-nav-label" data-i18n="navAnalysis"
-                      >Analysis</span
-                    >
-                  </button>
+                <div id="desktop-more-menu" class="desktop-more-menu hidden">
+                  
+                  <!-- Category 1: Competition & Social -->
+                  <div class="more-menu-group">
+                    <div class="more-menu-header"><i data-lucide="award" aria-hidden="true"></i> <span data-i18n="catCompetitionSocial">Competition & Social</span></div>
+                    <button class="dash-nav-item" data-section="leagues" title="Leagues">
+                      <span class="dash-nav-icon"><i data-lucide="shield" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navLeagues">Weekly Leagues</span>
+                    </button>
+                    <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
+                      <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navLeaderboard">Leaderboard</span>
+                    </button>
+                    <button class="dash-nav-item" data-section="studygroups" title="Study Groups">
+                      <span class="dash-nav-icon"><i data-lucide="users" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navStudyGroups">Study Groups</span>
+                    </button>
+                  </div>
+
+                  <div class="more-menu-divider"></div>
+
+                  <!-- Category 2: Practice & Games -->
+                  <div class="more-menu-group">
+                    <div class="more-menu-header"><i data-lucide="gamepad-2" aria-hidden="true"></i> <span data-i18n="catPracticeGames">Practice & Games</span></div>
+                    <button class="dash-nav-item" data-section="games" title="Games">
+                      <span class="dash-nav-icon"><i data-lucide="gamepad-2" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navGames">Games Hub</span>
+                    </button>
+                    <button class="dash-nav-item" data-section="chat" title="Chat Simulator">
+                      <span class="dash-nav-icon"><i data-lucide="message-circle" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navChatSimulator">Chat Simulator</span>
+                    </button>
+                  </div>
+
+                  <div class="more-menu-divider"></div>
+
+                  <!-- Category 3: Insights & Support -->
+                  <div class="more-menu-group">
+                    <div class="more-menu-header"><i data-lucide="bar-chart-2" aria-hidden="true"></i> <span data-i18n="catInsightsSupport">Insights & Support</span></div>
+                    <button class="dash-nav-item" id="nav-weekly-recap-btn" title="Weekly Recap">
+                      <span class="dash-nav-icon"><i data-lucide="sparkles" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navWeeklyRecap">Weekly Recap</span>
+                    </button>
+                    <button class="dash-nav-item" id="nav-share-card-btn" title="Shareable Progress Card">
+                      <span class="dash-nav-icon"><i data-lucide="share-2" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navShareCard">Share Progress Card</span>
+                    </button>
+                    <button class="dash-nav-item" data-section="analysis" title="Analysis">
+                      <span class="dash-nav-icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navAnalysis">Analysis</span>
+                    </button>
+                    <button class="dash-nav-item" data-section="feedback" title="Feedback">
+                      <span class="dash-nav-icon"><i data-lucide="lightbulb" aria-hidden="true"></i></span>
+                      <span class="sidebar-nav-label" data-i18n="navFeedback">Feedback</span>
+                    </button>
+                  </div>
+
                 </div>
               </div>
+
+              <button
+                class="dash-nav-item"
+                data-section="profile"
+                title="Profile"
+              >
+                <span class="dash-nav-icon"
+                  ><i data-lucide="user" aria-hidden="true"></i
+                ></span>
+                <span class="sidebar-nav-label" data-i18n="navProfile"
+                  >Profile</span
+                >
+              </button>
             </nav>
 
             <!-- Right Side: Stats, Controls, Profile & Logout -->
             <div class="navbar-right">
-              <div class="sidebar-stats-row">
-                <div class="dash-stat-pill streak-pill" title="Daily Streak">
-                  <span class="stat-icon"><i data-lucide="flame"></i></span>
-                  <span id="streak-count" class="stat-value">0</span>
-                </div>
-                <div class="dash-stat-pill xp-pill" title="Experience Points">
-                  <span class="stat-icon"><i data-lucide="zap"></i></span>
-                  <span id="xp-count" class="stat-value">0</span>
-                </div>
-                <div class="dash-stat-pill coins-pill" title="Open Gyan Market" id="open-shop-btn">
-                  <span class="stat-icon"><i data-lucide="coins"></i></span>
-                  <span id="coin-count" class="stat-value">0</span>
-                </div>
-              </div>
 
               <div class="navbar-controls">
                 <select id="dash-lang-select" class="dash-lang-select">
@@ -224,9 +1599,7 @@
                     </svg>
                     <span data-i18n="logoutBtn">Logout</span>
                   </button>
-                  <div id="user-level-badge" class="dash-level-badge beginner" style="font-size: 0.65rem !important; padding: 0.2rem 0.5rem !important;">
-                    <i data-lucide="sprout"></i> <span data-i18n="scoreLevelBeginner">Beginner</span>
-                  </div>
+
                 </div>
               </div>
             </div>
@@ -257,37 +1630,21 @@
               >Practice</span
             >
           </button>
-          <button class="dash-nav-item" data-section="chat" title="Chat">
-            <span class="dash-nav-icon"
-              ><i data-lucide="message-circle" aria-hidden="true"></i
-            ></span>
-            <span class="mobile-nav-label" data-i18n="navChatSimulator"
-              >Chat</span
-            >
-          </button>
-          <button class="dash-nav-item" data-section="games" title="Games">
-            <span class="dash-nav-icon"
-              ><i data-lucide="gamepad-2" aria-hidden="true"></i
-            ></span>
-            <span class="mobile-nav-label" data-i18n="navGames">Games</span>
-          </button>
           <button
             class="dash-nav-item"
-            data-section="leaderboard"
-            title="Leaderboard"
+            data-section="handwriting"
+            title="Handwriting"
           >
             <span class="dash-nav-icon"
-              ><i data-lucide="trophy" aria-hidden="true"></i
+              ><i data-lucide="edit-3" aria-hidden="true"></i
             ></span>
-            <span class="mobile-nav-label" data-i18n="navLeaderboard"
-              >Ranks</span
-            >
+            <span class="mobile-nav-label">Handwriting</span>
           </button>
           <button class="dash-nav-item" id="mobile-more-btn" title="More">
             <span class="dash-nav-icon"
               ><i data-lucide="more-horizontal" aria-hidden="true"></i
             ></span>
-            <span class="mobile-nav-label">More</span>
+            <span class="mobile-nav-label" data-i18n="navMore">More</span>
           </button>
         </nav>
 
@@ -320,6 +1677,52 @@
              </select>
           </div>
 
+          <button class="dash-nav-item" data-section="chat" title="Chat">
+            <span class="dash-nav-icon"
+              ><i data-lucide="message-circle" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navChatSimulator"
+              >Chat Simulator</span
+            >
+          </button>
+          <button class="dash-nav-item" data-section="games" title="Games">
+            <span class="dash-nav-icon"
+              ><i data-lucide="gamepad-2" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navGames">Games</span>
+          </button>
+          <button
+            class="dash-nav-item"
+            data-section="leaderboard"
+            title="Leaderboard"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="trophy" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label" data-i18n="navLeaderboard"
+              >Ranks</span
+            >
+          </button>
+          <button
+            class="dash-nav-item"
+            data-section="leagues"
+            title="Leagues"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="shield" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label">Leagues</span>
+          </button>
+          <button
+            class="dash-nav-item"
+            data-section="studygroups"
+            title="Study Groups"
+          >
+            <span class="dash-nav-icon"
+              ><i data-lucide="users" aria-hidden="true"></i
+            ></span>
+            <span class="mobile-nav-label">Study Groups</span>
+          </button>
           <button class="dash-nav-item" data-section="profile" title="Profile">
             <span class="dash-nav-icon"
               ><i data-lucide="user" aria-hidden="true"></i
@@ -395,6 +1798,17 @@
                   >
                     <span class="sub-tab-icon"><i data-lucide="map"></i></span>
                     <span data-i18n="dashLearningPath">Learning Path</span>
+                  </button>
+                  <button
+                    class="learn-sub-tab"
+                    id="sub-tab-units"
+                    data-view="view-units"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="view-units"
+                  >
+                    <span class="sub-tab-icon"><i data-lucide="layout-grid"></i></span>
+                    <span>Units</span>
                   </button>
                 </div>
 
@@ -604,9 +2018,34 @@
                       ></div>
                     </div>
                   </div>
-
-
+                  
+                  <!-- Recommended for You -->
+                  <div class="dash-card recommended-scroll-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon"><i data-lucide="compass"></i></span>
+                        <span data-i18n="recommendedForYou">Recommended for You</span>
+                      </h3>
+                    </div>
+                    <div id="recommended-horizontal-scroll" class="horizontal-scroll-container">
+                      <!-- Cards injected via JS -->
+                    </div>
                   </div>
+
+                  <!-- 7-Day Activity Heatmap -->
+                  <div class="dash-card heatmap-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon"><i data-lucide="calendar"></i></span>
+                        <span data-i18n="activityHeatmap">Recent Activity</span>
+                      </h3>
+                    </div>
+                    <div id="home-activity-heatmap" class="heatmap-strip">
+                      <!-- Heatmap injected via JS -->
+                    </div>
+                  </div>
+
+                </div>
                 <div
                   id="view-path"
                   class="learn-sub-view hidden"
@@ -621,6 +2060,27 @@
                       </h3>
                     </div>
                     <div id="learning-path" class="learning-path"></div>
+                  </div>
+                </div>
+
+                <!-- ═══ NEW: Units Tab View (isolated, additive) ═══ -->
+                <div
+                  id="view-units"
+                  class="learn-sub-view hidden"
+                  role="tabpanel"
+                  aria-labelledby="sub-tab-units"
+                >
+                  <div class="dash-card learning-path-card">
+                    <div class="dash-card-header">
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon"><i data-lucide="layout-grid"></i></span>
+                        <span>Units</span>
+                      </h3>
+                      <p class="dash-card-subtitle" style="margin-top:0.4rem;">
+                        Themed lessons grouped by real-life topics
+                      </p>
+                    </div>
+                    <div id="units-learning-path" class="learning-path"></div>
                   </div>
                 </div>
                 <svg class="hidden" aria-hidden="true">
@@ -645,69 +2105,123 @@
                   <div id="skill-cards" class="skill-cards-grid"></div>
                 </div>
 
-                <div class="dash-card" style="margin-top: 1.5rem;">
-                  <div class="dash-card-header" style="align-items: center; padding: 1.5rem 1.5rem 0 1.5rem;">
+                <div class="dash-card" style="margin-top: 2rem; background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 28px; padding: 1.75rem; box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06);">
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding: 0;">
                     <div>
-                      <h3 class="dash-card-title" data-i18n="dashPracticalSkills">
-                        <span class="dash-card-title-icon"><i data-lucide="earth"></i></span>
+                      <h3 class="dash-card-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 900; color: #0f172a; margin: 0;" data-i18n="dashPracticalSkills">
+                        <span class="dash-card-title-icon" style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; background: rgba(99, 102, 241, 0.1); color: #6366f1; margin-right: 0.5rem;"><i data-lucide="earth"></i></span>
                         Practical Life Skills
                       </h3>
-                      <p class="dash-card-subtitle" data-i18n="dashPracticalSkillsDesc">
-                        Apply your reading to real-world situations.
+                      <p class="dash-card-subtitle" style="margin-top: 0.3rem; font-size: 0.9rem; color: #64748b; font-weight: 600;" data-i18n="dashPracticalSkillsDesc">
+                        Apply your reading to real-world situations and everyday tasks.
                       </p>
                     </div>
-                    <a href="#" class="view-all-link" style="margin-left: auto;"
-                      >View All <i data-lucide="arrow-right"></i
+                    <a href="#" class="view-all-link" style="font-weight: 800; color: #6366f1; display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.9rem;"
+                      >View All <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i
                     ></a>
                   </div>
-                  <div class="explore-grid" style="padding: 1.5rem;">
+                  <div class="explore-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; padding: 0;">
+                    
+                    <!-- Banking & Forms -->
                     <div
                       class="explore-card"
                       onclick="
                         window.location.href =
                           'lesson.html?type=reading&unit=banking&mode=practice'
                       "
+                      style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 24px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: all 0.3s ease;"
                     >
-                      <div class="explore-icon">
-                        <i data-lucide="landmark"></i>
+                      <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                          <div class="explore-icon" style="width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 8px 20px -4px rgba(59, 130, 246, 0.35);">
+                            <i data-lucide="landmark"></i>
+                          </div>
+                          <span style="background: #dbeafe; color: #1e40af; border: 1.5px solid #bfdbfe; padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">Real World</span>
+                        </div>
+                        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.4rem;" data-i18n="bankingTitle">Banking & Forms</h4>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0 0 1rem; line-height: 1.45; font-weight: 500;" data-i18n="bankingDesc">
+                          Learn to read deposit slips, withdrawal forms, and account statements.
+                        </p>
                       </div>
-                      <h4 data-i18n="bankingTitle">Banking & Forms</h4>
-                      <p data-i18n="bankingDesc">
-                        Learn to read deposit slips and account balances.
-                      </p>
+                      <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 1rem; border-top: 1.5px dashed #e2e8f0; padding-top: 0.75rem;">
+                        <span style="font-size: 0.85rem; font-weight: 800; color: #3b82f6; display: inline-flex; align-items: center; gap: 0.35rem;">
+                          <span>Start Practice</span>
+                          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                        </span>
+                      </div>
                     </div>
 
+                    <!-- Transit & Travel -->
                     <div
                       class="explore-card"
                       onclick="
                         window.location.href =
                           'lesson.html?type=reading&unit=transit&mode=practice'
                       "
+                      style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 24px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: all 0.3s ease;"
                     >
-                      <div class="explore-icon"><i data-lucide="bus"></i></div>
-                      <h4 data-i18n="transitTitle">Transit & Travel</h4>
-                      <p data-i18n="transitDesc">
-                        Read bus numbers, train tickets, and station signs.
-                      </p>
+                      <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                          <div class="explore-icon" style="width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #f59e0b, #b45309); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 8px 20px -4px rgba(245, 158, 11, 0.35);">
+                            <i data-lucide="bus"></i>
+                          </div>
+                          <span style="background: #fef3c7; color: #92400e; border: 1.5px solid #fde68a; padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">Real World</span>
+                        </div>
+                        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.4rem;" data-i18n="transitTitle">Transit & Travel</h4>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0 0 1rem; line-height: 1.45; font-weight: 500;" data-i18n="transitDesc">
+                          Read bus numbers, train tickets, schedules, and station direction signs.
+                        </p>
+                      </div>
+                      <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 1rem; border-top: 1.5px dashed #e2e8f0; padding-top: 0.75rem;">
+                        <span style="font-size: 0.85rem; font-weight: 800; color: #f59e0b; display: inline-flex; align-items: center; gap: 0.35rem;">
+                          <span>Start Practice</span>
+                          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                        </span>
+                      </div>
                     </div>
 
+                    <!-- Health & Medicine -->
                     <div
                       class="explore-card"
                       onclick="
                         window.location.href =
                           'lesson.html?type=reading&unit=health&mode=practice'
                       "
+                      style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 24px; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; transition: all 0.3s ease;"
                     >
-                      <div class="explore-icon"><i data-lucide="pill"></i></div>
-                      <h4 data-i18n="healthTitle">Health & Medicine</h4>
-                      <p data-i18n="healthDesc">
-                        Understand prescriptions and medicine labels safely.
-                      </p>
+                      <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                          <div class="explore-icon" style="width: 52px; height: 52px; border-radius: 16px; background: linear-gradient(135deg, #10b981, #047857); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.35);">
+                            <i data-lucide="pill"></i>
+                          </div>
+                          <span style="background: #d1fae5; color: #065f46; border: 1.5px solid #a7f3d0; padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">Real World</span>
+                        </div>
+                        <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.4rem;" data-i18n="healthTitle">Health & Medicine</h4>
+                        <p style="font-size: 0.88rem; color: #475569; margin: 0 0 1rem; line-height: 1.45; font-weight: 500;" data-i18n="healthDesc">
+                          Understand prescriptions, dosage instructions, and medicine labels safely.
+                        </p>
+                      </div>
+                      <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 1rem; border-top: 1.5px dashed #e2e8f0; padding-top: 0.75rem;">
+                        <span style="font-size: 0.85rem; font-weight: 800; color: #10b981; display: inline-flex; align-items: center; gap: 0.35rem;">
+                          <span>Start Practice</span>
+                          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                        </span>
+                      </div>
                     </div>
+
                   </div>
                 </div>
                 
               </div>
+
+              <!-- ═══════════ HANDWRITING PRACTICE SECTION ═══════════ -->
+              <div id="section-handwriting" class="dash-main-section hidden"></div>
+
+              <!-- ═══════════ WEEKLY LEAGUES SECTION ═══════════ -->
+              <div id="section-leagues" class="dash-main-section hidden"></div>
+
+              <!-- ═══════════ STUDY GROUPS SECTION ═══════════ -->
+              <div id="section-studygroups" class="dash-main-section hidden"></div>
 
               <div id="section-profile" class="dash-main-section hidden">
                 <div class="dash-card">
@@ -886,6 +2400,7 @@
                       <span data-i18n="dashBadges">My Badges</span>
                     </h3>
                   </div>
+                  <div id="badge-summary" class="badge-summary-text"></div>
                   <div id="badge-shelf" class="badge-shelf"></div>
                 </div>
               </div>
@@ -925,13 +2440,14 @@
               <!-- ═══ CHAT SIMULATOR SECTION ═══ -->
               <div id="section-chat" class="dash-main-section hidden">
                 <div id="chat-scenario-screen" class="scenario-screen">
-                  <h2 class="chat-title" data-i18n="chatSimulatorLabel">
-                    Chat Simulator
-                  </h2>
-                  <p class="chat-subtitle" data-i18n="chatSimulatorDesc">
-                    Choose a real-world scenario to practice your reading and
-                    replying skills.
-                  </p>
+                  <div style="margin-bottom: 2rem; text-align: center;">
+                    <h2 class="chat-title" data-i18n="chatSimulatorLabel" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0;">
+                      Chat Simulator
+                    </h2>
+                    <p class="chat-subtitle" data-i18n="chatSimulatorDesc" style="margin-top: 0.35rem; font-size: 1rem; font-weight: 600; color: #64748b;">
+                      Choose a real-world scenario to practice your reading and replying skills.
+                    </p>
+                  </div>
                   <div class="scenario-grid" id="scenario-grid"></div>
                 </div>
 
@@ -997,22 +2513,25 @@
               <div id="section-games" class="dash-main-section hidden">
                 <!-- Hub Screen -->
                 <div id="games-hub-screen" class="scenario-screen">
-                  <h2 class="chat-title" data-i18n="navGames">
-                    Games & Puzzles
-                  </h2>
-                  <p class="chat-subtitle" data-i18n="gamesHubDesc">
-                    Practice vocabulary and memory with fun games.
-                  </p>
-                  <h3 class="games-hub-heading">
+                  <div style="margin-bottom: 2rem; text-align: center;">
+                    <h2 class="chat-title" data-i18n="navGames" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0;">
+                      Games & Puzzles
+                    </h2>
+                    <p class="chat-subtitle" data-i18n="gamesHubDesc" style="margin-top: 0.35rem; font-size: 1rem; font-weight: 600; color: #64748b;">
+                      Play mini-games to improve vocabulary.
+                    </p>
+                  </div>
+
+                  <h3 class="games-hub-heading" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; color: #334155; margin-bottom: 1rem;">
                     <span data-i18n="gamesCategoryGames"><i data-lucide="gamepad-2"></i> Games</span>
                   </h3>
                   <div
                     id="games-grid"
                     class="scenario-grid"
-                    style="margin-top: 1rem"
+                    style="margin-top: 0.5rem"
                   ></div>
 
-                  <h3 class="games-hub-heading" style="margin-top: 2rem">
+                  <h3 class="games-hub-heading" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.15rem; color: #334155; margin-top: 2rem; margin-bottom: 1rem;">
                     <span data-i18n="gamesCategoryPuzzles"><i data-lucide="puzzle"></i> Puzzles</span>
                   </h3>
                   <div class="scenario-grid" id="puzzles-grid"></div>
@@ -1380,18 +2899,20 @@
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 2rem;
+                    flex-wrap: wrap;
+                    gap: 1rem;
                   "
                 >
                   <div>
-                    <h2 data-i18n="leaderboardTitle">Community Leaderboard</h2>
-                    <p class="text-secondary" data-i18n="leaderboardSubtitle">
-                      Top learners ranked by XP
+                    <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a;" data-i18n="leaderboardTitle">Community Leaderboard</h2>
+                    <p class="text-secondary" style="margin-top: 0.25rem; font-size: 0.95rem; font-weight: 600;" data-i18n="leaderboardSubtitle">
+                      Top learners ranked by XP across all skills and lessons
                     </p>
                   </div>
                   <button
                     id="admin-award-top3-btn"
                     class="btn-primary hidden"
-                    style="background: var(--color-accent); border: none"
+                    style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; border-radius: 14px; padding: 0.6rem 1.25rem; font-weight: 800;"
                   >
                     <i data-lucide="gift" style="margin-right: 6px"></i>
                     <span data-i18n="leaderboardAwardBtn"
@@ -1400,52 +2921,61 @@
                   </button>
                 </div>
 
-                <div class="dash-card leaderboard-card">
-                  <table
-                    class="leaderboard-table"
-                    style="
-                      width: 100%;
-                      border-collapse: collapse;
-                      text-align: left;
-                    "
-                  >
-                    <thead>
-                      <tr
-                        style="
-                          border-bottom: 2px solid var(--color-border);
-                          color: var(--color-text-light);
-                        "
-                      >
-                        <th data-i18n="leaderboardRank" style="padding: 1rem">
-                          Rank
-                        </th>
-                        <th data-i18n="leaderboardName" style="padding: 1rem">
-                          Learner Name
-                        </th>
-                        <th
-                          data-i18n="leaderboardStreak"
-                          style="padding: 1rem; text-align: center"
+                <!-- Top 3 Champions Podium Container -->
+                <div id="leaderboard-podium" style="display: flex; justify-content: center; align-items: flex-end; gap: 1.25rem; margin-bottom: 2.25rem; flex-wrap: wrap;"></div>
+
+                <div class="dash-card leaderboard-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 28px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07);">
+                  <div style="overflow-x: auto;">
+                    <table
+                      class="leaderboard-table"
+                      style="
+                        width: 100%;
+                        border-collapse: separate;
+                        border-spacing: 0 0.6rem;
+                        text-align: left;
+                      "
+                    >
+                      <thead>
+                        <tr
+                          style="
+                            color: #64748b;
+                            font-size: 0.82rem;
+                            font-weight: 800;
+                            text-transform: uppercase;
+                            letter-spacing: 1px;
+                          "
                         >
-                          <i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> Streak
-                        </th>
-                        <th
-                          data-i18n="leaderboardCoins"
-                          style="padding: 1rem; text-align: center"
-                        >
-                          <i data-lucide="coins" class="inline-icon" style="color:#f59e0b;"></i> Coins
-                        </th>
-                        <th
-                          data-i18n="leaderboardXP"
-                          style="padding: 1rem; text-align: right"
-                        >
-                          <i data-lucide="zap" class="inline-icon" style="color:var(--color-primary);"></i> Total XP
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody id="leaderboard-tbody">
-                      <!-- Loaded dynamically -->
-                    </tbody>
-                  </table>
+                          <th data-i18n="leaderboardRank" style="padding: 0.75rem 1rem">
+                            Rank
+                          </th>
+                          <th data-i18n="leaderboardName" style="padding: 0.75rem 1rem">
+                            Learner Name
+                          </th>
+                          <th
+                            data-i18n="leaderboardStreak"
+                            style="padding: 0.75rem 1rem; text-align: center"
+                          >
+                            <i data-lucide="flame" class="inline-icon" style="color:#f97316;"></i> Streak
+                          </th>
+                          <th
+                            data-i18n="leaderboardCoins"
+                            style="padding: 0.75rem 1rem; text-align: center"
+                          >
+                            <i data-lucide="coins" class="inline-icon" style="color:#eab308;"></i> Coins
+                          </th>
+                          <th
+                            data-i18n="leaderboardXP"
+                            style="padding: 0.75rem 1rem; text-align: right"
+                          >
+                            <i data-lucide="zap" class="inline-icon" style="color:#6366f1;"></i> Total XP
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="leaderboard-tbody">
+                        <!-- Loaded dynamically -->
+                      </tbody>
+                    </table>
+                  </div>
                   <div
                     id="leaderboard-empty"
                     class="hidden text-secondary"
@@ -1474,6 +3004,23 @@
             </div>
 
             <div class="dash-side-col">
+              <div class="sidebar-stats-row" style="margin-bottom: 1rem; width: 100%; justify-content: space-between;">
+                <div class="dash-stat-pill streak-pill" title="Daily Streak">
+                  <span class="stat-icon"><i data-lucide="flame"></i></span>
+                  <span id="streak-count" class="stat-value">0</span>
+                </div>
+                <div class="dash-stat-pill xp-pill" title="Experience Points">
+                  <span class="stat-icon"><i data-lucide="zap"></i></span>
+                  <span id="xp-count" class="stat-value">0</span>
+                </div>
+                <div class="dash-stat-pill coins-pill" title="Coins Earned">
+                  <span class="stat-icon"><i data-lucide="coins"></i></span>
+                  <span id="coin-count" class="stat-value">0</span>
+                </div>
+                <div id="user-level-badge" class="dash-level-badge beginner" style="font-size: 0.65rem !important; padding: 0.2rem 0.5rem !important;">
+                  <i data-lucide="sprout"></i> <span data-i18n="scoreLevelBeginner">Beginner</span>
+                </div>
+              </div>
               <div class="dash-card side-card wotd-card">
                 <div class="wotd-card-header">
                   <span data-i18n="wotdTitle">Word of the Day</span>
@@ -1589,25 +3136,7 @@
               </div>
             </div>
           </div>
-          <div id="shop-modal" class="modal-overlay hidden">
-            <div class="shop-card">
-              <div class="shop-header">
-                <div>
-                  <h2 data-i18n="shopTitle"><i data-lucide="shopping-cart"></i> Gyan Market</h2>
-                  <p data-i18n="shopSubtitle">Spend your coins on rewards!</p>
-                </div>
-                <button id="close-shop-btn" class="icon-btn" class="icon-btn">
-                  ✕
-                </button>
-              </div>
 
-              <div class="shop-balance-indicator">
-                Your Balance: <span id="shop-balance">0</span> <i data-lucide="coins" class="inline-icon"></i>
-              </div>
-
-              <div id="shop-items-grid" class="shop-items-grid"></div>
-            </div>
-          </div>
         </main>
       </div>
     </main>
@@ -1623,11 +3152,21 @@
     <script src="tts.js"></script>
     <script src="theme.js"></script>
     <script src="celebrations.js"></script>
+    <script src="curriculum.js"></script>
+    <script src="units-content.js"></script>
+    <script src="units.js"></script>
     <script src="curriculum-blueprint.js"></script>
     <script src="chat.js"></script>
     <script src="game.js"></script>
     <script src="games-hub.js"></script>
     <script src="analysis.js"></script>
+    <script src="handwriting-content.js"></script>
+    <script src="handwriting.js"></script>
+    <script src="leagues-config.js"></script>
+    <script src="leagues.js"></script>
+    <script src="studygroups.js"></script>
+    <script src="weeklyrecap.js"></script>
+    <script src="shareablecard.js"></script>
     <script src="dashboard.js"></script>
     <script src="main.js"></script>
     <script>

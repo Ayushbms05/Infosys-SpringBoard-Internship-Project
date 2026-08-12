@@ -304,7 +304,13 @@ function getUserProgress(uid) {
           geminiAnalysis: data.geminiAnalysis || null,
           coins: data.coins || 0,                 // NEW
           dailyQuests: data.dailyQuests || [],    // NEW
-          questDate: data.questDate || ""         // NEW 
+          questDate: data.questDate || "",        // NEW
+          studyGroupIds: data.studyGroupIds || [],
+          handwritingProgress: data.handwritingProgress || [],
+          currentLeague: data.currentLeague || "bronze",
+          weeklyLeagueXP: data.weeklyLeagueXP || 0,
+          lastLeagueWeek: data.lastLeagueWeek || "",
+          leagueGroupId: data.leagueGroupId || ""
         };
       }
       return null;
@@ -403,7 +409,8 @@ function updateStreak(uid) {
 // ────────────────────────────────────────────────────────────────
 function addXP(uid, amount) {
   return db.collection("users").doc(uid).update({
-    xp: firebase.firestore.FieldValue.increment(amount)
+    xp: firebase.firestore.FieldValue.increment(amount),
+    weeklyLeagueXP: firebase.firestore.FieldValue.increment(amount)
   });
 }
 

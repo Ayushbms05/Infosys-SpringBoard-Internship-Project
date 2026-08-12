@@ -125,10 +125,19 @@ window.GamesHub = (function () {
   function makeCard(item) {
     const card = document.createElement("div");
     card.className = "scenario-card";
+    card.style.background = "#ffffff";
+    card.style.backgroundColor = "#ffffff";
+    card.style.opacity = "1";
+    card.style.backdropFilter = "none";
+    card.style.border = "1.5px solid #e2e8f0";
+    card.style.borderRadius = "24px";
+    card.style.padding = "1.75rem 1.5rem";
+    card.style.boxShadow = "0 10px 28px -6px rgba(15, 23, 42, 0.06)";
+
     card.innerHTML = `
       <div class="scenario-icon">${item.icon}</div>
-      <h3 style="margin:0 0 .5rem 0;" data-i18n="${item.titleKey}">${item.title}</h3>
-      <p style="margin:0;color:#64748b;font-size:.9rem;" data-i18n="${item.descKey}">${item.desc}</p>
+      <h3 style="margin:0 0 .5rem 0; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: #0f172a;" data-i18n="${item.titleKey}">${item.title}</h3>
+      <p style="margin:0;color:#64748b;font-size:.9rem; font-weight: 600;" data-i18n="${item.descKey}">${item.desc}</p>
     `;
     card.onclick = () => {
       document.getElementById("games-hub-screen").classList.add("hidden");

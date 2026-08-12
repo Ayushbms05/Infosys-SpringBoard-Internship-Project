@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AksharGyan — Learn to Read. Learn to Thrive.</title>
+  <meta name="description" content="AksharGyan is an AI-powered multilingual literacy platform designed for adult and first-generation learners across India. Master reading, writing, and practical skills in 7 languages." />
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="manifest" href="manifest.json" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- GSAP & ScrollTrigger via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Custom Landing CSS -->
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- Sticky Navbar -->
+  <nav class="landing-nav" id="landing-nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#mission" data-i18n="navMission">Mission</a></li>
+        <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+        <li><a href="#languages" data-i18n="navLanguages">Languages</a></li>
+        <li><a href="#stats" data-i18n="navImpact">Impact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="login.html" class="lp-btn lp-btn-outline" data-i18n="navLogin">Login</a>
+        <a href="register.html" class="lp-btn lp-btn-primary">
+          <span data-i18n="navGetStarted">Get Started</span>
+          <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── 1. HERO SECTION ─────────────────────────────────────────── -->
+  <section class="hero-section" id="hero">
+    <!-- Ambient Background Orbs -->
+    <div class="bg-orb bg-orb-purple parallax-orb" style="top: -10%; left: -10%;" data-speed="0.05"></div>
+    <div class="bg-orb bg-orb-emerald parallax-orb" style="bottom: 10%; right: -5%;" data-speed="-0.03"></div>
+    <div class="bg-orb bg-orb-pink parallax-orb" style="top: 40%; left: 50%;" data-speed="0.04"></div>
+    
+    <div class="section-container">
+      <div class="hero-grid">
+        
+        <!-- Hero Left Column: Text & CTAs -->
+        <div class="hero-content">
+          <div class="hero-badge" id="hero-badge">
+            <i data-lucide="sparkles" style="width: 16px; height: 16px; color: #6366f1;"></i>
+            <span data-i18n="heroBadge">AI-POWERED MULTILINGUAL LITERACY</span>
+          </div>
+
+          <h1 class="hero-title" id="hero-title">
+            <span data-i18n="heroTitleLine1">Learn to Read.</span><br />
+            <span class="brand-gradient" data-i18n="heroTitleLine2">Learn to Thrive.</span>
+          </h1>
+
+          <p class="hero-subtitle" id="hero-subtitle" data-i18n="heroSubtitle">
+            Empowering adult and first-generation learners across India with personalized AI lessons, handwriting practice, interactive games, and peer study groups.
+          </p>
+
+          <div class="hero-cta-group" id="hero-cta-group">
+            <a href="register.html" class="lp-btn lp-btn-primary" style="padding: 0.9rem 2rem; font-size: 1.05rem;">
+              <span data-i18n="heroCtaPrimary">Start Learning Free</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </a>
+            <a href="#features" class="lp-btn lp-btn-secondary" style="padding: 0.9rem 1.8rem; font-size: 1.05rem;">
+              <span data-i18n="heroCtaSecondary">Explore Features</span>
+              <i data-lucide="chevron-down" style="width: 18px; height: 18px;"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Right Column: Animated Glassmorphic App Preview -->
+        <div class="hero-mockup-wrapper">
+          
+          <!-- Floating Badge Top-Left -->
+          <div class="hero-floating-badge h-badge-1">
+            <div style="background: rgba(99, 102, 241, 0.15); width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #6366f1;">
+              <i data-lucide="flame" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div style="color: var(--lp-text-muted); font-size: 0.7rem; text-transform: uppercase;" data-i18n="heroActiveStreakLabel">Active Streak</div>
+              <div style="color: var(--lp-text-dark); font-weight: 900;" data-i18n="heroActiveStreakValue">🔥 7 Days Streak</div>
+            </div>
+          </div>
+
+          <!-- Floating Badge Bottom-Right -->
+          <div class="hero-floating-badge h-badge-2">
+            <div style="background: rgba(16, 185, 129, 0.15); width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #10b981;">
+              <i data-lucide="zap" style="width: 18px; height: 18px;"></i>
+            </div>
+            <div>
+              <div style="color: var(--lp-text-muted); font-size: 0.7rem; text-transform: uppercase;" data-i18n="heroWeeklyGoalLabel">Weekly Goal</div>
+              <div style="color: #10b981; font-weight: 900;" data-i18n="heroWeeklyGoalValue">⚡ 150 XP Earned</div>
+            </div>
+          </div>
+
+          <!-- Main App Mockup Card -->
+          <div class="hero-mockup-card" id="hero-mockup-card">
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.6rem;">
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #f59e0b;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #10b981;"></div>
+              </div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.6);" data-i18n="heroMockupHeader">AksharGyan Dashboard</div>
+            </div>
+
+            <!-- Active Unit Node Demo -->
+            <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 18px; padding: 1.25rem; margin-bottom: 1.25rem;">
+              <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #6366f1; letter-spacing: 0.5px; margin-bottom: 0.4rem;" data-i18n="heroMockupUnitLevel">
+                Current Unit • Level 1
+              </div>
+              <h4 style="font-size: 1.25rem; font-weight: 900; color: white; margin-bottom: 0.4rem;" data-i18n="heroMockupUnitTitle">
+                Foundational Akshars (अक्षर)
+              </h4>
+              <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; margin-bottom: 1rem;" data-i18n="heroMockupUnitDesc">
+                Master vowel sounds and basic word building with AI speech evaluation.
+              </p>
+              
+              <div style="display: flex; align-items: center; justify-content: space-between; background: rgba(99, 102, 241, 0.15); padding: 0.6rem 1rem; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3);">
+                <div style="font-size: 0.85rem; font-weight: 800; color: white; display: flex; align-items: center; gap: 0.6rem;">
+                  <i data-lucide="volume-2" style="width: 18px; height: 18px; color: #6366f1;"></i>
+                  <span data-i18n="heroMockupPhrase">Phrase: "शेष राशि"</span>
+                  <div class="audio-visualizer">
+                    <div class="sound-wave-bar"></div>
+                    <div class="sound-wave-bar"></div>
+                    <div class="sound-wave-bar"></div>
+                    <div class="sound-wave-bar"></div>
+                    <div class="sound-wave-bar"></div>
+                  </div>
+                </div>
+                <span style="background: #10b981; color: white; font-size: 0.7rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;" data-i18n="heroMockupListenSpeak">Listen & Speak</span>
+              </div>
+            </div>
+
+            <!-- Interactive Features Pills Preview -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 14px; text-align: center;">
+                <div style="font-size: 1.2rem; margin-bottom: 0.2rem;">✏️</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: white;" data-i18n="heroMockupHandwriting">Handwriting Canvas</div>
+              </div>
+              <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 14px; text-align: center;">
+                <div style="font-size: 1.2rem; margin-bottom: 0.2rem;">👥</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: white;" data-i18n="heroMockupStudyGroups">Study Groups</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. PROBLEM / MISSION SECTION ────────────────────────────── -->
+  <section class="landing-section mission-section" id="mission">
+    <!-- Ambient Background Orbs -->
+    <div class="bg-orb bg-orb-emerald parallax-orb" style="top: -20%; right: -10%;" data-speed="0.04"></div>
+    <div class="bg-orb bg-orb-purple parallax-orb" style="bottom: -10%; left: -5%;" data-speed="-0.02"></div>
+    
+    <div class="section-container">
+      
+      <div class="section-header">
+        <span class="section-badge" data-i18n="missionBadge">OUR MISSION</span>
+        <h2 class="section-title" data-i18n="missionTitle">Why Literacy Matters</h2>
+        <p class="section-subtitle" data-i18n="missionSubtitle">
+          Over 250 million adults in India face daily obstacles due to functional illiteracy. AksharGyan bridges this gap with accessible, multi-sensory AI learning designed specifically for adult and first-generation learners.
+        </p>
+      </div>
+
+      <div class="mission-grid">
+        
+        <div class="mission-card">
+          <div class="mission-icon">
+            <i data-lucide="lightbulb" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="mission-card-title" data-i18n="missionCard1Title">Empowering Daily Independence</h3>
+          <p class="mission-card-desc" data-i18n="missionCard1Desc">
+            Gain confidence to read bus route signs, banking deposit slips, medical prescriptions, and smartphone messages without relying on others.
+          </p>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+            <i data-lucide="brain-circuit" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="mission-card-title" data-i18n="missionCard2Title">AI-Personalized Learning Pace</h3>
+          <p class="mission-card-desc" data-i18n="missionCard2Desc">
+            Instant speech feedback and adaptive exercises adjust dynamically to your progress, ensuring zero pressure and maximum retention.
+          </p>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+            <i data-lucide="globe" style="width: 28px; height: 28px;"></i>
+          </div>
+          <h3 class="mission-card-title" data-i18n="missionCard3Title">Native Language First</h3>
+          <p class="mission-card-desc" data-i18n="missionCard3Desc">
+            Learn functional literacy directly in your mother tongue, seamlessly building bridges to English and regional state languages.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 3. FEATURES SHOWCASE (PINNED HORIZONTAL SCROLL) ───────────── -->
+  <div class="features-pin-wrapper" id="features-pin-wrapper">
+    <section class="landing-section features-section" id="features">
+      
+      <div class="features-header-wrap">
+        <span class="section-badge" data-i18n="featuresBadge">PLATFORM FEATURES</span>
+        <h2 class="section-title" data-i18n="featuresTitle">Everything You Need to Master Literacy</h2>
+        <p class="section-subtitle" data-i18n="featuresSubtitle">
+          Scroll down to explore our 6 core multi-sensory learning tools designed for adult and first-generation learners.
+        </p>
+      </div>
+
+      <div class="features-track-container">
+        <div class="features-track" id="features-track">
+          
+          <!-- Card 01 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">01</div>
+            <div>
+              <div class="fc-icon-wrap">
+                <i data-lucide="map" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature1Title">Adaptive Learning Path</h3>
+              <p class="fc-desc" data-i18n="feature1Desc">
+                Structured units moving progressively from foundational Akshars (letters) to functional words, daily dialogues, and practical real-world sentence structure.
+              </p>
+            </div>
+            <span class="feature-tag" data-i18n="feature1Tag">Structured Progression</span>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">02</div>
+            <div>
+              <div class="fc-icon-wrap" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+                <i data-lucide="message-circle" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature2Title">AI Chat Simulator</h3>
+              <p class="fc-desc" data-i18n="feature2Desc">
+                Practice real-life conversational tasks — banking inquiries, mobile recharges, shopping, and messaging friends — with immediate speech evaluation.
+              </p>
+            </div>
+            <span class="feature-tag" style="background: rgba(16, 185, 129, 0.1); color: #10b981;" data-i18n="feature2Tag">Real-World Scenarios</span>
+          </div>
+
+          <!-- Card 03 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">03</div>
+            <div>
+              <div class="fc-icon-wrap" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+                <i data-lucide="gamepad-2" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature3Title">Interactive Games Hub</h3>
+              <p class="fc-desc" data-i18n="feature3Desc">
+                Reinforce vocabulary and spelling with Word Search, Vocabulary Crosswords, and Alphabet Matching games designed for engaging daily practice.
+              </p>
+            </div>
+            <span class="feature-tag" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;" data-i18n="feature3Tag">Gamified Practice</span>
+          </div>
+
+          <!-- Card 04 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">04</div>
+            <div>
+              <div class="fc-icon-wrap" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;">
+                <i data-lucide="edit-3" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature4Title">Handwriting Canvas</h3>
+              <p class="fc-desc" data-i18n="feature4Desc">
+                Develop writing muscle memory on an interactive canvas. Trace Akshars and words directly on screen with touch or mouse stroke recognition.
+              </p>
+            </div>
+            <span class="feature-tag" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;" data-i18n="feature4Tag">Stroke Recognition</span>
+          </div>
+
+          <!-- Card 05 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">05</div>
+            <div>
+              <div class="fc-icon-wrap">
+                <i data-lucide="users" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature5Title">Peer Study Groups</h3>
+              <p class="fc-desc" data-i18n="feature5Desc">
+                Connect with fellow learners in dual-language study groups. Share practice sentences, ask questions, and learn together in a supportive forum.
+              </p>
+            </div>
+            <span class="feature-tag" data-i18n="feature5Tag">Community Learning</span>
+          </div>
+
+          <!-- Card 06 -->
+          <div class="feature-card-horizontal">
+            <div class="fc-number">06</div>
+            <div>
+              <div class="fc-icon-wrap" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;">
+                <i data-lucide="trophy" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h3 class="fc-title" data-i18n="feature6Title">Weekly Competitive Leagues</h3>
+              <p class="fc-desc" data-i18n="feature6Desc">
+                Stay motivated with competitive weekly leagues (Bronze to Diamond). Earn XP through lessons and climb cohort leaderboards every week.
+              </p>
+            </div>
+            <span class="feature-tag" style="background: rgba(168, 85, 247, 0.1); color: #a855f7;" data-i18n="feature6Tag">Weekly Competition</span>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ── 4. LANGUAGES SUPPORTED SECTION ──────────────────────────── -->
+  <section class="landing-section languages-section" id="languages">
+    <div class="section-container">
+      
+      <div class="section-header">
+        <span class="section-badge" style="background: rgba(255, 255, 255, 0.1); color: #00d4aa; border-color: rgba(0, 212, 170, 0.3);" data-i18n="langSectionBadge">7 INDIAN LANGUAGES</span>
+        <h2 class="section-title" data-i18n="langSectionTitle">Learn in Your Native Tongue</h2>
+        <p class="section-subtitle" data-i18n="langSectionSubtitle">
+          Full audio synthesis, speech recognition, and translated interface support across major Indian languages.
+        </p>
+      </div>
+
+      <div class="languages-grid">
+        
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇬🇧</div>
+          <div class="lang-name-native">English</div>
+          <div class="lang-name-english" data-i18n="langSubEnglish">Functional Literacy</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">हिन्दी</div>
+          <div class="lang-name-english">Hindi</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">தமிழ்</div>
+          <div class="lang-name-english">Tamil</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">తెలుగు</div>
+          <div class="lang-name-english">Telugu</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">ಕನ್ನಡ</div>
+          <div class="lang-name-english">Kannada</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">বাংলা</div>
+          <div class="lang-name-english">Bengali</div>
+        </a>
+
+        <a href="index.html" class="lang-card" style="grid-column: span 2; text-decoration: none; color: inherit;">
+          <div class="lang-flag">🇮🇳</div>
+          <div class="lang-name-native">मराठी</div>
+          <div class="lang-name-english">Marathi</div>
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 5. SOCIAL PROOF & STATS SECTION ─────────────────────────── -->
+  <section class="landing-section stats-section" id="stats">
+    <div class="section-container">
+      
+      <div class="stats-grid">
+        
+        <div class="stat-item">
+          <div class="stat-number" data-target="1000" data-suffix="+">0</div>
+          <div class="stat-label" data-i18n="stat1Label">Active Learners</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number" data-target="50" data-suffix="+" style="color: #10b981;">0</div>
+          <div class="stat-label" data-i18n="stat2Label">Interactive Lessons</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number" data-target="7" data-suffix="" style="color: #f59e0b;">0</div>
+          <div class="stat-label" data-i18n="stat3Label">Native Languages</div>
+        </div>
+
+        <div class="stat-item">
+          <div class="stat-number" data-target="95" data-suffix="%" style="color: #ec4899;">0</div>
+          <div class="stat-label" data-i18n="stat4Label">Goal Completion Rate</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── 6. FINAL HIGH-IMPACT CTA SECTION ────────────────────────── -->
+  <section class="landing-section cta-section" id="cta">
+    <div class="section-container">
+      <div class="cta-box" id="cta-box">
+        <h2 class="cta-title" data-i18n="ctaTitle">Start Your Literacy Journey Today</h2>
+        <p class="cta-subtitle" data-i18n="ctaSubtitle">
+          Join thousands of adult learners acquiring confidence, independence, and functional reading skills every single day.
+        </p>
+        <div style="display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;">
+          <a href="register.html" class="lp-btn lp-btn-primary" style="padding: 1rem 2.5rem; font-size: 1.1rem; background: linear-gradient(135deg, #10b981, #00d4aa); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4);">
+            <span data-i18n="ctaBtnRegister">Create Free Account</span>
+            <i data-lucide="sparkles" style="width: 20px; height: 20px;"></i>
+          </a>
+          <a href="index.html" class="lp-btn lp-btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+            <span data-i18n="ctaBtnLang">Choose Language</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 7. FOOTER ────────────────────────────────────────────────── -->
+  <footer class="landing-footer">
+    <div class="footer-grid">
+      
+      <div>
+        <div class="footer-brand-title">📖 AksharGyan</div>
+        <p class="footer-desc" data-i18n="footerBrandDesc">
+          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and community practice.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColPlatform">Platform</div>
+        <ul class="footer-links">
+          <li><a href="#mission" data-i18n="navMission">Mission</a></li>
+          <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="#languages" data-i18n="navLanguages">Languages</a></li>
+          <li><a href="#stats" data-i18n="navImpact">Impact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColLearners">Learners</div>
+        <ul class="footer-links">
+          <li><a href="login.html" data-i18n="navLogin">Login</a></li>
+          <li><a href="register.html" data-i18n="footerLinkSignUp">Sign Up Free</a></li>
+          <li><a href="index.html" data-i18n="footerLinkSelectLang">Select Language</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColSupport">Support</div>
+        <ul class="footer-links">
+          <li><a href="#" data-i18n="footerLinkHelp">Help Center</a></li>
+          <li><a href="#" data-i18n="footerLinkForum">Community Forum</a></li>
+          <li><a href="#" data-i18n="footerLinkPrivacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div data-i18n="footerCopyright">© 2026 AksharGyan Literacy Project. All rights reserved.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkPrivacy">Privacy</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkTerms">Terms</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkContact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Landing Page GSAP Animations & Interactive Logic -->
+  <script src="translations.js"></script>
+  <script src="landing.js"></script>
+  <script>
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

@@ -1,96 +1,383 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AksharGyan — AI-powered literacy platform for adult and first-generation learners. Choose your language to get started."
-    />
-    <title>AksharGyan — Choose Your Language</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="manifest" href="/manifest.json">
-    <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
-  </head>
-  <body id="page-index" class="fade-in-up light-theme">
-    <main class="page-container">
-      <div class="auth-float-icon fi-1">📖</div>
-      <div class="auth-float-icon fi-2">✏️</div>
-      <div class="auth-float-icon fi-3">💡</div>
-      <div class="auth-float-icon fi-4">🔤</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AksharGyan — Choose Your Language</title>
+  <meta name="description" content="AksharGyan — AI-powered literacy platform for adult and first-generation learners. Choose your language to get started." />
 
-      <div class="card auth-card-index">
-        <div class="auth-brand-badge">✨ AI-Powered Literacy Learning</div>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="manifest" href="manifest.json" />
 
-        <div class="logo-area">
-          <div class="logo-icon-badge">
-            <div class="logo-icon">📖</div>
-          </div>
-          <h1 class="logo-title">
-            <span class="brand-gradient" data-i18n="langScreenTitle"
-              >Welcome to AksharGyan</span
-            >
-          </h1>
-          <p class="logo-subtitle" data-i18n="langScreenSubtitle">
-            Choose your preferred language to continue
-          </p>
-        </div>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
 
-        <div class="lang-grid">
-          <button class="lang-btn" data-lang="en" id="lang-en">
-            <span class="lang-native">English</span>
-            <div class="lang-check">✓</div>
-          </button>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-          <button class="lang-btn" data-lang="hi" id="lang-hi">
-            <span class="lang-native">हिन्दी</span>
-            <span class="lang-english">Hindi</span>
-            <div class="lang-check">✓</div>
-          </button>
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
-          <button class="lang-btn" data-lang="ta" id="lang-ta">
-            <span class="lang-native">தமிழ்</span>
-            <span class="lang-english">Tamil</span>
-            <div class="lang-check">✓</div>
-          </button>
+  <!-- Custom Landing CSS -->
+  <link rel="stylesheet" href="landing.css" />
 
-          <button class="lang-btn" data-lang="te" id="lang-te">
-            <span class="lang-native">తెలుగు</span>
-            <span class="lang-english">Telugu</span>
-            <div class="lang-check">✓</div>
-          </button>
+  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
 
-          <button class="lang-btn" data-lang="kn" id="lang-kn">
-            <span class="lang-native">ಕನ್ನಡ</span>
-            <span class="lang-english">Kannada</span>
-            <div class="lang-check">✓</div>
-          </button>
+  <style>
+    /* Force Light Theme Background matching landing.html */
+    html, body#page-index {
+      background-color: #f8fafc !important;
+      background: #f8fafc !important;
+      color: #0f172a !important;
+    }
 
-          <button class="lang-btn" data-lang="bn" id="lang-bn">
-            <span class="lang-native">বাংলা</span>
-            <span class="lang-english">Bengali</span>
-            <div class="lang-check">✓</div>
-          </button>
+    body#page-index::before {
+      display: none !important;
+    }
 
-          <button class="lang-btn lang-full" data-lang="mr" id="lang-mr">
-            <span class="lang-native">मराठी</span>
-            <span class="lang-english">Marathi</span>
-            <div class="lang-check">✓</div>
-          </button>
-        </div>
+    /* High-Contrast, High-Visibility Language Selection Grid */
+    .index-lang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      max-width: 1050px;
+      margin: 0 auto 2.5rem auto;
+      width: 100%;
+    }
 
-        <div class="nav-link-area" style="margin-top: 1.5rem">
-          <a href="login.html" data-i18n="goToLogin"
-            >Already have an account? Login</a
-          >
-        </div>
+    .index-lang-card {
+      background: #ffffff !important;
+      border: 2px solid #cbd5e1 !important;
+      border-radius: 20px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08) !important;
+      position: relative;
+      overflow: hidden;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .index-lang-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(0, 212, 170, 0.06));
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: 0;
+    }
+
+    .index-lang-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      background: #ffffff !important;
+      border-color: #6366f1 !important;
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    .index-lang-card:hover::before,
+    .index-lang-card.active::before {
+      opacity: 1;
+    }
+
+    .index-lang-card.active {
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%) !important;
+      border-color: #6366f1 !important;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3), 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+    }
+
+    .ilc-flag {
+      font-size: 2.4rem;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      flex-shrink: 0;
+    }
+
+    .ilc-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ilc-native {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #0f172a !important;
+      line-height: 1.25;
+    }
+
+    .ilc-english {
+      font-size: 0.9rem;
+      color: #475569 !important;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .ilc-check {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      opacity: 0.7;
+      position: relative;
+      z-index: 1;
+      border: 1px solid #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    .index-lang-card:hover .ilc-check,
+    .index-lang-card.active .ilc-check {
+      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+      color: #ffffff !important;
+      opacity: 1 !important;
+      transform: scale(1.15) rotate(5deg);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+      border-color: #6366f1 !important;
+    }
+
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+  </style>
+</head>
+<body id="page-index">
+
+  <!-- Top Scroll Progress Bar -->
+  <div id="scroll-progress-bar"></div>
+
+  <!-- Sticky Navbar -->
+  <nav class="landing-nav" id="landing-nav">
+    <div class="nav-container">
+      <a href="landing.html" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+
+      <div class="nav-actions">
+        <a href="login.html" class="lp-btn lp-btn-outline" data-i18n="navLogin">Login</a>
+        <a href="landing.html" class="lp-btn lp-btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+          <span data-i18n="continueToLanding">Explore Platform →</span>
+        </a>
       </div>
-    </main>
+    </div>
+  </nav>
 
-    <script src="config.js"></script>
-    <script src="translations.js"></script>
-    <script src="tts.js"></script>
-    <script src="main.js"></script>
-  </body>
+  <!-- ── HERO / LANGUAGE SELECTION PORTAL ───────────────────────── -->
+  <section class="hero-section" id="hero-portal" style="min-height: 100vh; padding-top: 8rem; padding-bottom: 5rem; display: flex; flex-direction: column; justify-content: center; position: relative;">
+    <!-- Ambient Background Glow Orbs -->
+    <div class="bg-orb bg-orb-purple" style="top: -5%; left: -5%;"></div>
+    <div class="bg-orb bg-orb-emerald" style="bottom: 10%; right: -5%;"></div>
+    <div class="bg-orb bg-orb-pink" style="top: 35%; left: 45%;"></div>
+
+    <div class="section-container" style="position: relative; z-index: 10; width: 100%;">
+      
+      <!-- Header Banner -->
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <div class="hero-badge" style="margin: 0 auto 1.2rem auto; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="globe" style="width: 16px; height: 16px; color: #6366f1;"></i>
+          <span data-i18n="selectLangBadge">CHOOSE YOUR PREFERRED LANGUAGE</span>
+        </div>
+
+        <h1 class="hero-title" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 1rem; line-height: 1.2;">
+          <span data-i18n="langScreenTitle">Welcome to AksharGyan</span><br />
+          <span class="brand-gradient" data-i18n="langScreenSubtitle">Choose your preferred language to continue</span>
+        </h1>
+
+        <p class="hero-subtitle" style="max-width: 640px; margin: 0 auto; font-size: 1.1rem;" data-i18n="indexSubtitle">
+          Select the language you want to read and learn in. You can change this anytime later.
+        </p>
+      </div>
+
+      <!-- Language Grid (7 Languages) -->
+      <div class="index-lang-grid" id="index-lang-grid">
+        
+        <div class="index-lang-card" data-lang="en" id="lang-en">
+          <div class="ilc-flag">🇬🇧</div>
+          <div class="ilc-info">
+            <div class="ilc-native">English</div>
+            <div class="ilc-english">Primary / Global</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="hi" id="lang-hi">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">हिन्दी</div>
+            <div class="ilc-english">Hindi</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="ta" id="lang-ta">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">தமிழ்</div>
+            <div class="ilc-english">Tamil</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="te" id="lang-te">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">తెలుగు</div>
+            <div class="ilc-english">Telugu</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="kn" id="lang-kn">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">ಕನ್ನಡ</div>
+            <div class="ilc-english">Kannada</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="bn" id="lang-bn">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">বাংলা</div>
+            <div class="ilc-english">Bengali</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+        <div class="index-lang-card" data-lang="mr" id="lang-mr">
+          <div class="ilc-flag">🇮🇳</div>
+          <div class="ilc-info">
+            <div class="ilc-native">मराठी</div>
+            <div class="ilc-english">Marathi</div>
+          </div>
+          <div class="ilc-check">✓</div>
+        </div>
+
+      </div>
+
+      <!-- Action Navigation Buttons -->
+      <div style="display: flex; gap: 1.2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
+        <a href="login.html" class="lp-btn lp-btn-outline" style="padding: 0.9rem 2rem; font-size: 1rem;" data-i18n="goToLogin">
+          Already have an account? Login
+        </a>
+        <a href="landing.html" class="lp-btn lp-btn-primary" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
+          <span data-i18n="continueToLanding">Explore AksharGyan Platform →</span>
+          <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────────── -->
+  <footer class="landing-footer">
+    <div class="footer-grid">
+      
+      <div>
+        <div class="footer-brand-title">📖 AksharGyan</div>
+        <p class="footer-desc" data-i18n="footerBrandDesc">
+          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and community practice.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColPlatform">Platform</div>
+        <ul class="footer-links">
+          <li><a href="landing.html#mission" data-i18n="navMission">Mission</a></li>
+          <li><a href="landing.html#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="landing.html#languages" data-i18n="navLanguages">Languages</a></li>
+          <li><a href="landing.html#stats" data-i18n="navImpact">Impact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColLearners">Learners</div>
+        <ul class="footer-links">
+          <li><a href="login.html" data-i18n="navLogin">Login</a></li>
+          <li><a href="register.html" data-i18n="footerLinkSignUp">Sign Up Free</a></li>
+          <li><a href="index.html" data-i18n="footerLinkSelectLang">Select Language</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title" data-i18n="footerColSupport">Support</div>
+        <ul class="footer-links">
+          <li><a href="#" data-i18n="footerLinkHelp">Help Center</a></li>
+          <li><a href="#" data-i18n="footerLinkForum">Community Forum</a></li>
+          <li><a href="#" data-i18n="footerLinkPrivacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div data-i18n="footerCopyright">© 2026 AksharGyan Literacy Project. All rights reserved.</div>
+      <div style="display: flex; gap: 1.5rem;">
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkPrivacy">Privacy</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkTerms">Terms</a>
+        <a href="#" style="color: #94a3b8; text-decoration: none;" data-i18n="footerLinkContact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="config.js"></script>
+  <script src="translations.js"></script>
+  <script src="tts.js"></script>
+  <script src="main.js"></script>
+  <script>
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+    
+    // Smooth GSAP Slide Up
+    if (typeof gsap !== "undefined") {
+      gsap.from(".index-lang-card", {
+        y: 20,
+        duration: 0.6,
+        stagger: 0.05,
+        ease: "power2.out"
+      });
+    }
+
+    if (typeof auth !== "undefined") {
+      auth.onAuthStateChanged(function(user) {
+        if (user) {
+          window.location.href = "dashboard.html";
+        }
+      });
+    }
+  </script>
+</body>
 </html>

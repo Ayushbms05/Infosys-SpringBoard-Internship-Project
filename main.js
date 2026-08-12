@@ -57,24 +57,36 @@ document.addEventListener("DOMContentLoaded", function () {
 //  INDEX PAGE
 // ════════════════════════════════════════════════════════════════
 function setupLanguageSelection() {
-  var langButtons = document.querySelectorAll(".lang-btn");
+  var langButtons = document.querySelectorAll(".lang-btn, .index-lang-card");
+  var savedLang = localStorage.getItem("saksharLang") || "en";
 
   langButtons.forEach(function (btn) {
+    var langCode = btn.getAttribute("data-lang");
+    if (langCode === savedLang) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+
     btn.addEventListener("click", function () {
       var langCode = btn.getAttribute("data-lang");
 
       selectedLang = langCode;
       localStorage.setItem("saksharLang", langCode);
       
-      langButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      setTimeout(function() {
-        document.body.classList.add('fade-out');
-        setTimeout(function() {
-          window.location.href = "login.html"; // Usually better to send to login or reg based on user need, we'll use login as default next step if they already have account
-        }, 300);
-      }, 400);
+      langButtons.forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+
+      if (typeof applyTranslations === "function") {
+        applyTranslations(langCode);
+      }
+
+      setTimeout(function () {
+        document.body.classList.add("fade-out");
+        setTimeout(function () {
+          window.location.href = "landing.html";
+        }, 200);
+      }, 250);
     });
   });
 }

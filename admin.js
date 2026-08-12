@@ -568,6 +568,7 @@ async function openUserDetailModal(uid) {
   document.getElementById("admin-modal-trend-chart").innerHTML = "";
 
   modal.classList.remove("hidden");
+  if (window.lucide) lucide.createIcons();
   document.getElementById("admin-edit-name").value = user.fullName || "";
   document.getElementById("admin-edit-level").value =
     user.currentLevel || "beginner";
@@ -846,7 +847,7 @@ async function loadAnnouncements() {
       .get();
     if (snap.empty) {
       listEl.innerHTML =
-        '<div class="analysis-empty-state">No announcements yet.</div>';
+        '<div class="analysis-empty-state" style="text-align: center; padding: 2rem; color: #94a3b8; font-weight: 700;">No announcements posted yet.</div>';
       return;
     }
     listEl.innerHTML = snap.docs
@@ -856,14 +857,33 @@ async function loadAnnouncements() {
           d.createdAt && d.createdAt.toDate
             ? d.createdAt.toDate().toLocaleString()
             : "";
-        return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">${d.active ? "<i data-lucide='circle-dot' class='inline-icon' style='color:var(--color-success);'></i>" : "<i data-lucide='circle' class='inline-icon'></i>"}</span>
-        <div class="admin-activity-info">
-          <div class="admin-activity-main">${d.message}</div>
-          <div class="admin-activity-time">${when}</div>
-        </div>
-        ${d.active ? `<button class="admin-view-btn" data-deactivate="${doc.id}">Deactivate</button>` : ""}
-      </div>`;
+        const isActive = d.active;
+
+        return `
+          <div style="background: ${isActive ? 'linear-gradient(135deg, #ffffff, #f0fdf4)' : '#ffffff'}; border: 1.5px solid ${isActive ? '#bbf7d0' : '#e2e8f0'}; border-radius: 20px; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; box-shadow: ${isActive ? '0 8px 24px rgba(16,185,129,0.08)' : '0 4px 12px rgba(15,23,42,0.03)'}; transition: all 0.25s ease;">
+            <div style="display: flex; align-items: flex-start; gap: 1rem; flex: 1;">
+              <div style="width: 38px; height: 38px; border-radius: 12px; background: ${isActive ? '#dcfce7' : '#f1f5f9'}; color: ${isActive ? '#15803d' : '#64748b'}; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem;">
+                <i data-lucide="${isActive ? 'radio' : 'radio-off'}" style="width: 20px; height: 20px;"></i>
+              </div>
+              <div style="flex: 1;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                  <span style="background: ${isActive ? 'linear-gradient(135deg, #dcfce7, #bbf7d0)' : '#f1f5f9'}; color: ${isActive ? '#14532d' : '#475569'}; border: 1px solid ${isActive ? '#86efac' : '#cbd5e1'}; font-weight: 900; font-size: 0.72rem; padding: 0.2rem 0.65rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    ${isActive ? '🟢 Active Broadcast' : '⚪ Inactive'}
+                  </span>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8;">${when}</span>
+                </div>
+                <div style="font-weight: 700; font-size: 0.98rem; color: #0f172a; line-height: 1.45;">${d.message}</div>
+              </div>
+            </div>
+            ${isActive ? `
+              <button class="btn-secondary" data-deactivate="${doc.id}" style="background: rgba(239, 68, 68, 0.08); border: 1.5px solid rgba(239, 68, 68, 0.25); color: #ef4444; border-radius: 12px; padding: 0.45rem 1rem; font-weight: 800; font-size: 0.85rem; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0;">
+                Deactivate
+              </button>
+            ` : `
+              <span style="font-size: 0.82rem; font-weight: 800; color: #94a3b8; background: #f8fafc; padding: 0.35rem 0.75rem; border-radius: 9999px; border: 1px solid #e2e8f0;">Archived</span>
+            `}
+          </div>
+        `;
       })
       .join("");
 
@@ -876,7 +896,7 @@ async function loadAnnouncements() {
   } catch (err) {
     console.error("Failed to load announcements:", err);
     listEl.innerHTML =
-      '<div class="analysis-empty-state">Could not load announcements.</div>';
+      '<div class="analysis-empty-state" style="text-align: center; padding: 2rem; color: #ef4444;">Could not load announcements.</div>';
   }
 }
 
@@ -942,7 +962,7 @@ async function loadFeedback() {
       .get();
     if (snap.empty) {
       listEl.innerHTML =
-        '<div class="analysis-empty-state">No feedback yet.</div>';
+        '<div class="analysis-empty-state" style="text-align: center; padding: 2rem; color: #94a3b8; font-weight: 700;">No feedback submitted yet.</div>';
       return;
     }
     listEl.innerHTML = snap.docs
@@ -952,14 +972,47 @@ async function loadFeedback() {
           d.createdAt && d.createdAt.toDate
             ? timeAgo(d.createdAt.toDate())
             : "";
-        return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">${d.status === "reviewed" ? "<i data-lucide='check-circle' class='inline-icon' style='color:var(--color-success);'></i>" : "<i data-lucide='sparkles' class='inline-icon' style='color:var(--color-primary);'></i>"}</span>
-        <div class="admin-activity-info">
-          <div class="admin-activity-main"><strong>${d.email || "Unknown user"}</strong>: ${d.message}</div>
-          <div class="admin-activity-time">${when}</div>
-        </div>
-        ${d.status !== "reviewed" ? `<button class="admin-view-btn" data-review="${doc.id}">Mark Reviewed</button>` : ""}
-      </div>`;
+        const isReviewed = d.status === "reviewed";
+        const email = d.email || "Anonymous Learner";
+        const initial = email.charAt(0).toUpperCase();
+
+        return `
+          <div style="background: ${isReviewed ? '#ffffff' : 'linear-gradient(135deg, #ffffff, #faf5ff)'}; border: 1.5px solid ${isReviewed ? '#e2e8f0' : '#e9d5ff'}; border-radius: 24px; padding: 1.5rem; box-shadow: ${isReviewed ? '0 4px 14px rgba(15,23,42,0.03)' : '0 10px 28px rgba(168,85,247,0.1)'}; transition: all 0.25s ease; position: relative;">
+            <!-- Header Row: User Avatar, Email, Status Tag, Timestamp, Action Button -->
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #7c3aed); color: #ffffff; font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(168,85,247,0.3);">
+                  ${initial}
+                </div>
+                <div>
+                  <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 1.05rem; color: #0f172a;">${email}</div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.2rem;">
+                    <span style="background: ${isReviewed ? '#f1f5f9' : 'rgba(168,85,247,0.1)'}; color: ${isReviewed ? '#475569' : '#a855f7'}; border: 1px solid ${isReviewed ? '#cbd5e1' : 'rgba(168,85,247,0.3)'}; font-weight: 900; font-size: 0.72rem; padding: 0.18rem 0.65rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px;">
+                      ${isReviewed ? '🟢 Reviewed' : '✨ New Feedback'}
+                    </span>
+                    <span style="font-size: 0.82rem; font-weight: 700; color: #94a3b8;">${when}</span>
+                  </div>
+                </div>
+              </div>
+
+              ${!isReviewed ? `
+                <button data-review="${doc.id}" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; border-radius: 14px; padding: 0.55rem 1.25rem; font-weight: 800; font-size: 0.88rem; cursor: pointer; box-shadow: 0 4px 14px rgba(99,102,241,0.35); width: max-content !important; min-width: auto !important; max-width: max-content !important; display: inline-flex !important; align-items: center !important; gap: 0.4rem !important; transition: transform 0.2s ease;">
+                  <i data-lucide="check" style="width: 16px; height: 16px;"></i>
+                  <span>Mark Reviewed</span>
+                </button>
+              ` : `
+                <span style="font-size: 0.85rem; font-weight: 800; color: #64748b; background: #f1f5f9; border: 1px solid #e2e8f0; padding: 0.35rem 0.85rem; border-radius: 9999px;">
+                  Archived
+                </span>
+              `}
+            </div>
+
+            <!-- Message Quote Body -->
+            <div style="font-weight: 600; font-size: 0.98rem; color: #334155; line-height: 1.5; background: rgba(248,250,252,0.9); border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 1rem 1.25rem;">
+              "${d.message}"
+            </div>
+          </div>
+        `;
       })
       .join("");
 
@@ -968,10 +1021,11 @@ async function loadFeedback() {
         markFeedbackReviewed(btn.dataset.review),
       );
     });
+    if (window.lucide) lucide.createIcons();
   } catch (err) {
     console.error("Failed to load feedback:", err);
     listEl.innerHTML =
-      '<div class="analysis-empty-state">Could not load feedback.</div>';
+      '<div class="analysis-empty-state" style="text-align: center; padding: 2rem; color: #ef4444;">Could not load feedback.</div>';
   }
 }
 
@@ -996,8 +1050,13 @@ async function loadErrorLogs() {
       .limit(50)
       .get();
     if (snap.empty) {
-      listEl.innerHTML =
-        '<div class="analysis-empty-state">No errors logged. <i data-lucide="party-popper" class="inline-icon"></i></div>';
+      listEl.innerHTML = `
+        <div style="text-align: center; padding: 3rem 2rem; background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 2px dashed #a7f3d0; border-radius: 24px;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: #dcfce7; color: #16a34a; font-size: 1.75rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.85rem; box-shadow: 0 6px 18px rgba(22,163,74,0.25);">🎉</div>
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.25rem; color: #14532d; margin: 0 0 0.35rem;">Zero Runtime Errors Logged!</h3>
+          <p style="font-size: 0.92rem; color: #166534; font-weight: 600; margin: 0;">All client applications are running smoothly without any exceptions.</p>
+        </div>
+      `;
       return;
     }
     listEl.innerHTML = snap.docs
@@ -1007,24 +1066,43 @@ async function loadErrorLogs() {
           d.createdAt && d.createdAt.toDate
             ? timeAgo(d.createdAt.toDate())
             : "";
-        return `<div class="admin-activity-row">
-        <span class="admin-activity-icon"><i data-lucide="bug"></i></span>
-        <div class="admin-activity-info">
-          <div class="admin-activity-main">${d.message}</div>
-          <div class="admin-activity-time">${d.email || "Unknown user"} · ${when}</div>
-        </div>
-      </div>`;
+        const email = d.email || "Anonymous Session";
+        const url = d.url || d.page || "";
+
+        return `
+          <div style="background: linear-gradient(135deg, #ffffff, #fff5f5); border: 1.5px solid #fecaca; border-radius: 20px; padding: 1.25rem 1.5rem; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.06); transition: all 0.25s ease;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; font-weight: 900; font-size: 0.72rem; padding: 0.2rem 0.65rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.3rem;">
+                  <i data-lucide="alert-circle" style="width: 14px; height: 14px;"></i>
+                  <span>Runtime Error</span>
+                </span>
+                <span style="font-size: 0.85rem; font-weight: 800; color: #0f172a;">${email}</span>
+                ${url ? `<span style="font-size: 0.78rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.15rem 0.5rem; border-radius: 6px;">${url}</span>` : ""}
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8;">${when}</span>
+            </div>
+
+            <!-- Error Code Block -->
+            <div style="font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.88rem; background: #0f172a; color: #f87171; border-radius: 14px; padding: 0.85rem 1.1rem; line-height: 1.5; overflow-x: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);">
+              <span style="color: #94a3b8; user-select: none;">$ </span>${d.message || "Unknown error occurred"}
+            </div>
+          </div>
+        `;
       })
       .join("");
+
+    if (window.lucide) lucide.createIcons();
   } catch (err) {
     console.error("Failed to load error logs:", err);
     listEl.innerHTML =
-      '<div class="analysis-empty-state">Could not load error logs.</div>';
+      '<div class="analysis-empty-state" style="text-align: center; padding: 2rem; color: #ef4444;">Could not load error logs.</div>';
   }
 }
 
 function renderAdminLeaderboard() {
   const tbody = document.getElementById("admin-leaderboard-tbody");
+  const podium = document.getElementById("admin-leaderboard-podium");
   const loading = document.getElementById("admin-leaderboard-loading");
   const empty = document.getElementById("admin-leaderboard-empty");
   
@@ -1045,29 +1123,128 @@ function renderAdminLeaderboard() {
         return;
       }
       
-      let html = "";
-      let rank = 1;
-      snap.forEach(doc => {
+      const userList = [];
+      snap.forEach((doc) => {
         const data = doc.data();
-        const xp = data.xp || 0;
-        const name = data.fullName || "Learner";
-        const initial = name.charAt(0).toUpperCase();
-        const streak = data.currentStreak || data.streak || 0;
-        const coins = data.coins || 0;
-        
-        html += '<tr class="leaderboard-row rank-' + rank + '">';
-        html += '  <td><div class="leaderboard-rank-badge">' + rank + '</div></td>';
-        html += '  <td>';
-        html += '    <div class="leaderboard-user-cell">';
-        html += '      <div class="leaderboard-avatar">' + initial + '</div>';
-        html += '      <div style="font-weight: 500;">' + name + '</div>';
-        html += '    </div>';
-        html += '  </td>';
-        html += '  <td style="text-align: center; color: var(--color-warning);"><i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> ' + streak + '</td>';
-        html += '  <td style="text-align: center; color: #f59e0b;"><i data-lucide="coins" class="inline-icon" style="color:#f59e0b;"></i> ' + coins + '</td>';
-        html += '  <td class="leaderboard-xp" style="text-align: right;"><i data-lucide="zap" class="inline-icon" style="color:var(--color-primary);"></i> ' + xp + ' XP</td>';
-        html += '</tr>';
-        rank++;
+        userList.push({
+          uid: doc.id,
+          xp: data.xp || 0,
+          name: data.fullName || data.displayName || "Learner",
+          initial: (data.fullName || data.displayName || "L").charAt(0).toUpperCase(),
+          streak: data.currentStreak || data.streak || 0,
+          coins: data.coins || 0,
+        });
+      });
+
+      // 1. Render Top 3 Champions Podium
+      if (podium && userList.length >= 1) {
+        const first = userList[0];
+        const second = userList[1] || null;
+        const third = userList[2] || null;
+
+        let podiumHtml = "";
+
+        // 2nd Place (Silver)
+        if (second) {
+          podiumHtml += `
+            <div style="flex: 1; min-width: 170px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06); transform: translateY(0); order: 1;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥈</div>
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
+                ${second.initial}
+              </div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
+              <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #475569; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #e2e8f0;">
+                ⚡ ${second.xp} XP
+              </div>
+            </div>
+          `;
+        }
+
+        // 1st Place (Gold Crown)
+        podiumHtml += `
+          <div style="flex: 1; min-width: 190px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 26px; padding: 1.75rem 1rem 1.5rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); order: 2; z-index: 2;">
+            <div style="font-size: 2rem; margin-bottom: 0.2rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
+            <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 4px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
+              ${first.initial}
+            </div>
+            <div style="font-weight: 900; font-size: 1.05rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
+            <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.35rem 0.9rem; border-radius: 9999px; font-weight: 900; font-size: 0.92rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.3rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
+              ⚡ ${first.xp} XP
+            </div>
+          </div>
+        `;
+
+        // 3rd Place (Bronze)
+        if (third) {
+          podiumHtml += `
+            <div style="flex: 1; min-width: 170px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1); transform: translateY(0); order: 3;">
+              <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥉</div>
+              <div style="width: 52px; height: 52px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
+                ${third.initial}
+              </div>
+              <div style="font-weight: 800; font-size: 0.95rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
+              <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #fed7aa;">
+                ⚡ ${third.xp} XP
+              </div>
+            </div>
+          `;
+        }
+
+        podium.innerHTML = podiumHtml;
+      }
+
+      // 2. Render Table Rows
+      let html = "";
+      userList.forEach((u, index) => {
+        const rank = index + 1;
+
+        let rankBadge = `#${rank}`;
+        let rankStyle = "background: #f1f5f9; color: #64748b;";
+
+        if (rank === 1) {
+          rankBadge = "👑 1";
+          rankStyle = "background: linear-gradient(135deg, #fffbeb, #fef3c7); color: #854d0e; border: 1.5px solid #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);";
+        } else if (rank === 2) {
+          rankBadge = "🥈 2";
+          rankStyle = "background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #94a3b8;";
+        } else if (rank === 3) {
+          rankBadge = "🥉 3";
+          rankStyle = "background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #9a3412; border: 1.5px solid #fdba74;";
+        }
+
+        html += `
+          <tr style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; transition: transform 0.2s ease;">
+            <td style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
+              <span style="${rankStyle} font-size: 0.9rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 9999px; display: inline-block; min-width: 42px; text-align: center;">${rankBadge}</span>
+            </td>
+            <td style="padding: 0.9rem 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+                  ${u.initial}
+                </div>
+                <div style="font-weight: 800; font-size: 1rem; color: #0f172a;">${u.name}</div>
+              </div>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: center;">
+              <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="flame" style="width: 14px; height: 14px; fill: #ea580c;"></i>
+                <span>${u.streak}d</span>
+              </span>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: center;">
+              <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="coins" style="width: 14px; height: 14px; fill: #eab308;"></i>
+                <span>${u.coins}</span>
+              </span>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
+              <span style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
+                <span>${u.xp} XP</span>
+              </span>
+            </td>
+          </tr>
+        `;
       });
       tbody.innerHTML = html;
       if (window.lucide) lucide.createIcons();

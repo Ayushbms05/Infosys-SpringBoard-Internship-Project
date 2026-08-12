@@ -91,6 +91,8 @@ const SKILL_CONFIG = [
 function initDashboard(profile) {
   renderTopBar(profile);
   renderRecommendation(profile);
+  renderRecommendedScroll(profile);
+  renderHomeHeatmap(profile);
   renderStatsStrip(profile);
   renderLearningPath(profile);
   renderSkillCards(profile);
@@ -224,9 +226,6 @@ function computeNextIncompleteLesson(profile) {
 
   for (const lvl of levels) {
     for (const skill of skills) {
-      const skillStatus = curriculum[lvl]?.[skill]?.status || "locked";
-      if (skillStatus === "locked" || skillStatus === "skipped") continue;
-
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${lvl}_${skill}_${unit}_${i}`;
         if (!completedLessons.includes(lessonId)) {
@@ -476,6 +475,96 @@ function renderStatsStrip(profile) {
   if (badges) badges.textContent = (profile.badgesEarned || []).length;
 }
 
+// ─── Home Dashboard UI Enhancements ─────────────────────────────
+
+function renderRecommendedScroll(profile) {
+  const container = document.getElementById("recommended-horizontal-scroll");
+  if (!container) return;
+
+  const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const levels = ["beginner", "intermediate", "advanced"];
+  const skills = ["reading", "writing", "listening", "speaking", "pronunciation"];
+  
+  // Find up to 3 uncompleted lessons
+  let recs = [];
+  const completedLessons = profile.completedLessons || [];
+  const curriculum = profile.curriculum || {};
+
+  for (const lvl of levels) {
+    if (recs.length >= 3) break;
+    for (const skill of skills) {
+      if (recs.length >= 3) break;
+      const status = curriculum[lvl]?.[skill]?.status || "locked";
+      if (status === "locked" || status === "skipped") continue;
+      
+      for (let i = 1; i <= 5; i++) {
+        const unit = "alphabets"; // Simplify for recommendation mapping
+        const lessonId = `${lvl}_${skill}_${unit}_${i}`;
+        if (!completedLessons.includes(lessonId)) {
+          const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
+          const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
+          
+          recs.push({
+            title: `${skill.charAt(0).toUpperCase() + skill.slice(1)} — ${focusText}`,
+            sub: `${lvl.charAt(0).toUpperCase() + lvl.slice(1)} Level`,
+            url: `lesson.html?level=${lvl}&unit=${unit}&type=${skill}&lessonIndex=${i}`,
+            icon: SKILL_CONFIG.find(s => s.id === skill)?.icon || "<i data-lucide='book-open'></i>"
+          });
+          break; // only 1 per skill in recommended
+        }
+      }
+    }
+  }
+
+  // Fallback if fully completed
+  if (recs.length === 0) {
+    recs = [
+      { title: "Review Reading", sub: "Keep your skills sharp", url: "lesson.html?type=reading&mode=practice", icon: "<i data-lucide='book-open'></i>" },
+      { title: "Review Speaking", sub: "Practice pronunciation", url: "lesson.html?type=speaking&mode=practice", icon: "<i data-lucide='mic'></i>" },
+      { title: "Review Listening", sub: "Improve comprehension", url: "lesson.html?type=listening&mode=practice", icon: "<i data-lucide='headphones'></i>" }
+    ];
+  }
+
+  container.innerHTML = recs.map(r => `
+    <a href="${r.url}" class="recommended-card">
+      <div class="recommended-icon">${r.icon}</div>
+      <h4 class="recommended-title">${r.title}</h4>
+      <p class="recommended-sub">${r.sub}</p>
+    </a>
+  `).join("");
+
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+}
+
+function renderHomeHeatmap(profile) {
+  const container = document.getElementById("home-activity-heatmap");
+  if (!container) return;
+
+  const practiceDays = profile.practiceDays || [];
+  const days = [];
+  
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const dateStr = d.toISOString().split("T")[0];
+    days.push({
+      dateStr: dateStr,
+      label: d.toLocaleDateString(undefined, { weekday: "short" }).charAt(0),
+      isPracticed: practiceDays.includes(dateStr),
+      isToday: i === 0
+    });
+  }
+
+  container.innerHTML = days.map(d => `
+    <div class="heatmap-day" title="${d.dateStr}">
+      <div class="heatmap-dot ${d.isPracticed ? 'active' : ''}"></div>
+      <span class="heatmap-label ${d.isToday ? 'today' : ''}">${d.label}</span>
+    </div>
+  `).join("");
+}
+
 // ─── Top Bar ──────────────────────────────────────────────────
 
 function renderTopBar(profile) {
@@ -519,8 +608,7 @@ function renderLearningPath(profile) {
   const pathContainer = document.getElementById("learning-path");
   if (!pathContainer) return;
 
-  const currentLevel =
-    profile.currentLevel || profile.assessmentLevel || "beginner";
+  const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
   const completedLessons = profile.completedLessons || [];
   const curriculum = profile.curriculum || {};
 
@@ -533,6 +621,8 @@ function renderLearningPath(profile) {
     "pronunciation",
   ];
 
+  const userLevelIndex = levels.indexOf(currentLevel);
+
   const skillIcons = {
     reading: "<i data-lucide='book-open'></i>",
     writing: "<i data-lucide='pen-tool'></i>",
@@ -543,39 +633,36 @@ function renderLearningPath(profile) {
 
   // 1. Render the Explainer Card at the top
   let html = `
-    <div class="roadmap-explainer">
-      <div class="roadmap-explainer-content">
-        <h4 data-i18n="howItWorksTitle">How This Works</h4>
-        <p data-i18n="howItWorksBody">Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.</p>
-        <div class="roadmap-legend" style="margin-top: 0.75rem; display: flex; gap: 1rem; font-size: 0.8rem; color: var(--color-text-light); align-items: center; flex-wrap: wrap;">
-          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot completed" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Completed</span>
-          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot skipped" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Placed Above (Skipped)</span>
-          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot available" style="width:12px; height:12px; border-width:1px; min-width: 12px; box-shadow:none;"></div> Available</span>
-          <span style="display:flex; align-items:center; gap:0.25rem;"><div class="roadmap-dot locked" style="width:12px; height:12px; border-width:1px; min-width: 12px;"></div> Locked</span>
-        </div>
-      </div>
-      <button class="roadmap-tts-btn" id="roadmap-tts-btn" aria-label="Listen">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
-        </svg>
-      </button>
-    </div>
-    <div class="roadmap-container">
+    <div class="roadmap-container zigzag-mode">
   `;
+
+  let globalDotIndex = 0;
 
   // 2. Render the Levels and Skills
   levels.forEach((level) => {
-    // Level Header
+    const levelIndex = levels.indexOf(level);
     const levelKey = `roadmapLevel${level.charAt(0).toUpperCase() + level.slice(1)}`;
+
+    let levelBadgeHtml = "";
+    if (levelIndex < userLevelIndex) {
+      levelBadgeHtml = `<span class="roadmap-placed-above" data-i18n="levelPassed">✓ Level Passed</span>`;
+    } else if (levelIndex === userLevelIndex) {
+      levelBadgeHtml = `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>`;
+    } else {
+      levelBadgeHtml = `<span class="roadmap-level-locked" data-i18n="levelLocked">Locked</span>`;
+    }
+
     html += `
-      <div class="roadmap-level-block">
-        <h3 class="roadmap-level-title">
-          <span data-i18n="${levelKey}">${level.charAt(0).toUpperCase() + level.slice(1)} Level</span>
-          ${level === currentLevel ? `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>` : ""}
-        </h3>
-        <div class="roadmap-skills-wrapper">
+      <div class="roadmap-level-block zigzag-level-block">
+        <div class="roadmap-level-header" style="text-align: center; margin-bottom: 2rem;">
+          <h3 class="roadmap-level-title" style="justify-content: center; margin-bottom: 0.5rem;">
+            <span data-i18n="${levelKey}">${level.charAt(0).toUpperCase() + level.slice(1)} Level</span>
+          </h3>
+          <div style="display: flex; justify-content: center; margin-top: 0.4rem;">
+            ${levelBadgeHtml}
+          </div>
+        </div>
+        <div class="zigzag-skills-wrapper">
     `;
 
     skills.forEach((skill) => {
@@ -589,17 +676,15 @@ function renderLearningPath(profile) {
         preferNot: "alphabets",
       };
       const unit = unitByLiteracy[lit] || "alphabets";
-
-      const skillStatus = curriculum[level]?.[skill]?.status || "locked";
       const skillKey = `roadmapSkill${skill.charAt(0).toUpperCase() + skill.slice(1)}`;
 
       html += `
-        <div class="roadmap-skill-row">
-          <div class="roadmap-skill-label">
-            <span class="roadmap-skill-icon">${skillIcons[skill]}</span>
+        <div class="zigzag-skill-group">
+          <div class="zigzag-skill-label">
+            <span class="zigzag-skill-icon">${skillIcons[skill]}</span>
             <span data-i18n="${skillKey}">${skill.charAt(0).toUpperCase() + skill.slice(1)}</span>
           </div>
-          <div class="roadmap-dots">
+          <div class="zigzag-dots-container">
       `;
 
       // Render the 5 lesson dots
@@ -608,15 +693,12 @@ function renderLearningPath(profile) {
         const isCompleted = completedLessons.includes(lessonId);
 
         let state = "locked";
-        if (isCompleted) {
-          state = "completed";
-        } else if (skillStatus === "available") {
-          // If skill is available, allow any dot (or enforce order if preferred, for now all available)
-          state = "available";
-        } else if (skillStatus === "skipped") {
+        if (levelIndex < userLevelIndex) {
           state = "skipped";
-        } else if (skillStatus === "completed") {
-          state = "completed";
+        } else if (levelIndex === userLevelIndex) {
+          state = isCompleted ? "completed" : "available";
+        } else {
+          state = "locked";
         }
 
         const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(
@@ -624,15 +706,39 @@ function renderLearningPath(profile) {
         );
         const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
 
+        // Zigzag logic: sine wave based on global index
+        const offsetX = Math.sin(globalDotIndex * 0.75) * 100;
+        
+        // Custom styling based on state for the inner icon
+        let iconHtml = '';
+        if (state === 'completed' || state === 'skipped') {
+           iconHtml = '<i data-lucide="check" style="width: 24px; height: 24px;"></i>';
+        } else if (state === 'locked') {
+           iconHtml = '<i data-lucide="lock" style="width: 20px; height: 20px;"></i>';
+        } else {
+           iconHtml = skillIcons[skill]; // available shows skill icon
+        }
+
+        const tooltipText = state === 'locked' 
+          ? `Complete ${levels[userLevelIndex]} level to unlock` 
+          : state === 'skipped' 
+            ? `Lesson ${i} (Placed above)` 
+            : focusText;
+
         html += `
-          <div class="roadmap-dot ${state}" 
-               data-level="${level}" 
-               data-skill="${skill}" 
-               data-unit="${unit}" 
-               data-index="${i}" 
-               title="${focusText}">
+          <div class="zigzag-node-wrap" style="transform: translateX(${offsetX}px);">
+            <div class="roadmap-dot zigzag-dot ${state}" 
+                 data-level="${level}" 
+                 data-skill="${skill}" 
+                 data-unit="${unit}" 
+                 data-index="${i}" 
+                 title="${tooltipText}">
+              ${iconHtml}
+            </div>
+            <div class="units-dot-label">Lesson ${i}</div>
           </div>
         `;
+        globalDotIndex++;
       }
 
       html += `
@@ -650,52 +756,24 @@ function renderLearningPath(profile) {
   html += `</div>`;
   pathContainer.innerHTML = html;
 
+  // re-init lucide icons for dynamically added HTML
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+
   // 3. Attach click handlers to available/completed dots
-  pathContainer.querySelectorAll(".roadmap-dot:not(.locked)").forEach((dot) => {
+  pathContainer.querySelectorAll(".roadmap-dot.available, .roadmap-dot.completed").forEach((dot) => {
     dot.addEventListener("click", () => {
       const { level, skill, unit, index } = dot.dataset;
       window.location.href = `lesson.html?level=${level}&type=${skill}&unit=${unit}&lessonIndex=${index}`;
     });
   });
 
-  // 4. Attach TTS handler to the explainer card
-  const ttsBtn = document.getElementById("roadmap-tts-btn");
-  if (ttsBtn) {
-    ttsBtn.addEventListener("click", () => {
-      // Read the localized text using the user's *preferred* language
-      const title =
-        getTranslation(selectedLang, "howItWorksTitle") || "How This Works";
-      const body =
-        getTranslation(selectedLang, "howItWorksBody") ||
-        "Follow the path from left to right. Complete all 5 dots in a skill to master it. Complete all 5 skills to unlock the next level.";
-
-      const langMap = {
-        en: "en-IN",
-        hi: "hi-IN",
-        ta: "ta-IN",
-        te: "te-IN",
-        kn: "kn-IN",
-        bn: "bn-IN",
-        mr: "mr-IN",
-      };
-      const voiceLang = langMap[selectedLang] || "en-IN";
-
-      ttsBtn.style.color = "var(--color-primary)";
-      ttsBtn.style.animation = "pulse 1.5s infinite";
-
-      if (typeof speakText === "function") {
-        speakText(`${title}. ${body}`, voiceLang).finally(() => {
-          ttsBtn.style.color = "";
-          ttsBtn.style.animation = "none";
-        });
-      }
-    });
-  }
 }
 
 // ─── Skill Practice Cards ─────────────────────────────────────
 
-function renderSkillCards(profile) {
+async function renderSkillCards(profile) {
   const container = document.getElementById("skill-cards");
   if (!container) return;
 
@@ -703,19 +781,34 @@ function renderSkillCards(profile) {
 
   let html = "";
   SKILL_CONFIG.forEach((skill) => {
-    html += `<div class="skill-card" data-skill="${skill.id}">
-      <div class="skill-card-icon ${skill.color}">${skill.icon}</div>
-      <div class="skill-card-content">
-        <h4>${getTranslation(selectedLang, skill.label) || skill.fallback}</h4>
-        <p>${getTranslation(selectedLang, skill.desc) || skill.descFallback}</p>
+    html += `
+      <div class="skill-card" data-skill="${skill.id}">
+        <!-- Top row with 3D Icon and Level Badge -->
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 1.25rem;">
+          <div class="skill-card-icon ${skill.color}">${skill.icon}</div>
+          <span class="rec-card-tag ${level}">${getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback}</span>
+        </div>
+
+        <!-- Full-width Content Area -->
+        <div class="skill-card-content" style="width: 100%; flex: 1;">
+          <h4 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.4rem;">
+            ${getTranslation(selectedLang, skill.label) || skill.fallback}
+          </h4>
+          <p style="font-size: 0.88rem; color: #475569; margin: 0 0 1rem; line-height: 1.45; font-weight: 500;">
+            ${getTranslation(selectedLang, skill.desc) || skill.descFallback}
+          </p>
+          <div id="skill-prog-${skill.id}"></div>
+        </div>
+
+        <!-- Bottom Action Bar -->
+        <div style="display: flex; justify-content: flex-end; width: 100%; margin-top: 1rem; border-top: 1.5px dashed #e2e8f0; padding-top: 0.75rem;">
+          <span style="font-size: 0.85rem; font-weight: 800; color: #6366f1; display: inline-flex; align-items: center; gap: 0.35rem;">
+            <span>Practice Now</span>
+            <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+          </span>
+        </div>
       </div>
-      <div class="skill-card-level">
-        <span class="rec-card-tag ${level}">${getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback}</span>
-      </div>
-      <svg class="skill-card-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-      </svg>
-    </div>`;
+    `;
   });
 
   container.innerHTML = html;
@@ -740,6 +833,42 @@ function renderSkillCards(profile) {
       window.location.href = `lesson.html?level=${level}&unit=${targetUnit}&type=${skill}&mode=practice`;
     });
   });
+
+  // Fetch history for mastery and last score
+  try {
+    const uid = profile.uid || (auth.currentUser ? auth.currentUser.uid : null);
+    if (!uid) {
+      throw new Error("No UID found for fetching history");
+    }
+    const snap = await db.collection("users").doc(uid).collection("lessonHistory").orderBy("completedAt", "desc").get();
+    const history = snap.docs.map(d => d.data());
+    
+    SKILL_CONFIG.forEach((skill) => {
+      const progEl = document.getElementById(`skill-prog-${skill.id}`);
+      if (!progEl) return;
+      
+      const skillHistory = history.filter(h => h.type === skill.id);
+      if (skillHistory.length === 0) {
+        progEl.innerHTML = `<div class="skill-progress-wrap"><div class="skill-progress-text"><span>Not started yet</span></div><div class="skill-progress-track"><div class="skill-progress-fill" style="width:0%"></div></div></div>`;
+      } else {
+        const lastScore = typeof skillHistory[0].accuracy === 'number' ? skillHistory[0].accuracy : 0;
+        const avgScore = Math.round(skillHistory.reduce((s, h) => s + (h.accuracy || 0), 0) / skillHistory.length);
+        progEl.innerHTML = `<div class="skill-progress-wrap">
+          <div class="skill-progress-text"><span>Mastery: ${avgScore}%</span><span>Last score: ${lastScore}%</span></div>
+          <div class="skill-progress-track"><div class="skill-progress-fill" style="width:${avgScore}%;"></div></div>
+        </div>`;
+      }
+    });
+  } catch (err) {
+    console.warn("Error loading skill history for progress bars:", err);
+    // Render fallback empty states so it's not just blank
+    SKILL_CONFIG.forEach((skill) => {
+      const progEl = document.getElementById(`skill-prog-${skill.id}`);
+      if (progEl) {
+        progEl.innerHTML = `<div class="skill-progress-wrap"><div class="skill-progress-text"><span>Not started yet</span></div><div class="skill-progress-track"><div class="skill-progress-fill" style="width:0%"></div></div></div>`;
+      }
+    });
+  }
 }
 
 function manageDailyQuests(profile) {
@@ -1207,16 +1336,57 @@ function setupDashboardEvents(profile) {
     });
   }
 
+  // ── Desktop "More" dropdown ──
+  const desktopMoreBtn = document.getElementById("desktop-more-btn");
+  const desktopMoreMenu = document.getElementById("desktop-more-menu");
+
+  function closeDesktopMoreMenu() {
+    if (desktopMoreMenu) desktopMoreMenu.classList.add("hidden");
+    if (desktopMoreBtn) desktopMoreBtn.classList.remove("active");
+  }
+
+  if (desktopMoreBtn && desktopMoreMenu) {
+    desktopMoreBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isHidden = desktopMoreMenu.classList.toggle("hidden");
+      desktopMoreBtn.classList.toggle("active", !isHidden);
+      if (!isHidden && window.lucide) lucide.createIcons();
+    });
+    document.addEventListener("click", (e) => {
+      if (!desktopMoreMenu.contains(e.target) && e.target !== desktopMoreBtn) {
+        closeDesktopMoreMenu();
+      }
+    });
+    desktopMoreMenu.querySelectorAll(".dash-nav-item").forEach((item) => {
+      item.addEventListener("click", closeDesktopMoreMenu);
+    });
+  }
+
   // ── Main navigation tabs ──
+  const MORE_SECTIONS = ["leagues", "leaderboard", "studygroups", "games", "chat", "analysis", "feedback"];
+
   document.querySelectorAll(".dash-nav-item").forEach((navItem) => {
     navItem.addEventListener("click", () => {
       const section = navItem.dataset.section;
+      if (!section) return;
+
       document
         .querySelectorAll(".dash-nav-item")
         .forEach((n) => n.classList.remove("active"));
       document
         .querySelectorAll(`.dash-nav-item[data-section="${section}"]`)
         .forEach((n) => n.classList.add("active"));
+
+      // Highlight "More" tab button when inside any of its child sections
+      const desktopMoreBtn = document.getElementById("desktop-more-btn");
+      const mobileMoreBtn  = document.getElementById("mobile-more-btn");
+      if (MORE_SECTIONS.includes(section)) {
+        if (desktopMoreBtn) desktopMoreBtn.classList.add("active");
+        if (mobileMoreBtn)  mobileMoreBtn.classList.add("active");
+      } else {
+        if (desktopMoreBtn) desktopMoreBtn.classList.remove("active");
+        if (mobileMoreBtn)  mobileMoreBtn.classList.remove("active");
+      }
 
       if (navMoreWrap) navMoreWrap.classList.remove("open");
 
@@ -1242,8 +1412,42 @@ function setupDashboardEvents(profile) {
       if (section === "leaderboard") {
         initLeaderboard(profile);
       }
+      if (section === "handwriting" && typeof initHandwriting === "function") {
+        initHandwriting(profile);
+      }
+      if (section === "leagues" && typeof initLeagues === "function") {
+        initLeagues(profile);
+      }
+      if (section === "studygroups" && typeof initStudyGroups === "function") {
+        initStudyGroups(profile);
+      }
     });
   });
+
+  // On-demand Weekly Recap click handler
+  const recapBtn = document.getElementById("nav-weekly-recap-btn");
+  if (recapBtn) {
+    recapBtn.addEventListener("click", () => {
+      if (typeof showWeeklyRecapModal === "function") {
+        showWeeklyRecapModal(profile);
+      }
+    });
+  }
+
+  // On-demand Shareable Card click handler
+  const shareCardBtn = document.getElementById("nav-share-card-btn");
+  if (shareCardBtn) {
+    shareCardBtn.addEventListener("click", () => {
+      if (typeof openShareableCardModal === "function") {
+        openShareableCardModal(profile);
+      }
+    });
+  }
+
+  // Silent background snapshot check on week transition (no popups)
+  if (typeof checkAndShowWeeklyRecap === "function") {
+    checkAndShowWeeklyRecap(profile);
+  }
 
   // ── Learn sub-tabs (My Results ↔ Learning Path) ──
   document.querySelectorAll(".learn-sub-tab").forEach((subTab) => {
@@ -1268,6 +1472,10 @@ function setupDashboardEvents(profile) {
       // If switching to Learning Path, trigger a re-render so the tree is fresh
       if (viewId === "view-path") {
         renderLearningPath(profile);
+      }
+      // If switching to Units tab, render the unit-based path (isolated from above)
+      else if (viewId === "view-units") {
+        if (typeof initUnitsTab === "function") initUnitsTab(profile);
       }
     });
   });
@@ -1349,8 +1557,16 @@ function setupDashboardEvents(profile) {
 
 function renderProfile(profile) {
   // Populate profile fields
-  document.getElementById("profile-name").textContent =
-    profile.fullName || "User";
+  const level = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const levelLabel = getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback;
+
+  const profileNameEl = document.getElementById("profile-name");
+  if (profileNameEl) {
+    profileNameEl.innerHTML = `
+      <span>${profile.fullName || "User"}</span>
+      <span style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; vertical-align: middle; margin-left: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">⭐ ${levelLabel}</span>
+    `;
+  }
   const user = auth.currentUser;
   if (user) {
     document.getElementById("profile-email").textContent = user.email || "";
@@ -1483,11 +1699,22 @@ function renderProfile(profile) {
 
     const earned = profile.badgesEarned || [];
 
+    const badgeSummary = document.getElementById("badge-summary");
+    if (badgeSummary) {
+      badgeSummary.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span>${earned.length} of ${allBadges.length} badges unlocked</span>
+      `;
+    }
+
     badgeShelf.innerHTML = allBadges
       .map((b) => {
         const isEarned = earned.includes(b.id);
+        const tooltip = isEarned ? b.label : `Locked: ${b.desc}`;
         return `
-        <div class="badge-card-item ${isEarned ? "earned" : "locked"}" title="${b.desc}">
+        <div class="badge-card-item ${isEarned ? "earned" : "locked"}" title="${tooltip}">
           <div class="badge-icon-circle">${b.icon}</div>
           ${!isEarned ? '<div class="badge-lock-overlay"><i data-lucide="lock" class="inline-icon"></i></div>' : ""}
           <div class="badge-card-label">${b.label}</div>
@@ -2032,6 +2259,7 @@ function initLeaderboard(profile) {
   leaderboardLoaded = true;
 
   const tbody = document.getElementById("leaderboard-tbody");
+  const podium = document.getElementById("leaderboard-podium");
   const loading = document.getElementById("leaderboard-loading");
   const empty = document.getElementById("leaderboard-empty");
   const adminBtn = document.getElementById("admin-award-top3-btn");
@@ -2052,37 +2280,143 @@ function initLeaderboard(profile) {
         return;
       }
 
-      let html = "";
-      let rank = 1;
+      const userList = [];
       snap.forEach((doc) => {
         const data = doc.data();
-        const xp = data.xp || 0;
-        const name = data.fullName || "Learner";
-        const initial = name.charAt(0).toUpperCase();
-        const streak = data.currentStreak || data.streak || 0;
-        const coins = data.coins || 0;
-
-        html += '<tr class="leaderboard-row rank-' + rank + '">';
-        html +=
-          '  <td><div class="leaderboard-rank-badge">' + rank + "</div></td>";
-        html += "  <td>";
-        html += '    <div class="leaderboard-user-cell">';
-        html += '      <div class="leaderboard-avatar">' + initial + "</div>";
-        html += '      <div style="font-weight: 500;">' + name + "</div>";
-        html += "    </div>";
-        html += "  </td>";
-        html +=
-          '  <td style="text-align: center; color: var(--color-warning);"><i data-lucide="flame" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;"></i> ' +
-          streak +
-          "</td>";
-        html +=
-          '  <td style="text-align: center; color: #f59e0b;"><i data-lucide="coins" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;"></i> ' +
-          coins +
-          "</td>";
-        html += '  <td class="leaderboard-xp"><i data-lucide="zap" style="width:14px;height:14px;margin-right:2px;vertical-align:-2px;color:var(--color-primary);"></i> ' + xp + " XP</td>";
-        html += "</tr>";
-        rank++;
+        userList.push({
+          uid: doc.id,
+          xp: data.xp || 0,
+          name: data.fullName || data.displayName || "Learner",
+          initial: (data.fullName || data.displayName || "L").charAt(0).toUpperCase(),
+          streak: data.currentStreak || data.streak || 0,
+          coins: data.coins || 0,
+        });
       });
+
+      const user = auth.currentUser;
+
+      // 1. Render Top 3 Champions Podium
+      if (podium && userList.length >= 1) {
+        const first = userList[0];
+        const second = userList[1] || null;
+        const third = userList[2] || null;
+
+        let podiumHtml = "";
+
+        // 2nd Place (Silver)
+        if (second) {
+          podiumHtml += `
+            <div style="flex: 1; min-width: 95px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 20px; padding: 1.15rem 0.5rem 1rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06); transform: translateY(0); order: 1; box-sizing: border-box;">
+              <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">🥈</div>
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 2.5px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
+                ${second.initial}
+              </div>
+              <div style="font-weight: 800; font-size: 0.88rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
+              <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 900; font-size: 0.78rem; color: #475569; display: inline-flex; align-items: center; gap: 0.2rem; border: 1px solid #e2e8f0;">
+                ⚡ ${second.xp} XP
+              </div>
+            </div>
+          `;
+        }
+
+        // 1st Place (Gold Crown)
+        podiumHtml += `
+          <div style="flex: 1.1; min-width: 105px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 22px; padding: 1.35rem 0.55rem 1.15rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); order: 2; z-index: 2; box-sizing: border-box;">
+            <div style="font-size: 1.75rem; margin-bottom: 0.15rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
+            <div style="width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 3px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
+              ${first.initial}
+            </div>
+            <div style="font-weight: 900; font-size: 0.95rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
+            <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.25rem 0.65rem; border-radius: 9999px; font-weight: 900; font-size: 0.82rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.25rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
+              ⚡ ${first.xp} XP
+            </div>
+          </div>
+        `;
+
+        // 3rd Place (Bronze)
+        if (third) {
+          podiumHtml += `
+            <div style="flex: 1; min-width: 95px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 20px; padding: 1.15rem 0.5rem 1rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1); transform: translateY(0); order: 3; box-sizing: border-box;">
+              <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">🥉</div>
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 2.5px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
+                ${third.initial}
+              </div>
+              <div style="font-weight: 800; font-size: 0.88rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
+              <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 900; font-size: 0.78rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.2rem; border: 1px solid #fed7aa;">
+                ⚡ ${third.xp} XP
+              </div>
+            </div>
+          `;
+        }
+
+        podium.innerHTML = podiumHtml;
+      }
+
+      // 2. Render Table Rows
+      let html = "";
+      userList.forEach((u, index) => {
+        const rank = index + 1;
+        const isCurrentUser = user && u.uid === user.uid;
+
+        let rankBadge = `#${rank}`;
+        let rankStyle = "background: #f1f5f9; color: #64748b;";
+        let rowBackground = "background: #ffffff; border: 1.5px solid #e2e8f0;";
+
+        if (rank === 1) {
+          rankBadge = "👑 1";
+          rankStyle = "background: linear-gradient(135deg, #fffbeb, #fef3c7); color: #854d0e; border: 1.5px solid #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);";
+        } else if (rank === 2) {
+          rankBadge = "🥈 2";
+          rankStyle = "background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #94a3b8;";
+        } else if (rank === 3) {
+          rankBadge = "🥉 3";
+          rankStyle = "background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #9a3412; border: 1.5px solid #fdba74;";
+        }
+
+        if (isCurrentUser) {
+          rowBackground = "background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08)); border: 2px solid #6366f1; box-shadow: 0 8px 24px -5px rgba(99,102,241,0.2);";
+        }
+
+        html += `
+          <tr style="${rowBackground} border-radius: 16px; transition: transform 0.2s ease;">
+            <td style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
+              <span style="${rankStyle} font-size: 0.9rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 9999px; display: inline-block; min-width: 42px; text-align: center;">${rankBadge}</span>
+            </td>
+            <td style="padding: 0.9rem 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+                  ${u.initial}
+                </div>
+                <div>
+                  <div style="font-weight: 800; font-size: 1rem; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
+                    <span>${u.name}</span>
+                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.12rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;">YOU</span>` : ""}
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: center;">
+              <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="flame" style="width: 14px; height: 14px; fill: #ea580c;"></i>
+                <span>${u.streak}d</span>
+              </span>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: center;">
+              <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="coins" style="width: 14px; height: 14px; fill: #eab308;"></i>
+                <span>${u.coins}</span>
+              </span>
+            </td>
+            <td style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
+              <span style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.3rem;">
+                <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
+                <span>${u.xp} XP</span>
+              </span>
+            </td>
+          </tr>
+        `;
+      });
+
       if (tbody) tbody.innerHTML = html;
       if (window.lucide) lucide.createIcons();
     })
