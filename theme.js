@@ -13,6 +13,10 @@ function applyTheme() {
   root.setProperty('--color-accent', '#10b981');
   root.setProperty('--color-bg-deep', '#f8fafc');
   root.setProperty('--color-bg-surface', '#ffffff');
+  root.setProperty('--color-bg-card-solid', '#ffffff');
+  root.setProperty('--glass-bg', '#ffffff');
+  root.setProperty('--glass-border', '#e2e8f0');
+  root.setProperty('--glass-blur', '0px');
 
   if (!document.body.classList.contains('light-theme')) {
     document.body.classList.add('light-theme');
@@ -20,9 +24,9 @@ function applyTheme() {
 
   const darkProps = [
     '--color-text-primary', '--color-text-secondary', '--color-text-muted',
-    '--color-bg-card', '--color-bg-card-solid', '--color-bg-card-hover',
+    '--color-bg-card', '--color-bg-card-hover',
     '--color-bg-input', '--color-bg-input-focus', '--color-border',
-    '--shadow-card', '--glass-bg', '--glass-border'
+    '--shadow-card'
   ];
   darkProps.forEach(p => root.removeProperty(p));
 

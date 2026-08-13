@@ -300,33 +300,56 @@ async function renderRecentActivity() {
     container.innerHTML = snap.docs
       .map((doc) => {
         const d = doc.data();
-        const uid = doc.ref.parent.parent.id;
+        const uid = doc.ref && doc.ref.parent && doc.ref.parent.parent ? doc.ref.parent.parent.id : "";
         const user = userMap[uid];
-        const name = user ? user.fullName : "Unknown user";
+        const name = user ? user.fullName : "Learner";
         const meta = ADMIN_SKILL_META[d.type] || {
-          icon: "<i data-lucide=\"pin\"></i>",
-          label: d.type || "",
+          icon: '<i data-lucide="pin"></i>',
+          label: d.type || "Practice",
         };
         const when =
           d.completedAt && d.completedAt.toDate
             ? timeAgo(d.completedAt.toDate())
-            : "";
-        const accColor =
-          (d.accuracy || 0) >= 70
-            ? "var(--color-accent)"
-            : (d.accuracy || 0) >= 40
-              ? "var(--color-warm)"
-              : "var(--color-error, #ef4444)";
+            : "Recently";
 
-        return `<div class="admin-activity-row">
-        <span class="admin-activity-icon">${meta.icon}</span>
-        <div class="admin-activity-info">
-          <div class="admin-activity-main"><strong>${name}</strong> completed a ${meta.label} lesson — <span style="color:${accColor}; font-weight:700;">${d.accuracy || 0}%</span></div>
-          <div class="admin-activity-time">${when}</div>
-        </div>
-      </div>`;
+        const accuracy = typeof d.accuracy === "number" ? d.accuracy : (d.score || 0);
+        const isGood = accuracy >= 70;
+        const isMed = accuracy >= 40;
+        const badgeBg = isGood ? "#dcfce7" : isMed ? "#fef3c7" : "#fef2f2";
+        const badgeColor = isGood ? "#15803d" : isMed ? "#b45309" : "#dc2626";
+        const badgeBorder = isGood ? "#86efac" : isMed ? "#fde68a" : "#fca5a5";
+        const initial = (name || "U").charAt(0).toUpperCase();
+
+        return `
+        <div class="admin-activity-row" style="display: flex; align-items: center; justify-content: space-between; gap: 0.85rem; padding: 0.95rem 1.15rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 18px; margin-bottom: 0.75rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03); transition: all 0.2s ease;">
+          <div style="display: flex; align-items: center; gap: 0.85rem; min-width: 0; flex: 1;">
+            <div style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(99,102,241,0.25); flex-shrink: 0;">
+              ${initial}
+            </div>
+            <div style="min-width: 0; flex: 1;">
+              <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                ${name}
+              </div>
+              <div style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.15rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+                <span style="background: #f1f5f9; color: #475569; padding: 0.15rem 0.55rem; border-radius: 9999px; font-weight: 800; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+                  ${meta.icon} ${meta.label}
+                </span>
+                <span>completed lesson</span>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
+            <span style="background: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeBorder}; padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 800; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+              <i data-lucide="check-circle-2" style="width: 13px; height: 13px;"></i> ${accuracy}%
+            </span>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; display: inline-flex; align-items: center; gap: 0.3rem; min-width: 65px; justify-content: flex-end;">
+              <i data-lucide="clock" style="width: 13px; height: 13px;"></i> ${when}
+            </span>
+          </div>
+        </div>`;
       })
       .join("");
+    if (window.lucide) lucide.createIcons();
   } catch (err) {
     console.warn(
       "Recent activity unavailable — this usually means the Firestore composite index for the lessonHistory collection group hasn't been created yet. Check this console error for a direct link to create it:",
@@ -352,13 +375,36 @@ function timeAgo(date) {
   return `${days}d ago`;
 }
 
+let currentLevelFilter = "all";
+
 // ─── Users Table ────────────────────────────────────────────
 
 function renderUsersTable() {
   const tbody = document.getElementById("admin-users-tbody");
   if (!tbody) return;
 
+  // 1. Update metric summary cards for User tab
+  const totalCount = allUsersCache.length;
+  const today = dateStr(new Date());
+  const activeCount = allUsersCache.filter((u) => u.lastActiveDate === today).length;
+  const assessedCount = allUsersCache.filter(
+    (u) => u.assessmentCompleted && typeof u.assessmentScore === "number"
+  ).length;
+  const totalXP = allUsersCache.reduce((s, u) => s + (u.xp || 0), 0);
+  const avgXP = totalCount ? Math.round(totalXP / totalCount) : 0;
+
+  setText("admin-user-stat-total", totalCount);
+  setText("admin-user-stat-active", activeCount);
+  setText("admin-user-stat-assessed", assessedCount);
+  setText("admin-user-stat-avgxp", avgXP.toLocaleString());
+
+  // 2. Filter list by search query and level filter
   let list = allUsersCache.filter((u) => {
+    if (currentLevelFilter && currentLevelFilter !== "all") {
+      if ((u.currentLevel || "beginner").toLowerCase() !== currentLevelFilter) {
+        return false;
+      }
+    }
     if (!currentSearch) return true;
     const q = currentSearch.toLowerCase();
     return (
@@ -367,50 +413,109 @@ function renderUsersTable() {
     );
   });
 
+  // 3. Sort list
   const sorters = {
-    xp_desc: (a, b) => b.xp - a.xp,
-    streak_desc: (a, b) => b.streak - a.streak,
+    xp_desc: (a, b) => (b.xp || 0) - (a.xp || 0),
+    streak_desc: (a, b) => (b.streak || 0) - (a.streak || 0),
     score_desc: (a, b) => (b.assessmentScore || 0) - (a.assessmentScore || 0),
-    name_asc: (a, b) => a.fullName.localeCompare(b.fullName),
+    name_asc: (a, b) => (a.fullName || "").localeCompare(b.fullName || ""),
     active_desc: (a, b) =>
       (b.lastActiveDate || "").localeCompare(a.lastActiveDate || ""),
   };
   list = [...list].sort(sorters[currentSort] || sorters.xp_desc);
 
+  // Update count badge text
+  const countText = document.getElementById("admin-users-count-text");
+  if (countText) {
+    countText.textContent = `Showing ${list.length} of ${totalCount} learners`;
+  }
+
   if (!list.length) {
-    tbody.innerHTML = `<tr><td colspan="8" class="admin-table-empty">No users match your search.</td></tr>`;
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" style="padding: 3.5rem 1rem; text-align: center; color: #64748b;">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: #f1f5f9; color: #94a3b8; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.75rem;">
+            <i data-lucide="user-x" style="width: 28px; height: 28px;"></i>
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem; color: #334155; margin-bottom: 0.25rem;">No learners match your query</div>
+          <div style="font-size: 0.88rem; color: #94a3b8;">Try adjusting your search terms or level filters.</div>
+        </td>
+      </tr>
+    `;
+    if (window.lucide) lucide.createIcons();
     return;
   }
 
-  const LEVEL_LABELS = {
-    beginner: "Beginner",
-    intermediate: "Intermediate",
-    advanced: "Advanced",
+  const LEVEL_CONFIG = {
+    beginner: { label: "Beginner", bg: "#fef3c7", color: "#b45309", border: "#fde68a", icon: "sprout" },
+    intermediate: { label: "Intermediate", bg: "#e0e7ff", color: "#4338ca", border: "#c7d2fe", icon: "compass" },
+    advanced: { label: "Advanced", bg: "#f3e8ff", color: "#6b21a8", border: "#e9d5ff", icon: "award" }
   };
 
   tbody.innerHTML = list
-    .map(
-      (u) => `
-    <tr>
-      <td>
-        <div class="admin-user-cell">
-          <div class="admin-user-avatar">${(u.fullName || "U").charAt(0).toUpperCase()}</div>
-          <div>
-            <div class="admin-user-name">${u.fullName} ${u.isBanned ? '<span class="admin-suspended-badge">Suspended</span>' : ""}</div>
-            <div class="admin-user-email">${u.email}</div>
+    .map((u) => {
+      const initial = (u.fullName || "U").charAt(0).toUpperCase();
+      const level = (u.currentLevel || "beginner").toLowerCase();
+      const cfg = LEVEL_CONFIG[level] || LEVEL_CONFIG.beginner;
+
+      const isToday = u.lastActiveDate === today;
+      const score = u.assessmentScore;
+      const scoreBadge = (score !== null && score !== undefined)
+        ? `<span style="background:${score >= 80 ? '#dcfce7' : score >= 50 ? '#e0e7ff' : '#fef3c7'}; color:${score >= 80 ? '#15803d' : score >= 50 ? '#3730a3' : '#b45309'}; border: 1px solid ${score >= 80 ? '#86efac' : score >= 50 ? '#a5b4fc' : '#fde68a'}; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.25rem;"><i data-lucide="check-circle-2" style="width:13px; height:13px;"></i> ${score}%</span>`
+        : `<span style="color:#94a3b8; font-weight:700; font-size:0.82rem;">—</span>`;
+
+      return `
+      <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.15s ease;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#ffffff'">
+        <td style="padding: 1rem 1.25rem;">
+          <div class="admin-user-cell" style="display: flex; align-items: center; gap: 0.85rem;">
+            <div class="admin-user-avatar" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(99,102,241,0.25); flex-shrink: 0;">
+              ${initial}
+            </div>
+            <div>
+              <div class="admin-user-name" style="font-weight: 800; font-size: 0.95rem; color: #0f172a; display: flex; align-items: center; gap: 0.5rem;">
+                ${u.fullName || "Unnamed Learner"}
+                ${u.isBanned ? '<span style="background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800;">Suspended</span>' : ''}
+                ${u.isAdmin ? '<span style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800;">Admin</span>' : ''}
+              </div>
+              <div class="admin-user-email" style="font-size: 0.82rem; font-weight: 600; color: #64748b; margin-top: 0.1rem;">${u.email || "No email"}</div>
+            </div>
           </div>
-        </div>
-      </td>
-      <td><span class="rec-card-tag ${u.currentLevel}">${LEVEL_LABELS[u.currentLevel] || u.currentLevel}</span></td>
-      <td>${u.assessmentScore !== null ? u.assessmentScore + "%" : "—"}</td>
-      <td>${u.xp}</td>
-      <td><i data-lucide="flame" class="inline-icon" style="color:var(--color-warning);"></i> ${u.streak}</td>
-      <td>${u.completedLessons.length}</td>
-      <td>${u.lastActiveDate || "Never"}</td>
-      <td><button class="admin-view-btn" data-uid="${u.uid}">View</button></td>
-    </tr>
-  `,
-    )
+        </td>
+        <td style="padding: 1rem 1.25rem;">
+          <span style="background: ${cfg.bg}; color: ${cfg.color}; border: 1px solid ${cfg.border}; padding: 0.35rem 0.8rem; border-radius: 9999px; font-weight: 800; font-size: 0.78rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+            <i data-lucide="${cfg.icon}" style="width: 14px; height: 14px;"></i>
+            ${cfg.label}
+          </span>
+        </td>
+        <td style="padding: 1rem 1.25rem;">${scoreBadge}</td>
+        <td style="padding: 1rem 1.25rem;">
+          <span style="background: #eef2ff; color: #4f46e5; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <i data-lucide="zap" style="width: 13px; height: 13px; color: #6366f1;"></i> ${u.xp || 0}
+          </span>
+        </td>
+        <td style="padding: 1rem 1.25rem;">
+          <span style="background: #fff7ed; color: #ea580c; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <i data-lucide="flame" style="width: 13px; height: 13px; color: #f97316;"></i> ${u.streak || 0}d
+          </span>
+        </td>
+        <td style="padding: 1rem 1.25rem;">
+          <span style="background: #f1f5f9; color: #475569; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <i data-lucide="book-open" style="width: 13px; height: 13px; color: #64748b;"></i> ${(u.completedLessons || []).length}
+          </span>
+        </td>
+        <td style="padding: 1rem 1.25rem;">
+          ${isToday
+            ? '<span style="display:inline-flex; align-items:center; gap:0.4rem; color:#16a34a; font-weight:800; font-size:0.82rem;"><span style="width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span> Active Today</span>'
+            : `<span style="color:#64748b; font-weight:600; font-size:0.82rem;">${u.lastActiveDate || "Never"}</span>`}
+        </td>
+        <td style="padding: 1rem 1.25rem; text-align: right;">
+          <button class="admin-view-btn" data-uid="${u.uid}" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; border-radius: 12px; padding: 0.5rem 1.05rem; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 4px 14px rgba(99,102,241,0.25); transition: all 0.2s ease;">
+            <i data-lucide="eye" style="width: 14px; height: 14px;"></i> View
+          </button>
+        </td>
+      </tr>
+      `;
+    })
     .join("");
 
   tbody.querySelectorAll(".admin-view-btn").forEach((btn) => {
@@ -426,6 +531,14 @@ function setupAdminEvents() {
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
       currentSearch = e.target.value;
+      renderUsersTable();
+    });
+  }
+
+  const levelFilterSelect = document.getElementById("admin-filter-level");
+  if (levelFilterSelect) {
+    levelFilterSelect.addEventListener("change", (e) => {
+      currentLevelFilter = e.target.value;
       renderUsersTable();
     });
   }

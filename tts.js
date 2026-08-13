@@ -34,47 +34,11 @@ class TextToSpeechManager {
   }
 
   /**
-   * Initialize the floating TTS button
+   * Initialize TTS Manager (floating button disabled per user request)
    */
   init() {
-    // Create floating button container
-    const container = document.createElement("div");
-    container.id = "tts-floating-container";
-    container.innerHTML = `
-      <button id="tts-float-btn" class="tts-float-btn" aria-label="Read page aloud" title="Read page aloud">
-        <svg class="tts-icon-speaker" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-        </svg>
-        <svg class="tts-icon-stop hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10h6v4H9z" />
-        </svg>
-        <div class="tts-loading-ring hidden"></div>
-      </button>
-      <div class="tts-tooltip" id="tts-tooltip">${getTranslation(selectedLang, "ttsTooltip") || "🔊 Click to hear this page read aloud"}</div>
-    `;
-
-    document.body.appendChild(container);
-
-    this.button = document.getElementById("tts-float-btn");
-    this.tooltip = document.getElementById("tts-tooltip");
-
-    // Button click handler
-    this.button.addEventListener("click", () => {
-      if (this.isPlaying) {
-        this.stop();
-      } else {
-        this.speakPageContent();
-      }
-    });
-
-    // Show tooltip briefly on first load
-    setTimeout(() => {
-      this.tooltip.classList.add("visible");
-      setTimeout(() => {
-        this.tooltip.classList.remove("visible");
-      }, 4000);
-    }, 2000);
+    // Floating TTS button disabled per user request
+    return;
   }
 
   /**
@@ -169,10 +133,14 @@ class TextToSpeechManager {
     this.setLoadingState(true);
 
     try {
-      const idToken = await firebase.auth().currentUser.getIdToken();
+      const currentUser = firebase.auth()?.currentUser;
+      const idToken = currentUser ? await currentUser.getIdToken() : "";
+      const headers = { "Content-Type": "application/json" };
+      if (idToken) headers["Authorization"] = "Bearer " + idToken;
+
       const response = await fetch(APP_CONFIG.CLOUD_FN_TTS, {
         method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
+        headers: headers,
         body: JSON.stringify({
           input: { text: text.substring(0, 5000) }, // API limit
           voice: {
@@ -284,10 +252,13 @@ class TextToSpeechManager {
    */
   setPlayingState(playing) {
     this.isPlaying = playing;
+    if (!this.button) return;
 
     const speakerIcon = this.button.querySelector(".tts-icon-speaker");
     const stopIcon = this.button.querySelector(".tts-icon-stop");
     const loadingRing = this.button.querySelector(".tts-loading-ring");
+
+    if (!speakerIcon || !stopIcon || !loadingRing) return;
 
     if (playing) {
       speakerIcon.classList.add("hidden");
@@ -306,8 +277,12 @@ class TextToSpeechManager {
    * Show loading spinner on button
    */
   setLoadingState(loading) {
+    if (!this.button) return;
+
     const speakerIcon = this.button.querySelector(".tts-icon-speaker");
     const loadingRing = this.button.querySelector(".tts-loading-ring");
+
+    if (!speakerIcon || !loadingRing) return;
 
     if (loading) {
       speakerIcon.classList.add("hidden");
@@ -323,9 +298,10 @@ class TextToSpeechManager {
 let ttsManager = null;
 
 function speakText(text, lang) {
-  if (ttsManager) {
-    ttsManager.speak(text, lang);
+  if (!ttsManager) {
+    ttsManager = new TextToSpeechManager();
   }
+  ttsManager.speak(text, lang);
 }
 
 function stopSpeaking() {

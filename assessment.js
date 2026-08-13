@@ -403,20 +403,41 @@ function renderAnalysisToScreen(analysis, loadingEl, insightsEl) {
   
   const summaryMsg = document.getElementById("score-summary-message");
   if (summaryMsg && analysis.summaryMessage) {
-    summaryMsg.textContent = analysis.summaryMessage;
+    summaryMsg.innerHTML = `
+      <div style="display: flex; align-items: flex-start; gap: 0.75rem; text-align: left;">
+        <div style="width: 36px; height: 36px; border-radius: 12px; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; box-shadow: 0 4px 12px rgba(99,102,241,0.2);">
+          <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.6px; color: #4338ca; margin-bottom: 0.25rem;">Gemini AI Placement Feedback</div>
+          <div style="font-size: 0.93rem; font-weight: 700; color: #334155; line-height: 1.55;">${analysis.summaryMessage}</div>
+        </div>
+      </div>
+    `;
   }
   
   const goodList = document.getElementById("ai-good-points");
   const goodArr = analysis.goodPoints || analysis.strengths || [];
   if (goodList && goodArr.length > 0) {
-    goodList.innerHTML = goodArr.map(p => `<li style="margin-bottom: 6px;">${p}</li>`).join('');
+    goodList.innerHTML = goodArr.map(p => `
+      <li style="text-align: left !important;">
+        <span style="color: #16a34a; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">✓</span>
+        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #14532d; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
+      </li>
+    `).join('');
   }
   
   const weakList = document.getElementById("ai-weak-points");
   const weakArr = analysis.weakPoints || analysis.weaknesses || [];
   if (weakList && weakArr.length > 0) {
-    weakList.innerHTML = weakArr.map(p => `<li style="margin-bottom: 6px;">${p}</li>`).join('');
+    weakList.innerHTML = weakArr.map(p => `
+      <li style="text-align: left !important;">
+        <span style="color: #ea580c; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">🎯</span>
+        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #7c2d12; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
+      </li>
+    `).join('');
   }
+  if (window.lucide) lucide.createIcons();
 }
 
 /**
@@ -784,6 +805,8 @@ function renderQuestion() {
       optionsContainer.appendChild(btn);
     });
   }
+
+  if (window.lucide) lucide.createIcons();
 }
 
 function finishAssessment() {
@@ -877,26 +900,49 @@ function initializeCurriculum(level) {
 }
 
 function displayScore(scorePercent, level) {
-  document.getElementById("final-score").textContent = scorePercent;
+  const scoreEl = document.getElementById("final-score");
+  if (scoreEl) scoreEl.textContent = `${scorePercent}%`;
 
   // Animate circle
   const circle = document.getElementById("score-circle");
-  // Circumference is 2 * pi * r (r=80) ~ 502
-  const offset = 502 - (502 * scorePercent) / 100;
-  setTimeout(() => {
-    circle.style.strokeDashoffset = offset;
-  }, 100);
+  if (circle) {
+    const offset = 502 - (502 * scorePercent) / 100;
+    setTimeout(() => {
+      circle.style.strokeDashoffset = offset;
+    }, 100);
+  }
 
-  // Set badge
+  // Set badge with dynamic colors per level
   const badge = document.getElementById("score-level-badge");
-  badge.className = `score-level ${level}`;
+  if (badge) {
+    badge.className = `score-level ${level}`;
 
-  let badgeKey = "scoreLevelBeginner";
-  if (level === "intermediate") badgeKey = "scoreLevelIntermediate";
-  if (level === "advanced") badgeKey = "scoreLevelAdvanced";
+    let badgeKey = "scoreLevelBeginner";
+    let badgeBg = "linear-gradient(135deg, #fef3c7, #fde68a)";
+    let badgeColor = "#92400e";
+    let badgeBorder = "#f59e0b";
 
-  // Apply translation
-  badge.innerHTML = `<span>${getTranslation(selectedLang, badgeKey)}</span>`;
+    if (level === "intermediate") {
+      badgeKey = "scoreLevelIntermediate";
+      badgeBg = "linear-gradient(135deg, #e0e7ff, #c7d2fe)";
+      badgeColor = "#3730a3";
+      badgeBorder = "#6366f1";
+    } else if (level === "advanced") {
+      badgeKey = "scoreLevelAdvanced";
+      badgeBg = "linear-gradient(135deg, #f3e8ff, #e9d5ff)";
+      badgeColor = "#6b21a8";
+      badgeBorder = "#a855f7";
+    }
+
+    badge.style.background = badgeBg;
+    badge.style.color = badgeColor;
+    badge.style.border = `1.5px solid ${badgeBorder}`;
+
+    const label = getTranslation(selectedLang, badgeKey) || (level.charAt(0).toUpperCase() + level.slice(1) + " Level");
+    badge.innerHTML = `<span>${label}</span>`;
+  }
+
+  if (window.lucide) lucide.createIcons();
 }
 
 // Ensure this runs when loaded via main.js routing

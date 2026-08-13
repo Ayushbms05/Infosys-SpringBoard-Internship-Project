@@ -32,26 +32,27 @@ function setupLesson() {
   const params = new URLSearchParams(window.location.search);
   lessonParams = {
     level: params.get("level") || "beginner",
-    unit: params.get("unit") || "alphabets",  // kept for backward compat, ignored by blueprint
+    unit: params.get("unit") || "alphabets",  // kept for backward compat
     type: params.get("type") || "reading",
     lessonIndex: parseInt(params.get("lessonIndex"), 10) || 1,
     mode: params.get("mode") || "learning",
   };
 
   const titleEl = document.getElementById("lesson-title");
-  if (titleEl)
-    titleEl.textContent = `${lessonParams.unit.charAt(0).toUpperCase() + lessonParams.unit.slice(1)} — ${typeLabels[lessonParams.type]}`;
+  if (titleEl) {
+    const formattedUnit = lessonParams.unit.charAt(0).toUpperCase() + lessonParams.unit.slice(1);
+    titleEl.textContent = `${formattedUnit} — ${typeLabels[lessonParams.type]}`;
+  }
 
   const levelBadge = document.getElementById("lesson-level-badge");
   if (levelBadge) {
-    levelBadge.className = `rec-card-tag ${lessonParams.level}`;
-    levelBadge.textContent =
-      lessonParams.level.charAt(0).toUpperCase() + lessonParams.level.slice(1);
+    levelBadge.textContent = lessonParams.level.charAt(0).toUpperCase() + lessonParams.level.slice(1);
   }
 
   const typeBadge = document.getElementById("lesson-type-badge");
-  if (typeBadge)
+  if (typeBadge) {
     typeBadge.textContent = `${typeIcons[lessonParams.type]} ${typeLabels[lessonParams.type]}`;
+  }
 
   auth.onAuthStateChanged(async (user) => {
     if (!user) return (window.location.href = "login.html");
@@ -75,10 +76,11 @@ function setupLesson() {
     }
   });
 
-  document.getElementById("check-btn").addEventListener("click", checkAnswer);
-  document
-    .getElementById("continue-lesson-btn")
-    .addEventListener("click", nextExercise);
+  const checkBtn = document.getElementById("check-btn");
+  if (checkBtn) checkBtn.addEventListener("click", checkAnswer);
+
+  const continueBtn = document.getElementById("continue-lesson-btn");
+  if (continueBtn) continueBtn.addEventListener("click", nextExercise);
 }
 
 // ─── Gemini AI Generator (Blueprint + Cache-First) ──────────
@@ -95,7 +97,23 @@ async function generateExercises() {
   const skill = lessonParams.type;
   const lessonIndex = lessonParams.lessonIndex;
 
-  // ── 1. Look up the blueprint for this lesson slot ──
+  // 0. Independent Practical Life Skills Check (Bypasses Firestore & Gemini completely)
+  const isLifeSkill = ['banking', 'transit', 'health', 'market', 'bills'].includes(lessonParams.unit) || lessonParams.mode === 'practice';
+  if (isLifeSkill) {
+    const unitKey = ['banking', 'transit', 'health', 'market', 'bills'].includes(lessonParams.unit) ? lessonParams.unit : 'banking';
+    console.log(`🌐 Practical Life Skills Independent Mode: unit=${unitKey}, level=${level} — Bypassing Firestore & Gemini`);
+    if (typeof LIFE_SKILLS_CONTENT !== "undefined" && LIFE_SKILLS_CONTENT[unitKey]) {
+      const pool = LIFE_SKILLS_CONTENT[unitKey][level] || LIFE_SKILLS_CONTENT[unitKey]['beginner'] || [];
+      if (pool.length > 0) {
+        return pool;
+      }
+    }
+    if (typeof getPracticalLifeSkillFallback === "function") {
+      return getPracticalLifeSkillFallback(unitKey, level);
+    }
+  }
+
+  // 1. Look up the blueprint for this lesson slot
   const blueprintSlots = CURRICULUM_BLUEPRINT?.[level]?.[skill];
   const blueprint = blueprintSlots?.find(b => b.lessonIndex === lessonIndex);
   if (!blueprint) {
@@ -103,7 +121,7 @@ async function generateExercises() {
     return getFallbackExercises(skill);
   }
 
-  // ── 2. Check Firestore cache ──
+  // 2. Check Firestore cache
   const cacheDocId = `${targetLang}_${level}_${skill}_${lessonIndex}`;
   try {
     const cachedDoc = await db.collection("sharedLessonContent").doc(cacheDocId).get();
@@ -118,7 +136,7 @@ async function generateExercises() {
     console.warn("Cache read failed, will generate fresh:", cacheErr);
   }
 
-  // ── 3. No cache → build a focused Gemini prompt using the blueprint ──
+  // 3. No cache → build Gemini prompt
   console.log(`🔄 Cache miss: ${cacheDocId} — generating via Gemini`);
 
   const ageContext = {
@@ -138,20 +156,20 @@ async function generateExercises() {
   }[litLevel] || "an adult learner building foundational literacy";
 
   const prompts = {
-    reading: `Generate ${blueprint.exampleCount} Duolingo-style reading exercises. JSON: [{"content": "ONE short sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "A short question in ${targetLangName} about the content", "questionTranslation": "The ${knownLangName} translation of the question", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Why this is correct, written in ${knownLangName}"}]`,
+    reading: `Generate ${blueprint.exampleCount} Duolingo-style reading exercises. JSON: [{"instruction": "Read the passage and answer", "content": "ONE short sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "A short question in ${targetLangName} about the content", "questionTranslation": "The ${knownLangName} translation of the question", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Why this is correct, written in ${knownLangName}"}]`,
 
-    listening: `Generate ${blueprint.exampleCount} Duolingo-style listening exercises. JSON: [{"content": "ONE short spoken sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "What did the audio say? (in ${knownLangName})", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Audio translation, in ${knownLangName}"}]`,
+    listening: `Generate ${blueprint.exampleCount} Duolingo-style listening exercises. JSON: [{"instruction": "Listen to the audio sentence and choose the correct answer", "content": "ONE short spoken sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "What did the audio say? (in ${knownLangName})", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Audio translation, in ${knownLangName}"}]`,
 
-    speaking: `Generate ${blueprint.exampleCount} Duolingo-style speaking exercises. JSON: [{"content": "ONE short practical sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "Repeat this sentence aloud", "options": [], "answerIndex": 0, "explanation": "Great pronunciation!"}]`,
+    speaking: `Generate ${blueprint.exampleCount} Duolingo-style speaking exercises. JSON: [{"instruction": "Tap the mic and repeat this sentence aloud", "content": "ONE short practical sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "Speak clearly into your microphone", "options": [], "answerIndex": 0, "explanation": "Great pronunciation!"}]`,
 
-    pronunciation: `Generate ${blueprint.exampleCount} Duolingo-style pronunciation exercises. JSON: [{"content": "ONE single challenging word in ${targetLangName}", "translation": "The ${knownLangName} translation of that word", "question": "Pronounce this word", "options": [], "answerIndex": 0, "explanation": "Perfect!"}]`,
+    pronunciation: `Generate ${blueprint.exampleCount} Duolingo-style pronunciation exercises. JSON: [{"instruction": "Tap the mic and pronounce this word aloud", "content": "ONE single challenging word in ${targetLangName}", "translation": "The ${knownLangName} translation of that word", "question": "Pronounce this word clearly", "options": [], "answerIndex": 0, "explanation": "Perfect pronunciation!"}]`,
 
-    writing: `Generate ${blueprint.exampleCount} Duolingo-style sentence building exercises. JSON: [{"content": "A plain description of the sentence's meaning, in ${knownLangName} — written as a completely different set of words than the target sentence itself", "question": "The correct SHORT sentence (max 6-8 words) in ${targetLangName}, written normally (NOT an instruction, NOT containing 'Arrange', NOT separated by slashes)", "questionTranslation": "The ${knownLangName} translation of that exact sentence", "options": ["singleWord1", "singleWord2", "singleWord3", "singleWord4", "singleWord5"], "answerIndex": 0, "explanation": "Correct structure, in ${knownLangName}"}]. CRITICAL RULES: "options" must be SINGLE INDIVIDUAL WORDS ONLY, in ${targetLangName}, and together must contain every word needed to build "question" exactly. "content" must NEVER reuse the same words as "question".`
+    writing: `Generate ${blueprint.exampleCount} Duolingo-style sentence building exercises. JSON: [{"instruction": "Arrange the words below to form the correct sentence", "content": "A plain description of the sentence's meaning, in ${knownLangName} — written as a completely different set of words than the target sentence itself", "question": "The correct SHORT sentence (max 6-8 words) in ${targetLangName}, written normally", "questionTranslation": "The ${knownLangName} translation of that exact sentence", "options": ["singleWord1", "singleWord2", "singleWord3", "singleWord4", "singleWord5"], "answerIndex": 0, "explanation": "Correct structure, in ${knownLangName}"}]. CRITICAL RULES: "options" must be SINGLE INDIVIDUAL WORDS ONLY, in ${targetLangName}, and together must contain every word needed to build "question" exactly.`
   };
 
   const focusInstruction = `LESSON FOCUS: This is lesson ${lessonIndex} of 5 in the "${level}" level "${skill}" skill track. The specific pedagogical focus for this lesson is: "${blueprint.focus}". ALL ${blueprint.exampleCount} exercises MUST be directly about this focus topic — do not generate generic exercises.`;
 
-  const prompt = `You are a language tutor teaching ${targetLangName} to ${ageContext}, who already knows ${knownLangName} and ${litContext}. Every exercise must include BOTH the ${targetLangName} content AND a ${knownLangName} translation field, as specified below. Generate SHORT, bite-sized exercises — never long paragraphs. Difficulty should come from vocabulary complexity and grammar, NOT sentence length.
+  const prompt = `You are a language tutor teaching ${targetLangName} to ${ageContext}, who already knows ${knownLangName} and ${litContext}. Every exercise must include BOTH the ${targetLangName} content AND a ${knownLangName} translation field, as specified below. Generate SHORT, bite-sized exercises.
   ${focusInstruction}
   ${prompts[skill]}
   RESPOND ONLY WITH THE RAW JSON ARRAY. NO MARKDOWN. NO CODE BLOCKS.`;
@@ -169,7 +187,6 @@ async function generateExercises() {
   let parsed = JSON.parse(text);
   parsed = parsed.slice(0, blueprint.exampleCount);
 
-  // ── 4. Existing validation logic (writing exercises) ──
   if (skill === 'writing') {
     parsed = parsed.map(item => {
       const optionsLookLikeSentences = (item.options || []).some(o => o.trim().split(/\s+/).length > 2);
@@ -195,7 +212,6 @@ async function generateExercises() {
     });
   }
 
-  // ── 5. Write validated result to shared cache ──
   try {
     await db.collection("sharedLessonContent").doc(cacheDocId).set({
       targetLanguage: targetLang,
@@ -207,11 +223,12 @@ async function generateExercises() {
     });
     console.log(`💾 Cached: ${cacheDocId}`);
   } catch (writeErr) {
-    console.warn("Cache write failed (exercises still usable):", writeErr);
+    console.warn("Cache write failed:", writeErr);
   }
 
   return parsed;
 }
+
 // ─── Dynamic UI Renderer ────────────────────────────────
 function renderExercise() {
   if (currentExerciseIndex >= totalExercises) return showLessonComplete();
@@ -219,43 +236,51 @@ function renderExercise() {
   const ex = exercises[currentExerciseIndex];
   selectedAnswer = null;
 
-  document.getElementById("lesson-progress-fill").style.width =
-    (currentExerciseIndex / totalExercises) * 100 + "%";
-  document.getElementById("lesson-progress-text").textContent =
-    `${currentExerciseIndex + 1}/${totalExercises}`;
-  document.getElementById("exercise-instruction-text").textContent =
-    ex.instruction;
+  const fillPercent = ((currentExerciseIndex + 1) / totalExercises) * 100;
+  const fillEl = document.getElementById("lesson-progress-fill");
+  if (fillEl) fillEl.style.width = `${fillPercent}%`;
+
+  const instEl = document.getElementById("exercise-instruction-text");
+  if (instEl) {
+    const instructionText = ex.instruction || "Answer the question to continue";
+    instEl.innerHTML = `<i data-lucide="help-circle" style="width: 18px; height: 18px; color: #6366f1;"></i> <span>${instructionText}</span>`;
+  }
 
   const body = document.getElementById("exercise-body");
   let html = "";
+  const targetLang = lessonUserProfile?.targetLanguage || "hi";
 
-  // 1. LISTENING MODE (Big Audio Button, Hidden Text)
+  // 1. LISTENING MODE
   if (lessonParams.type === "listening") {
     html += `
-      <div style="text-align: center; margin: 2rem 0;">
-        <button id="listen-play-btn" style="width: 100px; height: 100px; border-radius: 50%; background: var(--color-primary); color: white; border: none; font-size: 3rem; cursor: pointer; box-shadow: 0 8px 20px rgba(108, 99, 255, 0.4); transition: transform 0.2s;">🔊</button>
-        <p style="margin-top: 1rem; color: var(--color-text-secondary); font-weight: bold;">Tap to Listen</p>
+      <div style="text-align: center; margin: 1.5rem 0 2rem;">
+        <button id="listen-play-btn" style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: 4px solid #ffffff; box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); margin: 0 auto;">
+          <i data-lucide="volume-2" style="width: 38px; height: 38px;"></i>
+        </button>
+        <p style="margin-top: 0.85rem; color: #6366f1; font-weight: 800; font-size: 0.95rem;">Tap to Listen</p>
       </div>
-      <p class="lesson-translation ${translationVisibilityClass()}">${ex.translation || ''}</p>
-      <p class="exercise-question">${ex.question}</p>
-      <div class="exercise-options" id="mcq-options"></div>
+      ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}">${ex.translation}</p>` : ''}
+      <h3 class="exercise-question-text">${ex.question}</h3>
+      <div class="exercise-options-grid" id="mcq-options"></div>
     `;
   }
 
-  // 2. SPEAKING & PRONUNCIATION MODE (Microphone UI)
+  // 2. SPEAKING & PRONUNCIATION MODE
   else if (
     lessonParams.type === "speaking" ||
     lessonParams.type === "pronunciation"
   ) {
     html += `
-      <div style="text-align: center; margin-bottom: 2rem; padding: 2rem; background: rgba(108, 99, 255, 0.05); border-radius: 12px; border: 1px solid rgba(108, 99, 255, 0.2);">
-        <h2 style="font-size: 2.5rem; color: var(--color-text-primary); margin-bottom: 0.5rem;">${ex.content}</h2>
-        <p class="lesson-translation ${translationVisibilityClass()}">${ex.translation || ''}</p>
-        <p style="color: var(--color-text-muted); font-size: 1.1rem; font-style: italic;">"${ex.question}"</p>
+      <div style="text-align: center; margin-bottom: 2rem; padding: 2rem 1.5rem; background: linear-gradient(135deg, #f8fafc, #eef2ff); border-radius: 24px; border: 2px solid #c7d2fe;">
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 900; color: #4f46e5; margin: 0 0 0.5rem;">${ex.content}</h2>
+        ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}" style="margin: 0.5rem 0;">${ex.translation}</p>` : ''}
+        <p style="color: #64748b; font-size: 1.05rem; font-weight: 700; margin: 0;">"${ex.question}"</p>
       </div>
       <div style="text-align: center; margin-bottom: 1rem;">
-        <button id="stt-mic-btn" style="width: 80px; height: 80px; border-radius: 50%; background: white; color: var(--color-primary); border: 3px solid var(--color-primary); font-size: 2.5rem; cursor: pointer; transition: all 0.3s;">🎤</button>
-        <p id="stt-result-text" style="color: var(--color-text-secondary); margin-top: 1rem; font-weight: 600; min-height: 24px;">Waiting for audio...</p>
+        <button id="stt-mic-btn" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: 4px solid #ffffff; box-shadow: 0 10px 28px rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto; transition: all 0.3s;">
+          <i data-lucide="mic" style="width: 32px; height: 32px;"></i>
+        </button>
+        <p id="stt-result-text" style="color: #475569; margin-top: 1rem; font-weight: 800; font-size: 0.95rem; min-height: 24px;">Tap microphone to speak...</p>
       </div>
     `;
   }
@@ -263,13 +288,13 @@ function renderExercise() {
   // 3. WRITING MODE (Sentence Builder)
   else if (lessonParams.type === "writing") {
     html += `
-      <div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(0, 212, 170, 0.1); border-radius: 8px; border-left: 4px solid var(--color-accent);">
-      <p class="lesson-translation ${translationVisibilityClass()}">${ex.translation || ''}</p>  
-      <p style="font-weight: bold; color: var(--color-text-primary);">${ex.content}</p>
+      <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: #f0fdf4; border-radius: 20px; border: 1.5px solid #86efac;">
+        ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}" style="margin-bottom: 0.35rem; color: #16a34a;">${ex.translation}</p>` : ''}  
+        <p style="font-weight: 800; font-size: 1.15rem; color: #15803d; margin: 0;">${ex.content}</p>
       </div>
       <div class="sentence-builder-area">
-        <div id="sb-dropzone" style="min-height: 60px; padding: 1rem; border: 2px dashed var(--color-primary); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 0.5rem; background: rgba(108, 99, 255, 0.05); margin-bottom: 1rem; align-items: center;"></div>
-        <div id="sb-wordbank" style="min-height: 60px; padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px; display: flex; flex-wrap: wrap; gap: 0.5rem; background: var(--color-bg-surface); align-items: center;"></div>
+        <div id="sb-dropzone" style="min-height: 64px; padding: 1rem; border: 2px dashed #6366f1; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #eef2ff; margin-bottom: 1.25rem; align-items: center;"></div>
+        <div id="sb-wordbank" style="min-height: 64px; padding: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #f8fafc; align-items: center;"></div>
       </div>
     `;
   }
@@ -277,32 +302,54 @@ function renderExercise() {
   // 4. READING MODE (Standard MCQ)
   else {
     html += `
-    <div class="exercise-passage" style="margin-bottom: 1.5rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid var(--color-border); border-radius: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">
-      <p style="font-size: 1.2rem; font-weight: 600; margin: 0;">${ex.content}</p>
-      <button class="passage-tts-btn" onclick="speakText('${ex.content.replace(/'/g, "\\'")}', '${lessonUserProfile?.preferredLanguage}')" style="flex-shrink: 0; background: transparent; border: none; font-size: 1.5rem; cursor: pointer; line-height: 1;">🔊</button>
-    </div>
-    <p class="lesson-translation ${translationVisibilityClass()}">${ex.translation || ''}</p>
-    <p class="exercise-question">${ex.question}</p>
-    <div class="exercise-options" id="mcq-options"></div>
-  `;
+      <div class="exercise-passage-card">
+        <p class="exercise-passage-text">${ex.content}</p>
+      </div>
+      ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}">${ex.translation}</p>` : ''}
+      <h3 class="exercise-question-text">${ex.question}</h3>
+      <div class="exercise-options-grid" id="mcq-options"></div>
+    `;
   }
 
   body.innerHTML = html;
 
-  // Render Buttons / Reset Check state
-  document.getElementById("exercise-feedback").classList.add("hidden");
-  const checkBtn = document.getElementById("check-btn");
-  checkBtn.classList.remove("hidden");
-  checkBtn.disabled = true;
-  document.getElementById("continue-lesson-btn").classList.add("hidden");
-
-  // Hook up functionality based on mode
-  if (lessonParams.type === "listening") {
-    document.getElementById("listen-play-btn").onclick = function () {
-      this.style.transform = "scale(0.9)";
-      setTimeout(() => (this.style.transform = "scale(1)"), 200);
-      speakText(ex.content, lessonUserProfile?.preferredLanguage);
+  // Wire up top card TTS speaker button
+  const topTtsBtn = document.getElementById("exercise-tts-btn");
+  if (topTtsBtn) {
+    topTtsBtn.style.display = "inline-flex";
+    topTtsBtn.onclick = () => {
+      topTtsBtn.style.transform = "scale(0.92)";
+      setTimeout(() => (topTtsBtn.style.transform = "scale(1)"), 150);
+      const textToSpeak = ex.content || ex.question || "";
+      if (typeof speakText === "function") {
+        speakText(textToSpeak, targetLang);
+      }
     };
+  }
+
+  // Reset feedback state & check button
+  const feedbackEl = document.getElementById("exercise-feedback");
+  if (feedbackEl) feedbackEl.classList.add("hidden");
+
+  const checkBtn = document.getElementById("check-btn");
+  if (checkBtn) {
+    checkBtn.classList.remove("hidden");
+    checkBtn.disabled = true;
+  }
+
+  const continueBtn = document.getElementById("continue-lesson-btn");
+  if (continueBtn) continueBtn.classList.add("hidden");
+
+  // Hook up mode specific event listeners
+  if (lessonParams.type === "listening") {
+    const playBtn = document.getElementById("listen-play-btn");
+    if (playBtn) {
+      playBtn.onclick = function () {
+        this.style.transform = "scale(0.92)";
+        setTimeout(() => (this.style.transform = "scale(1)"), 200);
+        speakText(ex.content, targetLang);
+      };
+    }
     renderMCQ(ex.options);
   } else if (lessonParams.type === "reading") {
     renderMCQ(ex.options);
@@ -310,24 +357,23 @@ function renderExercise() {
     const bank = document.getElementById("sb-wordbank");
     const dropzone = document.getElementById("sb-dropzone");
 
-    // Shuffle jumbled words
     const shuffledOptions = [...ex.options].sort(() => Math.random() - 0.5);
 
     shuffledOptions.forEach((word) => {
       const chip = document.createElement("button");
       chip.textContent = word;
       chip.style.cssText =
-        "padding: 0.6rem 1rem; border-radius: 20px; border: none; background: var(--color-primary); color: white; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);";
+        "padding: 0.65rem 1.15rem; border-radius: 9999px; border: none; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 800; font-size: 0.95rem; cursor: pointer; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); transition: all 0.2s ease;";
 
       chip.onclick = () => {
         if (chip.parentElement === bank) dropzone.appendChild(chip);
         else bank.appendChild(chip);
-        checkBtn.disabled = dropzone.children.length === 0;
+        if (checkBtn) checkBtn.disabled = dropzone.children.length === 0;
       };
       bank.appendChild(chip);
     });
 
-    selectedAnswer = 0; // Dummy value to allow checkAnswer to run
+    selectedAnswer = 0;
   } else if (
     lessonParams.type === "speaking" ||
     lessonParams.type === "pronunciation"
@@ -335,94 +381,74 @@ function renderExercise() {
     const micBtn = document.getElementById("stt-mic-btn");
     const resultText = document.getElementById("stt-result-text");
 
-    micBtn.onclick = () => {
-      micBtn.style.background = "var(--color-primary)";
-      micBtn.style.color = "white";
-      micBtn.style.animation = "pulse 1.5s infinite";
-      resultText.textContent = "Listening...";
+    if (micBtn) {
+      micBtn.onclick = () => {
+        micBtn.style.background = "linear-gradient(135deg, #ef4444, #dc2626)";
+        resultText.textContent = "Listening...";
 
-      if (typeof startSpeechToText === "function") {
-        startSpeechToText(
-          lessonUserProfile?.targetLanguage || "en-IN",
-          (transcript) => {
-            micBtn.style.background = "white";
-            micBtn.style.color = "var(--color-primary)";
-            micBtn.style.animation = "none";
+        if (typeof startSpeechToText === "function") {
+          startSpeechToText(
+            targetLang,
+            (transcript) => {
+              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
 
-            if (transcript) {
-              resultText.textContent = `You said: "${transcript}"`;
+              if (transcript) {
+                resultText.textContent = `You said: "${transcript}"`;
 
-              // Fuzzy Match Logic
-              // FIXED: "expected" and "actual" were referenced below but never
-              // declared here — that's what threw the ReferenceError. Restoring
-              // the normalization step that builds them from the target sentence
-              // (ex.content) and the transcript.
-              const expected = ex.content
-                .toLowerCase()
-                .replace(/[.,?]/g, "")
-                .trim();
-              const actual = transcript
-                .toLowerCase()
-                .replace(/[.,?]/g, "")
-                .trim();
+                const expected = ex.content.toLowerCase().replace(/[.,?]/g, "").trim();
+                const actual = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
 
-              // Word-overlap match instead of exact substring — tolerates natural speech
-              // variation (a missed "a"/"the", slightly different word order) while still
-              // requiring most of the actual words to be present.
-              const expectedWords = expected.split(/\s+/).filter(Boolean);
-              const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-              const matchedCount = expectedWords.filter((w) =>
-                actualWords.has(w),
-              ).length;
-              const matchRatio = expectedWords.length
-                ? matchedCount / expectedWords.length
-                : 0;
+                const expectedWords = expected.split(/\s+/).filter(Boolean);
+                const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
+                const matchedCount = expectedWords.filter((w) => actualWords.has(w)).length;
+                const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
 
-              if (matchRatio >= 0.7) {
-                // 70%+ of expected words present = pass
-                selectedAnswer = "CORRECT";
+                if (matchRatio >= 0.7) {
+                  selectedAnswer = "CORRECT";
+                } else {
+                  selectedAnswer = "INCORRECT";
+                }
+                if (checkBtn) checkBtn.disabled = false;
               } else {
-                selectedAnswer = "INCORRECT";
+                resultText.textContent = "Didn't catch that. Tap mic to try again.";
               }
-              checkBtn.disabled = false;
-            } else {
-              resultText.textContent =
-                "Didn't catch that. Tap mic to try again.";
+            },
+            (err) => {
+              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
+              resultText.textContent = "Speech recognition issue — tap mic to try again.";
+              console.error("STT error:", err);
             }
-          },
-          (err) => {
-            // NEW: surfaces STT failures instead of leaving the button stuck silently
-            micBtn.style.background = "white";
-            micBtn.style.color = "var(--color-primary)";
-            micBtn.style.animation = "none";
-            resultText.textContent = "Something went wrong — please try again.";
-            console.error("STT error:", err);
-          },
-        );
-      }
-    };
+          );
+        }
+      };
+    }
   }
+
+  if (window.lucide) lucide.createIcons();
 }
 
-// ─── Helpers ────────────────────────────────────────────
+// ─── MCQ Renderer ───────────────────────────────────────
 function renderMCQ(options) {
   const container = document.getElementById("mcq-options");
   if (!container) return;
+  container.innerHTML = "";
   const letters = ["A", "B", "C", "D"];
   options.forEach((opt, idx) => {
     const btn = document.createElement("button");
-    btn.className = "option-btn exercise-option";
-    btn.innerHTML = `<div class="option-letter">${letters[idx]}</div><span>${opt}</span>`;
+    btn.className = "exercise-option-btn";
+    btn.innerHTML = `<div class="exercise-option-letter">${letters[idx]}</div><span>${opt}</span>`;
     btn.onclick = () => {
       document
-        .querySelectorAll(".exercise-option")
+        .querySelectorAll(".exercise-option-btn")
         .forEach((b) => b.classList.remove("selected"));
       btn.classList.add("selected");
       selectedAnswer = idx;
-      document.getElementById("check-btn").disabled = false;
+      const checkBtn = document.getElementById("check-btn");
+      if (checkBtn) checkBtn.disabled = false;
     };
     container.appendChild(btn);
   });
+  if (window.lucide) lucide.createIcons();
 }
 
 function checkAnswer() {
@@ -431,15 +457,12 @@ function checkAnswer() {
 
   if (lessonParams.type === "writing") {
     const builtSentence = Array.from(
-      document.getElementById("sb-dropzone").children,
+      document.getElementById("sb-dropzone").children
     )
       .map((c) => c.textContent)
       .join(" ")
       .trim();
 
-    // Normalize both sides the same way: lowercase, strip punctuation,
-    // collapse whitespace — so a correct arrangement isn't marked wrong
-    // just because of a missing period or an extra space.
     const normalize = (s) =>
       s
         .toLowerCase()
@@ -454,7 +477,7 @@ function checkAnswer() {
     isCorrect = selectedAnswer === "CORRECT";
   } else {
     isCorrect = selectedAnswer === ex.answerIndex;
-    document.querySelectorAll(".exercise-option").forEach((btn, idx) => {
+    document.querySelectorAll(".exercise-option-btn").forEach((btn, idx) => {
       if (idx === ex.answerIndex) btn.classList.add("correct");
       else if (idx === selectedAnswer && !isCorrect)
         btn.classList.add("incorrect");
@@ -465,26 +488,29 @@ function checkAnswer() {
   const feedback = document.getElementById("exercise-feedback");
   feedback.classList.remove("hidden", "correct", "incorrect");
 
+  const feedbackIcon = document.getElementById("feedback-icon");
+  const feedbackText = document.getElementById("feedback-text");
+
   if (isCorrect) {
     feedback.classList.add("correct");
-    document.getElementById("feedback-icon").textContent = "✅";
-    document.getElementById("feedback-text").textContent =
-      "Correct! " + (ex.explanation || "Great job!");
+    if (feedbackIcon) feedbackIcon.innerHTML = `<i data-lucide="check-circle-2" style="width: 22px; height: 22px; color: #16a34a;"></i>`;
+    if (feedbackText) feedbackText.textContent = "Correct! " + (ex.explanation || "Great job!");
     lessonScore++;
-    document.getElementById("lesson-xp-value").textContent =
-      parseInt(document.getElementById("lesson-xp-value").textContent) + 10;
+    const xpValEl = document.getElementById("lesson-xp-value");
+    if (xpValEl) xpValEl.textContent = parseInt(xpValEl.textContent || "0") + 10;
   } else {
     feedback.classList.add("incorrect");
-    document.getElementById("feedback-icon").textContent = "❌";
-    document.getElementById("feedback-text").textContent =
-      "Not quite. " +
-      (lessonParams.type === "writing"
-        ? `Correct sentence: ${ex.question}`
-        : "Keep practicing.");
+    if (feedbackIcon) feedbackIcon.innerHTML = `<i data-lucide="x-circle" style="width: 22px; height: 22px; color: #dc2626;"></i>`;
+    if (feedbackText) feedbackText.textContent = "Not quite. " + (lessonParams.type === "writing" ? `Correct sentence: ${ex.question}` : "Keep practicing.");
   }
 
-  document.getElementById("check-btn").classList.add("hidden");
-  document.getElementById("continue-lesson-btn").classList.remove("hidden");
+  const checkBtn = document.getElementById("check-btn");
+  if (checkBtn) checkBtn.classList.add("hidden");
+
+  const continueBtn = document.getElementById("continue-lesson-btn");
+  if (continueBtn) continueBtn.classList.remove("hidden");
+
+  if (window.lucide) lucide.createIcons();
 }
 
 function nextExercise() {
@@ -493,15 +519,23 @@ function nextExercise() {
 }
 
 async function showLessonComplete() {
-  document.getElementById("lesson-content").classList.add("hidden");
-  document.getElementById("lesson-complete").classList.remove("hidden");
-  document.getElementById("lesson-progress-fill").style.width = "100%";
+  const contentEl = document.getElementById("lesson-content");
+  if (contentEl) contentEl.classList.add("hidden");
+
+  const completeEl = document.getElementById("lesson-complete");
+  if (completeEl) completeEl.classList.remove("hidden");
+
+  const fillEl = document.getElementById("lesson-progress-fill");
+  if (fillEl) fillEl.style.width = "100%";
 
   const accuracy = Math.round((lessonScore / totalExercises) * 100);
   const xpEarned = lessonScore * 10;
 
-  document.getElementById("complete-score").textContent = accuracy + "%";
-  document.getElementById("complete-xp").textContent = "+" + xpEarned;
+  const completeScoreEl = document.getElementById("complete-score");
+  if (completeScoreEl) completeScoreEl.textContent = accuracy + "%";
+
+  const completeXpEl = document.getElementById("complete-xp");
+  if (completeXpEl) completeXpEl.textContent = "+" + xpEarned;
 
   const user = auth.currentUser;
   if (user) {
@@ -518,19 +552,19 @@ async function showLessonComplete() {
       );
 
       if (levelResult && levelResult.leveledUp) {
-        document.getElementById("level-up-modal").classList.remove("hidden");
-        document.getElementById("new-level-text").textContent =
-          levelResult.newLevel.toUpperCase();
+        const modal = document.getElementById("level-up-modal");
+        if (modal) modal.classList.remove("hidden");
+        const newLvlTxt = document.getElementById("new-level-text");
+        if (newLvlTxt) newLvlTxt.textContent = levelResult.newLevel.toUpperCase();
       }
     }
     await updateStreak(user.uid);
 
     if (typeof updateQuestProgress === "function") {
-      updateQuestProgress(user.uid, "lesson", 1); // Adds 1 to "Complete 1 Lesson"
-      updateQuestProgress(user.uid, "xp", xpEarned); // Adds earned XP to "Earn 20 XP"
+      updateQuestProgress(user.uid, "lesson", 1);
+      updateQuestProgress(user.uid, "xp", xpEarned);
     }
 
-    // Log this attempt for the Analysis page
     const durationSeconds = Math.round((Date.now() - lessonStartTime) / 1000);
     await db.collection("users").doc(user.uid).collection("lessonHistory").add({
       type: lessonParams.type,
@@ -542,10 +576,6 @@ async function showLessonComplete() {
       completedAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
-    // Refetch the profile fresh (post-update) so badge conditions are
-    // checked against up-to-date numbers, then show celebrations for
-    // anything newly earned. Level-up shows first since it's the bigger
-    // milestone.
     const freshProfile = await getUserProgress(user.uid);
     const newlyEarnedBadges = await checkAndAwardBadges(user.uid, freshProfile);
 
@@ -559,17 +589,21 @@ async function showLessonComplete() {
     }
   }
 
-  document.getElementById("next-lesson-btn").onclick = () =>
-    window.location.reload();
+  const nextBtn = document.getElementById("next-lesson-btn");
+  if (nextBtn) {
+    nextBtn.onclick = () => window.location.reload();
+  }
+
+  if (window.lucide) lucide.createIcons();
 }
 
 function getFallbackExercises(type) {
-  // Safe Fallbacks in case Gemini times out
   if (type === "speaking" || type === "pronunciation")
     return [
       {
         instruction: "Tap the mic and say this out loud",
         content: "Hello",
+        translation: "नमस्ते",
         question: "Greeting",
         options: [],
         answerIndex: 0,
@@ -577,6 +611,7 @@ function getFallbackExercises(type) {
       {
         instruction: "Tap the mic and say this out loud",
         content: "Thank you",
+        translation: "धन्यवाद",
         question: "Gratitude",
         options: [],
         answerIndex: 0,
@@ -585,8 +620,9 @@ function getFallbackExercises(type) {
   if (type === "writing")
     return [
       {
-        instruction: "Arrange the words",
+        instruction: "Arrange the words to form the sentence",
         content: "I am going to the bank",
+        translation: "मैं बैंक जा रहा हूँ",
         question: "I am going to the bank",
         options: ["to", "am", "I", "bank", "going", "the"],
         answerIndex: 0,
@@ -595,8 +631,9 @@ function getFallbackExercises(type) {
   if (type === "listening")
     return [
       {
-        instruction: "Listen and answer",
+        instruction: "Listen to the audio and answer",
         content: "The bus is arriving.",
+        translation: "बस आ रही है।",
         question: "What is arriving?",
         options: ["The bus", "The train", "The car", "The plane"],
         answerIndex: 0,
@@ -604,8 +641,9 @@ function getFallbackExercises(type) {
     ];
   return [
     {
-      instruction: "Read and answer",
+      instruction: "Read the sentence and answer",
       content: "Sign here.",
+      translation: "यहाँ हस्ताक्षर करें।",
       question: "What should you do?",
       options: ["Wait", "Sign", "Leave", "Pay"],
       answerIndex: 1,
@@ -616,6 +654,7 @@ function getFallbackExercises(type) {
 if (document.body.id === "page-lesson") {
   document.addEventListener("DOMContentLoaded", setupLesson);
 }
+
 function translationVisibilityClass() {
   if (lessonParams.level === 'beginner') return 'translation-prominent';
   if (lessonParams.level === 'intermediate') return 'translation-muted';

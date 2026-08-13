@@ -8,36 +8,57 @@
  * Cache is versioned so future deploys can bust it cleanly.
  */
 
-var CACHE_NAME = "infosyssb-cache-v5";
+var CACHE_NAME = "infosyssb-cache-v6";
 
 // Static assets to precache on install
 var PRECACHE_URLS = [
   // ─── HTML shells ─────────────────────────────────────────────
   "/",
   "/index.html",
+  "/landing.html",
   "/login.html",
   "/register.html",
   "/dashboard.html",
   "/admin.html",
   "/assessment.html",
   "/lesson.html",
+  "/unit-lesson.html",
+  "/404.html",
 
   // ─── CSS ─────────────────────────────────────────────────────
   "/style.css",
+  "/landing.css",
 
   // ─── Local JS files ──────────────────────────────────────────
+  "/config.js",
   "/firebase-config.js",
+  "/error-logger.js",
   "/translations.js",
   "/auth.js",
   "/main.js",
+  "/landing.js",
   "/admin.js",
   "/dashboard.js",
   "/assessment.js",
   "/chat.js",
   "/analysis.js",
   "/lesson.js",
+  "/unit-lesson.js",
   "/game.js",
+  "/games-hub.js",
   "/celebrations.js",
+  "/curriculum-blueprint.js",
+  "/curriculum.js",
+  "/units-content.js",
+  "/units.js",
+  "/life-skills-content.js",
+  "/handwriting-content.js",
+  "/handwriting.js",
+  "/leagues-config.js",
+  "/leagues.js",
+  "/studygroups.js",
+  "/weeklyrecap.js",
+  "/shareablecard.js",
   "/theme.js",
   "/tts.js",
   "/push-notifications.js",

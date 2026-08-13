@@ -5,131 +5,823 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="AksharGyan Literacy Assessment — Find your current level." />
-  <title>AksharGyan — Assessment</title>
+  <title>AksharGyan — Literacy Assessment</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json">
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       AKSHARGYAN ASSESSMENT — PERFECTLY CENTERED DESIGN SYSTEM
+       ═══════════════════════════════════════════════════════════════════ */
+    
+    html, body#page-assessment {
+      background-color: #f8fafc !important;
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                  #f8fafc !important;
+      color: #0f172a !important;
+      font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body#page-assessment::before {
+      display: none !important;
+    }
+
+    /* Fixed Glass Navbar */
+    .dash-top-navbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 72px !important;
+      z-index: 1000 !important;
+      background: rgba(255, 255, 255, 0.85) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      border-bottom: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+      box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06) !important;
+      padding: 0 1.75rem !important;
+      display: flex !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.45rem;
+      color: #0f172a;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ffffff;
+      box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4);
+      flex-shrink: 0;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Mathematical Viewport Centering */
+    .assessment-shell {
+      min-height: calc(100vh - 72px);
+      margin-top: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem 3rem;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* Glass Cards */
+    .ass-card {
+      width: 100%;
+      max-width: 620px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.96) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+      border-radius: 32px !important;
+      padding: 2.75rem 2.25rem !important;
+      box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.08) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(20px) !important;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      margin: 0 auto !important;
+    }
+
+    /* Hidden utility rule - MAXIMUM SPECIFICITY */
+    .hidden,
+    .ass-card.hidden,
+    .assessment-container.hidden,
+    #assessment-intro.hidden,
+    #assessment-quiz.hidden,
+    #assessment-score.hidden,
+    #assessment-ai-loading.hidden,
+    #assessment-ai-insights.hidden,
+    #loading-hint.hidden {
+      display: none !important;
+    }
+
+    /* Enforce 100% Center Alignment for Text-Center Cards when NOT hidden */
+    .text-center:not(.hidden),
+    .ass-card.text-center:not(.hidden),
+    #assessment-intro:not(.hidden),
+    #assessment-score:not(.hidden) {
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .ass-card.text-center h1,
+    .ass-card.text-center h2,
+    .ass-card.text-center h3,
+    .ass-card.text-center p,
+    .ass-card.text-center span,
+    #assessment-intro h1,
+    #assessment-intro p,
+    #assessment-score h1,
+    #assessment-score p {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    .assessment-container {
+      width: 100%;
+      max-width: 620px;
+      box-sizing: border-box;
+      margin: 0 auto !important;
+    }
+
+    /* Intro Hero Badge */
+    .ass-hero-badge {
+      width: 76px;
+      height: 76px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #ffffff;
+      font-size: 2.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.35rem !important;
+      box-shadow: 0 14px 32px -6px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Feature Chips */
+    .ass-feature-chips {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 0.65rem !important;
+      flex-wrap: wrap !important;
+      margin: 1.5rem auto 2rem !important;
+      width: 100% !important;
+    }
+
+    .ass-chip {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 9999px;
+      padding: 0.45rem 0.95rem;
+      font-weight: 800;
+      font-size: 0.82rem;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Quiz Progress Bar */
+    .ass-progress-wrap {
+      background: rgba(255, 255, 255, 0.92) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+      border-radius: 24px !important;
+      padding: 1.25rem 1.5rem !important;
+      margin-bottom: 1.25rem !important;
+      box-shadow: 0 10px 25px -6px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    .ass-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .ass-progress-title {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: #6366f1;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .ass-progress-pill {
+      background: #eef2ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 900;
+      font-size: 0.82rem;
+    }
+
+    .ass-progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .ass-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #a855f7, #00d4aa);
+      border-radius: 9999px;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Question Card */
+    .ass-question-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 28px !important;
+      padding: 2rem 1.75rem !important;
+      box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.05) !important;
+    }
+
+    .ass-q-num-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 0.78rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .ass-question-text {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.35rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      line-height: 1.4 !important;
+      margin: 0 0 1.5rem !important;
+      text-align: left !important;
+    }
+
+    /* Options Grid */
+    .options-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 0.85rem !important;
+    }
+
+    .option-btn {
+      background: #ffffff !important;
+      border: 2px solid #e2e8f0 !important;
+      border-radius: 20px !important;
+      padding: 1.1rem 1.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      cursor: pointer !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      text-align: left !important;
+      font-weight: 700 !important;
+      font-size: 1rem !important;
+      color: #1e293b !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .option-btn:hover {
+      border-color: #6366f1 !important;
+      background: #f8fafc !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 25px -6px rgba(99, 102, 241, 0.15) !important;
+    }
+
+    .option-btn.selected {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      color: #4f46e5 !important;
+      box-shadow: 0 12px 28px -6px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    .option-letter {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      color: #475569;
+      font-weight: 900;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .option-btn.selected .option-letter {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+
+    /* Speaking Card */
+    .assessment-speaking-card {
+      background: linear-gradient(135deg, #f8fafc, #eef2ff) !important;
+      border: 2px solid #c7d2fe !important;
+      border-radius: 24px !important;
+      padding: 2rem 1.5rem !important;
+      text-align: center !important;
+    }
+
+    .assessment-speaking-card .target-phrase {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.75rem !important;
+      font-weight: 900 !important;
+      color: #4f46e5 !important;
+      margin-bottom: 1.5rem !important;
+      text-align: center !important;
+    }
+
+    .assessment-speaking-card .stt-mic-btn {
+      width: 72px !important;
+      height: 72px !important;
+      border-radius: 50% !important;
+      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+      color: #ffffff !important;
+      border: 4px solid #ffffff !important;
+      box-shadow: 0 10px 28px rgba(99, 102, 241, 0.4) !important;
+      cursor: pointer !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 auto 1rem !important;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    .assessment-speaking-card .stt-mic-btn:hover {
+      transform: scale(1.08) !important;
+      box-shadow: 0 16px 36px rgba(99, 102, 241, 0.5) !important;
+    }
+
+    .assessment-speaking-card .stt-result-text {
+      font-weight: 800 !important;
+      font-size: 0.95rem !important;
+      color: #475569 !important;
+      text-align: center !important;
+    }
+
+    /* Primary Action Buttons */
+    .ass-btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 16px !important;
+      padding: 0.9rem 2rem !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 800 !important;
+      font-size: 1.05rem !important;
+      box-shadow: 0 10px 28px -6px rgba(99, 102, 241, 0.4) !important;
+      cursor: pointer !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+      text-decoration: none !important;
+      margin: 0 auto !important;
+    }
+
+    .ass-btn-primary:hover {
+      transform: translateY(-2px) scale(1.02) !important;
+      box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.5) !important;
+    }
+
+    /* Results Screen Gauge - DEAD CENTER ABSOLUTE POSITIONING */
+    .score-circle-wrapper {
+      position: relative !important;
+      width: 180px !important;
+      height: 180px !important;
+      margin: 1.5rem auto 1.25rem !important;
+      display: block !important;
+    }
+
+    .score-circle-wrapper svg {
+      width: 180px !important;
+      height: 180px !important;
+      display: block !important;
+      transform: rotate(-90deg) !important;
+    }
+
+    .score-circle-bg {
+      fill: none;
+      stroke: #e2e8f0;
+      stroke-width: 14;
+    }
+
+    .score-circle-fill {
+      fill: none;
+      stroke: url(#scoreGradient);
+      stroke-width: 14;
+      stroke-linecap: round;
+      stroke-dasharray: 502;
+      stroke-dashoffset: 502;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .score-text {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      pointer-events: none !important;
+      z-index: 10 !important;
+      text-align: center !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .score-value-text {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 900 !important;
+      font-size: 2.75rem !important;
+      line-height: 1 !important;
+      color: #0f172a !important;
+      text-align: center !important;
+      margin: 0 !important;
+      white-space: nowrap !important;
+    }
+
+    #assessment-score {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+    }
+
+    /* AI Strength & Weakness Boxes */
+    .assessment-ai-boxes {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1.25rem !important;
+      margin: 1.5rem 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    @media (max-width: 640px) {
+      .assessment-ai-boxes {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    .assessment-ai-box-strengths,
+    .assessment-ai-box-weaknesses {
+      width: 100% !important;
+      box-sizing: border-box !important;
+      text-align: left !important;
+      border-radius: 24px !important;
+      padding: 1.5rem 1.35rem !important;
+    }
+
+    .assessment-ai-box-strengths {
+      background: #f0fdf4 !important;
+      border: 1.5px solid #bbf7d0 !important;
+    }
+
+    .assessment-ai-box-weaknesses {
+      background: #fff7ed !important;
+      border: 1.5px solid #ffedd5 !important;
+    }
+
+    .assessment-ai-box-strengths h4,
+    .assessment-ai-box-weaknesses h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.05rem !important;
+      font-weight: 900 !important;
+      margin: 0 0 1rem 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      text-align: left !important;
+    }
+
+    .assessment-ai-box-strengths h4 {
+      color: #15803d !important;
+    }
+
+    .assessment-ai-box-weaknesses h4 {
+      color: #c2410c !important;
+    }
+
+    .assessment-ai-box-strengths ul,
+    .assessment-ai-box-weaknesses ul {
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      width: 100% !important;
+      text-align: left !important;
+    }
+
+    .assessment-ai-box-strengths ul li,
+    .assessment-ai-box-weaknesses ul li {
+      position: relative !important;
+      padding: 0.85rem 1rem !important;
+      margin: 0 !important;
+      border-radius: 14px !important;
+      text-align: left !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      line-height: 1.45 !important;
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
+      gap: 0.6rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .assessment-ai-box-strengths ul li::before,
+    .assessment-ai-box-weaknesses ul li::before {
+      content: none !important;
+      display: none !important;
+    }
+
+    .assessment-ai-box-strengths ul li {
+      background: #ffffff !important;
+      border: 1.5px solid #dcfce7 !important;
+      color: #14532d !important;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.04) !important;
+    }
+
+    .assessment-ai-box-weaknesses ul li {
+      background: #ffffff !important;
+      border: 1.5px solid #ffedd5 !important;
+      color: #7c2d12 !important;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.04) !important;
+    }
+
+    .assessment-ai-box-strengths ul li span,
+    .assessment-ai-box-weaknesses ul li span {
+      text-align: left !important;
+      word-break: normal !important;
+      overflow-wrap: break-word !important;
+      white-space: normal !important;
+    }
+
+    .assessment-ai-summary-msg {
+      background: #eef2ff !important;
+      border: 1.5px solid #c7d2fe !important;
+      border-radius: 20px !important;
+      padding: 1.2rem 1.5rem !important;
+      font-weight: 800 !important;
+      font-size: 0.95rem !important;
+      color: #3730a3 !important;
+      margin-bottom: 1.5rem !important;
+      line-height: 1.5 !important;
+      text-align: left !important;
+    }
+  </style>
 </head>
 <body id="page-assessment" class="fade-in-up light-theme">
+
+  <!-- Ambient Background Orbs -->
+  <div class="bg-orb bg-orb-purple"></div>
+  <div class="bg-orb bg-orb-emerald"></div>
+  <div class="bg-orb bg-orb-pink"></div>
+
+  <!-- Top Glass Navigation Bar -->
+  <header class="dash-top-navbar">
+    <div class="nav-container">
+      <a href="login.html" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 0.85rem;">
+        <!-- Language Selector -->
+        <div class="language-selector" style="position: relative;">
+          <select id="lang-selector" class="lang-select" style="background: rgba(241, 245, 249, 0.9); border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.4rem 1rem; font-weight: 800; font-size: 0.85rem; color: #334155; cursor: pointer; height: 38px;">
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+            <option value="mr">मराठी (Marathi)</option>
+          </select>
+        </div>
+
+        <!-- Back to Login Button -->
+        <button id="ass-back-to-login" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
+          <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
+          <span>Back to Login</span>
+        </button>
+      </div>
+    </div>
+  </header>
   
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-spinner"></div>
-    <div class="loading-text" data-i18n="loadingText">Loading...</div>
+    <div class="loading-text" data-i18n="loadingText">Loading Assessment...</div>
   </div>
 
-  <main class="page-container">
+  <main class="assessment-shell">
     
-    <!-- Assessment Introduction -->
-    <div id="assessment-intro" class="card text-center">
-      <div class="logo-area">
-        <div class="logo-icon">🎯</div>
-        <h1 class="logo-title" data-i18n="assessmentTitle">Literacy Assessment</h1>
-        <p class="logo-subtitle"><span class="brand-gradient" data-i18n="assessmentSubtitle">Let's understand your current level to personalize your learning</span></p>
+    <!-- 1. Assessment Introduction Card -->
+    <div id="assessment-intro" class="ass-card text-center">
+      <div class="ass-hero-badge" style="margin: 0 auto 1.35rem;">
+        🎯
       </div>
+
+      <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.1rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;" data-i18n="assessmentTitle">
+        Literacy Assessment
+      </h1>
       
-      <p class="section-subtext" style="margin-bottom: 2rem;" data-i18n="assessmentInstructions">
+      <p style="font-size: 1.05rem; font-weight: 700; color: #6366f1; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
+        <span class="brand-gradient" data-i18n="assessmentSubtitle">Let's understand your current level to personalize your learning</span>
+      </p>
+      
+      <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; line-height: 1.6; max-width: 480px; margin: 0 auto 1.5rem; text-align: center; width: 100%;" data-i18n="assessmentInstructions">
         Answer each question to the best of your ability. There are no wrong answers — this helps us tailor your experience.
       </p>
 
-      <button id="start-btn" class="btn-primary" data-i18n="assessmentStartBtn">Start Assessment</button>
-      <p id="loading-hint" class="hidden section-subtext" style="margin-top: 1rem;">⏳ Generating personalized questions using AI...</p>
+      <div class="ass-feature-chips" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto 2rem;">
+        <div class="ass-chip"><i data-lucide="zap" style="width: 15px; height: 15px; color: #6366f1;"></i> 12 Questions</div>
+        <div class="ass-chip"><i data-lucide="volume-2" style="width: 15px; height: 15px; color: #10b981;"></i> Audio & Speech</div>
+        <div class="ass-chip"><i data-lucide="sparkles" style="width: 15px; height: 15px; color: #f59e0b;"></i> AI Personalization</div>
+      </div>
+
+      <button id="start-btn" class="ass-btn-primary" style="width: 100%; max-width: 320px; margin: 0 auto; display: inline-flex; align-items: center; justify-content: center;" data-i18n="assessmentStartBtn">
+        <span>Start Assessment</span>
+        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+      </button>
+
+      <p id="loading-hint" class="hidden" style="margin: 1.25rem auto 0; font-weight: 700; color: #6366f1; font-size: 0.9rem; text-align: center; width: 100%;">
+        ✨ Gemini AI is preparing your personalized questions...
+      </p>
     </div>
 
-    <!-- Question Container -->
+    <!-- 2. Question Quiz Screen Container -->
     <div id="assessment-quiz" class="assessment-container hidden">
       
-      <!-- Progress -->
-      <div class="assessment-progress">
-        <div class="progress-info">
-          <span class="progress-label" data-i18n="assessmentTitle">Literacy Assessment</span>
-          <span class="progress-count"><span data-i18n="assessmentQuestion">Question</span> <span id="current-q-num">1</span> <span data-i18n="assessmentOf">of</span> <span id="total-q-num">10</span></span>
+      <!-- Progress Bar Card -->
+      <div class="ass-progress-wrap">
+        <div class="ass-progress-header">
+          <span class="ass-progress-title">
+            <i data-lucide="award" style="width: 18px; height: 18px;"></i>
+            <span data-i18n="assessmentTitle">Literacy Assessment</span>
+          </span>
+          <span class="ass-progress-pill">
+            <span data-i18n="assessmentQuestion">Question</span> <span id="current-q-num">1</span> <span data-i18n="assessmentOf">of</span> <span id="total-q-num">12</span>
+          </span>
         </div>
-        <div class="progress-bar">
-          <div id="progress-fill" class="progress-fill" ></div>
+        <div class="ass-progress-track">
+          <div id="progress-fill" class="ass-progress-bar" style="width: 8%;"></div>
         </div>
       </div>
 
-      <!-- Question Card -->
-      <div class="question-card">
-        <div class="question-number"><span data-i18n="assessmentQuestion">Question</span> <span id="card-q-num">1</span></div>
-        <div class="assessment-question-header">
-          <h2 id="question-text" class="question-text" >Loading question...</h2>
-          <button id="tts-question-btn" class="icon-btn tts-inline-btn" title="Read Question" >🔊</button>
+      <!-- Main Question Card -->
+      <div class="ass-question-card">
+        <div class="ass-q-num-badge">
+          <i data-lucide="help-circle" style="width: 14px; height: 14px;"></i>
+          <span><span data-i18n="assessmentQuestion">Question</span> <span id="card-q-num">1</span></span>
+        </div>
+
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">
+          <h2 id="question-text" class="ass-question-text">Loading question...</h2>
+          <button id="tts-question-btn" class="icon-btn" title="Read Question" style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 14px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #4f46e5; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
+            <i data-lucide="volume-2" style="width: 20px; height: 20px;"></i>
+          </button>
         </div>
         
         <div id="options-container" class="options-grid">
           <!-- Options injected via JS -->
         </div>
 
-        <div id="assessment-error" class="error-text"  data-i18n="assessmentSelectPrompt">
+        <div id="assessment-error" style="display: none; background: #fef2f2; border: 1.5px solid #fca5a5; color: #dc2626; padding: 0.75rem 1rem; border-radius: 14px; font-weight: 800; font-size: 0.88rem; margin-top: 1.25rem;" data-i18n="assessmentSelectPrompt">
           Please select an answer to continue.
         </div>
       </div>
 
-      <!-- Navigation Buttons -->
-      <div class="assessment-nav">
-        <div ></div>
-        <button id="next-btn" class="btn-primary" data-i18n="assessmentNextBtn">Next</button>
+      <!-- Navigation Footer -->
+      <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+        <button id="next-btn" class="ass-btn-primary" data-i18n="assessmentNextBtn">
+          <span>Next</span>
+          <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+        </button>
       </div>
       
     </div>
 
-    <!-- Score Screen -->
-    <div id="assessment-score" class="card score-screen hidden">
-      <div class="logo-area">
-        <div class="logo-icon">🎉</div>
-        <h1 class="logo-title" data-i18n="scoreTitle">Assessment Complete!</h1>
+    <!-- 3. Score & Evaluation Screen -->
+    <div id="assessment-score" class="ass-card text-center hidden">
+      <div style="width: 64px; height: 64px; border-radius: 22px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.4);">
+        🎉
       </div>
 
+      <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;" data-i18n="scoreTitle">
+        Assessment Complete!
+      </h1>
+      <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
+        Great effort! Here is your placement score & personalized level assignment.
+      </p>
+
+      <!-- SVG Radial Gauge -->
       <div class="score-circle-wrapper">
         <svg viewBox="0 0 180 180">
           <defs>
             <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="var(--color-primary)" />
-              <stop offset="100%" stop-color="var(--color-accent)" />
+              <stop offset="0%" stop-color="#6366f1" />
+              <stop offset="100%" stop-color="#00d4aa" />
             </linearGradient>
           </defs>
           <circle class="score-circle-bg" cx="90" cy="90" r="80"></circle>
           <circle id="score-circle" class="score-circle-fill" cx="90" cy="90" r="80"></circle>
         </svg>
         <div class="score-text">
-          <div id="final-score" class="score-value">0</div>
-          <div class="score-percent">%</div>
+          <div id="final-score" class="score-value-text">0%</div>
         </div>
       </div>
 
-      <div id="score-level-badge" class="score-level beginner">
+      <div id="score-level-badge" style="display: inline-block; background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1.5px solid #f59e0b; padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 900; font-size: 0.95rem; margin: 0 auto 1.5rem; box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);">
         <span data-i18n="scoreLevelBeginner">🌱 Beginner Level</span>
       </div>
 
       <!-- AI Loading State -->
-      <div id="assessment-ai-loading" class="hidden" class="assessment-ai-loading-container">
-        <div class="assessment-ai-spinner"></div>
-        <p class="assessment-ai-loading-text">✨ Gemini is analyzing your strengths and weaknesses...</p>
+      <div id="assessment-ai-loading" class="assessment-ai-loading-container" style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.25rem; margin: 0 auto 1.5rem; width: 100%; box-sizing: border-box;">
+        <div class="assessment-ai-spinner" style="border-top-color: #6366f1; margin: 0 auto;"></div>
+        <p class="assessment-ai-loading-text" style="font-weight: 800; color: #4f46e5; margin: 0.5rem auto 0; text-align: center;">✨ Gemini AI is analyzing your answers & personalized feedback...</p>
       </div>
 
       <!-- Gemini Insights Result Container -->
-      <div id="assessment-ai-insights" class="hidden" class="assessment-ai-insights-container">
+      <div id="assessment-ai-insights" class="hidden" style="width: 100%;">
         <p id="score-summary-message" class="assessment-ai-summary-msg">Analyzing your results...</p>
         
         <div class="assessment-ai-boxes">
           <div class="assessment-ai-box-strengths">
-            <h4 >✅ Strengths</h4>
-            <ul id="ai-good-points" ></ul>
+            <h4><i data-lucide="check-circle-2" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Strengths</h4>
+            <ul id="ai-good-points"></ul>
           </div>
           <div class="assessment-ai-box-weaknesses">
-            <h4 >🎯 Areas to Improve</h4>
-            <ul id="ai-weak-points" ></ul>
+            <h4><i data-lucide="target" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Recommended Focus</h4>
+            <ul id="ai-weak-points"></ul>
           </div>
         </div>
       </div>
 
-      <button id="continue-btn" class="btn-primary" data-i18n="scoreContinueBtn" >Continue to Dashboard</button>
+      <button id="continue-btn" class="ass-btn-primary" style="width: 100%; max-width: 340px; margin: 1rem auto 0; display: inline-flex; align-items: center; justify-content: center;" data-i18n="scoreContinueBtn">
+        <span>Continue to Dashboard</span>
+        <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+      </button>
     </div>
 
   </main>
 
-  <!-- Firebase SDK + our scripts -->
+  <!-- Firebase SDK + scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -140,5 +832,27 @@
   <script src="tts.js"></script>
   <script src="assessment.js"></script>
   <script src="main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+
+      const backBtn = document.getElementById("ass-back-to-login");
+      if (backBtn) {
+        backBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (window.firebase && firebase.auth) {
+            firebase.auth().signOut().then(() => {
+              window.location.href = "login.html";
+            }).catch(() => {
+              window.location.href = "login.html";
+            });
+          } else {
+            window.location.href = "login.html";
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

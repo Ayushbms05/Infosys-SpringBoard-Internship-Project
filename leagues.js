@@ -221,38 +221,38 @@ async function renderLeaguesUI() {
   };
 
   let html = `
-    <div class="dash-card leagues-card" style="max-width: 880px; margin: 0 auto; padding: 2.25rem; box-sizing: border-box; width: 100%;">
+    <div class="dash-card leagues-card" style="max-width: 880px; margin: 0 auto; padding: 1.5rem; box-sizing: border-box; width: 100%; overflow: hidden;">
       
       <!-- Tier Banner -->
-      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; border: 2px solid ${tierInfo.borderColor}; border-radius: 24px; padding: 2rem; margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.25rem; box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.12); width: 100%; box-sizing: border-box;">
-        <div style="display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
-          <div style="width: 76px; height: 76px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); flex-shrink: 0;">
+      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; border: 2px solid ${tierInfo.borderColor}; border-radius: 20px; padding: 1.25rem; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.12); width: 100%; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; gap: 1rem; width: 100%; min-width: 0;">
+          <div style="width: 60px; height: 60px; min-width: 60px; display: flex; align-items: center; justify-content: center; background: white; border-radius: 50%; box-shadow: 0 8px 20px rgba(0,0,0,0.1); flex-shrink: 0;">
             ${lucideIconMap[tierInfo.id] || lucideIconMap.bronze}
           </div>
-          <div>
-            <span style="font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: ${tierInfo.color};">${lTr("currentTier")}</span>
-            <h2 style="margin: 0.2rem 0; font-size: 1.8rem; font-weight: 900; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif;">${translatedTierNameMap[tierInfo.id] || tierInfo.name}</h2>
-            <p style="margin: 0; color: #475569; font-size: 0.9rem; font-weight: 600;">${tierDescMap[tierInfo.id] || tierInfo.desc}</p>
+          <div style="min-width: 0; flex: 1; overflow: hidden;">
+            <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: ${tierInfo.color};">${lTr("currentTier")}</span>
+            <h2 style="margin: 0.15rem 0; font-size: 1.45rem; font-weight: 900; color: #0f172a; font-family: 'Plus Jakarta Sans', sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${translatedTierNameMap[tierInfo.id] || tierInfo.name}</h2>
+            <p style="margin: 0; color: #475569; font-size: 0.83rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${tierDescMap[tierInfo.id] || tierInfo.desc}</p>
           </div>
         </div>
 
-        <div style="text-align: right; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 0.85rem 1.35rem; border-radius: 16px; border: 1.5px solid rgba(226,232,240,0.8); box-shadow: 0 6px 18px rgba(15,23,42,0.04); flex-shrink: 0;">
-          <div style="font-size: 0.78rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">${lTr("weekEndsIn")}</div>
-          <div style="font-weight: 900; font-size: 1.15rem; color: #6366f1; margin-top: 0.25rem; display: flex; align-items: center; gap: 0.4rem; justify-content: flex-end;">
-            <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+        <div style="background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); padding: 0.75rem 1rem; border-radius: 14px; border: 1.5px solid rgba(226,232,240,0.8); box-shadow: 0 4px 12px rgba(15,23,42,0.04); width: 100%; box-sizing: border-box;">
+          <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">${lTr("weekEndsIn")}</div>
+          <div style="font-weight: 900; font-size: 1.05rem; color: #6366f1; margin-top: 0.2rem; display: flex; align-items: center; gap: 0.4rem;">
+            <i data-lucide="clock" style="width: 16px; height: 16px;"></i>
             <span>${timeRemaining}</span>
           </div>
         </div>
       </div>
 
       <!-- Tier Selection Bar (View Tiers) -->
-      <div style="display: flex; gap: 0.75rem; margin-bottom: 2rem; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; width: 100%; box-sizing: border-box;">
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem; width: 100%; box-sizing: border-box; scrollbar-width: none;">
         ${LEAGUE_TIERS.map(t => `
-          <div style="flex: 1; min-width: 120px; text-align: center; padding: 0.85rem 0.6rem; border-radius: 16px; border: 2px solid ${t.id === currentTierId ? t.color : '#e2e8f0'}; background: ${t.id === currentTierId ? '#ffffff' : 'rgba(248, 250, 252, 0.7)'}; box-shadow: ${t.id === currentTierId ? '0 10px 25px -5px rgba(99,102,241,0.15)' : 'none'}; opacity: ${t.id === currentTierId ? '1' : '0.75'}; transition: all 0.25s ease;">
-            <div style="display: flex; justify-content: center; margin-bottom: 0.3rem;">
+          <div style="flex: 1; min-width: 78px; max-width: 110px; text-align: center; padding: 0.7rem 0.4rem; border-radius: 14px; border: 2px solid ${t.id === currentTierId ? t.color : '#e2e8f0'}; background: ${t.id === currentTierId ? '#ffffff' : 'rgba(248, 250, 252, 0.7)'}; box-shadow: ${t.id === currentTierId ? '0 8px 20px -4px rgba(99,102,241,0.15)' : 'none'}; opacity: ${t.id === currentTierId ? '1' : '0.75'}; transition: all 0.25s ease; box-sizing: border-box;">
+            <div style="display: flex; justify-content: center; margin-bottom: 0.25rem;">
               ${lucideIconMap[t.id] || lucideIconMap.bronze}
             </div>
-            <div style="font-size: 0.82rem; font-weight: 900; color: #0f172a;">${translatedTierNameMap[t.id] || t.name}</div>
+            <div style="font-size: 0.75rem; font-weight: 900; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${translatedTierNameMap[t.id] || t.name}</div>
           </div>
         `).join('')}
       </div>
@@ -298,28 +298,28 @@ async function renderLeaguesUI() {
           else if (rank === 3) { rankBadge = "🥉 3"; rankClass = "league-rank-3"; }
 
           return `
-            <div class="league-member-row" style="${rowStyle} border-radius: 18px; padding: 0.9rem 1.1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.65rem; box-sizing: border-box; width: 100%;">
+            <div class="league-member-row" style="${rowStyle} border-radius: 16px; padding: 0.75rem 0.85rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; box-sizing: border-box; width: 100%;">
               
-              <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1; min-width: 0;">
-                <span class="${rankClass}" style="font-size: 0.95rem; font-weight: 900; padding: 0.35rem 0.65rem; border-radius: 9999px; min-width: 38px; text-align: center; flex-shrink: 0; ${!rankClass ? 'color: #64748b; background: #f1f5f9;' : ''}">${rankBadge}</span>
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.05rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+              <div style="display: flex; align-items: center; gap: 0.55rem; flex: 1; min-width: 0; overflow: hidden;">
+                <span class="${rankClass}" style="font-size: 0.85rem; font-weight: 900; padding: 0.3rem 0.5rem; border-radius: 9999px; min-width: 34px; text-align: center; flex-shrink: 0; ${!rankClass ? 'color: #64748b; background: #f1f5f9;' : ''}">${rankBadge}</span>
+                <div style="width: 36px; height: 36px; min-width: 36px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.95rem; flex-shrink: 0; box-shadow: 0 4px 10px rgba(99,102,241,0.3);">
                   ${m.avatar}
                 </div>
-                <div style="min-width: 0; flex: 1;">
-                  <div style="font-weight: 800; font-size: 0.98rem; color: #0f172a; display: flex; align-items: center; gap: 0.4rem; overflow: hidden;">
+                <div style="min-width: 0; flex: 1; overflow: hidden;">
+                  <div style="font-weight: 800; font-size: 0.9rem; color: #0f172a; display: flex; align-items: center; gap: 0.35rem; overflow: hidden;">
                     <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${m.displayName}</span>
-                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.12rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0;">${lTr("youTag")}</span>` : ""}
+                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.1rem 0.4rem; border-radius: 9999px; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.5px; flex-shrink: 0;">${lTr("youTag")}</span>` : ""}
                   </div>
-                  <div style="margin-top: 0.2rem;">${badgeHtml}</div>
+                  <div style="margin-top: 0.15rem;">${badgeHtml}</div>
                 </div>
               </div>
 
-              <div style="text-align: right; flex-shrink: 0;">
-                <div style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: flex; align-items: center; justify-content: flex-end; gap: 0.25rem;">
-                  <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
+              <div style="text-align: right; flex-shrink: 0; max-width: 90px;">
+                <div style="font-weight: 900; font-size: 0.92rem; color: #6366f1; display: flex; align-items: center; justify-content: flex-end; gap: 0.2rem; white-space: nowrap;">
+                  <i data-lucide="zap" style="width: 13px; height: 13px; fill: #6366f1;"></i>
                   <span>${m.weeklyLeagueXP} XP</span>
                 </div>
-                <div style="font-size: 0.75rem; color: #64748b; font-weight: 700; margin-top: 0.1rem;">${lTr("totalXpTag")}: ${m.totalXP} XP</div>
+                <div style="font-size: 0.7rem; color: #64748b; font-weight: 700; margin-top: 0.1rem; white-space: nowrap;">Total: ${m.totalXP} XP</div>
               </div>
 
             </div>

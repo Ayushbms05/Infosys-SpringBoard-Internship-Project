@@ -152,50 +152,53 @@
         margin-top: 0.35rem !important;
       }
 
-      /* Admin User Table */
+      /* Admin User Table & Cards */
       .admin-table {
         width: 100% !important;
         border-collapse: separate !important;
-        border-spacing: 0 0.6rem !important;
+        border-spacing: 0 0.75rem !important;
       }
 
       .admin-table th {
         color: #64748b !important;
-        font-size: 0.82rem !important;
+        font-size: 0.78rem !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
-        letter-spacing: 1px !important;
-        padding: 0.75rem 1rem !important;
+        letter-spacing: 0.8px !important;
+        padding: 0.5rem 1.25rem !important;
       }
 
       .admin-table tbody tr {
         background: #ffffff !important;
-        border: 1.5px solid #e2e8f0 !important;
-        border-radius: 16px !important;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03) !important;
-        transition: transform 0.2s ease !important;
+        border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+        border-radius: 20px !important;
+        box-shadow: 0 6px 20px -6px rgba(15, 23, 42, 0.04) !important;
+        transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
       }
 
       .admin-table tbody tr:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 14px 35px -8px rgba(99, 102, 241, 0.18) !important;
+        border-color: rgba(99, 102, 241, 0.4) !important;
       }
 
       .admin-table td {
-        padding: 0.9rem 1rem !important;
+        padding: 1rem 1.25rem !important;
+        vertical-align: middle !important;
       }
 
       .admin-user-avatar {
-        width: 42px !important;
-        height: 42px !important;
+        width: 44px !important;
+        height: 44px !important;
         border-radius: 50% !important;
         background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
         color: #ffffff !important;
         font-weight: 900 !important;
+        font-size: 1.1rem !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+        box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3) !important;
       }
 
       .admin-view-btn {
@@ -203,16 +206,36 @@
         color: #ffffff !important;
         border: none !important;
         border-radius: 12px !important;
-        padding: 0.45rem 1.1rem !important;
+        padding: 0.5rem 1.1rem !important;
         font-weight: 800 !important;
-        font-size: 0.85rem !important;
+        font-size: 0.82rem !important;
         box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3) !important;
         cursor: pointer !important;
-        transition: transform 0.2s ease !important;
+        transition: all 0.2s ease !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
       }
 
       .admin-view-btn:hover {
         transform: translateY(-2px) !important;
+        box-shadow: 0 8px 22px rgba(99, 102, 241, 0.45) !important;
+      }
+
+      .admin-search-input:focus,
+      .admin-sort-select:focus {
+        outline: none !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      .admin-kpi-card {
+        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease !important;
+      }
+
+      .admin-kpi-card:hover {
+        transform: translateY(-4px) !important;
+        box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.18) !important;
       }
 
       /* Modal Styling */
@@ -358,73 +381,112 @@
 
           <!-- ═══════════ OVERVIEW SECTION ═══════════ -->
           <section id="admin-section-overview" class="admin-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-              <h2 style="margin: 0; font-size: 1.5rem; color: var(--color-text-main);">Platform Overview</h2>
-            </div>
-            <div class="analysis-stats-row">
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon"><i data-lucide="users" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-total-users">
-                  0
-                </div>
-                <div class="analysis-stat-label">Total Users</div>
+            <!-- Header Row -->
+            <div style="margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 0.65rem;">
+                  <span style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(99,102,241,0.35);">
+                    <i data-lucide="layout-dashboard" style="width: 22px; height: 22px;"></i>
+                  </span>
+                  Platform Overview & Analytics
+                </h2>
+                <p style="margin-top: 0.35rem; font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0;">
+                  Live statistics, curriculum progression, user acquisition, and recent activity
+                </p>
               </div>
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon" style="color:#22c55e;"><i data-lucide="activity" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-active-today">
-                  0
-                </div>
-                <div class="analysis-stat-label">Active Today</div>
-              </div>
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon" style="color:#f59e0b;"><i data-lucide="calendar" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-active-week">
-                  0
-                </div>
-                <div class="analysis-stat-label">Active This Week</div>
-              </div>
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon" style="color:#ef4444;"><i data-lucide="target" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-avg-score">
-                  —
-                </div>
-                <div class="analysis-stat-label">Avg. Assessment Score</div>
-              </div>
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon" style="color:#3b82f6;"><i data-lucide="book-open" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-lessons">0</div>
-                <div class="analysis-stat-label">Lessons Completed</div>
-              </div>
-              <div class="analysis-stat-card">
-                <div class="analysis-stat-icon" style="color:#eab308;"><i data-lucide="zap" aria-hidden="true" style="width:24px; height:24px;"></i></div>
-                <div class="analysis-stat-value" id="admin-stat-xp">0</div>
-                <div class="analysis-stat-label">Total XP Awarded</div>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <span style="background: #ecfdf5; color: #16a34a; border: 1px solid #86efac; border-radius: 9999px; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.4rem;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; display: inline-block;"></span>
+                  Live Sync Active
+                </span>
               </div>
             </div>
 
+            <!-- Modern 6-Card Stat Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
+                  <i data-lucide="users" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-total-users" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Total Users</div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
+                  <i data-lucide="activity" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-active-today" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Active Today</div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #fff7ed; color: #f59e0b; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(245,158,11,0.15);">
+                  <i data-lucide="calendar" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-active-week" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Active This Week</div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #fff1f2; color: #f43f5e; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(244,63,94,0.15);">
+                  <i data-lucide="target" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-avg-score" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">—</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Avg Assessment</div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(59,130,246,0.15);">
+                  <i data-lucide="book-open" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-lessons" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Lessons Done</div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: #fefce8; color: #d97706; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(217,119,6,0.15);">
+                  <i data-lucide="zap" style="width: 22px; height: 22px;"></i>
+                </div>
+                <div class="analysis-stat-value" id="admin-stat-xp" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Total XP</div>
+              </div>
+            </div>
+
+            <!-- Analysis Grid: Distribution, Signups, Recent Activity -->
             <div class="analysis-grid">
-              <div class="dash-card analysis-section-card">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <i data-lucide="map" class="dash-card-title-icon" aria-hidden="true"></i>
-                    <span>Level Distribution</span>
-                  </h3>
-                  <p class="dash-card-subtitle">
-                    Where every user currently sits in the curriculum
-                  </p>
+              <div class="dash-card analysis-section-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+                <div class="dash-card-header admin-header-row-flex">
+                  <div style="width: 42px; height: 42px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
+                    <i data-lucide="bar-chart-3" style="width: 22px; height: 22px;"></i>
+                  </div>
+                  <div>
+                    <h3 class="dash-card-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.25rem; color: #0f172a; margin: 0;">
+                      Level Distribution
+                    </h3>
+                    <p class="dash-card-subtitle" style="margin-top: 0.2rem; font-size: 0.88rem; font-weight: 600; color: #64748b;">
+                      Where learners currently sit across the curriculum
+                    </p>
+                  </div>
                 </div>
-                <div id="admin-level-distribution" class="skill-bd-bars"></div>
+                <div id="admin-level-distribution" class="skill-bd-bars" style="margin-top: 1.25rem;"></div>
               </div>
 
-              <div class="dash-card analysis-section-card">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <i data-lucide="trending-up" class="dash-card-title-icon" aria-hidden="true"></i>
-                    <span>New Signups</span>
-                  </h3>
-                  <p class="dash-card-subtitle">Last 14 days</p>
+              <div class="dash-card analysis-section-card" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+                <div class="dash-card-header admin-header-row-flex">
+                  <div style="width: 42px; height: 42px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
+                    <i data-lucide="trending-up" style="width: 22px; height: 22px;"></i>
+                  </div>
+                  <div>
+                    <h3 class="dash-card-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.25rem; color: #0f172a; margin: 0;">
+                      New Signups
+                    </h3>
+                    <p class="dash-card-subtitle" style="margin-top: 0.2rem; font-size: 0.88rem; font-weight: 600; color: #64748b;">
+                      Daily learner registration trend over the last 14 days
+                    </p>
+                  </div>
                 </div>
-                <div class="weekly-chart-container">
+                <div class="weekly-chart-container" style="margin-top: 1.25rem;">
                   <div
                     id="admin-signup-chart"
                     class="chart-container weekly-chart-inner"
@@ -432,15 +494,19 @@
                 </div>
               </div>
 
-              <div class="dash-card analysis-section-card analysis-card-full">
-                <div class="dash-card-header">
-                  <h3 class="dash-card-title">
-                    <span class="dash-card-title-icon"><i data-lucide="clock"></i></span>
-                    <span>Recent Activity</span>
-                  </h3>
-                  <p class="dash-card-subtitle">
-                    Latest 20 lesson completions across all users
-                  </p>
+              <div class="dash-card analysis-section-card analysis-card-full" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+                <div class="dash-card-header admin-header-row-flex" style="margin-bottom: 1.25rem;">
+                  <div style="width: 42px; height: 42px; border-radius: 14px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
+                    <i data-lucide="clock" style="width: 22px; height: 22px;"></i>
+                  </div>
+                  <div>
+                    <h3 class="dash-card-title" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 1.25rem; color: #0f172a; margin: 0;">
+                      Recent Learner Activity
+                    </h3>
+                    <p class="dash-card-subtitle" style="margin-top: 0.2rem; font-size: 0.88rem; font-weight: 600; color: #64748b;">
+                      Real-time log of the latest 20 lesson completions across all registered users
+                    </p>
+                  </div>
                 </div>
                 <div id="admin-activity-feed"></div>
                 <div
@@ -496,44 +562,131 @@
 
           <!-- ═══════════ USERS SECTION ═══════════ -->
           <section id="admin-section-users" class="admin-section hidden">
-            <div class="dash-card analysis-section-card">
-              <div class="admin-controls-row">
-                <input
-                  type="text"
-                  id="admin-search-input"
-                  class="admin-search-input"
-                  placeholder="Search by name or email…"
-                />
-                <select id="admin-sort-select" class="admin-sort-select">
-                  <option value="xp_desc">Sort: XP (high to low)</option>
-                  <option value="streak_desc">
-                    Sort: Streak (high to low)
-                  </option>
-                  <option value="score_desc">Sort: Assessment Score</option>
-                  <option value="active_desc">Sort: Last Active</option>
-                  <option value="name_asc">Sort: Name (A–Z)</option>
-                </select>
+            <!-- Header Row -->
+            <div style="margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+              <div>
+                <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 0.65rem;">
+                  <span style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(99,102,241,0.35);">
+                    <i data-lucide="users" style="width: 22px; height: 22px;"></i>
+                  </span>
+                  User Directory & Analytics
+                </h2>
+                <p style="margin-top: 0.35rem; font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0;">
+                  Monitor, search, filter, and manage all learner profiles across AksharGyan
+                </p>
+              </div>
+              <div style="display: flex; gap: 0.75rem; align-items: center;">
                 <button
                   id="admin-export-btn"
                   class="btn-secondary"
-                  style="padding: 0.6rem 1.2rem; font-size: 0.85rem"
+                  style="background: #ffffff; border: 1.5px solid #cbd5e1; color: #334155; border-radius: 14px; padding: 0.65rem 1.25rem; font-size: 0.88rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 14px rgba(15,23,42,0.05); cursor: pointer; transition: all 0.2s ease;"
                 >
-                  ⬇ Export CSV
+                  <i data-lucide="download" style="width: 16px; height: 16px; color: #6366f1;"></i>
+                  <span>Export CSV</span>
                 </button>
               </div>
+            </div>
 
-              <div class="admin-table-wrap">
-                <table class="admin-table">
+            <!-- Quick Summary KPI Metric Cards -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.75rem;">
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 50px; height: 50px; border-radius: 16px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
+                  <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div id="admin-user-stat-total" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                  <div style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Total Learners</div>
+                </div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 50px; height: 50px; border-radius: 16px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
+                  <i data-lucide="user-check" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div id="admin-user-stat-active" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                  <div style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Active Today</div>
+                </div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 50px; height: 50px; border-radius: 16px; background: #f0fdf4; color: #16a34a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(22,163,74,0.15);">
+                  <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div id="admin-user-stat-assessed" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                  <div style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Assessed</div>
+                </div>
+              </div>
+
+              <div class="admin-kpi-card" style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+                <div style="width: 50px; height: 50px; border-radius: 16px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(234,88,12,0.15);">
+                  <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                </div>
+                <div>
+                  <div id="admin-user-stat-avgxp" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">0</div>
+                  <div style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">Avg XP / User</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Main Table Container Card -->
+            <div class="dash-card analysis-section-card" style="padding: 1.75rem; border-radius: 26px; background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+              <!-- Controls Toolbar -->
+              <div class="admin-controls-row" style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; flex: 1; min-width: 280px; align-items: center;">
+                  <!-- Search Box -->
+                  <div style="position: relative; flex: 1; min-width: 240px;">
+                    <i data-lucide="search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #94a3b8; pointer-events: none;"></i>
+                    <input
+                      type="text"
+                      id="admin-search-input"
+                      class="admin-search-input"
+                      placeholder="Search learners by name or email…"
+                      style="width: 100%; padding-left: 2.75rem !important; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; font-weight: 600; font-size: 0.92rem; color: #0f172a; transition: all 0.2s ease;"
+                    />
+                  </div>
+
+                  <!-- Level Filter -->
+                  <select id="admin-filter-level" class="admin-sort-select" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; padding: 0 1rem; font-weight: 700; font-size: 0.88rem; color: #334155; cursor: pointer;">
+                    <option value="all">All Levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
+
+                  <!-- Sort Selector -->
+                  <select id="admin-sort-select" class="admin-sort-select" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; padding: 0 1rem; font-weight: 700; font-size: 0.88rem; color: #334155; cursor: pointer;">
+                    <option value="xp_desc">Sort: XP (Highest)</option>
+                    <option value="streak_desc">Sort: Streak (Longest)</option>
+                    <option value="score_desc">Sort: Score</option>
+                    <option value="active_desc">Sort: Last Active</option>
+                    <option value="name_asc">Sort: Name (A–Z)</option>
+                  </select>
+                </div>
+
+                <!-- Showing Learners Count Badge -->
+                <div>
+                  <span id="admin-users-count-badge" style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; border-radius: 9999px; padding: 0.45rem 1rem; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.4rem;">
+                    <i data-lucide="users" style="width: 14px; height: 14px;"></i>
+                    <span id="admin-users-count-text">Showing 0 learners</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Table Wrapper -->
+              <div class="admin-table-wrap" style="overflow-x: auto; border-radius: 18px; border: 1.5px solid #e2e8f0;">
+                <table class="admin-table" style="width: 100%; border-collapse: collapse; background: #ffffff;">
                   <thead>
-                    <tr>
-                      <th>User</th>
-                      <th>Level</th>
-                      <th>Score</th>
-                      <th>XP</th>
-                      <th>Streak</th>
-                      <th>Lessons</th>
-                      <th>Last Active</th>
-                      <th></th>
+                    <tr style="background: #f8fafc; border-bottom: 1.5px solid #e2e8f0;">
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Learner</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Level</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Assessment</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">XP</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Streak</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Lessons</th>
+                      <th style="padding: 1rem 1.25rem; text-align: left; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Last Active</th>
+                      <th style="padding: 1rem 1.25rem; text-align: right; font-size: 0.8rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="admin-users-tbody"></tbody>

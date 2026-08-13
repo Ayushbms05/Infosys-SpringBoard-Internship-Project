@@ -5,110 +5,567 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="AksharGyan Units Lesson — Themed interactive exercises." />
-  <title>AksharGyan — Units Lesson</title>
+  <title>AksharGyan — Unit Lesson</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json">
   <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════
+       AKSHARGYAN UNIT LESSON — ULTRA PREMIUM DESIGN SYSTEM
+       ═══════════════════════════════════════════════════════════════════ */
+    
+    html, body#page-unit-lesson {
+      background-color: #f8fafc !important;
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
+                  #f8fafc !important;
+      color: #0f172a !important;
+      font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body#page-unit-lesson::before {
+      display: none !important;
+    }
+
+    /* Fixed Glass Navbar */
+    .dash-top-navbar {
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 72px !important;
+      z-index: 1000 !important;
+      background: rgba(255, 255, 255, 0.88) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      border-bottom: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+      box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06) !important;
+      padding: 0 1.75rem !important;
+      display: flex !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: #0f172a;
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: #ffffff;
+      box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.4);
+      flex-shrink: 0;
+    }
+
+    .brand-gradient {
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Page Layout Shell */
+    .lesson-shell {
+      min-height: calc(100vh - 72px);
+      margin-top: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2.25rem 1.25rem 3.5rem;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .lesson-card-wrapper {
+      width: 100%;
+      max-width: 660px;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    /* Progress Header Card */
+    .lesson-progress-wrap {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+      border-radius: 24px !important;
+      padding: 1.25rem 1.5rem !important;
+      margin-bottom: 1.25rem !important;
+      box-shadow: 0 10px 25px -6px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    .lesson-progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .lesson-title-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-meta-chips {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lesson-chip {
+      background: #eef2ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .lesson-chip-xp {
+      background: #fff7ed;
+      color: #ea580c;
+      border: 1px solid #ffedd5;
+    }
+
+    .lesson-progress-track {
+      width: 100%;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .lesson-progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #6366f1, #a855f7, #00d4aa);
+      border-radius: 9999px;
+      transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Main Exercise Card */
+    .exercise-card-container {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 32px !important;
+      padding: 2.25rem 2rem !important;
+      box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.08) !important;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* Passage Box */
+    .exercise-passage-card {
+      background: linear-gradient(135deg, #f8fafc, #eef2ff) !important;
+      border: 2px solid #c7d2fe !important;
+      border-radius: 22px !important;
+      padding: 1.5rem !important;
+      margin-bottom: 1.25rem !important;
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 1rem !important;
+    }
+
+    .exercise-passage-text {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.4rem !important;
+      font-weight: 800 !important;
+      color: #0f172a !important;
+      line-height: 1.45 !important;
+      margin: 0 !important;
+    }
+
+    .passage-tts-btn {
+      width: 48px !important;
+      height: 48px !important;
+      border-radius: 16px !important;
+      background: #ffffff !important;
+      border: 1.5px solid #c7d2fe !important;
+      color: #4f46e5 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15) !important;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    .passage-tts-btn:hover {
+      transform: scale(1.08) !important;
+      border-color: #6366f1 !important;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    .translation-text {
+      font-size: 1rem !important;
+      font-weight: 700 !important;
+      color: #6366f1 !important;
+      margin: 0 0 1.25rem !important;
+      font-style: italic !important;
+    }
+
+    .exercise-question-text {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 1.3rem !important;
+      font-weight: 900 !important;
+      color: #0f172a !important;
+      line-height: 1.4 !important;
+      margin: 0 0 1.5rem !important;
+    }
+
+    /* MCQ Options Grid */
+    .exercise-options-grid {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 0.85rem !important;
+    }
+
+    .exercise-option-btn {
+      background: #ffffff !important;
+      border: 2px solid #e2e8f0 !important;
+      border-radius: 20px !important;
+      padding: 1.1rem 1.25rem !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 1rem !important;
+      cursor: pointer !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      text-align: left !important;
+      font-weight: 800 !important;
+      font-size: 1.05rem !important;
+      color: #1e293b !important;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02) !important;
+    }
+
+    .exercise-option-btn:hover {
+      border-color: #6366f1 !important;
+      background: #f8fafc !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 10px 25px -6px rgba(99, 102, 241, 0.15) !important;
+    }
+
+    .exercise-option-btn.selected {
+      border-color: #6366f1 !important;
+      background: #eef2ff !important;
+      color: #4f46e5 !important;
+      box-shadow: 0 12px 28px -6px rgba(99, 102, 241, 0.25) !important;
+    }
+
+    .exercise-option-btn.correct {
+      border-color: #10b981 !important;
+      background: #ecfdf5 !important;
+      color: #047857 !important;
+      box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.25) !important;
+    }
+
+    .exercise-option-btn.incorrect {
+      border-color: #ef4444 !important;
+      background: #fef2f2 !important;
+      color: #b91c1c !important;
+      box-shadow: 0 12px 28px -6px rgba(239, 68, 68, 0.25) !important;
+    }
+
+    .exercise-option-letter {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 1.5px solid #cbd5e1;
+      color: #475569;
+      font-weight: 900;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .exercise-option-btn.selected .exercise-option-letter {
+      background: linear-gradient(135deg, #6366f1, #4f46e5);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    }
+
+    .exercise-option-btn.correct .exercise-option-letter {
+      background: linear-gradient(135deg, #10b981, #059669);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+
+    .exercise-option-btn.incorrect .exercise-option-letter {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border-color: transparent;
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    /* Feedback Banner */
+    .exercise-feedback-banner {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 0.85rem !important;
+      padding: 1.1rem 1.25rem !important;
+      border-radius: 20px !important;
+      margin-top: 1.5rem !important;
+      font-weight: 800 !important;
+      font-size: 0.95rem !important;
+      line-height: 1.45 !important;
+    }
+
+    .exercise-feedback-banner.correct {
+      background: #f0fdf4 !important;
+      border: 1.5px solid #86efac !important;
+      color: #15803d !important;
+    }
+
+    .exercise-feedback-banner.incorrect {
+      background: #fef2f2 !important;
+      border: 1.5px solid #fca5a5 !important;
+      color: #b91c1c !important;
+    }
+
+    /* Action Buttons */
+    .lesson-btn-primary {
+      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 16px !important;
+      padding: 0.95rem 2.25rem !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 900 !important;
+      font-size: 1.05rem !important;
+      box-shadow: 0 10px 28px -6px rgba(99, 102, 241, 0.4) !important;
+      cursor: pointer !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.6rem !important;
+      width: 100% !important;
+      margin-top: 1.5rem !important;
+    }
+
+    .lesson-btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px) scale(1.01) !important;
+      box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.5) !important;
+    }
+
+    .lesson-btn-primary:disabled {
+      opacity: 0.55 !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    /* Lesson Complete Screen */
+    .complete-card-container {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 32px !important;
+      padding: 3rem 2.25rem !important;
+      box-shadow: 0 24px 50px -12px rgba(15, 23, 42, 0.08) !important;
+      text-align: center !important;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
 </head>
-<!--
-  unit-lesson.html — Units Tab Lesson Page
-  ══════════════════════════════════════════
-  This page is ONLY used by the Units tab.
-  It does NOT load lesson.js.
-  It does NOT read from or write to sharedLessonContent.
-  It does NOT call generateExercises() or the Gemini API.
-  Content source: UNITS_CONTENT (units-content.js) — fully hardcoded.
-  Completion tracking: profile.unitProgress (separate from completedLessons).
--->
 <body id="page-unit-lesson" class="fade-in-up light-theme">
+
+  <!-- Ambient Background Orbs -->
+  <div class="bg-orb bg-orb-purple"></div>
+  <div class="bg-orb bg-orb-emerald"></div>
+  <div class="bg-orb bg-orb-pink"></div>
+
+  <!-- Top Glass Navigation Bar -->
+  <header class="dash-top-navbar">
+    <div class="nav-container">
+      <a href="dashboard.html" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+
+      <div style="display: flex; align-items: center; gap: 0.85rem;">
+        <a href="dashboard.html" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
+          <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
+          <span data-i18n="backToDashboard">Dashboard</span>
+        </a>
+      </div>
+    </div>
+  </header>
 
   <div id="ul-loading-overlay" class="loading-overlay">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Loading lesson...</div>
+    <div class="loading-text" data-i18n="loadingText">Loading unit lesson...</div>
   </div>
 
-  <main class="lesson-layout">
+  <main class="lesson-shell">
 
-    <!-- Header -->
-    <header class="lesson-header">
-      <a href="dashboard.html" class="lesson-back-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span>Back</span>
-      </a>
-      <div class="lesson-header-info">
-        <h2 id="ul-lesson-title" class="lesson-title">Lesson</h2>
-        <div class="lesson-meta">
-          <span id="ul-level-badge" class="rec-card-tag beginner">Beginner</span>
-          <span id="ul-type-badge" class="lesson-type-badge">📖 Reading</span>
-        </div>
-      </div>
-      <div class="lesson-xp-earned" id="ul-xp-display">
-        <span>⚡</span>
-        <span id="ul-xp-value">0</span>
-        <span>XP</span>
-      </div>
-    </header>
+    <div class="lesson-card-wrapper">
 
-    <!-- Progress Bar -->
-    <div class="lesson-progress">
-      <div class="lesson-progress-bar">
-        <div id="ul-progress-fill" class="lesson-progress-fill" style="width: 0%"></div>
-      </div>
-      <span id="ul-progress-text" class="lesson-progress-text">0/5</span>
-    </div>
-
-    <!-- Exercise Area -->
-    <div class="lesson-content" id="ul-lesson-content">
-      <div id="ul-exercise-card" class="exercise-card">
-
-        <div class="exercise-instruction">
-          <p id="ul-instruction-text">Loading exercise...</p>
-          <button class="exercise-tts-btn" id="ul-tts-btn" title="Listen">🔊</button>
-        </div>
-
-        <div id="ul-exercise-body" class="exercise-body"></div>
-
-        <div id="ul-feedback" class="exercise-feedback hidden">
-          <div id="ul-feedback-icon" class="feedback-icon">✅</div>
-          <p id="ul-feedback-text" class="feedback-text">Correct!</p>
-        </div>
-      </div>
-
-      <div class="lesson-actions">
-        <button id="ul-check-btn" class="btn-primary" disabled>Check</button>
-        <button id="ul-continue-btn" class="btn-primary hidden">Continue</button>
-      </div>
-    </div>
-
-    <!-- Complete Screen -->
-    <div id="ul-lesson-complete" class="lesson-complete hidden">
-      <div class="lesson-complete-card">
-        <div class="lesson-complete-icon">🎉</div>
-        <h2>Lesson Complete!</h2>
-        <div class="lesson-complete-stats">
-          <div class="complete-stat">
-            <div class="complete-stat-value" id="ul-complete-score">0</div>
-            <div class="complete-stat-label">Accuracy</div>
+      <!-- 1. Progress Header Card -->
+      <div class="lesson-progress-wrap">
+        <div class="lesson-progress-header">
+          <div class="lesson-title-text">
+            <i data-lucide="layers" style="width: 18px; height: 18px; color: #6366f1;"></i>
+            <span id="ul-lesson-title">Unit Lesson</span>
           </div>
-          <div class="complete-stat">
-            <div class="complete-stat-value" id="ul-complete-xp">+0</div>
-            <div class="complete-stat-label">XP</div>
+
+          <div class="lesson-meta-chips">
+            <span id="ul-level-badge" class="lesson-chip" style="text-transform: capitalize;">Beginner</span>
+            <span id="ul-type-badge" class="lesson-chip">📖 Reading</span>
+            <span class="lesson-chip lesson-chip-xp">
+              <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+              <span id="ul-xp-value">0</span> XP
+            </span>
           </div>
         </div>
-        <button class="btn-primary" onclick="window.location.href='dashboard.html'">
-          Back to Dashboard
-        </button>
-        <button class="btn-secondary" id="ul-next-btn" style="margin-top: 1rem; width: 100%;">
-          Next Lesson →
-        </button>
+
+        <div class="lesson-progress-track">
+          <div id="ul-progress-fill" class="lesson-progress-bar-fill" style="width: 0%;"></div>
+        </div>
       </div>
+
+      <!-- 2. Main Exercise Area -->
+      <div id="ul-lesson-content">
+
+        <!-- Exercise Card Container -->
+        <div id="ul-exercise-card" class="exercise-card-container">
+
+          <!-- Exercise Instruction -->
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem;">
+            <p id="ul-instruction-text" style="font-weight: 800; font-size: 1.05rem; color: #6366f1; margin: 0; display: flex; align-items: center; gap: 0.4rem;">
+              <i data-lucide="help-circle" style="width: 18px; height: 18px;"></i>
+              <span>Loading exercise...</span>
+            </p>
+            <button id="ul-tts-btn" title="Listen to text" style="width: 44px; height: 44px; border-radius: 14px; background: #eef2ff; border: 1.5px solid #c7d2fe; color: #6366f1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
+              <i data-lucide="volume-2" style="width: 22px; height: 22px;"></i>
+            </button>
+          </div>
+
+          <!-- Dynamic Exercise Body -->
+          <div id="ul-exercise-body">
+            <!-- Injected by unit-lesson.js -->
+          </div>
+
+          <!-- Feedback Banner -->
+          <div id="ul-feedback" class="exercise-feedback-banner hidden">
+            <div id="ul-feedback-icon" style="font-size: 1.25rem; flex-shrink: 0;">✅</div>
+            <p id="ul-feedback-text" style="margin: 0;">Correct!</p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="lesson-actions">
+            <button id="ul-check-btn" class="lesson-btn-primary" disabled>
+              <span data-i18n="lessonCheck">Check Answer</span>
+              <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
+            </button>
+            <button id="ul-continue-btn" class="lesson-btn-primary hidden">
+              <span data-i18n="lessonContinue">Continue</span>
+              <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- 3. Lesson Complete Celebration Screen -->
+      <div id="ul-lesson-complete" class="complete-card-container hidden">
+        <div style="width: 68px; height: 68px; border-radius: 24px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.4);">
+          🎉
+        </div>
+
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.5rem;" data-i18n="lessonComplete">
+          Unit Lesson Complete!
+        </h2>
+        <p style="color: #64748b; font-weight: 600; font-size: 1rem; margin: 0 0 1.75rem;">
+          Awesome effort! You've successfully completed this unit module.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
+          <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
+            <div id="ul-complete-score" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #16a34a; line-height: 1;">0%</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: #15803d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;" data-i18n="lessonAccuracy">Accuracy</div>
+          </div>
+          <div style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
+            <div id="ul-complete-xp" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #4f46e5; line-height: 1;">+0</div>
+            <div style="font-weight: 800; font-size: 0.8rem; color: #3730a3; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;">XP Earned</div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <button id="ul-next-btn" class="lesson-btn-primary" style="margin-top: 0;">
+            <span data-i18n="lessonNext">Next Unit Lesson</span>
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </button>
+          <a href="dashboard.html" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 0.85rem 1.5rem; font-weight: 800; font-size: 0.95rem; color: #475569; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+            <i data-lucide="home" style="width: 16px; height: 16px;"></i>
+            <span data-i18n="backToDashboard">Back to Dashboard</span>
+          </a>
+        </div>
+      </div>
+
     </div>
 
   </main>
 
-  <!-- Firebase SDK (needed for addXP / updateStreak / markUnitLessonComplete) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -119,9 +576,16 @@
   <script src="tts.js"></script>
   <script src="theme.js"></script>
   <script src="celebrations.js"></script>
-  <!-- Units-specific scripts ONLY — lesson.js is NOT loaded here -->
   <script src="curriculum.js"></script>
   <script src="units-content.js"></script>
+  <script src="life-skills-content.js"></script>
   <script src="unit-lesson.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
 </body>
 </html>

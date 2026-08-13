@@ -125,14 +125,7 @@ window.GamesHub = (function () {
   function makeCard(item) {
     const card = document.createElement("div");
     card.className = "scenario-card";
-    card.style.background = "#ffffff";
-    card.style.backgroundColor = "#ffffff";
-    card.style.opacity = "1";
-    card.style.backdropFilter = "none";
-    card.style.border = "1.5px solid #e2e8f0";
-    card.style.borderRadius = "24px";
-    card.style.padding = "1.75rem 1.5rem";
-    card.style.boxShadow = "0 10px 28px -6px rgba(15, 23, 42, 0.06)";
+    card.style.cssText = "background: #ffffff !important; background-color: #ffffff !important; border: 1.5px solid #e2e8f0 !important; border-radius: 24px !important; padding: 1.75rem 1.5rem !important; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04) !important; cursor: pointer;";
 
     card.innerHTML = `
       <div class="scenario-icon">${item.icon}</div>
