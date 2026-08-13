@@ -1207,12 +1207,15 @@ function setupDashboardEvents(profile) {
   // Sidebar collapse/expand + mobile drawer
   setupSidebarToggle();
 
-  // Logout button
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
       logoutUser().then(() => {
-        window.location.href = "login.html";
+        if (typeof smoothNavigateTo === "function") {
+          smoothNavigateTo("login.html");
+        } else {
+          window.location.href = "login.html";
+        }
       });
     });
   }
@@ -1221,7 +1224,11 @@ function setupDashboardEvents(profile) {
   if (mobileLogoutBtn) {
     mobileLogoutBtn.addEventListener("click", () => {
       logoutUser().then(() => {
-        window.location.href = "login.html";
+        if (typeof smoothNavigateTo === "function") {
+          smoothNavigateTo("login.html");
+        } else {
+          window.location.href = "login.html";
+        }
       });
     });
   }

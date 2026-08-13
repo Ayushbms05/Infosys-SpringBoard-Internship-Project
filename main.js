@@ -23,6 +23,7 @@ var selectedLang = localStorage.getItem("saksharLang") || "en";
 // Wait for the page to fully load, then run setup
 // ────────────────────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", function () {
+  initPageTransitions();
   var pageId = document.body.id;
 
   applyTranslations(selectedLang);
@@ -82,11 +83,8 @@ function setupLanguageSelection() {
       }
 
       setTimeout(function () {
-        document.body.classList.add("fade-out");
-        setTimeout(function () {
-          window.location.href = "landing.html";
-        }, 200);
-      }, 250);
+        smoothNavigateTo("landing.html");
+      }, 200);
     });
   });
 }
@@ -206,7 +204,7 @@ function setupRegistrationForm() {
         showStatus(statusMsg, "success", getTranslation(selectedLang, "successRegister"));
         // Auto-login and redirect to assessment (not login page)
         setTimeout(function () {
-          window.location.href = "assessment.html";
+          smoothNavigateTo("assessment.html");
         }, 1500);
       })
       .catch(function (error) {
@@ -306,15 +304,15 @@ function setupLoginForm() {
             // straight to the admin dashboard — admin.js itself will
             // re-verify isAdmin on load as a second layer of defense.
             if (profile.isAdmin === true) {
-              window.location.href = "admin.html";
+              smoothNavigateTo("admin.html");
             } else if (profile.assessmentCompleted) {
-              window.location.href = "dashboard.html";
+              smoothNavigateTo("dashboard.html");
             } else {
-              window.location.href = "assessment.html";
+              smoothNavigateTo("assessment.html");
             }
           }, 1500);
         }).catch(err => {
-          setTimeout(() => { window.location.href = "dashboard.html"; }, 1500);
+          setTimeout(() => { smoothNavigateTo("dashboard.html"); }, 1500);
         });
       })
       .catch(function (error) {
@@ -359,7 +357,7 @@ function setupDashboard() {
         });
       });
     } else {
-      window.location.href = "login.html";
+      smoothNavigateTo("login.html");
     }
   });
 }
@@ -470,4 +468,59 @@ function hideStatus(element) {
   if (!element) return;
   element.className = "status-message";
   element.innerHTML = "";
+}
+
+// ════════════════════════════════════════════════════════════════
+//  UNIVERSAL SMOOTH PAGE TRANSITION SYSTEM
+// ════════════════════════════════════════════════════════════════
+function initPageTransitions() {
+  document.body.classList.remove("page-is-leaving");
+  document.body.classList.add("page-is-entering");
+
+  // Intercept internal link and button clicks for seamless transition
+  document.addEventListener("click", function (e) {
+    var target = e.target.closest("a[href], [data-href]");
+    if (!target) return;
+
+    var href = target.getAttribute("href") || target.getAttribute("data-href");
+    if (!href || href.startsWith("#") || href.startsWith("javascript:") || href.startsWith("mailto:") || href.startsWith("tel:") || target.getAttribute("target") === "_blank") {
+      return;
+    }
+
+    try {
+      var targetUrl = new URL(href, window.location.href);
+      if (targetUrl.origin !== window.location.origin) return;
+    } catch (err) {
+      return;
+    }
+
+    e.preventDefault();
+    smoothNavigateTo(href);
+  });
+
+  window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+      document.body.classList.remove("page-is-leaving");
+      document.body.classList.add("page-is-entering");
+    }
+  });
+}
+
+function smoothNavigateTo(targetUrl) {
+  if (!targetUrl) return;
+
+  var currentPath = window.location.pathname;
+  if (currentPath.endsWith(targetUrl) || (currentPath === "/" && targetUrl === "index.html")) return;
+
+  if (document.startViewTransition) {
+    document.startViewTransition(function () {
+      window.location.href = targetUrl;
+    });
+  } else {
+    document.body.classList.remove("page-is-entering");
+    document.body.classList.add("page-is-leaving");
+    setTimeout(function () {
+      window.location.href = targetUrl;
+    }, 220);
+  }
 }

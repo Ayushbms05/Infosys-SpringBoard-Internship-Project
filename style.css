@@ -100,37 +100,57 @@ body {
   overflow-x: hidden;
 }
 
-/* Page Transition animations */
+/* ════════════════════════════════════════════════════════════════
+   ULTRA-SMOOTH NATIVE & JS PAGE TRANSITION SYSTEM
+   ════════════════════════════════════════════════════════════════ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: 220ms cubic-bezier(0.4, 0, 0.2, 1) both pageFadeOut;
+}
+
+::view-transition-new(root) {
+  animation: 280ms cubic-bezier(0.16, 1, 0.3, 1) both pageFadeIn;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.995);
+  }
+}
+
+body {
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.page-is-entering,
 body.fade-in-up {
-  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+body.page-is-leaving,
 body.fade-out {
-  animation: fadeOut 0.3s ease-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  to {
-    opacity: 0;
-    transform: scale(0.97);
-  }
+  opacity: 0 !important;
+  transform: translateY(-8px) scale(0.995) !important;
+  pointer-events: none !important;
 }
 
 /* ─── Animated Background Orbs ───────────────────────────────── */
@@ -10046,6 +10066,13 @@ body#page-register {
 /* ════════════════════════════════════════════════════════════════
    APPENDED FIX — Mobile "More" sheet for bottom nav
    ════════════════════════════════════════════════════════════════ */
+@media (min-width: 941px) {
+  .mobile-more-backdrop,
+  .mobile-more-sheet {
+    display: none !important;
+  }
+}
+
 .mobile-more-backdrop {
   display: none;
   position: fixed;
