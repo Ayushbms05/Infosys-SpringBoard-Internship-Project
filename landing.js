@@ -21,7 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
   // 2. Scroll Progress Bar & Navbar Scroll State
   initScrollListeners();
 
-  // 3. Optional Auth Redirection (Safely Wrapped)
+  // 3. Interactive Audio Lab & Speech Synthesis
+  initInteractiveAudioLab();
+
+  // 4. FAQ Accordion Interactivity
+  initFAQAccordion();
+
+  // 5. Floating Back-to-Top Button
+  initBackToTop();
+
+  // 6. Optional Auth Redirection (Safely Wrapped)
   try {
     if (typeof firebase !== "undefined" && firebase.auth) {
       firebase.auth().onAuthStateChanged(function (user) {
@@ -97,9 +106,6 @@ function initGSAPAnimations() {
   });
 
   // 2. SECTION HEADERS: Silky Smooth Gradual Entry Scrub
-  //    IMPORTANT: Skip the languages section header — it needs a dedicated
-  //    trigger using #languages (not itself) to work correctly after the
-  //    pinned features section shifts scroll positions.
   const sectionHeaders = document.querySelectorAll(".section-header");
   sectionHeaders.forEach((header) => {
     // Skip the languages section header — handled separately below
@@ -124,9 +130,6 @@ function initGSAPAnimations() {
   });
 
   // 2b. LANGUAGES SECTION HEADER: Dedicated trigger using #languages
-  //     After the pinned features section, ScrollTrigger needs the parent
-  //     section as trigger (not the header element itself) to correctly
-  //     account for the pin spacer offset in scroll calculations.
   const langSectionHeader = document.querySelector("#languages .section-header");
   if (langSectionHeader) {
     gsap.fromTo(langSectionHeader,
@@ -147,7 +150,7 @@ function initGSAPAnimations() {
     );
   }
 
-  // 3. MISSION / PROBLEM CARDS: Gradual Entry Scrub (0% bottom -> 100% solid in view)
+  // 3. MISSION / PROBLEM CARDS: Gradual Entry Scrub
   const missionCards = document.querySelectorAll(".mission-card");
   missionCards.forEach((card) => {
     gsap.fromTo(card,
@@ -169,9 +172,30 @@ function initGSAPAnimations() {
     );
   });
 
+  // 3b. HOW IT WORKS CARDS
+  const hiwCards = document.querySelectorAll(".hiw-card");
+  if (hiwCards.length > 0) {
+    gsap.fromTo(hiwCards,
+      { opacity: 0, y: 50, scale: 0.88 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.15,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#how-it-works",
+          start: "top 75%",
+          end: "center 45%",
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+
   // 4. FEATURES HORIZONTAL SCROLL (Desktop Pin & Scrub)
   ScrollTrigger.matchMedia({
-    // Desktop (> 768px): Pinned horizontal scroll track with entry/exit opacity scrub
     "(min-width: 769px)": function () {
       const track = document.getElementById("features-track");
       const wrapper = document.getElementById("features-pin-wrapper");
@@ -215,9 +239,50 @@ function initGSAPAnimations() {
     );
   }
 
-  // 5. LANGUAGES SUPPORTED: Gradual Entry Scrub (0% bottom -> 100% solid in view)
-  //    Same fix as the header — use #languages as trigger to account for
-  //    the pin spacer offset from the features section above.
+  // 4b. INTERACTIVE AUDIO LAB CARD
+  const audioLabCard = document.querySelector(".audio-lab-card");
+  if (audioLabCard) {
+    gsap.fromTo(audioLabCard,
+      { opacity: 0, y: 60, scale: 0.92 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#interactive-demo",
+          start: "top 75%",
+          end: "center 45%",
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+
+  // 4c. CURRICULUM SHOWCASE CARDS
+  const currCards = document.querySelectorAll(".curriculum-card");
+  if (currCards.length > 0) {
+    gsap.fromTo(currCards,
+      { opacity: 0, y: 45, scale: 0.88 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#curriculum",
+          start: "top 75%",
+          end: "center 45%",
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+
+  // 5. LANGUAGES SUPPORTED
   const langCards = document.querySelectorAll(".lang-card");
   if (langCards.length > 0) {
     const langCardsTl = gsap.timeline({
@@ -242,12 +307,33 @@ function initGSAPAnimations() {
     );
   }
 
+  // 5b. TESTIMONIALS CARDS
+  const testCards = document.querySelectorAll(".testimonial-card");
+  if (testCards.length > 0) {
+    gsap.fromTo(testCards,
+      { opacity: 0, y: 45, scale: 0.88 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.12,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#testimonials",
+          start: "top 75%",
+          end: "center 45%",
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+
   // 6. STATS COUNTER: Gradual Entry Scrub + Count-Up
   const statItems = document.querySelectorAll(".stat-item");
   statItems.forEach((item) => {
     const statNumber = item.querySelector(".stat-number");
     
-    // Smooth Entry Scrub
     gsap.fromTo(item,
       { opacity: 0, y: 45, scale: 0.86 },
       {
@@ -265,7 +351,6 @@ function initGSAPAnimations() {
       }
     );
 
-    // Number Count-Up Trigger on Entering Screen
     if (statNumber) {
       const target = parseInt(statNumber.getAttribute("data-target"), 10);
       const suffix = statNumber.getAttribute("data-suffix") || "";
@@ -289,7 +374,29 @@ function initGSAPAnimations() {
     }
   });
 
-  // 7. FINAL CTA BANNER: Gradual Entry Scrub (0% bottom -> 100% solid in view)
+  // 6b. FAQ ACCORDION ITEMS
+  const faqItems = document.querySelectorAll(".faq-item");
+  if (faqItems.length > 0) {
+    gsap.fromTo(faqItems,
+      { opacity: 0, y: 35, scale: 0.94 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        stagger: 0.08,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#faq",
+          start: "top 75%",
+          end: "center 45%",
+          scrub: 1.2,
+          invalidateOnRefresh: true
+        }
+      }
+    );
+  }
+
+  // 7. FINAL CTA BANNER
   const ctaBox = document.getElementById("cta-box");
   if (ctaBox) {
     gsap.fromTo(ctaBox,
@@ -310,7 +417,7 @@ function initGSAPAnimations() {
     );
   }
 
-  // Force ScrollTrigger refresh after setting up all triggers & pinning
+  // Force ScrollTrigger refresh
   setTimeout(() => {
     ScrollTrigger.refresh();
   }, 100);
@@ -318,22 +425,22 @@ function initGSAPAnimations() {
 
 // ── Interactive 3D Mouse Tilt Effect ──────────────────────────────
 function init3DTiltEffects() {
-  const tiltCards = document.querySelectorAll(".mission-card, .feature-card-horizontal, .lang-card, .hero-mockup-card");
+  const tiltCards = document.querySelectorAll(".mission-card, .hiw-card, .curriculum-card, .testimonial-card, .feature-card-horizontal, .lang-card, .hero-mockup-card, .audio-phrase-card");
   tiltCards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
 
-      const rotX = (-y / rect.height) * 10;
-      const rotY = (x / rect.width) * 10;
+      const rotX = (-y / rect.height) * 8;
+      const rotY = (x / rect.width) * 8;
 
       gsap.to(card, {
         rotateX: rotX,
         rotateY: rotY,
         transformPerspective: 1000,
         ease: "power1.out",
-        duration: 0.4
+        duration: 0.35
       });
     });
 
@@ -342,8 +449,95 @@ function init3DTiltEffects() {
         rotateX: 0,
         rotateY: 0,
         ease: "power2.out",
-        duration: 0.6
+        duration: 0.5
       });
+    });
+  });
+}
+
+// ── Interactive Multi-Sensory Audio Lab Logic ─────────────────────
+function initInteractiveAudioLab() {
+  const phraseCards = document.querySelectorAll(".audio-phrase-card");
+  if (phraseCards.length === 0) return;
+
+  phraseCards.forEach((card) => {
+    card.addEventListener("click", function () {
+      const textToSpeak = this.getAttribute("data-text");
+      const langCode = this.getAttribute("data-lang") || "hi-IN";
+
+      // Visual playing indicator
+      phraseCards.forEach(c => c.classList.remove("playing"));
+      this.classList.add("playing");
+
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel(); // Stop ongoing speech
+
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+        utterance.lang = langCode;
+        utterance.rate = 0.88; // Gentle, clear speed for learners
+        utterance.pitch = 1.0;
+
+        utterance.onend = () => {
+          this.classList.remove("playing");
+        };
+        utterance.onerror = () => {
+          this.classList.remove("playing");
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setTimeout(() => {
+          this.classList.remove("playing");
+        }, 1500);
+      }
+    });
+  });
+}
+
+// ── FAQ Accordion Interactivity ───────────────────────────────────
+function initFAQAccordion() {
+  const faqQuestions = document.querySelectorAll(".faq-question");
+  faqQuestions.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const item = this.closest(".faq-item");
+      if (!item) return;
+
+      const wasActive = item.classList.contains("active");
+
+      // Optional: Close other FAQs for a clean accordion experience
+      document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("active"));
+
+      if (!wasActive) {
+        item.classList.add("active");
+      }
+
+      // Refresh ScrollTrigger after height change
+      if (typeof ScrollTrigger !== "undefined") {
+        setTimeout(() => {
+          ScrollTrigger.refresh();
+        }, 320);
+      }
+    });
+  });
+}
+
+// ── Floating Back-To-Top Button ───────────────────────────────────
+function initBackToTop() {
+  const btn = document.getElementById("back-to-top");
+  if (!btn) return;
+
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 400) {
+      btn.classList.add("visible");
+    } else {
+      btn.classList.remove("visible");
+    }
+  });
+
+  btn.addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   });
 }

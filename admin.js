@@ -16,12 +16,296 @@ let currentSort = "xp_desc";
 let currentSearch = "";
 
 const ADMIN_SKILL_META = {
-  reading: { icon: "<i data-lucide=\"book-open\"></i>", label: "Reading" },
-  writing: { icon: "<i data-lucide=\"pen-tool\"></i>", label: "Writing" },
-  listening: { icon: "<i data-lucide=\"headphones\"></i>", label: "Listening" },
-  speaking: { icon: "<i data-lucide=\"mic\"></i>", label: "Speaking" },
-  pronunciation: { icon: "<i data-lucide=\"type\"></i>", label: "Pronunciation" },
+  reading: {
+    icon: '<i data-lucide="book-open"></i>',
+    iconName: "book-open",
+    label: "Reading",
+    color: "#6366f1",
+    gradient: "linear-gradient(135deg, #6366f1, #4f46e5)",
+    bg: "rgba(99, 102, 241, 0.12)",
+  },
+  writing: {
+    icon: '<i data-lucide="pen-tool"></i>',
+    iconName: "pen-tool",
+    label: "Writing",
+    color: "#10b981",
+    gradient: "linear-gradient(135deg, #10b981, #059669)",
+    bg: "rgba(16, 185, 129, 0.12)",
+  },
+  listening: {
+    icon: '<i data-lucide="headphones"></i>',
+    iconName: "headphones",
+    label: "Listening",
+    color: "#f59e0b",
+    gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
+    bg: "rgba(245, 158, 11, 0.12)",
+  },
+  speaking: {
+    icon: '<i data-lucide="mic"></i>',
+    iconName: "mic",
+    label: "Speaking",
+    color: "#ec4899",
+    gradient: "linear-gradient(135deg, #ec4899, #e11d48)",
+    bg: "rgba(236, 72, 153, 0.12)",
+  },
+  pronunciation: {
+    icon: '<i data-lucide="type"></i>',
+    iconName: "type",
+    label: "Pronunciation",
+    color: "#06b6d4",
+    gradient: "linear-gradient(135deg, #06b6d4, #0284c7)",
+    bg: "rgba(6, 182, 212, 0.12)",
+  },
 };
+
+function showAdminToast(message, type = "success", title = "") {
+  let container = document.getElementById("admin-toast-container");
+  if (!container) {
+    container = document.createElement("div");
+    container.id = "admin-toast-container";
+    container.style.cssText = `
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 420px;
+      width: calc(100vw - 48px);
+      pointer-events: none;
+    `;
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement("div");
+  toast.className = `admin-toast-card ${type}`;
+  toast.style.cssText = `
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid ${
+      type === "success"
+        ? "rgba(16, 185, 129, 0.35)"
+        : type === "error"
+          ? "rgba(239, 68, 68, 0.35)"
+          : type === "warning"
+            ? "rgba(245, 158, 11, 0.35)"
+            : "rgba(99, 102, 241, 0.35)"
+    };
+    border-radius: 20px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(0,0,0,0.02);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    transform: translateY(-20px) scale(0.95);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+  `;
+
+  const iconBg =
+    type === "success"
+      ? "linear-gradient(135deg, #10b981, #059669)"
+      : type === "error"
+        ? "linear-gradient(135deg, #ef4444, #dc2626)"
+        : type === "warning"
+          ? "linear-gradient(135deg, #f59e0b, #d97706)"
+          : "linear-gradient(135deg, #6366f1, #4f46e5)";
+
+  const iconName =
+    type === "success"
+      ? "check-circle-2"
+      : type === "error"
+        ? "alert-triangle"
+        : type === "warning"
+          ? "alert-circle"
+          : "info";
+
+  const defaultTitle =
+    type === "success"
+      ? "Success"
+      : type === "error"
+        ? "Action Failed"
+        : type === "warning"
+          ? "Notice"
+          : "Information";
+
+  toast.innerHTML = `
+    <div style="width: 38px; height: 38px; border-radius: 12px; background: ${iconBg}; color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.12);">
+      <i data-lucide="${iconName}" style="width: 20px; height: 20px;"></i>
+    </div>
+    <div style="flex: 1; min-width: 0; padding-top: 2px;">
+      <h6 style="margin: 0 0 0.2rem 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.95rem; font-weight: 800; color: #0f172a;">
+        ${title || defaultTitle}
+      </h6>
+      <p style="margin: 0; font-size: 0.84rem; font-weight: 600; color: #475569; line-height: 1.4;">
+        ${message}
+      </p>
+    </div>
+    <button style="background: none; border: none; padding: 4px; color: #94a3b8; cursor: pointer; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-top: -2px; margin-right: -4px;">
+      <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+    </button>
+  `;
+
+  container.appendChild(toast);
+  if (window.lucide) lucide.createIcons();
+
+  requestAnimationFrame(() => {
+    toast.style.transform = "translateY(0) scale(1)";
+    toast.style.opacity = "1";
+  });
+
+  const closeBtn = toast.querySelector("button");
+  const dismiss = () => {
+    toast.style.transform = "translateY(-15px) scale(0.95)";
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 350);
+  };
+
+  closeBtn.onclick = dismiss;
+  setTimeout(dismiss, 4500);
+}
+
+function showAdminConfirm({
+  title = "Confirm Action",
+  message = "Are you sure you want to proceed?",
+  confirmText = "Confirm",
+  cancelText = "Cancel",
+  confirmType = "primary", // "danger" | "warning" | "primary"
+  icon = "help-circle",
+}) {
+  return new Promise((resolve) => {
+    const existing = document.getElementById("admin-confirm-overlay");
+    if (existing) existing.remove();
+
+    const overlay = document.createElement("div");
+    overlay.id = "admin-confirm-overlay";
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 100001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    `;
+
+    const iconBg =
+      confirmType === "danger"
+        ? "linear-gradient(135deg, #ef4444, #dc2626)"
+        : confirmType === "warning"
+          ? "linear-gradient(135deg, #f59e0b, #d97706)"
+          : "linear-gradient(135deg, #6366f1, #4f46e5)";
+
+    const confirmBtnBg =
+      confirmType === "danger"
+        ? "linear-gradient(135deg, #ef4444, #dc2626)"
+        : confirmType === "warning"
+          ? "linear-gradient(135deg, #f59e0b, #d97706)"
+          : "linear-gradient(135deg, #6366f1, #4f46e5)";
+
+    const confirmBtnShadow =
+      confirmType === "danger"
+        ? "0 6px 18px rgba(220, 38, 38, 0.35)"
+        : confirmType === "warning"
+          ? "0 6px 18px rgba(217, 119, 6, 0.35)"
+          : "0 6px 18px rgba(99, 102, 241, 0.35)";
+
+    overlay.innerHTML = `
+      <div class="admin-confirm-box" style="
+        background: rgba(255, 255, 255, 0.98);
+        border: 2px solid rgba(226, 232, 240, 0.9);
+        border-radius: 28px;
+        padding: 2rem 2.25rem;
+        max-width: 480px;
+        width: 100%;
+        box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.3);
+        transform: scale(0.92);
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        text-align: center;
+      ">
+        <div style="width: 56px; height: 56px; border-radius: 18px; background: ${iconBg}; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; box-shadow: 0 8px 20px rgba(0,0,0,0.12);">
+          <i data-lucide="${icon}" style="width: 28px; height: 28px;"></i>
+        </div>
+        <h4 style="margin: 0 0 0.5rem 0; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 900; color: #0f172a;">
+          ${title}
+        </h4>
+        <p style="margin: 0 0 1.75rem 0; font-size: 0.95rem; font-weight: 600; color: #64748b; line-height: 1.5;">
+          ${message}
+        </p>
+        <div style="display: flex; gap: 0.85rem; justify-content: center;">
+          <button id="admin-confirm-cancel" style="
+            flex: 1;
+            background: #ffffff;
+            border: 1.5px solid #cbd5e1;
+            color: #334155;
+            font-weight: 800;
+            font-size: 0.92rem;
+            border-radius: 14px;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          ">
+            ${cancelText}
+          </button>
+          <button id="admin-confirm-ok" style="
+            flex: 1;
+            background: ${confirmBtnBg};
+            border: none;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.92rem;
+            border-radius: 14px;
+            padding: 0.75rem 1.25rem;
+            cursor: pointer;
+            box-shadow: ${confirmBtnShadow};
+            transition: all 0.2s ease;
+          ">
+            ${confirmText}
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+    if (window.lucide) lucide.createIcons();
+
+    requestAnimationFrame(() => {
+      overlay.style.opacity = "1";
+      const box = overlay.querySelector(".admin-confirm-box");
+      if (box) box.style.transform = "scale(1)";
+    });
+
+    const cleanup = (result) => {
+      overlay.style.opacity = "0";
+      const box = overlay.querySelector(".admin-confirm-box");
+      if (box) box.style.transform = "scale(0.92)";
+      setTimeout(() => {
+        overlay.remove();
+        resolve(result);
+      }, 250);
+    };
+
+    overlay.querySelector("#admin-confirm-cancel").onclick = () => cleanup(false);
+    overlay.querySelector("#admin-confirm-ok").onclick = () => cleanup(true);
+
+    overlay.onclick = (e) => {
+      if (e.target === overlay) cleanup(false);
+    };
+  });
+}
 
 function setupAdminPage() {
   if (window.lucide) lucide.createIcons();
@@ -262,6 +546,54 @@ function renderSignupTrend() {
     .join("");
 }
 
+function renderActivityItemHtml({ d, name, initial }) {
+  const meta = ADMIN_SKILL_META[(d.type || "reading").toLowerCase()] || {
+    icon: '<i data-lucide="book-open"></i>',
+    label: d.type || "Practice",
+  };
+  const when =
+    d.completedAt && d.completedAt.toDate
+      ? timeAgo(d.completedAt.toDate())
+      : d.completedAt instanceof Date
+        ? timeAgo(d.completedAt)
+        : "Recently";
+
+  const accuracy = typeof d.accuracy === "number" ? d.accuracy : (d.score || 0);
+  const isGood = accuracy >= 70;
+  const isMed = accuracy >= 40;
+  const badgeBg = isGood ? "#dcfce7" : isMed ? "#fef3c7" : "#fef2f2";
+  const badgeColor = isGood ? "#15803d" : isMed ? "#b45309" : "#dc2626";
+  const badgeBorder = isGood ? "#86efac" : isMed ? "#fde68a" : "#fca5a5";
+
+  return `
+  <div class="admin-activity-row" style="display: flex; align-items: center; justify-content: space-between; gap: 0.85rem; padding: 0.95rem 1.15rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 18px; margin-bottom: 0.75rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03); transition: all 0.2s ease;">
+    <div style="display: flex; align-items: center; gap: 0.85rem; min-width: 0; flex: 1;">
+      <div style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(99,102,241,0.25); flex-shrink: 0;">
+        ${initial}
+      </div>
+      <div style="min-width: 0; flex: 1;">
+        <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          ${name}
+        </div>
+        <div style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.15rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
+          <span style="background: #f1f5f9; color: #475569; padding: 0.15rem 0.55rem; border-radius: 9999px; font-weight: 800; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+            ${meta.icon} ${meta.label}
+          </span>
+          <span>completed drill</span>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
+      <span style="background: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeBorder}; padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 800; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem;">
+        <i data-lucide="check-circle-2" style="width: 13px; height: 13px;"></i> ${accuracy}%
+      </span>
+      <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; display: inline-flex; align-items: center; gap: 0.3rem; min-width: 65px; justify-content: flex-end;">
+        <i data-lucide="clock" style="width: 13px; height: 13px;"></i> ${when}
+      </span>
+    </div>
+  </div>`;
+}
+
 async function renderRecentActivity() {
   const container = document.getElementById("admin-activity-feed");
   const emptyState = document.getElementById("admin-activity-empty");
@@ -270,97 +602,84 @@ async function renderRecentActivity() {
   container.innerHTML =
     '<div class="analysis-empty-state">Loading recent activity…</div>';
 
+  const userMap = {};
+  allUsersCache.forEach((u) => {
+    userMap[u.uid] = u;
+  });
+
   try {
-    // NOTE: this collectionGroup query requires a one-time Firestore
-    // index. The first time it runs, if the index doesn't exist yet,
-    // Firestore throws an error containing a direct link to auto-create
-    // it — check the browser console for that link if this section
-    // shows an error state below.
     const snap = await db
       .collectionGroup("lessonHistory")
       .orderBy("completedAt", "desc")
       .limit(20)
       .get();
 
-    if (snap.empty) {
-      container.innerHTML = "";
-      if (emptyState) {
-        emptyState.textContent = "No recent activity yet.";
-        emptyState.classList.remove("hidden");
-      }
+    if (!snap.empty) {
+      if (emptyState) emptyState.classList.add("hidden");
+      container.innerHTML = snap.docs
+        .map((doc) => {
+          const d = doc.data();
+          const uid = doc.ref && doc.ref.parent && doc.ref.parent.parent ? doc.ref.parent.parent.id : "";
+          const user = userMap[uid];
+          const name = user ? user.fullName : "Learner";
+          const initial = (name || "U").charAt(0).toUpperCase();
+          return renderActivityItemHtml({ d, name, initial });
+        })
+        .join("");
+      if (window.lucide) lucide.createIcons();
       return;
     }
-    if (emptyState) emptyState.classList.add("hidden");
+  } catch (err) {
+    console.warn("CollectionGroup query requires index or failed, attempting user subcollection fallback:", err);
+  }
 
-    const userMap = {};
-    allUsersCache.forEach((u) => {
-      userMap[u.uid] = u;
+  // Seamless fallback: fetch lesson history directly across users without index
+  try {
+    const activeUsers = allUsersCache.slice(0, 15);
+    const fetchPromises = activeUsers.map(async (user) => {
+      try {
+        const hSnap = await db
+          .collection("users")
+          .doc(user.uid)
+          .collection("lessonHistory")
+          .orderBy("completedAt", "desc")
+          .limit(5)
+          .get();
+        return hSnap.docs.map((d) => ({ d: d.data(), user }));
+      } catch (e) {
+        return [];
+      }
     });
 
-    container.innerHTML = snap.docs
-      .map((doc) => {
-        const d = doc.data();
-        const uid = doc.ref && doc.ref.parent && doc.ref.parent.parent ? doc.ref.parent.parent.id : "";
-        const user = userMap[uid];
-        const name = user ? user.fullName : "Learner";
-        const meta = ADMIN_SKILL_META[d.type] || {
-          icon: '<i data-lucide="pin"></i>',
-          label: d.type || "Practice",
-        };
-        const when =
-          d.completedAt && d.completedAt.toDate
-            ? timeAgo(d.completedAt.toDate())
-            : "Recently";
+    const results = (await Promise.all(fetchPromises)).flat();
+    results.sort((a, b) => {
+      const tA = a.d.completedAt && a.d.completedAt.toDate ? a.d.completedAt.toDate().getTime() : 0;
+      const tB = b.d.completedAt && b.d.completedAt.toDate ? b.d.completedAt.toDate().getTime() : 0;
+      return tB - tA;
+    });
 
-        const accuracy = typeof d.accuracy === "number" ? d.accuracy : (d.score || 0);
-        const isGood = accuracy >= 70;
-        const isMed = accuracy >= 40;
-        const badgeBg = isGood ? "#dcfce7" : isMed ? "#fef3c7" : "#fef2f2";
-        const badgeColor = isGood ? "#15803d" : isMed ? "#b45309" : "#dc2626";
-        const badgeBorder = isGood ? "#86efac" : isMed ? "#fde68a" : "#fca5a5";
-        const initial = (name || "U").charAt(0).toUpperCase();
-
-        return `
-        <div class="admin-activity-row" style="display: flex; align-items: center; justify-content: space-between; gap: 0.85rem; padding: 0.95rem 1.15rem; background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 18px; margin-bottom: 0.75rem; box-shadow: 0 4px 14px rgba(15,23,42,0.03); transition: all 0.2s ease;">
-          <div style="display: flex; align-items: center; gap: 0.85rem; min-width: 0; flex: 1;">
-            <div style="width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 900; font-size: 1.05rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(99,102,241,0.25); flex-shrink: 0;">
-              ${initial}
-            </div>
-            <div style="min-width: 0; flex: 1;">
-              <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                ${name}
-              </div>
-              <div style="font-size: 0.82rem; color: #64748b; font-weight: 600; margin-top: 0.15rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">
-                <span style="background: #f1f5f9; color: #475569; padding: 0.15rem 0.55rem; border-radius: 9999px; font-weight: 800; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 0.25rem;">
-                  ${meta.icon} ${meta.label}
-                </span>
-                <span>completed lesson</span>
-              </div>
-            </div>
-          </div>
-          <div style="display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
-            <span style="background: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeBorder}; padding: 0.3rem 0.75rem; border-radius: 9999px; font-weight: 800; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.25rem;">
-              <i data-lucide="check-circle-2" style="width: 13px; height: 13px;"></i> ${accuracy}%
-            </span>
-            <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; display: inline-flex; align-items: center; gap: 0.3rem; min-width: 65px; justify-content: flex-end;">
-              <i data-lucide="clock" style="width: 13px; height: 13px;"></i> ${when}
-            </span>
-          </div>
-        </div>`;
-      })
-      .join("");
-    if (window.lucide) lucide.createIcons();
-  } catch (err) {
-    console.warn(
-      "Recent activity unavailable — this usually means the Firestore composite index for the lessonHistory collection group hasn't been created yet. Check this console error for a direct link to create it:",
-      err,
-    );
-    container.innerHTML = "";
-    if (emptyState) {
-      emptyState.textContent =
-        "Recent activity needs a one-time Firestore index. Open the browser console for a direct setup link from Firestore.";
-      emptyState.classList.remove("hidden");
+    const top20 = results.slice(0, 20);
+    if (top20.length > 0) {
+      if (emptyState) emptyState.classList.add("hidden");
+      container.innerHTML = top20
+        .map(({ d, user }) => {
+          const name = user ? user.fullName : "Learner";
+          const initial = (name || "U").charAt(0).toUpperCase();
+          return renderActivityItemHtml({ d, name, initial });
+        })
+        .join("");
+      if (window.lucide) lucide.createIcons();
+      return;
     }
+  } catch (fallbackErr) {
+    console.error("Activity fallback error:", fallbackErr);
+  }
+
+  // If no activity records found
+  container.innerHTML = "";
+  if (emptyState) {
+    emptyState.textContent = "No recent lesson activity recorded yet.";
+    emptyState.classList.remove("hidden");
   }
 }
 
@@ -561,10 +880,10 @@ function setupAdminEvents() {
 
   document.querySelectorAll(".dash-nav-item[data-section]").forEach((item) => {
     item.addEventListener("click", () => {
+      const targetSec = item.dataset.section;
       document
         .querySelectorAll(".dash-nav-item[data-section]")
         .forEach((n) => n.classList.remove("active"));
-      const targetSec = item.dataset.section;
       document
         .querySelectorAll(`.dash-nav-item[data-section="${targetSec}"]`)
         .forEach((n) => n.classList.add("active"));
@@ -572,9 +891,19 @@ function setupAdminEvents() {
         .querySelectorAll(".admin-section")
         .forEach((s) => s.classList.add("hidden"));
       const target = document.getElementById(
-        "admin-section-" + item.dataset.section,
+        "admin-section-" + targetSec,
       );
-      if (target) target.classList.remove("hidden");
+      if (target) {
+        target.classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      if (targetSec === "errors") loadErrorLogs();
+      if (targetSec === "announcements") loadAnnouncements();
+      if (targetSec === "feedback") loadFeedback();
+      if (targetSec === "leaderboard") renderAdminLeaderboard();
+
+      if (window.lucide) lucide.createIcons();
     });
   });
 
@@ -596,11 +925,14 @@ function setupAdminEvents() {
   const modal = document.getElementById("admin-user-modal");
   const modalCloseBtn = document.getElementById("admin-modal-close");
   if (modalCloseBtn && modal) {
-    modalCloseBtn.addEventListener("click", () =>
-      modal.classList.add("hidden"),
-    );
+    modalCloseBtn.addEventListener("click", closeUserDetailModal);
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.add("hidden");
+      if (e.target === modal) closeUserDetailModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeUserDetailModal();
+      }
     });
   }
 
@@ -654,9 +986,19 @@ function exportUsersCSV() {
 
 // ─── User Detail Modal ──────────────────────────────────────
 
+function closeUserDetailModal() {
+  const modal = document.getElementById("admin-user-modal");
+  if (modal) {
+    modal.classList.add("hidden");
+  }
+  document.body.style.overflow = "";
+}
+
 async function openUserDetailModal(uid) {
   const user = allUsersCache.find((u) => u.uid === uid);
   if (!user) return;
+
+  document.body.style.overflow = "hidden";
 
   const modal = document.getElementById("admin-user-modal");
 
@@ -713,7 +1055,12 @@ async function openUserDetailModal(uid) {
       const r = d.data();
       return {
         type: r.type || "reading",
-        accuracy: typeof r.accuracy === "number" ? r.accuracy : 0,
+        accuracy:
+          typeof r.accuracy === "number"
+            ? r.accuracy
+            : typeof r.score === "number"
+              ? r.score
+              : 0,
         completedAt:
           r.completedAt && r.completedAt.toDate ? r.completedAt.toDate() : null,
       };
@@ -777,29 +1124,46 @@ async function toggleUserBan(uid) {
   const cached = allUsersCache.find((u) => u.uid === uid);
   if (!cached) return;
   const newState = !cached.isBanned;
-  if (!confirm(`${newState ? "Suspend" : "Reinstate"} ${cached.fullName}?`))
-    return;
+
+  const confirmed = await showAdminConfirm({
+    title: newState ? "Suspend Learner Account" : "Reinstate Learner Account",
+    message: newState
+      ? `Are you sure you want to suspend ${cached.fullName}? They will be blocked from logging into the platform until reinstated.`
+      : `Reinstate ${cached.fullName}? They will regain full access to their learning account and lessons.`,
+    confirmText: newState ? "Yes, Suspend Account" : "Yes, Reinstate Account",
+    confirmType: newState ? "warning" : "primary",
+    icon: newState ? "user-x" : "user-check",
+  });
+  if (!confirmed) return;
 
   try {
     await db.collection("users").doc(uid).update({ isBanned: newState });
     cached.isBanned = newState;
     renderUsersTable();
     updateModalDangerButtons(cached);
+    showAdminToast(
+      `${cached.fullName} has been ${newState ? "suspended" : "reinstated"}.`,
+      newState ? "warning" : "success",
+      newState ? "User Suspended" : "User Reinstated"
+    );
   } catch (err) {
     console.error("Failed to update ban status:", err);
-    alert("Could not update ban status — check console.");
+    showAdminToast("Could not update ban status — check console.", "error");
   }
 }
 
 async function resetUserProgress(uid) {
   const cached = allUsersCache.find((u) => u.uid === uid);
   if (!cached) return;
-  if (
-    !confirm(
-      `Reset ALL progress for ${cached.fullName}? This clears XP, streak, lessons, and badges. This cannot be undone.`,
-    )
-  )
-    return;
+
+  const confirmed = await showAdminConfirm({
+    title: "Reset Learner Progress",
+    message: `Are you sure you want to reset ALL progress for ${cached.fullName}? This clears XP, streak, completed lessons, and earned badges. This action cannot be undone.`,
+    confirmText: "Yes, Reset All Progress",
+    confirmType: "danger",
+    icon: "rotate-ccw",
+  });
+  if (!confirmed) return;
 
   const resetData = {
     xp: 0,
@@ -817,34 +1181,45 @@ async function resetUserProgress(uid) {
     Object.assign(cached, resetData);
     renderUsersTable();
     openUserDetailModal(uid);
+    showAdminToast(`Progress reset for ${cached.fullName}.`, "success", "Progress Cleared");
   } catch (err) {
     console.error("Failed to reset progress:", err);
-    alert("Could not reset progress — check console.");
+    showAdminToast("Could not reset progress — check console.", "error");
   }
 }
 
 async function toggleAdminStatus(uid) {
   if (uid === currentAdminUid) {
-    alert("You can't change your own admin status from here.");
+    showAdminToast("You can't change your own admin status from here.", "warning", "Action Restricted");
     return;
   }
   const cached = allUsersCache.find((u) => u.uid === uid);
   if (!cached) return;
   const newState = !cached.isAdmin;
-  if (
-    !confirm(
-      `${newState ? "Grant" : "Revoke"} admin access for ${cached.fullName}?`,
-    )
-  )
-    return;
+
+  const confirmed = await showAdminConfirm({
+    title: newState ? "Grant Administrator Access" : "Revoke Administrator Access",
+    message: newState
+      ? `Grant full administrator privileges to ${cached.fullName}? They will be able to access the admin portal, moderate learners, and manage curriculum.`
+      : `Revoke administrator privileges from ${cached.fullName}? They will return to standard learner status.`,
+    confirmText: newState ? "Yes, Grant Admin" : "Yes, Revoke Admin",
+    confirmType: newState ? "primary" : "warning",
+    icon: "shield-alert",
+  });
+  if (!confirmed) return;
 
   try {
     await db.collection("users").doc(uid).update({ isAdmin: newState });
     cached.isAdmin = newState;
     updateModalDangerButtons(cached);
+    showAdminToast(
+      `Admin privileges ${newState ? "granted to" : "revoked from"} ${cached.fullName}.`,
+      "success",
+      "Permissions Updated"
+    );
   } catch (err) {
     console.error("Failed to update admin status:", err);
-    alert("Could not update admin status — check console.");
+    showAdminToast("Could not update admin status — check console.", "error");
   }
 }
 
@@ -852,96 +1227,256 @@ async function deleteUserAccount(uid) {
   const cached = allUsersCache.find((u) => u.uid === uid);
   if (!cached) return;
   if (uid === currentAdminUid) {
-    alert("You can't delete your own account from here.");
+    showAdminToast("You can't delete your own account from here.", "warning", "Action Restricted");
     return;
   }
-  if (
-    !confirm(
-      `Delete ${cached.fullName}'s data permanently? This removes their profile and cannot be undone.`,
-    )
-  )
-    return;
-  if (!confirm("Really sure? This is your last confirmation.")) return;
+
+  const confirmed = await showAdminConfirm({
+    title: "Delete Learner Account",
+    message: `Are you sure you want to delete ${cached.fullName}'s account permanently? All learner profile data, XP, history, and test logs will be permanently erased.`,
+    confirmText: "Permanently Delete User",
+    confirmType: "danger",
+    icon: "trash-2",
+  });
+  if (!confirmed) return;
 
   try {
     await db.collection("users").doc(uid).delete();
     allUsersCache = allUsersCache.filter((u) => u.uid !== uid);
     renderUsersTable();
     renderOverview();
-    document.getElementById("admin-user-modal").classList.add("hidden");
+    closeUserDetailModal();
+    showAdminToast(`${cached.fullName}'s account has been permanently deleted.`, "success", "Account Deleted");
   } catch (err) {
     console.error("Failed to delete user:", err);
-    alert("Could not delete user — check console.");
+    showAdminToast("Could not delete user — check console.", "error");
   }
 }
 
 function renderModalSkillBreakdown(history) {
   const container = document.getElementById("admin-modal-skill-bars");
-  if (!history.length) {
-    container.innerHTML =
-      '<div class="analysis-empty-state">No lessons completed yet.</div>';
-    return;
-  }
+  if (!container) return;
 
   const bySkill = {};
   history.forEach((h) => {
-    (bySkill[h.type] = bySkill[h.type] || []).push(h);
+    const key = (h.type || "reading").toLowerCase();
+    (bySkill[key] = bySkill[key] || []).push(h);
   });
 
-  container.innerHTML = Object.keys(ADMIN_SKILL_META)
+  const skillCardsHtml = Object.keys(ADMIN_SKILL_META)
     .map((type) => {
       const attempts = bySkill[type] || [];
       const meta = ADMIN_SKILL_META[type];
+      const hasAttempts = attempts.length > 0;
 
-      if (!attempts.length) {
-        return `<div class="skill-bar-item" style="opacity:0.4;">
-        <div class="skill-bar-meta">
-          <span class="skill-bar-label">${meta.icon} ${meta.label}</span>
-          <span class="skill-bar-status-tag" style="background:rgba(108,99,255,0.08);color:var(--color-text-muted)">No attempts</span>
-        </div>
-        <div class="skill-bar-track"><div class="skill-bar-fill" style="width:0%"></div></div>
-      </div>`;
+      const avg = hasAttempts
+        ? Math.round(
+            attempts.reduce((s, a) => s + (typeof a.accuracy === "number" ? a.accuracy : (a.score || 0)), 0) / attempts.length
+          )
+        : 0;
+
+      let scoreBadgeHtml = "";
+      let trackFillColor = meta.gradient;
+      let statusCaption = "";
+
+      if (!hasAttempts) {
+        scoreBadgeHtml = `<span class="skill-pct-badge" style="background:#f1f5f9;color:#94a3b8;border:1px solid #e2e8f0;">Not Attempted</span>`;
+        statusCaption = `<span style="color:#94a3b8;"><i data-lucide="circle-dashed" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> No practice sessions recorded yet</span>`;
+      } else if (avg >= 85) {
+        scoreBadgeHtml = `<span class="skill-pct-badge" style="background:rgba(16,185,129,0.12);color:#047857;border:1px solid rgba(16,185,129,0.3);"><i data-lucide="sparkles" style="width:13px;height:13px;"></i> ${avg}%</span>`;
+        trackFillColor = "linear-gradient(90deg, #10b981, #34d399)";
+        statusCaption = `<span style="color:#047857;"><i data-lucide="check-circle-2" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> Mastered • High Retention</span>`;
+      } else if (avg >= 65) {
+        scoreBadgeHtml = `<span class="skill-pct-badge" style="background:rgba(99,102,241,0.12);color:#4338ca;border:1px solid rgba(99,102,241,0.3);"><i data-lucide="zap" style="width:13px;height:13px;"></i> ${avg}%</span>`;
+        trackFillColor = "linear-gradient(90deg, #6366f1, #818cf8)";
+        statusCaption = `<span style="color:#4338ca;"><i data-lucide="trending-up" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> Proficient • Good Progress</span>`;
+      } else {
+        scoreBadgeHtml = `<span class="skill-pct-badge" style="background:rgba(245,158,11,0.12);color:#b45309;border:1px solid rgba(245,158,11,0.3);"><i data-lucide="alert-circle" style="width:13px;height:13px;"></i> ${avg}%</span>`;
+        trackFillColor = "linear-gradient(90deg, #f59e0b, #fbbf24)";
+        statusCaption = `<span style="color:#b45309;"><i data-lucide="help-circle" style="width:13px;height:13px;display:inline-block;vertical-align:middle;"></i> Developing • Recommended Practice</span>`;
       }
 
-      const avg = Math.round(
-        attempts.reduce((s, a) => s + a.accuracy, 0) / attempts.length,
-      );
-      const color =
-        avg >= 75
-          ? "var(--color-accent)"
-          : avg >= 50
-            ? "var(--color-warm-light,#f59e0b)"
-            : "var(--color-error,#ef4444)";
-
-      return `<div class="skill-bar-item">
-      <div class="skill-bar-meta">
-        <span class="skill-bar-label">${meta.icon} ${meta.label} (${attempts.length})</span>
-        <span class="skill-bar-status-tag" style="background:${color}22;color:${color}">${avg}%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" style="width:${avg}%;background:${color};"></div></div>
-    </div>`;
+      return `
+        <div class="skill-card-enhanced" style="${!hasAttempts ? "opacity: 0.65;" : ""}">
+          <div class="skill-header-row">
+            <div class="skill-info-left">
+              <div class="skill-icon-squircle" style="background: ${meta.gradient};">
+                <i data-lucide="${meta.iconName}" style="width:18px;height:18px;"></i>
+              </div>
+              <div>
+                <h5 class="skill-name-title">
+                  <span>${meta.label}</span>
+                  <span class="skill-attempts-chip">${attempts.length} ${attempts.length === 1 ? "attempt" : "attempts"}</span>
+                </h5>
+              </div>
+            </div>
+            <div>
+              ${scoreBadgeHtml}
+            </div>
+          </div>
+          <div class="skill-track-wrap">
+            <div class="skill-track-fill" style="width: ${avg}%; background: ${trackFillColor}; box-shadow: ${hasAttempts ? `0 2px 8px ${meta.color}55` : "none"};"></div>
+          </div>
+          <div class="skill-status-footnote">
+            ${statusCaption}
+          </div>
+        </div>
+      `;
     })
     .join("");
+
+  container.innerHTML = `<div class="skill-bd-grid">${skillCardsHtml}</div>`;
+  if (window.lucide) lucide.createIcons();
 }
 
 function renderModalAccuracyTrend(history) {
   const container = document.getElementById("admin-modal-trend-chart");
-  if (!history.length) {
-    container.innerHTML = "";
+  if (!container) return;
+
+  if (!history || !history.length) {
+    container.innerHTML = `
+      <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 20px; padding: 2.5rem 1.5rem; text-align: center;">
+        <div style="width: 52px; height: 52px; border-radius: 16px; background: rgba(99,102,241,0.1); color: #6366f1; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.4rem;">
+          <i data-lucide="bar-chart-2" style="width: 26px; height: 26px;"></i>
+        </div>
+        <h5 style="font-size: 1.05rem; font-weight: 900; color: #0f172a; margin: 0 0 0.4rem;">No Accuracy Data Yet</h5>
+        <p style="font-size: 0.85rem; color: #64748b; font-weight: 600; max-width: 420px; margin: 0 auto;">
+          This learner has not taken any quizzes or diagnostic exercises yet. Once they begin practicing, score trends across reading, writing, and speech will appear here.
+        </p>
+      </div>
+    `;
+    if (window.lucide) lucide.createIcons();
     return;
   }
 
   const recent = history.slice(-10);
-  container.innerHTML = recent
+  const totalAcc = recent.reduce((sum, h) => sum + (typeof h.accuracy === "number" ? h.accuracy : (h.score || 0)), 0);
+  const avgAcc = Math.round(totalAcc / recent.length);
+  const maxAcc = Math.max(...recent.map((h) => typeof h.accuracy === "number" ? h.accuracy : (h.score || 0)));
+
+  let trajectoryText = "Consistent";
+  let trajectoryColor = "#10b981";
+  if (recent.length >= 2) {
+    const firstHalf = recent.slice(0, Math.floor(recent.length / 2));
+    const secondHalf = recent.slice(Math.floor(recent.length / 2));
+    const avg1 = firstHalf.reduce((s, a) => s + (typeof a.accuracy === "number" ? a.accuracy : (a.score || 0)), 0) / firstHalf.length;
+    const avg2 = secondHalf.reduce((s, a) => s + (typeof a.accuracy === "number" ? a.accuracy : (a.score || 0)), 0) / secondHalf.length;
+    if (avg2 - avg1 >= 4) {
+      trajectoryText = `+${Math.round(avg2 - avg1)}% Improving`;
+      trajectoryColor = "#10b981";
+    } else if (avg1 - avg2 >= 4) {
+      trajectoryText = `-${Math.round(avg1 - avg2)}% Needs Focus`;
+      trajectoryColor = "#f59e0b";
+    } else {
+      trajectoryText = "Stable & Strong";
+      trajectoryColor = "#6366f1";
+    }
+  }
+
+  const barsHtml = recent
     .map((h, idx) => {
-      const isLast = idx === recent.length - 1;
-      const meta = ADMIN_SKILL_META[h.type] || { icon: "<i data-lucide=\"book-open\"></i>" };
-      return `<div class="bar-col" title="${h.accuracy}%">
-      <div class="bar-fill ${isLast ? "active" : ""}" style="height:${Math.max(h.accuracy, 3)}%;"></div>
-      <span class="bar-label ${isLast ? "active" : ""}">${meta.icon}</span>
-    </div>`;
+      const isLatest = idx === recent.length - 1;
+      const typeKey = (h.type || "reading").toLowerCase();
+      const meta = ADMIN_SKILL_META[typeKey] || {
+        iconName: "book-open",
+        label: "Lesson",
+        color: "#6366f1",
+        gradient: "linear-gradient(180deg, #6366f1, #818cf8)",
+      };
+
+      const rawScore = typeof h.accuracy === "number" ? h.accuracy : (h.score || 0);
+      const acc = Math.max(0, Math.min(100, rawScore));
+
+      let badgeBg = "rgba(99,102,241,0.12)";
+      let badgeColor = "#4338ca";
+      let pillarGrad = meta.gradient;
+      let pillarShadow = `0 4px 14px ${meta.color}44`;
+
+      if (acc >= 90) {
+        badgeBg = "#ecfdf5";
+        badgeColor = "#047857";
+        pillarGrad = "linear-gradient(180deg, #10b981, #34d399)";
+        pillarShadow = "0 6px 16px rgba(16,185,129,0.35)";
+      } else if (acc >= 75) {
+        badgeBg = "#eff6ff";
+        badgeColor = "#1d4ed8";
+        pillarGrad = "linear-gradient(180deg, #6366f1, #818cf8)";
+        pillarShadow = "0 6px 16px rgba(99,102,241,0.35)";
+      } else {
+        badgeBg = "#fffbeb";
+        badgeColor = "#b45309";
+        pillarGrad = "linear-gradient(180deg, #f59e0b, #fbbf24)";
+        pillarShadow = "0 6px 16px rgba(245,158,11,0.35)";
+      }
+
+      return `
+        <div class="trend-bar-column" title="Attempt ${idx + 1}: ${meta.label} (${acc}%)">
+          <span class="trend-score-tag" style="background: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeColor}33;">
+            ${acc}%
+          </span>
+          <div class="trend-bar-pillar" style="height: ${Math.max(acc, 10)}%; background: ${pillarGrad}; box-shadow: ${pillarShadow}; ${isLatest ? 'outline: 2px solid #6366f1; outline-offset: 1px;' : ''}"></div>
+        </div>
+      `;
     })
     .join("");
+
+  const footerAxisHtml = recent
+    .map((h, idx) => {
+      const isLatest = idx === recent.length - 1;
+      const typeKey = (h.type || "reading").toLowerCase();
+      const meta = ADMIN_SKILL_META[typeKey] || {
+        iconName: "book-open",
+        label: "Lesson",
+      };
+
+      const dateDisplay = h.completedAt
+        ? new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(h.completedAt)
+        : `#${idx + 1}`;
+
+      return `
+        <div class="trend-axis-node">
+          <div class="trend-axis-icon" style="${isLatest ? 'background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; box-shadow: 0 4px 10px rgba(99,102,241,0.3);' : ''}">
+            <i data-lucide="${meta.iconName}" style="width: 14px; height: 14px;"></i>
+          </div>
+          <span class="trend-axis-label">${meta.label.substring(0, 5)}</span>
+          <span class="trend-axis-sub">${isLatest ? "✨ Latest" : dateDisplay}</span>
+        </div>
+      `;
+    })
+    .join("");
+
+  container.innerHTML = `
+    <div class="trend-vis-card">
+      <div class="trend-summary-strip">
+        <div class="trend-summary-item">
+          <div class="trend-summary-val" style="color: #6366f1;">${avgAcc}%</div>
+          <div class="trend-summary-lbl">Avg Accuracy</div>
+        </div>
+        <div class="trend-summary-item">
+          <div class="trend-summary-val" style="color: #10b981;">${maxAcc}%</div>
+          <div class="trend-summary-lbl">Peak Score</div>
+        </div>
+        <div class="trend-summary-item">
+          <div class="trend-summary-val" style="color: #0f172a;">${recent.length}</div>
+          <div class="trend-summary-lbl">Evaluated</div>
+        </div>
+        <div class="trend-summary-item">
+          <div class="trend-summary-val" style="color: ${trajectoryColor}; font-size: 1.05rem;">${trajectoryText}</div>
+          <div class="trend-summary-lbl">Trajectory</div>
+        </div>
+      </div>
+
+      <div class="trend-chart-stage">
+        ${barsHtml}
+      </div>
+
+      <div class="trend-footer-axis">
+        ${footerAxisHtml}
+      </div>
+    </div>
+  `;
+
+  if (window.lucide) lucide.createIcons();
 }
 
 if (document.body.id === "page-admin") {
@@ -1017,9 +1552,10 @@ async function deactivateAnnouncement(id) {
   try {
     await db.collection("announcements").doc(id).update({ active: false });
     loadAnnouncements();
+    showAdminToast("Announcement has been deactivated.", "info", "Announcement Updated");
   } catch (err) {
     console.error("Failed to deactivate announcement:", err);
-    alert("Could not deactivate — check console.");
+    showAdminToast("Could not deactivate announcement — check console.", "error");
   }
 }
 
@@ -1053,9 +1589,10 @@ function setupAnnouncementPosting() {
       });
       input.value = "";
       loadAnnouncements();
+      showAdminToast("New platform announcement posted successfully!", "success", "Broadcast Published");
     } catch (err) {
       console.error("Failed to post announcement:", err);
-      alert("Could not post announcement — check console.");
+      showAdminToast("Could not post announcement — check console.", "error");
     } finally {
       btn.disabled = false;
       btn.textContent = original;
@@ -1146,9 +1683,10 @@ async function markFeedbackReviewed(id) {
   try {
     await db.collection("feedback").doc(id).update({ status: "reviewed" });
     loadFeedback();
+    showAdminToast("Feedback item marked as reviewed.", "success", "Feedback Updated");
   } catch (err) {
     console.error("Failed to mark feedback reviewed:", err);
-    alert("Could not update feedback — check console.");
+    showAdminToast("Could not update feedback — check console.", "error");
   }
 }
 
@@ -1183,21 +1721,21 @@ async function loadErrorLogs() {
         const url = d.url || d.page || "";
 
         return `
-          <div style="background: linear-gradient(135deg, #ffffff, #fff5f5); border: 1.5px solid #fecaca; border-radius: 20px; padding: 1.25rem 1.5rem; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.06); transition: all 0.25s ease;">
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; font-weight: 900; font-size: 0.72rem; padding: 0.2rem 0.65rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.3rem;">
+          <div class="admin-error-card" style="background: linear-gradient(135deg, #ffffff, #fff5f5); border: 1.5px solid #fecaca; border-radius: 20px; padding: 1.25rem 1.5rem; box-shadow: 0 8px 24px rgba(239, 68, 68, 0.06); transition: all 0.25s ease; max-width: 100%; box-sizing: border-box; overflow: hidden;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; flex-wrap: wrap; width: 100%;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; min-width: 0; max-width: 100%;">
+                <span style="background: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; font-weight: 900; font-size: 0.72rem; padding: 0.2rem 0.65rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 0.3rem; flex-shrink: 0;">
                   <i data-lucide="alert-circle" style="width: 14px; height: 14px;"></i>
                   <span>Runtime Error</span>
                 </span>
-                <span style="font-size: 0.85rem; font-weight: 800; color: #0f172a;">${email}</span>
-                ${url ? `<span style="font-size: 0.78rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.15rem 0.5rem; border-radius: 6px;">${url}</span>` : ""}
+                <span style="font-size: 0.85rem; font-weight: 800; color: #0f172a; word-break: break-word;">${email}</span>
+                ${url ? `<span style="font-size: 0.78rem; font-weight: 600; color: #64748b; background: #f1f5f9; padding: 0.15rem 0.5rem; border-radius: 6px; word-break: break-all; max-width: 100%;">${url}</span>` : ""}
               </div>
-              <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8;">${when}</span>
+              <span style="font-size: 0.8rem; font-weight: 700; color: #94a3b8; flex-shrink: 0;">${when}</span>
             </div>
 
             <!-- Error Code Block -->
-            <div style="font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.88rem; background: #0f172a; color: #f87171; border-radius: 14px; padding: 0.85rem 1.1rem; line-height: 1.5; overflow-x: auto; box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);">
+            <div class="admin-error-code" style="font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace; font-size: 0.85rem; background: #0f172a; color: #f87171; border-radius: 14px; padding: 0.85rem 1.1rem; line-height: 1.5; overflow-x: auto; -webkit-overflow-scrolling: touch; box-shadow: inset 0 2px 8px rgba(0,0,0,0.4); word-break: break-word; white-space: pre-wrap; max-width: 100%; box-sizing: border-box;">
               <span style="color: #94a3b8; user-select: none;">$ </span>${d.message || "Unknown error occurred"}
             </div>
           </div>
@@ -1260,7 +1798,7 @@ function renderAdminLeaderboard() {
         // 2nd Place (Silver)
         if (second) {
           podiumHtml += `
-            <div style="flex: 1; min-width: 170px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06); transform: translateY(0); order: 1;">
+            <div class="podium-card podium-silver" style="flex: 1; min-width: 160px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06);">
               <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥈</div>
               <div style="width: 52px; height: 52px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
                 ${second.initial}
@@ -1275,7 +1813,7 @@ function renderAdminLeaderboard() {
 
         // 1st Place (Gold Crown)
         podiumHtml += `
-          <div style="flex: 1; min-width: 190px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 26px; padding: 1.75rem 1rem 1.5rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); order: 2; z-index: 2;">
+          <div class="podium-card podium-gold" style="flex: 1; min-width: 180px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 26px; padding: 1.75rem 1rem 1.5rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); z-index: 2;">
             <div style="font-size: 2rem; margin-bottom: 0.2rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
             <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 4px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
               ${first.initial}
@@ -1290,7 +1828,7 @@ function renderAdminLeaderboard() {
         // 3rd Place (Bronze)
         if (third) {
           podiumHtml += `
-            <div style="flex: 1; min-width: 170px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1); transform: translateY(0); order: 3;">
+            <div class="podium-card podium-bronze" style="flex: 1; min-width: 160px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1);">
               <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥉</div>
               <div style="width: 52px; height: 52px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
                 ${third.initial}
@@ -1372,59 +1910,75 @@ function renderAdminLeaderboard() {
     });
 }
 
-function awardTopThree() {
+async function awardTopThree() {
   const adminBtn = document.getElementById("admin-award-top3-btn");
   if (adminBtn) {
     adminBtn.disabled = true;
-    adminBtn.innerHTML = "Awarding...";
+    adminBtn.innerHTML = "<i data-lucide='gift' style='width:16px;height:16px;'></i> <span>Awarding...</span>";
+    if (window.lucide) lucide.createIcons();
   }
-  
-  db.collection("users")
-    .orderBy("xp", "desc")
-    .limit(3)
-    .get()
-    .then(snap => {
-      if (snap.empty) return;
-      
-      const batch = db.batch();
-      const rewards = [
-        { coins: 500, xp: 500 }, // 1st
-        { coins: 300, xp: 300 }, // 2nd
-        { coins: 100, xp: 100 }  // 3rd
-      ];
-      
-      let i = 0;
-      snap.forEach(doc => {
-        if (i < 3) {
-          const reward = rewards[i];
-          batch.update(doc.ref, {
-            coins: firebase.firestore.FieldValue.increment(reward.coins),
-            xp: firebase.firestore.FieldValue.increment(reward.xp)
-          });
-          i++;
-        }
-      });
-      
-      return batch.commit();
-    })
-    .then(() => {
-      alert("Top 3 learners have been awarded their Coins and XP!");
-      if (adminBtn) {
-        adminBtn.innerHTML = "Awarded!";
-        setTimeout(() => {
-          adminBtn.disabled = false;
-          adminBtn.innerHTML = "<i data-lucide='gift' style='margin-right: 6px;'></i> <span>Award Top 3 Users</span>";
-          if (window.lucide) lucide.createIcons();
-        }, 3000);
-      }
-    })
-    .catch(err => {
-      console.error("Error awarding top 3:", err);
-      alert("Failed to award users.");
+
+  try {
+    const snap = await db.collection("users").orderBy("xp", "desc").limit(3).get();
+    if (snap.empty) {
+      showAdminToast("No users found on the leaderboard to award.", "warning", "Leaderboard Empty");
       if (adminBtn) {
         adminBtn.disabled = false;
-        adminBtn.innerHTML = "<i data-lucide='gift' style='margin-right: 6px;'></i> <span>Award Top 3 Users</span>";
+        adminBtn.innerHTML = "<i data-lucide='gift' style='width:16px;height:16px;'></i> <span>Award Top 3 Users</span>";
         if (window.lucide) lucide.createIcons();
       }
+      return;
+    }
+
+    const batch = db.batch();
+    const rewards = [
+      { coins: 500, xp: 500 }, // 1st
+      { coins: 300, xp: 300 }, // 2nd
+      { coins: 100, xp: 100 }, // 3rd
+    ];
+
+    let i = 0;
+    snap.forEach((doc) => {
+      if (i < 3) {
+        const reward = rewards[i];
+        batch.update(doc.ref, {
+          coins: firebase.firestore.FieldValue.increment(reward.coins),
+          xp: firebase.firestore.FieldValue.increment(reward.xp),
+        });
+        i++;
+      }
     });
+
+    await batch.commit();
+
+    // Instantly refresh user data & UI across all tabs
+    await loadAllUsers();
+    renderAdminLeaderboard();
+    renderOverview();
+    renderUsersTable();
+
+    if (adminBtn) {
+      adminBtn.innerHTML = "<i data-lucide='check' style='width:16px;height:16px;'></i> <span>Awarded!</span>";
+      if (window.lucide) lucide.createIcons();
+      setTimeout(() => {
+        adminBtn.disabled = false;
+        adminBtn.innerHTML = "<i data-lucide='gift' style='width:16px;height:16px;'></i> <span>Award Top 3 Users</span>";
+        if (window.lucide) lucide.createIcons();
+      }, 3000);
+    }
+
+    showAdminToast(
+      "Top 3 learners have been awarded their Coins & XP! Leaderboard and profile stats are updated.",
+      "success",
+      "🎉 Rewards Distributed!"
+    );
+  } catch (err) {
+    console.error("Error awarding top 3:", err);
+    showAdminToast("Could not distribute rewards. Please check console.", "error", "Awarding Failed");
+    if (adminBtn) {
+      adminBtn.disabled = false;
+      adminBtn.innerHTML = "<i data-lucide='gift' style='width:16px;height:16px;'></i> <span>Award Top 3 Users</span>";
+      if (window.lucide) lucide.createIcons();
+    }
+  }
 }

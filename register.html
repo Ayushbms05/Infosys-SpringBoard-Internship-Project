@@ -135,7 +135,6 @@
 
     .auth-card-modern input[type="text"],
     .auth-card-modern input[type="email"],
-    .auth-card-modern input[type="password"],
     .auth-card-modern select {
       width: 100%;
       padding: 0.8rem 1rem 0.8rem 2.7rem;
@@ -147,6 +146,42 @@
       border-radius: 14px;
       outline: none;
       transition: all 0.25s ease;
+    }
+
+    .auth-card-modern input[type="password"],
+    .auth-card-modern .input-wrapper:has(.password-toggle) input {
+      width: 100%;
+      padding: 0.8rem 2.85rem 0.8rem 2.7rem !important;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: #0f172a;
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 14px;
+      outline: none;
+      transition: all 0.25s ease;
+      text-overflow: ellipsis;
+    }
+
+    /* Suppress browser native password reveal buttons (Edge, Safari, Chrome) */
+    .auth-card-modern input[type="password"]::-ms-reveal,
+    .auth-card-modern input[type="password"]::-ms-clear,
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .auth-card-modern input[type="password"]::-webkit-contacts-auto-fill-button,
+    .auth-card-modern input[type="password"]::-webkit-credentials-auto-fill-button,
+    input[type="password"]::-webkit-contacts-auto-fill-button,
+    input[type="password"]::-webkit-credentials-auto-fill-button {
+      visibility: hidden !important;
+      pointer-events: none !important;
+      position: absolute !important;
+      right: 0 !important;
     }
 
     .auth-card-modern select {
@@ -168,6 +203,8 @@
     .auth-card-modern .password-toggle {
       position: absolute;
       right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
       background: transparent;
       border: none;
       color: #64748b;
@@ -178,6 +215,7 @@
       justify-content: center;
       border-radius: 8px;
       transition: color 0.2s;
+      z-index: 2;
     }
 
     .auth-card-modern .password-toggle:hover {

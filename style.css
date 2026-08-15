@@ -7845,14 +7845,32 @@ select.input-field {
    AUTH PAGES — FIX PASSWORD-TOGGLE ICON OVERLAPPING PLACEHOLDER TEXT
    ════════════════════════════════════════════════════════════════ */
 
-.input-wrapper:has(.password-toggle) input {
-  padding-right: 2.75rem;
+.input-wrapper:has(.password-toggle) input,
+input[type="password"] {
+  padding-right: 2.85rem !important;
   text-overflow: ellipsis;
+}
+
+/* Suppress browser-native reveal buttons across all engines */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  right: 0 !important;
 }
 
 /* Fallback for browsers without :has() support */
 .input-wrapper input.has-toggle {
-  padding-right: 2.75rem;
+  padding-right: 2.85rem !important;
   text-overflow: ellipsis;
 }
 
