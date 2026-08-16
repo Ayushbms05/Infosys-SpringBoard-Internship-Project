@@ -424,8 +424,17 @@ async function ulShowComplete() {
 
     try {
       const fieldPath = `unitProgress.${ulParams.level}.${ulParams.unitId}.${ulParams.skill}`;
-      await db.collection("users").doc(user.uid).update({ [fieldPath]: true });
-      console.log(`[unit-lesson.js] ✅ Marked complete: ${fieldPath}`);
+      const scoreFieldPath = `unitProgressScores.${ulParams.level}.${ulParams.unitId}.${ulParams.skill}`;
+      await db.collection("users").doc(user.uid).update({
+        [fieldPath]: true,
+        [scoreFieldPath]: accuracy
+      });
+
+      const unitScoreKey = `unit_${ulParams.level}_${ulParams.unitId}_${ulParams.skill}`;
+      const localMap = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
+      localMap[unitScoreKey] = accuracy;
+      localStorage.setItem("akshar_lesson_scores", JSON.stringify(localMap));
+      console.log(`[unit-lesson.js] ✅ Marked complete: ${fieldPath} with score ${accuracy}%`);
     } catch (e) {
       console.warn("[unit-lesson.js] Could not mark unit lesson complete:", e);
     }
@@ -434,6 +443,24 @@ async function ulShowComplete() {
       updateQuestProgress(user.uid, "lesson", 1);
       updateQuestProgress(user.uid, "xp", xpEarned);
     }
+
+    if (typeof getUserProgress === "function" && typeof checkAndAwardBadges === "function") {
+      try {
+        const freshProfile = await getUserProgress(user.uid);
+        const newlyEarnedBadges = await checkAndAwardBadges(user.uid, freshProfile);
+        if (typeof showBadgeCelebration === "function") {
+          for (const badgeId of newlyEarnedBadges) {
+            await showBadgeCelebration(badgeId);
+          }
+        }
+      } catch (err) {
+        console.warn("[unit-lesson.js] Badge check error:", err);
+      }
+    }
+  }
+
+  if (typeof showCelebrationParticles === "function") {
+    showCelebrationParticles();
   }
 
   const nextBtn = document.getElementById("ul-next-btn");

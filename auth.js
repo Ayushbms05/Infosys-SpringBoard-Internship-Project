@@ -310,7 +310,8 @@ function getUserProgress(uid) {
           currentLeague: data.currentLeague || "bronze",
           weeklyLeagueXP: data.weeklyLeagueXP || 0,
           lastLeagueWeek: data.lastLeagueWeek || "",
-          leagueGroupId: data.leagueGroupId || ""
+          leagueGroupId: data.leagueGroupId || "",
+          lessonScores: data.lessonScores || {}
         };
       }
       return null;
@@ -469,7 +470,21 @@ async function completeLesson(uid, level, skillType, unit, lessonIndex, accuracy
     }
   }
 
-  const updateData = { completedLessons, curriculum };
+  const lessonScores = profile.lessonScores || {};
+  const cleanScore = Math.round(accuracy !== undefined && accuracy !== null ? accuracy : 100);
+  lessonScores[lessonId] = {
+    accuracy: cleanScore,
+    score: cleanScore,
+    completedAt: new Date().toISOString()
+  };
+
+  try {
+    const localMap = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
+    localMap[lessonId] = cleanScore;
+    localStorage.setItem("akshar_lesson_scores", JSON.stringify(localMap));
+  } catch (e) {}
+
+  const updateData = { completedLessons, curriculum, lessonScores };
   if (leveledUp) updateData.currentLevel = newLevel;
 
   await db.collection("users").doc(uid).update(updateData);

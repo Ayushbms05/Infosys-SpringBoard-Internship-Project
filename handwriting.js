@@ -1,14 +1,15 @@
 /**
- * handwriting.js — Handwriting & Tracing Practice Engine
+ * handwriting.js — Handwriting & Tracing Studio Engine
  *
  * ═══════════════════════════════════════════════════════════════════
- * ISOLATION CONTRACT:
- *   ❌  Does NOT call lesson.js, units.js, or generateExercises()
- *   ❌  Does NOT read or write sharedLessonContent or levels/ Firestore paths
- *   ❌  Does NOT use Gemini API
- *   ✅  Reads from HANDWRITING_CONTENT (handwriting-content.js)
- *   ✅  Saves progress in profile.handwritingProgress (array of completed IDs)
- *   ✅  Awards XP via addXP(uid, 5) from auth.js
+ * FEATURES:
+ *   ✅ Supports all 7 official platform languages (en, hi, ta, te, kn, bn, mr)
+ *   ✅ Full i18n support with data-i18n attributes and dynamic locale lookup
+ *   ✅ Retina high-DPI canvas with smooth quadratic bezier curve ink
+ *   ✅ Undo stroke history, ink colors, brush size options, clear & guide toggle
+ *   ✅ Instant native speech pronunciation for all characters & words
+ *   ✅ Stroke accuracy evaluation comparing user strokes to glyph guide
+ *   ✅ Saves progress to profile.handwritingProgress and awards +15 XP
  * ═══════════════════════════════════════════════════════════════════
  */
 
@@ -20,24 +21,51 @@ let hwHasDrawn          = false;
 let hwCurrentLang       = "en";
 let hwCurrentCategory   = "alphabets";
 let hwCurrentIndex      = 0;
-let hwPenColor          = "#6c63ff"; // primary indigo
-let hwPenWidth          = 6;
+let hwPenColor          = "#6366f1"; // primary indigo
+let hwPenWidth          = 8;
 let hwStrokePoints      = [];
+let hwStrokeHistory     = []; // For undo functionality
+let hwShowGuideLines    = true;
+let hwState             = "ready"; // "ready" (Check & Earn XP) | "checked" (Next Character ➔)
 
-// ── Category Labels ───────────────────────────────────────────────
-const HW_CATEGORY_LABELS = {
-  en: { alphabets: "Letters", numbers: "Numbers", commonWords: "Words" },
-  hi: { alphabets: "वर्णमाला", numbers: "संख्याएँ", commonWords: "शब्द" }
-};
+// ── 7 Supported Languages Metadata ────────────────────────────────
+const HW_LANGUAGES = [
+  { code: "en", label: "English", nativeLabel: "English" },
+  { code: "hi", label: "Hindi", nativeLabel: "हिन्दी" },
+  { code: "ta", label: "Tamil", nativeLabel: "தமிழ்" },
+  { code: "te", label: "Telugu", nativeLabel: "తెలుగు" },
+  { code: "kn", label: "Kannada", nativeLabel: "ಕನ್ನಡ" },
+  { code: "bn", label: "Bengali", nativeLabel: "বাংলা" },
+  { code: "mr", label: "Marathi", nativeLabel: "मराठी" }
+];
 
-// ── Initialise Handwriting Feature ────────────────────────────────
+// ── Category Definitions ──────────────────────────────────────────
+const HW_CATEGORIES = [
+  { id: "alphabets", icon: "book-open", i18nKey: "hwAlphabets", defaultLabel: "Letters & Alphabet" },
+  { id: "numbers", icon: "hash", i18nKey: "hwNumbers", defaultLabel: "Numbers" },
+  { id: "commonWords", icon: "sparkles", i18nKey: "hwWords", defaultLabel: "Common Words" }
+];
+
+// ── Helper to Get Active Language Translation ────────────────────
+function getHwText(key, defaultText) {
+  const curLang = typeof selectedLang !== "undefined" ? selectedLang : (hwCurrentLang || "en");
+  if (typeof translations !== "undefined" && translations[curLang] && translations[curLang][key]) {
+    return translations[curLang][key];
+  }
+  if (typeof translations !== "undefined" && translations.en && translations.en[key]) {
+    return translations.en[key];
+  }
+  return defaultText || key;
+}
+
+// ── Initialise Handwriting Studio ─────────────────────────────────
 function initHandwriting(profile) {
   hwProfile = profile || {};
-  
-  // Select language set: if user is learning/knows Hindi, default to Hindi set, else English
-  const targetLang = hwProfile.targetLanguage || "en";
-  const knownLang  = hwProfile.preferredLanguage || "en";
-  hwCurrentLang    = (targetLang === "hi" || knownLang === "hi") ? "hi" : "en";
+
+  // Auto-select language script matching user preference or target language
+  const target = hwProfile.targetLanguage || hwProfile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en");
+  const isValidLang = HW_LANGUAGES.some(l => l.code === target);
+  hwCurrentLang = isValidLang ? target : "en";
 
   hwCurrentCategory = "alphabets";
   hwCurrentIndex    = 0;
@@ -45,109 +73,155 @@ function initHandwriting(profile) {
   renderHandwritingUI();
 }
 
-// ── Render Main UI Scaffolding inside #section-handwriting ───────
+// ── Render Studio UI inside #section-handwriting ──────────────────
 function renderHandwritingUI() {
   const container = document.getElementById("section-handwriting");
   if (!container) return;
 
-  const contentSet = HANDWRITING_CONTENT[hwCurrentLang] || HANDWRITING_CONTENT.en;
-  const categories = Object.keys(contentSet);
-  const labels     = HW_CATEGORY_LABELS[hwCurrentLang] || HW_CATEGORY_LABELS.en;
-
+  const contentSet   = HANDWRITING_CONTENT[hwCurrentLang] || HANDWRITING_CONTENT.en;
+  const currentItems = contentSet[hwCurrentCategory] || [];
   const completedList = hwProfile.handwritingProgress || [];
-  const currentItems  = contentSet[hwCurrentCategory] || [];
   const completedCount = currentItems.filter(item => completedList.includes(item.id)).length;
 
-  html = `
-    <div class="dash-card handwriting-card" style="max-width: 800px; margin: 0 auto; padding: 2rem;">
-      <!-- Header -->
-      <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+  const currentItem = currentItems[hwCurrentIndex] || { id: "none", display: "A" };
+  const isLastItem = hwCurrentIndex >= currentItems.length - 1;
+  const isFirstItem = hwCurrentIndex <= 0;
+
+  let html = `
+    <div class="hw-studio-card">
+      
+      <!-- Studio Header Hero -->
+      <div class="hw-studio-hero">
         <div>
-          <h3 class="dash-card-title" style="display: flex; align-items: center; gap: 0.5rem;">
-            <span class="dash-card-title-icon"><i data-lucide="edit-3"></i></span>
-            <span>Handwriting Practice</span>
-          </h3>
-          <p class="dash-card-subtitle" style="margin-top: 0.25rem;">
-            Trace characters and words on screen to build writing muscle memory
-          </p>
+          <div class="hw-hero-title-row">
+            <div class="hw-hero-icon">
+              <i data-lucide="edit-3" style="width: 24px; height: 24px;"></i>
+            </div>
+            <div>
+              <h2 class="hw-hero-title" data-i18n="hwTitle">${getHwText("hwTitle", "Interactive Handwriting Studio")}</h2>
+            </div>
+          </div>
+          <p class="hw-hero-subtitle" data-i18n="hwSubtitle">${getHwText("hwSubtitle", "Trace native script characters, numbers, and vocabulary to build muscle memory.")}</p>
         </div>
-        <div class="hw-progress-badge" style="background: var(--color-bg-surface); border: 1px solid var(--color-border); padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; color: var(--color-primary);">
-          ✨ <span id="hw-progress-text">${completedCount} / ${currentItems.length} Practiced</span>
+
+        <div class="hw-progress-chip">
+          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          <span id="hw-progress-text">${completedCount} / ${currentItems.length} <span data-i18n="hwPracticed">${getHwText("hwPracticed", "Practiced")}</span></span>
         </div>
       </div>
 
-      <!-- Language & Category Switcher Tabs -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
-        <div class="hw-category-tabs" style="display: flex; gap: 0.5rem; background: var(--color-bg-surface); padding: 0.4rem; border-radius: 12px; border: 1px solid var(--color-border);">
-          ${categories.map(cat => `
-            <button class="hw-cat-tab ${cat === hwCurrentCategory ? 'active' : ''}" 
-                    data-cat="${cat}" 
-                    style="padding: 0.5rem 1rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.2s; background: ${cat === hwCurrentCategory ? 'var(--color-primary)' : 'transparent'}; color: ${cat === hwCurrentCategory ? 'white' : 'var(--color-text-secondary)'};">
-              ${labels[cat] || cat}
+      <!-- 7-Language Script Selector Section -->
+      <div class="hw-script-section">
+        <div class="hw-script-header">
+          <div class="hw-script-title">
+            <i data-lucide="globe" style="width: 14px; height: 14px; color: #6366f1;"></i>
+            <span data-i18n="hwSelectScript">${getHwText("hwSelectScript", "Select Practice Script")}</span>
+          </div>
+          <span class="hw-script-count">7 Languages</span>
+        </div>
+        <div class="hw-script-strip">
+          ${HW_LANGUAGES.map(lang => `
+            <button class="hw-script-pill ${lang.code === hwCurrentLang ? 'active' : ''}" 
+                    data-lang="${lang.code}">
+              <span>${lang.nativeLabel}</span>
+              ${lang.code !== 'en' ? `<span class="hw-script-sub">(${lang.label})</span>` : ''}
             </button>
           `).join('')}
         </div>
+      </div>
 
-        <!-- Language toggle for script -->
-        <div style="display: flex; gap: 0.5rem;">
-          <button id="hw-lang-en" class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: ${hwCurrentLang==='en'?'800':'400'}; ${hwCurrentLang==='en'?'border-color:var(--color-primary);color:var(--color-primary);':''}">English</button>
-          <button id="hw-lang-hi" class="btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.85rem; font-weight: ${hwCurrentLang==='hi'?'800':'400'}; ${hwCurrentLang==='hi'?'border-color:var(--color-primary);color:var(--color-primary);':''}">हिंदी (Hindi)</button>
+      <!-- Mode Tabs (Alphabets, Numbers, Words) -->
+      <div class="hw-modes-container">
+        <div class="hw-mode-tabs">
+          ${HW_CATEGORIES.map(cat => `
+            <button class="hw-mode-tab ${cat.id === hwCurrentCategory ? 'active' : ''}" 
+                    data-cat="${cat.id}">
+              <i data-lucide="${cat.icon}" style="width: 16px; height: 16px;"></i>
+              <span data-i18n="${cat.i18nKey}">${getHwText(cat.i18nKey, cat.defaultLabel)}</span>
+            </button>
+          `).join('')}
+        </div>
+        <div style="font-size: 0.82rem; font-weight: 700; color: #64748b;">
+          <span data-i18n="hwStrokeHint">${getHwText("hwStrokeHint", "Follow the dotted guidelines with your finger or stylus")}</span>
         </div>
       </div>
 
-      <!-- Main Canvas Card Workspace -->
-      <div style="background: var(--color-bg-surface); border: 2px dashed var(--color-border); border-radius: 16px; padding: 1.5rem; text-align: center; position: relative; margin-bottom: 1.5rem;">
+      <!-- Main Canvas Workspace Area -->
+      <div class="hw-workspace-box">
         
-        <!-- Navigation Bar for Targets -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <button id="hw-prev-btn" class="btn-secondary" style="border-radius: 50%; width: 42px; height: 42px; padding: 0; display: flex; align-items: center; justify-content: center;">←</button>
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span id="hw-target-label" style="font-weight: 800; font-size: 1.1rem; color: var(--color-text-primary);">Item 1 of ${currentItems.length}</span>
-            <button id="hw-audio-btn" style="background: transparent; border: none; font-size: 1.4rem; cursor: pointer;" title="Listen">🔊</button>
-          </div>
-          <button id="hw-next-btn" class="btn-secondary" style="border-radius: 50%; width: 42px; height: 42px; padding: 0; display: flex; align-items: center; justify-content: center;">→</button>
-        </div>
+        <!-- Target Character Navigator -->
+        <div class="hw-nav-strip">
+          <button id="hw-prev-btn" class="hw-nav-circle-btn" ${isFirstItem ? 'disabled' : ''} title="${getHwText('hwPrevChar', 'Previous')}">
+            <i data-lucide="chevron-left" style="width: 22px; height: 22px;"></i>
+          </button>
 
-        <!-- HTML5 Canvas Container -->
-        <div style="position: relative; width: 100%; max-width: 450px; height: 300px; margin: 0 auto; background: var(--color-surface, #ffffff); border-radius: 12px; box-shadow: var(--shadow-card); overflow: hidden; touch-action: none;">
-          <canvas id="hw-canvas" width="450" height="300" style="width: 100%; height: 100%; cursor: crosshair; display: block;"></canvas>
-        </div>
-
-        <!-- Controls Toolbar (Color, Thickness, Clear) -->
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.25rem; padding: 0 0.5rem;">
-          
-          <!-- Color palette -->
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted);">Color:</span>
-            <button class="hw-color-btn" data-color="#6c63ff" style="width: 24px; height: 24px; border-radius: 50%; background: #6c63ff; border: 2px solid white; outline: 2px solid #6c63ff; cursor: pointer;"></button>
-            <button class="hw-color-btn" data-color="#00d4aa" style="width: 24px; height: 24px; border-radius: 50%; background: #00d4aa; border: 2px solid white; cursor: pointer;"></button>
-            <button class="hw-color-btn" data-color="#ff6b6b" style="width: 24px; height: 24px; border-radius: 50%; background: #ff6b6b; border: 2px solid white; cursor: pointer;"></button>
-            <button class="hw-color-btn" data-color="#2b2d42" style="width: 24px; height: 24px; border-radius: 50%; background: #2b2d42; border: 2px solid white; cursor: pointer;"></button>
+          <div class="hw-target-center">
+            <div class="hw-target-badge" id="hw-target-label">
+              <span data-i18n="hwItemOf">${getHwText("hwItemOf", "Character")}</span> ${hwCurrentIndex + 1} / ${currentItems.length}
+            </div>
+            <button id="hw-audio-btn" class="hw-tts-circle-btn" title="${getHwText('hwListen', 'Listen & Pronounce')}">
+              <i data-lucide="volume-2" style="width: 20px; height: 20px;"></i>
+            </button>
           </div>
 
-          <!-- Line Thickness -->
-          <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-text-muted);">Size:</span>
-            <button class="hw-size-btn" data-size="4" style="padding: 0.2rem 0.6rem; border-radius: 6px; border: 1px solid var(--color-border); background: white; font-weight: 700; cursor: pointer;">Thin</button>
-            <button class="hw-size-btn active" data-size="7" style="padding: 0.2rem 0.6rem; border-radius: 6px; border: 1px solid var(--color-primary); background: var(--color-primary); color: white; font-weight: 700; cursor: pointer;">Medium</button>
-            <button class="hw-size-btn" data-size="12" style="padding: 0.2rem 0.6rem; border-radius: 6px; border: 1px solid var(--color-border); background: white; font-weight: 700; cursor: pointer;">Thick</button>
-          </div>
-
-          <!-- Clear Canvas Button -->
-          <button id="hw-clear-btn" class="btn-secondary" style="padding: 0.4rem 1rem; font-weight: 700;">
-            🗑️ Clear
+          <button id="hw-next-btn" class="hw-nav-circle-btn" ${isLastItem ? 'disabled' : ''} title="${getHwText('hwNextChar', 'Next')}">
+            <i data-lucide="chevron-right" style="width: 22px; height: 22px;"></i>
           </button>
         </div>
 
+        <!-- Tracing Canvas -->
+        <div class="hw-canvas-wrapper">
+          <canvas id="hw-canvas" width="520" height="320"></canvas>
+        </div>
+
+        <!-- Toolbar (Colors, Sizes, Clear, Undo, Guidelines) -->
+        <div class="hw-toolbar">
+          
+          <!-- Inks -->
+          <div class="hw-colors-group">
+            <span style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-right: 0.25rem;" data-i18n="hwColor">${getHwText("hwColor", "Ink Color")}:</span>
+            <button class="hw-color-circle active" data-color="#6366f1" style="background: #6366f1;" title="Indigo"></button>
+            <button class="hw-color-circle" data-color="#10b981" style="background: #10b981;" title="Emerald"></button>
+            <button class="hw-color-circle" data-color="#f43f5e" style="background: #f43f5e;" title="Crimson"></button>
+            <button class="hw-color-circle" data-color="#f59e0b" style="background: #f59e0b;" title="Amber"></button>
+            <button class="hw-color-circle" data-color="#8b5cf6" style="background: #8b5cf6;" title="Violet"></button>
+            <button class="hw-color-circle" data-color="#0f172a" style="background: #0f172a;" title="Charcoal"></button>
+          </div>
+
+          <!-- Sizes -->
+          <div class="hw-sizes-group">
+            <span style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-right: 0.15rem; margin-left: 0.25rem;" data-i18n="hwSize">${getHwText("hwSize", "Brush Size")}:</span>
+            <button class="hw-size-btn-pill" data-size="4" data-i18n="hwThin">${getHwText("hwThin", "Fine")}</button>
+            <button class="hw-size-btn-pill active" data-size="8" data-i18n="hwMedium">${getHwText("hwMedium", "Medium")}</button>
+            <button class="hw-size-btn-pill" data-size="14" data-i18n="hwThick">${getHwText("hwThick", "Bold")}</button>
+          </div>
+
+          <!-- Auxiliary Tools (Undo, Guide Toggle, Clear) -->
+          <div class="hw-aux-actions">
+            <button id="hw-undo-btn" class="hw-btn-tool" title="Undo Last Stroke">
+              <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i>
+              <span>Undo</span>
+            </button>
+            <button id="hw-guide-btn" class="hw-btn-tool" title="Toggle Guidelines">
+              <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+              <span data-i18n="hwGuidelineMode">${getHwText("hwGuidelineMode", "Dotted Guide")}</span>
+            </button>
+            <button id="hw-clear-btn" class="hw-btn-tool" style="color: #ef4444; border-color: #fecaca;" title="Clear Canvas">
+              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
+              <span data-i18n="hwClear">${getHwText("hwClear", "Clear Canvas")}</span>
+            </button>
+          </div>
+
+        </div>
+
       </div>
 
-      <!-- Action Footer: Check / Submit Practice -->
-      <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 0.75rem;">
-        <div id="hw-feedback-area" class="hidden" style="padding: 0.75rem 1.5rem; border-radius: 12px; background: rgba(0, 212, 170, 0.15); border: 1px solid #00d4aa; color: #00876c; font-weight: 800; font-size: 1.1rem; width: 100%; max-width: 450px;">
-          🎉 Great practice! +5 XP earned!
-        </div>
-        <button id="hw-done-btn" class="btn-primary" style="padding: 0.8rem 2.5rem; font-size: 1.1rem; width: 100%; max-width: 320px;">
-          Check & Earn XP ⚡
+      <!-- Action Footer: Check Accuracy & Earn XP -->
+      <div class="hw-footer-cta">
+        <div id="hw-feedback-area" class="hidden hw-feedback-banner"></div>
+        <button id="hw-done-btn" class="hw-check-btn">
+          <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+          <span data-i18n="hwCheck">${getHwText("hwCheck", "Check & Earn XP ⚡")}</span>
         </button>
       </div>
 
@@ -157,18 +231,27 @@ function renderHandwritingUI() {
   container.innerHTML = html;
   if (typeof lucide !== "undefined") lucide.createIcons();
 
-  // Attach event handlers
+  // Attach handlers
   setupCanvasEvents();
   setupTabEvents();
 }
 
-// ── Setup Category Tabs and Language Toggles ─────────────────────
+// ── Setup Category, Script, and Action Event Handlers ─────────────
 function setupTabEvents() {
   const container = document.getElementById("section-handwriting");
   if (!container) return;
 
-  // Category switches
-  container.querySelectorAll(".hw-cat-tab").forEach(tab => {
+  // 1. Script selector pills
+  container.querySelectorAll(".hw-script-pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+      hwCurrentLang  = pill.dataset.lang;
+      hwCurrentIndex = 0;
+      renderHandwritingUI();
+    });
+  });
+
+  // 2. Category switches
+  container.querySelectorAll(".hw-mode-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       hwCurrentCategory = tab.dataset.cat;
       hwCurrentIndex    = 0;
@@ -176,25 +259,7 @@ function setupTabEvents() {
     });
   });
 
-  // Language toggles
-  const langEn = document.getElementById("hw-lang-en");
-  const langHi = document.getElementById("hw-lang-hi");
-  if (langEn) {
-    langEn.addEventListener("click", () => {
-      hwCurrentLang    = "en";
-      hwCurrentIndex   = 0;
-      renderHandwritingUI();
-    });
-  }
-  if (langHi) {
-    langHi.addEventListener("click", () => {
-      hwCurrentLang    = "hi";
-      hwCurrentIndex   = 0;
-      renderHandwritingUI();
-    });
-  }
-
-  // Prev / Next target buttons
+  // 3. Navigation (Previous / Next)
   const prevBtn = document.getElementById("hw-prev-btn");
   const nextBtn = document.getElementById("hw-next-btn");
   const contentSet = HANDWRITING_CONTENT[hwCurrentLang] || HANDWRITING_CONTENT.en;
@@ -217,52 +282,68 @@ function setupTabEvents() {
     });
   }
 
-  // Audio button
+  // 4. Native Pronunciation Audio
   const audioBtn = document.getElementById("hw-audio-btn");
   if (audioBtn) {
     audioBtn.addEventListener("click", () => {
       const currentItem = items[hwCurrentIndex];
       if (currentItem && typeof speakText === "function") {
+        audioBtn.style.transform = "scale(0.9)";
+        setTimeout(() => (audioBtn.style.transform = "scale(1)"), 150);
         speakText(currentItem.display, hwCurrentLang);
       }
     });
   }
 
-  // Clear button
+  // 5. Clear Canvas
   const clearBtn = document.getElementById("hw-clear-btn");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
+      hwStrokeHistory = [];
       redrawCanvasGuide();
     });
   }
 
-  // Color picker buttons
-  container.querySelectorAll(".hw-color-btn").forEach(btn => {
+  // 6. Undo Stroke
+  const undoBtn = document.getElementById("hw-undo-btn");
+  if (undoBtn) {
+    undoBtn.addEventListener("click", () => {
+      if (hwStrokeHistory.length > 0) {
+        hwStrokeHistory.pop();
+        reconstructCanvasFromHistory();
+      }
+    });
+  }
+
+  // 7. Toggle Guidelines
+  const guideBtn = document.getElementById("hw-guide-btn");
+  if (guideBtn) {
+    guideBtn.addEventListener("click", () => {
+      hwShowGuideLines = !hwShowGuideLines;
+      guideBtn.style.color = hwShowGuideLines ? "#4f46e5" : "#64748b";
+      reconstructCanvasFromHistory();
+    });
+  }
+
+  // 8. Ink Color Picker
+  container.querySelectorAll(".hw-color-circle").forEach(btn => {
     btn.addEventListener("click", () => {
       hwPenColor = btn.dataset.color;
-      container.querySelectorAll(".hw-color-btn").forEach(b => b.style.outline = "none");
-      btn.style.outline = `2px solid ${hwPenColor}`;
+      container.querySelectorAll(".hw-color-circle").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
     });
   });
 
-  // Size picker buttons
-  container.querySelectorAll(".hw-size-btn").forEach(btn => {
+  // 9. Brush Size Picker
+  container.querySelectorAll(".hw-size-btn-pill").forEach(btn => {
     btn.addEventListener("click", () => {
       hwPenWidth = parseInt(btn.dataset.size, 10);
-      container.querySelectorAll(".hw-size-btn").forEach(b => {
-        b.classList.remove("active");
-        b.style.background = "white";
-        b.style.color = "black";
-        b.style.borderColor = "var(--color-border)";
-      });
+      container.querySelectorAll(".hw-size-btn-pill").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      btn.style.background = "var(--color-primary)";
-      btn.style.color = "white";
-      btn.style.borderColor = "var(--color-primary)";
     });
   });
 
-  // Done / Check practice button
+  // 10. Check & Submit Practice
   const doneBtn = document.getElementById("hw-done-btn");
   if (doneBtn) {
     doneBtn.addEventListener("click", handlePracticeDone);
@@ -275,16 +356,25 @@ function setupCanvasEvents() {
   if (!hwCanvas) return;
   hwCtx = hwCanvas.getContext("2d");
 
-  // Redraw faint guide text in background
+  // Handle High-DPI Display Sharpness
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = 520;
+  const displayHeight = 320;
+  
+  hwCanvas.width = displayWidth * dpr;
+  hwCanvas.height = displayHeight * dpr;
+  hwCtx.scale(dpr, dpr);
+
+  hwStrokeHistory = [];
   redrawCanvasGuide();
 
-  // Mouse event listeners
+  // Mouse Handlers
   hwCanvas.addEventListener("mousedown", startDrawing);
   hwCanvas.addEventListener("mousemove", draw);
   hwCanvas.addEventListener("mouseup", stopDrawing);
   hwCanvas.addEventListener("mouseleave", stopDrawing);
 
-  // Touch event listeners
+  // Touch Handlers
   hwCanvas.addEventListener("touchstart", (e) => {
     e.preventDefault();
     const touch = e.touches[0];
@@ -305,7 +395,7 @@ function setupCanvasEvents() {
     hwCanvas.dispatchEvent(mouseEvent);
   }, { passive: false });
 
-  hwCanvas.addEventListener("touchend", (e) => {
+  hwCanvas.addEventListener("touchend", () => {
     const mouseEvent = new MouseEvent("mouseup", {});
     hwCanvas.dispatchEvent(mouseEvent);
   });
@@ -313,19 +403,34 @@ function setupCanvasEvents() {
 
 function getCanvasCoordinates(e) {
   const rect = hwCanvas.getBoundingClientRect();
-  const scaleX = hwCanvas.width / rect.width;
-  const scaleY = hwCanvas.height / rect.height;
+  const displayWidth = 520;
+  const displayHeight = 320;
   return {
-    x: (e.clientX - rect.left) * scaleX,
-    y: (e.clientY - rect.top) * scaleY
+    x: ((e.clientX - rect.left) / rect.width) * displayWidth,
+    y: ((e.clientY - rect.top) / rect.height) * displayHeight
   };
 }
 
+let currentStroke = null;
+
 function startDrawing(e) {
+  if (hwState === "checked") {
+    resetHwButton();
+    const fbArea = document.getElementById("hw-feedback-area");
+    if (fbArea) fbArea.classList.add("hidden");
+  }
+
   hwIsDrawing = true;
   hwHasDrawn  = true;
   const pos = getCanvasCoordinates(e);
-  hwStrokePoints.push({ x: pos.x, y: pos.y });
+
+  currentStroke = {
+    color: hwPenColor,
+    width: hwPenWidth,
+    points: [pos]
+  };
+
+  hwStrokePoints.push(pos);
 
   hwCtx.beginPath();
   hwCtx.moveTo(pos.x, pos.y);
@@ -336,18 +441,35 @@ function startDrawing(e) {
 }
 
 function draw(e) {
-  if (!hwIsDrawing) return;
+  if (!hwIsDrawing || !currentStroke) return;
   const pos = getCanvasCoordinates(e);
-  hwStrokePoints.push({ x: pos.x, y: pos.y });
 
-  hwCtx.lineTo(pos.x, pos.y);
-  hwCtx.stroke();
+  currentStroke.points.push(pos);
+  hwStrokePoints.push(pos);
+
+  // Smooth quadratic bezier drawing
+  const points = currentStroke.points;
+  if (points.length > 2) {
+    const p1 = points[points.length - 2];
+    const p2 = points[points.length - 1];
+    const midPoint = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2 };
+
+    hwCtx.quadraticCurveTo(p1.x, p1.y, midPoint.x, midPoint.y);
+    hwCtx.stroke();
+  } else {
+    hwCtx.lineTo(pos.x, pos.y);
+    hwCtx.stroke();
+  }
 }
 
 function stopDrawing() {
   if (hwIsDrawing) {
     hwCtx.closePath();
     hwIsDrawing = false;
+    if (currentStroke && currentStroke.points.length > 0) {
+      hwStrokeHistory.push(currentStroke);
+    }
+    currentStroke = null;
   }
 }
 
@@ -355,8 +477,11 @@ function stopDrawing() {
 function redrawCanvasGuide() {
   if (!hwCanvas || !hwCtx) return;
 
+  const displayWidth = 520;
+  const displayHeight = 320;
+
   // Clear canvas
-  hwCtx.clearRect(0, 0, hwCanvas.width, hwCanvas.height);
+  hwCtx.clearRect(0, 0, displayWidth, displayHeight);
   hwHasDrawn = false;
   hwStrokePoints = [];
 
@@ -366,48 +491,118 @@ function redrawCanvasGuide() {
 
   if (!currentItem) return;
 
-  // Draw faint guidelines (baseline & middle line)
-  hwCtx.strokeStyle = "#e2e8f0";
-  hwCtx.lineWidth   = 1;
-  hwCtx.setLineDash([6, 6]);
+  if (hwShowGuideLines) {
+    // Calligraphy guidelines
+    hwCtx.strokeStyle = "#e2e8f0";
+    hwCtx.lineWidth   = 1.5;
+    hwCtx.setLineDash([6, 6]);
 
-  // Middle horizontal line
-  hwCtx.beginPath();
-  hwCtx.moveTo(20, hwCanvas.height / 2);
-  hwCtx.lineTo(hwCanvas.width - 20, hwCanvas.height / 2);
-  hwCtx.stroke();
+    // Top guide line
+    hwCtx.beginPath();
+    hwCtx.moveTo(25, 65);
+    hwCtx.lineTo(displayWidth - 25, 65);
+    hwCtx.stroke();
 
-  hwCtx.setLineDash([]); // reset line dash
+    // Middle horizontal guideline
+    hwCtx.beginPath();
+    hwCtx.moveTo(25, displayHeight / 2);
+    hwCtx.lineTo(displayWidth - 25, displayHeight / 2);
+    hwCtx.stroke();
 
-  // Draw faint guide character in background
-  const text = currentItem.display;
-  hwCtx.fillStyle    = "rgba(203, 213, 225, 0.45)"; // soft light gray
-  hwCtx.textAlign    = "center";
-  hwCtx.textBaseline = "middle";
+    // Baseline guide line
+    hwCtx.beginPath();
+    hwCtx.moveTo(25, displayHeight - 65);
+    hwCtx.lineTo(displayWidth - 25, displayHeight - 65);
+    hwCtx.stroke();
 
-  // Dynamic font sizing based on length
-  let fontSize = 160;
-  if (text.length > 3) fontSize = 90;
-  if (text.length > 6) fontSize = 65;
+    hwCtx.setLineDash([]); // Reset dash
 
-  hwCtx.font = `bold ${fontSize}px sans-serif`;
-  hwCtx.fillText(text, hwCanvas.width / 2, hwCanvas.height / 2 + 10);
+    // Draw faint guide character in background
+    const text = currentItem.display;
+    hwCtx.fillStyle    = "rgba(203, 213, 225, 0.4)"; // Soft light slate
+    hwCtx.textAlign    = "center";
+    hwCtx.textBaseline = "middle";
+
+    let fontSize = 165;
+    if (text.length > 3) fontSize = 88;
+    if (text.length > 6) fontSize = 62;
+
+    hwCtx.font = `bold ${fontSize}px 'Plus Jakarta Sans', sans-serif`;
+    hwCtx.fillText(text, displayWidth / 2, displayHeight / 2 + 5);
+  }
 }
 
-// ── Update Canvas for New Target ──────────────────────────────────
+// ── Reconstruct Canvas after Undo or Guide Toggle ─────────────────
+function reconstructCanvasFromHistory() {
+  redrawCanvasGuide();
+  hwStrokePoints = [];
+
+  if (hwStrokeHistory.length === 0) {
+    hwHasDrawn = false;
+    return;
+  }
+
+  hwHasDrawn = true;
+  hwStrokeHistory.forEach(stroke => {
+    if (stroke.points.length < 1) return;
+    hwCtx.beginPath();
+    hwCtx.strokeStyle = stroke.color;
+    hwCtx.lineWidth   = stroke.width;
+    hwCtx.lineCap     = "round";
+    hwCtx.lineJoin    = "round";
+
+    hwCtx.moveTo(stroke.points[0].x, stroke.points[0].y);
+    hwStrokePoints.push(stroke.points[0]);
+
+    for (let i = 1; i < stroke.points.length; i++) {
+      const pt = stroke.points[i];
+      hwStrokePoints.push(pt);
+      hwCtx.lineTo(pt.x, pt.y);
+    }
+    hwCtx.stroke();
+    hwCtx.closePath();
+  });
+}
+
+// ── Reset Practice Button back to Ready State ─────────────────────
+function resetHwButton() {
+  hwState = "ready";
+  const doneBtn = document.getElementById("hw-done-btn");
+  if (doneBtn) {
+    doneBtn.style.background = "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)";
+    doneBtn.style.boxShadow = "0 10px 24px rgba(99, 102, 241, 0.35)";
+    doneBtn.innerHTML = `
+      <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+      <span data-i18n="hwCheck">${getHwText("hwCheck", "Check & Earn XP ⚡")}</span>
+    `;
+    if (typeof lucide !== "undefined") lucide.createIcons();
+  }
+}
+
+// ── Update Canvas for New Target Character ────────────────────────
 function updateCanvasTarget() {
   const contentSet = HANDWRITING_CONTENT[hwCurrentLang] || HANDWRITING_CONTENT.en;
   const items      = contentSet[hwCurrentCategory] || [];
   const label      = document.getElementById("hw-target-label");
+  const prevBtn    = document.getElementById("hw-prev-btn");
+  const nextBtn    = document.getElementById("hw-next-btn");
 
   if (label) {
-    label.textContent = `Item ${hwCurrentIndex + 1} of ${items.length}`;
+    label.innerHTML = `<span data-i18n="hwItemOf">${getHwText("hwItemOf", "Character")}</span> ${hwCurrentIndex + 1} / ${items.length}`;
   }
 
-  // Hide feedback area when changing target
-  const fb = document.getElementById("hw-feedback-area");
-  if (fb) fb.classList.add("hidden");
+  if (prevBtn) prevBtn.disabled = hwCurrentIndex <= 0;
+  if (nextBtn) nextBtn.disabled = hwCurrentIndex >= items.length - 1;
 
+  // Hide & reset feedback area
+  const fb = document.getElementById("hw-feedback-area");
+  if (fb) {
+    fb.innerHTML = "";
+    fb.classList.add("hidden");
+  }
+
+  hwStrokeHistory = [];
+  resetHwButton();
   redrawCanvasGuide();
 }
 
@@ -417,8 +612,8 @@ function evaluateHandwritingCanvas(targetText) {
     return { success: false, score: 0, reason: "empty" };
   }
 
-  const width = hwCanvas.width;
-  const height = hwCanvas.height;
+  const width = 520;
+  const height = 320;
 
   // 1. Render target guide text on offscreen canvas
   const guideCanvas = document.createElement("canvas");
@@ -433,17 +628,17 @@ function evaluateHandwritingCanvas(targetText) {
   gCtx.textAlign = "center";
   gCtx.textBaseline = "middle";
 
-  let fontSize = 160;
-  if (targetText.length > 3) fontSize = 90;
-  if (targetText.length > 6) fontSize = 65;
+  let fontSize = 165;
+  if (targetText.length > 3) fontSize = 88;
+  if (targetText.length > 6) fontSize = 62;
 
-  gCtx.font = `bold ${fontSize}px sans-serif`;
-  gCtx.fillText(targetText, width / 2, height / 2 + 10);
+  gCtx.font = `bold ${fontSize}px 'Plus Jakarta Sans', sans-serif`;
+  gCtx.fillText(targetText, width / 2, height / 2 + 5);
 
   const guideData = gCtx.getImageData(0, 0, width, height).data;
 
   // 2. Check user stroke points against ground truth guideData
-  const radius = 22; // 22px tolerance radius around target text strokes
+  const radius = 24; // 24px tolerance radius around target text strokes
   let hitCount = 0;
 
   for (let i = 0; i < hwStrokePoints.length; i++) {
@@ -457,7 +652,7 @@ function evaluateHandwritingCanvas(targetText) {
     const minX = Math.max(0, px - radius);
     const maxX = Math.min(width - 1, px + radius);
 
-    // Search 22px bounding box around point for black target text pixel (<128)
+    // Search bounding box for black target text pixel (< 128)
     for (let y = minY; y <= maxY; y += 3) {
       for (let x = minX; x <= maxX; x += 3) {
         const idx = (y * width + x) * 4;
@@ -469,15 +664,13 @@ function evaluateHandwritingCanvas(targetText) {
       if (isNear) break;
     }
 
-    if (isNear) {
-      hitCount++;
-    }
+    if (isNear) hitCount++;
   }
 
   const accuracyRatio = hitCount / hwStrokePoints.length;
   const finalScore = Math.round(accuracyRatio * 100);
+  const isSuccess = finalScore >= 30;
 
-  const isSuccess = finalScore >= 35;
   return {
     success: isSuccess,
     score: finalScore,
@@ -485,7 +678,7 @@ function evaluateHandwritingCanvas(targetText) {
   };
 }
 
-// ── Handle Practice Completion (Evaluates Canvas Accuracy) ───────
+// ── Handle Practice Completion ────────────────────────────────────
 async function handlePracticeDone() {
   const contentSet  = HANDWRITING_CONTENT[hwCurrentLang] || HANDWRITING_CONTENT.en;
   const items       = contentSet[hwCurrentCategory] || [];
@@ -493,33 +686,56 @@ async function handlePracticeDone() {
 
   if (!currentItem) return;
 
+  // If already in "checked" state, clicking button advances to next letter cleanly!
+  if (hwState === "checked") {
+    if (hwCurrentIndex < items.length - 1) {
+      hwCurrentIndex++;
+    } else {
+      hwCurrentIndex = 0; // Loop back or restart category
+    }
+    resetHwButton();
+    updateCanvasTarget();
+    return;
+  }
+
   const fbArea = document.getElementById("hw-feedback-area");
   if (!fbArea) return;
 
   const evaluation = evaluateHandwritingCanvas(currentItem.display);
 
   if (evaluation.reason === "empty") {
-    fbArea.className = "";
-    fbArea.style.cssText = "padding: 0.75rem 1.5rem; border-radius: 12px; background: #fffbe8; border: 1.5px solid #f59e0b; color: #92400e; font-weight: 800; font-size: 1.05rem; width: 100%; max-width: 450px;";
-    fbArea.innerHTML = "⚠️ Please trace or write the character on the canvas first!";
+    fbArea.classList.remove("hidden");
+    fbArea.style.background = "#fffbe8";
+    fbArea.style.border = "1.5px solid #f59e0b";
+    fbArea.style.color = "#92400e";
+    fbArea.innerHTML = `⚠️ ${getHwText("hwStrokeHint", "Please trace or write the character on the canvas first!")}`;
     return;
   }
 
   if (!evaluation.success) {
-    fbArea.className = "";
-    fbArea.style.cssText = "padding: 0.75rem 1.5rem; border-radius: 12px; background: #fef2f2; border: 1.5px solid #ef4444; color: #991b1b; font-weight: 800; font-size: 1.05rem; width: 100%; max-width: 450px;";
-    fbArea.innerHTML = `❌ Handwriting does not match (${evaluation.score}% match). Please trace closer to the character!`;
+    fbArea.classList.remove("hidden");
+    fbArea.style.background = "#fef2f2";
+    fbArea.style.border = "1.5px solid #ef4444";
+    fbArea.style.color = "#991b1b";
+    fbArea.innerHTML = `❌ Trace closer to the outline (${evaluation.score}% match). Try again!`;
     return;
   }
 
   // Success!
-  fbArea.className = "";
-  fbArea.style.cssText = "padding: 0.75rem 1.5rem; border-radius: 12px; background: #ecfdf5; border: 1.5px solid #10b981; color: #065f46; font-weight: 800; font-size: 1.05rem; width: 100%; max-width: 450px;";
-  fbArea.innerHTML = `🎉 Great writing! Accurate match (${evaluation.score}% match). +5 XP!`;
+  fbArea.classList.remove("hidden");
+  fbArea.style.background = "#ecfdf5";
+  fbArea.style.border = "1.5px solid #10b981";
+  fbArea.style.color = "#065f46";
+  fbArea.innerHTML = `${getHwText("hwFeedbackSuccess", "🎉 Beautiful stroke! +15 XP earned!")} (${evaluation.score}% accuracy)`;
+
+  // Trigger celebration confetti
+  if (typeof showCelebrationParticles === "function") {
+    showCelebrationParticles();
+  }
 
   const user = auth.currentUser;
   if (user) {
-    if (typeof addXP === "function") await addXP(user.uid, 5);
+    if (typeof addXP === "function") await addXP(user.uid, 15);
 
     const completedList = hwProfile.handwritingProgress || [];
     if (!completedList.includes(currentItem.id)) {
@@ -538,14 +754,29 @@ async function handlePracticeDone() {
     const completedCount = items.filter(item => completedList.includes(item.id)).length;
     const progressEl = document.getElementById("hw-progress-text");
     if (progressEl) {
-      progressEl.textContent = `${completedCount} / ${items.length} Practiced`;
+      progressEl.innerHTML = `${completedCount} / ${items.length} <span data-i18n="hwPracticed">${getHwText("hwPracticed", "Practiced")}</span>`;
     }
   }
 
-  setTimeout(() => {
+  // Switch button state to "checked" -> Next Character ➔ (NO auto-advance timeout!)
+  hwState = "checked";
+  const doneBtn = document.getElementById("hw-done-btn");
+  if (doneBtn) {
     if (hwCurrentIndex < items.length - 1) {
-      hwCurrentIndex++;
-      updateCanvasTarget();
+      doneBtn.style.background = "linear-gradient(135deg, #10b981 0%, #059669 100%)";
+      doneBtn.style.boxShadow = "0 10px 24px rgba(16, 185, 129, 0.35)";
+      doneBtn.innerHTML = `
+        <span>${getHwText("hwNextLetter", "Next Character ➔")}</span>
+        <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+      `;
+    } else {
+      doneBtn.style.background = "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)";
+      doneBtn.style.boxShadow = "0 10px 24px rgba(245, 158, 11, 0.35)";
+      doneBtn.innerHTML = `
+        <span>Practice Again 🔄</span>
+        <i data-lucide="rotate-ccw" style="width: 20px; height: 20px;"></i>
+      `;
     }
-  }, 1600);
+    if (typeof lucide !== "undefined") lucide.createIcons();
+  }
 }

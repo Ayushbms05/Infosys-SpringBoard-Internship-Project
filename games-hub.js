@@ -38,6 +38,21 @@ window.handleGameWin = async function (xp, coins) {
   }
 };
 
+window.showGameVictory = function (subtitleText, xp = 20, coins = 10) {
+  const completeEl = document.getElementById("game-complete");
+  if (!completeEl) return;
+  const subEl = document.getElementById("game-complete-subtitle");
+  if (subEl && subtitleText) {
+    subEl.textContent = subtitleText;
+  }
+  completeEl.classList.remove("hidden");
+  if (typeof lucide !== "undefined") lucide.createIcons();
+  if (typeof showCelebrationParticles === "function") {
+    showCelebrationParticles(3200);
+  }
+  window.handleGameWin(xp, coins);
+};
+
 // Helper: get dictionary for a language
 function _getDict(profile) {
   const lang = profile?.preferredLanguage || "en";
@@ -120,21 +135,46 @@ window.GamesHub = (function () {
     getPuzzles().forEach(p => {
       puzzlesGrid.appendChild(makeCard(p));
     });
+    if (typeof lucide !== 'undefined') lucide.createIcons();
   }
 
+  const GAME_META = {
+    'word-match':   { tag: 'Memory & Recall',        gradient: 'linear-gradient(135deg, #6366f1, #4f46e5)', btnText: 'Play Match' },
+    'word-builder': { tag: 'Spelling & Anagrams',    gradient: 'linear-gradient(135deg, #06b6d4, #0891b2)', btnText: 'Build Words' },
+    'word-safari':  { tag: 'Visual Association',     gradient: 'linear-gradient(135deg, #10b981, #059669)', btnText: 'Start Safari' },
+    'word-race':    { tag: 'Speed Challenge',        gradient: 'linear-gradient(135deg, #f59e0b, #d97706)', btnText: 'Start Race' },
+    'word-search':  { tag: 'Pattern Recognition',    gradient: 'linear-gradient(135deg, #8b5cf6, #7c3aed)', btnText: 'Find Words' },
+    'crossword':    { tag: 'Vocabulary Clues',       gradient: 'linear-gradient(135deg, #ec4899, #db2777)', btnText: 'Solve Grid' }
+  };
+
   function makeCard(item) {
+    const meta = GAME_META[item.id] || { tag: 'Skill Challenge', gradient: 'linear-gradient(135deg, #6366f1, #4f46e5)', btnText: 'Play Now' };
     const card = document.createElement("div");
-    card.className = "scenario-card";
-    card.style.cssText = "background: #ffffff !important; background-color: #ffffff !important; border: 1.5px solid #e2e8f0 !important; border-radius: 24px !important; padding: 1.75rem 1.5rem !important; box-shadow: 0 6px 18px rgba(15, 23, 42, 0.04) !important; cursor: pointer;";
+    card.className = "game-hub-card";
 
     card.innerHTML = `
-      <div class="scenario-icon">${item.icon}</div>
-      <h3 style="margin:0 0 .5rem 0; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; color: #0f172a;" data-i18n="${item.titleKey}">${item.title}</h3>
-      <p style="margin:0;color:#64748b;font-size:.9rem; font-weight: 600;" data-i18n="${item.descKey}">${item.desc}</p>
+      <div>
+        <div class="game-hub-card-header">
+          <div class="game-hub-icon-box" style="background: ${meta.gradient};">
+            <span style="font-size: 1.6rem;">${item.icon}</span>
+          </div>
+          <span class="game-hub-tag">${meta.tag}</span>
+        </div>
+        <h3 class="game-hub-title" data-i18n="${item.titleKey}">${item.title}</h3>
+        <p class="game-hub-desc" data-i18n="${item.descKey}">${item.desc}</p>
+      </div>
+      <div class="game-hub-card-footer">
+        <span class="game-hub-play-btn">
+          <span>${meta.btnText}</span>
+          <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+        </span>
+      </div>
     `;
+
     card.onclick = () => {
       document.getElementById("games-hub-screen").classList.add("hidden");
       item.init();
+      if (typeof lucide !== 'undefined') lucide.createIcons();
     };
     return card;
   }
@@ -145,6 +185,7 @@ window.GamesHub = (function () {
       if (el) el.classList.add("hidden");
     });
     document.getElementById("games-hub-screen").classList.remove("hidden");
+    if (typeof lucide !== 'undefined') lucide.createIcons();
     // Clear any running timers in sub-games
     if (WordBuilder._clearTimer) WordBuilder._clearTimer();
     if (WordRace._clearTimer) WordRace._clearTimer();
@@ -286,10 +327,7 @@ var WordBuilder = (function () {
     clearInterval(timerInterval);
     document.getElementById("game-word-builder").classList.add("hidden");
     if (won) {
-      document.getElementById("game-complete-subtitle").textContent =
-        `You built all ${TOTAL_ROUNDS} words! Great spelling!`;
-      document.getElementById("game-complete").classList.remove("hidden");
-      window.handleGameWin(25, 10);
+      window.showGameVictory(`You built all ${TOTAL_ROUNDS} words! Outstanding spelling mastery! 🔨`, 25, 10);
     } else {
       window.GamesHub.showHub();
     }
@@ -362,10 +400,7 @@ var WordSafari = (function () {
   function endGame(won) {
     document.getElementById("game-word-safari").classList.add("hidden");
     if (won) {
-      document.getElementById("game-complete-subtitle").textContent =
-        `Safari complete! Best streak: ${streak} 🦁`;
-      document.getElementById("game-complete").classList.remove("hidden");
-      window.handleGameWin(20, 8);
+      window.showGameVictory(`Safari complete! Best streak: ${streak} correct answers! 🦁`, 20, 8);
     } else {
       window.GamesHub.showHub();
     }
@@ -437,12 +472,7 @@ var WordRace = (function () {
 
   function endGame() {
     document.getElementById("game-word-race").classList.add("hidden");
-    document.getElementById("game-complete-subtitle").textContent =
-      `Time's up! You scored ${score} points ⏱️`;
-    document.getElementById("game-complete").classList.remove("hidden");
-    if (score > 0) {
-      window.handleGameWin(Math.min(score, 50), Math.floor(score / 10));
-    }
+    window.showGameVictory(`Time's up! You scored an impressive ${score} points! ⏱️`, Math.min(score, 50), Math.floor(score / 10));
   }
 
   function _clearTimer() { clearInterval(timerInterval); }
@@ -693,10 +723,7 @@ var WordSearchGame = (function () {
     clearInterval(timerInterval);
     document.getElementById("game-word-search").classList.add("hidden");
     if (won) {
-      document.getElementById("game-complete-subtitle").textContent =
-        `You found all ${wordsToFind.length} words! 🔍`;
-      document.getElementById("game-complete").classList.remove("hidden");
-      window.handleGameWin(20, 8);
+      window.showGameVictory(`Matrix solved! You found all ${wordsToFind.length} hidden words! 🔍`, 20, 8);
     } else {
       window.GamesHub.showHub();
     }
@@ -890,10 +917,7 @@ var CrosswordGame = (function () {
     if (allCorrect) {
       setTimeout(() => {
         document.getElementById("game-crossword").classList.add("hidden");
-        document.getElementById("game-complete-subtitle").textContent =
-          "Crossword complete! Great vocabulary! 🧩";
-        document.getElementById("game-complete").classList.remove("hidden");
-        window.handleGameWin(30, 12);
+        window.showGameVictory("Crossword solved completely! Exceptional vocabulary mastery! 🧩", 30, 12);
       }, 800);
     }
   }

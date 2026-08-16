@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AksharGyan — Choose Your Language</title>
-  <meta name="description" content="AksharGyan — AI-powered literacy platform for adult and first-generation learners. Choose your language to get started." />
+  <meta name="description"
+    content="AksharGyan — AI-powered literacy platform for adult and first-generation learners. Choose your language to get started." />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="manifest" href="manifest.json" />
@@ -13,7 +15,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -24,11 +28,12 @@
   <!-- Custom Landing CSS -->
   <link rel="stylesheet" href="landing.css" />
 
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+  <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
     /* Force Light Theme Background matching landing.html */
-    html, body#page-index {
+    html,
+    body#page-index {
       background-color: #f8fafc !important;
       background: #f8fafc !important;
       color: #0f172a !important;
@@ -168,6 +173,7 @@
     }
   </style>
 </head>
+
 <body id="page-index">
 
   <!-- Top Scroll Progress Bar -->
@@ -191,17 +197,19 @@
   </nav>
 
   <!-- ── HERO / LANGUAGE SELECTION PORTAL ───────────────────────── -->
-  <section class="hero-section" id="hero-portal" style="min-height: 100vh; padding-top: 8rem; padding-bottom: 5rem; display: flex; flex-direction: column; justify-content: center; position: relative;">
+  <section class="hero-section" id="hero-portal"
+    style="min-height: 100vh; padding-top: 8rem; padding-bottom: 5rem; display: flex; flex-direction: column; justify-content: center; position: relative;">
     <!-- Ambient Background Glow Orbs -->
     <div class="bg-orb bg-orb-purple" style="top: -5%; left: -5%;"></div>
     <div class="bg-orb bg-orb-emerald" style="bottom: 10%; right: -5%;"></div>
     <div class="bg-orb bg-orb-pink" style="top: 35%; left: 45%;"></div>
 
     <div class="section-container" style="position: relative; z-index: 10; width: 100%;">
-      
+
       <!-- Header Banner -->
       <div style="text-align: center; margin-bottom: 3rem;">
-        <div class="hero-badge" style="margin: 0 auto 1.2rem auto; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <div class="hero-badge"
+          style="margin: 0 auto 1.2rem auto; display: inline-flex; align-items: center; gap: 0.5rem;">
           <i data-lucide="globe" style="width: 16px; height: 16px; color: #6366f1;"></i>
           <span data-i18n="selectLangBadge">CHOOSE YOUR PREFERRED LANGUAGE</span>
         </div>
@@ -218,7 +226,7 @@
 
       <!-- Language Grid (7 Languages) -->
       <div class="index-lang-grid" id="index-lang-grid">
-        
+
         <div class="index-lang-card" data-lang="en" id="lang-en">
           <div class="ilc-flag">🇬🇧</div>
           <div class="ilc-info">
@@ -285,8 +293,10 @@
       </div>
 
       <!-- Action Navigation Buttons -->
-      <div style="display: flex; gap: 1.2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
-        <a href="login.html" class="lp-btn lp-btn-outline" style="padding: 0.9rem 2rem; font-size: 1rem;" data-i18n="goToLogin">
+      <div
+        style="display: flex; gap: 1.2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
+        <a href="login.html" class="lp-btn lp-btn-outline" style="padding: 0.9rem 2rem; font-size: 1rem;"
+          data-i18n="goToLogin">
           Already have an account? Login
         </a>
         <a href="landing.html" class="lp-btn lp-btn-primary" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
@@ -301,11 +311,12 @@
   <!-- ── FOOTER ──────────────────────────────────────────────────── -->
   <footer class="landing-footer">
     <div class="footer-grid">
-      
+
       <div>
         <div class="footer-brand-title">📖 AksharGyan</div>
         <p class="footer-desc" data-i18n="footerBrandDesc">
-          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and community practice.
+          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and
+          community practice.
         </p>
       </div>
 
@@ -362,7 +373,7 @@
     if (typeof lucide !== "undefined") {
       lucide.createIcons();
     }
-    
+
     // Smooth GSAP Slide Up
     if (typeof gsap !== "undefined") {
       gsap.from(".index-lang-card", {
@@ -374,7 +385,7 @@
     }
 
     if (typeof auth !== "undefined") {
-      auth.onAuthStateChanged(function(user) {
+      auth.onAuthStateChanged(function (user) {
         if (user) {
           window.location.href = "dashboard.html";
         }
@@ -382,4 +393,5 @@
     }
   </script>
 </body>
+
 </html>

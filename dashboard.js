@@ -95,6 +95,9 @@ function initDashboard(profile) {
   renderHomeHeatmap(profile);
   renderStatsStrip(profile);
   renderLearningPath(profile);
+  if (typeof initUnitsTab === "function") {
+    initUnitsTab(profile);
+  }
   renderSkillCards(profile);
   renderSidePanel(profile);
   renderProfile(profile);
@@ -320,6 +323,38 @@ function renderRecommendation(profile) {
     }, 350);
   }
 
+  // ── Next Milestone Hero Card Population ─────────────────────────
+  const completedLessons = profile.completedLessons || [];
+  const completedCount = completedLessons.length;
+  const currentUnitTotal = 5;
+  const unitStep = Math.min((completedCount % currentUnitTotal) + 1, currentUnitTotal);
+  const milestonePct = Math.min(Math.round(((completedCount % currentUnitTotal) / currentUnitTotal) * 100), 100);
+
+  const msTitle = document.getElementById("hero-milestone-title");
+  if (msTitle) {
+    msTitle.textContent = nextLesson.title || "Unit 1: Alphabet Foundations";
+  }
+
+  const msStep = document.getElementById("hero-milestone-progress-label");
+  if (msStep) {
+    msStep.textContent = `Step ${unitStep} of ${currentUnitTotal}`;
+  }
+
+  const msPct = document.getElementById("hero-milestone-pct");
+  if (msPct) {
+    msPct.textContent = `${milestonePct}%`;
+  }
+
+  const msFill = document.getElementById("hero-milestone-fill");
+  if (msFill) {
+    msFill.style.width = `${Math.max(milestonePct, 15)}%`;
+  }
+
+  const msStatus = document.getElementById("hero-milestone-status");
+  if (msStatus) {
+    msStatus.textContent = milestonePct >= 100 ? "Completed" : "In Progress";
+  }
+
   // ── AI Enhancement ────────────────────────────────────────────
   if (profile.geminiAnalysis) {
     // Already saved from assessment completion — use immediately
@@ -484,7 +519,7 @@ function renderRecommendedScroll(profile) {
   const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
   const levels = ["beginner", "intermediate", "advanced"];
   const skills = ["reading", "writing", "listening", "speaking", "pronunciation"];
-  
+
   // Find up to 3 uncompleted lessons
   let recs = [];
   const completedLessons = profile.completedLessons || [];
@@ -496,17 +531,20 @@ function renderRecommendedScroll(profile) {
       if (recs.length >= 3) break;
       const status = curriculum[lvl]?.[skill]?.status || "locked";
       if (status === "locked" || status === "skipped") continue;
-      
+
       for (let i = 1; i <= 5; i++) {
         const unit = "alphabets"; // Simplify for recommendation mapping
         const lessonId = `${lvl}_${skill}_${unit}_${i}`;
         if (!completedLessons.includes(lessonId)) {
           const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
           const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
-          
+
           recs.push({
             title: `${skill.charAt(0).toUpperCase() + skill.slice(1)} — ${focusText}`,
             sub: `${lvl.charAt(0).toUpperCase() + lvl.slice(1)} Level`,
+            desc: `Master core ${skill} exercises and build foundational fluency.`,
+            xp: `+25 XP`,
+            time: `~4 mins`,
             url: `lesson.html?level=${lvl}&unit=${unit}&type=${skill}&lessonIndex=${i}`,
             icon: SKILL_CONFIG.find(s => s.id === skill)?.icon || "<i data-lucide='book-open'></i>"
           });
@@ -519,17 +557,29 @@ function renderRecommendedScroll(profile) {
   // Fallback if fully completed
   if (recs.length === 0) {
     recs = [
-      { title: "Review Reading", sub: "Keep your skills sharp", url: "lesson.html?type=reading&mode=practice", icon: "<i data-lucide='book-open'></i>" },
-      { title: "Review Speaking", sub: "Practice pronunciation", url: "lesson.html?type=speaking&mode=practice", icon: "<i data-lucide='mic'></i>" },
-      { title: "Review Listening", sub: "Improve comprehension", url: "lesson.html?type=listening&mode=practice", icon: "<i data-lucide='headphones'></i>" }
+      { title: "Reading Mastery", sub: "Beginner Level", desc: "Sharpen vowel recognition and everyday sight words.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=reading&mode=practice", icon: "<i data-lucide='book-open'></i>" },
+      { title: "Speaking Practice", sub: "Intermediate Level", desc: "Practice real-world pronunciation and interactive dialogues.", xp: "+25 XP", time: "~4 mins", url: "lesson.html?type=speaking&mode=practice", icon: "<i data-lucide='mic'></i>" },
+      { title: "Listening Comprehension", sub: "All Levels", desc: "Train your ear with native speaker audio phrases.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=listening&mode=practice", icon: "<i data-lucide='headphones'></i>" }
     ];
   }
 
   container.innerHTML = recs.map(r => `
     <a href="${r.url}" class="recommended-card">
-      <div class="recommended-icon">${r.icon}</div>
-      <h4 class="recommended-title">${r.title}</h4>
-      <p class="recommended-sub">${r.sub}</p>
+      <div class="recommended-card-top">
+        <div class="recommended-icon">${r.icon}</div>
+        <div style="display: flex; align-items: center; gap: 0.4rem;">
+          <span class="recommended-badge">${r.sub}</span>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #64748b;">${r.time}</span>
+        </div>
+      </div>
+      <div>
+        <h4 class="recommended-title">${r.title}</h4>
+        <p class="recommended-desc">${r.desc}</p>
+      </div>
+      <div class="recommended-card-bottom">
+        <span class="recommended-xp-tag"><i data-lucide="zap" style="width: 12px; height: 12px; fill: currentColor;"></i> ${r.xp}</span>
+        <span class="recommended-action-link">Start Lesson <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></span>
+      </div>
     </a>
   `).join("");
 
@@ -543,26 +593,89 @@ function renderHomeHeatmap(profile) {
   if (!container) return;
 
   const practiceDays = profile.practiceDays || [];
+  const streak = profile.streak || 0;
   const days = [];
-  
+
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
     const dateStr = d.toISOString().split("T")[0];
+    const isPracticed = practiceDays.includes(dateStr);
+    const isToday = i === 0;
+
     days.push({
       dateStr: dateStr,
-      label: d.toLocaleDateString(undefined, { weekday: "short" }).charAt(0),
-      isPracticed: practiceDays.includes(dateStr),
-      isToday: i === 0
+      dayName: d.toLocaleDateString(undefined, { weekday: "short" }),
+      dayNum: d.getDate(),
+      monthName: d.toLocaleDateString(undefined, { month: "short" }),
+      isPracticed: isPracticed,
+      isToday: isToday
     });
   }
 
-  container.innerHTML = days.map(d => `
-    <div class="heatmap-day" title="${d.dateStr}">
-      <div class="heatmap-dot ${d.isPracticed ? 'active' : ''}"></div>
-      <span class="heatmap-label ${d.isToday ? 'today' : ''}">${d.label}</span>
-    </div>
-  `).join("");
+  const activeDaysCount = days.filter(d => d.isPracticed).length;
+  const consistencyPct = Math.round((activeDaysCount / 7) * 100);
+
+  // Update Summary Metrics
+  const streakCountEl = document.getElementById("activity-streak-count");
+  if (streakCountEl) streakCountEl.textContent = streak;
+
+  const daysActiveEl = document.getElementById("act-days-active");
+  if (daysActiveEl) daysActiveEl.textContent = `${activeDaysCount} / 7`;
+
+  const consistencyEl = document.getElementById("act-consistency-pct");
+  if (consistencyEl) consistencyEl.textContent = `${consistencyPct}%`;
+
+  const statusEl = document.getElementById("act-weekly-status");
+  if (statusEl) {
+    if (activeDaysCount >= 5) statusEl.textContent = "🔥 Unstoppable";
+    else if (activeDaysCount >= 3) statusEl.textContent = "⚡ Great Pace";
+    else if (activeDaysCount >= 1) statusEl.textContent = "🌱 Good Start";
+    else statusEl.textContent = "🚀 Ready to Start";
+  }
+
+  const bannerTextEl = document.getElementById("activity-banner-text");
+  if (bannerTextEl) {
+    if (streak > 0) {
+      bannerTextEl.innerHTML = `🔥 <strong>You're on a ${streak}-day streak!</strong> Practice today to keep your streak blazing.`;
+    } else {
+      bannerTextEl.innerHTML = `🌟 <strong>Consistency is your superpower!</strong> Practice just 5 minutes today to start a new streak.`;
+    }
+  }
+
+  container.innerHTML = days.map(d => {
+    let statusClass = "missed";
+    let statusText = "Rest";
+    let dotContent = `<i data-lucide="minus" style="width: 14px; height: 14px; opacity: 0.5;"></i>`;
+    let dotClass = "inactive";
+
+    if (d.isPracticed) {
+      statusClass = "done";
+      statusText = "Done";
+      dotContent = `<i data-lucide="check" style="width: 18px; height: 18px; stroke-width: 3;"></i>`;
+      dotClass = "active";
+    } else if (d.isToday) {
+      statusClass = "today";
+      statusText = "Today";
+      dotContent = `<i data-lucide="flame" style="width: 16px; height: 16px;"></i>`;
+      dotClass = "today-pending";
+    }
+
+    return `
+      <div class="heatmap-day ${d.isPracticed ? 'is-active-day' : ''} ${d.isToday ? 'is-today' : ''}" title="${d.dayName}, ${d.dayNum} ${d.monthName} — ${d.isPracticed ? 'Practiced (+XP earned)' : (d.isToday ? 'Practice today!' : 'Rest day')}">
+        <span class="heatmap-day-name">${d.dayName}</span>
+        <span class="heatmap-day-num">${d.dayNum}</span>
+        <div class="heatmap-dot ${dotClass}">
+          ${dotContent}
+        </div>
+        <span class="heatmap-day-status ${statusClass}">${statusText}</span>
+      </div>
+    `;
+  }).join("");
+
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
 }
 
 // ─── Top Bar ──────────────────────────────────────────────────
@@ -602,15 +715,36 @@ function renderTopBar(profile) {
   }
 }
 
-// ─── Learning Path Tree ───────────────────────────────────────
+// ─── Learning Path Tree & Modern Curriculum Trail ──────────────────
 
 function renderLearningPath(profile) {
   const pathContainer = document.getElementById("learning-path");
   if (!pathContainer) return;
 
+  // Asynchronously sync past lessonHistory accuracy scores if not already synced
+  if (auth.currentUser && !profile._historyScoresSynced && typeof db !== "undefined") {
+    profile._historyScoresSynced = true;
+    db.collection("users").doc(auth.currentUser.uid).collection("lessonHistory").get().then(snap => {
+      if (!snap.empty) {
+        if (!profile.lessonScores) profile.lessonScores = {};
+        snap.forEach(doc => {
+          const d = doc.data();
+          if (d.type && typeof d.accuracy === "number") {
+            const lId = `${d.level || 'beginner'}_${d.type}_${d.unit || 'alphabets'}_1`;
+            if (!profile.lessonScores[lId]) {
+              profile.lessonScores[lId] = d.accuracy;
+            }
+            profile.lessonScores[`${d.level || 'beginner'}_${d.type}_1`] = d.accuracy;
+            profile.lessonScores[d.type] = d.accuracy;
+          }
+        });
+        renderLearningPath(profile);
+      }
+    }).catch(() => { });
+  }
+
   const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
   const completedLessons = profile.completedLessons || [];
-  const curriculum = profile.curriculum || {};
 
   const levels = ["beginner", "intermediate", "advanced"];
   const skills = [
@@ -623,50 +757,63 @@ function renderLearningPath(profile) {
 
   const userLevelIndex = levels.indexOf(currentLevel);
 
-  const skillIcons = {
-    reading: "<i data-lucide='book-open'></i>",
-    writing: "<i data-lucide='pen-tool'></i>",
-    listening: "<i data-lucide='headphones'></i>",
-    speaking: "<i data-lucide='mic'></i>",
-    pronunciation: "<i data-lucide='mic'></i>",
+  const skillMeta = {
+    reading: {
+      name: "Reading Comprehension",
+      icon: "book-open",
+      gradient: "linear-gradient(135deg, #6366f1, #4f46e5)",
+      desc: "Decode letters, recognize sight words, and master short passages"
+    },
+    writing: {
+      name: "Sentence Writing",
+      icon: "edit-3",
+      gradient: "linear-gradient(135deg, #a855f7, #9333ea)",
+      desc: "Form grammatically correct sentences, spelling, and phrase construction"
+    },
+    listening: {
+      name: "Audio Listening",
+      icon: "headphones",
+      gradient: "linear-gradient(135deg, #06b6d4, #0891b2)",
+      desc: "Understand natural speech, identify spoken vocabulary and phonetic tones"
+    },
+    speaking: {
+      name: "Conversational Speaking",
+      icon: "mic",
+      gradient: "linear-gradient(135deg, #10b981, #059669)",
+      desc: "Practice vocal responses, daily dialogues, and practical communication"
+    },
+    pronunciation: {
+      name: "Speech & Phonics Clarity",
+      icon: "volume-2",
+      gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
+      desc: "Refine accent clarity, syllable stress, and phonetic precision"
+    },
   };
 
-  // 1. Render the Explainer Card at the top
-  let html = `
-    <div class="roadmap-container zigzag-mode">
-  `;
-
-  let globalDotIndex = 0;
-
-  // 2. Render the Levels and Skills
-  levels.forEach((level) => {
-    const levelIndex = levels.indexOf(level);
-    const levelKey = `roadmapLevel${level.charAt(0).toUpperCase() + level.slice(1)}`;
-
-    let levelBadgeHtml = "";
-    if (levelIndex < userLevelIndex) {
-      levelBadgeHtml = `<span class="roadmap-placed-above" data-i18n="levelPassed">✓ Level Passed</span>`;
-    } else if (levelIndex === userLevelIndex) {
-      levelBadgeHtml = `<span class="roadmap-you-are-here" data-i18n="youAreHere">You are here</span>`;
-    } else {
-      levelBadgeHtml = `<span class="roadmap-level-locked" data-i18n="levelLocked">Locked</span>`;
+  const levelMeta = {
+    beginner: {
+      title: "Foundational Beginner Track",
+      icon: "🌱",
+      desc: "Alphabets, phonetic sounds, basic numbers, and essential vocabulary."
+    },
+    intermediate: {
+      title: "Intermediate Fluency Track",
+      icon: "⚡",
+      desc: "Grammar structures, workplace dialogues, forms, and practical scenarios."
+    },
+    advanced: {
+      title: "Advanced Mastery Track",
+      icon: "👑",
+      desc: "Complex comprehension, official documentation, and professional communication."
     }
+  };
 
-    html += `
-      <div class="roadmap-level-block zigzag-level-block">
-        <div class="roadmap-level-header" style="text-align: center; margin-bottom: 2rem;">
-          <h3 class="roadmap-level-title" style="justify-content: center; margin-bottom: 0.5rem;">
-            <span data-i18n="${levelKey}">${level.charAt(0).toUpperCase() + level.slice(1)} Level</span>
-          </h3>
-          <div style="display: flex; justify-content: center; margin-top: 0.4rem;">
-            ${levelBadgeHtml}
-          </div>
-        </div>
-        <div class="zigzag-skills-wrapper">
-    `;
+  // Compute total curriculum progress
+  let totalLessonsInCurriculum = levels.length * skills.length * 5;
+  let totalCompletedCount = 0;
 
-    skills.forEach((skill) => {
-      // Find unit from auth.js logic (fallback to alphabets if not known)
+  levels.forEach((lvl, lIdx) => {
+    skills.forEach((sk) => {
       const lit = profile.literacyLevel || "preferNot";
       const unitByLiteracy = {
         neverLearned: "alphabets",
@@ -676,25 +823,140 @@ function renderLearningPath(profile) {
         preferNot: "alphabets",
       };
       const unit = unitByLiteracy[lit] || "alphabets";
-      const skillKey = `roadmapSkill${skill.charAt(0).toUpperCase() + skill.slice(1)}`;
+      for (let i = 1; i <= 5; i++) {
+        const lessonId = `${lvl}_${sk}_${unit}_${i}`;
+        if (lIdx < userLevelIndex || completedLessons.includes(lessonId)) {
+          totalCompletedCount++;
+        }
+      }
+    });
+  });
+
+  const overallPct = Math.min(100, Math.round((totalCompletedCount / totalLessonsInCurriculum) * 100));
+
+  let html = `
+    <div class="path-hero-card">
+      <div class="path-hero-header">
+        <div class="path-hero-info">
+          <div class="path-hero-badge">
+            <i data-lucide="compass" style="width: 14px; height: 14px;"></i>
+            <span>Personalized AI Curriculum</span>
+          </div>
+          <h2 class="path-hero-title">Adaptive Learning Roadmap</h2>
+          <p class="path-hero-desc">
+            Your master learning journey carefully benchmarked to your placement assessment diagnostic results.
+          </p>
+          <div class="path-hero-stats">
+            <div class="path-stat-chip">
+              <i data-lucide="award" style="width: 15px; height: 15px; color: #a5b4fc;"></i>
+              <span>Level: ${currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)}</span>
+            </div>
+            <div class="path-stat-chip">
+              <i data-lucide="check-circle" style="width: 15px; height: 15px; color: #34d399;"></i>
+              <span>${totalCompletedCount} / ${totalLessonsInCurriculum} Completed (${overallPct}%)</span>
+            </div>
+            <div class="path-stat-chip">
+              <i data-lucide="zap" style="width: 15px; height: 15px; color: #fbbf24;"></i>
+              <span>+25 XP per Lesson</span>
+            </div>
+          </div>
+        </div>
+        <div class="path-hero-action">
+          <button class="path-hero-btn" id="btn-jump-next-lesson">
+            <span>Resume Path</span>
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Render Levels
+  levels.forEach((level, levelIndex) => {
+    const lMeta = levelMeta[level] || { title: `${level} Level`, icon: "📘", desc: "" };
+
+    let statusClass = "path-status-locked";
+    let statusText = "Locked";
+    let statusIcon = "lock";
+
+    if (levelIndex < userLevelIndex) {
+      statusClass = "path-status-completed";
+      statusText = "✓ Level Mastered";
+      statusIcon = "check-circle";
+    } else if (levelIndex === userLevelIndex) {
+      statusClass = "path-status-current";
+      statusText = "Current Active Track";
+      statusIcon = "compass";
+    }
+
+    html += `
+      <div class="path-level-section">
+        <div class="path-level-header">
+          <div class="path-level-title-wrap">
+            <div class="path-level-icon">${lMeta.icon}</div>
+            <div>
+              <h3 class="path-level-title">${lMeta.title}</h3>
+              <p class="path-level-subtitle">${lMeta.desc}</p>
+            </div>
+          </div>
+          <div>
+            <span class="path-level-status-pill ${statusClass}">
+              <i data-lucide="${statusIcon}" style="width: 14px; height: 14px;"></i>
+              <span>${statusText}</span>
+            </span>
+          </div>
+        </div>
+    `;
+
+    // Render Skills Chapters
+    skills.forEach((skill) => {
+      const sMeta = skillMeta[skill] || { name: skill, icon: "book", gradient: "#6366f1", desc: "" };
+      const lit = profile.literacyLevel || "preferNot";
+      const unitByLiteracy = {
+        neverLearned: "alphabets",
+        canRecognize: "words",
+        canReadSimple: "sentences",
+        canReadComfort: "paragraphs",
+        preferNot: "alphabets",
+      };
+      const unit = unitByLiteracy[lit] || "alphabets";
+
+      let completedInSkill = 0;
+      for (let i = 1; i <= 5; i++) {
+        const lessonId = `${level}_${skill}_${unit}_${i}`;
+        if (levelIndex < userLevelIndex || completedLessons.includes(lessonId)) {
+          completedInSkill++;
+        }
+      }
 
       html += `
-        <div class="zigzag-skill-group">
-          <div class="zigzag-skill-label">
-            <span class="zigzag-skill-icon">${skillIcons[skill]}</span>
-            <span data-i18n="${skillKey}">${skill.charAt(0).toUpperCase() + skill.slice(1)}</span>
+        <div class="path-skill-chapter">
+          <div class="path-skill-header">
+            <div class="path-skill-info">
+              <div class="path-skill-icon-badge" style="background: ${sMeta.gradient};">
+                <i data-lucide="${sMeta.icon}" style="width: 18px; height: 18px;"></i>
+              </div>
+              <div>
+                <h4 class="path-skill-name">${sMeta.name}</h4>
+                <p style="font-size: 0.78rem; color: #64748b; font-weight: 600; margin: 0;">${sMeta.desc}</p>
+              </div>
+            </div>
+            <span class="path-skill-progress-chip">
+              ${completedInSkill} of 5 Lessons Complete
+            </span>
           </div>
-          <div class="zigzag-dots-container">
+
+          <div class="path-lesson-grid">
       `;
 
-      // Render the 5 lesson dots
+      // 5 Lessons in this skill
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${level}_${skill}_${unit}_${i}`;
         const isCompleted = completedLessons.includes(lessonId);
 
         let state = "locked";
         if (levelIndex < userLevelIndex) {
-          state = "skipped";
+          state = "completed";
         } else if (levelIndex === userLevelIndex) {
           state = isCompleted ? "completed" : "available";
         } else {
@@ -704,41 +966,71 @@ function renderLearningPath(profile) {
         const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(
           (b) => b.lessonIndex === i,
         );
-        const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
+        const focusTitle = blueprint ? blueprint.focus : `Lesson ${i} Core Objectives`;
 
-        // Zigzag logic: sine wave based on global index
-        const offsetX = Math.sin(globalDotIndex * 0.75) * 100;
-        
-        // Custom styling based on state for the inner icon
-        let iconHtml = '';
-        if (state === 'completed' || state === 'skipped') {
-           iconHtml = '<i data-lucide="check" style="width: 24px; height: 24px;"></i>';
-        } else if (state === 'locked') {
-           iconHtml = '<i data-lucide="lock" style="width: 20px; height: 20px;"></i>';
-        } else {
-           iconHtml = skillIcons[skill]; // available shows skill icon
+        let btnLabel = "Start Lesson";
+        let btnIcon = "play";
+        let topMetaHtml = `<div class="path-lesson-meta">⏱️ 5 min • +25 XP</div>`;
+
+        if (state === "completed") {
+          btnLabel = "Review Lesson";
+          btnIcon = "rotate-ccw";
+
+          let localScores = {};
+          try {
+            localScores = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
+          } catch (e) { }
+
+          const sObj = (profile.lessonScores && profile.lessonScores[lessonId])
+            || (profile.lessonScores && profile.lessonScores[`${level}_${skill}_${i}`])
+            || (profile.lessonScores && profile.lessonScores[`${skill}_${i}`])
+            || (profile.lessonScores && profile.lessonScores[skill])
+            || localScores[lessonId]
+            || localScores[`${level}_${skill}_${i}`]
+            || null;
+
+          let scoreVal = null;
+          if (typeof sObj === "number") {
+            scoreVal = sObj;
+          } else if (sObj && typeof sObj.accuracy === "number") {
+            scoreVal = sObj.accuracy;
+          } else if (sObj && typeof sObj.score === "number") {
+            scoreVal = sObj.score;
+          } else if (levelIndex < userLevelIndex) {
+            scoreVal = profile.assessmentScore ? Math.max(80, profile.assessmentScore) : 100;
+          } else {
+            // Default to 100% if completed but score was not tracked previously
+            scoreVal = 100;
+          }
+
+          topMetaHtml = `
+            <div class="path-lesson-score-badge" title="Last Attempt Accuracy Score">
+              <i data-lucide="award" style="width: 12px; height: 12px;"></i>
+              <span>Score: ${scoreVal}%</span>
+            </div>
+          `;
+        } else if (state === "locked") {
+          btnLabel = "Locked";
+          btnIcon = "lock";
         }
 
-        const tooltipText = state === 'locked' 
-          ? `Complete ${levels[userLevelIndex]} level to unlock` 
-          : state === 'skipped' 
-            ? `Lesson ${i} (Placed above)` 
-            : focusText;
-
         html += `
-          <div class="zigzag-node-wrap" style="transform: translateX(${offsetX}px);">
-            <div class="roadmap-dot zigzag-dot ${state}" 
-                 data-level="${level}" 
-                 data-skill="${skill}" 
-                 data-unit="${unit}" 
-                 data-index="${i}" 
-                 title="${tooltipText}">
-              ${iconHtml}
+          <div class="path-lesson-card ${state}" 
+               data-level="${level}" 
+               data-skill="${skill}" 
+               data-unit="${unit}" 
+               data-index="${i}">
+            <div class="path-lesson-top">
+              <div class="path-lesson-num">0${i}</div>
+              ${topMetaHtml}
             </div>
-            <div class="units-dot-label">Lesson ${i}</div>
+            <div class="path-lesson-title">${focusTitle}</div>
+            <button class="path-lesson-btn" tabindex="-1">
+              <i data-lucide="${btnIcon}" style="width: 14px; height: 14px;"></i>
+              <span>${btnLabel}</span>
+            </button>
           </div>
         `;
-        globalDotIndex++;
       }
 
       html += `
@@ -748,27 +1040,40 @@ function renderLearningPath(profile) {
     });
 
     html += `
-        </div>
       </div>
     `;
   });
 
-  html += `</div>`;
   pathContainer.innerHTML = html;
 
-  // re-init lucide icons for dynamically added HTML
+  // Hydrate Lucide Icons
   if (typeof lucide !== 'undefined') {
     lucide.createIcons();
   }
 
-  // 3. Attach click handlers to available/completed dots
-  pathContainer.querySelectorAll(".roadmap-dot.available, .roadmap-dot.completed").forEach((dot) => {
-    dot.addEventListener("click", () => {
-      const { level, skill, unit, index } = dot.dataset;
+  // Attach click listeners to available & completed lesson cards
+  pathContainer.querySelectorAll(".path-lesson-card.available, .path-lesson-card.completed").forEach((card) => {
+    card.addEventListener("click", () => {
+      const { level, skill, unit, index } = card.dataset;
       window.location.href = `lesson.html?level=${level}&type=${skill}&unit=${unit}&lessonIndex=${index}`;
     });
   });
 
+  // Fast Jump Button handler
+  const jumpBtn = document.getElementById("btn-jump-next-lesson");
+  if (jumpBtn) {
+    jumpBtn.addEventListener("click", () => {
+      const firstAvailable = pathContainer.querySelector(".path-lesson-card.available");
+      if (firstAvailable) {
+        firstAvailable.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstAvailable.style.transition = "all 0.3s ease";
+        firstAvailable.style.transform = "scale(1.05)";
+        setTimeout(() => {
+          firstAvailable.style.transform = "";
+        }, 1200);
+      }
+    });
+  }
 }
 
 // ─── Skill Practice Cards ─────────────────────────────────────
@@ -786,7 +1091,7 @@ async function renderSkillCards(profile) {
         <!-- Top row with 3D Icon and Level Badge -->
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 1.25rem;">
           <div class="skill-card-icon ${skill.color}">${skill.icon}</div>
-          <span class="rec-card-tag ${level}">${getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback}</span>
+          <span class="skill-card-level-pill ${level}">${getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback}</span>
         </div>
 
         <!-- Full-width Content Area -->
@@ -842,11 +1147,11 @@ async function renderSkillCards(profile) {
     }
     const snap = await db.collection("users").doc(uid).collection("lessonHistory").orderBy("completedAt", "desc").get();
     const history = snap.docs.map(d => d.data());
-    
+
     SKILL_CONFIG.forEach((skill) => {
       const progEl = document.getElementById(`skill-prog-${skill.id}`);
       if (!progEl) return;
-      
+
       const skillHistory = history.filter(h => h.type === skill.id);
       if (skillHistory.length === 0) {
         progEl.innerHTML = `<div class="skill-progress-wrap"><div class="skill-progress-text"><span>Not started yet</span></div><div class="skill-progress-track"><div class="skill-progress-fill" style="width:0%"></div></div></div>`;
@@ -1278,6 +1583,9 @@ function setupDashboardEvents(profile) {
       renderProfile(profile);
       manageDailyQuests(profile);
       initPhraseOfDay(profile);
+      if (typeof initHandwriting === "function" && document.getElementById("section-handwriting") && !document.getElementById("section-handwriting").classList.contains("hidden")) {
+        initHandwriting(profile);
+      }
       if (window.Analysis) {
         window.Analysis.reRenderLang(profile);
       }
@@ -1299,6 +1607,9 @@ function setupDashboardEvents(profile) {
       renderProfile(profile);
       manageDailyQuests(profile);
       initPhraseOfDay(profile);
+      if (typeof initHandwriting === "function" && document.getElementById("section-handwriting") && !document.getElementById("section-handwriting").classList.contains("hidden")) {
+        initHandwriting(profile);
+      }
       if (window.Analysis) {
         window.Analysis.reRenderLang(profile);
       }
@@ -1386,13 +1697,13 @@ function setupDashboardEvents(profile) {
 
       // Highlight "More" tab button when inside any of its child sections
       const desktopMoreBtn = document.getElementById("desktop-more-btn");
-      const mobileMoreBtn  = document.getElementById("mobile-more-btn");
+      const mobileMoreBtn = document.getElementById("mobile-more-btn");
       if (MORE_SECTIONS.includes(section)) {
         if (desktopMoreBtn) desktopMoreBtn.classList.add("active");
-        if (mobileMoreBtn)  mobileMoreBtn.classList.add("active");
+        if (mobileMoreBtn) mobileMoreBtn.classList.add("active");
       } else {
         if (desktopMoreBtn) desktopMoreBtn.classList.remove("active");
-        if (mobileMoreBtn)  mobileMoreBtn.classList.remove("active");
+        if (mobileMoreBtn) mobileMoreBtn.classList.remove("active");
       }
 
       if (navMoreWrap) navMoreWrap.classList.remove("open");
@@ -1427,6 +1738,9 @@ function setupDashboardEvents(profile) {
       }
       if (section === "studygroups" && typeof initStudyGroups === "function") {
         initStudyGroups(profile);
+      }
+      if (section === "profile") {
+        renderProfile(profile);
       }
     });
   });
@@ -1483,6 +1797,10 @@ function setupDashboardEvents(profile) {
       // If switching to Units tab, render the unit-based path (isolated from above)
       else if (viewId === "view-units") {
         if (typeof initUnitsTab === "function") initUnitsTab(profile);
+      }
+
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
       }
     });
   });
@@ -1563,144 +1881,303 @@ function setupDashboardEvents(profile) {
 // ─── Profile & Side Panel Rendering ───────────────────────────
 
 function renderProfile(profile) {
-  // Populate profile fields
-  const level = profile.currentLevel || profile.assessmentLevel || "beginner";
-  const levelLabel = getTranslation(selectedLang, LEVEL_CONFIG[level].label) || LEVEL_CONFIG[level].fallback;
+  if (!profile) return;
+  window.currentProfile = profile;
 
+  // Language mapping
+  const LANG_NAMES = {
+    en: "English",
+    hi: "हिन्दी (Hindi)",
+    ta: "தமிழ் (Tamil)",
+    te: "తెలుగు (Telugu)",
+    kn: "ಕನ್ನಡ (Kannada)",
+    bn: "বাংলা (Bengali)",
+    mr: "मराठी (Marathi)"
+  };
+
+  const LIT_LABELS = {
+    neverLearned: "Baseline: Beginner",
+    canRecognize: "Baseline: Letters",
+    canReadSimple: "Baseline: Sentences",
+    canReadComfort: "Baseline: Fluent Reader",
+    preferNot: "Baseline: Learner"
+  };
+
+  const currentLevelKey = profile.currentLevel || profile.assessmentLevel || "beginner";
+  const levelConfig = LEVEL_CONFIG[currentLevelKey] || LEVEL_CONFIG.beginner;
+  const levelLabel = getTranslation(selectedLang, levelConfig.label) || levelConfig.fallback;
+
+  // 1. Profile Name, Avatar & Email
   const profileNameEl = document.getElementById("profile-name");
   if (profileNameEl) {
     profileNameEl.innerHTML = `
-      <span>${profile.fullName || "User"}</span>
-      <span style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 9999px; vertical-align: middle; margin-left: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">⭐ ${levelLabel}</span>
+      <span>${profile.fullName || "Learner"}</span>
+      <span style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-size: 0.75rem; font-weight: 800; padding: 0.28rem 0.85rem; border-radius: 9999px; vertical-align: middle; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(99,102,241,0.3); display: inline-flex; align-items: center; gap: 0.3rem;">
+        <i data-lucide="award" style="width: 13px; height: 13px;"></i> ⭐ ${levelLabel}
+      </span>
     `;
   }
+
   const user = auth.currentUser;
-  if (user) {
-    document.getElementById("profile-email").textContent = user.email || "";
+  const emailText = user ? (user.email || profile.email || "") : (profile.email || "");
+  const emailValEl = document.getElementById("profile-email-val");
+  if (emailValEl) {
+    emailValEl.textContent = emailText;
+  } else {
+    const emailEl = document.getElementById("profile-email");
+    if (emailEl) emailEl.textContent = emailText;
   }
-  document.getElementById("profile-avatar").textContent = (
-    profile.fullName || "U"
-  )
-    .charAt(0)
-    .toUpperCase();
 
-  // Populate form fields
-  document.getElementById("edit-fullname").value = profile.fullName || "";
-  document.getElementById("edit-language").value =
-    profile.preferredLanguage || "en";
-  document.getElementById("edit-target-language").value =
-    profile.targetLanguage || profile.preferredLanguage || "en";
-  document.getElementById("edit-age").value = profile.ageGroup || "26-40";
-  document.getElementById("edit-literacy").value =
-    profile.literacyLevel || "canRecognize";
+  const avatarEl = document.getElementById("profile-avatar");
+  if (avatarEl) {
+    avatarEl.textContent = (profile.fullName || "U").charAt(0).toUpperCase();
+  }
 
-  // ─── Refined Badge Shelf System ───
+  // 2. Profile Tags Strip
+  const nativePill = document.getElementById("profile-native-lang-pill");
+  if (nativePill) {
+    const natName = LANG_NAMES[profile.preferredLanguage || "en"] || "English";
+    nativePill.innerHTML = `<i data-lucide="globe"></i><span>Native: ${natName}</span>`;
+  }
+
+  const targetPill = document.getElementById("profile-target-lang-pill");
+  if (targetPill) {
+    const tgtName = LANG_NAMES[profile.targetLanguage || profile.preferredLanguage || "en"] || "English";
+    targetPill.innerHTML = `<i data-lucide="sparkles"></i><span>Learning: ${tgtName}</span>`;
+  }
+
+  const agePill = document.getElementById("profile-age-pill");
+  if (agePill) {
+    const ageVal = profile.ageGroup || "18–25";
+    agePill.innerHTML = `<i data-lucide="user"></i><span>Age: ${ageVal}</span>`;
+  }
+
+  // 3. Edit Form Fields
+  const editFullName = document.getElementById("edit-fullname");
+  if (editFullName) editFullName.value = profile.fullName || "";
+
+  const editLang = document.getElementById("edit-language");
+  if (editLang) editLang.value = profile.preferredLanguage || "en";
+
+  const editTgtLang = document.getElementById("edit-target-language");
+  if (editTgtLang) editTgtLang.value = profile.targetLanguage || profile.preferredLanguage || "en";
+
+  const editAge = document.getElementById("edit-age");
+  if (editAge) editAge.value = profile.ageGroup || "26-40";
+
+  const editLit = document.getElementById("edit-literacy");
+  if (editLit) editLit.value = profile.literacyLevel || "canRecognize";
+
+  // 4. Level Progression Calculation
+  const totalXp = profile.xp || 0;
+  let currentLevelTitle = "Level 1: Beginner Explorer";
+  let nextLevelTitle = "Level 2: Apprentice Scholar";
+  let minTierXp = 0;
+  let maxTierXp = 150;
+
+  if (totalXp >= 1500) {
+    currentLevelTitle = "Level 5: Grandmaster of AksharGyan";
+    nextLevelTitle = "Max Level Reached! 👑";
+    minTierXp = 1500;
+    maxTierXp = 3000;
+  } else if (totalXp >= 800) {
+    currentLevelTitle = "Level 4: Master Polyglot";
+    nextLevelTitle = "Level 5: Grandmaster of AksharGyan";
+    minTierXp = 800;
+    maxTierXp = 1500;
+  } else if (totalXp >= 400) {
+    currentLevelTitle = "Level 3: Fluent Scholar";
+    nextLevelTitle = "Level 4: Master Polyglot";
+    minTierXp = 400;
+    maxTierXp = 800;
+  } else if (totalXp >= 150) {
+    currentLevelTitle = "Level 2: Apprentice Wordsmith";
+    nextLevelTitle = "Level 3: Fluent Scholar";
+    minTierXp = 150;
+    maxTierXp = 400;
+  }
+
+  const levelProgressPct = Math.min(100, Math.max(8, Math.round(((totalXp - minTierXp) / (maxTierXp - minTierXp)) * 100)));
+  const xpNeeded = Math.max(0, maxTierXp - totalXp);
+
+  const levelTitleEl = document.getElementById("profile-level-title");
+  if (levelTitleEl) levelTitleEl.textContent = currentLevelTitle;
+
+  const nextLevelEl = document.getElementById("profile-next-level-title");
+  if (nextLevelEl) nextLevelEl.textContent = nextLevelTitle;
+
+  const levelFillEl = document.getElementById("profile-level-fill");
+  if (levelFillEl) levelFillEl.style.width = `${levelProgressPct}%`;
+
+  const xpProgressTextEl = document.getElementById("profile-xp-progress-text");
+  if (xpProgressTextEl) xpProgressTextEl.innerHTML = `<strong>${totalXp} XP</strong> earned (${levelProgressPct}% to next tier)`;
+
+  const xpNeededTextEl = document.getElementById("profile-xp-needed-text");
+  if (xpNeededTextEl) {
+    if (totalXp >= 1500) {
+      xpNeededTextEl.textContent = "You've reached top tier literacy master status! 🌟";
+    } else {
+      xpNeededTextEl.textContent = `${xpNeeded} XP to reach ${nextLevelTitle}! Keep practicing daily. 🚀`;
+    }
+  }
+
+  // 5. Populate 6 Stats Command Matrix
+  const streakEl = document.getElementById("strip-streak");
+  if (streakEl) streakEl.textContent = profile.streak || 0;
+
+  const streakSubtext = document.getElementById("profile-streak-subtext");
+  if (streakSubtext) {
+    streakSubtext.textContent = (profile.streak || 0) > 0 ? "🔥 Hot Streak" : "Start your streak today";
+  }
+
+  const xpEl = document.getElementById("strip-xp");
+  if (xpEl) xpEl.textContent = totalXp;
+
+  const completedLessons = profile.completedLessons || [];
+  const lessonsEl = document.getElementById("strip-lessons");
+  if (lessonsEl) lessonsEl.textContent = completedLessons.length;
+
+  const earnedBadges = profile.badgesEarned || [];
+  const badgesEl = document.getElementById("strip-badges");
+  if (badgesEl) badgesEl.textContent = earnedBadges.length;
+
+  const coinsEl = document.getElementById("strip-coins");
+  if (coinsEl) {
+    coinsEl.textContent = profile.coins !== undefined ? profile.coins : (profile.gems !== undefined ? profile.gems : 25);
+  }
+
+  const accuracyEl = document.getElementById("strip-accuracy");
+  if (accuracyEl) {
+    accuracyEl.textContent = profile.assessmentScore ? `${profile.assessmentScore}%` : "95%";
+  }
+
+  // 6. AI Smart Tutor Insights
+  const strengthTextEl = document.getElementById("ai-strength-text");
+  const focusTextEl = document.getElementById("ai-focus-text");
+  const feedbackTextEl = document.getElementById("ai-feedback-text");
+
+  if (profile.geminiAnalysis && profile.geminiAnalysis.learningPlan) {
+    if (strengthTextEl) strengthTextEl.textContent = "AI Diagnosed Strength: " + (profile.geminiAnalysis.strongCategory || "Phonics & Recognition");
+    if (focusTextEl) focusTextEl.textContent = "Target Area: " + (profile.geminiAnalysis.focusArea || "Daily Practice");
+    if (feedbackTextEl) feedbackTextEl.textContent = profile.geminiAnalysis.summary || profile.geminiAnalysis.learningPlan;
+  } else {
+    if (currentLevelKey === "beginner") {
+      if (strengthTextEl) strengthTextEl.textContent = "Phonetic Letter Recognition";
+      if (focusTextEl) focusTextEl.textContent = "Recommended Focus: Alphabet Unit 1 & Sound Match";
+      if (feedbackTextEl) feedbackTextEl.textContent = "Solid foundational progress! Focus on interactive Alphabet sound matching and tracing to build effortless letter-to-sound recognition.";
+    } else if (currentLevelKey === "intermediate") {
+      if (strengthTextEl) strengthTextEl.textContent = "Everyday Word Comprehension";
+      if (focusTextEl) focusTextEl.textContent = "Recommended Focus: Real-World Scenarios & Phrases";
+      if (feedbackTextEl) feedbackTextEl.textContent = "Great vocabulary retention! You are well-equipped to practice chat dialogues, daily conversation replies, and life-skill reading.";
+    } else {
+      if (strengthTextEl) strengthTextEl.textContent = "Advanced Reading & Sentence Synthesis";
+      if (focusTextEl) focusTextEl.textContent = "Recommended Focus: Speed Challenges & Life Skills";
+      if (feedbackTextEl) feedbackTextEl.textContent = "Exceptional reading fluency! Keep mastering handwriting speed drills, complex medicine labels, and speed word match puzzles.";
+    }
+  }
+
+  // Also update side calendar if present
+  const calendar = document.getElementById("streak-calendar");
+  if (calendar) {
+    let calHtml = "";
+    const today = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - i);
+      const dateStr = d.toISOString().split("T")[0];
+      const isPracticed = (profile.practiceDays || []).includes(dateStr);
+      let dayName = "D";
+      try {
+        dayName = d.toLocaleDateString(selectedLang || "en", { weekday: "narrow" });
+      } catch (e) {
+        dayName = d.toLocaleDateString("en", { weekday: "narrow" });
+      }
+      calHtml += `<div class="calendar-day ${isPracticed ? "practiced" : ""}" title="${dateStr}">
+        ${dayName}
+      </div>`;
+    }
+    calendar.innerHTML = calHtml;
+  }
+
+  // 7. Account & Details Table
+  const acctNative = document.getElementById("account-native-lang-val");
+  if (acctNative) acctNative.textContent = LANG_NAMES[profile.preferredLanguage || "en"] || "English";
+
+  const acctTgt = document.getElementById("account-target-lang-val");
+  if (acctTgt) acctTgt.textContent = LANG_NAMES[profile.targetLanguage || profile.preferredLanguage || "en"] || "English";
+
+  const acctAge = document.getElementById("account-age-val");
+  if (acctAge) acctAge.textContent = profile.ageGroup || "18–25";
+
+  // 10. Refined Badge Shelf System & Interactive Filtering
   const badgeShelf = document.getElementById("badge-shelf");
   if (badgeShelf) {
     const allBadges = [
       {
         id: "assessmentDone",
-        icon: "<i data-lucide=\"target\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeEvaluatedLabel") || "Evaluated",
-        desc:
-          getTranslation(selectedLang, "badgeEvaluatedDesc") ||
-          "Completed initial assessment",
+        icon: '<i data-lucide="target"></i>',
+        label: getTranslation(selectedLang, "badgeEvaluatedLabel") || "Evaluated",
+        desc: getTranslation(selectedLang, "badgeEvaluatedDesc") || "Completed initial assessment",
       },
       {
         id: "firstLesson",
-        icon: "<i data-lucide=\"sprout\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeFirstStepsLabel") || "First Steps",
-        desc:
-          getTranslation(selectedLang, "badgeFirstStepsDesc") ||
-          "Completed your first lesson",
+        icon: '<i data-lucide="sprout"></i>',
+        label: getTranslation(selectedLang, "badgeFirstStepsLabel") || "First Steps",
+        desc: getTranslation(selectedLang, "badgeFirstStepsDesc") || "Completed your first lesson",
       },
       {
         id: "alphabetMaster",
-        icon: "<i data-lucide=\"type\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeLetterKingLabel") || "Letter King",
-        desc:
-          getTranslation(selectedLang, "badgeLetterKingDesc") ||
-          "Mastered the alphabets unit",
+        icon: '<i data-lucide="type"></i>',
+        label: getTranslation(selectedLang, "badgeLetterKingLabel") || "Letter King",
+        desc: getTranslation(selectedLang, "badgeLetterKingDesc") || "Mastered the alphabets unit",
       },
       {
         id: "beginnerGraduate",
-        icon: "<i data-lucide=\"medal\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeBeginnerGradLabel") ||
-          "Beginner Graduate",
-        desc:
-          getTranslation(selectedLang, "badgeBeginnerGradDesc") ||
-          "Mastered all beginner skills",
+        icon: '<i data-lucide="medal"></i>',
+        label: getTranslation(selectedLang, "badgeBeginnerGradLabel") || "Beginner Graduate",
+        desc: getTranslation(selectedLang, "badgeBeginnerGradDesc") || "Mastered all beginner skills",
       },
       {
         id: "intermediateGraduate",
-        icon: "<i data-lucide=\"medal\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeIntermediateGradLabel") ||
-          "Intermediate Graduate",
-        desc:
-          getTranslation(selectedLang, "badgeIntermediateGradDesc") ||
-          "Mastered all intermediate skills",
+        icon: '<i data-lucide="medal"></i>',
+        label: getTranslation(selectedLang, "badgeIntermediateGradLabel") || "Intermediate Graduate",
+        desc: getTranslation(selectedLang, "badgeIntermediateGradDesc") || "Mastered all intermediate skills",
       },
       {
         id: "advancedGraduate",
-        icon: "<i data-lucide=\"medal\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeAdvancedGradLabel") ||
-          "Advanced Graduate",
-        desc:
-          getTranslation(selectedLang, "badgeAdvancedGradDesc") ||
-          "Mastered all advanced skills",
+        icon: '<i data-lucide="medal"></i>',
+        label: getTranslation(selectedLang, "badgeAdvancedGradLabel") || "Advanced Graduate",
+        desc: getTranslation(selectedLang, "badgeAdvancedGradDesc") || "Mastered all advanced skills",
       },
       {
         id: "streak5",
-        icon: "<i data-lucide=\"flame\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeStreak5Label") || "5-Day Streak",
-        desc:
-          getTranslation(selectedLang, "badgeStreak5Desc") ||
-          "Practiced 5 days in a row",
+        icon: '<i data-lucide="flame"></i>',
+        label: getTranslation(selectedLang, "badgeStreak5Label") || "5-Day Streak",
+        desc: getTranslation(selectedLang, "badgeStreak5Desc") || "Practiced 5 days in a row",
       },
       {
         id: "streak10",
-        icon: "<i data-lucide=\"flame\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeStreak10Label") || "10-Day Streak",
-        desc:
-          getTranslation(selectedLang, "badgeStreak10Desc") ||
-          "Practiced 10 days in a row",
+        icon: '<i data-lucide="flame"></i>',
+        label: getTranslation(selectedLang, "badgeStreak10Label") || "10-Day Streak",
+        desc: getTranslation(selectedLang, "badgeStreak10Desc") || "Practiced 10 days in a row",
       },
       {
         id: "streak30",
-        icon: "<i data-lucide=\"flame\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeStreak30Label") || "30-Day Streak",
-        desc:
-          getTranslation(selectedLang, "badgeStreak30Desc") ||
-          "Practiced 30 days in a row",
+        icon: '<i data-lucide="flame"></i>',
+        label: getTranslation(selectedLang, "badgeStreak30Label") || "30-Day Streak",
+        desc: getTranslation(selectedLang, "badgeStreak30Desc") || "Practiced 30 days in a row",
       },
       {
         id: "gameWinner",
-        icon: "<i data-lucide=\"gamepad-2\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeMatchMasterLabel") ||
-          "Match Master",
-        desc:
-          getTranslation(selectedLang, "badgeMatchMasterDesc") ||
-          "Won a Word Match game",
+        icon: '<i data-lucide="gamepad-2"></i>',
+        label: getTranslation(selectedLang, "badgeMatchMasterLabel") || "Match Master",
+        desc: getTranslation(selectedLang, "badgeMatchMasterDesc") || "Won a Word Match game",
       },
       {
         id: "gameChampion",
-        icon: "<i data-lucide=\"trophy\"></i>",
-        label:
-          getTranslation(selectedLang, "badgeGameChampionLabel") ||
-          "Game Champion",
-        desc:
-          getTranslation(selectedLang, "badgeGameChampionDesc") ||
-          "Won 10 games",
+        icon: '<i data-lucide="trophy"></i>',
+        label: getTranslation(selectedLang, "badgeGameChampionLabel") || "Game Champion",
+        desc: getTranslation(selectedLang, "badgeGameChampionDesc") || "Won 10 games",
       },
     ];
 
@@ -1721,10 +2198,10 @@ function renderProfile(profile) {
         const isEarned = earned.includes(b.id);
         const tooltip = isEarned ? b.label : `Locked: ${b.desc}`;
         return `
-        <div class="badge-card-item ${isEarned ? "earned" : "locked"}" title="${tooltip}">
+        <div class="badge-card-item ${isEarned ? "earned" : "locked"}" title="${tooltip}" data-badge-id="${b.id}">
           <div class="badge-icon-circle">${b.icon}</div>
           ${!isEarned ? '<div class="badge-lock-overlay"><i data-lucide="lock" class="inline-icon"></i></div>' : ""}
-          <div class="badge-card-label">${b.label}</div>
+          <div class="badge-card-label" style="font-weight: 800; font-size: 0.82rem; color: #0f172a;">${b.label}</div>
         </div>
       `;
       })
@@ -1732,41 +2209,18 @@ function renderProfile(profile) {
 
     badgeShelf.querySelectorAll(".badge-card-item.earned").forEach((item) => {
       item.addEventListener("mouseenter", () => {
-        item.querySelector(".badge-icon-circle").style.transform =
-          "scale(1.1) translateY(-3px)";
+        const iconCircle = item.querySelector(".badge-icon-circle");
+        if (iconCircle) iconCircle.style.transform = "scale(1.12) translateY(-3px)";
       });
       item.addEventListener("mouseleave", () => {
-        item.querySelector(".badge-icon-circle").style.transform =
-          "scale(1) translateY(0)";
+        const iconCircle = item.querySelector(".badge-icon-circle");
+        if (iconCircle) iconCircle.style.transform = "scale(1) translateY(0)";
       });
     });
   }
 
-  // Update Side Calendar (Phase 6)
-  const calendar = document.getElementById("streak-calendar");
-  if (calendar) {
-    let calHtml = "";
-    const today = new Date();
-    // Render last 7 days
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      const dateStr = d.toISOString().split("T")[0];
-      const isPracticed = (profile.practiceDays || []).includes(dateStr);
-      // Try to get day name properly depending on language
-      let dayName = "D";
-      try {
-        dayName = d.toLocaleDateString(selectedLang || "en", {
-          weekday: "narrow",
-        });
-      } catch (e) {
-        dayName = d.toLocaleDateString("en", { weekday: "narrow" });
-      }
-      calHtml += `<div class="calendar-day ${isPracticed ? "practiced" : ""}" title="${dateStr}">
-        ${dayName}
-      </div>`;
-    }
-    calendar.innerHTML = calHtml;
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
   }
 }
 // ─── Virtual Shop Engine ───────────────────────────────────────

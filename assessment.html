@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta charset="UTF-8" />
@@ -10,25 +11,26 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json">
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+  <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
     /* ═══════════════════════════════════════════════════════════════════
        AKSHARGYAN ASSESSMENT — PERFECTLY CENTERED DESIGN SYSTEM
        ═══════════════════════════════════════════════════════════════════ */
-    
-    html, body#page-assessment {
+
+    html,
+    body#page-assessment {
       background-color: #f8fafc !important;
-      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-                  #f8fafc !important;
+      background: #f8fafc !important;
       color: #0f172a !important;
       font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
       min-height: 100vh;
@@ -39,7 +41,93 @@
       animation: none !important;
     }
 
-    body#page-assessment::before {
+    body#page-assessment::before,
+    body#page-assessment::after {
+      display: none !important;
+    }
+
+    /* Ambient Studio Glow */
+    .ambient-glow-layer {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .ambient-glow-orb {
+      position: absolute !important;
+      border-radius: 50% !important;
+      pointer-events: none !important;
+      will-change: transform;
+    }
+
+    .ambient-glow-1 {
+      width: 700px !important;
+      height: 700px !important;
+      top: -12% !important;
+      left: -8% !important;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0) 70%) !important;
+      filter: blur(120px) !important;
+      -webkit-filter: blur(120px) !important;
+      animation: ambientFloat1 26s ease-in-out infinite alternate !important;
+    }
+
+    .ambient-glow-2 {
+      width: 650px !important;
+      height: 650px !important;
+      top: 38% !important;
+      right: -10% !important;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, rgba(56, 189, 248, 0) 70%) !important;
+      filter: blur(130px) !important;
+      -webkit-filter: blur(130px) !important;
+      animation: ambientFloat2 30s ease-in-out infinite alternate !important;
+    }
+
+    .ambient-glow-3 {
+      width: 620px !important;
+      height: 620px !important;
+      bottom: -15% !important;
+      left: 20% !important;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%) !important;
+      filter: blur(120px) !important;
+      -webkit-filter: blur(120px) !important;
+      animation: ambientFloat3 28s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes ambientFloat1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(50px, 35px) scale(1.06);
+      }
+    }
+
+    @keyframes ambientFloat2 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-45px, -25px) scale(1.04);
+      }
+    }
+
+    @keyframes ambientFloat3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(35px, -35px) scale(1.08);
+      }
+    }
+
+    .bg-orb {
       display: none !important;
     }
 
@@ -52,11 +140,11 @@
       right: 0 !important;
       height: 72px !important;
       z-index: 1000 !important;
-      background: rgba(255, 255, 255, 0.85) !important;
-      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
-      backdrop-filter: blur(24px) saturate(200%) !important;
-      border-bottom: 1.5px solid rgba(226, 232, 240, 0.8) !important;
-      box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      backdrop-filter: blur(16px) !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
       padding: 0 1.75rem !important;
       margin: 0 !important;
       display: flex !important;
@@ -632,12 +720,15 @@
     }
   </style>
 </head>
+
 <body id="page-assessment" class="fade-in-up light-theme">
 
-  <!-- Ambient Background Orbs -->
-  <div class="bg-orb bg-orb-purple"></div>
-  <div class="bg-orb bg-orb-emerald"></div>
-  <div class="bg-orb bg-orb-pink"></div>
+  <!-- Elegant Ambient Studio Glow -->
+  <div class="ambient-glow-layer" aria-hidden="true">
+    <div class="ambient-glow-orb ambient-glow-1"></div>
+    <div class="ambient-glow-orb ambient-glow-2"></div>
+    <div class="ambient-glow-orb ambient-glow-3"></div>
+  </div>
 
   <!-- Top Glass Navigation Bar -->
   <header class="dash-top-navbar">
@@ -650,7 +741,8 @@
       <div style="display: flex; align-items: center; gap: 0.85rem;">
         <!-- Language Selector -->
         <div class="language-selector" style="position: relative;">
-          <select id="lang-selector" class="lang-select" style="background: rgba(241, 245, 249, 0.9); border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.4rem 1rem; font-weight: 800; font-size: 0.85rem; color: #334155; cursor: pointer; height: 38px;">
+          <select id="lang-selector" class="lang-select"
+            style="background: rgba(241, 245, 249, 0.9); border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.4rem 1rem; font-weight: 800; font-size: 0.85rem; color: #334155; cursor: pointer; height: 38px;">
             <option value="en">English</option>
             <option value="hi">हिंदी (Hindi)</option>
             <option value="ta">தமிழ் (Tamil)</option>
@@ -662,58 +754,72 @@
         </div>
 
         <!-- Back to Login Button -->
-        <button id="ass-back-to-login" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
+        <button id="ass-back-to-login" class="btn-secondary"
+          style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
           <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
           <span>Back to Login</span>
         </button>
       </div>
     </div>
   </header>
-  
+
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-spinner"></div>
     <div class="loading-text" data-i18n="loadingText">Loading Assessment...</div>
   </div>
 
   <main class="assessment-shell">
-    
+
     <!-- 1. Assessment Introduction Card -->
     <div id="assessment-intro" class="ass-card text-center">
       <div class="ass-hero-badge" style="margin: 0 auto 1.35rem;">
         🎯
       </div>
 
-      <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.1rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;" data-i18n="assessmentTitle">
+      <h1
+        style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.1rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;"
+        data-i18n="assessmentTitle">
         Literacy Assessment
       </h1>
-      
-      <p style="font-size: 1.05rem; font-weight: 700; color: #6366f1; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
-        <span class="brand-gradient" data-i18n="assessmentSubtitle">Let's understand your current level to personalize your learning</span>
-      </p>
-      
-      <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; line-height: 1.6; max-width: 480px; margin: 0 auto 1.5rem; text-align: center; width: 100%;" data-i18n="assessmentInstructions">
-        Answer each question to the best of your ability. There are no wrong answers — this helps us tailor your experience.
+
+      <p
+        style="font-size: 1.05rem; font-weight: 700; color: #6366f1; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
+        <span class="brand-gradient" data-i18n="assessmentSubtitle">Let's understand your current level to personalize
+          your learning</span>
       </p>
 
-      <div class="ass-feature-chips" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto 2rem;">
-        <div class="ass-chip"><i data-lucide="zap" style="width: 15px; height: 15px; color: #6366f1;"></i> 12 Questions</div>
-        <div class="ass-chip"><i data-lucide="volume-2" style="width: 15px; height: 15px; color: #10b981;"></i> Audio & Speech</div>
-        <div class="ass-chip"><i data-lucide="sparkles" style="width: 15px; height: 15px; color: #f59e0b;"></i> AI Personalization</div>
+      <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; line-height: 1.6; max-width: 480px; margin: 0 auto 1.5rem; text-align: center; width: 100%;"
+        data-i18n="assessmentInstructions">
+        Answer each question to the best of your ability. There are no wrong answers — this helps us tailor your
+        experience.
+      </p>
+
+      <div class="ass-feature-chips"
+        style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto 2rem;">
+        <div class="ass-chip"><i data-lucide="zap" style="width: 15px; height: 15px; color: #6366f1;"></i> 12 Questions
+        </div>
+        <div class="ass-chip"><i data-lucide="volume-2" style="width: 15px; height: 15px; color: #10b981;"></i> Audio &
+          Speech</div>
+        <div class="ass-chip"><i data-lucide="sparkles" style="width: 15px; height: 15px; color: #f59e0b;"></i> AI
+          Personalization</div>
       </div>
 
-      <button id="start-btn" class="ass-btn-primary" style="width: 100%; max-width: 320px; margin: 0 auto; display: inline-flex; align-items: center; justify-content: center;" data-i18n="assessmentStartBtn">
+      <button id="start-btn" class="ass-btn-primary"
+        style="width: 100%; max-width: 320px; margin: 0 auto; display: inline-flex; align-items: center; justify-content: center;"
+        data-i18n="assessmentStartBtn">
         <span>Start Assessment</span>
         <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
       </button>
 
-      <p id="loading-hint" class="hidden" style="margin: 1.25rem auto 0; font-weight: 700; color: #6366f1; font-size: 0.9rem; text-align: center; width: 100%;">
+      <p id="loading-hint" class="hidden"
+        style="margin: 1.25rem auto 0; font-weight: 700; color: #6366f1; font-size: 0.9rem; text-align: center; width: 100%;">
         ✨ Gemini AI is preparing your personalized questions...
       </p>
     </div>
 
     <!-- 2. Question Quiz Screen Container -->
     <div id="assessment-quiz" class="assessment-container hidden">
-      
+
       <!-- Progress Bar Card -->
       <div class="ass-progress-wrap">
         <div class="ass-progress-header">
@@ -722,7 +828,8 @@
             <span data-i18n="assessmentTitle">Literacy Assessment</span>
           </span>
           <span class="ass-progress-pill">
-            <span data-i18n="assessmentQuestion">Question</span> <span id="current-q-num">1</span> <span data-i18n="assessmentOf">of</span> <span id="total-q-num">12</span>
+            <span data-i18n="assessmentQuestion">Question</span> <span id="current-q-num">1</span> <span
+              data-i18n="assessmentOf">of</span> <span id="total-q-num">12</span>
           </span>
         </div>
         <div class="ass-progress-track">
@@ -739,16 +846,19 @@
 
         <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;">
           <h2 id="question-text" class="ass-question-text">Loading question...</h2>
-          <button id="tts-question-btn" class="icon-btn" title="Read Question" style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 14px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #4f46e5; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
+          <button id="tts-question-btn" class="icon-btn" title="Read Question"
+            style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 14px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #4f46e5; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
             <i data-lucide="volume-2" style="width: 20px; height: 20px;"></i>
           </button>
         </div>
-        
+
         <div id="options-container" class="options-grid">
           <!-- Options injected via JS -->
         </div>
 
-        <div id="assessment-error" style="display: none; background: #fef2f2; border: 1.5px solid #fca5a5; color: #dc2626; padding: 0.75rem 1rem; border-radius: 14px; font-weight: 800; font-size: 0.88rem; margin-top: 1.25rem;" data-i18n="assessmentSelectPrompt">
+        <div id="assessment-error"
+          style="display: none; background: #fef2f2; border: 1.5px solid #fca5a5; color: #dc2626; padding: 0.75rem 1rem; border-radius: 14px; font-weight: 800; font-size: 0.88rem; margin-top: 1.25rem;"
+          data-i18n="assessmentSelectPrompt">
           Please select an answer to continue.
         </div>
       </div>
@@ -760,19 +870,23 @@
           <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
         </button>
       </div>
-      
+
     </div>
 
     <!-- 3. Score & Evaluation Screen -->
     <div id="assessment-score" class="ass-card text-center hidden">
-      <div style="width: 64px; height: 64px; border-radius: 22px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.4);">
+      <div
+        style="width: 64px; height: 64px; border-radius: 22px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; box-shadow: 0 12px 28px -6px rgba(16, 185, 129, 0.4);">
         🎉
       </div>
 
-      <h1 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;" data-i18n="scoreTitle">
+      <h1
+        style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0 auto 0.5rem; text-align: center; width: 100%;"
+        data-i18n="scoreTitle">
         Assessment Complete!
       </h1>
-      <p style="color: #64748b; font-weight: 600; font-size: 0.95rem; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
+      <p
+        style="color: #64748b; font-weight: 600; font-size: 0.95rem; margin: 0 auto 1.25rem; text-align: center; width: 100%;">
         Great effort! Here is your placement score & personalized level assignment.
       </p>
 
@@ -793,33 +907,41 @@
         </div>
       </div>
 
-      <div id="score-level-badge" style="display: inline-block; background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1.5px solid #f59e0b; padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 900; font-size: 0.95rem; margin: 0 auto 1.5rem; box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);">
+      <div id="score-level-badge"
+        style="display: inline-block; background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1.5px solid #f59e0b; padding: 0.5rem 1.25rem; border-radius: 9999px; font-weight: 900; font-size: 0.95rem; margin: 0 auto 1.5rem; box-shadow: 0 6px 18px rgba(245, 158, 11, 0.25);">
         <span data-i18n="scoreLevelBeginner">🌱 Beginner Level</span>
       </div>
 
       <!-- AI Loading State -->
-      <div id="assessment-ai-loading" class="assessment-ai-loading-container" style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.25rem; margin: 0 auto 1.5rem; width: 100%; box-sizing: border-box;">
+      <div id="assessment-ai-loading" class="assessment-ai-loading-container"
+        style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.25rem; margin: 0 auto 1.5rem; width: 100%; box-sizing: border-box;">
         <div class="assessment-ai-spinner" style="border-top-color: #6366f1; margin: 0 auto;"></div>
-        <p class="assessment-ai-loading-text" style="font-weight: 800; color: #4f46e5; margin: 0.5rem auto 0; text-align: center;">✨ Gemini AI is analyzing your answers & personalized feedback...</p>
+        <p class="assessment-ai-loading-text"
+          style="font-weight: 800; color: #4f46e5; margin: 0.5rem auto 0; text-align: center;">✨ Gemini AI is analyzing
+          your answers & personalized feedback...</p>
       </div>
 
       <!-- Gemini Insights Result Container -->
       <div id="assessment-ai-insights" class="hidden" style="width: 100%;">
         <p id="score-summary-message" class="assessment-ai-summary-msg">Analyzing your results...</p>
-        
+
         <div class="assessment-ai-boxes">
           <div class="assessment-ai-box-strengths">
-            <h4><i data-lucide="check-circle-2" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Strengths</h4>
+            <h4><i data-lucide="check-circle-2" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Strengths
+            </h4>
             <ul id="ai-good-points"></ul>
           </div>
           <div class="assessment-ai-box-weaknesses">
-            <h4><i data-lucide="target" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Recommended Focus</h4>
+            <h4><i data-lucide="target" style="width: 18px; height: 18px; vertical-align: -3px;"></i> Recommended Focus
+            </h4>
             <ul id="ai-weak-points"></ul>
           </div>
         </div>
       </div>
 
-      <button id="continue-btn" class="ass-btn-primary" style="width: 100%; max-width: 340px; margin: 1rem auto 0; display: inline-flex; align-items: center; justify-content: center;" data-i18n="scoreContinueBtn">
+      <button id="continue-btn" class="ass-btn-primary"
+        style="width: 100%; max-width: 340px; margin: 1rem auto 0; display: inline-flex; align-items: center; justify-content: center;"
+        data-i18n="scoreContinueBtn">
         <span>Continue to Dashboard</span>
         <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
       </button>
@@ -836,6 +958,7 @@
   <script src="translations.js"></script>
   <script src="auth.js"></script>
   <script src="tts.js"></script>
+  <script src="celebrations.js"></script>
   <script src="assessment.js"></script>
   <script src="main.js"></script>
 
@@ -861,4 +984,5 @@
     });
   </script>
 </body>
+
 </html>

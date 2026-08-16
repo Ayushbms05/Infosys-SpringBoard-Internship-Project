@@ -551,6 +551,13 @@ async function showLessonComplete() {
         accuracy
       );
 
+      try {
+        const lessonId = `${lessonParams.level}_${lessonParams.type}_${lessonParams.unit}_${lessonParams.lessonIndex}`;
+        const localMap = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
+        localMap[lessonId] = Math.round(accuracy || 0);
+        localStorage.setItem("akshar_lesson_scores", JSON.stringify(localMap));
+      } catch (e) {}
+
       if (levelResult && levelResult.leveledUp) {
         const modal = document.getElementById("level-up-modal");
         if (modal) modal.classList.remove("hidden");

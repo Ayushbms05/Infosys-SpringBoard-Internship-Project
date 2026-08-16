@@ -1,9 +1,8 @@
 /**
  * handwriting-content.js — Content Blueprint for Handwriting Practice
  *
- * Fully isolated from lesson.js, units.js, and Firestore content collections.
- * Supports English and Hindi scripts so learners can practice letter, number,
- * and word tracing in either language based on their target language.
+ * Supports all 7 official platform languages:
+ * English (en), Hindi (hi), Tamil (ta), Telugu (te), Kannada (kn), Bengali (bn), Marathi (mr).
  */
 
 const HANDWRITING_CONTENT = {
@@ -70,6 +69,167 @@ const HANDWRITING_CONTENT = {
       { id: "hi_roti", display: "रोटी" },
       { id: "hi_fal", display: "फल" },
       { id: "hi_kaam", display: "काम" }
+    ]
+  },
+
+  // ── TAMIL CONTENT ────────────────────────────────────────────────
+  ta: {
+    alphabets: [
+      { id: "ta_a", display: "அ" }, { id: "ta_aa", display: "ஆ" }, { id: "ta_i", display: "இ" },
+      { id: "ta_ee", display: "ஈ" }, { id: "ta_u", display: "உ" }, { id: "ta_oo", display: "ஊ" },
+      { id: "ta_e", display: "எ" }, { id: "ta_ae", display: "ஏ" }, { id: "ta_ai", display: "ஐ" },
+      { id: "ta_o", display: "ஒ" }, { id: "ta_oa", display: "ஓ" }, { id: "ta_au", display: "ஔ" },
+      { id: "ta_ka", display: "க" }, { id: "ta_nga", display: "ங" }, { id: "ta_sa", display: "ச" },
+      { id: "ta_nya", display: "ஞ" }, { id: "ta_ta", display: "த" }, { id: "ta_na", display: "ந" },
+      { id: "ta_pa", display: "ப" }, { id: "ta_ma", display: "ம" }, { id: "ta_ya", display: "ய" },
+      { id: "ta_ra", display: "ர" }, { id: "ta_la", display: "ல" }, { id: "ta_va", display: "வ" }
+    ],
+    numbers: [
+      { id: "ta_0", display: "௦" }, { id: "ta_1", display: "௧" }, { id: "ta_2", display: "௨" },
+      { id: "ta_3", display: "௩" }, { id: "ta_4", display: "௪" }, { id: "ta_5", display: "௫" },
+      { id: "ta_6", display: "௬" }, { id: "ta_7", display: "௭" }, { id: "ta_8", display: "௮" },
+      { id: "ta_9", display: "௯" }
+    ],
+    commonWords: [
+      { id: "ta_vanakkam", display: "வணக்கம்" },
+      { id: "ta_thanneer", display: "தண்ணீர்" },
+      { id: "ta_veedu", display: "வீடு" },
+      { id: "ta_amma", display: "அம்மா" },
+      { id: "ta_nool", display: "நூல்" },
+      { id: "ta_palli", display: "பள்ளி" },
+      { id: "ta_nanban", display: "நண்பன்" },
+      { id: "ta_unavu", display: "உணவு" },
+      { id: "ta_panam", display: "பணம்" },
+      { id: "ta_magizhchi", display: "மகிழ்ச்சி" }
+    ]
+  },
+
+  // ── TELUGU CONTENT ───────────────────────────────────────────────
+  te: {
+    alphabets: [
+      { id: "te_a", display: "అ" }, { id: "te_aa", display: "ఆ" }, { id: "te_i", display: "ఇ" },
+      { id: "te_ee", display: "ఈ" }, { id: "te_u", display: "ఉ" }, { id: "te_oo", display: "ఊ" },
+      { id: "te_e", display: "ఎ" }, { id: "te_ae", display: "ఏ" }, { id: "te_ai", display: "ఐ" },
+      { id: "te_o", display: "ఒ" }, { id: "te_oa", display: "ఓ" }, { id: "te_au", display: "ఔ" },
+      { id: "te_ka", display: "క" }, { id: "te_ga", display: "గ" }, { id: "te_cha", display: "చ" },
+      { id: "te_ja", display: "జ" }, { id: "te_ta", display: "త" }, { id: "te_da", display: "ద" },
+      { id: "te_na", display: "న" }, { id: "te_pa", display: "ప" }, { id: "te_ma", display: "మ" },
+      { id: "te_ya", display: "య" }, { id: "te_ra", display: "ర" }, { id: "te_la", display: "ల" }
+    ],
+    numbers: [
+      { id: "te_0", display: "౦" }, { id: "te_1", display: "౧" }, { id: "te_2", display: "౨" },
+      { id: "te_3", display: "౩" }, { id: "te_4", display: "౪" }, { id: "te_5", display: "౫" },
+      { id: "te_6", display: "౬" }, { id: "te_7", display: "౭" }, { id: "te_8", display: "౮" },
+      { id: "te_9", display: "౯" }
+    ],
+    commonWords: [
+      { id: "te_namaskaram", display: "నమస్కారం" },
+      { id: "te_neellu", display: "నీళ్లు" },
+      { id: "te_illu", display: "ఇల్లు" },
+      { id: "te_amma", display: "అమ్మ" },
+      { id: "te_pusthakam", display: "పుస్తకం" },
+      { id: "te_badi", display: "బడి" },
+      { id: "te_snehithudu", display: "స్నేహితుడు" },
+      { id: "te_annam", display: "అన్నం" },
+      { id: "te_dabbu", display: "డబ్బు" },
+      { id: "te_santhosham", display: "సంతోషం" }
+    ]
+  },
+
+  // ── KANNADA CONTENT ──────────────────────────────────────────────
+  kn: {
+    alphabets: [
+      { id: "kn_a", display: "ಅ" }, { id: "kn_aa", display: "ಆ" }, { id: "kn_i", display: "ಇ" },
+      { id: "kn_ee", display: "ಈ" }, { id: "kn_u", display: "ಉ" }, { id: "kn_oo", display: "ಊ" },
+      { id: "kn_e", display: "ಎ" }, { id: "kn_ae", display: "ಏ" }, { id: "kn_ai", display: "ಐ" },
+      { id: "kn_o", display: "ಒ" }, { id: "kn_oa", display: "ಓ" }, { id: "kn_au", display: "ಔ" },
+      { id: "kn_ka", display: "ಕ" }, { id: "kn_ga", display: "ಗ" }, { id: "kn_cha", display: "ಚ" },
+      { id: "kn_ja", display: "ಜ" }, { id: "kn_ta", display: "ತ" }, { id: "kn_da", display: "ದ" },
+      { id: "kn_na", display: "ನ" }, { id: "kn_pa", display: "ಪ" }, { id: "kn_ma", display: "ಮ" },
+      { id: "kn_ya", display: "ಯ" }, { id: "kn_ra", display: "ರ" }, { id: "kn_la", display: "ಲ" }
+    ],
+    numbers: [
+      { id: "kn_0", display: "೦" }, { id: "kn_1", display: "೧" }, { id: "kn_2", display: "೨" },
+      { id: "kn_3", display: "೩" }, { id: "kn_4", display: "೪" }, { id: "kn_5", display: "೫" },
+      { id: "kn_6", display: "೬" }, { id: "kn_7", display: "೭" }, { id: "kn_8", display: "೮" },
+      { id: "kn_9", display: "೯" }
+    ],
+    commonWords: [
+      { id: "kn_namaskara", display: "ನಮಸ್ಕಾರ" },
+      { id: "kn_neeru", display: "ನೀರು" },
+      { id: "kn_mane", display: "ಮನೆ" },
+      { id: "kn_amma", display: "ಅಮ್ಮ" },
+      { id: "kn_pusthaka", display: "ಪುಸ್ತಕ" },
+      { id: "kn_shaale", display: "ಶಾಲೆ" },
+      { id: "kn_snehitha", display: "ಸ್ನೇಹಿತ" },
+      { id: "kn_oota", display: "ಊಟ" },
+      { id: "kn_hana", display: "ಹಣ" },
+      { id: "kn_santhosha", display: "ಸಂತೋಷ" }
+    ]
+  },
+
+  // ── BENGALI CONTENT ──────────────────────────────────────────────
+  bn: {
+    alphabets: [
+      { id: "bn_a", display: "অ" }, { id: "bn_aa", display: "আ" }, { id: "bn_i", display: "ই" },
+      { id: "bn_ee", display: "ঈ" }, { id: "bn_u", display: "উ" }, { id: "bn_oo", display: "ঊ" },
+      { id: "bn_e", display: "এ" }, { id: "bn_ai", display: "ঐ" }, { id: "bn_o", display: "ও" },
+      { id: "bn_au", display: "ঔ" }, { id: "bn_ka", display: "ক" }, { id: "bn_kha", display: "খ" },
+      { id: "bn_ga", display: "গ" }, { id: "bn_gha", display: "ঘ" }, { id: "bn_cha", display: "চ" },
+      { id: "bn_ja", display: "জ" }, { id: "bn_ta", display: "ত" }, { id: "bn_da", display: "দ" },
+      { id: "bn_na", display: "ন" }, { id: "bn_pa", display: "প" }, { id: "bn_ma", display: "ম" },
+      { id: "bn_ra", display: "র" }, { id: "bn_la", display: "ল" }, { id: "bn_sa", display: "স" }
+    ],
+    numbers: [
+      { id: "bn_0", display: "০" }, { id: "bn_1", display: "১" }, { id: "bn_2", display: "২" },
+      { id: "bn_3", display: "৩" }, { id: "bn_4", display: "৪" }, { id: "bn_5", display: "৫" },
+      { id: "bn_6", display: "৬" }, { id: "bn_7", display: "৭" }, { id: "bn_8", display: "৮" },
+      { id: "bn_9", display: "৯" }
+    ],
+    commonWords: [
+      { id: "bn_nomoshkar", display: "নমস্কার" },
+      { id: "bn_jol", display: "জল" },
+      { id: "bn_bari", display: "বাড়ি" },
+      { id: "bn_maa", display: "মা" },
+      { id: "bn_boi", display: "বই" },
+      { id: "bn_biddaloy", display: "বিদ্যালয়" },
+      { id: "bn_bondhu", display: "বন্ধু" },
+      { id: "bn_khabar", display: "খাবার" },
+      { id: "bn_taka", display: "টাকা" },
+      { id: "bn_anondo", display: "আনন্দ" }
+    ]
+  },
+
+  // ── MARATHI CONTENT ──────────────────────────────────────────────
+  mr: {
+    alphabets: [
+      { id: "mr_a", display: "अ" }, { id: "mr_aa", display: "आ" }, { id: "mr_i", display: "इ" },
+      { id: "mr_ee", display: "ई" }, { id: "mr_u", display: "उ" }, { id: "mr_oo", display: "ऊ" },
+      { id: "mr_e", display: "ए" }, { id: "mr_ai", display: "ऐ" }, { id: "mr_o", display: "ओ" },
+      { id: "mr_au", display: "औ" }, { id: "mr_ka", display: "क" }, { id: "mr_kha", display: "ख" },
+      { id: "mr_ga", display: "ग" }, { id: "mr_gha", display: "घ" }, { id: "mr_cha", display: "च" },
+      { id: "mr_ja", display: "ज" }, { id: "mr_ta", display: "त" }, { id: "mr_da", display: "द" },
+      { id: "mr_na", display: "न" }, { id: "mr_pa", display: "प" }, { id: "mr_ma", display: "म" },
+      { id: "mr_ya", display: "य" }, { id: "mr_ra", display: "र" }, { id: "mr_la", display: "ल" },
+      { id: "mr_va", display: "व" }, { id: "mr_sa", display: "स" }, { id: "mr_laa", display: "ळ" }
+    ],
+    numbers: [
+      { id: "mr_0", display: "०" }, { id: "mr_1", display: "१" }, { id: "mr_2", display: "२" },
+      { id: "mr_3", display: "३" }, { id: "mr_4", display: "४" }, { id: "mr_5", display: "५" },
+      { id: "mr_6", display: "६" }, { id: "mr_7", display: "७" }, { id: "mr_8", display: "८" },
+      { id: "mr_9", display: "९" }
+    ],
+    commonWords: [
+      { id: "mr_namaskar", display: "नमस्कार" },
+      { id: "mr_paani", display: "पाणी" },
+      { id: "mr_ghar", display: "घर" },
+      { id: "mr_aai", display: "आई" },
+      { id: "mr_pustak", display: "पुस्तक" },
+      { id: "mr_shala", display: "शाळा" },
+      { id: "mr_mitra", display: "मित्र" },
+      { id: "mr_jevan", display: "जेवण" },
+      { id: "mr_paise", display: "पैसे" },
+      { id: "mr_anand", display: "आनंद" }
     ]
   }
 };

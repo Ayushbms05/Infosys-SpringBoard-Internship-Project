@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta charset="UTF-8" />
@@ -12,7 +13,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -24,11 +27,12 @@
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="landing.css" />
 
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+  <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
     /* Force Light Theme Background matching landing.html & index.html */
-    html, body#page-register {
+    html,
+    body#page-register {
       background-color: #f8fafc !important;
       background: #f8fafc !important;
       color: #0f172a !important;
@@ -290,6 +294,7 @@
     }
   </style>
 </head>
+
 <body id="page-register" class="light-theme">
 
   <!-- Top Scroll Progress Bar -->
@@ -305,7 +310,8 @@
 
       <div class="nav-actions">
         <a href="index.html" class="lp-btn lp-btn-outline" data-i18n="ctaBtnLang">Select Language</a>
-        <a href="login.html" class="lp-btn lp-btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;" data-i18n="navLogin">Login</a>
+        <a href="login.html" class="lp-btn lp-btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;"
+          data-i18n="navLogin">Login</a>
       </div>
     </div>
   </nav>
@@ -317,13 +323,14 @@
     <div class="bg-orb bg-orb-emerald" style="bottom: 10%; right: -5%;"></div>
 
     <div class="section-container" style="position: relative; z-index: 10; width: 100%;">
-      
+
       <div class="auth-container-grid-reg">
-        
+
         <!-- Left Column: Form Card -->
         <div class="auth-card-modern">
-          
-          <div class="hero-badge" style="margin-bottom: 1.2rem; display: inline-flex; align-items: center; gap: 0.4rem;">
+
+          <div class="hero-badge"
+            style="margin-bottom: 1.2rem; display: inline-flex; align-items: center; gap: 0.4rem;">
             <i data-lucide="sparkles" style="width: 16px; height: 16px; color: #10b981;"></i>
             <span>START LEARNING FREE</span>
           </div>
@@ -334,25 +341,21 @@
           </div>
 
           <form id="register-form" novalidate>
-            
+
             <div class="reg-form-2col">
-              
+
               <!-- Column 1 -->
               <div>
                 <div class="form-group">
                   <label for="fullName" data-i18n="fullNameLabel">Full Name</label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
-                    <input
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      required
-                      data-i18n-placeholder="fullNamePlaceholder"
-                      placeholder="Enter your full name"
-                    />
+                    <input type="text" id="fullName" name="fullName" required
+                      data-i18n-placeholder="fullNamePlaceholder" placeholder="Enter your full name" />
                   </div>
                   <span class="error-text" id="fullName-error"></span>
                 </div>
@@ -360,17 +363,13 @@
                 <div class="form-group">
                   <label for="email" data-i18n="emailLabel">Email</label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      data-i18n-placeholder="emailPlaceholder"
-                      placeholder="Enter your email address"
-                    />
+                    <input type="email" id="email" name="email" required data-i18n-placeholder="emailPlaceholder"
+                      placeholder="Enter your email address" />
                   </div>
                   <span class="error-text" id="email-error"></span>
                 </div>
@@ -378,22 +377,20 @@
                 <div class="form-group">
                   <label for="password" data-i18n="passwordLabel">Password</label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      required
-                      minlength="6"
-                      data-i18n-placeholder="passwordPlaceholder"
-                      placeholder="Create a password (min 6 characters)"
-                    />
+                    <input type="password" id="password" name="password" required minlength="6"
+                      data-i18n-placeholder="passwordPlaceholder" placeholder="Create a password (min 6 characters)" />
                     <button type="button" class="password-toggle" tabindex="-1" aria-label="Toggle password visibility">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     </button>
                   </div>
@@ -403,21 +400,20 @@
                 <div class="form-group">
                   <label for="confirmPassword" data-i18n="confirmPasswordLabel">Confirm Password</label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      required
-                      data-i18n-placeholder="confirmPasswordPlaceholder"
-                      placeholder="Re-enter your password"
-                    />
+                    <input type="password" id="confirmPassword" name="confirmPassword" required
+                      data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="Re-enter your password" />
                     <button type="button" class="password-toggle" tabindex="-1" aria-label="Toggle password visibility">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     </button>
                   </div>
@@ -443,7 +439,7 @@
 
               <!-- Column 2 -->
               <div>
-                
+
                 <div class="form-group">
                   <label for="preferredLang" data-i18n="preferredLangLabel">Preferred Language</label>
                   <select id="preferredLang" name="preferredLang">
@@ -467,17 +463,13 @@
                     <span data-i18n="motherTongueLabel">Mother Tongue</span>
                   </label>
                   <div class="input-wrapper">
-                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                     </svg>
-                    <input
-                      type="text"
-                      id="motherTongue"
-                      name="motherTongue"
-                      required
-                      data-i18n-placeholder="motherTonguePlaceholder"
-                      placeholder="e.g., Hindi, Tamil, etc."
-                    />
+                    <input type="text" id="motherTongue" name="motherTongue" required
+                      data-i18n-placeholder="motherTonguePlaceholder" placeholder="e.g., Hindi, Tamil, etc." />
                   </div>
                   <span class="error-text" id="motherTongue-error"></span>
                 </div>
@@ -489,9 +481,12 @@
                   <select id="literacyLevel" name="literacyLevel" required>
                     <option value="" data-i18n-option="litSelectPlaceholder">— Select your literacy level —</option>
                     <option value="neverLearned" data-i18n-option="litNeverLearned">Never learned to read/write</option>
-                    <option value="canRecognize" data-i18n-option="litCanRecognize">Can recognize some letters/words but not read sentences</option>
-                    <option value="canReadSimple" data-i18n-option="litCanReadSimple">Can read/write simple sentences with difficulty</option>
-                    <option value="canReadComfort" data-i18n-option="litCanReadComfort">Can read/write comfortably, returning to learn more</option>
+                    <option value="canRecognize" data-i18n-option="litCanRecognize">Can recognize some letters/words but
+                      not read sentences</option>
+                    <option value="canReadSimple" data-i18n-option="litCanReadSimple">Can read/write simple sentences
+                      with difficulty</option>
+                    <option value="canReadComfort" data-i18n-option="litCanReadComfort">Can read/write comfortably,
+                      returning to learn more</option>
                     <option value="preferNot" data-i18n-option="litPreferNot">Prefer not to say</option>
                   </select>
                   <span class="error-text" id="literacyLevel-error"></span>
@@ -517,29 +512,37 @@
         <!-- Right Column: Glassmorphic Brand Showcase Card -->
         <div class="auth-brand-showcase">
           <div class="bg-orb bg-orb-emerald" style="top: -20%; right: -20%; opacity: 0.3;"></div>
-          
+
           <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-            <div style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 0.4rem;">
+            <div
+              style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #34d399; display: flex; align-items: center; gap: 0.4rem;">
               <i data-lucide="globe" style="width: 14px; height: 14px;"></i>
               <span data-i18n="brandLanguagesBadge">🌐 7 Native Languages</span>
             </div>
-            <div style="background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #818cf8; display: flex; align-items: center; gap: 0.4rem;">
+            <div
+              style="background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); padding: 0.4rem 0.9rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; color: #818cf8; display: flex; align-items: center; gap: 0.4rem;">
               <i data-lucide="mic" style="width: 14px; height: 14px;"></i>
               <span data-i18n="brandSpeechBadge">🎙️ AI Speech Evaluation</span>
             </div>
           </div>
 
           <h2 data-i18n="brandRegisterTitle">Start your reading journey today</h2>
-          <p data-i18n="brandRegisterDesc">A few quick details help us tailor lessons to your pace, your language, and your goals — right from lesson one.</p>
+          <p data-i18n="brandRegisterDesc">A few quick details help us tailor lessons to your pace, your language, and
+            your goals — right from lesson one.</p>
 
-          <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.25rem; margin-bottom: 1rem;">
-            <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #34d399; letter-spacing: 0.5px; margin-bottom: 0.4rem;" data-i18n="brandMultiSensoryLabel">
+          <div
+            style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.25rem; margin-bottom: 1rem;">
+            <div
+              style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #34d399; letter-spacing: 0.5px; margin-bottom: 0.4rem;"
+              data-i18n="brandMultiSensoryLabel">
               Multi-Sensory Practice
             </div>
-            <h4 style="font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 0.4rem;" data-i18n="brandMultiSensoryTitle">
+            <h4 style="font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: 0.4rem;"
+              data-i18n="brandMultiSensoryTitle">
               Handwriting & Games Hub
             </h4>
-            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; margin: 0;" data-i18n="brandMultiSensoryDesc">
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); line-height: 1.4; margin: 0;"
+              data-i18n="brandMultiSensoryDesc">
               Trace letters on screen and play vocabulary games designed for daily growth.
             </p>
           </div>
@@ -553,11 +556,12 @@
   <!-- ── FOOTER ──────────────────────────────────────────────────── -->
   <footer class="landing-footer">
     <div class="footer-grid">
-      
+
       <div>
         <div class="footer-brand-title">📖 AksharGyan</div>
         <p class="footer-desc" data-i18n="footerBrandDesc">
-          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and community practice.
+          Empowering functional literacy across India through AI-powered speech evaluation, handwriting tracing, and
+          community practice.
         </p>
       </div>
 
@@ -617,4 +621,5 @@
     }
   </script>
 </body>
+
 </html>

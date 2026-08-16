@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta charset="UTF-8" />
@@ -10,25 +11,26 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <link rel="stylesheet" href="style.css" />
   <link rel="manifest" href="/manifest.json">
-  <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}</script>
+  <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
     /* ═══════════════════════════════════════════════════════════════════
        AKSHARGYAN LESSON — ULTRA PREMIUM DESIGN SYSTEM
        ═══════════════════════════════════════════════════════════════════ */
-    
-    html, body#page-lesson {
+
+    html,
+    body#page-lesson {
       background-color: #f8fafc !important;
-      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
-                  #f8fafc !important;
+      background: #f8fafc !important;
       color: #0f172a !important;
       font-family: 'Plus Jakarta Sans', 'Nunito', sans-serif !important;
       min-height: 100vh;
@@ -39,7 +41,93 @@
       animation: none !important;
     }
 
-    body#page-lesson::before {
+    body#page-lesson::before,
+    body#page-lesson::after {
+      display: none !important;
+    }
+
+    /* Ambient Studio Glow */
+    .ambient-glow-layer {
+      position: fixed !important;
+      inset: 0 !important;
+      width: 100vw !important;
+      height: 100vh !important;
+      pointer-events: none !important;
+      z-index: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .ambient-glow-orb {
+      position: absolute !important;
+      border-radius: 50% !important;
+      pointer-events: none !important;
+      will-change: transform;
+    }
+
+    .ambient-glow-1 {
+      width: 700px !important;
+      height: 700px !important;
+      top: -12% !important;
+      left: -8% !important;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(99, 102, 241, 0) 70%) !important;
+      filter: blur(120px) !important;
+      -webkit-filter: blur(120px) !important;
+      animation: ambientFloat1 26s ease-in-out infinite alternate !important;
+    }
+
+    .ambient-glow-2 {
+      width: 650px !important;
+      height: 650px !important;
+      top: 38% !important;
+      right: -10% !important;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.13) 0%, rgba(56, 189, 248, 0) 70%) !important;
+      filter: blur(130px) !important;
+      -webkit-filter: blur(130px) !important;
+      animation: ambientFloat2 30s ease-in-out infinite alternate !important;
+    }
+
+    .ambient-glow-3 {
+      width: 620px !important;
+      height: 620px !important;
+      bottom: -15% !important;
+      left: 20% !important;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(168, 85, 247, 0) 70%) !important;
+      filter: blur(120px) !important;
+      -webkit-filter: blur(120px) !important;
+      animation: ambientFloat3 28s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes ambientFloat1 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(50px, 35px) scale(1.06);
+      }
+    }
+
+    @keyframes ambientFloat2 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-45px, -25px) scale(1.04);
+      }
+    }
+
+    @keyframes ambientFloat3 {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(35px, -35px) scale(1.08);
+      }
+    }
+
+    .bg-orb {
       display: none !important;
     }
 
@@ -52,11 +140,11 @@
       right: 0 !important;
       height: 72px !important;
       z-index: 1000 !important;
-      background: rgba(255, 255, 255, 0.88) !important;
-      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
-      backdrop-filter: blur(24px) saturate(200%) !important;
-      border-bottom: 1.5px solid rgba(226, 232, 240, 0.8) !important;
-      box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.06) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      backdrop-filter: blur(16px) !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
       padding: 0 1.75rem !important;
       margin: 0 !important;
       display: flex !important;
@@ -431,12 +519,15 @@
     }
   </style>
 </head>
+
 <body id="page-lesson" class="fade-in-up light-theme">
 
-  <!-- Ambient Background Orbs -->
-  <div class="bg-orb bg-orb-purple"></div>
-  <div class="bg-orb bg-orb-emerald"></div>
-  <div class="bg-orb bg-orb-pink"></div>
+  <!-- Elegant Ambient Studio Glow -->
+  <div class="ambient-glow-layer" aria-hidden="true">
+    <div class="ambient-glow-orb ambient-glow-1"></div>
+    <div class="ambient-glow-orb ambient-glow-2"></div>
+    <div class="ambient-glow-orb ambient-glow-3"></div>
+  </div>
 
   <!-- Top Glass Navigation Bar -->
   <header class="dash-top-navbar">
@@ -447,23 +538,24 @@
       </a>
 
       <div style="display: flex; align-items: center; gap: 0.85rem;">
-        <a href="dashboard.html" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
+        <a href="dashboard.html" class="btn-secondary"
+          style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 9999px; padding: 0.45rem 1.1rem; font-weight: 800; font-size: 0.85rem; color: #475569; text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; height: 38px;">
           <i data-lucide="arrow-left" style="width: 15px; height: 15px;"></i>
           <span data-i18n="backToDashboard">Dashboard</span>
         </a>
       </div>
     </div>
   </header>
-  
+
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-spinner"></div>
     <div class="loading-text" data-i18n="loadingText">Generating lesson content...</div>
   </div>
 
   <main class="lesson-shell">
-    
+
     <div class="lesson-card-wrapper">
-      
+
       <!-- 1. Progress Header Card -->
       <div class="lesson-progress-wrap">
         <div class="lesson-progress-header">
@@ -471,7 +563,7 @@
             <i data-lucide="book-open" style="width: 18px; height: 18px; color: #6366f1;"></i>
             <span id="lesson-title">Lesson</span>
           </div>
-          
+
           <div class="lesson-meta-chips">
             <span id="lesson-level-badge" class="lesson-chip" style="text-transform: capitalize;">Beginner</span>
             <span id="lesson-type-badge" class="lesson-chip">📖 Reading</span>
@@ -489,17 +581,20 @@
 
       <!-- 2. Main Lesson Content Area -->
       <div id="lesson-content">
-        
+
         <!-- Exercise Card Container -->
         <div id="exercise-card" class="exercise-card-container">
-          
+
           <!-- Exercise Instruction -->
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem;">
-            <p id="exercise-instruction-text" style="font-weight: 800; font-size: 1.05rem; color: #6366f1; margin: 0; display: flex; align-items: center; gap: 0.4rem;">
+          <div
+            style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem;">
+            <p id="exercise-instruction-text"
+              style="font-weight: 800; font-size: 1.05rem; color: #6366f1; margin: 0; display: flex; align-items: center; gap: 0.4rem;">
               <i data-lucide="help-circle" style="width: 18px; height: 18px;"></i>
               <span>Loading exercise...</span>
             </p>
-            <button id="exercise-tts-btn" title="Listen to text" style="width: 44px; height: 44px; border-radius: 14px; background: #eef2ff; border: 1.5px solid #c7d2fe; color: #6366f1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
+            <button id="exercise-tts-btn" title="Listen to text"
+              style="width: 44px; height: 44px; border-radius: 14px; background: #eef2ff; border: 1.5px solid #c7d2fe; color: #6366f1; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s ease;">
               <i data-lucide="volume-2" style="width: 22px; height: 22px;"></i>
             </button>
           </div>
@@ -533,11 +628,14 @@
 
       <!-- 3. Lesson Complete Celebration Screen -->
       <div id="lesson-complete" class="complete-card-container hidden">
-        <div style="width: 68px; height: 68px; border-radius: 24px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.4);">
+        <div
+          style="width: 68px; height: 68px; border-radius: 24px; background: linear-gradient(135deg, #10b981, #059669); color: #ffffff; font-size: 2.2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.4);">
           🎉
         </div>
 
-        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.5rem;" data-i18n="lessonComplete">
+        <h2
+          style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.5rem;"
+          data-i18n="lessonComplete">
           Lesson Complete!
         </h2>
         <p style="color: #64748b; font-weight: 600; font-size: 1rem; margin: 0 0 1.75rem;">
@@ -545,13 +643,23 @@
         </p>
 
         <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem;">
-          <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
-            <div id="complete-score" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #16a34a; line-height: 1;">0%</div>
-            <div style="font-weight: 800; font-size: 0.8rem; color: #15803d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;" data-i18n="lessonAccuracy">Accuracy</div>
+          <div
+            style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
+            <div id="complete-score"
+              style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #16a34a; line-height: 1;">
+              0%</div>
+            <div
+              style="font-weight: 800; font-size: 0.8rem; color: #15803d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;"
+              data-i18n="lessonAccuracy">Accuracy</div>
           </div>
-          <div style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
-            <div id="complete-xp" style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #4f46e5; line-height: 1;">+0</div>
-            <div style="font-weight: 800; font-size: 0.8rem; color: #3730a3; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;">XP Earned</div>
+          <div
+            style="background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 20px; padding: 1.1rem 1.5rem; text-align: center; min-width: 120px;">
+            <div id="complete-xp"
+              style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; font-size: 2.2rem; color: #4f46e5; line-height: 1;">
+              +0</div>
+            <div
+              style="font-weight: 800; font-size: 0.8rem; color: #3730a3; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 0.35rem;">
+              XP Earned</div>
           </div>
         </div>
 
@@ -560,7 +668,8 @@
             <span data-i18n="lessonNext">Next Lesson</span>
             <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
           </button>
-          <a href="dashboard.html" class="btn-secondary" style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 0.85rem 1.5rem; font-weight: 800; font-size: 0.95rem; color: #475569; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
+          <a href="dashboard.html" class="btn-secondary"
+            style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 16px; padding: 0.85rem 1.5rem; font-weight: 800; font-size: 0.95rem; color: #475569; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.4rem;">
             <i data-lucide="home" style="width: 16px; height: 16px;"></i>
             <span data-i18n="backToDashboard">Back to Dashboard</span>
           </a>
@@ -593,4 +702,5 @@
     });
   </script>
 </body>
+
 </html>

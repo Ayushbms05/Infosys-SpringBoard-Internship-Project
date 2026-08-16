@@ -942,6 +942,10 @@ function displayScore(scorePercent, level) {
     badge.innerHTML = `<span>${label}</span>`;
   }
 
+  if (typeof showCelebrationParticles === "function") {
+    showCelebrationParticles(3500);
+  }
+
   if (window.lucide) lucide.createIcons();
 }
 

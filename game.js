@@ -184,8 +184,12 @@ window.WordMatch = (function () {
       cardEl.dataset.idx = idx;
 
       cardEl.innerHTML = `
-        <div class="card-front">?</div>
-        <div class="card-back" style="font-size: ${card.type === 'icon' ? '3rem' : '1.5rem'}">${card.val}</div>
+        <div class="card-front">
+          <span style="font-size: 1.6rem; opacity: 0.95;">✦</span>
+        </div>
+        <div class="card-back ${card.type === 'icon' ? 'is-icon' : 'is-text'}">
+          <span class="${card.type === 'icon' ? 'card-val-icon' : 'card-val-text'}">${card.val}</span>
+        </div>
       `;
 
       cardEl.addEventListener("click", () => flipCard(cardEl, card));
@@ -223,15 +227,15 @@ window.WordMatch = (function () {
       document.getElementById("game-xp").textContent = `${scoreXP} XP`;
 
       if (matchedCount === totalPairs) {
-        setTimeout(async () => {
+        setTimeout(() => {
           document.getElementById("game-word-match").classList.add("hidden");
-          document.getElementById("game-complete").classList.remove("hidden");
-          document.getElementById("game-complete-subtitle").textContent =
-            "You've matched all the words perfectly!";
-
-          // Use the shared reward handler from games-hub.js
-          if (window.handleGameWin) {
-            await window.handleGameWin(scoreXP, 10);
+          if (typeof window.showGameVictory === "function") {
+            window.showGameVictory("You matched all word pairs perfectly with stellar memory! 🧠✨", scoreXP, 10);
+          } else {
+            document.getElementById("game-complete").classList.remove("hidden");
+            document.getElementById("game-complete-subtitle").textContent =
+              "You've matched all the words perfectly!";
+            if (window.handleGameWin) window.handleGameWin(scoreXP, 10);
           }
         }, 500);
       }
