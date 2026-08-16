@@ -227,7 +227,10 @@ function computeNextIncompleteLesson(profile) {
   };
   const unit = unitByLiteracy[lit] || "alphabets";
 
-  for (const lvl of levels) {
+  const startIdx = Math.max(0, levels.indexOf(currentLevel));
+  const searchLevels = levels.slice(startIdx).concat(levels.slice(0, startIdx));
+
+  for (const lvl of searchLevels) {
     for (const skill of skills) {
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${lvl}_${skill}_${unit}_${i}`;
@@ -524,8 +527,10 @@ function renderRecommendedScroll(profile) {
   let recs = [];
   const completedLessons = profile.completedLessons || [];
   const curriculum = profile.curriculum || {};
+  const startIdx = Math.max(0, levels.indexOf(currentLevel));
+  const searchLevels = levels.slice(startIdx).concat(levels.slice(0, startIdx));
 
-  for (const lvl of levels) {
+  for (const lvl of searchLevels) {
     if (recs.length >= 3) break;
     for (const skill of skills) {
       if (recs.length >= 3) break;
@@ -715,11 +720,29 @@ function renderTopBar(profile) {
   }
 }
 
+// Global function to toggle unlock state of placed-above tracks
+window.toggleUnlockPlacedLevel = function(level) {
+  let unlocked = [];
+  try {
+    unlocked = JSON.parse(localStorage.getItem("akshar_unlocked_placed_levels") || "[]");
+  } catch (err) { }
+  if (unlocked.includes(level)) {
+    unlocked = unlocked.filter(l => l !== level);
+  } else {
+    unlocked.push(level);
+  }
+  localStorage.setItem("akshar_unlocked_placed_levels", JSON.stringify(unlocked));
+  if (window._currentLearnerProfile) {
+    renderLearningPath(window._currentLearnerProfile);
+  }
+};
+
 // ─── Learning Path Tree & Modern Curriculum Trail ──────────────────
 
 function renderLearningPath(profile) {
   const pathContainer = document.getElementById("learning-path");
   if (!pathContainer) return;
+  window._currentLearnerProfile = profile;
 
   // Asynchronously sync past lessonHistory accuracy scores if not already synced
   if (auth.currentUser && !profile._historyScoresSynced && typeof db !== "undefined") {
@@ -730,12 +753,10 @@ function renderLearningPath(profile) {
         snap.forEach(doc => {
           const d = doc.data();
           if (d.type && typeof d.accuracy === "number") {
-            const lId = `${d.level || 'beginner'}_${d.type}_${d.unit || 'alphabets'}_1`;
+            const lId = `${d.level || 'beginner'}_${d.type}_${d.unit || 'alphabets'}_${d.lessonIndex || 1}`;
             if (!profile.lessonScores[lId]) {
               profile.lessonScores[lId] = d.accuracy;
             }
-            profile.lessonScores[`${d.level || 'beginner'}_${d.type}_1`] = d.accuracy;
-            profile.lessonScores[d.type] = d.accuracy;
           }
         });
         renderLearningPath(profile);
@@ -744,7 +765,12 @@ function renderLearningPath(profile) {
   }
 
   const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
-  const completedLessons = profile.completedLessons || [];
+  const completedLessons = Array.isArray(profile.completedLessons) ? profile.completedLessons : [];
+
+  let manuallyUnlockedLevels = [];
+  try {
+    manuallyUnlockedLevels = JSON.parse(localStorage.getItem("akshar_unlocked_placed_levels") || "[]");
+  } catch (e) { }
 
   const levels = ["beginner", "intermediate", "advanced"];
   const skills = [
@@ -755,7 +781,7 @@ function renderLearningPath(profile) {
     "pronunciation",
   ];
 
-  const userLevelIndex = levels.indexOf(currentLevel);
+  const userLevelIndex = Math.max(0, levels.indexOf(currentLevel));
 
   const skillMeta = {
     reading: {
@@ -808,11 +834,11 @@ function renderLearningPath(profile) {
     }
   };
 
-  // Compute total curriculum progress
+  // Compute total curriculum progress based on ACTUAL completed lessons
   let totalLessonsInCurriculum = levels.length * skills.length * 5;
   let totalCompletedCount = 0;
 
-  levels.forEach((lvl, lIdx) => {
+  levels.forEach((lvl) => {
     skills.forEach((sk) => {
       const lit = profile.literacyLevel || "preferNot";
       const unitByLiteracy = {
@@ -825,7 +851,7 @@ function renderLearningPath(profile) {
       const unit = unitByLiteracy[lit] || "alphabets";
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${lvl}_${sk}_${unit}_${i}`;
-        if (lIdx < userLevelIndex || completedLessons.includes(lessonId)) {
+        if (completedLessons.includes(lessonId)) {
           totalCompletedCount++;
         }
       }
@@ -849,7 +875,7 @@ function renderLearningPath(profile) {
           <div class="path-hero-stats">
             <div class="path-stat-chip">
               <i data-lucide="award" style="width: 15px; height: 15px; color: #a5b4fc;"></i>
-              <span>Level: ${currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)}</span>
+              <span>Assessed Level: ${currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)}</span>
             </div>
             <div class="path-stat-chip">
               <i data-lucide="check-circle" style="width: 15px; height: 15px; color: #34d399;"></i>
@@ -875,18 +901,46 @@ function renderLearningPath(profile) {
   levels.forEach((level, levelIndex) => {
     const lMeta = levelMeta[level] || { title: `${level} Level`, icon: "📘", desc: "" };
 
+    const isManuallyUnlocked = manuallyUnlockedLevels.includes(level);
     let statusClass = "path-status-locked";
-    let statusText = "Locked";
+    let statusText = "Locked Track";
     let statusIcon = "lock";
+    let levelSub = lMeta.desc;
+    let unlockBtnHtml = "";
 
     if (levelIndex < userLevelIndex) {
-      statusClass = "path-status-completed";
-      statusText = "✓ Level Mastered";
-      statusIcon = "check-circle";
+      if (isManuallyUnlocked) {
+        statusClass = "path-status-placed-above";
+        statusText = "⭐ Placed Above (Unlocked)";
+        statusIcon = "unlock";
+        levelSub = "You placed above this foundational tier in assessment. Unlocked for optional practice.";
+        unlockBtnHtml = `
+          <button type="button" class="path-unlock-track-btn relock" onclick="window.toggleUnlockPlacedLevel('${level}')" data-level="${level}" title="Lock this track again">
+            <i data-lucide="lock" style="width: 13px; height: 13px;"></i>
+            <span>Re-lock Track</span>
+          </button>
+        `;
+      } else {
+        statusClass = "path-status-placed-above";
+        statusText = "⭐ Placed Above This Track";
+        statusIcon = "award";
+        levelSub = "You demonstrated mastery above this tier in diagnostic testing. Lessons are locked to keep you focused on your active track.";
+        unlockBtnHtml = `
+          <button type="button" class="path-unlock-track-btn" onclick="window.toggleUnlockPlacedLevel('${level}')" data-level="${level}" title="Unlock this level's lessons for practice">
+            <i data-lucide="unlock" style="width: 13px; height: 13px;"></i>
+            <span>Unlock to Practice</span>
+          </button>
+        `;
+      }
     } else if (levelIndex === userLevelIndex) {
       statusClass = "path-status-current";
       statusText = "Current Active Track";
       statusIcon = "compass";
+    } else {
+      statusClass = "path-status-locked";
+      statusText = "Locked Track";
+      statusIcon = "lock";
+      levelSub = `Complete active tracks to unlock ${level.charAt(0).toUpperCase() + level.slice(1)} lessons.`;
     }
 
     html += `
@@ -896,14 +950,15 @@ function renderLearningPath(profile) {
             <div class="path-level-icon">${lMeta.icon}</div>
             <div>
               <h3 class="path-level-title">${lMeta.title}</h3>
-              <p class="path-level-subtitle">${lMeta.desc}</p>
+              <p class="path-level-subtitle">${levelSub}</p>
             </div>
           </div>
-          <div>
+          <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
             <span class="path-level-status-pill ${statusClass}">
               <i data-lucide="${statusIcon}" style="width: 14px; height: 14px;"></i>
               <span>${statusText}</span>
             </span>
+            ${unlockBtnHtml}
           </div>
         </div>
     `;
@@ -924,9 +979,20 @@ function renderLearningPath(profile) {
       let completedInSkill = 0;
       for (let i = 1; i <= 5; i++) {
         const lessonId = `${level}_${skill}_${unit}_${i}`;
-        if (levelIndex < userLevelIndex || completedLessons.includes(lessonId)) {
+        if (completedLessons.includes(lessonId)) {
           completedInSkill++;
         }
+      }
+
+      let chipText = `${completedInSkill} of 5 Lessons Complete`;
+      if (levelIndex < userLevelIndex) {
+        if (isManuallyUnlocked) {
+          chipText = completedInSkill > 0 ? `${completedInSkill} of 5 Complete · Unlocked` : `🔓 Unlocked for Practice`;
+        } else {
+          chipText = completedInSkill > 0 ? `${completedInSkill} of 5 Complete · Placed Above` : `🔒 Placed Above (Locked)`;
+        }
+      } else if (levelIndex > userLevelIndex) {
+        chipText = `🔒 Locked Track`;
       }
 
       html += `
@@ -942,7 +1008,7 @@ function renderLearningPath(profile) {
               </div>
             </div>
             <span class="path-skill-progress-chip">
-              ${completedInSkill} of 5 Lessons Complete
+              ${chipText}
             </span>
           </div>
 
@@ -956,7 +1022,13 @@ function renderLearningPath(profile) {
 
         let state = "locked";
         if (levelIndex < userLevelIndex) {
-          state = "completed";
+          if (isCompleted) {
+            state = "completed";
+          } else if (isManuallyUnlocked) {
+            state = "available";
+          } else {
+            state = "placed-above"; // locked placed-above state
+          }
         } else if (levelIndex === userLevelIndex) {
           state = isCompleted ? "completed" : "available";
         } else {
@@ -981,12 +1053,10 @@ function renderLearningPath(profile) {
             localScores = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
           } catch (e) { }
 
+          // Retrieve genuine score for this lesson
           const sObj = (profile.lessonScores && profile.lessonScores[lessonId])
-            || (profile.lessonScores && profile.lessonScores[`${level}_${skill}_${i}`])
-            || (profile.lessonScores && profile.lessonScores[`${skill}_${i}`])
-            || (profile.lessonScores && profile.lessonScores[skill])
+            || (profile.lessonScores && profile.lessonScores[`${level}_${skill}_${unit}_${i}`])
             || localScores[lessonId]
-            || localScores[`${level}_${skill}_${i}`]
             || null;
 
           let scoreVal = null;
@@ -996,22 +1066,36 @@ function renderLearningPath(profile) {
             scoreVal = sObj.accuracy;
           } else if (sObj && typeof sObj.score === "number") {
             scoreVal = sObj.score;
-          } else if (levelIndex < userLevelIndex) {
-            scoreVal = profile.assessmentScore ? Math.max(80, profile.assessmentScore) : 100;
-          } else {
-            // Default to 100% if completed but score was not tracked previously
-            scoreVal = 100;
           }
 
+          if (scoreVal !== null && !isNaN(scoreVal)) {
+            topMetaHtml = `
+              <div class="path-lesson-score-badge" title="Last Attempt Accuracy Score">
+                <i data-lucide="award" style="width: 12px; height: 12px;"></i>
+                <span>Score: ${Math.round(scoreVal)}%</span>
+              </div>
+            `;
+          } else {
+            topMetaHtml = `
+              <div class="path-lesson-score-badge" title="Lesson Completed">
+                <i data-lucide="check-circle" style="width: 12px; height: 12px;"></i>
+                <span>Completed</span>
+              </div>
+            `;
+          }
+        } else if (state === "placed-above") {
+          btnLabel = "🔒 Placed Above";
+          btnIcon = "lock";
           topMetaHtml = `
-            <div class="path-lesson-score-badge" title="Last Attempt Accuracy Score">
-              <i data-lucide="award" style="width: 12px; height: 12px;"></i>
-              <span>Score: ${scoreVal}%</span>
+            <div class="path-lesson-meta" style="color: #9333ea; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+              <i data-lucide="shield-check" style="width: 13px; height: 13px;"></i>
+              <span>Placed Above</span>
             </div>
           `;
         } else if (state === "locked") {
           btnLabel = "Locked";
           btnIcon = "lock";
+          topMetaHtml = `<div class="path-lesson-meta">🔒 Locked</div>`;
         }
 
         html += `
@@ -1051,11 +1135,41 @@ function renderLearningPath(profile) {
     lucide.createIcons();
   }
 
+  // Attach unlock / relock button listeners
+  pathContainer.querySelectorAll(".path-unlock-track-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const lvl = btn.dataset.level;
+      if (typeof window.toggleUnlockPlacedLevel === "function") {
+        window.toggleUnlockPlacedLevel(lvl);
+      }
+    });
+  });
+
   // Attach click listeners to available & completed lesson cards
   pathContainer.querySelectorAll(".path-lesson-card.available, .path-lesson-card.completed").forEach((card) => {
     card.addEventListener("click", () => {
       const { level, skill, unit, index } = card.dataset;
       window.location.href = `lesson.html?level=${level}&type=${skill}&unit=${unit}&lessonIndex=${index}`;
+    });
+  });
+
+  // When a placed-above card is clicked while locked, highlight & pulse the "Unlock to Practice" button
+  pathContainer.querySelectorAll(".path-lesson-card.placed-above").forEach((card) => {
+    card.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const { level } = card.dataset;
+      const unlockBtn = pathContainer.querySelector(`.path-unlock-track-btn[data-level="${level}"]`);
+      if (unlockBtn) {
+        unlockBtn.classList.remove("highlight-pulse");
+        void unlockBtn.offsetWidth; // Trigger DOM reflow to restart animation
+        unlockBtn.classList.add("highlight-pulse");
+        unlockBtn.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => {
+          unlockBtn.classList.remove("highlight-pulse");
+        }, 2000);
+      }
     });
   });
 

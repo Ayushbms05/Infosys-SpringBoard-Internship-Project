@@ -947,6 +947,13 @@
       box-shadow: 0 4px 14px rgba(99, 102, 241, 0.15) !important;
     }
 
+    .path-status-placed-above {
+      background: linear-gradient(135deg, #fdf4ff 0%, #fae8ff 100%) !important;
+      color: #9333ea !important;
+      border: 1.5px solid #e9d5ff !important;
+      box-shadow: 0 4px 14px rgba(168, 85, 247, 0.12) !important;
+    }
+
     .path-status-completed {
       background: #ecfdf5 !important;
       color: #059669 !important;
@@ -957,6 +964,84 @@
       background: #f1f5f9 !important;
       color: #64748b !important;
       border: 1.5px solid #cbd5e1 !important;
+    }
+
+    @keyframes unlockBtnPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+      }
+      25% {
+        transform: scale(1.14);
+        box-shadow: 0 0 22px rgba(168, 85, 247, 0.7), 0 0 0 4px rgba(168, 85, 247, 0.35);
+        border-color: #9333ea;
+        background: #fdf4ff;
+      }
+      50% {
+        transform: scale(1.06);
+        box-shadow: 0 0 16px rgba(168, 85, 247, 0.45), 0 0 0 2px rgba(168, 85, 247, 0.2);
+      }
+      75% {
+        transform: scale(1.12);
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 0 4px rgba(168, 85, 247, 0.3);
+        border-color: #9333ea;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+      }
+    }
+
+    .path-unlock-track-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 0.45rem !important;
+      padding: 0.45rem 1.1rem !important;
+      border-radius: 9999px !important;
+      font-size: 0.82rem !important;
+      font-weight: 800 !important;
+      cursor: pointer !important;
+      background: #ffffff !important;
+      color: #9333ea !important;
+      border: 1.5px solid #d8b4fe !important;
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15) !important;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      position: relative !important;
+      z-index: 15 !important;
+      pointer-events: auto !important;
+      user-select: none !important;
+    }
+
+    .path-unlock-track-btn * {
+      pointer-events: none !important;
+    }
+
+    .path-unlock-track-btn:hover {
+      background: #fdf4ff !important;
+      border-color: #a855f7 !important;
+      color: #7e22ce !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.28) !important;
+    }
+
+    .path-unlock-track-btn:active {
+      transform: scale(0.96) !important;
+    }
+
+    .path-unlock-track-btn.highlight-pulse {
+      animation: unlockBtnPulse 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 2 !important;
+    }
+
+    .path-unlock-track-btn.relock {
+      color: #64748b !important;
+      border-color: #cbd5e1 !important;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+    }
+
+    .path-unlock-track-btn.relock:hover {
+      background: #f8fafc !important;
+      border-color: #94a3b8 !important;
+      color: #334155 !important;
     }
 
     /* 3. Skill Chapter Box */
@@ -1056,6 +1141,21 @@
       box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15) !important;
     }
 
+    .path-lesson-card.placed-above {
+      background: #faf8ff !important;
+      border: 1.5px dashed #d8b4fe !important;
+      opacity: 0.9 !important;
+      box-shadow: 0 4px 12px rgba(168, 85, 247, 0.05) !important;
+      cursor: pointer !important;
+    }
+
+    .path-lesson-card.placed-above:hover {
+      opacity: 1 !important;
+      transform: translateY(-2px) !important;
+      border-color: #a855f7 !important;
+      box-shadow: 0 8px 22px rgba(168, 85, 247, 0.18) !important;
+    }
+
     .path-lesson-card.locked {
       background: #f8fafc !important;
       border: 1.5px dashed #cbd5e1 !important;
@@ -1091,6 +1191,12 @@
     .path-lesson-card.completed .path-lesson-num {
       background: #d1fae5 !important;
       color: #065f46 !important;
+    }
+
+    .path-lesson-card.placed-above .path-lesson-num {
+      background: #f3e8ff !important;
+      color: #7e22ce !important;
+      border: 1px solid #e9d5ff !important;
     }
 
     .path-lesson-meta {
@@ -1149,6 +1255,19 @@
       background: #ecfdf5 !important;
       color: #059669 !important;
       border: 1px solid #a7f3d0 !important;
+    }
+
+    .path-lesson-card.placed-above .path-lesson-btn {
+      background: #ffffff !important;
+      color: #7e22ce !important;
+      border: 1.5px solid #d8b4fe !important;
+      box-shadow: 0 2px 8px rgba(168, 85, 247, 0.1) !important;
+    }
+
+    .path-lesson-card.placed-above .path-lesson-btn:hover {
+      background: #f3e8ff !important;
+      border-color: #a855f7 !important;
+      color: #6b21a8 !important;
     }
 
     .path-lesson-card.locked .path-lesson-btn {
