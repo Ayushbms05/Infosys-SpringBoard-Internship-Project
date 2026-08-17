@@ -224,7 +224,6 @@ function renderExercise() {
         </button>
         <p style="margin-top: 0.85rem; color: #6366f1; font-weight: 800; font-size: 0.95rem;">Tap to Listen</p>
       </div>
-      ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}">${ex.translation}</p>` : ''}
       <h3 class="exercise-question-text">${ex.question}</h3>
       <div class="exercise-options-grid" id="mcq-options"></div>
     `;
@@ -276,7 +275,6 @@ function renderExercise() {
       <div class="exercise-passage-card">
         <p class="exercise-passage-text">${ex.content}</p>
       </div>
-      ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}">${ex.translation}</p>` : ''}
       <h3 class="exercise-question-text">${ex.question}</h3>
       <div class="exercise-options-grid" id="mcq-options"></div>
     `;
