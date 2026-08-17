@@ -219,25 +219,33 @@ function setupRegistrationForm() {
 // ────────────────────────────────────────────────────────────────
 // populateTargetLanguageOptions(knownLang)
 // ────────────────────────────────────────────────────────────────
-// WHAT: Fills the #target-language dropdown with every supported
-//       language EXCEPT whichever one is currently selected as the
-//       known/preferred language — someone can't "learn" the language
-//       they already told us they know.
+// WHAT: Fills the #target-language dropdown with all supported languages.
+//       Learners can select any language they want to learn or master,
+//       including their preferred language.
 // ────────────────────────────────────────────────────────────────
 function populateTargetLanguageOptions(knownLang) {
-  var languageNames = { en: "English", hi: "हिन्दी", ta: "தமிழ்", te: "తెలుగు", kn: "ಕನ್ನಡ", bn: "বাংলা", mr: "मराठी" };
+  var languageNames = {
+    en: "English",
+    hi: "Hindi (हिन्दी)",
+    ta: "Tamil (தமிழ்)",
+    te: "Telugu (తెలుగు)",
+    kn: "Kannada (ಕನ್ನಡ)",
+    bn: "Bengali (বাংলা)",
+    mr: "Marathi (मराठी)"
+  };
   var select = document.getElementById("target-language");
   if (!select) return;
 
-  var previousValue = select.value; // preserve selection across refreshes if still valid
+  var previousValue = select.value;
 
   select.innerHTML = Object.keys(languageNames)
-    .filter(function (code) { return code !== knownLang; })
     .map(function (code) { return '<option value="' + code + '">' + languageNames[code] + '</option>'; })
     .join('');
 
-  if (previousValue && previousValue !== knownLang) {
+  if (previousValue) {
     select.value = previousValue;
+  } else if (knownLang) {
+    select.value = knownLang;
   }
 }
 

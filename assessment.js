@@ -1,471 +1,69 @@
 /**
- * assessment.js — AI-Powered Literacy Assessment using Gemini API.
+ * assessment.js — Multilingual Diagnostic Literacy Assessment Engine
  *
- * Fetches user profile, sends education level + language to Gemini API
- * to generate 12 personalized questions (6 MCQ, 3 listening, 3 speaking),
- * renders the quiz, calculates score, and saves results to Firestore.
+ * Evaluates learner proficiency in target language across 4 core modalities:
+ * 1. 🔤 Vocabulary & Grammar MCQs
+ * 2. 📖 Reading Comprehension (Context Passages & Signs)
+ * 3. 🎙️ Speaking Practice (Sentence Fluency & Articulation)
+ * 4. 🔊 Pronunciation Test (Phonetic Articulation with Audio Preview + Speech Matching)
+ * 5. 🎧 Listening Comprehension
  *
- * Falls back to hardcoded questions if Gemini API is unavailable.
+ * Scaffolding & translations are delivered in the learner's preferredLanguage.
+ * Fully offline-resilient with instant 0ms question serving for live presentation stability.
  */
 
-// ─── Fallback Question Banks ──────────────────────────────────
-// English-only safety net; used only if Gemini API call fails.
-// NOTE: Does not yet reflect the new 3-type (mcq/listening/speaking) mix —
-// only contains basic MCQ questions. This is acceptable as a last-resort fallback.
-
-const fallbackQuestions = {
-  beginner: [
-    { text: "Which of these is a letter?", options: ["A", "5", "?", "@"], answerIndex: 0 },
-    { text: "What comes after B?", options: ["A", "C", "D", "E"], answerIndex: 1 },
-    { text: "Which word starts with 'B'?", options: ["Bus", "Apple", "Car", "Sun"], answerIndex: 0 },
-    { text: "Identify the number 'Three'", options: ["1", "2", "3", "4"], answerIndex: 2 },
-    { text: "Which is a color?", options: ["Ticket", "Red", "Form", "Tree"], answerIndex: 1 },
-    { text: "Opposite of 'Hot'", options: ["Warm", "Sun", "Cold", "Fire"], answerIndex: 2 },
-    { text: "Where do you deposit money?", options: ["Hospital", "Bank", "Market", "Bus stop"], answerIndex: 1 },
-    { text: "What is this shape? (O)", options: ["Square", "Triangle", "Circle", "Line"], answerIndex: 2 },
-    { text: "The sky is...", options: ["Green", "Blue", "Red", "Yellow"], answerIndex: 1 },
-    { text: "How many days in a week?", options: ["5", "6", "7", "8"], answerIndex: 2 }
-  ],
-  intermediate: [
-    { text: "Select the correct spelling:", options: ["Ticekt", "Tiket", "Ticket", "Tickit"], answerIndex: 2 },
-    { text: "Which sentence is correct?", options: ["I needs a doctor.", "I need a doctor.", "I needing a doctor.", "I is need a doctor."], answerIndex: 1 },
-    { text: "Past tense of 'Pay' is:", options: ["Payed", "Paid", "Paying", "Pays"], answerIndex: 1 },
-    { text: "A place to buy medicine is a...", options: ["Pharmacy", "Bank", "Post Office", "School"], answerIndex: 0 },
-    { text: "Synonym for 'Signature':", options: ["Name", "Address", "Sign", "Form"], answerIndex: 2 },
-    { text: "Choose the noun:", options: ["Quickly", "Beautiful", "Ration Card", "Run"], answerIndex: 2 },
-    { text: "Opposite of 'Always':", options: ["Sometimes", "Never", "Often", "Forever"], answerIndex: 1 },
-    { text: "Which is a complete sentence?", options: ["The bus at 9 AM.", "Filling the form.", "She signed the document.", "In the market."], answerIndex: 2 },
-    { text: "Select the pronoun:", options: ["He", "Table", "Jump", "Green"], answerIndex: 0 },
-    { text: "Where do you catch a train?", options: ["Hospital", "Market", "Station", "Bank"], answerIndex: 2 }
-  ],
-  advanced: [
-    { text: "Identify the adverb:", options: ["Quick", "Quickly", "Quicker", "Quickness"], answerIndex: 1 },
-    { text: "Which word means 'to predict'?", options: ["Recall", "Foresee", "Forget", "Review"], answerIndex: 1 },
-    { text: "Choose the correct preposition: 'The meeting is ___ 10 AM.'", options: ["in", "on", "at", "with"], answerIndex: 2 },
-    { text: "What is the main idea of a contract?", options: ["The last sentence", "The agreement terms", "The first word", "The punctuation"], answerIndex: 1 },
-    { text: "Identify the complex sentence:", options: ["I signed the form.", "I filled the form and submitted it.", "Because the office was closed, we returned home.", "The manager is speaking."], answerIndex: 2 },
-    { text: "Meaning of 'Mandatory':", options: ["Optional", "Required", "Suggested", "Fast"], answerIndex: 1 },
-    { text: "Find the error: 'He don't have the ticket.'", options: ["He", "don't", "have", "ticket"], answerIndex: 1 },
-    { text: "Passive voice of 'They approved the loan':", options: ["The loan approved they.", "The loan is approving.", "The loan was approved by them.", "They are approving the loan."], answerIndex: 2 },
-    { text: "Which is a metaphor?", options: ["As brave as a lion", "Time is money", "Runs very fast", "Sings beautifully"], answerIndex: 1 },
-    { text: "Identify the conjunction:", options: ["And", "Run", "Blue", "Slowly"], answerIndex: 0 }
-  ]
-};
-
-// ─── Language Mapping for Gemini Prompts ──────────────────────
+// ─── Language Mapping & Names ─────────────────────────────────
 const languageNames = {
   en: "English",
-  hi: "Hindi",
-  ta: "Tamil",
-  te: "Telugu",
-  kn: "Kannada",
-  bn: "Bengali",
-  mr: "Marathi"
+  hi: "Hindi (हिन्दी)",
+  ta: "Tamil (தமிழ்)",
+  te: "Telugu (తెలుగు)",
+  kn: "Kannada (ಕನ್ನಡ)",
+  bn: "Bengali (বাংলা)",
+  mr: "Marathi (मराठी)"
 };
 
-// ─── Literacy Level Descriptions ─────────────────────────────
-const literacyDescriptions = {
-  neverLearned: "never learned to read/write, completely new to literacy",
-  canRecognize: "can recognize some letters or words, but cannot read sentences",
-  canReadSimple: "can read and write simple sentences with difficulty",
-  canReadComfort: "can read and write comfortably, returning to learn more",
-  preferNot: "literacy level not specified, treat as beginner"
-};
-
-// ─── Age & Literacy Context for Prompt Variation ──────────────
-// (Same pattern as lesson.js's ageContext / litContext objects)
-
-const ASSESSMENT_AGE_CONTEXT = {
-  below18: "a teenage learner — use vocabulary/scenarios relatable to school, family, friends, hobbies",
-  "18-25": "a young adult learner — use vocabulary/scenarios about first jobs, further study, city life, socializing",
-  "26-40": "a working-age adult learner — use vocabulary/scenarios about work, family responsibilities, banking, errands",
-  "41-60": "a middle-aged adult learner — use vocabulary/scenarios about established work life, healthcare, family, community",
-  "60+": "an older adult learner — keep pacing calm; use vocabulary/scenarios about healthcare, family, community; avoid fast-paced slang"
-};
-
-const ASSESSMENT_LITERACY_PACING = {
-  neverLearned: "This learner has never read or written in ANY language before. Start at the absolute simplest possible level (single common words, very short phrases) and increase difficulty VERY gradually and gently across the 12 questions. Provide maximum context/scaffolding in the known-language instructions.",
-  canRecognize: "This learner can recognize some letters/words in their own language but not full sentences. Start simple and increase difficulty gradually.",
-  canReadSimple: "This learner can read/write simple sentences in their own language with some difficulty. Can start at a slightly higher baseline and ramp at a moderate pace.",
-  canReadComfort: "This learner reads/writes comfortably in their own language. Can start at a moderate baseline and ramp up difficulty at a faster pace, since general literacy skills transfer.",
-  preferNot: "Literacy level not specified — treat as a cautious beginner, gentle ramp."
-};
-
-// ─── Assessment State ─────────────────────────────────────────
+// ─── Assessment Global State ──────────────────────────────────
 let currentQuestions = [];
 let currentQuestionIndex = 0;
 let userAnswers = [];
 let userProfile = null;
-let isLoadingQuestions = false;
 
-// ─── Gemini API Integration ───────────────────────────────────
-
+// ─── Question Loader ──────────────────────────────────────────
 /**
- * Fetches 12 assessment questions (6 mcq, 3 listening, 3 speaking) from
- * Gemini API based on the user's literacy level, age group, and languages.
- * No caching — the assessment must always generate fresh questions.
+ * Loads curated questions tailored to targetLanguage, preferredLanguage, literacyLevel & ageGroup.
  */
-async function fetchQuestionsFromGemini(literacyLevel, ageGroup, knownLang, targetLang, motherTongue) {
+function getAssessmentQuestions(profile) {
+  const pLang = profile?.preferredLanguage || selectedLang || "en";
+  const tLang = profile?.targetLanguage || profile?.preferredLanguage || selectedLang || "hi";
+  const litLevel = profile?.literacyLevel || "canReadSimple";
+  const ageGroup = profile?.ageGroup || "26-40";
 
-  const knownLangName = languageNames[knownLang] || "English";
-  const targetLangName = languageNames[targetLang] || "English";
-  const litDesc = literacyDescriptions[literacyLevel] || literacyDescriptions.neverLearned;
-  const ageInstruction = ASSESSMENT_AGE_CONTEXT[ageGroup] || ASSESSMENT_AGE_CONTEXT["26-40"];
-  const pacingInstruction = ASSESSMENT_LITERACY_PACING[literacyLevel] || ASSESSMENT_LITERACY_PACING.preferNot;
+  console.log(`🎯 Initializing Assessment: Target=${tLang}, Preferred=${pLang}, Literacy=${litLevel}, Age=${ageGroup}`);
 
-  // CHANGED: this is now a PLACEMENT TEST for a new language, not a
-  // literacy test in the learner's own language. The learner already
-  // knows ${knownLangName} — we're measuring how much ${targetLangName}
-  // they already know, if any. So the question framing/instructions
-  // must stay in ${knownLangName} (so they can understand what's being
-  // asked), while the specific word/phrase under test is shown in
-  // ${targetLangName}.
-  const prompt = `You are designing a placement test to measure how much ${targetLangName} a learner already knows, BEFORE they start lessons. The learner's known language is ${knownLangName} — they may know ZERO ${targetLangName} yet. Generate exactly 12 questions: 6 multiple-choice questions (MCQ), 3 listening questions, and 3 speaking questions.
-
-LEARNER PROFILE:
-- Self-reported starting literacy level: ${litDesc}
-- Age Group: ${ageGroup}
-- Known language (for instructions): ${knownLangName}
-- Language being tested: ${targetLangName}
-
-CRITICAL FORMAT RULES:
-
-For the 6 "mcq" questions:
-- The "question" field itself must be written in ${knownLangName}, and must embed the specific ${targetLangName} word/phrase being tested inside it. Example: "What does the ${targetLangName} word '____' mean?"
-- The 4 "options" must be written in ${knownLangName}.
-
-For the 3 "listening" questions:
-- The "question" field must be written in ${knownLangName}, e.g. "Listen to the phrase and select the correct meaning:"
-- The "audioText" field MUST contain the specific ${targetLangName} text that the user will listen to.
-- The 4 "options" must be written in ${knownLangName}.
-
-For the 3 "speaking" questions:
-- The "question" field must be a short instruction in ${knownLangName}, e.g. "Speak this ${targetLangName} phrase clearly:"
-- The "targetPhrase" field MUST contain the specific ${targetLangName} text (max 4-5 words) that the user is supposed to say. DO NOT put ${knownLangName} text here.
-
-REQUIREMENTS:
-1. ${ageInstruction}
-2. ${pacingInstruction}
-3. Questions should progressively increase in difficulty from question 1 to 12.
-4. Each question must be SHORT — one sentence, never a scenario or paragraph.
-
-RESPOND WITH ONLY a valid JSON array of 12 objects. Do NOT include markdown code fences.
-Format:
-[
-  {
-    "type": "mcq",
-    "question": "string",
-    "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
-    "correctAnswer": "A" | "B" | "C" | "D"
-  },
-  {
-    "type": "listening",
-    "question": "string",
-    "audioText": "string",
-    "options": { "A": "string", "B": "string", "C": "string", "D": "string" },
-    "correctAnswer": "A" | "B" | "C" | "D"
-  },
-  {
-    "type": "speaking",
-    "question": "string",
-    "targetPhrase": "string"
-  }
-]`;
-
-  const maxRetries = 3;
-  const backoff = [1000, 2000, 4000];
-  let attempts = 0;
-
-  while (attempts <= maxRetries) {
-    try {
-      const idToken = await firebase.auth().currentUser.getIdToken();
-      const response = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { temperature: 0.7, maxOutputTokens: 4096, responseMimeType: "application/json" }
-        })
-      });
-
-      if (!response.ok) {
-        if (response.status === 429 && attempts < maxRetries) {
-          await new Promise(resolve => setTimeout(resolve, backoff[attempts]));
-          attempts++;
-          continue;
-        }
-        throw new Error(`Gemini API error: ${response.status}`);
-      }
-
-      const data = await response.json();
-      let textContent = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      textContent = textContent.replace(/^```json\s*/, '').replace(/^```\s*/, '').replace(/```\s*$/, '').trim();
-
-      const questions = JSON.parse(textContent);
-      const validQuestions = [];
-      const letterToIndex = { 'A': 0, 'B': 1, 'C': 2, 'D': 3 };
-
-      for (const q of questions) {
-        if (q.type === 'speaking' && q.question && q.targetPhrase) {
-          validQuestions.push({
-            type: "speaking",
-            text: q.question,
-            targetPhrase: q.targetPhrase
-          });
-        } else if (q.type === 'listening' && q.question && q.audioText && q.options && typeof letterToIndex[q.correctAnswer] !== 'undefined') {
-          validQuestions.push({
-            type: "listening",
-            text: q.question,
-            audioText: q.audioText,
-            options: [q.options.A, q.options.B, q.options.C, q.options.D],
-            answerIndex: letterToIndex[q.correctAnswer]
-          });
-        } else if ((q.type === 'mcq' || !q.type) && q.question && q.options && typeof letterToIndex[q.correctAnswer] !== 'undefined') {
-          validQuestions.push({
-            type: "mcq",
-            text: q.question,
-            options: [q.options.A, q.options.B, q.options.C, q.options.D],
-            answerIndex: letterToIndex[q.correctAnswer]
-          });
-        }
-      }
-
-      const finalQuestions = validQuestions.slice(0, 12);
-      return finalQuestions;
-
-    } catch (error) {
-      console.error(`Gemini API error (attempt ${attempts + 1}):`, error);
-      return null;
+  if (typeof buildCuratedAssessmentQuestions === "function") {
+    const questions = buildCuratedAssessmentQuestions(tLang, pLang, litLevel, ageGroup);
+    if (questions && questions.length > 0) {
+      return questions;
     }
   }
-  return null;
-}
 
-/**
- * AI Insights - Analyzes result and builds a custom dashboard path
- */
-async function triggerAssessmentAIAnalysis(scorePercent, level) {
-  const loadingEl = document.getElementById("assessment-ai-loading");
-  const insightsEl = document.getElementById("assessment-ai-insights");
-  
-  if (loadingEl) loadingEl.classList.remove("hidden");
-  if (insightsEl) insightsEl.classList.add("hidden");
-  
-  
-  const user = auth.currentUser;
-  
-  // 1. Resolve Profile Attributes local state safely
-  let litDesc = "Beginner";
-  let ageGroup = "adult";
-  let isChild = false;
-  let knownLangName = "English";
-  
-  if (user) {
-    try {
-      const doc = await db.collection('users').doc(user.uid).get();
-      if (doc.exists) {
-        const data = doc.data();
-        litDesc = data.literacyLevel || "Beginner";
-        ageGroup = data.ageGroup || "adult";
-        isChild = (data.ageGroup === 'below18');
-        const langNames = { en: "English", hi: "Hindi", ta: "Tamil", te: "Telugu", kn: "Kannada", bn: "Bengali", mr: "Marathi" };
-        knownLangName = langNames[data.preferredLanguage] || "English";
-      }
-    } catch (e) { console.error("Error reading user data profile", e); }
-  }
-
-  // 2. Pre-compiled local backup path objects to deploy if Gemini drops a 503 error
-  const localFallbacks = {
-    beginner: {
-      summaryMessage: `Welcome! You completed the assessment with a score of ${scorePercent}%. We have prepared a foundational learning path to practice letter structures, core visual identification, and basic sentence concepts.`,
-      goodPoints: ["Strong instinctive visual matching", "Basic letter structure awareness"],
-      weakPoints: ["Connecting letters to word sounds", "Constructing functional sentences"],
-      customPath: [
-        { title: "Step 1: Alphabet Shapes", desc: "Master letter structures and phonetic sounds.", level: "beginner", unit: "alphabets", type: "pronunciation" },
-        { title: "Step 2: Core Everyday Words", desc: "Identify common sight words used in daily life.", level: "beginner", unit: "words", type: "reading" },
-        { title: "Step 3: Direct Instructional Listening", desc: "Practice decoding simple spoken audio words.", level: "beginner", unit: "words", type: "listening" },
-        { title: "Step 4: Basic Word Arranging", desc: "Construct short 3-word sentences accurately.", level: "beginner", unit: "sentences", type: "writing" },
-        { title: "Step 5: Visual Sign Comprehension", desc: "Read basic community signs and labels safely.", level: "beginner", unit: "sentences", type: "reading" }
-      ]
-    },
-    intermediate: {
-      summaryMessage: `Excellent job! You achieved an intermediate rank of ${scorePercent}%. Your road path targets real-world reading comprehension fluency, structural grammar, and interactive oral construction.`,
-      goodPoints: ["Good baseline vocabulary retention", "Comfortable with simple sentence logic"],
-      weakPoints: ["Applying advanced grammatical rules", "Comprehending dense multi-line layouts"],
-      customPath: [
-        { title: "Step 1: Scscenario Vocabulary", desc: "Build intermediate vocabulary for adult environments.", level: "intermediate", unit: "words", type: "reading" },
-        { title: "Step 2: Grammar & Structure", desc: "Practice arranging words into clean structural layouts.", level: "intermediate", unit: "sentences", type: "writing" },
-        { title: "Step 3: Fast Audio Comprehension", desc: "Decode complex spoken expressions comfortably.", level: "intermediate", unit: "sentences", type: "listening" },
-        { title: "Step 4: Active Vocalization", desc: "Build sentence speaking fluency aloud.", level: "intermediate", unit: "sentences", type: "speaking" },
-        { title: "Step 5: Form Notice Reading", desc: "Learn to read paragraph length documents and forms.", level: "intermediate", unit: "paragraphs", type: "reading" }
-      ]
-    },
-    advanced: {
-      summaryMessage: `Phenomenal performance! With an advanced score of ${scorePercent}%, your customized path bypasses entry mechanics to focus heavily on intricate document parsing, articulation, and advanced sentence writing.`,
-      goodPoints: ["Superb sentence structural understanding", "Fluent vocabulary translation skills"],
-      weakPoints: ["Parsing highly complex legalese/forms", "Advanced vocabulary pronunciation check rules"],
-      customPath: [
-        { title: "Step 1: Advanced Form Parsing", desc: "Master complex structural layout reading mechanics.", level: "advanced", unit: "sentences", type: "reading" },
-        { title: "Step 2: Application Composition", desc: "Practice writing out clean paragraphs from prompt logs.", level: "advanced", unit: "sentences", type: "writing" },
-        { title: "Step 3: Articulation Mastery", desc: "Perfect your pronunciation of complex terminology.", level: "advanced", unit: "paragraphs", type: "pronunciation" },
-        { title: "Step 4: Extended Broadcast Tracking", desc: "Follow long spoken alerts and paragraph narratives.", level: "advanced", unit: "paragraphs", type: "listening" },
-        { title: "Step 5: Dense Layout Analysis", desc: "Read long real-world context materials effortlessly.", level: "advanced", unit: "paragraphs", type: "reading" }
-      ]
+  // Last-resort fallback
+  return [
+    {
+      id: "q_fallback_1",
+      type: "mcq",
+      category: "mcq",
+      text: "Which of these is a valid letter?",
+      options: ["A", "5", "?", "@"],
+      answerIndex: 0,
+      targetLanguage: tLang,
+      preferredLanguage: pLang
     }
-  };
-
-  const targetTier = localFallbacks[level] ? level : "beginner";
-
-  const prompt = `You are an expert literacy coach. Analyse this learner's initial assessment results.
-
-LEARNER PROFILE:
-- Age Group: ${ageGroup} (${isChild ? 'Child' : 'Adult'})
-- Self-reported literacy: ${litDesc}
-- Assessment Score: ${scorePercent}%
-- Assessed Level: ${level}
-
-Identify 2 strengths and 2 areas to improve based on their score. Then, create a personalized 5-step learning roadmap specifically tailored to their age, level, and areas where they are lagging behind.
-
-CRITICAL: Write your ENTIRE response — summaryMessage, goodPoints, weakPoints, and every customPath title/desc — in ${knownLangName}, since that is the learner's understood language. Do NOT respond in English unless ${knownLangName} is English.
-
-RESPOND ONLY with this exact JSON structure (no markdown, no extra text):
-{
-  "summaryMessage": "A personalized paragraph explaining their result, in ${knownLangName}.",
-  "goodPoints": ["Point 1", "Point 2"],
-  "weakPoints": ["Point 1", "Point 2"],
-  "customPath": [
-    { "title": "Step 1: Custom Title", "desc": "Specific reason", "level": "${level}", "unit": "alphabets", "type": "reading" },
-    { "title": "Step 2: Custom Title", "desc": "...", "level": "${level}", "unit": "words", "type": "writing" },
-    { "title": "Step 3: Custom Title", "desc": "...", "level": "${level}", "unit": "sentences", "type": "speaking" },
-    { "title": "Step 4: Custom Title", "desc": "...", "level": "${level}", "unit": "paragraphs", "type": "listening" },
-    { "title": "Step 5: Custom Title", "desc": "...", "level": "${level}", "unit": "alphabets", "type": "pronunciation" }
-  ]
-}`;
-
-  try {
-    const idToken = await firebase.auth().currentUser.getIdToken();
-    const resp = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': "Bearer " + idToken },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { temperature: 0.4, maxOutputTokens: 2048, responseMimeType: 'application/json' }
-      })
-    });
-    
-    if (!resp.ok) throw new Error(`Gemini status code crash log: ${resp.status}`);
-    const data = await resp.json();
-    let text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    
-    text = text.replace(/```(json)?/gi, '').trim();
-    const startIdx = text.indexOf('{');
-    const endIdx = text.lastIndexOf('}');
-    if (startIdx !== -1 && endIdx !== -1) {
-       text = text.substring(startIdx, endIdx + 1);
-    }
-    
-    const analysis = JSON.parse(text);
-    
-    // Save live result
-    if (user) {
-      await db.collection('users').doc(user.uid).update({
-        geminiAnalysis: analysis,
-        geminiAnalyzedAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    }
-
-    renderAnalysisToScreen(analysis, loadingEl, insightsEl);
-
-  } catch (err) {
-    console.error('Gemini call dropped. Triggering automatic local fallback path execution sequence:', err);
-    // FAIL-SAFE EXECUTION: Commit pre-defined path array to Firebase so the user's dashboard functions perfectly
-    await saveFallbackAndRender(user, localFallbacks[targetTier], loadingEl, insightsEl);
-  }
+  ];
 }
 
-// Sub-routines to cleanly structure the fallback steps
-async function saveFallbackAndRender(user, fallbackData, loadingEl, insightsEl) {
-  if (user) {
-    try {
-      await db.collection('users').doc(user.uid).update({
-        geminiAnalysis: fallbackData,
-        geminiAnalyzedAt: firebase.firestore.FieldValue.serverTimestamp(),
-        fallbackGenerated: true
-      });
-    } catch(e) { console.error("Critical database save fault:", e); }
-  }
-  renderAnalysisToScreen(fallbackData, loadingEl, insightsEl);
-}
-
-function renderAnalysisToScreen(analysis, loadingEl, insightsEl) {
-  if (loadingEl) loadingEl.classList.add("hidden");
-  if (insightsEl) insightsEl.classList.remove("hidden");
-  
-  const summaryMsg = document.getElementById("score-summary-message");
-  if (summaryMsg && analysis.summaryMessage) {
-    summaryMsg.innerHTML = `
-      <div style="display: flex; align-items: flex-start; gap: 0.75rem; text-align: left;">
-        <div style="width: 36px; height: 36px; border-radius: 12px; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; box-shadow: 0 4px 12px rgba(99,102,241,0.2);">
-          <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
-        </div>
-        <div>
-          <div style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.6px; color: #4338ca; margin-bottom: 0.25rem;">Gemini AI Placement Feedback</div>
-          <div style="font-size: 0.93rem; font-weight: 700; color: #334155; line-height: 1.55;">${analysis.summaryMessage}</div>
-        </div>
-      </div>
-    `;
-  }
-  
-  const goodList = document.getElementById("ai-good-points");
-  const goodArr = analysis.goodPoints || analysis.strengths || [];
-  if (goodList && goodArr.length > 0) {
-    goodList.innerHTML = goodArr.map(p => `
-      <li style="text-align: left !important;">
-        <span style="color: #16a34a; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">✓</span>
-        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #14532d; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
-      </li>
-    `).join('');
-  }
-  
-  const weakList = document.getElementById("ai-weak-points");
-  const weakArr = analysis.weakPoints || analysis.weaknesses || [];
-  if (weakList && weakArr.length > 0) {
-    weakList.innerHTML = weakArr.map(p => `
-      <li style="text-align: left !important;">
-        <span style="color: #ea580c; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">🎯</span>
-        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #7c2d12; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
-      </li>
-    `).join('');
-  }
-  if (window.lucide) lucide.createIcons();
-}
-
-/**
- * Gets questions either from Gemini or falls back to hardcoded bank.
- */
-async function getAssessmentQuestions(profile) {
-  const tier = determineTier(profile);
-
-  // Try Gemini first
-  const geminiQuestions = await fetchQuestionsFromGemini(
-    profile.literacyLevel,
-    profile.ageGroup,
-    profile.preferredLanguage || selectedLang,  // known language
-    profile.targetLanguage || profile.preferredLanguage || selectedLang, // target language
-    profile.motherTongue
-  );
-
-  if (geminiQuestions) {
-    return geminiQuestions;
-  }
-
-  // Fallback to hardcoded questions
-  console.log(`📋 Using fallback ${tier} questions`);
-  return fallbackQuestions[tier] || fallbackQuestions.beginner;
-}
-
-// ─── Setup Assessment ─────────────────────────────────────────
-
+// ─── Setup Assessment Page ────────────────────────────────────
 function setupAssessment() {
   const introSection = document.getElementById("assessment-intro");
   const quizSection = document.getElementById("assessment-quiz");
@@ -475,6 +73,29 @@ function setupAssessment() {
   const startBtn = document.getElementById("start-btn");
   const nextBtn = document.getElementById("next-btn");
   const continueBtn = document.getElementById("continue-btn");
+  const langSelector = document.getElementById("lang-selector");
+
+  // Sync Language Selector with current preferred language
+  if (langSelector) {
+    langSelector.value = selectedLang || "en";
+    langSelector.addEventListener("change", (e) => {
+      selectedLang = e.target.value;
+      localStorage.setItem("saksharLang", selectedLang);
+      if (typeof applyTranslations === "function") {
+        applyTranslations(selectedLang);
+      }
+      // Re-localize questions if quiz is currently in progress
+      if (userProfile && currentQuestions.length > 0) {
+        userProfile.preferredLanguage = selectedLang;
+        const answersBackup = [...userAnswers];
+        const currentIdx = currentQuestionIndex;
+        currentQuestions = getAssessmentQuestions(userProfile);
+        userAnswers = answersBackup;
+        currentQuestionIndex = currentIdx;
+        renderQuestion();
+      }
+    });
+  }
 
   // Ensure user is logged in
   auth.onAuthStateChanged((user) => {
@@ -483,7 +104,7 @@ function setupAssessment() {
       return;
     }
 
-    // Fetch profile and check assessment status
+    // Fetch user profile
     getUserProfile(user.uid).then((profile) => {
       if (!profile) {
         window.location.href = "login.html";
@@ -492,346 +113,442 @@ function setupAssessment() {
 
       userProfile = profile;
 
-      // If assessment already completed, skip to dashboard
+      // Update lang selector to user's saved preference
+      if (profile.preferredLanguage && langSelector) {
+        selectedLang = profile.preferredLanguage;
+        langSelector.value = profile.preferredLanguage;
+        localStorage.setItem("saksharLang", selectedLang);
+        if (typeof applyTranslations === "function") {
+          applyTranslations(selectedLang);
+        }
+      }
+
+      // If already completed, skip directly to dashboard
       if (profile.assessmentCompleted) {
         window.location.href = "dashboard.html";
         return;
       }
 
-      // Hide loading, show intro
-      loadingOverlay.classList.add("hidden");
+      if (loadingOverlay) loadingOverlay.classList.add("hidden");
     }).catch(err => {
       console.error("Error fetching profile:", err);
-      loadingOverlay.classList.add("hidden"); // At least let them try
+      if (loadingOverlay) loadingOverlay.classList.add("hidden");
     });
   });
 
-  // Start Assessment
-  startBtn.addEventListener("click", async () => {
-    // Show loading state
-    startBtn.disabled = true;
-    startBtn.classList.add("loading");
-    startBtn.textContent = "";
+  // Start Button Click
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      startBtn.disabled = true;
+      startBtn.classList.add("loading");
 
-    // Update loading text
-    const loadingHint = document.getElementById("loading-hint");
-    if (loadingHint) {
-      loadingHint.classList.remove("hidden");
-    }
-
-    try {
-      // Fetch questions (from Gemini or fallback)
-      currentQuestions = await getAssessmentQuestions(userProfile);
-      currentQuestionIndex = 0;
-      userAnswers = new Array(currentQuestions.length).fill(null);
-
-      // Hide intro, show quiz
-      introSection.classList.add("hidden");
-      quizSection.classList.remove("hidden");
-
-      document.getElementById("total-q-num").textContent = currentQuestions.length;
-      renderQuestion();
-    } catch (error) {
-      console.error("Error loading questions:", error);
-      // Use fallback
-      const tier = determineTier(userProfile);
-      currentQuestions = fallbackQuestions[tier] || fallbackQuestions.beginner;
+      // Load curated assessment questions immediately
+      currentQuestions = getAssessmentQuestions(userProfile);
       currentQuestionIndex = 0;
       userAnswers = new Array(currentQuestions.length).fill(null);
 
       introSection.classList.add("hidden");
       quizSection.classList.remove("hidden");
 
-      document.getElementById("total-q-num").textContent = currentQuestions.length;
+      const totalQEl = document.getElementById("total-q-num");
+      if (totalQEl) totalQEl.textContent = currentQuestions.length;
+
       renderQuestion();
-    }
-  });
+    });
+  }
 
-  // Next Question / Submit
-  nextBtn.addEventListener("click", () => {
-    const errorMsg = document.getElementById("assessment-error");
-    const qData = currentQuestions[currentQuestionIndex];
+  // Next / Submit Button Click
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      const errorMsg = document.getElementById("assessment-error");
+      const qData = currentQuestions[currentQuestionIndex];
 
-    // Validate selection
-    if (userAnswers[currentQuestionIndex] === null) {
-      if (qData.type === "speaking") {
-        errorMsg.textContent = getTranslation(selectedLang, "speakNow") || "Please tap the mic and speak the phrase to continue.";
-      } else {
-        errorMsg.textContent = getTranslation(selectedLang, "assessmentSelectPrompt") || "Please select an answer to continue.";
+      // Validation
+      if (userAnswers[currentQuestionIndex] === null) {
+        if (qData.type === "speaking" || qData.type === "pronunciation") {
+          errorMsg.textContent = getTranslation(selectedLang, "speakNow") || "Please tap the microphone and speak to continue.";
+        } else {
+          errorMsg.textContent = getTranslation(selectedLang, "assessmentSelectPrompt") || "Please select an answer to continue.";
+        }
+        errorMsg.style.display = "block";
+        return;
       }
-      errorMsg.style.display = "block";
-      errorMsg.classList.add("visible");
-      return;
-    }
-    errorMsg.style.display = "none";
+      errorMsg.style.display = "none";
 
-    if (currentQuestionIndex < currentQuestions.length - 1) {
-      // Go to next question
-      currentQuestionIndex++;
-      renderQuestion();
-    } else {
-      // Submit assessment
-      finishAssessment();
-    }
-  });
+      if (currentQuestionIndex < currentQuestions.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      } else {
+        finishAssessment();
+      }
+    });
+  }
 
-  // Continue to Dashboard
-  continueBtn.addEventListener("click", () => {
-    window.location.href = "dashboard.html";
-  });
-  
-  // TTS for question
+  // Continue to Dashboard Button Click
+  if (continueBtn) {
+    continueBtn.addEventListener("click", () => {
+      window.location.href = "dashboard.html";
+    });
+  }
+
+  // TTS Read Question Button
   const ttsBtn = document.getElementById("tts-question-btn");
   if (ttsBtn) {
     ttsBtn.addEventListener("click", () => {
       const qData = currentQuestions[currentQuestionIndex];
-      if (qData.type === 'listening') {
+      const targetLang = qData.targetLanguage || userProfile?.targetLanguage || "hi";
+      const preferredLang = qData.preferredLanguage || userProfile?.preferredLanguage || selectedLang || "en";
+
+      if (qData.type === "pronunciation" || qData.type === "speaking") {
         if (typeof speakText === "function") {
-          speakText(qData.audioText, userProfile?.targetLanguage || "en-IN");
+          speakText(qData.targetPhrase || qData.text, targetLang);
         }
-      } else if (qData.type === 'speaking') {
+      } else if (qData.type === "reading") {
         if (typeof speakText === "function") {
-          speakText(qData.targetPhrase, userProfile?.targetLanguage || "en-IN");
+          speakText(qData.passage || qData.text, targetLang);
+        }
+      } else if (qData.type === "listening") {
+        if (typeof speakText === "function") {
+          speakText(qData.audioText || qData.targetPhrase, targetLang);
         }
       } else {
-        let text = qData.text;
-        if (qData.options) {
-          qData.options.forEach(opt => text += ". " + opt);
+        let textToRead = qData.text;
+        if (qData.options && qData.options.length) {
+          textToRead += ". " + qData.options.join(". ");
         }
         if (typeof speakText === "function") {
-          speakText(text, userProfile?.preferredLanguage || selectedLang);
+          speakText(textToRead, preferredLang);
         }
       }
     });
   }
 }
 
-// ─── Logic Helpers ────────────────────────────────────────────
-
-function determineTier(profile) {
-  if (!profile) return 'beginner';
-
-  const lit = profile.literacyLevel;
-
-  if (lit === 'neverLearned') return 'beginner';
-  if (lit === 'canRecognize') return 'beginner';
-  if (lit === 'canReadSimple') return 'intermediate';
-  if (lit === 'canReadComfort') return 'advanced';
-
-  return 'beginner'; // Default safe tier (e.g. preferNot)
-}
-
+// ─── Render Current Question ──────────────────────────────────
 function renderQuestion() {
   const qData = currentQuestions[currentQuestionIndex];
+  if (!qData) return;
 
-  document.getElementById("current-q-num").textContent = currentQuestionIndex + 1;
-  document.getElementById("card-q-num").textContent = currentQuestionIndex + 1;
-  document.getElementById("question-text").textContent = qData.text;
+  const targetLang = qData.targetLanguage || userProfile?.targetLanguage || "hi";
+  const preferredLang = qData.preferredLanguage || userProfile?.preferredLanguage || selectedLang || "en";
 
-  // Update progress bar
+  // Update question numbers & progress bar
+  const currentQEl = document.getElementById("current-q-num");
+  const cardQEl = document.getElementById("card-q-num");
+  const questionTextEl = document.getElementById("question-text");
+  const progressFill = document.getElementById("progress-fill");
+
+  if (currentQEl) currentQEl.textContent = currentQuestionIndex + 1;
+  if (cardQEl) cardQEl.textContent = currentQuestionIndex + 1;
+  if (questionTextEl) questionTextEl.textContent = qData.text;
+
   const progressPercent = ((currentQuestionIndex) / currentQuestions.length) * 100;
-  document.getElementById("progress-fill").style.width = `${progressPercent}%`;
+  if (progressFill) progressFill.style.width = `${progressPercent}%`;
 
-  // Update button text if last question
+  // Update Next/Submit button label
   const nextBtn = document.getElementById("next-btn");
-  if (currentQuestionIndex === currentQuestions.length - 1) {
-    nextBtn.textContent = getTranslation(selectedLang, "assessmentSubmitBtn") || "Submit Assessment";
-  } else {
-    nextBtn.textContent = getTranslation(selectedLang, "assessmentNextBtn") || "Next";
+  if (nextBtn) {
+    if (currentQuestionIndex === currentQuestions.length - 1) {
+      const submitText = getTranslation(selectedLang, "assessmentSubmitBtn");
+      const label = (submitText && submitText !== "assessmentSubmitBtn") ? submitText : "Submit Assessment";
+      nextBtn.innerHTML = `<span>${label}</span> <i data-lucide="check" style="width: 18px; height: 18px;"></i>`;
+    } else {
+      const nextText = getTranslation(selectedLang, "assessmentNextBtn");
+      const label = (nextText && nextText !== "assessmentNextBtn") ? nextText : "Next";
+      nextBtn.innerHTML = `<span>${label}</span> <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>`;
+    }
   }
 
-  // Render options
+  // Update Modality Badge
+  const modalityBadge = document.getElementById("q-modality-badge");
+  const badgeConfig = {
+    mcq: { icon: "type", key: "qTypeMcq", default: "Vocabulary & Grammar", color: "#6366f1", bg: "#eef2ff" },
+    reading: { icon: "book-open", key: "qTypeReading", default: "Reading Comprehension", color: "#059669", bg: "#f0fdf4" },
+    speaking: { icon: "mic", key: "qTypeSpeaking", default: "Speaking Practice", color: "#d97706", bg: "#fffbeb" },
+    pronunciation: { icon: "volume-2", key: "qTypePronunciation", default: "Pronunciation Test", color: "#7c3aed", bg: "#f5f3ff" },
+    listening: { icon: "headphones", key: "qTypeListening", default: "Listening Comprehension", color: "#2563eb", bg: "#eff6ff" }
+  };
+
+  const currentModality = badgeConfig[qData.type] || badgeConfig.mcq;
+  if (modalityBadge) {
+    modalityBadge.style.color = currentModality.color;
+    modalityBadge.style.background = currentModality.bg;
+    modalityBadge.style.borderColor = currentModality.color + "40";
+    const modTranslation = getTranslation(selectedLang, currentModality.key);
+    const modLabel = (modTranslation && modTranslation !== currentModality.key) ? modTranslation : currentModality.default;
+    modalityBadge.innerHTML = `<i data-lucide="${currentModality.icon}" style="width: 14px; height: 14px;"></i> <span>${modLabel}</span>`;
+  }
+
+  // Clear previous special containers
+  const readingContainer = document.getElementById("reading-passage-container");
+  const pronounceContainer = document.getElementById("pronounce-preview-container");
   const optionsContainer = document.getElementById("options-container");
-  optionsContainer.innerHTML = '';
-  optionsContainer.className = "options-grid"; // reset class
+  const errorMsg = document.getElementById("assessment-error");
 
-  document.getElementById("assessment-error").style.display = "none";
+  if (errorMsg) errorMsg.style.display = "none";
+  if (readingContainer) {
+    readingContainer.innerHTML = "";
+    readingContainer.classList.add("hidden");
+  }
+  if (pronounceContainer) {
+    pronounceContainer.innerHTML = "";
+    pronounceContainer.classList.add("hidden");
+  }
 
-  if (qData.type === "speaking") {
-    optionsContainer.classList.remove("options-grid");
-    
-    const speakingCard = document.createElement("div");
-    speakingCard.className = "assessment-speaking-card";
-    speakingCard.innerHTML = `
-      <div class="target-phrase">"${qData.targetPhrase}"</div>
-      <button class="stt-mic-btn" id="ass-mic-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
-          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-          <line x1="12" y1="19" x2="12" y2="22"></line>
-        </svg>
-      </button>
-      <div class="stt-result-text" id="ass-result-text">Tap the microphone and speak</div>
-    `;
-    
-    optionsContainer.appendChild(speakingCard);
-    
-    const micBtn = speakingCard.querySelector("#ass-mic-btn");
-    const resultText = speakingCard.querySelector("#ass-result-text");
-    
-    // Restore state if answered
-    if (userAnswers[currentQuestionIndex] !== null) {
-      if (userAnswers[currentQuestionIndex] === "CORRECT") {
-        micBtn.style.background = "var(--color-success, #22c55e)";
-        micBtn.style.color = "white";
-        resultText.textContent = "Great pronunciation!";
-      } else {
-        micBtn.style.background = "var(--color-error, #ef4444)";
-        micBtn.style.color = "white";
-        resultText.textContent = "Try again!";
+  optionsContainer.innerHTML = "";
+  optionsContainer.className = "options-grid";
+
+  // ─── 1. READING ASSESSMENT MODALITY ─────────────────────────
+  if (qData.type === "reading") {
+    if (readingContainer && qData.passage) {
+      readingContainer.classList.remove("hidden");
+      readingContainer.innerHTML = `
+        <div class="ass-reading-box">
+          <div class="ass-reading-passage-title">
+            <i data-lucide="book-open" style="width: 15px; height: 15px;"></i>
+            <span>${getTranslation(selectedLang, "readingPassage") || "Reading Passage"}</span>
+          </div>
+          <p class="ass-reading-passage-text">"${qData.passage}"</p>
+          ${qData.passageTranslation ? `<p class="ass-reading-translation">${qData.passageTranslation}</p>` : ''}
+        </div>
+      `;
+    }
+    renderMCQOptions(optionsContainer, qData.options);
+  }
+
+  // ─── 2. PRONUNCIATION TEST MODALITY ─────────────────────────
+  else if (qData.type === "pronunciation") {
+    if (pronounceContainer) {
+      pronounceContainer.classList.remove("hidden");
+      pronounceContainer.innerHTML = `
+        <div class="ass-pronounce-card">
+          <div style="font-weight: 900; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.6px; color: #7c3aed; margin-bottom: 0.5rem;">Target Word</div>
+          <div class="ass-pronounce-target-word">"${qData.targetPhrase}"</div>
+          ${qData.phoneticHint ? `<div class="ass-pronounce-hint">Phonetic: ${qData.phoneticHint}</div>` : ''}
+          <button id="listen-preview-btn" class="ass-audio-preview-btn" type="button">
+            <i data-lucide="volume-2" style="width: 16px; height: 16px;"></i>
+            <span>${getTranslation(selectedLang, "hearPronunciation") || "Listen to Pronunciation"}</span>
+          </button>
+        </div>
+      `;
+
+      // Wire up preview button
+      const previewBtn = pronounceContainer.querySelector("#listen-preview-btn");
+      if (previewBtn) {
+        previewBtn.onclick = () => {
+          if (typeof speakText === "function") {
+            speakText(qData.targetPhrase, targetLang);
+          }
+        };
       }
     }
-    
-    micBtn.onclick = () => {
-      micBtn.style.background = "var(--color-primary)";
-      micBtn.style.color = "white";
-      micBtn.style.animation = "pulse 1.5s infinite";
-      resultText.textContent = getTranslation(selectedLang, "listening") || "Listening...";
-      
-      if (typeof startSpeechToText === "function") {
-        startSpeechToText(
-          userProfile?.targetLanguage || "en-IN",
-          (transcript) => {
-            micBtn.style.animation = "none";
-            
-            if (transcript) {
-              const expected = qData.targetPhrase.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
-              const actual = transcript.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
-              
-              const expectedWords = expected.split(/\s+/).filter(Boolean);
-              const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-              const matchedCount = expectedWords.filter(w => actualWords.has(w)).length;
-              const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
-              
-              if (matchRatio >= 0.7) {
-                userAnswers[currentQuestionIndex] = "CORRECT";
-                micBtn.style.background = "var(--color-success, #22c55e)";
-                micBtn.style.color = "white";
-                resultText.textContent = `You said: "${transcript}" — Good job!`;
-              } else {
-                userAnswers[currentQuestionIndex] = "INCORRECT";
-                micBtn.style.background = "var(--color-error, #ef4444)";
-                micBtn.style.color = "white";
-                resultText.textContent = `You said: "${transcript}" — Try again.`;
-              }
-            } else {
-              micBtn.style.background = "white";
-              micBtn.style.color = "var(--color-primary)";
-              resultText.textContent = getTranslation(selectedLang, "tryAgain") || "Didn't catch that. Tap mic to try again.";
-            }
-          },
-          (err) => {
-            micBtn.style.background = "white";
-            micBtn.style.color = "var(--color-primary)";
-            micBtn.style.animation = "none";
-            resultText.textContent = "Something went wrong — please try again.";
-            console.error("STT error:", err);
-          }
-        );
-      }
-    };
 
-  } else if (qData.type === "listening") {
-    // Listening MCQ
-    const letters = ['A', 'B', 'C', 'D'];
+    renderVoiceRecordingCard(optionsContainer, qData.targetPhrase, targetLang);
+  }
 
-    // Add the play button at the top
+  // ─── 3. SPEAKING ASSESSMENT MODALITY ────────────────────────
+  else if (qData.type === "speaking") {
+    renderVoiceRecordingCard(optionsContainer, qData.targetPhrase, targetLang);
+  }
+
+  // ─── 4. LISTENING COMPREHENSION MODALITY ────────────────────
+  else if (qData.type === "listening") {
     const playContainer = document.createElement("div");
-    playContainer.style.display = "flex";
-    playContainer.style.justifyContent = "center";
-    playContainer.style.marginBottom = "1.5rem";
-    
-    const playBtn = document.createElement("button");
-    playBtn.className = "exercise-tts-btn";
-    playBtn.innerHTML = "🔊";
-    playBtn.onclick = () => {
-      if (typeof speakText === "function") {
-        speakText(qData.audioText, userProfile?.targetLanguage || "en-IN");
-      }
-    };
-    playContainer.appendChild(playBtn);
+    playContainer.style.cssText = "display: flex; justify-content: center; margin-bottom: 1.5rem;";
+    playContainer.innerHTML = `
+      <button class="ass-btn-primary" id="listen-play-btn" style="border-radius: 9999px; padding: 0.65rem 1.4rem;">
+        <i data-lucide="volume-2" style="width: 18px; height: 18px;"></i>
+        <span>Play Audio Clip</span>
+      </button>
+    `;
     optionsContainer.appendChild(playContainer);
 
-    qData.options.forEach((optText, index) => {
-      const btn = document.createElement("button");
-      btn.className = "option-btn";
+    const playBtn = playContainer.querySelector("#listen-play-btn");
+    if (playBtn) {
+      playBtn.onclick = () => {
+        if (typeof speakText === "function") {
+          speakText(qData.audioText || qData.targetPhrase, targetLang);
+        }
+      };
+    }
 
-      // Retain selection if they go back
-      if (userAnswers[currentQuestionIndex] === index) {
-        btn.classList.add("selected");
-      }
+    renderMCQOptions(optionsContainer, qData.options);
+  }
 
-      btn.innerHTML = `
-        <div class="option-letter">${letters[index]}</div>
-        <span>${optText}</span>
-      `;
-
-      btn.addEventListener("click", () => {
-        // Clear other selections
-        document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-        userAnswers[currentQuestionIndex] = index;
-        document.getElementById("assessment-error").style.display = "none";
-      });
-
-      optionsContainer.appendChild(btn);
-    });
-  } else {
-    // Standard MCQ
-    const letters = ['A', 'B', 'C', 'D'];
-
-    qData.options.forEach((optText, index) => {
-      const btn = document.createElement("button");
-      btn.className = "option-btn";
-
-      // Retain selection if they go back
-      if (userAnswers[currentQuestionIndex] === index) {
-        btn.classList.add("selected");
-      }
-
-      btn.innerHTML = `
-        <div class="option-letter">${letters[index]}</div>
-        <span>${optText}</span>
-      `;
-
-      btn.addEventListener("click", () => {
-        // Clear other selections
-        document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
-        btn.classList.add("selected");
-        userAnswers[currentQuestionIndex] = index;
-        document.getElementById("assessment-error").style.display = "none";
-      });
-
-      optionsContainer.appendChild(btn);
-    });
+  // ─── 5. STANDARD VOCABULARY & GRAMMAR MCQ ───────────────────
+  else {
+    renderMCQOptions(optionsContainer, qData.options);
   }
 
   if (window.lucide) lucide.createIcons();
 }
 
+// ─── Helper: Render MCQ Options ───────────────────────────────
+function renderMCQOptions(container, options) {
+  if (!options || !options.length) return;
+  const letters = ["A", "B", "C", "D"];
+
+  options.forEach((optText, index) => {
+    const btn = document.createElement("button");
+    btn.className = "option-btn";
+    btn.type = "button";
+
+    if (userAnswers[currentQuestionIndex] === index) {
+      btn.classList.add("selected");
+    }
+
+    btn.innerHTML = `
+      <div class="option-letter">${letters[index] || index + 1}</div>
+      <span>${optText}</span>
+    `;
+
+    btn.addEventListener("click", () => {
+      container.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      userAnswers[currentQuestionIndex] = index;
+
+      const errorMsg = document.getElementById("assessment-error");
+      if (errorMsg) errorMsg.style.display = "none";
+    });
+
+    container.appendChild(btn);
+  });
+}
+
+// ─── Helper: Render Voice Recording (Speaking / Pronunciation) 
+function renderVoiceRecordingCard(container, targetPhrase, targetLang) {
+  container.classList.remove("options-grid");
+
+  const speakingCard = document.createElement("div");
+  speakingCard.className = "assessment-speaking-card";
+  speakingCard.innerHTML = `
+    <div class="target-phrase">"${targetPhrase}"</div>
+    <button class="stt-mic-btn" id="ass-mic-btn" type="button" title="Tap to Speak">
+      <i data-lucide="mic" style="width: 32px; height: 32px;"></i>
+    </button>
+    <div class="stt-result-text" id="ass-result-text">
+      ${getTranslation(selectedLang, "speakNow") || "Tap the microphone and speak aloud"}
+    </div>
+  `;
+
+  container.appendChild(speakingCard);
+
+  const micBtn = speakingCard.querySelector("#ass-mic-btn");
+  const resultText = speakingCard.querySelector("#ass-result-text");
+
+  // Restore state if answered
+  if (userAnswers[currentQuestionIndex] !== null) {
+    if (userAnswers[currentQuestionIndex] === "CORRECT") {
+      micBtn.style.background = "#10b981";
+      micBtn.style.color = "#ffffff";
+      resultText.textContent = "✓ Clear pronunciation recorded!";
+    } else {
+      micBtn.style.background = "#f59e0b";
+      micBtn.style.color = "#ffffff";
+      resultText.textContent = "Recorded. Tap again if you'd like to retry.";
+    }
+  }
+
+  micBtn.onclick = () => {
+    micBtn.style.background = "#6366f1";
+    micBtn.style.color = "#ffffff";
+    micBtn.style.animation = "pulse 1.5s infinite";
+    resultText.textContent = getTranslation(selectedLang, "listening") || "Listening... Speak now";
+
+    if (typeof startSpeechToText === "function") {
+      startSpeechToText(
+        targetLang || "en-IN",
+        (transcript) => {
+          micBtn.style.animation = "none";
+
+          if (transcript) {
+            const expected = (targetPhrase || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
+            const actual = transcript.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
+
+            const expectedWords = expected.split(/\s+/).filter(Boolean);
+            const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
+            const matchedCount = expectedWords.filter(w => actualWords.has(w)).length;
+            const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
+
+            if (matchRatio >= 0.5 || actual.includes(expected) || expected.includes(actual)) {
+              userAnswers[currentQuestionIndex] = "CORRECT";
+              micBtn.style.background = "#10b981";
+              micBtn.style.color = "#ffffff";
+              resultText.textContent = `You said: "${transcript}" — Great job!`;
+            } else {
+              userAnswers[currentQuestionIndex] = "INCORRECT";
+              micBtn.style.background = "#f59e0b";
+              micBtn.style.color = "#ffffff";
+              resultText.textContent = `You said: "${transcript}" (Tap mic to try again)`;
+            }
+
+            const errorMsg = document.getElementById("assessment-error");
+            if (errorMsg) errorMsg.style.display = "none";
+          } else {
+            micBtn.style.background = "#6366f1";
+            resultText.textContent = getTranslation(selectedLang, "tryAgain") || "Didn't catch that. Tap mic to retry.";
+          }
+        },
+        (err) => {
+          micBtn.style.animation = "none";
+          micBtn.style.background = "#6366f1";
+          resultText.textContent = "Mic issue — tap again or ensure microphone access is granted.";
+          console.error("STT error:", err);
+          // Fallback acceptance so user is not permanently stuck
+          userAnswers[currentQuestionIndex] = "CORRECT";
+        }
+      );
+    }
+  };
+}
+
+// ─── Finish Assessment & Scoring ──────────────────────────────
 function finishAssessment() {
   const quizSection = document.getElementById("assessment-quiz");
   const scoreSection = document.getElementById("assessment-score");
   const loadingOverlay = document.getElementById("loading-overlay");
 
-  loadingOverlay.classList.remove("hidden");
+  if (loadingOverlay) loadingOverlay.classList.remove("hidden");
 
-  let correctCount = 0;
+  // Track overall & category-wise sub-scores
+  let totalCorrect = 0;
+  const categoryStats = {
+    mcq: { correct: 0, total: 0 },
+    reading: { correct: 0, total: 0 },
+    speaking: { correct: 0, total: 0 },
+    pronunciation: { correct: 0, total: 0 }
+  };
+
   currentQuestions.forEach((q, idx) => {
-    if (q.type === "speaking") {
-      if (userAnswers[idx] === "CORRECT") correctCount++;
+    const cat = q.category || q.type || "mcq";
+    if (!categoryStats[cat]) categoryStats[cat] = { correct: 0, total: 0 };
+    categoryStats[cat].total++;
+
+    let isCorrect = false;
+    if (q.type === "speaking" || q.type === "pronunciation") {
+      isCorrect = (userAnswers[idx] === "CORRECT");
     } else {
-      if (userAnswers[idx] === q.answerIndex) correctCount++;
+      isCorrect = (userAnswers[idx] === q.answerIndex);
+    }
+
+    if (isCorrect) {
+      totalCorrect++;
+      categoryStats[cat].correct++;
     }
   });
 
-  const scorePercent = Math.round((correctCount / currentQuestions.length) * 100);
+  const scorePercent = Math.round((totalCorrect / currentQuestions.length) * 100);
+
+  // Compute category percentages
+  const categoryScores = {
+    mcq: categoryStats.mcq.total ? Math.round((categoryStats.mcq.correct / categoryStats.mcq.total) * 100) : scorePercent,
+    reading: categoryStats.reading.total ? Math.round((categoryStats.reading.correct / categoryStats.reading.total) * 100) : scorePercent,
+    speaking: categoryStats.speaking.total ? Math.round((categoryStats.speaking.correct / categoryStats.speaking.total) * 100) : scorePercent,
+    pronunciation: categoryStats.pronunciation.total ? Math.round((categoryStats.pronunciation.correct / categoryStats.pronunciation.total) * 100) : scorePercent
+  };
 
   const user = auth.currentUser;
   if (user) {
-    // CHANGED: fetch the profile first so we have literacyLevel, then use
-    // the SAME determineLevel() the recommendation card uses — instead of
-    // a raw-score-only band split that could (and did) disagree with it.
     getUserProfile(user.uid).then(profile => {
       const { level, unit } = determineLevel(scorePercent, profile?.literacyLevel);
       const curriculumState = initializeCurriculum(level);
@@ -843,67 +560,38 @@ function finishAssessment() {
           streak: 0,
           lastActiveDate: null,
           completedLessons: [],
-          currentLevel: level
+          currentLevel: level,
+          assessmentCategoryScores: categoryScores
         }))
         .then(() => {
-          loadingOverlay.classList.add("hidden");
+          if (loadingOverlay) loadingOverlay.classList.add("hidden");
           quizSection.classList.add("hidden");
           scoreSection.classList.remove("hidden");
-          displayScore(scorePercent, level);
-          triggerAssessmentAIAnalysis(scorePercent, level);
+          displayScoreResults(scorePercent, level, categoryScores);
+          triggerDiagnosticAnalysis(scorePercent, level, categoryScores, profile);
         });
     }).catch(err => {
       console.error("Error saving assessment:", err);
-      loadingOverlay.classList.add("hidden");
+      if (loadingOverlay) loadingOverlay.classList.add("hidden");
       quizSection.classList.add("hidden");
       scoreSection.classList.remove("hidden");
-      displayScore(scorePercent, "beginner");
-      triggerAssessmentAIAnalysis(scorePercent, "beginner");
+      displayScoreResults(scorePercent, "beginner", categoryScores);
+      triggerDiagnosticAnalysis(scorePercent, "beginner", categoryScores, userProfile);
     });
+  } else {
+    if (loadingOverlay) loadingOverlay.classList.add("hidden");
+    quizSection.classList.add("hidden");
+    scoreSection.classList.remove("hidden");
+    displayScoreResults(scorePercent, "beginner", categoryScores);
   }
 }
 
-
-/**
- * Initialize curriculum unlock state based on assessed level.
- * Beginner: Only beginner alphabets unlocked
- * Intermediate: Beginner complete, intermediate alphabets unlocked
- * Advanced: Beginner+Intermediate complete, advanced alphabets unlocked
- */
-function initializeCurriculum(level) {
-  const skills = ['reading', 'writing', 'listening', 'speaking', 'pronunciation'];
-  const levels = ['beginner', 'intermediate', 'advanced'];
-  const curriculum = {};
-
-  levels.forEach(lvl => {
-    curriculum[lvl] = {};
-    skills.forEach(skill => {
-      curriculum[lvl][skill] = {
-        status: 'locked', // locked, available, completed, skipped
-        lessonsCompleted: 0,
-        totalLessons: 5
-      };
-    });
-  });
-
-  const levelIdx = levels.indexOf(level);
-  levels.forEach((lvl, idx) => {
-    if (idx < levelIdx) {
-      // Placed above this level by assessment — honest label, not fake completion
-      skills.forEach(skill => { curriculum[lvl][skill].status = 'skipped'; });
-    } else if (idx === levelIdx) {
-      skills.forEach(skill => { curriculum[lvl][skill].status = 'available'; });
-    }
-  });
-
-  return curriculum;
-}
-
-function displayScore(scorePercent, level) {
+// ─── Display Score Results & Category Breakdown ───────────────
+function displayScoreResults(scorePercent, level, categoryScores) {
   const scoreEl = document.getElementById("final-score");
   if (scoreEl) scoreEl.textContent = `${scorePercent}%`;
 
-  // Animate circle
+  // Animate SVG circle gauge
   const circle = document.getElementById("score-circle");
   if (circle) {
     const offset = 502 - (502 * scorePercent) / 100;
@@ -912,7 +600,7 @@ function displayScore(scorePercent, level) {
     }, 100);
   }
 
-  // Set badge with dynamic colors per level
+  // Level Badge
   const badge = document.getElementById("score-level-badge");
   if (badge) {
     badge.className = `score-level ${level}`;
@@ -942,6 +630,32 @@ function displayScore(scorePercent, level) {
     badge.innerHTML = `<span>${label}</span>`;
   }
 
+  // Render 4-Pillar Category Score Breakdown Cards
+  const breakdownContainer = document.getElementById("assessment-category-breakdown");
+  if (breakdownContainer && categoryScores) {
+    const categories = [
+      { key: "reading", name: getTranslation(selectedLang, "categoryReading") || "Reading", icon: "book-open", pct: categoryScores.reading },
+      { key: "mcq", name: getTranslation(selectedLang, "categoryMcq") || "Vocabulary", icon: "type", pct: categoryScores.mcq },
+      { key: "speaking", name: getTranslation(selectedLang, "categorySpeaking") || "Speaking", icon: "mic", pct: categoryScores.speaking },
+      { key: "pronunciation", name: getTranslation(selectedLang, "categoryPronunciation") || "Pronunciation", icon: "volume-2", pct: categoryScores.pronunciation }
+    ];
+
+    breakdownContainer.innerHTML = categories.map(cat => `
+      <div class="ass-skill-card">
+        <div class="ass-skill-card-header">
+          <span class="ass-skill-card-name">
+            <i data-lucide="${cat.icon}" style="width: 15px; height: 15px; color: #6366f1;"></i>
+            <span>${cat.name}</span>
+          </span>
+          <span class="ass-skill-card-pct">${cat.pct}%</span>
+        </div>
+        <div class="ass-skill-bar-track">
+          <div class="ass-skill-bar-fill" style="width: ${cat.pct}%;"></div>
+        </div>
+      </div>
+    `).join("");
+  }
+
   if (typeof showCelebrationParticles === "function") {
     showCelebrationParticles(3500);
   }
@@ -949,7 +663,228 @@ function displayScore(scorePercent, level) {
   if (window.lucide) lucide.createIcons();
 }
 
-// Ensure this runs when loaded via main.js routing
+// ─── Diagnostic Analysis in Preferred Language ────────────────
+async function triggerDiagnosticAnalysis(scorePercent, level, categoryScores, profile) {
+  const loadingEl = document.getElementById("assessment-ai-loading");
+  const insightsEl = document.getElementById("assessment-ai-insights");
+
+  if (loadingEl) loadingEl.classList.remove("hidden");
+  if (insightsEl) insightsEl.classList.add("hidden");
+
+  const preferredLang = profile?.preferredLanguage || selectedLang || "en";
+  const knownLangName = languageNames[preferredLang] || "English";
+  const user = auth.currentUser;
+
+  // Bilingual Diagnostic Templates (Instant Zero-Latency Fallback & Guaranteed Uptime)
+  const localAnalysisTemplates = {
+    beginner: {
+      en: {
+        summaryMessage: `Welcome! You achieved an initial assessment score of ${scorePercent}%. You have been placed in the Beginner level. We'll start with foundational character identification, sound matching, and core everyday words.`,
+        goodPoints: ["Willingness to learn and engage with native audio", "Instinctive visual recognition of basic shapes"],
+        weakPoints: ["Recognizing compound letter sounds", "Speaking full sentence expressions"]
+      },
+      hi: {
+        summaryMessage: `स्वागत है! आपने प्रारंभिक मूल्यांकन में ${scorePercent}% अंक प्राप्त किए हैं। आपका स्तर 'शुरुआती (Beginner)' निर्धारित किया गया है। हम मूलभूत अक्षर पहचान, ध्वनि अभ्यास और दैनिक उपयोगी शब्दों से शुरुआत करेंगे।`,
+        goodPoints: ["ध्वनि और ऑडियो के साथ सीखने की अच्छी रुचि", "मूल आकृतियों की पहचान"],
+        weakPoints: ["संयुक्त अक्षरों और ध्वनियों की पहचान", "पूर्ण वाक्यों का मौखिक उच्चारण"]
+      },
+      ta: {
+        summaryMessage: `வரவேற்கிறோம்! ஆரம்ப மதிப்பீட்டில் நீங்கள் ${scorePercent}% பெற்றுள்ளீர்கள். உங்கள் நிலை 'தொடக்கநிலை (Beginner)' என நிர்ணயிக்கப்பட்டுள்ளது. அடிப்படை எழுத்துக்கள் மற்றும் எளிய சொற்களிலிருந்து தொடங்குவோம்.`,
+        goodPoints: ["ஒலி மற்றும் காட்சி வடிவங்களை கவனிக்கும் ஆர்வம்", "அடிப்படை எழுத்து வடிவங்களை அடையாளம் காணுதல்"],
+        weakPoints: ["கூட்டு எழுத்துக்களின் ஒலி உச்சரிப்பு", "முழு வாக்கியங்களை சரளமாக பேசுதல்"]
+      },
+      te: {
+        summaryMessage: `స్వాగతం! మీరు ప్రాథమిక అంచనాలో ${scorePercent}% స్కోర్ సాధించారు. మీ స్థాయి 'ప్రారంభ స్థాయి (Beginner)' గా నిర్ణయించబడింది. ప్రాథమిక అక్షరాలు మరియు రోజువారీ పదాల నుండి ప్రారంభిద్దాం.`,
+        goodPoints: ["ఆడియో శబ్దాలను వినడంలో మంచి ఆసక్తి", "ప్రాథమిక అక్షర గుర్తింపు"],
+        weakPoints: ["సంయుక్తాక్షరాల ఉచ్చారణ", "పూర్తి వాక్యాలను మాట్లాడటం"]
+      },
+      kn: {
+        summaryMessage: `ಸ್ವಾಗತ! ನೀವು ಆರಂಭಿಕ ಮೌಲ್ಯಮಾಪನದಲ್ಲಿ ${scorePercent}% ಅಂಕಗಳನ್ನು ಗಳಿಸಿದ್ದೀರಿ. ನಿಮ್ಮ ಮಟ್ಟವನ್ನು 'ಆರಂಭಿಕ ಮಟ್ಟ (Beginner)' ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ. ಮೂಲ ಅಕ್ಷರಗಳು ಮತ್ತು ಸರಳ ಪದಗಳಿಂದ ಪ್ರಾರಂಭಿಸೋಣ.`,
+        goodPoints: ["ಧ್ವನಿ ಮತ್ತು ಚಿತ್ರಗಳನ್ನು ಗುರುತಿಸುವ ಆಸಕ್ತಿ", "ಮೂಲ ಅಕ್ಷರ ಗುರುತಿಸುವಿಕೆ"],
+        weakPoints: ["ಸಂಯುಕ್ತಾಕ್ಷರಗಳ ಸರಿಯಾದ ಉಚ್ಚಾರಣೆ", "ಸಂಪೂರ್ಣ ವಾಕ್ಯಗಳನ್ನು ಮಾತನಾಡುವುದು"]
+      },
+      bn: {
+        summaryMessage: `স্বাগতম! আপনি প্রাথমিক মূল্যায়নে ${scorePercent}% স্কোর অর্জন করেছেন। আপনার স্তর 'প্রাথমিক (Beginner)' হিসেবে নির্ধারিত হয়েছে। আমরা বর্ণমালা এবং সাধারণ শব্দাবলী দিয়ে শুরু করব।`,
+        goodPoints: ["অডিও ও শব্দের সাথে শেখার আগ্রহ", "প্রাথমিক বর্ণ চেনার দক্ষতা"],
+        weakPoints: ["যুক্তাক্ষরের সঠিক উচ্চারণ", "পূর্ণ বাক্য স্পষ্ট করে বলা"]
+      },
+      mr: {
+        summaryMessage: `स्वागत आहे! आपण प्रारंभिक मूल्यमापनात ${scorePercent}% गुण मिळवले आहेत. आपली पातळी 'शुरुवाती स्तर (Beginner)' म्हणून निश्चित करण्यात आली आहे. आपण मूळाक्षरे आणि दैनंदिन शब्दांपासून सुरुवात करू.`,
+        goodPoints: ["ध्वनी आणि उच्चार समजून घेण्याची आवड", "मूलभूत अक्षरांची ओळख"],
+        weakPoints: ["जोडाक्षरांचे अचूक उच्चार", "पूर्ण वाक्यांचे स्पष्ट संभाषण"]
+      }
+    },
+    intermediate: {
+      en: {
+        summaryMessage: `Great job! You achieved a score of ${scorePercent}%. You have been placed in the Intermediate level. You have a solid grasp of core vocabulary and simple sentences.`,
+        goodPoints: ["Good baseline vocabulary and word meanings", "Ability to comprehend everyday signs and questions"],
+        weakPoints: ["Fluency in extended oral sentences", "Nuanced grammatical structures"]
+      },
+      hi: {
+        summaryMessage: `शानदार प्रदर्शन! आपने ${scorePercent}% अंक प्राप्त किए हैं। आपका स्तर 'मध्यवर्ती (Intermediate)' निर्धारित किया गया है। आपकी शब्दावली और सरल वाक्य समझने की क्षमता अच्छी है।`,
+        goodPoints: ["दैनिक शब्दावली और अर्थों की अच्छी समझ", "सार्वजनिक सूचनाओं और प्रश्नों को समझने की क्षमता"],
+        weakPoints: ["लंबे वाक्यों को धाराप्रवाह बोलना", "जटिल व्याकरण के नियम"]
+      },
+      ta: {
+        summaryMessage: `சிறப்பான செயல்பாடு! நீங்கள் ${scorePercent}% பெற்றுள்ளீர்கள். உங்கள் நிலை 'இடைநிலை (Intermediate)' என நிர்ணயிக்கப்பட்டுள்ளது. அடிப்படை சொற்களஞ்சியத்தில் நல்ல தேர்ச்சி பெற்றுள்ளீர்கள்.`,
+        goodPoints: ["அடிப்படை சொற்கள் மற்றும் வாக்கியங்களை புரிந்து கொள்ளுதல்", "பொது அறிவிப்புகளை வாசிக்கும் திறன்"],
+        weakPoints: ["நீண்ட வாக்கியங்களை சரளமாக பேசுதல்", "சிக்கலான இலக்கண விதிகள்"]
+      },
+      te: {
+        summaryMessage: `అద్భుతమైన ప్రదర్శన! మీరు ${scorePercent}% స్కోర్ సాధించారు. మీ స్థాయి 'మధ్యస్థ స్థాయి (Intermediate)' గా నిర్ణయించబడింది. మీ పదజాలం మరియు సాధారణ వాక్యాల అవగాహన బాగుంది.`,
+        goodPoints: ["రోజువారీ పదజాలం మరియు అర్థాలపై మంచి పట్టు", "పబ్లిక్ నోటీసులు మరియు ప్రశ్నల అవగాహన"],
+        weakPoints: ["పొడవైన వాక్యాలను ధారాళంగా మాట్లాడటం", "క్లిష్టమైన వ్యాకరణ నియమాలు"]
+      },
+      kn: {
+        summaryMessage: `ಉತ್ತಮ ಸಾಧನೆ! ನೀವು ${scorePercent}% ಅಂಕ ಗಳಿಸಿದ್ದೀರಿ. ನಿಮ್ಮ ಮಟ್ಟವನ್ನು 'ಮಧ್ಯಮ ಮಟ್ಟ (Intermediate)' ಎಂದು ಗುರುತಿಸಲಾಗಿದೆ. ನಿಮ್ಮ ಶಬ್ದಕೋಶ ಮತ್ತು ವಾಕ್ಯ ಗ್ರಹಿಕೆ ಉತ್ತಮವಾಗಿದೆ.`,
+        goodPoints: ["ದೈನಂದಿನ ಶಬ್ದಕೋಶ ಮತ್ತು ಅರ್ಥಗಳ ಉತ್ತಮ ಜ್ಞಾನ", "ಸಾರ್ವಜನಿಕ ಸೂಚನೆಗಳನ್ನು ಓದುವ ಸಾಮರ್ಥ್ಯ"],
+        weakPoints: ["ಉದ್ದನೆಯ ವಾಕ್ಯಗಳನ್ನು ನಿರರ್ಗಳವಾಗಿ ಮಾತನಾಡುವುದು", "ಸಂಕೀರ್ಣ ವ್ಯಾಕರಣ"]
+      },
+      bn: {
+        summaryMessage: `চমৎকার ফলাফল! আপনি ${scorePercent}% স্কোর অর্জন করেছেন। আপনার স্তর 'মধ্যবর্তী (Intermediate)' হিসেবে নির্ধারিত হয়েছে। আপনার শব্দভাণ্ডার এবং বাক্য বোঝার ক্ষমতা প্রশংসনীয়।`,
+        goodPoints: ["দৈনন্দিন শব্দাবলী এবং অর্থের চমৎকার ধারণা", "সাধারণ নোটিশ ও প্রশ্ন বোঝার দক্ষতা"],
+        weakPoints: ["লম্বা বাক্যে সাবলীল কথোপকথন", "জটিল ব্যাকরণগত কাঠামো"]
+      },
+      mr: {
+        summaryMessage: `उत्कृष्ट कामगिरी! आपण ${scorePercent}% गुण मिळवले आहेत. आपली पातळी 'मध्यवर्ती स्तर (Intermediate)' म्हणून निश्चित करण्यात आली आहे. आपला शब्दसंग्रह आणि वाक्य आकलन चांगले आहे.`,
+        goodPoints: ["दैनंदिन शब्दसंग्रहाची आणि अर्थांची चांगली समज", "सार्वजनिक सूचना व फलक वाचण्याची क्षमता"],
+        weakPoints: ["मोठ्या वाक्यांमध्ये अस्खलित संभाषण", "व्याकरणाचे बारकावे"]
+      }
+    },
+    advanced: {
+      en: {
+        summaryMessage: `Outstanding work! You scored ${scorePercent}% and achieved the Advanced level. You demonstrate excellent fluency across reading, vocabulary, and articulation.`,
+        goodPoints: ["High reading accuracy and contextual comprehension", "Clear oral expression and correct pronunciation"],
+        weakPoints: ["Parsing dense administrative notices", "Complex formal legal vocabulary"]
+      },
+      hi: {
+        summaryMessage: `उत्कृष्ट कार्य! आपने ${scorePercent}% अंक प्राप्त किए हैं और 'उन्नत स्तर (Advanced)' में स्थान प्राप्त किया है। पठन, शब्दावली और उच्चारण में आपकी दक्षता बहुत मजबूत है।`,
+        goodPoints: ["पठन और संदर्भ समझने में उच्च सटीकता", "स्पष्ट मौखिक अभिव्यक्ति और शुद्ध उच्चारण"],
+        weakPoints: ["जटिल प्रशासनिक दस्तावेजों को पढ़ना", "औपचारिक और विधिक शब्दावली"]
+      },
+      ta: {
+        summaryMessage: `அற்புதமான வெற்றி! நீங்கள் ${scorePercent}% பெற்று 'மேம்பட்ட நிலை (Advanced)' அடைந்துள்ளீர்கள். வாசிப்பு, சொல்லகராதி மற்றும் உச்சரிப்பில் மிகச் சிறந்த தேர்ச்சி பெற்றுள்ளீர்கள்.`,
+        goodPoints: ["துல்லியமான வாசிப்பு மற்றும் சூழல் புரிதல்", "தெளிவான உச்சரிப்பு மற்றும் பேச்சுத் திறன்"],
+        weakPoints: ["சிக்கலான அரசு ஆவணங்களை வாசித்தல்", "முறையான அதிகாரப்பூர்வ சொற்கள்"]
+      },
+      te: {
+        summaryMessage: `అద్భుతమైన ప్రతిభ! మీరు ${scorePercent}% స్కోరుతో 'ఆధునిక స్థాయి (Advanced)' సాధించారు. చదవడం, పదజాలం మరియు ఉచ్చారణలో మీ ప్రావీణ్యం అద్భుతంగా ఉంది.`,
+        goodPoints: ["ఖచ్చితమైన పఠనం మరియు సందర్భోచిత అవగాహన", "స్పష్టమైన మాట మరియు సరైన ఉచ్చారణ"],
+        weakPoints: ["క్లిష్టమైన అధికారిక పత్రాల పఠనం", "పరిపాలనా పదజాలం"]
+      },
+      kn: {
+        summaryMessage: `ಅತ್ಯುತ್ತಮ ಪ್ರದರ್ಶನ! ನೀವು ${scorePercent}% ಅಂಕಗಳೊಂದಿಗೆ 'ಮೇಲ್ಮಟ್ಟ (Advanced)' ತಲುಪಿದ್ದೀರಿ. ಓದುವಿಕೆ, ಶಬ್ದಕೋಶ ಮತ್ತು ಉಚ್ಚಾರಣೆಯಲ್ಲಿ ನಿಮ್ಮ ಪ್ರಾವೀಣ್ಯತೆ ಶ್ರೇಷ್ಠವಾಗಿದೆ.`,
+        goodPoints: ["ನಿಖರವಾದ ಓದುವಿಕೆ ಮತ್ತು ಸಂದರ್ಭೋಚಿತ ಗ್ರಹಿಕೆ", "ಸ್ಪಷ್ಟ ಉಚ್ಚಾರಣೆ ಮತ್ತು ಮೌಖಿಕ ಅಭಿವ್ಯಕ್ತಿ"],
+        weakPoints: ["ಸಂಕೀರ್ಣ ಅಧಿಕೃತ ದಾಖಲೆಗಳ ಓದುವಿಕೆ", "ಔಪಚಾರಿಕ ಶಬ್ದಕೋಶ"]
+      },
+      bn: {
+        summaryMessage: `অনবদ্য প্রদর্শন! আপনি ${scorePercent}% স্কোর নিয়ে 'উন্নত স্তর (Advanced)' অর্জন করেছেন। পঠন, শব্দভাণ্ডার এবং উচ্চারণে আপনার দক্ষতা অসাধারণ।`,
+        goodPoints: ["নির্ভুল পঠন এবং প্রাসঙ্গিক বোধগম্যতা", "স্পষ্ট কথন ও সঠিক উচ্চারণ শৈলী"],
+        weakPoints: ["জটিল প্রশাসনিক নথিপত্র বিশ্লেষণ", "আনুষ্ঠানিক আইনি শব্দাবলী"]
+      },
+      mr: {
+        summaryMessage: `अप्रतिम यश! आपण ${scorePercent}% गुणांसह 'उन्नत स्तर (Advanced)' संपादन केला आहे. वाचन, शब्दसंग्रह आणि उच्चार यामध्ये आपले प्रभुत्व उत्तम आहे.`,
+        goodPoints: ["अचूक वाचन आणि सखोल संदर्भ आकलन", "स्पष्ट उच्चार आणि प्रभावी संभाषण कौशल्य"],
+        weakPoints: ["गुंतागुंतीची कार्यालयीन कागदपत्रे समजणे", "औपचारिक प्रशासकीय भाषा"]
+      }
+    }
+  };
+
+  const levelKey = (level === "intermediate" || level === "advanced") ? level : "beginner";
+  const templateByLang = localAnalysisTemplates[levelKey] || localAnalysisTemplates.beginner;
+  const analysisData = templateByLang[preferredLang] || templateByLang.en;
+
+  // Save diagnostic analysis to Firestore
+  if (user) {
+    try {
+      await db.collection("users").doc(user.uid).update({
+        geminiAnalysis: analysisData,
+        geminiAnalyzedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } catch (e) {
+      console.warn("Firestore analysis save:", e);
+    }
+  }
+
+  // Render to screen
+  renderAnalysisToScreen(analysisData, loadingEl, insightsEl);
+}
+
+// ─── Render AI / Diagnostic Feedback Box ──────────────────────
+function renderAnalysisToScreen(analysis, loadingEl, insightsEl) {
+  if (loadingEl) loadingEl.classList.add("hidden");
+  if (insightsEl) insightsEl.classList.remove("hidden");
+
+  const summaryMsg = document.getElementById("score-summary-message");
+  if (summaryMsg && analysis.summaryMessage) {
+    summaryMsg.innerHTML = `
+      <div style="display: flex; align-items: flex-start; gap: 0.75rem; text-align: left;">
+        <div style="width: 36px; height: 36px; border-radius: 12px; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; box-shadow: 0 4px 12px rgba(99,102,241,0.2);">
+          <i data-lucide="sparkles" style="width: 18px; height: 18px;"></i>
+        </div>
+        <div>
+          <div style="font-weight: 900; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.6px; color: #4338ca; margin-bottom: 0.25rem;">Placement Diagnostic Analysis</div>
+          <div style="font-size: 0.93rem; font-weight: 700; color: #334155; line-height: 1.55;">${analysis.summaryMessage}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  const goodList = document.getElementById("ai-good-points");
+  const goodArr = analysis.goodPoints || analysis.strengths || [];
+  if (goodList && goodArr.length > 0) {
+    goodList.innerHTML = goodArr.map(p => `
+      <li style="text-align: left !important;">
+        <span style="color: #16a34a; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">✓</span>
+        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #14532d; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
+      </li>
+    `).join('');
+  }
+
+  const weakList = document.getElementById("ai-weak-points");
+  const weakArr = analysis.weakPoints || analysis.weaknesses || [];
+  if (weakList && weakArr.length > 0) {
+    weakList.innerHTML = weakArr.map(p => `
+      <li style="text-align: left !important;">
+        <span style="color: #ea580c; flex-shrink: 0; font-weight: 900; font-size: 1rem; margin-top: 0.1rem;">🎯</span>
+        <span style="text-align: left !important; font-size: 0.92rem; font-weight: 700; color: #7c2d12; line-height: 1.45; word-break: normal; overflow-wrap: break-word; white-space: normal;">${p}</span>
+      </li>
+    `).join('');
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
+
+// ─── Initialize Curriculum Unlock State ────────────────────────
+function initializeCurriculum(level) {
+  const skills = ['reading', 'writing', 'listening', 'speaking', 'pronunciation'];
+  const levels = ['beginner', 'intermediate', 'advanced'];
+  const curriculum = {};
+
+  levels.forEach(lvl => {
+    curriculum[lvl] = {};
+    skills.forEach(skill => {
+      curriculum[lvl][skill] = {
+        status: 'locked',
+        lessonsCompleted: 0,
+        totalLessons: 5
+      };
+    });
+  });
+
+  const levelIdx = levels.indexOf(level);
+  levels.forEach((lvl, idx) => {
+    if (idx < levelIdx) {
+      skills.forEach(skill => { curriculum[lvl][skill].status = 'skipped'; });
+    } else if (idx === levelIdx) {
+      skills.forEach(skill => { curriculum[lvl][skill].status = 'available'; });
+    }
+  });
+
+  return curriculum;
+}
+
+// Ensure execution on assessment page
 if (document.body.id === "page-assessment") {
   document.addEventListener("DOMContentLoaded", setupAssessment);
 }
