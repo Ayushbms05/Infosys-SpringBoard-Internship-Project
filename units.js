@@ -64,6 +64,8 @@ function renderUnitsPath(profile) {
   const container = document.getElementById("units-learning-path");
   if (!container) return;
 
+  const prefLang = profile?.preferredLanguage || selectedLang || "en";
+
   // Flatten all units into a single continuous list of units (Unit 1 to Unit 10)
   const allUnits = [];
   const levels = ["beginner", "intermediate", "advanced"];
@@ -88,40 +90,52 @@ function renderUnitsPath(profile) {
 
   const overallPct = Math.min(100, Math.round((completedUnitSkills / totalUnitSkills) * 100));
 
+  const heroBadge = getTranslation(prefLang, "unitsHeroBadge") || "Practical Life Curriculum";
+  const heroTitle = getTranslation(prefLang, "unitsHeroTitle") || "Real-World Themed Units";
+  const heroDesc = getTranslation(prefLang, "unitsHeroDesc") || "Explore 10 themed modules with real-life vocabulary, practical everyday scenarios, dialogues, and exercises (100% unlocked for everyone).";
+  const themedUnitsLabel = getTranslation(prefLang, "units10Themed") || "10 Themed Units";
+  const skillsMasteredLabel = getTranslation(prefLang, "unitsSkillsMastered") || "Skills Mastered";
+  const openAccessLabel = getTranslation(prefLang, "openAccessTrack") || "Open Access Track";
+
+  const filterAll = getTranslation(prefLang, "unitsFilterAll") || "All Units (10)";
+  const filterBeg = getTranslation(prefLang, "unitsFilterBeginner") || "🌱 Beginner (Units 1-4)";
+  const filterInt = getTranslation(prefLang, "unitsFilterIntermediate") || "⚡ Intermediate (Units 5-8)";
+  const filterAdv = getTranslation(prefLang, "unitsFilterAdvanced") || "👑 Advanced (Units 9-10)";
+
   let html = `
     <!-- Units Hero Banner -->
     <div class="units-hero-card">
       <div class="path-hero-info">
         <div class="path-hero-badge">
           <i data-lucide="layout-grid" style="width: 14px; height: 14px;"></i>
-          <span>Practical Life Curriculum</span>
+          <span>${heroBadge}</span>
         </div>
-        <h2 class="path-hero-title">Real-World Themed Units</h2>
+        <h2 class="path-hero-title">${heroTitle}</h2>
         <p class="path-hero-desc">
-          Explore 10 themed modules with real-life vocabulary, practical everyday scenarios, dialogues, and exercises (100% unlocked for everyone).
+          ${heroDesc}
         </p>
         <div class="path-hero-stats">
           <div class="path-stat-chip">
             <i data-lucide="layers" style="width: 15px; height: 15px; color: #a5b4fc;"></i>
-            <span>10 Themed Units</span>
+            <span>${themedUnitsLabel}</span>
           </div>
           <div class="path-stat-chip">
             <i data-lucide="check-circle" style="width: 15px; height: 15px; color: #34d399;"></i>
-            <span>${completedUnitSkills} / ${totalUnitSkills} Skills Mastered (${overallPct}%)</span>
+            <span>${completedUnitSkills} / ${totalUnitSkills} ${skillsMasteredLabel} (${overallPct}%)</span>
           </div>
           <div class="path-stat-chip">
             <i data-lucide="unlock" style="width: 15px; height: 15px; color: #fbbf24;"></i>
-            <span>Open Access Track</span>
+            <span>${openAccessLabel}</span>
           </div>
         </div>
       </div>
 
       <!-- Level Filter Row -->
       <div class="units-filters-row">
-        <button class="unit-filter-btn ${_currentUnitFilter === 'all' ? 'active' : ''}" data-filter="all">All Units (10)</button>
-        <button class="unit-filter-btn ${_currentUnitFilter === 'beginner' ? 'active' : ''}" data-filter="beginner">🌱 Beginner (Units 1-4)</button>
-        <button class="unit-filter-btn ${_currentUnitFilter === 'intermediate' ? 'active' : ''}" data-filter="intermediate">⚡ Intermediate (Units 5-8)</button>
-        <button class="unit-filter-btn ${_currentUnitFilter === 'advanced' ? 'active' : ''}" data-filter="advanced">👑 Advanced (Units 9-10)</button>
+        <button class="unit-filter-btn ${_currentUnitFilter === 'all' ? 'active' : ''}" data-filter="all">${filterAll}</button>
+        <button class="unit-filter-btn ${_currentUnitFilter === 'beginner' ? 'active' : ''}" data-filter="beginner">${filterBeg}</button>
+        <button class="unit-filter-btn ${_currentUnitFilter === 'intermediate' ? 'active' : ''}" data-filter="intermediate">${filterInt}</button>
+        <button class="unit-filter-btn ${_currentUnitFilter === 'advanced' ? 'active' : ''}" data-filter="advanced">${filterAdv}</button>
       </div>
     </div>
 
@@ -135,7 +149,8 @@ function renderUnitsPath(profile) {
     }
 
     const unitExercises = UNITS_CONTENT?.[unitObj.id] || {};
-    const unitDesc = UNIT_DESCRIPTIONS[unitObj.id] || "Master themed vocabulary and exercises for real-world scenarios.";
+    const unitTitle = getTranslation(prefLang, unitObj.id + "_title") || unitObj.title;
+    const unitDesc = getTranslation(prefLang, unitObj.id + "_desc") || UNIT_DESCRIPTIONS[unitObj.id] || "Master themed vocabulary and exercises for real-world scenarios.";
 
     let completedInUnit = 0;
     UNIT_SKILLS.forEach((s) => {
@@ -144,7 +159,7 @@ function renderUnitsPath(profile) {
       }
     });
 
-    const levelBadgeText = unitObj.level.charAt(0).toUpperCase() + unitObj.level.slice(1);
+    const levelBadgeText = getTranslation(prefLang, "score" + unitObj.level.charAt(0).toUpperCase() + unitObj.level.slice(1)) || (unitObj.level.charAt(0).toUpperCase() + unitObj.level.slice(1));
 
     html += `
       <div class="unit-showcase-card" data-unit-id="${unitObj.id}" data-level="${unitObj.level}">
@@ -156,7 +171,7 @@ function renderUnitsPath(profile) {
                 <span class="unit-num-pill">UNIT 0${uIndex + 1}</span>
                 <span class="unit-level-badge">${levelBadgeText}</span>
               </div>
-              <h3 class="unit-showcase-title">${unitObj.title}</h3>
+              <h3 class="unit-showcase-title">${unitTitle}</h3>
             </div>
           </div>
           <p style="font-size: 0.85rem; color: #64748b; font-weight: 600; line-height: 1.45; margin: 0 0 1.25rem;">
@@ -166,8 +181,8 @@ function renderUnitsPath(profile) {
 
         <div>
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-size: 0.76rem; font-weight: 800; color: #475569;">
-            <span>Unit Mastery</span>
-            <span>${completedInUnit} of 5 Skills</span>
+            <span>${skillsMasteredLabel}</span>
+            <span>${completedInUnit} / 5</span>
           </div>
           <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; overflow: hidden; margin-bottom: 1.25rem;">
             <div style="height: 100%; width: ${(completedInUnit / 5) * 100}%; background: linear-gradient(90deg, #6366f1, #10b981); border-radius: 9999px;"></div>
@@ -178,33 +193,33 @@ function renderUnitsPath(profile) {
 
     UNIT_SKILLS.forEach((skillDef) => {
       const isDone = unitLessonIsCompleted(profile, unitObj.level, unitObj.id, skillDef.id);
-      const hasContent = !!(unitExercises[skillDef.id] && unitExercises[skillDef.id].length > 0);
-      
+
       let localScores = {};
       try {
         localScores = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
-      } catch (e) {}
+      } catch (e) { }
 
       const unitScoreKey = `unit_${unitObj.level}_${unitObj.id}_${skillDef.id}`;
       const sVal = profile.unitProgressScores?.[unitObj.level]?.[unitObj.id]?.[skillDef.id]
         || localScores[unitScoreKey]
         || 100;
 
-      const statusText = isDone ? `✓ Score: ${sVal}%` : "Practice ➔";
+      const skillName = getTranslation(prefLang, "skill" + skillDef.id.charAt(0).toUpperCase() + skillDef.id.slice(1) + "Name") || skillDef.label;
+      const statusText = isDone ? `✓ ${sVal}%` : `➔ ${getTranslation(prefLang, "startLessonBtn") || "Practice"}`;
       const completedClass = isDone ? "completed" : "";
 
       html += `
         <div class="unit-skill-btn ${completedClass}" 
              data-level="${unitObj.level}"
              data-unit-id="${unitObj.id}"
-             data-unit-title="${unitObj.title}"
+             data-unit-title="${unitTitle}"
              data-skill="${skillDef.id}">
           <div class="unit-skill-btn-left">
             <div class="unit-skill-btn-icon">
               <i data-lucide="${skillDef.icon}" style="width: 15px; height: 15px;"></i>
             </div>
             <div>
-              <div class="unit-skill-btn-title">${skillDef.label}</div>
+              <div class="unit-skill-btn-title">${skillName}</div>
               <div style="font-size: 0.72rem; color: #64748b; font-weight: 600;">5 Exercises</div>
             </div>
           </div>

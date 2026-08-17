@@ -5,6 +5,8 @@
  * and handles navigation to lesson pages.
  */
 
+var selectedLang = (typeof selectedLang !== "undefined" ? selectedLang : null) || localStorage.getItem("saksharLang") || "en";
+
 // ─── Unit Configuration ───────────────────────────────────────
 const UNIT_CONFIG = {
   alphabets: { icon: "<i data-lucide=\"type\"></i>", label: "dashUnitAlphabets", fallback: "Alphabets" },
@@ -238,13 +240,20 @@ function computeNextIncompleteLesson(profile) {
           const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
           const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
 
+          const prefLang = profile.preferredLanguage || selectedLang || "en";
+          const skillKey = "skill" + skill.charAt(0).toUpperCase() + skill.slice(1) + "Name";
+          const localizedSkill = getTranslation(prefLang, skillKey) || (skill.charAt(0).toUpperCase() + skill.slice(1));
+          const stepWord = getTranslation(prefLang, "stepWord") || "Lesson";
+          const levelWord = getTranslation(prefLang, "recommendedLevelSub") || "Level";
+          const levelName = getTranslation(prefLang, "score" + lvl.charAt(0).toUpperCase() + lvl.slice(1)) || (lvl.charAt(0).toUpperCase() + lvl.slice(1));
+
           return {
             level: lvl,
             unit: unit,
             lessonType: skill,
             lessonIndex: i,
-            title: `${skill.charAt(0).toUpperCase() + skill.slice(1)} — Lesson ${i}`,
-            sub: `${lvl.charAt(0).toUpperCase() + lvl.slice(1)} Level`,
+            title: `${localizedSkill} — ${stepWord} ${i}`,
+            sub: `${levelName} ${levelWord} • ~3 mins`,
             url: `lesson.html?level=${lvl}&unit=${unit}&type=${skill}&lessonIndex=${i}`,
             icon: "<i data-lucide='play-circle'></i>"
           };
@@ -253,13 +262,14 @@ function computeNextIncompleteLesson(profile) {
     }
   }
 
+  const prefLang = profile.preferredLanguage || selectedLang || "en";
   return {
     level: "advanced",
     unit: unit,
     lessonType: "reading",
     lessonIndex: 1,
-    title: "All caught up!",
-    sub: "You've completed everything!",
+    title: getTranslation(prefLang, "statusCompleted") || "Completed",
+    sub: getTranslation(prefLang, "unitsSkillsMastered") || "All Caught Up!",
     url: "#",
     icon: "<i data-lucide='check-circle'></i>",
     isFinished: true
@@ -267,6 +277,7 @@ function computeNextIncompleteLesson(profile) {
 }
 
 function renderRecommendation(profile) {
+  const prefLang = profile.preferredLanguage || selectedLang || "en";
   const score = profile.assessmentScore || 0;
   const litLvl = profile.literacyLevel || "preferNot";
   const rec = computeRecommendation(score, litLvl);
@@ -276,7 +287,7 @@ function renderRecommendation(profile) {
   const headline = document.getElementById("rec-score-headline");
   if (headline)
     headline.textContent = getTranslation(
-      selectedLang,
+      prefLang,
       "dashScoredHeadline",
     ).replace("{score}", score);
 
@@ -284,14 +295,12 @@ function renderRecommendation(profile) {
   if (scoreVal) scoreVal.textContent = score;
 
   const tag = document.getElementById("rec-level-tag");
+  const tagText = document.getElementById("rec-level-tag-text");
   if (tag) {
     tag.className = `rec-card-tag ${rec.levelTag}`;
-    const tagLabels = {
-      beginner: "Beginner",
-      intermediate: "Intermediate",
-      advanced: "Advanced",
-    };
-    tag.textContent = tagLabels[rec.levelTag] || rec.levelTag;
+    const localizedTagName = getTranslation(prefLang, "score" + rec.levelTag.charAt(0).toUpperCase() + rec.levelTag.slice(1)) || rec.levelTag;
+    if (tagText) tagText.textContent = localizedTagName;
+    else tag.textContent = localizedTagName;
   }
 
   const interp = document.getElementById("rec-interpretation");
@@ -308,10 +317,10 @@ function renderRecommendation(profile) {
     ctaBtn.href = nextLesson.url;
     if (nextLesson.isFinished) {
       ctaBtn.style.pointerEvents = "none";
-      ctaBtn.textContent = "✔ Completed";
+      ctaBtn.textContent = `✔ ${getTranslation(prefLang, "statusCompleted") || "Completed"}`;
       ctaBtn.style.opacity = "0.5";
     } else {
-      ctaBtn.textContent = "▶ Resume";
+      ctaBtn.innerHTML = `<i data-lucide="play" style="width: 16px; height: 16px; fill: currentColor;"></i> <span>${getTranslation(prefLang, "resumeBtn") || "Resume"}</span>`;
     }
   }
 
@@ -335,12 +344,14 @@ function renderRecommendation(profile) {
 
   const msTitle = document.getElementById("hero-milestone-title");
   if (msTitle) {
-    msTitle.textContent = nextLesson.title || "Unit 1: Alphabet Foundations";
+    msTitle.textContent = nextLesson.title;
   }
 
   const msStep = document.getElementById("hero-milestone-progress-label");
   if (msStep) {
-    msStep.textContent = `Step ${unitStep} of ${currentUnitTotal}`;
+    const stepLabel = getTranslation(prefLang, "stepWord") || "Step";
+    const ofLabel = getTranslation(prefLang, "assessmentOf") || "of";
+    msStep.textContent = `${stepLabel} ${unitStep} ${ofLabel} ${currentUnitTotal}`;
   }
 
   const msPct = document.getElementById("hero-milestone-pct");
@@ -355,7 +366,9 @@ function renderRecommendation(profile) {
 
   const msStatus = document.getElementById("hero-milestone-status");
   if (msStatus) {
-    msStatus.textContent = milestonePct >= 100 ? "Completed" : "In Progress";
+    msStatus.textContent = milestonePct >= 100
+      ? (getTranslation(prefLang, "statusCompleted") || "Completed")
+      : (getTranslation(prefLang, "statusInProgress") || "In Progress");
   }
 
   // ── AI Enhancement ────────────────────────────────────────────
@@ -519,6 +532,7 @@ function renderRecommendedScroll(profile) {
   const container = document.getElementById("recommended-horizontal-scroll");
   if (!container) return;
 
+  const prefLang = profile.preferredLanguage || selectedLang || "en";
   const currentLevel = profile.currentLevel || profile.assessmentLevel || "beginner";
   const levels = ["beginner", "intermediate", "advanced"];
   const skills = ["reading", "writing", "listening", "speaking", "pronunciation"];
@@ -542,12 +556,17 @@ function renderRecommendedScroll(profile) {
         const lessonId = `${lvl}_${skill}_${unit}_${i}`;
         if (!completedLessons.includes(lessonId)) {
           const blueprint = window.CURRICULUM_BLUEPRINT?.[lvl]?.[skill]?.find(b => b.lessonIndex === i);
-          const focusText = blueprint ? blueprint.focus : `Lesson ${i}`;
+          const skillKey = "skill" + skill.charAt(0).toUpperCase() + skill.slice(1) + "Name";
+          const localizedSkill = getTranslation(prefLang, skillKey) || (skill.charAt(0).toUpperCase() + skill.slice(1));
+          const stepWord = getTranslation(prefLang, "stepWord") || "Lesson";
+          const levelWord = getTranslation(prefLang, "recommendedLevelSub") || "Level";
+          const levelName = getTranslation(prefLang, "score" + lvl.charAt(0).toUpperCase() + lvl.slice(1)) || (lvl.charAt(0).toUpperCase() + lvl.slice(1));
+          const defaultDesc = getTranslation(prefLang, "coreSkillFluencyDesc") || `Master core ${skill} exercises and build foundational fluency.`;
 
           recs.push({
-            title: `${skill.charAt(0).toUpperCase() + skill.slice(1)} — ${focusText}`,
-            sub: `${lvl.charAt(0).toUpperCase() + lvl.slice(1)} Level`,
-            desc: `Master core ${skill} exercises and build foundational fluency.`,
+            title: `${localizedSkill} — ${stepWord} ${i}`,
+            sub: `${levelName} ${levelWord}`,
+            desc: defaultDesc,
             xp: `+25 XP`,
             time: `~4 mins`,
             url: `lesson.html?level=${lvl}&unit=${unit}&type=${skill}&lessonIndex=${i}`,
@@ -561,12 +580,21 @@ function renderRecommendedScroll(profile) {
 
   // Fallback if fully completed
   if (recs.length === 0) {
+    const readingName = getTranslation(prefLang, "skillReadingName") || "Reading";
+    const speakingName = getTranslation(prefLang, "skillSpeakingName") || "Speaking";
+    const listeningName = getTranslation(prefLang, "skillListeningName") || "Listening";
+    const beginnerName = getTranslation(prefLang, "scoreBeginner") || "Beginner";
+    const intermediateName = getTranslation(prefLang, "scoreIntermediate") || "Intermediate";
+    const levelWord = getTranslation(prefLang, "recommendedLevelSub") || "Level";
+
     recs = [
-      { title: "Reading Mastery", sub: "Beginner Level", desc: "Sharpen vowel recognition and everyday sight words.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=reading&mode=practice", icon: "<i data-lucide='book-open'></i>" },
-      { title: "Speaking Practice", sub: "Intermediate Level", desc: "Practice real-world pronunciation and interactive dialogues.", xp: "+25 XP", time: "~4 mins", url: "lesson.html?type=speaking&mode=practice", icon: "<i data-lucide='mic'></i>" },
-      { title: "Listening Comprehension", sub: "All Levels", desc: "Train your ear with native speaker audio phrases.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=listening&mode=practice", icon: "<i data-lucide='headphones'></i>" }
+      { title: readingName, sub: `${beginnerName} ${levelWord}`, desc: getTranslation(prefLang, "skillReadingDesc") || "Sharpen vowel recognition and sight words.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=reading&mode=practice", icon: "<i data-lucide='book-open'></i>" },
+      { title: speakingName, sub: `${intermediateName} ${levelWord}`, desc: getTranslation(prefLang, "skillSpeakingDesc") || "Practice real-world pronunciation and dialogues.", xp: "+25 XP", time: "~4 mins", url: "lesson.html?type=speaking&mode=practice", icon: "<i data-lucide='mic'></i>" },
+      { title: listeningName, sub: `${intermediateName} ${levelWord}`, desc: getTranslation(prefLang, "skillListeningDesc") || "Train your ear with native speaker audio.", xp: "+20 XP", time: "~3 mins", url: "lesson.html?type=listening&mode=practice", icon: "<i data-lucide='headphones'></i>" }
     ];
   }
+
+  const startLessonText = getTranslation(prefLang, "startLessonBtn") || "Start Lesson";
 
   container.innerHTML = recs.map(r => `
     <a href="${r.url}" class="recommended-card">
@@ -583,7 +611,7 @@ function renderRecommendedScroll(profile) {
       </div>
       <div class="recommended-card-bottom">
         <span class="recommended-xp-tag"><i data-lucide="zap" style="width: 12px; height: 12px; fill: currentColor;"></i> ${r.xp}</span>
-        <span class="recommended-action-link">Start Lesson <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></span>
+        <span class="recommended-action-link">${startLessonText} <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i></span>
       </div>
     </a>
   `).join("");
@@ -596,6 +624,10 @@ function renderRecommendedScroll(profile) {
 function renderHomeHeatmap(profile) {
   const container = document.getElementById("home-activity-heatmap");
   if (!container) return;
+
+  const prefLang = profile.preferredLanguage || selectedLang || "en";
+  const localeMap = { en: "en-US", hi: "hi-IN", ta: "ta-IN", te: "te-IN", kn: "kn-IN", bn: "bn-IN", mr: "mr-IN" };
+  const locale = localeMap[prefLang] || "en-US";
 
   const practiceDays = profile.practiceDays || [];
   const streak = profile.streak || 0;
@@ -610,9 +642,9 @@ function renderHomeHeatmap(profile) {
 
     days.push({
       dateStr: dateStr,
-      dayName: d.toLocaleDateString(undefined, { weekday: "short" }),
+      dayName: d.toLocaleDateString(locale, { weekday: "short" }),
       dayNum: d.getDate(),
-      monthName: d.toLocaleDateString(undefined, { month: "short" }),
+      monthName: d.toLocaleDateString(locale, { month: "short" }),
       isPracticed: isPracticed,
       isToday: isToday
     });
@@ -633,41 +665,47 @@ function renderHomeHeatmap(profile) {
 
   const statusEl = document.getElementById("act-weekly-status");
   if (statusEl) {
-    if (activeDaysCount >= 5) statusEl.textContent = "🔥 Unstoppable";
-    else if (activeDaysCount >= 3) statusEl.textContent = "⚡ Great Pace";
-    else if (activeDaysCount >= 1) statusEl.textContent = "🌱 Good Start";
-    else statusEl.textContent = "🚀 Ready to Start";
+    if (activeDaysCount >= 5) statusEl.textContent = getTranslation(prefLang, "actUnstoppable") || "🔥 Unstoppable";
+    else if (activeDaysCount >= 3) statusEl.textContent = getTranslation(prefLang, "actGreatPace") || "⚡ Great Pace";
+    else if (activeDaysCount >= 1) statusEl.textContent = getTranslation(prefLang, "actGoodStart") || "🌱 Good Start";
+    else statusEl.textContent = getTranslation(prefLang, "actReadyStart") || "🚀 Ready to Start";
   }
 
   const bannerTextEl = document.getElementById("activity-banner-text");
   if (bannerTextEl) {
     if (streak > 0) {
-      bannerTextEl.innerHTML = `🔥 <strong>You're on a ${streak}-day streak!</strong> Practice today to keep your streak blazing.`;
+      const templ = getTranslation(prefLang, "actStreakBlazing") || "You're on a {streak}-day streak! Practice today to keep your streak blazing.";
+      bannerTextEl.innerHTML = `🔥 <strong>${templ.replace("{streak}", streak)}</strong>`;
     } else {
-      bannerTextEl.innerHTML = `🌟 <strong>Consistency is your superpower!</strong> Practice just 5 minutes today to start a new streak.`;
+      const templ = getTranslation(prefLang, "actStreakNew") || "Consistency is your superpower! Practice just 5 minutes today to start a new streak.";
+      bannerTextEl.innerHTML = `🌟 <strong>${templ}</strong>`;
     }
   }
 
+  const doneLabel = getTranslation(prefLang, "actDone") || "Done";
+  const restLabel = getTranslation(prefLang, "actRest") || "Rest";
+  const todayLabel = getTranslation(prefLang, "actToday") || "Today";
+
   container.innerHTML = days.map(d => {
     let statusClass = "missed";
-    let statusText = "Rest";
+    let statusText = restLabel;
     let dotContent = `<i data-lucide="minus" style="width: 14px; height: 14px; opacity: 0.5;"></i>`;
     let dotClass = "inactive";
 
     if (d.isPracticed) {
       statusClass = "done";
-      statusText = "Done";
+      statusText = doneLabel;
       dotContent = `<i data-lucide="check" style="width: 18px; height: 18px; stroke-width: 3;"></i>`;
       dotClass = "active";
     } else if (d.isToday) {
       statusClass = "today";
-      statusText = "Today";
+      statusText = todayLabel;
       dotContent = `<i data-lucide="flame" style="width: 16px; height: 16px;"></i>`;
       dotClass = "today-pending";
     }
 
     return `
-      <div class="heatmap-day ${d.isPracticed ? 'is-active-day' : ''} ${d.isToday ? 'is-today' : ''}" title="${d.dayName}, ${d.dayNum} ${d.monthName} — ${d.isPracticed ? 'Practiced (+XP earned)' : (d.isToday ? 'Practice today!' : 'Rest day')}">
+      <div class="heatmap-day ${d.isPracticed ? 'is-active-day' : ''} ${d.isToday ? 'is-today' : ''}">
         <span class="heatmap-day-name">${d.dayName}</span>
         <span class="heatmap-day-num">${d.dayNum}</span>
         <div class="heatmap-dot ${dotClass}">
@@ -713,15 +751,17 @@ function renderTopBar(profile) {
   // Level badge
   const levelBadge = document.getElementById("user-level-badge");
   if (levelBadge) {
+    const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
     const level = profile.currentLevel || profile.assessmentLevel || "beginner";
-    const config = LEVEL_CONFIG[level];
+    const config = LEVEL_CONFIG[level] || LEVEL_CONFIG.beginner;
     levelBadge.className = `dash-level-badge ${level}`;
-    levelBadge.innerHTML = `${config.icon} <span>${getTranslation(selectedLang, config.label) || config.fallback}</span>`;
+    levelBadge.innerHTML = `${config.icon} <span>${getTranslation(prefLang, config.label) || config.fallback}</span>`;
   }
 }
 
 // Global function to toggle unlock state of placed-above tracks
-window.toggleUnlockPlacedLevel = function(level) {
+window.toggleUnlockPlacedLevel = function (level) {
+  if (!level) return;
   let unlocked = [];
   try {
     unlocked = JSON.parse(localStorage.getItem("akshar_unlocked_placed_levels") || "[]");
@@ -731,8 +771,18 @@ window.toggleUnlockPlacedLevel = function(level) {
   } else {
     unlocked.push(level);
   }
-  localStorage.setItem("akshar_unlocked_placed_levels", JSON.stringify(unlocked));
+  try {
+    localStorage.setItem("akshar_unlocked_placed_levels", JSON.stringify(unlocked));
+  } catch (e) { }
+
+  if (typeof auth !== "undefined" && auth.currentUser && typeof db !== "undefined") {
+    db.collection("users").doc(auth.currentUser.uid).update({
+      unlockedPlacedLevels: unlocked
+    }).catch(() => {});
+  }
+
   if (window._currentLearnerProfile) {
+    window._currentLearnerProfile.unlockedPlacedLevels = unlocked;
     renderLearningPath(window._currentLearnerProfile);
   }
 };
@@ -769,7 +819,9 @@ function renderLearningPath(profile) {
 
   let manuallyUnlockedLevels = [];
   try {
-    manuallyUnlockedLevels = JSON.parse(localStorage.getItem("akshar_unlocked_placed_levels") || "[]");
+    const localUnlocked = JSON.parse(localStorage.getItem("akshar_unlocked_placed_levels") || "[]");
+    const profileUnlocked = Array.isArray(profile.unlockedPlacedLevels) ? profile.unlockedPlacedLevels : [];
+    manuallyUnlockedLevels = Array.from(new Set([...localUnlocked, ...profileUnlocked]));
   } catch (e) { }
 
   const levels = ["beginner", "intermediate", "advanced"];
@@ -781,56 +833,57 @@ function renderLearningPath(profile) {
     "pronunciation",
   ];
 
+  const prefLang = profile.preferredLanguage || selectedLang || "en";
   const userLevelIndex = Math.max(0, levels.indexOf(currentLevel));
 
   const skillMeta = {
     reading: {
-      name: "Reading Comprehension",
+      name: getTranslation(prefLang, "skillReadingName") || "Reading Comprehension",
       icon: "book-open",
       gradient: "linear-gradient(135deg, #6366f1, #4f46e5)",
-      desc: "Decode letters, recognize sight words, and master short passages"
+      desc: getTranslation(prefLang, "skillReadingDesc") || "Decode letters, recognize sight words, and master short passages"
     },
     writing: {
-      name: "Sentence Writing",
+      name: getTranslation(prefLang, "skillWritingName") || "Sentence Writing",
       icon: "edit-3",
       gradient: "linear-gradient(135deg, #a855f7, #9333ea)",
-      desc: "Form grammatically correct sentences, spelling, and phrase construction"
+      desc: getTranslation(prefLang, "skillWritingDesc") || "Form grammatically correct sentences, spelling, and phrase construction"
     },
     listening: {
-      name: "Audio Listening",
+      name: getTranslation(prefLang, "skillListeningName") || "Audio Listening",
       icon: "headphones",
       gradient: "linear-gradient(135deg, #06b6d4, #0891b2)",
-      desc: "Understand natural speech, identify spoken vocabulary and phonetic tones"
+      desc: getTranslation(prefLang, "skillListeningDesc") || "Understand natural speech, identify spoken vocabulary and phonetic tones"
     },
     speaking: {
-      name: "Conversational Speaking",
+      name: getTranslation(prefLang, "skillSpeakingName") || "Conversational Speaking",
       icon: "mic",
       gradient: "linear-gradient(135deg, #10b981, #059669)",
-      desc: "Practice vocal responses, daily dialogues, and practical communication"
+      desc: getTranslation(prefLang, "skillSpeakingDesc") || "Practice vocal responses, daily dialogues, and practical communication"
     },
     pronunciation: {
-      name: "Speech & Phonics Clarity",
+      name: getTranslation(prefLang, "skillPronunciationName") || "Speech & Phonics Clarity",
       icon: "volume-2",
       gradient: "linear-gradient(135deg, #f59e0b, #d97706)",
-      desc: "Refine accent clarity, syllable stress, and phonetic precision"
+      desc: getTranslation(prefLang, "skillPronunciationDesc") || "Refine accent clarity, syllable stress, and phonetic precision"
     },
   };
 
   const levelMeta = {
     beginner: {
-      title: "Foundational Beginner Track",
+      title: getTranslation(prefLang, "trackBeginnerTitle") || "Foundational Beginner Track",
       icon: "🌱",
-      desc: "Alphabets, phonetic sounds, basic numbers, and essential vocabulary."
+      desc: getTranslation(prefLang, "trackBeginnerDesc") || "Alphabets, phonetic sounds, basic numbers, and essential vocabulary."
     },
     intermediate: {
-      title: "Intermediate Fluency Track",
+      title: getTranslation(prefLang, "trackIntermediateTitle") || "Intermediate Fluency Track",
       icon: "⚡",
-      desc: "Grammar structures, workplace dialogues, forms, and practical scenarios."
+      desc: getTranslation(prefLang, "trackIntermediateDesc") || "Grammar structures, workplace dialogues, forms, and practical scenarios."
     },
     advanced: {
-      title: "Advanced Mastery Track",
+      title: getTranslation(prefLang, "trackAdvancedTitle") || "Advanced Mastery Track",
       icon: "👑",
-      desc: "Complex comprehension, official documentation, and professional communication."
+      desc: getTranslation(prefLang, "trackAdvancedDesc") || "Complex comprehension, official documentation, and professional communication."
     }
   };
 
@@ -866,30 +919,30 @@ function renderLearningPath(profile) {
         <div class="path-hero-info">
           <div class="path-hero-badge">
             <i data-lucide="compass" style="width: 14px; height: 14px;"></i>
-            <span>Personalized AI Curriculum</span>
+            <span>${getTranslation(prefLang, "curatedByAi") || "Personalized AI Curriculum"}</span>
           </div>
-          <h2 class="path-hero-title">Adaptive Learning Roadmap</h2>
+          <h2 class="path-hero-title">${getTranslation(prefLang, "dashLearningPath") || "Learning Path"}</h2>
           <p class="path-hero-desc">
-            Your master learning journey carefully benchmarked to your placement assessment diagnostic results.
+            ${getTranslation(prefLang, "coreSkillFluencyDesc") || "Your master learning journey carefully benchmarked to your placement assessment diagnostic results."}
           </p>
           <div class="path-hero-stats">
             <div class="path-stat-chip">
               <i data-lucide="award" style="width: 15px; height: 15px; color: #a5b4fc;"></i>
-              <span>Assessed Level: ${currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)}</span>
+              <span>${getTranslation(prefLang, "recommendedLevelSub") || "Level"}: ${getTranslation(prefLang, "score" + currentLevel.charAt(0).toUpperCase() + currentLevel.slice(1)) || currentLevel}</span>
             </div>
             <div class="path-stat-chip">
               <i data-lucide="check-circle" style="width: 15px; height: 15px; color: #34d399;"></i>
-              <span>${totalCompletedCount} / ${totalLessonsInCurriculum} Completed (${overallPct}%)</span>
+              <span>${totalCompletedCount} / ${totalLessonsInCurriculum} ${getTranslation(prefLang, "statusCompleted") || "Completed"} (${overallPct}%)</span>
             </div>
             <div class="path-stat-chip">
               <i data-lucide="zap" style="width: 15px; height: 15px; color: #fbbf24;"></i>
-              <span>+25 XP per Lesson</span>
+              <span>+25 XP</span>
             </div>
           </div>
         </div>
         <div class="path-hero-action">
           <button class="path-hero-btn" id="btn-jump-next-lesson">
-            <span>Resume Path</span>
+            <span>${getTranslation(prefLang, "resumeBtn") || "Resume Path"}</span>
             <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
           </button>
         </div>
@@ -903,7 +956,7 @@ function renderLearningPath(profile) {
 
     const isManuallyUnlocked = manuallyUnlockedLevels.includes(level);
     let statusClass = "path-status-locked";
-    let statusText = "Locked Track";
+    let statusText = "🔒";
     let statusIcon = "lock";
     let levelSub = lMeta.desc;
     let unlockBtnHtml = "";
@@ -911,36 +964,35 @@ function renderLearningPath(profile) {
     if (levelIndex < userLevelIndex) {
       if (isManuallyUnlocked) {
         statusClass = "path-status-placed-above";
-        statusText = "⭐ Placed Above (Unlocked)";
+        statusText = "⭐ " + (getTranslation(prefLang, "openAccessTrack") || "Unlocked");
         statusIcon = "unlock";
-        levelSub = "You placed above this foundational tier in assessment. Unlocked for optional practice.";
+        levelSub = "Unlocked for optional practice.";
         unlockBtnHtml = `
-          <button type="button" class="path-unlock-track-btn relock" onclick="window.toggleUnlockPlacedLevel('${level}')" data-level="${level}" title="Lock this track again">
+          <button type="button" class="path-unlock-track-btn relock" data-level="${level}" title="Lock this track again">
             <i data-lucide="lock" style="width: 13px; height: 13px;"></i>
-            <span>Re-lock Track</span>
+            <span>${getTranslation(prefLang, "relockTrack") || "Re-lock Track"}</span>
           </button>
         `;
       } else {
         statusClass = "path-status-placed-above";
-        statusText = "⭐ Placed Above This Track";
+        statusText = "⭐ " + (getTranslation(prefLang, "skillBenchmarked") || "Placed Above");
         statusIcon = "award";
-        levelSub = "You demonstrated mastery above this tier in diagnostic testing. Lessons are locked to keep you focused on your active track.";
+        levelSub = "Placed above this tier in diagnostic testing.";
         unlockBtnHtml = `
-          <button type="button" class="path-unlock-track-btn" onclick="window.toggleUnlockPlacedLevel('${level}')" data-level="${level}" title="Unlock this level's lessons for practice">
+          <button type="button" class="path-unlock-track-btn" data-level="${level}" title="Unlock this level's lessons for practice">
             <i data-lucide="unlock" style="width: 13px; height: 13px;"></i>
-            <span>Unlock to Practice</span>
+            <span>${getTranslation(prefLang, "unlockToPractice") || getTranslation(prefLang, "openAccessTrack") || "Unlock to Practice"}</span>
           </button>
         `;
       }
     } else if (levelIndex === userLevelIndex) {
       statusClass = "path-status-current";
-      statusText = "Current Active Track";
+      statusText = getTranslation(prefLang, "activeTierLabel") || "Active Track";
       statusIcon = "compass";
     } else {
       statusClass = "path-status-locked";
-      statusText = "Locked Track";
+      statusText = "🔒";
       statusIcon = "lock";
-      levelSub = `Complete active tracks to unlock ${level.charAt(0).toUpperCase() + level.slice(1)} lessons.`;
     }
 
     html += `
@@ -984,16 +1036,7 @@ function renderLearningPath(profile) {
         }
       }
 
-      let chipText = `${completedInSkill} of 5 Lessons Complete`;
-      if (levelIndex < userLevelIndex) {
-        if (isManuallyUnlocked) {
-          chipText = completedInSkill > 0 ? `${completedInSkill} of 5 Complete · Unlocked` : `🔓 Unlocked for Practice`;
-        } else {
-          chipText = completedInSkill > 0 ? `${completedInSkill} of 5 Complete · Placed Above` : `🔒 Placed Above (Locked)`;
-        }
-      } else if (levelIndex > userLevelIndex) {
-        chipText = `🔒 Locked Track`;
-      }
+      let chipText = `${completedInSkill} / 5 ${getTranslation(prefLang, "statusCompleted") || "Complete"}`;
 
       html += `
         <div class="path-skill-chapter">
@@ -1038,14 +1081,14 @@ function renderLearningPath(profile) {
         const blueprint = window.CURRICULUM_BLUEPRINT?.[level]?.[skill]?.find(
           (b) => b.lessonIndex === i,
         );
-        const focusTitle = blueprint ? blueprint.focus : `Lesson ${i} Core Objectives`;
+        const focusTitle = blueprint ? blueprint.focus : `${getTranslation(prefLang, "stepWord") || "Lesson"} ${i}`;
 
-        let btnLabel = "Start Lesson";
+        let btnLabel = getTranslation(prefLang, "startLessonBtn") || "Start Lesson";
         let btnIcon = "play";
         let topMetaHtml = `<div class="path-lesson-meta">⏱️ 5 min • +25 XP</div>`;
 
         if (state === "completed") {
-          btnLabel = "Review Lesson";
+          btnLabel = getTranslation(prefLang, "reviewLessonBtn") || "Review Lesson";
           btnIcon = "rotate-ccw";
 
           let localScores = {};
@@ -1139,8 +1182,9 @@ function renderLearningPath(profile) {
   pathContainer.querySelectorAll(".path-unlock-track-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
+      e.preventDefault();
       const lvl = btn.dataset.level;
-      if (typeof window.toggleUnlockPlacedLevel === "function") {
+      if (lvl && typeof window.toggleUnlockPlacedLevel === "function") {
         window.toggleUnlockPlacedLevel(lvl);
       }
     });
@@ -1997,6 +2041,7 @@ function setupDashboardEvents(profile) {
 function renderProfile(profile) {
   if (!profile) return;
   window.currentProfile = profile;
+  const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
 
   // Language mapping
   const LANG_NAMES = {
@@ -2019,7 +2064,7 @@ function renderProfile(profile) {
 
   const currentLevelKey = profile.currentLevel || profile.assessmentLevel || "beginner";
   const levelConfig = LEVEL_CONFIG[currentLevelKey] || LEVEL_CONFIG.beginner;
-  const levelLabel = getTranslation(selectedLang, levelConfig.label) || levelConfig.fallback;
+  const levelLabel = getTranslation(prefLang, levelConfig.label) || levelConfig.fallback;
 
   // 1. Profile Name, Avatar & Email
   const profileNameEl = document.getElementById("profile-name");
@@ -2051,19 +2096,22 @@ function renderProfile(profile) {
   const nativePill = document.getElementById("profile-native-lang-pill");
   if (nativePill) {
     const natName = LANG_NAMES[profile.preferredLanguage || "en"] || "English";
-    nativePill.innerHTML = `<i data-lucide="globe"></i><span>Native: ${natName}</span>`;
+    const prefix = getTranslation(prefLang, "profileNativePrefix") || "Native:";
+    nativePill.innerHTML = `<i data-lucide="globe"></i><span>${prefix} ${natName}</span>`;
   }
 
   const targetPill = document.getElementById("profile-target-lang-pill");
   if (targetPill) {
     const tgtName = LANG_NAMES[profile.targetLanguage || profile.preferredLanguage || "en"] || "English";
-    targetPill.innerHTML = `<i data-lucide="sparkles"></i><span>Learning: ${tgtName}</span>`;
+    const prefix = getTranslation(prefLang, "profileLearningPrefix") || "Learning:";
+    targetPill.innerHTML = `<i data-lucide="sparkles"></i><span>${prefix} ${tgtName}</span>`;
   }
 
   const agePill = document.getElementById("profile-age-pill");
   if (agePill) {
     const ageVal = profile.ageGroup || "18–25";
-    agePill.innerHTML = `<i data-lucide="user"></i><span>Age: ${ageVal}</span>`;
+    const prefix = getTranslation(prefLang, "profileAgePrefix") || "Age:";
+    agePill.innerHTML = `<i data-lucide="user"></i><span>${prefix} ${ageVal}</span>`;
   }
 
   // 3. Edit Form Fields
@@ -2084,29 +2132,29 @@ function renderProfile(profile) {
 
   // 4. Level Progression Calculation
   const totalXp = profile.xp || 0;
-  let currentLevelTitle = "Level 1: Beginner Explorer";
-  let nextLevelTitle = "Level 2: Apprentice Scholar";
+  let currentLevelTitle = getTranslation(prefLang, "profileLevel1Title") || "Level 1: Beginner Explorer";
+  let nextLevelTitle = getTranslation(prefLang, "profileLevel2Title") || "Level 2: Apprentice Scholar";
   let minTierXp = 0;
   let maxTierXp = 150;
 
   if (totalXp >= 1500) {
-    currentLevelTitle = "Level 5: Grandmaster of AksharGyan";
+    currentLevelTitle = getTranslation(prefLang, "profileLevel5Title") || "Level 5: Grandmaster of AksharGyan";
     nextLevelTitle = "Max Level Reached! 👑";
     minTierXp = 1500;
     maxTierXp = 3000;
   } else if (totalXp >= 800) {
-    currentLevelTitle = "Level 4: Master Polyglot";
-    nextLevelTitle = "Level 5: Grandmaster of AksharGyan";
+    currentLevelTitle = getTranslation(prefLang, "profileLevel4Title") || "Level 4: Master Polyglot";
+    nextLevelTitle = getTranslation(prefLang, "profileLevel5Title") || "Level 5: Grandmaster of AksharGyan";
     minTierXp = 800;
     maxTierXp = 1500;
   } else if (totalXp >= 400) {
-    currentLevelTitle = "Level 3: Fluent Scholar";
-    nextLevelTitle = "Level 4: Master Polyglot";
+    currentLevelTitle = getTranslation(prefLang, "profileLevel3Title") || "Level 3: Fluent Scholar";
+    nextLevelTitle = getTranslation(prefLang, "profileLevel4Title") || "Level 4: Master Polyglot";
     minTierXp = 400;
     maxTierXp = 800;
   } else if (totalXp >= 150) {
-    currentLevelTitle = "Level 2: Apprentice Wordsmith";
-    nextLevelTitle = "Level 3: Fluent Scholar";
+    currentLevelTitle = getTranslation(prefLang, "profileLevel2Title") || "Level 2: Apprentice Wordsmith";
+    nextLevelTitle = getTranslation(prefLang, "profileLevel3Title") || "Level 3: Fluent Scholar";
     minTierXp = 150;
     maxTierXp = 400;
   }
@@ -2124,14 +2172,18 @@ function renderProfile(profile) {
   if (levelFillEl) levelFillEl.style.width = `${levelProgressPct}%`;
 
   const xpProgressTextEl = document.getElementById("profile-xp-progress-text");
-  if (xpProgressTextEl) xpProgressTextEl.innerHTML = `<strong>${totalXp} XP</strong> earned (${levelProgressPct}% to next tier)`;
+  if (xpProgressTextEl) {
+    const progressTempl = getTranslation(prefLang, "xpEarnedToNextTier") || "{xp} XP earned ({pct}% to next tier)";
+    xpProgressTextEl.innerHTML = `<strong>${totalXp} XP</strong> ` + progressTempl.replace("{xp}", "").replace("{pct}", levelProgressPct).trim();
+  }
 
   const xpNeededTextEl = document.getElementById("profile-xp-needed-text");
   if (xpNeededTextEl) {
     if (totalXp >= 1500) {
-      xpNeededTextEl.textContent = "You've reached top tier literacy master status! 🌟";
+      xpNeededTextEl.textContent = getTranslation(prefLang, "topTierMasterStatus") || "You've reached top tier literacy master status! 🌟";
     } else {
-      xpNeededTextEl.textContent = `${xpNeeded} XP to reach ${nextLevelTitle}! Keep practicing daily. 🚀`;
+      const neededTempl = getTranslation(prefLang, "xpToReachNextLevel") || "{xp} XP to reach {level}! Keep practicing daily. 🚀";
+      xpNeededTextEl.textContent = neededTempl.replace("{xp}", xpNeeded).replace("{level}", nextLevelTitle);
     }
   }
 
@@ -2141,7 +2193,7 @@ function renderProfile(profile) {
 
   const streakSubtext = document.getElementById("profile-streak-subtext");
   if (streakSubtext) {
-    streakSubtext.textContent = (profile.streak || 0) > 0 ? "🔥 Hot Streak" : "Start your streak today";
+    streakSubtext.textContent = (profile.streak || 0) > 0 ? (getTranslation(prefLang, "hotStreakSubtext") || "🔥 Hot Streak") : (getTranslation(prefLang, "startStreakSubtext") || "Start your streak today");
   }
 
   const xpEl = document.getElementById("strip-xp");
@@ -2411,7 +2463,9 @@ function setupShop(profile) {
   const closeBtn = document.getElementById("close-shop-btn");
   const shopModal = document.getElementById("shop-modal");
 
-  applyTheme(profile.activeTheme || "default");
+  if (typeof applyTheme === "function") {
+    applyTheme(profile.activeTheme || "default");
+  }
 
   function openShop() {
     renderShopItems(shopUserProfile);
@@ -2728,25 +2782,35 @@ function initPhraseOfDay(profile) {
             (transcript) => {
               speakBtn.style.animation = "none";
               if (transcript) {
-                const expected = translatedTarget
+                const cleanExpected = translatedTarget
+                  .normalize("NFC")
                   .toLowerCase()
-                  .replace(/[.,?]/g, "")
+                  .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+                  .replace(/\s+/g, " ")
                   .trim();
-                const actual = transcript
+                const cleanSpoken = transcript
+                  .normalize("NFC")
                   .toLowerCase()
-                  .replace(/[.,?]/g, "")
+                  .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+                  .replace(/\s+/g, " ")
                   .trim();
 
-                const expectedWords = expected.split(/\s+/).filter(Boolean);
-                const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-                const matchedCount = expectedWords.filter((w) =>
-                  actualWords.has(w),
-                ).length;
-                const matchRatio = expectedWords.length
-                  ? matchedCount / expectedWords.length
-                  : 0;
+                const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
+                const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
 
-                if (matchRatio >= 0.6) {
+                let isMatch = expectedWords.length === spokenWords.length;
+                if (isMatch) {
+                  for (let i = 0; i < expectedWords.length; i++) {
+                    const w1 = expectedWords[i];
+                    const w2 = spokenWords[i];
+                    if (w1 !== w2) {
+                      isMatch = false;
+                      break;
+                    }
+                  }
+                }
+
+                if (isMatch) {
                   if (feedbackEl) {
                     feedbackEl.textContent =
                       getTranslation(
@@ -2833,6 +2897,7 @@ function initLeaderboard(profile) {
   if (leaderboardLoaded) return;
   leaderboardLoaded = true;
 
+  const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
   const tbody = document.getElementById("leaderboard-tbody");
   const podium = document.getElementById("leaderboard-podium");
   const loading = document.getElementById("leaderboard-loading");
@@ -2929,6 +2994,8 @@ function initLeaderboard(profile) {
 
       // 2. Render Table Rows
       let html = "";
+      const youLabel = getTranslation(prefLang, "youTag") || "YOU";
+
       userList.forEach((u, index) => {
         const rank = index + 1;
         const isCurrentUser = user && u.uid === user.uid;
@@ -2965,7 +3032,7 @@ function initLeaderboard(profile) {
                 <div>
                   <div style="font-weight: 800; font-size: 1rem; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
                     <span>${u.name}</span>
-                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.12rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;">YOU</span>` : ""}
+                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.12rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;">${youLabel}</span>` : ""}
                   </div>
                 </div>
               </div>

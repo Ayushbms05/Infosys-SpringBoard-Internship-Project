@@ -8,7 +8,7 @@
  * Cache is versioned so future deploys can bust it cleanly.
  */
 
-var CACHE_NAME = "infosyssb-cache-v6";
+var CACHE_NAME = "infosyssb-cache-v7";
 
 // Static assets to precache on install
 var PRECACHE_URLS = [
@@ -39,7 +39,9 @@ var PRECACHE_URLS = [
   "/landing.js",
   "/admin.js",
   "/dashboard.js",
+  "/assessment-content.js",
   "/assessment.js",
+  "/chat-content.js",
   "/chat.js",
   "/analysis.js",
   "/lesson.js",
@@ -48,6 +50,14 @@ var PRECACHE_URLS = [
   "/games-hub.js",
   "/celebrations.js",
   "/curriculum-blueprint.js",
+  "/curriculum-content-en.js",
+  "/curriculum-content-hi.js",
+  "/curriculum-content-ta.js",
+  "/curriculum-content-te.js",
+  "/curriculum-content-kn.js",
+  "/curriculum-content-bn.js",
+  "/curriculum-content-mr.js",
+  "/curriculum-content.js",
   "/curriculum.js",
   "/units-content.js",
   "/units.js",

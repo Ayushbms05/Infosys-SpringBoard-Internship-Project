@@ -270,6 +270,72 @@ function ulRenderExercise() {
     });
     ulSelectedAnswer = 0;
 
+// ── Speech Evaluation Utilities ──────────────────────────────────
+function ulCleanSpeechText(text) {
+  if (!text) return "";
+  return text
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function ulLevenshteinDistance(s1, s2) {
+  const m = s1.length;
+  const n = s2.length;
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+
+function ulIsWordMatch(w1, w2) {
+  if (w1 === w2) return true;
+  if (w1.length <= 3 || w2.length <= 3) return false;
+  const dist = ulLevenshteinDistance(w1, w2);
+  return dist <= 1;
+}
+
+function ulEvaluateSpeechTranscript(expectedText, spokenText, isPronunciation = false) {
+  const cleanExpected = ulCleanSpeechText(expectedText);
+  const cleanSpoken = ulCleanSpeechText(spokenText);
+
+  if (!cleanSpoken || !cleanExpected) return false;
+
+  const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
+  const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
+
+  if (isPronunciation) {
+    if (expectedWords.length === 1 && spokenWords.length >= 1) {
+      return spokenWords.some(w => ulIsWordMatch(expectedWords[0], w));
+    }
+  }
+
+  if (expectedWords.length !== spokenWords.length) {
+    return false;
+  }
+
+  for (let i = 0; i < expectedWords.length; i++) {
+    if (!ulIsWordMatch(expectedWords[i], spokenWords[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
   } else if (ulParams.skill === "speaking" || ulParams.skill === "pronunciation") {
     const micBtn    = document.getElementById("ul-mic-btn");
     const resultEl  = document.getElementById("ul-stt-result");
@@ -286,14 +352,9 @@ function ulRenderExercise() {
 
               if (transcript) {
                 if (resultEl) resultEl.textContent = `You said: "${transcript}"`;
-                const expected = ex.content.toLowerCase().replace(/[.,?]/g, "").trim();
-                const actual   = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
-                const expectedWords = expected.split(/\s+/).filter(Boolean);
-                const actualWords   = new Set(actual.split(/\s+/).filter(Boolean));
-                const matchRatio    = expectedWords.length
-                  ? expectedWords.filter(w => actualWords.has(w)).length / expectedWords.length
-                  : 0;
-                ulSelectedAnswer = matchRatio >= 0.7 ? "CORRECT" : "INCORRECT";
+                const isPronunciation = ulParams.skill === "pronunciation";
+                const isMatch = ulEvaluateSpeechTranscript(ex.content, transcript, isPronunciation);
+                ulSelectedAnswer = isMatch ? "CORRECT" : "INCORRECT";
                 if (checkBtn) checkBtn.disabled = false;
               } else {
                 if (resultEl) resultEl.textContent = "Didn't catch that. Tap mic to try again.";

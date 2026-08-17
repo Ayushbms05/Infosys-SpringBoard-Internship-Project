@@ -462,15 +462,33 @@ function renderVoiceRecordingCard(container, targetPhrase, targetLang) {
           micBtn.style.animation = "none";
 
           if (transcript) {
-            const expected = (targetPhrase || "").toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
-            const actual = transcript.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").trim();
+            const cleanExpected = (targetPhrase || "")
+              .normalize("NFC")
+              .toLowerCase()
+              .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+              .replace(/\s+/g, " ")
+              .trim();
+            const cleanActual = transcript
+              .normalize("NFC")
+              .toLowerCase()
+              .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+              .replace(/\s+/g, " ")
+              .trim();
 
-            const expectedWords = expected.split(/\s+/).filter(Boolean);
-            const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-            const matchedCount = expectedWords.filter(w => actualWords.has(w)).length;
-            const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
+            const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
+            const actualWords = cleanActual.split(/\s+/).filter(Boolean);
 
-            if (matchRatio >= 0.5 || actual.includes(expected) || expected.includes(actual)) {
+            let isMatch = expectedWords.length === actualWords.length;
+            if (isMatch) {
+              for (let i = 0; i < expectedWords.length; i++) {
+                if (expectedWords[i] !== actualWords[i]) {
+                  isMatch = false;
+                  break;
+                }
+              }
+            }
+
+            if (isMatch) {
               userAnswers[currentQuestionIndex] = "CORRECT";
               micBtn.style.background = "#10b981";
               micBtn.style.color = "#ffffff";

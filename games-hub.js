@@ -81,8 +81,12 @@ window.GamesHub = (function () {
     'game-word-race', 'game-word-search', 'game-crossword', 'game-complete'
   ];
 
+  function getLang() {
+    return profileRef?.preferredLanguage || localStorage.getItem("akshargyan_lang") || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
+  }
+
   function getGames() {
-    const lang = localStorage.getItem("appLang") || "en";
+    const lang = getLang();
     return [
       { id: 'word-match',   titleKey: 'gameWordMatchTitle', title: getTranslation(lang, "gameWordMatchTitle") || 'Word Match',   icon: '🧠', descKey: 'gameWordMatchDesc', desc: getTranslation(lang, "gameWordMatchDesc") || 'Match words with their icons.',    init: () => { lastGameInit = () => window.WordMatch.init(profileRef); lastGameInit(); } },
       { id: 'word-builder',  titleKey: 'gameWordBuilderTitle', title: getTranslation(lang, "gameWordBuilderTitle") || 'Word Builder',  icon: '🔨', descKey: 'gameWordBuilderDesc', desc: getTranslation(lang, "gameWordBuilderDesc") || 'Unscramble letters to build words.', init: () => { lastGameInit = () => WordBuilder.init(profileRef); lastGameInit(); } },
@@ -92,7 +96,7 @@ window.GamesHub = (function () {
   }
 
   function getPuzzles() {
-    const lang = localStorage.getItem("appLang") || "en";
+    const lang = getLang();
     return [
       { id: 'word-search', titleKey: 'gameWordSearchTitle', title: getTranslation(lang, "gameWordSearchTitle") || 'Word Search',  icon: '🔍', descKey: 'gameWordSearchDesc', desc: getTranslation(lang, "gameWordSearchDesc") || 'Find hidden words in the grid.',   init: () => { lastGameInit = () => WordSearchGame.init(profileRef); lastGameInit(); } },
       { id: 'crossword',   titleKey: 'gameCrosswordTitle', title: getTranslation(lang, "gameCrosswordTitle") || 'Vocabulary Crossword', icon: '🧩', descKey: 'gameCrosswordDesc', desc: getTranslation(lang, "gameCrosswordDesc") || 'Solve clues to fill the grid.', init: () => { lastGameInit = () => CrosswordGame.init(profileRef); lastGameInit(); } },
@@ -101,10 +105,10 @@ window.GamesHub = (function () {
 
   function init(profile) {
     profileRef = profile;
+    renderHub();
+
     if (hubInitialized) return;
     hubInitialized = true;
-
-    renderHub();
 
     // Wire up shared buttons
     document.getElementById("game-back-btn").onclick = showHub;

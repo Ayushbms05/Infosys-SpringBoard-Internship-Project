@@ -83,25 +83,18 @@ function setupLesson() {
   if (continueBtn) continueBtn.addEventListener("click", nextExercise);
 }
 
-// ─── Gemini AI Generator (Blueprint + Cache-First) ──────────
+// ─── Hardcoded Curriculum Generator (Zero-Latency & Offline) ──────────
 async function generateExercises() {
-  const langNames = { en: "English", hi: "Hindi", ta: "Tamil", te: "Telugu", kn: "Kannada", bn: "Bengali", mr: "Marathi" };
-  const knownLang = lessonUserProfile?.preferredLanguage || "en";
+  const level = lessonParams.level || "beginner";
+  const skill = lessonParams.type || "reading";
+  const lessonIndex = parseInt(lessonParams.lessonIndex, 10) || 1;
   const targetLang = lessonUserProfile?.targetLanguage || "en";
-  const knownLangName = langNames[knownLang] || "English";
-  const targetLangName = langNames[targetLang] || "English";
-  const litLevel = lessonUserProfile?.literacyLevel || "canRecognize";
-  const ageGroup = lessonUserProfile?.ageGroup || "26-40";
 
-  const level = lessonParams.level;
-  const skill = lessonParams.type;
-  const lessonIndex = lessonParams.lessonIndex;
-
-  // 0. Independent Practical Life Skills Check (Bypasses Firestore & Gemini completely)
+  // 0. Independent Practical Life Skills Check
   const isLifeSkill = ['banking', 'transit', 'health', 'market', 'bills'].includes(lessonParams.unit) || lessonParams.mode === 'practice';
   if (isLifeSkill) {
     const unitKey = ['banking', 'transit', 'health', 'market', 'bills'].includes(lessonParams.unit) ? lessonParams.unit : 'banking';
-    console.log(`🌐 Practical Life Skills Independent Mode: unit=${unitKey}, level=${level} — Bypassing Firestore & Gemini`);
+    console.log(`🌐 Practical Life Skills Independent Mode: unit=${unitKey}, level=${level}`);
     if (typeof LIFE_SKILLS_CONTENT !== "undefined" && LIFE_SKILLS_CONTENT[unitKey]) {
       const pool = LIFE_SKILLS_CONTENT[unitKey][level] || LIFE_SKILLS_CONTENT[unitKey]['beginner'] || [];
       if (pool.length > 0) {
@@ -113,120 +106,27 @@ async function generateExercises() {
     }
   }
 
-  // 1. Look up the blueprint for this lesson slot
-  const blueprintSlots = CURRICULUM_BLUEPRINT?.[level]?.[skill];
-  const blueprint = blueprintSlots?.find(b => b.lessonIndex === lessonIndex);
-  if (!blueprint) {
-    console.warn(`No blueprint found for ${level}/${skill}/lesson ${lessonIndex}, using fallback`);
-    return getFallbackExercises(skill);
-  }
-
-  // 2. Check Firestore cache
-  const cacheDocId = `${targetLang}_${level}_${skill}_${lessonIndex}`;
-  try {
-    const cachedDoc = await db.collection("sharedLessonContent").doc(cacheDocId).get();
-    if (cachedDoc.exists) {
-      const cachedData = cachedDoc.data();
-      if (cachedData.exercises && cachedData.exercises.length > 0) {
-        console.log(`✅ Cache hit: ${cacheDocId} — skipping Gemini`);
-        return cachedData.exercises;
-      }
+  // 1. Instant Hardcoded Curriculum Look-up (75 lessons x 10 questions = 750 questions per language)
+  if (typeof getCurriculumLessonExercises === "function") {
+    const hardcodedExercises = getCurriculumLessonExercises(targetLang, level, skill, lessonIndex);
+    if (hardcodedExercises && Array.isArray(hardcodedExercises) && hardcodedExercises.length > 0) {
+      console.log(`⚡ Loaded ${hardcodedExercises.length} hardcoded exercises for lang=${targetLang}, level=${level}, skill=${skill}, lesson=${lessonIndex}`);
+      return hardcodedExercises;
     }
-  } catch (cacheErr) {
-    console.warn("Cache read failed, will generate fresh:", cacheErr);
   }
 
-  // 3. No cache → build Gemini prompt
-  console.log(`🔄 Cache miss: ${cacheDocId} — generating via Gemini`);
-
-  const ageContext = {
-    "below18": "a teenage learner — keep examples relatable to school, family, and everyday teenage life, but never childish",
-    "18-25": "a young adult learner — examples can reference first jobs, further study, banking, and city life",
-    "26-40": "a working-age adult learner — examples should reference workplaces, family responsibilities, banking, and civic tasks",
-    "41-60": "a middle-aged adult learner — examples should reference established work life, healthcare, family, and community",
-    "60+": "an older adult learner — keep pacing calm, examples should reference healthcare, pensions, family, and community; avoid fast-paced or overly modern slang"
-  }[ageGroup] || "an adult learner";
-
-  const litContext = {
-    neverLearned: "has never learned to read or write — needs the simplest possible language, one idea per sentence",
-    canRecognize: "can recognize some letters and words but not full sentences — keep vocabulary basic and sentences short",
-    canReadSimple: "can read and write simple sentences with some difficulty — moderate vocabulary is fine",
-    canReadComfort: "can read and write comfortably and is returning to build further — can handle richer vocabulary and longer sentences",
-    preferNot: "has not specified a literacy level — assume a cautious beginner level"
-  }[litLevel] || "an adult learner building foundational literacy";
-
-  const prompts = {
-    reading: `Generate ${blueprint.exampleCount} Duolingo-style reading exercises. JSON: [{"instruction": "Read the passage and answer", "content": "ONE short sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "A short question in ${targetLangName} about the content", "questionTranslation": "The ${knownLangName} translation of the question", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Why this is correct, written in ${knownLangName}"}]`,
-
-    listening: `Generate ${blueprint.exampleCount} Duolingo-style listening exercises. JSON: [{"instruction": "Listen to the audio sentence and choose the correct answer", "content": "ONE short spoken sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "What did the audio say? (in ${knownLangName})", "options": ["opt1", "opt2", "opt3", "opt4"], "optionsTranslation": ["opt1 in ${knownLangName}", "opt2 in ${knownLangName}", "opt3 in ${knownLangName}", "opt4 in ${knownLangName}"], "answerIndex": 0, "explanation": "Audio translation, in ${knownLangName}"}]`,
-
-    speaking: `Generate ${blueprint.exampleCount} Duolingo-style speaking exercises. JSON: [{"instruction": "Tap the mic and repeat this sentence aloud", "content": "ONE short practical sentence in ${targetLangName}, max 8-10 words", "translation": "The ${knownLangName} translation of that exact sentence", "question": "Speak clearly into your microphone", "options": [], "answerIndex": 0, "explanation": "Great pronunciation!"}]`,
-
-    pronunciation: `Generate ${blueprint.exampleCount} Duolingo-style pronunciation exercises. JSON: [{"instruction": "Tap the mic and pronounce this word aloud", "content": "ONE single challenging word in ${targetLangName}", "translation": "The ${knownLangName} translation of that word", "question": "Pronounce this word clearly", "options": [], "answerIndex": 0, "explanation": "Perfect pronunciation!"}]`,
-
-    writing: `Generate ${blueprint.exampleCount} Duolingo-style sentence building exercises. JSON: [{"instruction": "Arrange the words below to form the correct sentence", "content": "A plain description of the sentence's meaning, in ${knownLangName} — written as a completely different set of words than the target sentence itself", "question": "The correct SHORT sentence (max 6-8 words) in ${targetLangName}, written normally", "questionTranslation": "The ${knownLangName} translation of that exact sentence", "options": ["singleWord1", "singleWord2", "singleWord3", "singleWord4", "singleWord5"], "answerIndex": 0, "explanation": "Correct structure, in ${knownLangName}"}]. CRITICAL RULES: "options" must be SINGLE INDIVIDUAL WORDS ONLY, in ${targetLangName}, and together must contain every word needed to build "question" exactly.`
-  };
-
-  const focusInstruction = `LESSON FOCUS: This is lesson ${lessonIndex} of 5 in the "${level}" level "${skill}" skill track. The specific pedagogical focus for this lesson is: "${blueprint.focus}". ALL ${blueprint.exampleCount} exercises MUST be directly about this focus topic — do not generate generic exercises.`;
-
-  const prompt = `You are a language tutor teaching ${targetLangName} to ${ageContext}, who already knows ${knownLangName} and ${litContext}. Every exercise must include BOTH the ${targetLangName} content AND a ${knownLangName} translation field, as specified below. Generate SHORT, bite-sized exercises.
-  ${focusInstruction}
-  ${prompts[skill]}
-  RESPOND ONLY WITH THE RAW JSON ARRAY. NO MARKDOWN. NO CODE BLOCKS.`;
-
-  const idToken = await firebase.auth().currentUser.getIdToken();
-  const response = await fetch(APP_CONFIG.CLOUD_FN_GEMINI, {
-    method: "POST", headers: { "Content-Type": "application/json", "Authorization": "Bearer " + idToken },
-    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.5 } })
-  });
-
-  const data = await response.json();
-  let text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  text = text.replace(/```(json)?/gi, '').trim();
-
-  let parsed = JSON.parse(text);
-  parsed = parsed.slice(0, blueprint.exampleCount);
-
-  if (skill === 'writing') {
-    parsed = parsed.map(item => {
-      const optionsLookLikeSentences = (item.options || []).some(o => o.trim().split(/\s+/).length > 2);
-      const questionLooksMalformed = !item.question || /arrange|\//i.test(item.question);
-
-      const normalize = (s) => (s || "").toLowerCase().replace(/[.,!?]/g, '').trim();
-      const contentMatchesAnswer = normalize(item.content) === normalize(item.question);
-
-      const questionWords = normalize(item.question).split(/\s+/).filter(Boolean);
-      const optionWords = (item.options || []).map(o => normalize(o));
-      const wordsAvailable = [...optionWords];
-      const wordBankIncomplete = !questionWords.every(qWord => {
-        const idx = wordsAvailable.indexOf(qWord);
-        if (idx === -1) return false;
-        wordsAvailable.splice(idx, 1);
-        return true;
-      });
-
-      if (optionsLookLikeSentences || questionLooksMalformed || contentMatchesAnswer || wordBankIncomplete) {
-        return getFallbackExercises('writing')[0];
-      }
-      return item;
-    });
+  // 2. Direct Window Registry Fallback
+  const pack = window.CURRICULUM_LESSONS_CONTENT?.[targetLang] || 
+               window[`CURRICULUM_LESSONS_${targetLang.toUpperCase()}`] || 
+               window.CURRICULUM_LESSONS_EN || {};
+  const exercises = pack[level]?.[skill]?.[lessonIndex];
+  if (exercises && Array.isArray(exercises) && exercises.length > 0) {
+    return exercises;
   }
 
-  try {
-    await db.collection("sharedLessonContent").doc(cacheDocId).set({
-      targetLanguage: targetLang,
-      level: level,
-      skill: skill,
-      lessonIndex: lessonIndex,
-      exercises: parsed,
-      generatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-    console.log(`💾 Cached: ${cacheDocId}`);
-  } catch (writeErr) {
-    console.warn("Cache write failed:", writeErr);
-  }
-
-  return parsed;
+  // 3. Fallback exercises if needed
+  console.warn(`Using fallback exercises for ${level}/${skill}/lesson ${lessonIndex}`);
+  return getFallbackExercises(skill);
 }
 
 // ─── Dynamic UI Renderer ────────────────────────────────
@@ -240,15 +140,80 @@ function renderExercise() {
   const fillEl = document.getElementById("lesson-progress-fill");
   if (fillEl) fillEl.style.width = `${fillPercent}%`;
 
+  const knownLang = lessonUserProfile?.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
+  const targetLang = lessonUserProfile?.targetLanguage || "hi";
+
+  const langNames = {
+    en: "English",
+    hi: "Hindi",
+    ta: "Tamil",
+    te: "Telugu",
+    kn: "Kannada",
+    bn: "Bengali",
+    mr: "Marathi"
+  };
+  const targetLangName = langNames[targetLang] || targetLang;
+
+  // Localized Instructions per skill
+  const localizedInstructions = {
+    writing: {
+      en: "Arrange the words below to form the correct sentence",
+      hi: "सही वाक्य बनाने के लिए नीचे दिए गए शब्दों को क्रम में लगाएं",
+      ta: "சரியான வாக்கியத்தை உருவாக்க கீழே உள்ள சொற்களை வரிசைப்படுத்துங்கள்",
+      te: "సరైన వాక్యాన్ని రూపొందించడానికి క్రింది పదాలను క్రమపరచండి",
+      kn: "ಸರಿಯಾದ ವಾಕ್ಯವನ್ನು ರೂಪಿಸಲು ಕೆಳಗಿನ ಪದಗಳನ್ನು ಜೋಡಿಸಿ",
+      bn: "সঠিক বাক্য গঠন করতে নিচের শব্দগুলি সাজান",
+      mr: "योग्य वाक्य तयार करण्यासाठी खालील शब्द क्रमाने लावा"
+    },
+    reading: {
+      en: "Read the passage carefully and choose the correct answer",
+      hi: "दिए गए गद्यांश को ध्यानपूर्वक पढ़ें और सही उत्तर चुनें",
+      ta: "பத்தியை கவனமாக படித்து சரியான பதிலை தேர்ந்தெடுக்கவும்",
+      te: "పాఠాన్ని జాగ్రత్తగా చదివి సరైన సమాధానాన్ని ఎంచుకోండి",
+      kn: "ಭಾಗವನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಓದಿ ಮತ್ತು ಸರಿಯಾದ ಉತ್ತರವನ್ನು ಆರಿಸಿ",
+      bn: "অনুচ্ছেদটি মনোযোগ দিয়ে পড়ুন এবং সঠিক উত্তরটি বেছে নিন",
+      mr: "उतारा काळजीपूर्वक वाचा आणि योग्य उत्तर निवडा"
+    },
+    listening: {
+      en: "Listen to the audio carefully and select the right option",
+      hi: "ऑडियो को ध्यान से सुनें और सही विकल्प चुनें",
+      ta: "ஆடியோவை கவனமாகக் கேட்டு சரியான விருப்பத்தைத் தேர்ந்தெடுக்கவும்",
+      te: "ఆడియోను జాగ్రత్తగా విని సరైన ఎంపికను ఎంచుకోండి",
+      kn: "ಆಡಿಯೊವನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಆಲಿಸಿ ಮತ್ತು ಸರಿಯಾದ ಆಯ್ಕೆಯನ್ನು ಆರಿಸಿ",
+      bn: "অডিওটি মনোযোগ সহকারে শুনুন এবং সঠিক বিকল্পটি নির্বাচন করুন",
+      mr: "ऑडिओ काळजीपूर्वक ऐका आणि योग्य पर्याय निवडा"
+    },
+    speaking: {
+      en: "Tap the microphone and speak this sentence aloud",
+      hi: "माइक पर टैप करें और इस वाक्य को स्पष्ट रूप से बोलें",
+      ta: "மைக்ரோஃபோனைத் தட்டி இந்த வாக்கியத்தை சத்தமாகப் பேசுங்கள்",
+      te: "మైక్రోఫోన్‌ను నొక్కి ఈ వాక్యాన్ని బిగ్గరగా మాట్లాడండి",
+      kn: "ಮೈಕ್ರೊಫೋನ್ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ಈ ವಾಕ್ಯವನ್ನು ಗಟ್ಟಿಯಾಗಿ ಮಾತನಾಡಿ",
+      bn: "মাইক্রোফোনে ট্যাপ করুন এবং এই বাক্যটি স্পষ্টভাবে বলুন",
+      mr: "माइक टॅप करा आणि हे वाक्य स्पष्टपणे बोला"
+    },
+    pronunciation: {
+      en: "Tap the microphone and pronounce this word clearly",
+      hi: "माइक पर टैप करें और इस शब्द का स्पष्ट उच्चारण करें",
+      ta: "மைக்ரோஃபோனைத் தட்டி இந்த வார்த்தையை தெளிவாக உச்சரிக்கவும்",
+      te: "మైక్రోఫోన్‌ను నొక్కి ఈ పదాన్ని స్పష్టంగా పలకండి",
+      kn: "ಮೈಕ್ರೊಫೋನ್ ಟ್ಯಾಪ್ ಮಾಡಿ ಮತ್ತು ಈ ಪದವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಉಚ್ಚರಿಸಿ",
+      bn: "মাইক্রোফোনে ট্যাপ করুন এবং এই শব্দটি স্পষ্টভাবে উচ্চারণ করুন",
+      mr: "माइक टॅप करा आणि या शब्दाचा स्पष्ट उच्चार करा"
+    }
+  };
+
   const instEl = document.getElementById("exercise-instruction-text");
   if (instEl) {
-    const instructionText = ex.instruction || "Answer the question to continue";
+    const instructionText = localizedInstructions[lessonParams.type]?.[knownLang] || 
+                            localizedInstructions[lessonParams.type]?.["en"] || 
+                            ex.instruction || 
+                            "Answer the question to continue";
     instEl.innerHTML = `<i data-lucide="help-circle" style="width: 18px; height: 18px; color: #6366f1;"></i> <span>${instructionText}</span>`;
   }
 
   const body = document.getElementById("exercise-body");
   let html = "";
-  const targetLang = lessonUserProfile?.targetLanguage || "hi";
 
   // 1. LISTENING MODE
   if (lessonParams.type === "listening") {
@@ -285,16 +250,22 @@ function renderExercise() {
     `;
   }
 
-  // 3. WRITING MODE (Sentence Builder)
+  // 3. WRITING MODE (Sentence Builder / Translation)
   else if (lessonParams.type === "writing") {
+    // Prompt sentence to display in learner's preferred language (e.g. English)
+    const promptSentence = ex.content || ex.questionTranslation || ex.translation || ex.question;
+
     html += `
-      <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: #f0fdf4; border-radius: 20px; border: 1.5px solid #86efac;">
-        ${ex.translation ? `<p class="translation-text ${translationVisibilityClass()}" style="margin-bottom: 0.35rem; color: #16a34a;">${ex.translation}</p>` : ''}  
-        <p style="font-weight: 800; font-size: 1.15rem; color: #15803d; margin: 0;">${ex.content}</p>
+      <div style="margin-bottom: 1.5rem; padding: 1.25rem 1.5rem; background: #f0fdf4; border-radius: 20px; border: 1.5px solid #86efac; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.08);">
+        <div style="font-size: 0.8rem; font-weight: 800; color: #16a34a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+          <i data-lucide="languages" style="width: 15px; height: 15px;"></i>
+          <span>Translate into ${targetLangName}:</span>
+        </div>
+        <p style="font-weight: 800; font-size: 1.25rem; color: #15803d; margin: 0; line-height: 1.4;">${promptSentence}</p>
       </div>
       <div class="sentence-builder-area">
-        <div id="sb-dropzone" style="min-height: 64px; padding: 1rem; border: 2px dashed #6366f1; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #eef2ff; margin-bottom: 1.25rem; align-items: center;"></div>
-        <div id="sb-wordbank" style="min-height: 64px; padding: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #f8fafc; align-items: center;"></div>
+        <div id="sb-dropzone" style="min-height: 68px; padding: 1rem; border: 2px dashed #6366f1; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.65rem; background: #eef2ff; margin-bottom: 1.25rem; align-items: center;"></div>
+        <div id="sb-wordbank" style="min-height: 68px; padding: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.65rem; background: #f8fafc; align-items: center;"></div>
       </div>
     `;
   }
@@ -374,6 +345,76 @@ function renderExercise() {
     });
 
     selectedAnswer = 0;
+// ─── Speech Evaluation Utilities ────────────────────────
+function cleanSpeechText(text) {
+  if (!text) return "";
+  return text
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function levenshteinDistance(s1, s2) {
+  const m = s1.length;
+  const n = s2.length;
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+      }
+    }
+  }
+  return dp[m][n];
+}
+
+function isWordMatch(w1, w2) {
+  if (w1 === w2) return true;
+  // Short words (<= 3 chars, e.g. 'का', 'से', 'की', 'to', 'in') require exact match!
+  if (w1.length <= 3 || w2.length <= 3) return false;
+  // Allow at most 1 character variation for longer words due to STT phonetic transcription variations
+  const dist = levenshteinDistance(w1, w2);
+  return dist <= 1;
+}
+
+function evaluateSpeechTranscript(expectedText, spokenText, isPronunciation = false) {
+  const cleanExpected = cleanSpeechText(expectedText);
+  const cleanSpoken = cleanSpeechText(spokenText);
+
+  if (!cleanSpoken || !cleanExpected) return false;
+
+  const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
+  const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
+
+  if (isPronunciation) {
+    // For single word pronunciation, target is usually 1 word
+    if (expectedWords.length === 1 && spokenWords.length >= 1) {
+      return spokenWords.some(w => isWordMatch(expectedWords[0], w));
+    }
+  }
+
+  // For speaking sentences: every word must be present in exact order without missing any words!
+  if (expectedWords.length !== spokenWords.length) {
+    return false;
+  }
+
+  for (let i = 0; i < expectedWords.length; i++) {
+    if (!isWordMatch(expectedWords[i], spokenWords[i])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
   } else if (
     lessonParams.type === "speaking" ||
     lessonParams.type === "pronunciation"
@@ -395,15 +436,10 @@ function renderExercise() {
               if (transcript) {
                 resultText.textContent = `You said: "${transcript}"`;
 
-                const expected = ex.content.toLowerCase().replace(/[.,?]/g, "").trim();
-                const actual = transcript.toLowerCase().replace(/[.,?]/g, "").trim();
+                const isPronunciation = lessonParams.type === "pronunciation";
+                const isMatch = evaluateSpeechTranscript(ex.content, transcript, isPronunciation);
 
-                const expectedWords = expected.split(/\s+/).filter(Boolean);
-                const actualWords = new Set(actual.split(/\s+/).filter(Boolean));
-                const matchedCount = expectedWords.filter((w) => actualWords.has(w)).length;
-                const matchRatio = expectedWords.length ? matchedCount / expectedWords.length : 0;
-
-                if (matchRatio >= 0.7) {
+                if (isMatch) {
                   selectedAnswer = "CORRECT";
                 } else {
                   selectedAnswer = "INCORRECT";
@@ -501,7 +537,13 @@ function checkAnswer() {
   } else {
     feedback.classList.add("incorrect");
     if (feedbackIcon) feedbackIcon.innerHTML = `<i data-lucide="x-circle" style="width: 22px; height: 22px; color: #dc2626;"></i>`;
-    if (feedbackText) feedbackText.textContent = "Not quite. " + (lessonParams.type === "writing" ? `Correct sentence: ${ex.question}` : "Keep practicing.");
+    let wrongMsg = "Keep practicing.";
+    if (lessonParams.type === "writing") {
+      wrongMsg = `Correct sentence: ${ex.question}`;
+    } else if (lessonParams.type === "speaking" || lessonParams.type === "pronunciation") {
+      wrongMsg = `Please speak all words completely in order: '${ex.content}'`;
+    }
+    if (feedbackText) feedbackText.textContent = "Not quite. " + wrongMsg;
   }
 
   const checkBtn = document.getElementById("check-btn");
