@@ -726,7 +726,7 @@
 
       #admin-section-leaderboard .leaderboard-table td {
         display: table-cell !important;
-        padding: 0.9rem 1rem !important;
+        padding: 0.95rem 1rem !important;
         vertical-align: middle !important;
         border: none !important;
       }
@@ -734,22 +734,32 @@
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-rank {
         border-top-left-radius: 16px !important;
         border-bottom-left-radius: 16px !important;
-        width: 80px !important;
+        width: 85px !important;
         text-align: left !important;
+        padding: 0.95rem 1.25rem !important;
       }
 
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-user {
         text-align: left !important;
+        padding: 0.95rem 1.25rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-level {
+        text-align: center !important;
+        width: 140px !important;
+        padding: 0.95rem 0.85rem !important;
       }
 
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-streak {
         text-align: center !important;
-        width: 120px !important;
+        width: 110px !important;
+        padding: 0.95rem 0.85rem !important;
       }
 
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins {
         text-align: center !important;
         width: 120px !important;
+        padding: 0.95rem 0.85rem !important;
       }
 
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-xp {
@@ -757,6 +767,7 @@
         border-top-right-radius: 16px !important;
         border-bottom-right-radius: 16px !important;
         width: 140px !important;
+        padding: 0.95rem 1.25rem !important;
       }
 
       /* Desktop User Directory Search & Filters Toolbar */
@@ -1301,16 +1312,18 @@
         font-size: 0.9rem !important;
       }
 
-      /* Streak & Coins Badges */
+      /* Streak, Coins & Level Badges */
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-streak,
-      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins {
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins,
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-level {
         display: inline-flex !important;
         align-items: center !important;
         font-size: 0.76rem !important;
       }
 
       #admin-section-leaderboard .leaderboard-table td.leaderboard-col-streak span,
-      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins span {
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins span,
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-level span {
         padding: 0.2rem 0.55rem !important;
         font-size: 0.74rem !important;
       }
@@ -2431,14 +2444,15 @@
                 style="width: 100%; border-collapse: separate; border-spacing: 0 0.6rem; text-align: left;">
                 <thead>
                   <tr
-                    style="color: #64748b; font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">
-                    <th style="padding: 0.75rem 1rem;">RANK</th>
-                    <th style="padding: 0.75rem 1rem;">LEARNER NAME</th>
-                    <th style="padding: 0.75rem 1rem; text-align: center;"><i data-lucide="flame"
+                    style="color: #64748b; font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px;">
+                    <th style="padding: 0.85rem 1.25rem; width: 85px;">RANK</th>
+                    <th style="padding: 0.85rem 1.25rem;">LEARNER</th>
+                    <th style="padding: 0.85rem 1rem; text-align: center; width: 140px;">LEVEL</th>
+                    <th style="padding: 0.85rem 1rem; text-align: center; width: 110px;"><i data-lucide="flame"
                         style="width: 14px; height: 14px; vertical-align: -2px; color: #ea580c;"></i> STREAK</th>
-                    <th style="padding: 0.75rem 1rem; text-align: center;"><i data-lucide="coins"
+                    <th style="padding: 0.85rem 1rem; text-align: center; width: 120px;"><i data-lucide="coins"
                         style="width: 14px; height: 14px; vertical-align: -2px; color: #eab308;"></i> COINS</th>
-                    <th style="padding: 0.75rem 1rem; text-align: right;"><i data-lucide="zap"
+                    <th style="padding: 0.85rem 1.25rem; text-align: right; width: 140px;"><i data-lucide="zap"
                         style="width: 14px; height: 14px; vertical-align: -2px; color: #6366f1;"></i> TOTAL XP</th>
                   </tr>
                 </thead>

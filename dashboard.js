@@ -3101,13 +3101,13 @@ function initLeaderboard(profile) {
         let rankClass = "lb-rank-default";
 
         if (rank === 1) {
-          rankBadge = "👑 1";
+          rankBadge = "👑 #1";
           rankClass = "lb-rank-gold";
         } else if (rank === 2) {
-          rankBadge = "🥈 2";
+          rankBadge = "🥈 #2";
           rankClass = "lb-rank-silver";
         } else if (rank === 3) {
-          rankBadge = "🥉 3";
+          rankBadge = "🥉 #3";
           rankClass = "lb-rank-bronze";
         }
 

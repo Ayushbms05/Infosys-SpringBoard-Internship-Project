@@ -1985,9 +1985,12 @@ function renderAdminLeaderboard() {
           uid: doc.id,
           xp: data.xp || 0,
           name: data.fullName || data.displayName || "Learner",
+          email: data.email || "",
           initial: (data.fullName || data.displayName || "L").charAt(0).toUpperCase(),
+          level: data.currentLevel || data.assessmentLevel || "beginner",
           streak: data.currentStreak || data.streak || 0,
           coins: data.coins || 0,
+          lessonsDone: Array.isArray(data.completedLessons) ? data.completedLessons.length : 0,
         });
       });
 
@@ -2009,7 +2012,7 @@ function renderAdminLeaderboard() {
               </div>
               <div class="podium-name" style="font-weight: 800; font-size: 0.95rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
               <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #475569; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #e2e8f0;">
-                ⚡ ${second.xp} XP
+                ⚡ ${second.xp.toLocaleString()} XP
               </div>
             </div>
           `;
@@ -2024,7 +2027,7 @@ function renderAdminLeaderboard() {
             </div>
             <div class="podium-name" style="font-weight: 900; font-size: 1.05rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
             <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.35rem 0.9rem; border-radius: 9999px; font-weight: 900; font-size: 0.92rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.3rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
-              ⚡ ${first.xp} XP
+              ⚡ ${first.xp.toLocaleString()} XP
             </div>
           </div>
         `;
@@ -2039,7 +2042,7 @@ function renderAdminLeaderboard() {
               </div>
               <div class="podium-name" style="font-weight: 800; font-size: 0.95rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
               <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #fed7aa;">
-                ⚡ ${third.xp} XP
+                ⚡ ${third.xp.toLocaleString()} XP
               </div>
             </div>
           `;
@@ -2053,49 +2056,78 @@ function renderAdminLeaderboard() {
       userList.forEach((u, index) => {
         const rank = index + 1;
 
-        let rankBadge = `#${rank}`;
-        let rankStyle = "background: #f1f5f9; color: #64748b;";
+        let rankBadgeHtml = `<span class="leaderboard-rank-badge" style="background: #f1f5f9; color: #64748b; border: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 800; padding: 0.35rem 0.65rem; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; min-width: 44px; white-space: nowrap;">#${rank}</span>`;
+        let rowStyle = "background: #ffffff; border: 1.5px solid #e2e8f0; box-shadow: 0 2px 8px rgba(15,23,42,0.03);";
 
         if (rank === 1) {
-          rankBadge = "👑 1";
-          rankStyle = "background: linear-gradient(135deg, #fffbeb, #fef3c7); color: #854d0e; border: 1.5px solid #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);";
+          rankBadgeHtml = `<span class="leaderboard-rank-badge rank-1" style="background: linear-gradient(135deg, #fef08a, #facc15); color: #854d0e; border: 1.5px solid #eab308; box-shadow: 0 4px 12px rgba(234, 179, 8, 0.28); font-size: 0.88rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; white-space: nowrap;">👑 #1</span>`;
+          rowStyle = "background: linear-gradient(90deg, #fffdf2, #ffffff 60%); border: 1.5px solid #fde68a; box-shadow: 0 4px 14px rgba(245,158,11,0.08);";
         } else if (rank === 2) {
-          rankBadge = "🥈 2";
-          rankStyle = "background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #94a3b8;";
+          rankBadgeHtml = `<span class="leaderboard-rank-badge rank-2" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: #334155; border: 1.5px solid #cbd5e1; box-shadow: 0 4px 10px rgba(148, 163, 184, 0.2); font-size: 0.88rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; white-space: nowrap;">🥈 #2</span>`;
+          rowStyle = "background: linear-gradient(90deg, #f8fafc, #ffffff 60%); border: 1.5px solid #e2e8f0; box-shadow: 0 4px 12px rgba(148,163,184,0.06);";
         } else if (rank === 3) {
-          rankBadge = "🥉 3";
-          rankStyle = "background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #9a3412; border: 1.5px solid #fdba74;";
+          rankBadgeHtml = `<span class="leaderboard-rank-badge rank-3" style="background: linear-gradient(135deg, #fff7ed, #fed7aa); color: #9a3412; border: 1.5px solid #fdba74; box-shadow: 0 4px 10px rgba(249, 115, 22, 0.2); font-size: 0.88rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem; white-space: nowrap;">🥉 #3</span>`;
+          rowStyle = "background: linear-gradient(90deg, #fff9f5, #ffffff 60%); border: 1.5px solid #fed7aa; box-shadow: 0 4px 12px rgba(249,115,22,0.06);";
+        }
+
+        const rawLvl = (u.level || "beginner").toLowerCase();
+        let lvlLabel = "Beginner";
+        let lvlIcon = "🌱";
+        let lvlBg = "#ecfdf5";
+        let lvlColor = "#065f46";
+        let lvlBorder = "#a7f3d0";
+
+        if (rawLvl.includes("intermed")) {
+          lvlLabel = "Intermediate";
+          lvlIcon = "⚡";
+          lvlBg = "#eef2ff";
+          lvlColor = "#3730a3";
+          lvlBorder = "#c7d2fe";
+        } else if (rawLvl.includes("advanc")) {
+          lvlLabel = "Advanced";
+          lvlIcon = "🌟";
+          lvlBg = "#fdf2f8";
+          lvlColor = "#9d174d";
+          lvlBorder = "#fbcfe8";
         }
 
         html += `
-          <tr class="leaderboard-row" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; transition: transform 0.2s ease;">
-            <td class="leaderboard-col-rank" style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
-              <span class="leaderboard-rank-badge" style="${rankStyle} font-size: 0.88rem; font-weight: 900; padding: 0.3rem 0.65rem; border-radius: 9999px; display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem;">${rankBadge}</span>
+          <tr class="leaderboard-row rank-${rank}" style="${rowStyle} border-radius: 16px; transition: all 0.2s ease;">
+            <td class="leaderboard-col-rank" style="padding: 0.95rem 1.25rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
+              ${rankBadgeHtml}
             </td>
-            <td class="leaderboard-col-user" style="padding: 0.9rem 1rem;">
-              <div class="leaderboard-user-cell" style="display: flex; align-items: center; gap: 0.85rem;">
-                <div class="leaderboard-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+            <td class="leaderboard-col-user" style="padding: 0.95rem 1.25rem;">
+              <div class="leaderboard-user-cell" style="display: flex; align-items: center; gap: 0.95rem;">
+                <div class="leaderboard-avatar" style="width: 42px; height: 42px; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.15rem; flex-shrink: 0; box-shadow: 0 4px 14px rgba(99,102,241,0.3);">
                   ${u.initial}
                 </div>
-                <div class="leaderboard-name" style="font-weight: 800; font-size: 1rem; color: #0f172a;">${u.name}</div>
+                <div style="min-width: 0; flex: 1;">
+                  <div class="leaderboard-name" style="font-weight: 800; font-size: 1rem; color: #0f172a; line-height: 1.2;">${u.name}</div>
+                  <div style="font-size: 0.8rem; font-weight: 600; color: #94a3b8; margin-top: 0.15rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${u.email || `${u.lessonsDone} lessons done`}</div>
+                </div>
               </div>
             </td>
-            <td class="leaderboard-col-streak" style="padding: 0.9rem 1rem; text-align: center;">
-              <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <td class="leaderboard-col-level" style="padding: 0.95rem 0.85rem; text-align: center;">
+              <span style="background: ${lvlBg}; color: ${lvlColor}; border: 1px solid ${lvlBorder}; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 800; text-transform: capitalize; display: inline-flex; align-items: center; gap: 0.35rem;">
+                <span>${lvlIcon}</span><span>${lvlLabel}</span>
+              </span>
+            </td>
+            <td class="leaderboard-col-streak" style="padding: 0.95rem 0.85rem; text-align: center;">
+              <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.84rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 2px 6px rgba(234,88,12,0.06);">
                 <i data-lucide="flame" style="width: 14px; height: 14px; fill: #ea580c;"></i>
                 <span>${u.streak}d</span>
               </span>
             </td>
-            <td class="leaderboard-col-coins" style="padding: 0.9rem 1rem; text-align: center;">
-              <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <td class="leaderboard-col-coins" style="padding: 0.95rem 0.85rem; text-align: center;">
+              <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.3rem 0.8rem; border-radius: 9999px; font-size: 0.84rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.35rem; box-shadow: 0 2px 6px rgba(202,138,4,0.06);">
                 <i data-lucide="coins" style="width: 14px; height: 14px; fill: #eab308;"></i>
-                <span>${u.coins}</span>
+                <span>${u.coins.toLocaleString()}</span>
               </span>
             </td>
-            <td class="leaderboard-col-xp" style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
-              <span style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.3rem;">
-                <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
-                <span>${u.xp} XP</span>
+            <td class="leaderboard-col-xp" style="padding: 0.95rem 1.25rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
+              <span style="font-weight: 900; font-size: 1.08rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.35rem; font-family: 'Plus Jakarta Sans', sans-serif;">
+                <i data-lucide="zap" style="width: 17px; height: 17px; fill: #6366f1;"></i>
+                <span>${u.xp.toLocaleString()} XP</span>
               </span>
             </td>
           </tr>
