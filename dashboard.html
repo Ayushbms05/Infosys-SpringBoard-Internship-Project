@@ -5667,18 +5667,45 @@
         min-height: 38px !important;
       }
 
-      /* ─── Learn: Results View ─── */
-      .hero-dual-grid {
+      /* ─── Learn: Results View (Zero Horizontal Overflow Protection) ─── */
+      #view-results {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
+
+      #view-results .hero-dual-grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
         width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .phrase-of-day-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
 
       .phrase-of-day-card .phrase-text {
-        font-size: clamp(1.2rem, 4.5vw, 1.55rem) !important;
+        font-size: clamp(1.15rem, 4.5vw, 1.45rem) !important;
+        line-height: 1.35 !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+      }
+
+      .phrase-of-day-card .phrase-translation {
+        font-size: 0.88rem !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
       }
 
       .phrase-actions {
+        display: flex !important;
         flex-direction: column !important;
         gap: 0.6rem !important;
         width: 100% !important;
@@ -5693,11 +5720,118 @@
         box-sizing: border-box !important;
       }
 
+      .daily-milestone-hero-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .daily-milestone-hero-card .milestone-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+      }
+
+      .daily-milestone-hero-card .milestone-info-box {
+        padding: 0.95rem 0.85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .daily-milestone-hero-card .milestone-reward-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+      }
+
+      .milestone-path-cta {
+        width: 100% !important;
+        height: 44px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+
+      /* AI Growth Advisor Card */
+      .ai-growth-advisor-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      .ai-growth-advisor-card > div:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      #ai-advisor-refresh-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        height: 38px !important;
+      }
+
+      #ai-advisor-content,
+      .ai-advisor-cards-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      #ai-advisor-content > div {
+        padding: 1rem 0.9rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      #ai-advisor-action-banner {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+        padding: 0.95rem 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      #ai-advisor-action-link {
+        width: 100% !important;
+        height: 42px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Diagnostic Recommendation Card */
+      .recommendation-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
       .rec-score-row {
+        display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        gap: 1rem !important;
+        gap: 0.85rem !important;
         width: 100% !important;
       }
 
@@ -5707,9 +5841,158 @@
         text-align: center !important;
       }
 
+      .rec-score-headline {
+        font-size: 1.1rem !important;
+        line-height: 1.3 !important;
+      }
+
       .rec-diag-pills {
+        display: flex !important;
+        flex-wrap: wrap !important;
         justify-content: center !important;
+        gap: 0.35rem !important;
         width: 100% !important;
+      }
+
+      .rec-cta-block {
+        padding: 1rem 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .rec-cta-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.85rem !important;
+        width: 100% !important;
+      }
+
+      .rec-cta-lesson-info {
+        width: 100% !important;
+      }
+
+      #rec-start-btn {
+        width: 100% !important;
+        height: 44px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
+
+      /* Recommended for You Adaptive Grid */
+      .recommended-scroll-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .recommended-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 0.85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .recommended-card {
+        padding: 1.1rem 0.95rem !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 7-Day Heatmap & Streak Card */
+      #activity-heatmap-card.heatmap-card {
+        padding: 1.15rem 0.95rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .activity-card-header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      .activity-header-left {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.65rem !important;
+        width: 100% !important;
+      }
+
+      .activity-header-right {
+        width: 100% !important;
+      }
+
+      .activity-streak-badge {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+
+      .activity-stats-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+      }
+
+      .act-stat-box {
+        padding: 0.65rem 0.85rem !important;
+        border-radius: 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .heatmap-strip {
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 4px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        padding: 0.25rem 0 !important;
+      }
+
+      .heatmap-strip::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .heatmap-day {
+        flex: 1 1 0 !important;
+        min-width: 38px !important;
+        padding: 0.6rem 0.2rem !important;
+        border-radius: 12px !important;
+        gap: 0.35rem !important;
+        box-sizing: border-box !important;
+      }
+
+      .activity-footer-banner {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+        padding: 0.95rem 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+      }
+
+      .act-practice-cta {
+        width: 100% !important;
+        height: 42px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
       }
 
       /* ─── Learn: Learning Path View ─── */
@@ -5836,85 +6119,188 @@
         width: 100% !important;
       }
 
-      /* ─── Handwriting Studio ─── */
+      /* ─── Handwriting Studio (Zero Overflow Protection) ─── */
+      #section-handwriting {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
       .hw-studio-card {
-        padding: 1.15rem 0.75rem !important;
+        padding: 1.1rem 0.75rem !important;
         border-radius: 20px !important;
         width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 !important;
+        overflow: hidden !important;
       }
 
       .hw-studio-hero {
+        display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
+        gap: 0.65rem !important;
+        margin-bottom: 1rem !important;
+        width: 100% !important;
+      }
+
+      .hw-hero-title-row {
+        display: flex !important;
+        align-items: center !important;
         gap: 0.65rem !important;
         width: 100% !important;
       }
 
       .hw-hero-title {
-        font-size: 1.2rem !important;
+        font-size: 1.18rem !important;
+        line-height: 1.25 !important;
+        overflow-wrap: break-word !important;
+      }
+
+      .hw-hero-subtitle {
+        font-size: 0.84rem !important;
+        line-height: 1.4 !important;
+      }
+
+      .hw-progress-chip {
+        padding: 0.35rem 0.85rem !important;
+        font-size: 0.78rem !important;
       }
 
       .hw-script-section {
+        padding: 0.75rem 0.65rem !important;
+        border-radius: 16px !important;
+        margin-bottom: 1rem !important;
         width: 100% !important;
-        margin-top: 0.85rem !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
+
+      .hw-script-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 0.5rem !important;
+        width: 100% !important;
       }
 
       .hw-script-strip {
         display: flex !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
-        scrollbar-width: none !important;
         -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
         gap: 0.4rem !important;
-        padding: 0.35rem 0 !important;
         width: 100% !important;
+        padding: 0.2rem 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      .hw-script-strip::-webkit-scrollbar {
+        display: none !important;
       }
 
       .hw-script-pill {
         flex-shrink: 0 !important;
+        padding: 0.38rem 0.75rem !important;
         font-size: 0.8rem !important;
-        padding: 0.4rem 0.75rem !important;
+        border-radius: 10px !important;
       }
 
       .hw-modes-container {
+        display: flex !important;
         flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 0.6rem !important;
+        align-items: stretch !important;
+        gap: 0.5rem !important;
+        margin-bottom: 1rem !important;
+        padding-bottom: 0.75rem !important;
         width: 100% !important;
+        box-sizing: border-box !important;
       }
 
       .hw-mode-tabs {
         display: flex !important;
         width: 100% !important;
-        gap: 0.35rem !important;
+        gap: 0.25rem !important;
+        padding: 0.25rem !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
       }
 
       .hw-mode-tab {
         flex: 1 1 0 !important;
+        min-width: 0 !important;
         padding: 0.45rem 0.2rem !important;
         font-size: 0.76rem !important;
         text-align: center !important;
         justify-content: center !important;
+        border-radius: 10px !important;
+        white-space: nowrap !important;
       }
 
       .hw-workspace-box {
-        padding: 0.85rem 0.5rem !important;
-        border-radius: 16px !important;
+        padding: 0.85rem 0.55rem !important;
+        border-radius: 18px !important;
+        margin-bottom: 1rem !important;
         width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
       }
 
       .hw-nav-strip {
-        gap: 0.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 0.4rem !important;
+        margin-bottom: 0.85rem !important;
         width: 100% !important;
       }
 
+      .hw-nav-circle-btn {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        font-size: 0.95rem !important;
+        flex-shrink: 0 !important;
+      }
+
+      .hw-target-center {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.4rem !important;
+        min-width: 0 !important;
+      }
+
+      .hw-target-badge {
+        font-size: 0.88rem !important;
+        padding: 0.35rem 0.75rem !important;
+        white-space: nowrap !important;
+      }
+
+      .hw-tts-circle-btn {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        flex-shrink: 0 !important;
+      }
+
       .hw-canvas-wrapper {
+        position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
+        height: auto !important;
         aspect-ratio: 520 / 320 !important;
         margin: 0 auto 0.85rem !important;
         border-radius: 16px !important;
         overflow: hidden !important;
+        box-sizing: border-box !important;
+        display: block !important;
       }
 
       #hw-canvas {
@@ -5923,13 +6309,18 @@
         aspect-ratio: 520 / 320 !important;
         max-width: 100% !important;
         display: block !important;
+        box-sizing: border-box !important;
       }
 
       .hw-toolbar {
+        display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
         gap: 0.65rem !important;
         width: 100% !important;
+        box-sizing: border-box !important;
+        margin-top: 0.75rem !important;
+        padding: 0 !important;
       }
 
       .hw-colors-group,
@@ -5937,30 +6328,44 @@
       .hw-aux-actions {
         display: flex !important;
         flex-wrap: wrap !important;
+        align-items: center !important;
         justify-content: center !important;
         gap: 0.35rem !important;
         width: 100% !important;
+        box-sizing: border-box !important;
       }
 
       .hw-color-circle {
         width: 28px !important;
         height: 28px !important;
+        flex-shrink: 0 !important;
       }
 
       .hw-size-btn-pill {
         padding: 0.3rem 0.6rem !important;
         font-size: 0.76rem !important;
+        border-radius: 8px !important;
       }
 
       .hw-btn-tool {
-        padding: 0.35rem 0.65rem !important;
+        padding: 0.35rem 0.6rem !important;
         font-size: 0.76rem !important;
+        border-radius: 10px !important;
+      }
+
+      .hw-footer-cta {
+        margin-top: 0.5rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
 
       .hw-check-btn {
         width: 100% !important;
-        height: 46px !important;
-        font-size: 0.92rem !important;
+        height: 48px !important;
+        font-size: 0.95rem !important;
+        border-radius: 14px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
       }
 
       /* ─── Leagues ─── */
@@ -6598,7 +7003,7 @@
                 </div>
 
                 <!-- ════ ✨ Akshar AI Performance & Growth Advisor Card ════ -->
-                <div class="dash-card ai-growth-advisor-card" id="ai-growth-advisor-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(245, 243, 255, 0.95)); border: 1.5px solid #c7d2fe; border-radius: 24px; padding: 1.6rem 1.8rem; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08); margin-bottom: 1.5rem; position: relative; overflow: hidden;">
+                <div class="dash-card ai-growth-advisor-card" id="ai-growth-advisor-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(245, 243, 255, 0.95)); border: 1.5px solid #c7d2fe; border-radius: 24px; margin-bottom: 1.5rem; position: relative; overflow: hidden; width: 100%; box-sizing: border-box;">
                   <!-- Header with Live Pulse + Refresh -->
                   <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -6639,9 +7044,9 @@
                   </div>
 
                   <!-- Advisor Content Body -->
-                  <div id="ai-advisor-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                  <div id="ai-advisor-content" class="ai-advisor-cards-grid" style="display: grid; gap: 1rem; margin-top: 0.5rem; width: 100%; box-sizing: border-box;">
                     <!-- 1. What's Going Great -->
-                    <div style="background: #ffffff; border: 1.5px solid #dcfce7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.04);">
+                    <div style="background: #ffffff; border: 1.5px solid #dcfce7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.04); box-sizing: border-box; width: 100%;">
                       <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;">
                         <div style="width: 28px; height: 28px; border-radius: 8px; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
                           <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
@@ -6656,7 +7061,7 @@
                     </div>
 
                     <!-- 2. What Needs Focus / To Improve -->
-                    <div style="background: #ffffff; border: 1.5px solid #fef3c7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.04);">
+                    <div style="background: #ffffff; border: 1.5px solid #fef3c7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.04); box-sizing: border-box; width: 100%;">
                       <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;">
                         <div style="width: 28px; height: 28px; border-radius: 8px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
                           <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
@@ -6672,7 +7077,7 @@
                   </div>
 
                   <!-- Personalized Actionable Recommendation Banner -->
-                  <div id="ai-advisor-action-banner" style="margin-top: 1rem; background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 1.5px solid #c7d2fe; border-radius: 16px; padding: 1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                  <div id="ai-advisor-action-banner" style="margin-top: 1rem; background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 1.5px solid #c7d2fe; border-radius: 16px; padding: 1rem 1.2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; width: 100%; box-sizing: border-box;">
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
                       <i data-lucide="zap" style="width: 20px; height: 20px; color: #6366f1; flex-shrink: 0;"></i>
                       <div>
