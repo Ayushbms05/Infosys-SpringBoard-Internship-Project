@@ -8707,30 +8707,30 @@ body#page-register {
   align-items: center;
   gap: 0.55rem;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.12rem;
+  font-size: 1.22rem;
   font-weight: 900;
   color: #0f172a;
-  margin: 0 0 0.2rem 0;
+  margin: 0 0 0.25rem 0;
 }
 
 .analysis-grid .analysis-section-card .dash-card-title-icon {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
   background: #eef2ff;
   color: #6366f1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .analysis-grid .analysis-section-card .dash-card-subtitle {
-  font-size: 0.82rem;
+  font-size: 0.90rem;
   font-weight: 600;
   color: #64748b;
   margin: 0;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .analysis-card-full {
@@ -8749,28 +8749,28 @@ body#page-register {
 #section-analysis .skill-bar-item {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.35rem 0.6rem;
+  gap: 0.3rem;
+  padding: 0.45rem 0.75rem;
   border-radius: 10px;
   background: #f8fafc;
   border: 1px solid #f1f5f9;
 }
 
 #section-analysis .skill-bar-label {
-  font-size: 0.82rem;
+  font-size: 0.90rem;
   font-weight: 700;
   color: #1e293b;
 }
 
 #section-analysis .skill-bar-status-tag {
-  font-size: 0.72rem;
+  font-size: 0.80rem;
   font-weight: 700;
-  padding: 0.15rem 0.45rem;
+  padding: 0.2rem 0.55rem;
   border-radius: 6px;
 }
 
 #section-analysis .skill-bar-track {
-  height: 6px;
+  height: 7px;
   background: #e2e8f0;
   border-radius: 4px;
 }
@@ -8787,9 +8787,9 @@ body#page-register {
 }
 
 #section-analysis #accuracy-trend-chart {
-  height: 155px !important;
-  min-height: 155px;
-  max-height: 155px;
+  height: 175px !important;
+  min-height: 175px;
+  max-height: 175px;
   width: 100%;
   position: relative;
   display: flex;
@@ -8801,9 +8801,9 @@ body#page-register {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
-  padding: 0.5rem 0.85rem;
+  padding: 0.55rem 0.85rem;
   margin-top: 0.5rem;
-  font-size: 0.82rem;
+  font-size: 0.90rem;
   font-weight: 700;
   color: #475569;
   text-align: center;
@@ -8814,13 +8814,13 @@ body#page-register {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 310px !important;
+  max-width: 320px !important;
   margin: 0 auto !important;
 }
 
 #section-analysis .cal-header {
-  margin-bottom: 0.35rem;
-  font-size: 0.7rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.84rem;
 }
 
 #section-analysis .cal-grid {
@@ -8830,7 +8830,7 @@ body#page-register {
 #section-analysis .cal-cell {
   width: 32px;
   height: 32px;
-  font-size: 0.78rem;
+  font-size: 0.84rem;
 }
 
 #section-analysis .progress-items {
@@ -9146,48 +9146,41 @@ body#page-register {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   ANALYSIS PAGE — HEADER LAYOUT FIX + ASSESSMENT SNAPSHOT REDESIGN
+   ANALYSIS PAGE — ASSESSMENT SNAPSHOT REDESIGN
    ════════════════════════════════════════════════════════════════ */
 
-/* Stack title above subtitle instead of squeezing them into the same
-   row — space-between was designed for a short badge beside a title,
-   not a full sentence of subtitle text next to it. */
-.analysis-section-card .dash-card-header:has(.dash-card-subtitle) {
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.3rem;
+.analysis-assessment-snapshot-card .dash-card-header {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  text-align: left !important;
 }
 
-.analysis-section-card .dash-card-subtitle {
-  margin-top: 0;
+.analysis-assessment-snapshot-card .dash-card-title {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+.analysis-assessment-snapshot-card .dash-card-subtitle {
+  text-align: left !important;
+  margin-top: 0.2rem;
 }
 
 /* ─── Assessment Snapshot — quote-style summary ──────────────── */
 .assessment-quote-box {
   position: relative;
-  background: linear-gradient(135deg,
-      rgba(108, 99, 255, 0.06),
-      rgba(0, 212, 170, 0.05));
-  border: 1px solid rgba(108, 99, 255, 0.15);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem 1.75rem 1.5rem 3rem;
-  margin-bottom: 1.5rem;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  font-size: 0.98rem;
-}
-
-.assessment-quote-box::before {
-  content: '"';
-  position: absolute;
-  top: 0.4rem;
-  left: 1.1rem;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: var(--color-primary);
-  opacity: 0.35;
-  line-height: 1;
-  font-family: Georgia, serif;
+  background: #f8fafc;
+  border-left: 4px solid #6366f1;
+  border-radius: 0 14px 14px 0;
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 1.25rem;
+  color: #1e293b;
+  line-height: 1.6;
+  font-size: 0.92rem;
+  text-align: left;
 }
 
 /* ─── Strength / Improvement point cards ─────────────────────── */
@@ -9195,6 +9188,7 @@ body#page-register {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
+  text-align: left;
 }
 
 @media (max-width: 700px) {
@@ -9207,9 +9201,10 @@ body#page-register {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 800;
   margin-bottom: 0.75rem;
+  text-align: left;
 }
 
 .assessment-point-row {

@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap"
     rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/sw.js");
@@ -756,6 +757,55 @@
         border-top-right-radius: 16px !important;
         border-bottom-right-radius: 16px !important;
         width: 140px !important;
+      }
+
+      /* Desktop User Directory Search & Filters Toolbar */
+      .admin-controls-row {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 1.25rem !important;
+        margin-bottom: 1.25rem !important;
+        width: 100% !important;
+      }
+
+      .admin-search-filter-group {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 0.85rem !important;
+        flex: 1 !important;
+      }
+
+      .admin-search-bar-row {
+        flex: 0 1 380px !important;
+        max-width: 380px !important;
+        min-width: 260px !important;
+      }
+
+      .admin-filter-toggle-btn {
+        display: none !important;
+      }
+
+      .admin-filters-drawer {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        gap: 0.75rem !important;
+        width: auto !important;
+      }
+
+      .admin-filters-drawer .admin-sort-select {
+        width: auto !important;
+        min-width: 145px !important;
+      }
+
+      .admin-count-badge-wrap {
+        width: auto !important;
       }
     }
 
@@ -1686,10 +1736,53 @@
       min-width: 0 !important;
     }
 
+    .admin-kpi-card > div:first-child {
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      max-width: 44px !important;
+      border-radius: 14px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      flex-grow: 0 !important;
+      margin-bottom: 0.75rem !important;
+    }
+
     .admin-kpi-card:hover {
       transform: translateY(-3px) !important;
       box-shadow: 0 14px 30px -6px rgba(99, 102, 241, 0.15) !important;
       border-color: #c7d2fe !important;
+    }
+
+    .admin-header-row-flex {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      gap: 0.85rem !important;
+      margin-bottom: 1.1rem !important;
+    }
+
+    .admin-header-row-flex > div:first-child {
+      width: 44px !important;
+      height: 44px !important;
+      min-width: 44px !important;
+      max-width: 44px !important;
+      border-radius: 14px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      flex-grow: 0 !important;
+      margin-right: 0.25rem !important;
+    }
+
+    .admin-header-row-flex > div:last-child {
+      flex: 1 1 auto !important;
+      min-width: 0 !important;
+      text-align: left !important;
     }
 
     .dash-card.analysis-section-card {
@@ -2273,8 +2366,12 @@
                   </p>
                 </div>
               </div>
-              <div class="weekly-chart-container" style="margin-top: 1.25rem;">
-                <div id="admin-signup-chart" class="chart-container weekly-chart-inner"></div>
+              <div class="weekly-chart-container" style="margin-top: 1.15rem; position: relative; height: 185px; width: 100%;">
+                <canvas id="admin-signup-chart" style="width: 100%; height: 100%; max-height: 185px;"></canvas>
+              </div>
+              <div id="admin-signup-summary" style="margin-top: 0.85rem; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 0.55rem 0.95rem; font-size: 0.85rem; font-weight: 700; color: #475569; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                <span>📈 Total Signups: <strong id="admin-signup-total-count" style="color: #6366f1;">0</strong> in last 14d</span>
+                <span id="admin-signup-peak-badge" style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; padding: 0.2rem 0.65rem; border-radius: 9999px; font-size: 0.78rem; font-weight: 800;">Peak: 0 signups</span>
               </div>
             </div>
 
@@ -2688,27 +2785,30 @@
 
   <!-- ═══════════ USER DETAIL MODAL ═══════════ -->
   <div id="admin-user-modal" class="modal-overlay hidden">
-    <div class="admin-modal-card">
+    <div class="admin-modal-card" style="padding: 2.25rem 2rem 2.5rem 2rem !important; position: relative !important;">
       <button id="admin-modal-close" class="icon-btn"
-        style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: 1.5px solid #e2e8f0; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #475569; transition: all 0.2s ease;"><i
+        style="position: absolute; top: 1.25rem; right: 1.25rem; z-index: 99; background: #f1f5f9; border: 1.5px solid #e2e8f0; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #475569; transition: all 0.2s ease;"><i
           data-lucide="x" style="width: 20px; height: 20px;"></i></button>
 
       <!-- User Profile Hero Header -->
       <div class="admin-modal-header"
-        style="display: flex; align-items: center; gap: 1.25rem; padding-bottom: 1.5rem; border-bottom: 1.5px dashed #e2e8f0;">
+        style="display: flex; align-items: center; gap: 1.25rem; padding-top: 0.25rem; padding-bottom: 1.5rem; padding-right: 2.5rem; border-bottom: 1.5px dashed #e2e8f0;">
         <div class="dash-avatar" id="admin-modal-avatar"
           style="width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2rem; font-weight: 900; display: flex; align-items: center; justify-content: center; border: 3px solid #ffffff; box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35); flex-shrink: 0;">
           ?
         </div>
-        <div>
+        <div style="min-width: 0; flex: 1;">
           <h2 id="admin-modal-name"
-            style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 900; color: #0f172a; margin: 0 0 0.2rem;">
+            style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.6rem; font-weight: 900; color: #0f172a; margin: 0 0 0.2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
             User</h2>
           <p id="admin-modal-email" style="
                 margin: 0 0 0.6rem;
                 color: #64748b;
                 font-size: 0.92rem;
                 font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
               "></p>
           <span id="admin-modal-level" class="rec-card-tag beginner"
             style="background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1px solid #f59e0b; padding: 0.3rem 0.85rem; border-radius: 9999px; font-weight: 800; font-size: 0.82rem; display: inline-block;">Beginner</span>

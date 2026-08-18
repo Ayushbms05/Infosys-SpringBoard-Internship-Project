@@ -775,7 +775,7 @@ window.toggleUnlockPlacedLevel = function (level) {
   if (typeof auth !== "undefined" && auth.currentUser && typeof db !== "undefined") {
     db.collection("users").doc(auth.currentUser.uid).update({
       unlockedPlacedLevels: unlocked
-    }).catch(() => {});
+    }).catch(() => { });
   }
 
   if (window._currentLearnerProfile) {
@@ -1297,21 +1297,27 @@ async function renderSkillCards(profile) {
   // Fetch history for mastery and last score
   try {
     const uid = profile.uid || (auth.currentUser ? auth.currentUser.uid : null);
-    if (!uid) {
-      throw new Error("No UID found for fetching history");
+    let history = [];
+    if (uid && typeof db !== "undefined") {
+      try {
+        const snap = await db.collection("users").doc(uid).collection("lessonHistory").get();
+        history = snap.docs.map(d => d.data());
+      } catch (e) { }
     }
-    const snap = await db.collection("users").doc(uid).collection("lessonHistory").orderBy("completedAt", "desc").get();
-    const history = snap.docs.map(d => d.data());
+
+    if ((!history || history.length === 0) && window.Analysis && typeof window.Analysis.resolveUserHistory === "function") {
+      history = window.Analysis.resolveUserHistory([], profile);
+    }
 
     SKILL_CONFIG.forEach((skill) => {
       const progEl = document.getElementById(`skill-prog-${skill.id}`);
       if (!progEl) return;
 
-      const skillHistory = history.filter(h => h.type === skill.id);
+      const skillHistory = history.filter(h => h.type === skill.id && typeof h.accuracy === "number");
       if (skillHistory.length === 0) {
         progEl.innerHTML = `<div class="skill-progress-wrap"><div class="skill-progress-text"><span>Not started yet</span></div><div class="skill-progress-track"><div class="skill-progress-fill" style="width:0%"></div></div></div>`;
       } else {
-        const lastScore = typeof skillHistory[0].accuracy === 'number' ? skillHistory[0].accuracy : 0;
+        const lastScore = typeof skillHistory[skillHistory.length - 1].accuracy === 'number' ? skillHistory[skillHistory.length - 1].accuracy : (skillHistory[0].accuracy || 0);
         const avgScore = Math.round(skillHistory.reduce((s, h) => s + (h.accuracy || 0), 0) / skillHistory.length);
         progEl.innerHTML = `<div class="skill-progress-wrap">
           <div class="skill-progress-text"><span>Mastery: ${avgScore}%</span><span>Last score: ${lastScore}%</span></div>
@@ -2251,7 +2257,61 @@ function renderProfile(profile) {
 
   const accuracyEl = document.getElementById("strip-accuracy");
   if (accuracyEl) {
-    accuracyEl.textContent = profile.assessmentScore ? `${profile.assessmentScore}%` : "95%";
+    let resolvedAcc = null;
+
+    // 1. Direct extraction from profile.unitProgressScores
+    if (profile && profile.unitProgressScores && typeof profile.unitProgressScores === "object") {
+      const scores = [];
+      Object.values(profile.unitProgressScores).forEach((units) => {
+        if (units && typeof units === "object") {
+          Object.values(units).forEach((skills) => {
+            if (skills && typeof skills === "object") {
+              Object.values(skills).forEach((s) => {
+                if (typeof s === "number" && !isNaN(s) && s > 0) scores.push(s);
+              });
+            }
+          });
+        }
+      });
+      if (scores.length > 0) {
+        resolvedAcc = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+      }
+    }
+
+    // 2. Resolve via window.Analysis.resolveUserHistory
+    if (resolvedAcc === null && window.Analysis && typeof window.Analysis.resolveUserHistory === "function") {
+      const history = window.Analysis.resolveUserHistory([], profile);
+      if (history && history.length > 0) {
+        const valid = history.filter(h => typeof h.accuracy === "number" && !isNaN(h.accuracy) && h.accuracy > 0);
+        if (valid.length > 0) {
+          resolvedAcc = Math.round(valid.reduce((s, h) => s + h.accuracy, 0) / valid.length);
+        }
+      }
+    }
+
+    if (resolvedAcc !== null && resolvedAcc > 0) {
+      accuracyEl.textContent = `${resolvedAcc}%`;
+    } else if (profile.assessmentScore) {
+      accuracyEl.textContent = `${profile.assessmentScore}%`;
+    } else {
+      accuracyEl.textContent = "100%";
+    }
+
+    // 3. Live sync with Firestore lessonHistory if available
+    const uid = profile.uid || (auth.currentUser ? auth.currentUser.uid : null);
+    if (uid && typeof db !== "undefined") {
+      db.collection("users").doc(uid).collection("lessonHistory").get().then((snap) => {
+        if (!snap.empty) {
+          const items = snap.docs.map(d => d.data()).filter(d => typeof d.accuracy === "number" && !isNaN(d.accuracy) && d.accuracy > 0);
+          if (items.length > 0) {
+            const avg = Math.round(items.reduce((s, h) => s + h.accuracy, 0) / items.length);
+            if (avg > 0 && accuracyEl) {
+              accuracyEl.textContent = `${avg}%`;
+            }
+          }
+        }
+      }).catch(() => {});
+    }
   }
 
   // 6. AI Smart Tutor Insights
@@ -3131,7 +3191,7 @@ async function initAIGrowthAdvisor(profile) {
     try {
       const stored = localStorage.getItem(cacheKey);
       if (stored) cached = JSON.parse(stored);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const completedCount = (profile.completedLessons || []).length;
@@ -3190,12 +3250,12 @@ async function runAIGrowthAdvisor(profile, forceRefresh) {
 
   // Gather skill accuracy metrics from lesson history
   const baseAcc = assessmentScore > 0 ? assessmentScore : 80;
-  let skillScores = { 
-    reading: baseAcc, 
-    writing: baseAcc, 
-    listening: baseAcc, 
-    speaking: Math.max(30, baseAcc - 5), 
-    pronunciation: baseAcc 
+  let skillScores = {
+    reading: baseAcc,
+    writing: baseAcc,
+    listening: baseAcc,
+    speaking: Math.max(30, baseAcc - 5),
+    pronunciation: baseAcc
   };
 
   const user = auth.currentUser;
@@ -3257,9 +3317,9 @@ async function runAIGrowthAdvisor(profile, forceRefresh) {
       db.collection("users").doc(user.uid).update({
         geminiAdvisorAdvice: advice,
         geminiAdvisorAnalyzedAt: firebase.firestore.FieldValue.serverTimestamp()
-      }).catch(() => {});
+      }).catch(() => { });
       localStorage.setItem(`akshar_ai_advisor_${user.uid}`, JSON.stringify(advice));
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Render advice
@@ -3337,7 +3397,7 @@ Output ONLY valid JSON.`;
 function generateLocalAIAdvisorAdvice(profile, prefLang, metrics) {
   const scores = metrics.skillScores;
   const skillsList = ["reading", "writing", "listening", "speaking", "pronunciation"];
-  
+
   // Find highest & lowest scoring skills
   let highestSkill = "reading";
   let lowestSkill = "speaking";

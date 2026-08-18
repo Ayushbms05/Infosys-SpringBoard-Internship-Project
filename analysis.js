@@ -45,14 +45,15 @@ window.Analysis = (function () {
 
   function renderAll() {
     if (!lastProfile) return;
-    renderOverviewStats(lastHistory, lastProfile);
-    renderSkillBreakdown(lastHistory, lastProfile);
-    renderDailyPracticeTime(lastHistory, lastProfile);
-    renderAccuracyTrend(lastHistory, lastProfile);
+    const activeHistory = resolveUserHistory(lastHistory, lastProfile);
+    renderOverviewStats(activeHistory, lastProfile);
+    renderSkillBreakdown(activeHistory, lastProfile);
+    renderDailyPracticeTime(activeHistory, lastProfile);
+    renderAccuracyTrend(activeHistory, lastProfile);
     renderActivityCalendar(lastProfile);
     renderCurriculumProgress(lastProfile.curriculum);
     renderAssessmentSnapshot(lastProfile);
-    renderAIRecommendation(lastHistory, lastProfile);
+    renderAIRecommendation(activeHistory, lastProfile);
     if (window.lucide) lucide.createIcons();
   }
 
@@ -84,23 +85,27 @@ window.Analysis = (function () {
         .collection("users")
         .doc(uid)
         .collection("lessonHistory")
-        .orderBy("completedAt", "asc")
         .get();
 
-      return snap.docs.map((doc) => {
+      const items = snap.docs.map((doc) => {
         const d = doc.data();
         return {
           type: d.type || "reading",
           level: d.level || "beginner",
           unit: d.unit || "alphabets",
-          accuracy: typeof d.accuracy === "number" ? d.accuracy : 0,
+          accuracy: typeof d.accuracy === "number" ? d.accuracy : (typeof d.score === "number" ? d.score : 0),
           xpEarned: d.xpEarned || 0,
           durationSeconds:
             typeof d.durationSeconds === "number" ? d.durationSeconds : 0,
           completedAt:
-            d.completedAt && d.completedAt.toDate ? d.completedAt.toDate() : null,
+            d.completedAt && d.completedAt.toDate
+              ? d.completedAt.toDate()
+              : (d.completedAt instanceof Date ? d.completedAt : new Date()),
         };
       });
+
+      items.sort((a, b) => (a.completedAt ? a.completedAt.getTime() : 0) - (b.completedAt ? b.completedAt.getTime() : 0));
+      return items;
     } catch (err) {
       console.warn("No lesson history available yet:", err);
       return [];
@@ -183,35 +188,98 @@ window.Analysis = (function () {
   }
 
   function resolveUserHistory(history, profile) {
-    if (history && history.length > 0) return history;
+    // 1. If history from Firestore collection already has valid entries with accuracy values
+    if (Array.isArray(history) && history.length > 0) {
+      const validHistory = history.filter(h => typeof h.accuracy === "number" && !isNaN(h.accuracy) && h.accuracy > 0);
+      if (validHistory.length > 0) return validHistory;
+    }
 
-    const completedList = profile?.completedLessons || [];
-    const baseScore = profile?.assessmentScore || 67;
     const resolved = [];
 
-    completedList.forEach((lid, idx) => {
-      let skillType = "reading";
-      if (lid.includes("writing")) skillType = "writing";
-      else if (lid.includes("listening")) skillType = "listening";
-      else if (lid.includes("speaking")) skillType = "speaking";
-      else if (lid.includes("pronunciation")) skillType = "pronunciation";
-
-      resolved.push({
-        type: skillType,
-        accuracy: baseScore,
-        completedAt: new Date(Date.now() - (completedList.length - idx) * 3600000)
-      });
-    });
-
-    if (resolved.length === 0 && (profile?.assessmentScore || 0) > 0) {
-      resolved.push({
-        type: "reading",
-        accuracy: baseScore,
-        completedAt: new Date()
+    // 2. Extract from profile.unitProgressScores (Firestore profile object)
+    if (profile && profile.unitProgressScores && typeof profile.unitProgressScores === "object") {
+      Object.keys(profile.unitProgressScores).forEach((level) => {
+        const units = profile.unitProgressScores[level];
+        if (units && typeof units === "object") {
+          Object.keys(units).forEach((unitId) => {
+            const skills = units[unitId];
+            if (skills && typeof skills === "object") {
+              Object.keys(skills).forEach((skillName) => {
+                const score = skills[skillName];
+                if (typeof score === "number" && !isNaN(score) && score > 0) {
+                  resolved.push({
+                    type: skillName,
+                    level: level,
+                    unit: unitId,
+                    accuracy: Math.round(score),
+                    completedAt: new Date()
+                  });
+                }
+              });
+            }
+          });
+        }
       });
     }
 
-    return resolved;
+    // If we extracted real scores from profile.unitProgressScores, return them immediately!
+    if (resolved.length > 0) {
+      return resolved;
+    }
+
+    const localScores = (() => {
+      try {
+        return JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
+      } catch (e) {
+        return {};
+      }
+    })();
+
+    const completedList = profile?.completedLessons || [];
+
+    // 3. Extract from localStorage strictly for completedLessons
+    if (completedList.length > 0) {
+      completedList.forEach((lid, idx) => {
+        let skillType = "reading";
+        if (lid.includes("writing")) skillType = "writing";
+        else if (lid.includes("listening")) skillType = "listening";
+        else if (lid.includes("speaking")) skillType = "speaking";
+        else if (lid.includes("pronunciation")) skillType = "pronunciation";
+
+        let score = typeof localScores[lid] === "number" ? localScores[lid] : null;
+
+        if (score === null) {
+          Object.keys(localScores).forEach((k) => {
+            if (k.includes(skillType) && typeof localScores[k] === "number") {
+              score = localScores[k];
+            }
+          });
+        }
+
+        if (score !== null && score > 0) {
+          resolved.push({
+            type: skillType,
+            accuracy: Math.round(score),
+            completedAt: new Date(Date.now() - (completedList.length - idx) * 3600000)
+          });
+        }
+      });
+    }
+
+    if (resolved.length > 0) {
+      return resolved;
+    }
+
+    // 4. If no completed lessons, return assessment baseline if assessed
+    if ((profile?.assessmentScore || 0) > 0) {
+      return [{
+        type: "reading",
+        accuracy: profile.assessmentScore,
+        completedAt: new Date()
+      }];
+    }
+
+    return [];
   }
 
   // ─── Skill Breakdown ──────────────────────────────────────────
@@ -221,7 +289,7 @@ window.Analysis = (function () {
     const emptyState = document.getElementById("skill-breakdown-empty");
     if (!container) return;
 
-    const activeHistory = resolveUserHistory(history, profile);
+    const activeHistory = history && history.length ? history : resolveUserHistory(history, profile);
 
     if (!activeHistory.length) {
       container.innerHTML = "";
@@ -402,7 +470,7 @@ window.Analysis = (function () {
     if (emptyState) emptyState.classList.add("hidden");
 
     const recent = activeHistory.slice(-12);
-    
+
     let canvas = document.getElementById("accuracy-trend-canvas");
     if (!canvas) {
       container.innerHTML = '<canvas id="accuracy-trend-canvas" style="width:100%; height:100%;"></canvas>';
@@ -432,9 +500,9 @@ window.Analysis = (function () {
       if (accuracyChartInstance) {
         accuracyChartInstance.destroy();
       }
-      
+
       const ctx = canvas.getContext('2d');
-      
+
       const gradient = ctx.createLinearGradient(0, 0, 0, 180);
       gradient.addColorStop(0, 'rgba(16, 185, 129, 0.45)');
       gradient.addColorStop(1, 'rgba(99, 102, 241, 0.02)');
@@ -472,7 +540,7 @@ window.Analysis = (function () {
               padding: 10,
               displayColors: false,
               callbacks: {
-                label: function(context) {
+                label: function (context) {
                   return `Accuracy: ${context.parsed.y}%`;
                 }
               }
@@ -483,7 +551,7 @@ window.Analysis = (function () {
               beginAtZero: true,
               max: 100,
               grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
-              ticks: { color: '#64748b', font: { size: 11, weight: '700' }, callback: function(value) { return value + "%" } }
+              ticks: { color: '#64748b', font: { size: 11, weight: '700' }, callback: function (value) { return value + "%" } }
             },
             x: {
               grid: { display: false, drawBorder: false },
@@ -511,7 +579,7 @@ window.Analysis = (function () {
   function renderActivityCalendar(profile) {
     const practiceDays = profile.practiceDays || [];
     const streak = profile.streak || 0;
-    
+
     const streakBadge = document.getElementById("analysis-cal-streak-count");
     if (streakBadge) streakBadge.textContent = streak;
 
@@ -643,27 +711,27 @@ window.Analysis = (function () {
     if (profile.assessmentScore || profile.assessmentLevel) {
       const levelTag = profile.assessmentLevel || "beginner";
       const levelLabel = levelTag.charAt(0).toUpperCase() + levelTag.slice(1);
-      html += `<div style="margin-bottom:1rem; display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
-        <span style="background:linear-gradient(135deg, #6366f1, #4f46e5); color:#fff; font-size:0.8rem; font-weight:800; padding:0.3rem 0.75rem; border-radius:9999px;">Assessment Score: ${profile.assessmentScore || 0}%</span>
-        <span style="background:#eef2ff; color:#4338ca; font-size:0.8rem; font-weight:800; padding:0.3rem 0.75rem; border-radius:9999px;">Placed at: ${levelLabel} Level</span>
+      html += `<div style="margin-bottom:1.1rem; display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap; text-align:left;">
+        <span style="background:linear-gradient(135deg, #6366f1, #4f46e5); color:#fff; font-size:0.82rem; font-weight:800; padding:0.35rem 0.85rem; border-radius:9999px; display:inline-flex; align-items:center; gap:0.35rem; box-shadow:0 2px 8px rgba(99,102,241,0.25);">🎯 Assessment Score: ${profile.assessmentScore || 0}%</span>
+        <span style="background:#eef2ff; color:#4338ca; border:1px solid #c7d2fe; font-size:0.82rem; font-weight:800; padding:0.35rem 0.85rem; border-radius:9999px; display:inline-flex; align-items:center; gap:0.35rem;">⭐ Placed at: ${levelLabel} Level</span>
       </div>`;
     }
 
     if (analysis.summaryMessage) {
-      html += `<div class="assessment-quote-box" style="background:#f8fafc; border-left:4px solid #6366f1; border-radius:0 12px 12px 0; padding:0.85rem 1.15rem; font-size:0.88rem; font-weight:600; color:#334155; margin-bottom:1rem; line-height:1.5;">
+      html += `<div class="assessment-quote-box" style="background:#f8fafc; border-left:4px solid #6366f1; border-radius:0 14px 14px 0; padding:1.1rem 1.35rem; font-size:0.92rem; font-weight:600; color:#334155; margin-bottom:1.25rem; line-height:1.6; text-align:left;">
         ${analysis.summaryMessage}
       </div>`;
     }
 
     if (analysis.goodPoints && analysis.weakPoints) {
-      html += `<div class="assessment-points-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
-        <div class="assessment-points-col" style="background:#f0fdf4; border:1px solid #dcfce7; border-radius:12px; padding:0.85rem;">
-          <h4 style="color:#15803d; margin:0 0 0.45rem 0; font-size:0.86rem; font-weight:800;">🌟 Key Strengths</h4>
-          ${analysis.goodPoints.map((p) => `<div style="font-size:0.8rem; color:#166534; font-weight:600; margin-bottom:0.25rem; display:flex; align-items:flex-start; gap:0.4rem;"><span>•</span><span>${p}</span></div>`).join("")}
+      html += `<div class="assessment-points-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-bottom:0.5rem; text-align:left;">
+        <div class="assessment-points-col" style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:14px; padding:1.1rem; text-align:left;">
+          <h4 style="color:#15803d; margin:0 0 0.65rem 0; font-size:0.92rem; font-weight:800; display:flex; align-items:center; gap:0.4rem; text-align:left;">🌟 Key Strengths</h4>
+          ${analysis.goodPoints.map((p) => `<div style="font-size:0.84rem; color:#166534; font-weight:600; margin-bottom:0.45rem; display:flex; align-items:flex-start; gap:0.45rem; line-height:1.45; text-align:left;"><span style="color:#22c55e; font-weight:900;">•</span><span>${p}</span></div>`).join("")}
         </div>
-        <div class="assessment-points-col" style="background:#fef2f2; border:1px solid #fee2e2; border-radius:12px; padding:0.85rem;">
-          <h4 style="color:#b91c1c; margin:0 0 0.45rem 0; font-size:0.86rem; font-weight:800;">🎯 Focus Areas</h4>
-          ${analysis.weakPoints.map((p) => `<div style="font-size:0.8rem; color:#991b1b; font-weight:600; margin-bottom:0.25rem; display:flex; align-items:flex-start; gap:0.4rem;"><span>•</span><span>${p}</span></div>`).join("")}
+        <div class="assessment-points-col" style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:14px; padding:1.1rem; text-align:left;">
+          <h4 style="color:#b91c1c; margin:0 0 0.65rem 0; font-size:0.92rem; font-weight:800; display:flex; align-items:center; gap:0.4rem; text-align:left;">🎯 Focus Areas</h4>
+          ${analysis.weakPoints.map((p) => `<div style="font-size:0.84rem; color:#991b1b; font-weight:600; margin-bottom:0.45rem; display:flex; align-items:flex-start; gap:0.45rem; line-height:1.45; text-align:left;"><span style="color:#f43f5e; font-weight:900;">•</span><span>${p}</span></div>`).join("")}
         </div>
       </div>`;
     }
@@ -677,13 +745,41 @@ window.Analysis = (function () {
     const recTextEl = document.getElementById("analysis-ai-rec-text");
     if (!recTextEl) return;
 
-    const strongSkill = profile.geminiAnalysis?.strongCategory || "Reading";
-    const weakSkill = profile.geminiAnalysis?.weakCategory || "Speaking";
-    const score = profile.assessmentScore || 67;
+    const bySkill = groupBySkill(history);
+    let bestSkill = null;
+    let bestAvg = -1;
+    let worstSkill = null;
+    let worstAvg = 999;
 
-    recTextEl.textContent = `You are excelling in ${strongSkill} (${score}% benchmark). To achieve well-rounded literacy mastery, we recommend focusing on ${weakSkill} interactive exercises next!`;
+    Object.keys(SKILL_META).forEach(skill => {
+      const attempts = bySkill[skill] || [];
+      if (attempts.length > 0) {
+        const avg = attempts.reduce((s, a) => s + a.accuracy, 0) / attempts.length;
+        if (avg > bestAvg) {
+          bestAvg = avg;
+          bestSkill = SKILL_META[skill].label;
+        }
+        if (avg < worstAvg) {
+          worstAvg = avg;
+          worstSkill = SKILL_META[skill].label;
+        }
+      } else {
+        if (!worstSkill) worstSkill = SKILL_META[skill].label;
+      }
+    });
+
+    if (bestAvg >= 0) {
+      const bestScoreTxt = Math.round(bestAvg) + "%";
+      const targetFocus = worstSkill || "Speaking";
+      recTextEl.textContent = `Outstanding work in ${bestSkill} (${bestScoreTxt} accuracy)! To build balanced fluency across all skills, we recommend focusing on ${targetFocus} interactive exercises next.`;
+    } else {
+      const strongSkill = profile.geminiAnalysis?.strongCategory || "Reading";
+      const weakSkill = profile.geminiAnalysis?.weakCategory || "Speaking";
+      const score = profile.assessmentScore || 67;
+      recTextEl.textContent = `You are excelling in ${strongSkill} (${score}% benchmark). To achieve well-rounded literacy mastery, we recommend focusing on ${weakSkill} interactive exercises next!`;
+    }
   }
 
-  return { init, reRenderLang };
+  return { init, reRenderLang, resolveUserHistory };
 })();
 
