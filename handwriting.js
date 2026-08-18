@@ -41,9 +41,9 @@ const HW_LANGUAGES = [
 
 // ── Category Definitions ──────────────────────────────────────────
 const HW_CATEGORIES = [
-  { id: "alphabets", icon: "book-open", i18nKey: "hwAlphabets", defaultLabel: "Letters & Alphabet" },
+  { id: "alphabets", icon: "book-open", i18nKey: "hwAlphabets", defaultLabel: "Letters" },
   { id: "numbers", icon: "hash", i18nKey: "hwNumbers", defaultLabel: "Numbers" },
-  { id: "commonWords", icon: "sparkles", i18nKey: "hwWords", defaultLabel: "Common Words" }
+  { id: "commonWords", icon: "sparkles", i18nKey: "hwWords", defaultLabel: "Words" }
 ];
 
 // ── Helper to Get Active Language Translation ────────────────────
@@ -95,7 +95,7 @@ function renderHandwritingUI() {
         <div>
           <div class="hw-hero-title-row">
             <div class="hw-hero-icon">
-              <i data-lucide="edit-3" style="width: 24px; height: 24px;"></i>
+              <i data-lucide="edit-3" style="width: 22px; height: 22px;"></i>
             </div>
             <div>
               <h2 class="hw-hero-title" data-i18n="hwTitle">${getHwText("hwTitle", "Interactive Handwriting Studio")}</h2>
@@ -105,12 +105,12 @@ function renderHandwritingUI() {
         </div>
 
         <div class="hw-progress-chip">
-          <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+          <i data-lucide="sparkles" style="width: 15px; height: 15px;"></i>
           <span id="hw-progress-text">${completedCount} / ${currentItems.length} <span data-i18n="hwPracticed">${getHwText("hwPracticed", "Practiced")}</span></span>
         </div>
       </div>
 
-      <!-- 7-Language Script Selector Section -->
+      <!-- Select Practice Script (Modern Dropdown Selector) -->
       <div class="hw-script-section">
         <div class="hw-script-header">
           <div class="hw-script-title">
@@ -119,29 +119,32 @@ function renderHandwritingUI() {
           </div>
           <span class="hw-script-count">7 Languages</span>
         </div>
-        <div class="hw-script-strip">
-          ${HW_LANGUAGES.map(lang => `
-            <button class="hw-script-pill ${lang.code === hwCurrentLang ? 'active' : ''}" 
-                    data-lang="${lang.code}">
-              <span>${lang.nativeLabel}</span>
-              ${lang.code !== 'en' ? `<span class="hw-script-sub">(${lang.label})</span>` : ''}
-            </button>
-          `).join('')}
+        <div class="hw-script-dropdown-wrap">
+          <select id="hw-lang-select" class="hw-lang-select" aria-label="Select Practice Script">
+            ${HW_LANGUAGES.map(lang => `
+              <option value="${lang.code}" ${lang.code === hwCurrentLang ? 'selected' : ''}>
+                ${lang.nativeLabel} ${lang.code !== 'en' ? `(${lang.label})` : ''}
+              </option>
+            `).join('')}
+          </select>
+          <div class="hw-select-arrow">
+            <i data-lucide="chevron-down" style="width: 16px; height: 16px;"></i>
+          </div>
         </div>
       </div>
 
-      <!-- Mode Tabs (Alphabets, Numbers, Words) -->
+      <!-- Mode Tabs (Letters, Numbers, Words) -->
       <div class="hw-modes-container">
         <div class="hw-mode-tabs">
           ${HW_CATEGORIES.map(cat => `
             <button class="hw-mode-tab ${cat.id === hwCurrentCategory ? 'active' : ''}" 
                     data-cat="${cat.id}">
-              <i data-lucide="${cat.icon}" style="width: 16px; height: 16px;"></i>
-              <span data-i18n="${cat.i18nKey}">${getHwText(cat.i18nKey, cat.defaultLabel)}</span>
+              <i data-lucide="${cat.icon}" style="width: 14px; height: 14px; flex-shrink: 0;"></i>
+              <span>${getHwText(cat.i18nKey, cat.defaultLabel)}</span>
             </button>
           `).join('')}
         </div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; width: 100%; text-align: center; overflow-wrap: break-word; margin-top: 0.25rem;">
+        <div class="hw-stroke-hint-row">
           <span data-i18n="hwStrokeHint">${getHwText("hwStrokeHint", "Follow the dotted guidelines with your finger or stylus")}</span>
         </div>
       </div>
@@ -152,7 +155,7 @@ function renderHandwritingUI() {
         <!-- Target Character Navigator -->
         <div class="hw-nav-strip">
           <button id="hw-prev-btn" class="hw-nav-circle-btn" ${isFirstItem ? 'disabled' : ''} title="${getHwText('hwPrevChar', 'Previous')}">
-            <i data-lucide="chevron-left" style="width: 22px; height: 22px;"></i>
+            <i data-lucide="chevron-left" style="width: 20px; height: 20px;"></i>
           </button>
 
           <div class="hw-target-center">
@@ -160,55 +163,44 @@ function renderHandwritingUI() {
               <span data-i18n="hwItemOf">${getHwText("hwItemOf", "Character")}</span> ${hwCurrentIndex + 1} / ${currentItems.length}
             </div>
             <button id="hw-audio-btn" class="hw-tts-circle-btn" title="${getHwText('hwListen', 'Listen & Pronounce')}">
-              <i data-lucide="volume-2" style="width: 20px; height: 20px;"></i>
+              <i data-lucide="volume-2" style="width: 18px; height: 18px;"></i>
             </button>
           </div>
 
           <button id="hw-next-btn" class="hw-nav-circle-btn" ${isLastItem ? 'disabled' : ''} title="${getHwText('hwNextChar', 'Next')}">
-            <i data-lucide="chevron-right" style="width: 22px; height: 22px;"></i>
+            <i data-lucide="chevron-right" style="width: 20px; height: 20px;"></i>
           </button>
         </div>
 
-        <!-- Tracing Canvas -->
+        <!-- Tracing Canvas (Square 1:1) -->
         <div class="hw-canvas-wrapper">
-          <canvas id="hw-canvas" width="520" height="320"></canvas>
+          <canvas id="hw-canvas" width="360" height="360"></canvas>
         </div>
 
-        <!-- Toolbar (Colors, Sizes, Clear, Undo, Guidelines) -->
+        <!-- Toolbar (Thickness & Auxiliary Tools) -->
         <div class="hw-toolbar">
           
-          <!-- Inks -->
-          <div class="hw-colors-group">
-            <span style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-right: 0.25rem;" data-i18n="hwColor">${getHwText("hwColor", "Ink Color")}:</span>
-            <button class="hw-color-circle active" data-color="#6366f1" style="background: #6366f1;" title="Indigo"></button>
-            <button class="hw-color-circle" data-color="#10b981" style="background: #10b981;" title="Emerald"></button>
-            <button class="hw-color-circle" data-color="#f43f5e" style="background: #f43f5e;" title="Crimson"></button>
-            <button class="hw-color-circle" data-color="#f59e0b" style="background: #f59e0b;" title="Amber"></button>
-            <button class="hw-color-circle" data-color="#8b5cf6" style="background: #8b5cf6;" title="Violet"></button>
-            <button class="hw-color-circle" data-color="#0f172a" style="background: #0f172a;" title="Charcoal"></button>
-          </div>
-
-          <!-- Sizes -->
+          <!-- Brush Sizes -->
           <div class="hw-sizes-group">
-            <span style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-right: 0.15rem; margin-left: 0.25rem;" data-i18n="hwSize">${getHwText("hwSize", "Brush Size")}:</span>
+            <span style="font-size: 0.74rem; font-weight: 800; color: #64748b; margin-right: 0.15rem;" data-i18n="hwSize">${getHwText("hwSize", "Thickness")}:</span>
             <button class="hw-size-btn-pill" data-size="4" data-i18n="hwThin">${getHwText("hwThin", "Fine")}</button>
-            <button class="hw-size-btn-pill active" data-size="8" data-i18n="hwMedium">${getHwText("hwMedium", "Medium")}</button>
+            <button class="hw-size-btn-pill active" data-size="8" data-i18n="hwMedium">${getHwText("hwMedium", "Med")}</button>
             <button class="hw-size-btn-pill" data-size="14" data-i18n="hwThick">${getHwText("hwThick", "Bold")}</button>
           </div>
 
-          <!-- Auxiliary Tools (Undo, Guide Toggle, Clear) -->
+          <!-- Auxiliary Tools (Undo, Guide, Clear) -->
           <div class="hw-aux-actions">
             <button id="hw-undo-btn" class="hw-btn-tool" title="Undo Last Stroke">
-              <i data-lucide="rotate-ccw" style="width: 14px; height: 14px;"></i>
+              <i data-lucide="rotate-ccw" style="width: 13px; height: 13px;"></i>
               <span>Undo</span>
             </button>
             <button id="hw-guide-btn" class="hw-btn-tool" title="Toggle Guidelines">
-              <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
-              <span data-i18n="hwGuidelineMode">${getHwText("hwGuidelineMode", "Dotted Guide")}</span>
+              <i data-lucide="eye" style="width: 13px; height: 13px;"></i>
+              <span data-i18n="hwGuidelineMode">${getHwText("hwGuidelineMode", "Guide")}</span>
             </button>
-            <button id="hw-clear-btn" class="hw-btn-tool" style="color: #ef4444; border-color: #fecaca;" title="Clear Canvas">
-              <i data-lucide="trash-2" style="width: 14px; height: 14px;"></i>
-              <span data-i18n="hwClear">${getHwText("hwClear", "Clear Canvas")}</span>
+            <button id="hw-clear-btn" class="hw-btn-tool hw-clear-tool" title="Clear Canvas">
+              <i data-lucide="trash-2" style="width: 13px; height: 13px;"></i>
+              <span data-i18n="hwClear">${getHwText("hwClear", "Clear")}</span>
             </button>
           </div>
 
@@ -220,7 +212,7 @@ function renderHandwritingUI() {
       <div class="hw-footer-cta">
         <div id="hw-feedback-area" class="hidden hw-feedback-banner"></div>
         <button id="hw-done-btn" class="hw-check-btn">
-          <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+          <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
           <span data-i18n="hwCheck">${getHwText("hwCheck", "Check & Earn XP ⚡")}</span>
         </button>
       </div>
@@ -241,14 +233,15 @@ function setupTabEvents() {
   const container = document.getElementById("section-handwriting");
   if (!container) return;
 
-  // 1. Script selector pills
-  container.querySelectorAll(".hw-script-pill").forEach(pill => {
-    pill.addEventListener("click", () => {
-      hwCurrentLang  = pill.dataset.lang;
+  // 1. Script selector dropdown
+  const langSelect = document.getElementById("hw-lang-select");
+  if (langSelect) {
+    langSelect.addEventListener("change", (e) => {
+      hwCurrentLang  = e.target.value;
       hwCurrentIndex = 0;
       renderHandwritingUI();
     });
-  });
+  }
 
   // 2. Category switches
   container.querySelectorAll(".hw-mode-tab").forEach(tab => {
@@ -325,16 +318,7 @@ function setupTabEvents() {
     });
   }
 
-  // 8. Ink Color Picker
-  container.querySelectorAll(".hw-color-circle").forEach(btn => {
-    btn.addEventListener("click", () => {
-      hwPenColor = btn.dataset.color;
-      container.querySelectorAll(".hw-color-circle").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-    });
-  });
-
-  // 9. Brush Size Picker
+  // 8. Brush Size Picker
   container.querySelectorAll(".hw-size-btn-pill").forEach(btn => {
     btn.addEventListener("click", () => {
       hwPenWidth = parseInt(btn.dataset.size, 10);
@@ -343,7 +327,7 @@ function setupTabEvents() {
     });
   });
 
-  // 10. Check & Submit Practice
+  // 9. Check & Submit Practice
   const doneBtn = document.getElementById("hw-done-btn");
   if (doneBtn) {
     doneBtn.addEventListener("click", handlePracticeDone);
@@ -358,8 +342,8 @@ function setupCanvasEvents() {
 
   // Handle High-DPI Display Sharpness
   const dpr = window.devicePixelRatio || 1;
-  const displayWidth = 520;
-  const displayHeight = 320;
+  const displayWidth = 360;
+  const displayHeight = 360;
   
   hwCanvas.width = displayWidth * dpr;
   hwCanvas.height = displayHeight * dpr;
@@ -403,8 +387,8 @@ function setupCanvasEvents() {
 
 function getCanvasCoordinates(e) {
   const rect = hwCanvas.getBoundingClientRect();
-  const displayWidth = 520;
-  const displayHeight = 320;
+  const displayWidth = 360;
+  const displayHeight = 360;
   return {
     x: ((e.clientX - rect.left) / rect.width) * displayWidth,
     y: ((e.clientY - rect.top) / rect.height) * displayHeight
@@ -477,8 +461,8 @@ function stopDrawing() {
 function redrawCanvasGuide() {
   if (!hwCanvas || !hwCtx) return;
 
-  const displayWidth = 520;
-  const displayHeight = 320;
+  const displayWidth = 360;
+  const displayHeight = 360;
 
   // Clear canvas
   hwCtx.clearRect(0, 0, displayWidth, displayHeight);
@@ -499,20 +483,20 @@ function redrawCanvasGuide() {
 
     // Top guide line
     hwCtx.beginPath();
-    hwCtx.moveTo(25, 65);
-    hwCtx.lineTo(displayWidth - 25, 65);
+    hwCtx.moveTo(20, 75);
+    hwCtx.lineTo(displayWidth - 20, 75);
     hwCtx.stroke();
 
     // Middle horizontal guideline
     hwCtx.beginPath();
-    hwCtx.moveTo(25, displayHeight / 2);
-    hwCtx.lineTo(displayWidth - 25, displayHeight / 2);
+    hwCtx.moveTo(20, displayHeight / 2);
+    hwCtx.lineTo(displayWidth - 20, displayHeight / 2);
     hwCtx.stroke();
 
     // Baseline guide line
     hwCtx.beginPath();
-    hwCtx.moveTo(25, displayHeight - 65);
-    hwCtx.lineTo(displayWidth - 25, displayHeight - 65);
+    hwCtx.moveTo(20, displayHeight - 75);
+    hwCtx.lineTo(displayWidth - 20, displayHeight - 75);
     hwCtx.stroke();
 
     hwCtx.setLineDash([]); // Reset dash
@@ -523,9 +507,10 @@ function redrawCanvasGuide() {
     hwCtx.textAlign    = "center";
     hwCtx.textBaseline = "middle";
 
-    let fontSize = 165;
-    if (text.length > 3) fontSize = 88;
-    if (text.length > 6) fontSize = 62;
+    let fontSize = 150;
+    if (text.length > 2) fontSize = 100;
+    if (text.length > 4) fontSize = 70;
+    if (text.length > 7) fontSize = 48;
 
     hwCtx.font = `bold ${fontSize}px 'Plus Jakarta Sans', sans-serif`;
     hwCtx.fillText(text, displayWidth / 2, displayHeight / 2 + 5);
@@ -572,7 +557,7 @@ function resetHwButton() {
     doneBtn.style.background = "linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)";
     doneBtn.style.boxShadow = "0 10px 24px rgba(99, 102, 241, 0.35)";
     doneBtn.innerHTML = `
-      <i data-lucide="check-circle" style="width: 20px; height: 20px;"></i>
+      <i data-lucide="check-circle" style="width: 18px; height: 18px;"></i>
       <span data-i18n="hwCheck">${getHwText("hwCheck", "Check & Earn XP ⚡")}</span>
     `;
     if (typeof lucide !== "undefined") lucide.createIcons();
@@ -612,8 +597,8 @@ function evaluateHandwritingCanvas(targetText) {
     return { success: false, score: 0, reason: "empty" };
   }
 
-  const width = 520;
-  const height = 320;
+  const width = 360;
+  const height = 360;
 
   // 1. Render target guide text on offscreen canvas
   const guideCanvas = document.createElement("canvas");
@@ -628,9 +613,10 @@ function evaluateHandwritingCanvas(targetText) {
   gCtx.textAlign = "center";
   gCtx.textBaseline = "middle";
 
-  let fontSize = 165;
-  if (targetText.length > 3) fontSize = 88;
-  if (targetText.length > 6) fontSize = 62;
+  let fontSize = 150;
+  if (targetText.length > 2) fontSize = 100;
+  if (targetText.length > 4) fontSize = 70;
+  if (targetText.length > 7) fontSize = 48;
 
   gCtx.font = `bold ${fontSize}px 'Plus Jakarta Sans', sans-serif`;
   gCtx.fillText(targetText, width / 2, height / 2 + 5);
@@ -638,7 +624,7 @@ function evaluateHandwritingCanvas(targetText) {
   const guideData = gCtx.getImageData(0, 0, width, height).data;
 
   // 2. Check user stroke points against ground truth guideData
-  const radius = 24; // 24px tolerance radius around target text strokes
+  const radius = 22; // 22px tolerance radius around target text strokes
   let hitCount = 0;
 
   for (let i = 0; i < hwStrokePoints.length; i++) {

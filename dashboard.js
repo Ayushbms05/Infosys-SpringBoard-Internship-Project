@@ -2983,14 +2983,14 @@ function initLeaderboard(profile) {
         // 2nd Place (Silver)
         if (second) {
           podiumHtml += `
-            <div style="flex: 1; min-width: 95px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 20px; padding: 1.15rem 0.5rem 1rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06); transform: translateY(0); order: 1; box-sizing: border-box;">
-              <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">🥈</div>
-              <div style="width: 44px; height: 44px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 2.5px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
+            <div class="podium-card podium-silver">
+              <div class="podium-crown">🥈</div>
+              <div class="podium-avatar podium-avatar-silver">
                 ${second.initial}
               </div>
-              <div style="font-weight: 800; font-size: 0.88rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
-              <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 900; font-size: 0.78rem; color: #475569; display: inline-flex; align-items: center; gap: 0.2rem; border: 1px solid #e2e8f0;">
-                ⚡ ${second.xp} XP
+              <div class="podium-name">${second.name}</div>
+              <div class="podium-xp-pill podium-xp-silver">
+                ⚡ ${second.xp}
               </div>
             </div>
           `;
@@ -2998,14 +2998,14 @@ function initLeaderboard(profile) {
 
         // 1st Place (Gold Crown)
         podiumHtml += `
-          <div style="flex: 1.1; min-width: 105px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 22px; padding: 1.35rem 0.55rem 1.15rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); order: 2; z-index: 2; box-sizing: border-box;">
-            <div style="font-size: 1.75rem; margin-bottom: 0.15rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
-            <div style="width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 3px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
+          <div class="podium-card podium-gold">
+            <div class="podium-crown">👑</div>
+            <div class="podium-avatar podium-avatar-gold">
               ${first.initial}
             </div>
-            <div style="font-weight: 900; font-size: 0.95rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
-            <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.25rem 0.65rem; border-radius: 9999px; font-weight: 900; font-size: 0.82rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.25rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
-              ⚡ ${first.xp} XP
+            <div class="podium-name">${first.name}</div>
+            <div class="podium-xp-pill podium-xp-gold">
+              ⚡ ${first.xp}
             </div>
           </div>
         `;
@@ -3013,14 +3013,14 @@ function initLeaderboard(profile) {
         // 3rd Place (Bronze)
         if (third) {
           podiumHtml += `
-            <div style="flex: 1; min-width: 95px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 20px; padding: 1.15rem 0.5rem 1rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1); transform: translateY(0); order: 3; box-sizing: border-box;">
-              <div style="font-size: 1.35rem; margin-bottom: 0.2rem;">🥉</div>
-              <div style="width: 44px; height: 44px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.15rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.4rem; border: 2.5px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
+            <div class="podium-card podium-bronze">
+              <div class="podium-crown">🥉</div>
+              <div class="podium-avatar podium-avatar-bronze">
                 ${third.initial}
               </div>
-              <div style="font-weight: 800; font-size: 0.88rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
-              <div style="margin-top: 0.35rem; background: #ffffff; padding: 0.2rem 0.55rem; border-radius: 9999px; font-weight: 900; font-size: 0.78rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.2rem; border: 1px solid #fed7aa;">
-                ⚡ ${third.xp} XP
+              <div class="podium-name">${third.name}</div>
+              <div class="podium-xp-pill podium-xp-bronze">
+                ⚡ ${third.xp}
               </div>
             </div>
           `;
@@ -3038,58 +3038,53 @@ function initLeaderboard(profile) {
         const isCurrentUser = user && u.uid === user.uid;
 
         let rankBadge = `#${rank}`;
-        let rankStyle = "background: #f1f5f9; color: #64748b;";
-        let rowBackground = "background: #ffffff; border: 1.5px solid #e2e8f0;";
+        let rankClass = "lb-rank-default";
 
         if (rank === 1) {
           rankBadge = "👑 1";
-          rankStyle = "background: linear-gradient(135deg, #fffbeb, #fef3c7); color: #854d0e; border: 1.5px solid #f59e0b; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);";
+          rankClass = "lb-rank-gold";
         } else if (rank === 2) {
           rankBadge = "🥈 2";
-          rankStyle = "background: linear-gradient(135deg, #f8fafc, #f1f5f9); color: #334155; border: 1.5px solid #94a3b8;";
+          rankClass = "lb-rank-silver";
         } else if (rank === 3) {
           rankBadge = "🥉 3";
-          rankStyle = "background: linear-gradient(135deg, #fff7ed, #ffedd5); color: #9a3412; border: 1.5px solid #fdba74;";
-        }
-
-        if (isCurrentUser) {
-          rowBackground = "background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08)); border: 2px solid #6366f1; box-shadow: 0 8px 24px -5px rgba(99,102,241,0.2);";
+          rankClass = "lb-rank-bronze";
         }
 
         html += `
-          <tr style="${rowBackground} border-radius: 16px; transition: transform 0.2s ease;">
-            <td style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
-              <span style="${rankStyle} font-size: 0.9rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 9999px; display: inline-block; min-width: 42px; text-align: center;">${rankBadge}</span>
+          <tr class="lb-row ${isCurrentUser ? 'lb-row-current' : ''}">
+            <td class="lb-td-rank">
+              <span class="lb-rank-badge ${rankClass}">${rankBadge}</span>
             </td>
-            <td style="padding: 0.9rem 1rem;">
-              <div style="display: flex; align-items: center; gap: 0.85rem;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+            <td class="lb-td-name">
+              <div class="lb-user-cell">
+                <div class="lb-user-avatar">
                   ${u.initial}
                 </div>
-                <div>
-                  <div style="font-weight: 800; font-size: 1rem; color: #0f172a; display: flex; align-items: center; gap: 0.4rem;">
+                <div class="lb-user-name-wrap">
+                  <div class="lb-user-name">
                     <span>${u.name}</span>
-                    ${isCurrentUser ? `<span style="background: #6366f1; color: white; padding: 0.12rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;">${youLabel}</span>` : ""}
+                    ${isCurrentUser ? `<span class="lb-you-tag">${youLabel}</span>` : ""}
                   </div>
                 </div>
               </div>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: center;">
-              <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
-                <i data-lucide="flame" style="width: 14px; height: 14px; fill: #ea580c;"></i>
+            <td class="lb-td-streak">
+              <span class="lb-pill-streak">
+                <i data-lucide="flame" class="lb-icon-flame"></i>
                 <span>${u.streak}d</span>
               </span>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: center;">
-              <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
-                <i data-lucide="coins" style="width: 14px; height: 14px; fill: #eab308;"></i>
+            <td class="lb-td-coins">
+              <span class="lb-pill-coins">
+                <i data-lucide="coins" class="lb-icon-coins"></i>
                 <span>${u.coins}</span>
               </span>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
-              <span style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.3rem;">
-                <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
-                <span>${u.xp} XP</span>
+            <td class="lb-td-xp">
+              <span class="lb-xp-cell">
+                <i data-lucide="zap" class="lb-icon-zap"></i>
+                <span>${u.xp}</span>
               </span>
             </td>
           </tr>

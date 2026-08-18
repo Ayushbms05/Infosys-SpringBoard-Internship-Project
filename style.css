@@ -7262,9 +7262,12 @@ body.sidebar-collapsed .dash-top-navbar .dash-nav-item .sidebar-nav-label {
     position: static;
   }
 
-  /* Hide Word of the Day, Daily Quests, etc. on non-Learn tabs on mobile */
+}
+
+/* Hide Word of the Day, Daily Quests, etc. on non-Learn tabs on mobile */
+@media (max-width: 899px) {
   body[data-active-section]:not([data-active-section="learn"]) .dash-side-col {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -11599,35 +11602,53 @@ body#page-register {
   }
 
   /* Leaderboard Podium & Table */
-  #leaderboard-podium {
+  #leaderboard-podium,
+  .leaderboard-podium {
     display: flex !important;
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: flex-end !important;
-    gap: 0.4rem !important;
+    gap: clamp(0.25rem, 1.2vw, 0.45rem) !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.15rem !important;
   }
 
-  #leaderboard-podium>div {
+  #leaderboard-podium > div,
+  .podium-card {
     flex: 1 1 0px !important;
     min-width: 0 !important;
-    padding: 0.9rem 0.35rem 0.75rem !important;
-    border-radius: 16px !important;
+    max-width: 32.5% !important;
+    padding: 0.65rem 0.2rem 0.55rem !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .podium-gold {
+    flex: 1.08 1 0px !important;
+    max-width: 35% !important;
+    padding: 0.85rem 0.25rem 0.65rem !important;
   }
 
   .leaderboard-table-wrap {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     width: 100% !important;
+    max-width: 100% !important;
     box-sizing: border-box !important;
+  }
+
+  .leaderboard-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    border-spacing: 0 0.35rem !important;
   }
 
   .leaderboard-table th,
   .leaderboard-table td {
-    padding: 0.55rem 0.4rem !important;
-    font-size: 0.78rem !important;
+    padding: 0.45rem 0.25rem !important;
+    font-size: 0.72rem !important;
   }
 
   /* Analysis Stats Row */

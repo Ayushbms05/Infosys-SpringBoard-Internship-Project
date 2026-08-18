@@ -228,10 +228,10 @@ async function renderLeaguesUI() {
 
   // Render full gamified container
   let html = `
-    <div class="dash-card leagues-card" style="max-width: 960px; margin: 0 auto; box-sizing: border-box; width: 100%;">
+    <div class="leagues-container" style="width: 100%; max-width: 100%; box-sizing: border-box; min-width: 0;">
       
       <!-- ═══ 1. LEAGUE HERO CARD ═══ -->
-      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; color: #ffffff; position: relative; overflow: hidden;">
+      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; color: #ffffff; position: relative; overflow: hidden; border-radius: 24px; padding: clamp(1.15rem, 2.5vw, 1.75rem); box-shadow: 0 12px 30px -8px rgba(15,23,42,0.12); margin-bottom: 1.5rem; width: 100%; box-sizing: border-box;">
         
         <!-- Ambient Glow Orb -->
         <div style="position: absolute; right: -40px; top: -40px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
@@ -284,17 +284,17 @@ async function renderLeaguesUI() {
       </div>
 
       <!-- ═══ 2. TIER PROGRESSION ROADMAP ═══ -->
-      <div style="margin-bottom: 2.25rem;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem;">
+      <div class="dash-card leagues-progression-card" style="border-radius: 24px; padding: clamp(1rem, 2vw, 1.5rem); margin-bottom: 1.5rem; width: 100%; box-sizing: border-box;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
           <span style="font-size: 0.82rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.6px; color: #64748b;">
             ${lTr("leagueProgressionTiers")}
           </span>
-          <span style="font-size: 0.82rem; font-weight: 700; color: #6366f1;">
+          <span style="font-size: 0.82rem; font-weight: 800; color: #6366f1;">
             Top 5: ${lTr("promotionZone")} ➔
           </span>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem;">
           ${LEAGUE_TIERS.map(t => {
             const isCurrent = t.id === currentTierId;
             const isPassed = t.tierNumber < tierInfo.tierNumber;
@@ -314,33 +314,33 @@ async function renderLeaguesUI() {
 
       <!-- ═══ 3. TOP 3 PERFORMERS PODIUM ═══ -->
       ${membersList.length >= 1 ? `
-        <div style="margin-bottom: 2.5rem; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); border: 1.5px solid #e2e8f0; border-radius: 24px; padding: 1.75rem 1.25rem 1.25rem;">
+        <div class="dash-card leagues-podium-card" style="border-radius: 24px; padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem); margin-bottom: 1.5rem; width: 100%; box-sizing: border-box;">
           <div style="text-align: center; margin-bottom: 1.5rem;">
             <div style="display: inline-flex; align-items: center; gap: 0.4rem; background: #fffbeb; border: 1px solid #fef3c7; color: #b45309; font-size: 0.76rem; font-weight: 900; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 9999px;">
               <i data-lucide="trophy" style="width: 14px; height: 14px;"></i>
               <span>${lTr("leaguePodiumTitle")}</span>
             </div>
-            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.35rem; font-weight: 900; color: #0f172a; margin: 0.35rem 0 0;">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.15rem, 2.5vw, 1.4rem); font-weight: 900; color: #0f172a; margin: 0.35rem 0 0;">
               ${lTr("cohortLeaderboardStage")}
             </h3>
           </div>
 
-          <div style="display: flex; align-items: flex-end; justify-content: center; gap: 1rem; max-width: 580px; margin: 0 auto;">
+          <div style="display: flex; align-items: flex-end; justify-content: center; gap: clamp(0.4rem, 1.5vw, 1rem); width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box;">
             
             <!-- 2nd Place (Silver) -->
             ${secondPlace ? `
-              <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; min-width: 0;">
                 <div style="font-size: 1.3rem; margin-bottom: -4px;">🥈</div>
-                <div style="width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #94a3b8, #64748b); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; border: 3px solid #ffffff; box-shadow: 0 8px 18px rgba(148, 163, 184, 0.4);">
+                <div style="width: clamp(40px, 8vw, 52px); height: clamp(40px, 8vw, 52px); border-radius: 50%; background: linear-gradient(135deg, #94a3b8, #64748b); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1rem, 2vw, 1.3rem); border: 3px solid #ffffff; box-shadow: 0 8px 18px rgba(148, 163, 184, 0.4); flex-shrink: 0;">
                   ${secondPlace.avatar}
                 </div>
-                <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin: 0.35rem 0 0.15rem; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <div style="font-weight: 800; font-size: clamp(0.75rem, 1.8vw, 0.85rem); color: #1e293b; margin: 0.35rem 0 0.15rem; width: 100%; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                   ${secondPlace.displayName}
                 </div>
-                <div style="font-size: 0.75rem; font-weight: 900; color: #6366f1;">
+                <div style="font-size: clamp(0.7rem, 1.6vw, 0.75rem); font-weight: 900; color: #6366f1;">
                   ${secondPlace.weeklyLeagueXP} XP
                 </div>
-                <div style="width: 100%; height: 90px; background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: 16px 16px 0 0; margin-top: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; color: #475569; box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);">
+                <div style="width: 100%; height: clamp(65px, 12vw, 90px); background: linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%); border-radius: 16px 16px 0 0; margin-top: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: #475569; box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);">
                   2
                 </div>
               </div>
@@ -348,38 +348,38 @@ async function renderLeaguesUI() {
 
             <!-- 1st Place (Gold Champion) -->
             ${firstPlace ? `
-              <div style="flex: 1.2; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              <div style="flex: 1.2; text-align: center; display: flex; flex-direction: column; align-items: center; min-width: 0;">
                 <div style="font-size: 1.8rem; margin-bottom: -6px; animation: bounce 2s infinite;">👑</div>
-                <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.6rem; border: 3px solid #fef3c7; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45);">
+                <div style="width: clamp(48px, 10vw, 64px); height: clamp(48px, 10vw, 64px); border-radius: 50%; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1.2rem, 2.5vw, 1.6rem); border: 3px solid #fef3c7; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45); flex-shrink: 0;">
                   ${firstPlace.avatar}
                 </div>
-                <div style="font-weight: 900; font-size: 0.95rem; color: #0f172a; margin: 0.4rem 0 0.15rem; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <div style="font-weight: 900; font-size: clamp(0.8rem, 2vw, 0.95rem); color: #0f172a; margin: 0.4rem 0 0.15rem; width: 100%; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                   ${firstPlace.displayName}
                 </div>
-                <div style="font-size: 0.82rem; font-weight: 900; color: #d97706; background: #fef3c7; padding: 0.15rem 0.6rem; border-radius: 9999px; border: 1px solid #fde68a;">
+                <div style="font-size: clamp(0.72rem, 1.7vw, 0.82rem); font-weight: 900; color: #d97706; background: #fef3c7; padding: 0.15rem 0.6rem; border-radius: 9999px; border: 1px solid #fde68a;">
                   ⚡ ${firstPlace.weeklyLeagueXP} XP
                 </div>
-                <div style="width: 100%; height: 125px; background: linear-gradient(180deg, #fef08a 0%, #facc15 100%); border-radius: 20px 20px 0 0; margin-top: 0.65rem; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; font-size: 1.8rem; color: #854d0e; box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 8px 20px rgba(250, 204, 21, 0.3);">
+                <div style="width: 100%; height: clamp(90px, 16vw, 125px); background: linear-gradient(180deg, #fef08a 0%, #facc15 100%); border-radius: 20px 20px 0 0; margin-top: 0.65rem; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1.3rem, 3vw, 1.8rem); color: #854d0e; box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 8px 20px rgba(250, 204, 21, 0.3);">
                   <span>1</span>
-                  <span style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: #a16207; letter-spacing: 0.5px;">${lTr("leaderTitle")}</span>
+                  <span style="font-size: clamp(0.62rem, 1.4vw, 0.72rem); font-weight: 800; text-transform: uppercase; color: #a16207; letter-spacing: 0.5px;">${lTr("leaderTitle")}</span>
                 </div>
               </div>
             ` : ''}
 
             <!-- 3rd Place (Bronze) -->
             ${thirdPlace ? `
-              <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center;">
+              <div style="flex: 1; text-align: center; display: flex; flex-direction: column; align-items: center; min-width: 0;">
                 <div style="font-size: 1.3rem; margin-bottom: -4px;">🥉</div>
-                <div style="width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #b45309, #78350f); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.3rem; border: 3px solid #ffffff; box-shadow: 0 8px 18px rgba(180, 83, 9, 0.35);">
+                <div style="width: clamp(40px, 8vw, 52px); height: clamp(40px, 8vw, 52px); border-radius: 50%; background: linear-gradient(135deg, #b45309, #78350f); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1rem, 2vw, 1.3rem); border: 3px solid #ffffff; box-shadow: 0 8px 18px rgba(180, 83, 9, 0.35); flex-shrink: 0;">
                   ${thirdPlace.avatar}
                 </div>
-                <div style="font-weight: 800; font-size: 0.85rem; color: #1e293b; margin: 0.35rem 0 0.15rem; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                <div style="font-weight: 800; font-size: clamp(0.75rem, 1.8vw, 0.85rem); color: #1e293b; margin: 0.35rem 0 0.15rem; width: 100%; max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                   ${thirdPlace.displayName}
                 </div>
-                <div style="font-size: 0.75rem; font-weight: 900; color: #6366f1;">
+                <div style="font-size: clamp(0.7rem, 1.6vw, 0.75rem); font-weight: 900; color: #6366f1;">
                   ${thirdPlace.weeklyLeagueXP} XP
                 </div>
-                <div style="width: 100%; height: 70px; background: linear-gradient(180deg, #fed7aa 0%, #fdba74 100%); border-radius: 16px 16px 0 0; margin-top: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.4rem; color: #7c2d12; box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);">
+                <div style="width: 100%; height: clamp(55px, 10vw, 70px); background: linear-gradient(180deg, #fed7aa 0%, #fdba74 100%); border-radius: 16px 16px 0 0; margin-top: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: clamp(1.1rem, 2.5vw, 1.4rem); color: #7c2d12; box-shadow: inset 0 2px 4px rgba(255,255,255,0.8);">
                   3
                 </div>
               </div>
@@ -390,10 +390,10 @@ async function renderLeaguesUI() {
       ` : ''}
 
       <!-- ═══ 4. FULL GROUP STANDINGS ROSTER ═══ -->
-      <div>
+      <div class="dash-card leagues-standings-card" style="border-radius: 24px; padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(0.75rem, 2vw, 1.25rem); width: 100%; box-sizing: border-box;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.5rem;">
           <div>
-            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 900; color: #0f172a; margin: 0;">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.1rem, 2.2vw, 1.25rem); font-weight: 900; color: #0f172a; margin: 0;">
               ${lTr("groupStandings")} (${membersList.length} Learners)
             </h3>
             <p style="margin: 0.2rem 0 0 0; font-size: 0.84rem; color: #64748b; font-weight: 600;">
