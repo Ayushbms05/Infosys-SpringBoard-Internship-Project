@@ -16,8 +16,8 @@
     rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
-    ("serviceWorker" in navigator) {
-      gator.serviceWorker.register("/sw.js");
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
     }
   </script>
   <style>
@@ -712,28 +712,252 @@
         border-radius: 20px !important;
       }
 
+      /* ════════════════════════════════════════════════════════════════
+         MOBILE USER DIRECTORY CARDS & USERS TAB (≤ 899px)
+         ════════════════════════════════════════════════════════════════ */
+      .admin-user-kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.65rem !important;
+      }
+
       /* Controls & Filter Toolbar */
       .admin-controls-row {
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
       }
 
-      .admin-controls-row>div:first-child {
+      .admin-search-filter-group {
         flex-direction: column !important;
         width: 100% !important;
+        gap: 0.5rem !important;
+      }
+
+      .admin-search-bar-row {
+        display: flex !important;
+        width: 100% !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
+      }
+
+      .admin-search-input-wrap {
+        flex: 1 !important;
+        min-width: 0 !important;
+        position: relative !important;
+      }
+
+      .admin-search-icon {
+        position: absolute !important;
+        left: 0.85rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 17px !important;
+        height: 17px !important;
+        color: #94a3b8 !important;
+        pointer-events: none !important;
       }
 
       .admin-search-input {
         width: 100% !important;
-        min-width: 100% !important;
+        padding-left: 2.5rem !important;
+        background: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 14px !important;
+        height: 44px !important;
+        font-weight: 600 !important;
+        font-size: 0.88rem !important;
+        color: #0f172a !important;
+        box-sizing: border-box !important;
+        transition: all 0.2s ease !important;
+      }
+
+      .admin-search-input:focus {
+        outline: none !important;
+        border-color: #6366f1 !important;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+      }
+
+      .admin-filter-toggle-btn {
+        display: inline-flex !important;
+        background: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 13px !important;
+        width: 44px !important;
+        height: 44px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #475569 !important;
+        cursor: pointer !important;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+        transition: all 0.2s ease !important;
+        flex-shrink: 0 !important;
+      }
+
+      .admin-filter-toggle-btn.active,
+      .admin-filter-toggle-btn:hover {
+        background: #eef2ff !important;
+        border-color: #a5b4fc !important;
+        color: #4f46e5 !important;
+      }
+
+      /* Collapsible filters drawer on mobile */
+      .admin-filters-drawer {
+        display: none;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.45rem !important;
+        background: #f8fafc !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        padding: 0.65rem !important;
         box-sizing: border-box !important;
       }
 
-      .admin-sort-select {
+      .admin-filters-drawer.open {
+        display: flex !important;
+      }
+
+      .admin-filters-drawer .admin-sort-select {
         width: 100% !important;
-        min-width: 100% !important;
+        height: 42px !important;
+        font-size: 0.85rem !important;
+        background: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        border-radius: 12px !important;
+        padding: 0 0.85rem !important;
+        color: #334155 !important;
+        font-weight: 700 !important;
+      }
+
+      .admin-count-badge-wrap {
+        width: 100% !important;
+      }
+
+      #admin-users-count-badge {
+        width: 100% !important;
+        justify-content: center !important;
         box-sizing: border-box !important;
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.78rem !important;
+      }
+
+      /* Table to Cards Conversion */
+      #admin-section-users .admin-table-wrap {
+        border: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+        padding: 0 !important;
+      }
+
+      #admin-section-users .admin-table {
+        display: block !important;
+        min-width: 100% !important;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+      }
+
+      #admin-section-users .admin-table thead {
+        display: none !important;
+      }
+
+      #admin-section-users .admin-table tbody {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      #admin-section-users .admin-table tr.admin-user-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 18px !important;
+        padding: 0.95rem 0.95rem !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03) !important;
+        position: relative !important;
+        gap: 0.45rem !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        transition: all 0.2s ease !important;
+      }
+
+      #admin-section-users .admin-table tr.admin-user-row:hover {
+        border-color: #c7d2fe !important;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08) !important;
+      }
+
+      #admin-section-users .admin-table td {
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      /* Learner Info Header: Avatar + Name + Email */
+      #admin-section-users .admin-table td.admin-col-user {
+        flex: 1 1 100% !important;
+        padding-right: 4.8rem !important;
+        box-sizing: border-box !important;
+      }
+
+      #admin-section-users .admin-table .admin-user-cell {
+        gap: 0.65rem !important;
+      }
+
+      #admin-section-users .admin-table .admin-user-avatar {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+        border-radius: 12px !important;
+      }
+
+      #admin-section-users .admin-table .admin-user-name {
+        font-size: 0.92rem !important;
+        font-weight: 800 !important;
+        color: #0f172a !important;
+      }
+
+      #admin-section-users .admin-table .admin-user-email {
+        font-size: 0.78rem !important;
+        color: #64748b !important;
+      }
+
+      /* Actions View Button pinned at Top-Right of Card */
+      #admin-section-users .admin-table td.admin-col-actions {
+        position: absolute !important;
+        top: 0.95rem !important;
+        right: 0.95rem !important;
+        text-align: right !important;
+      }
+
+      #admin-section-users .admin-table .admin-view-btn {
+        padding: 0.4rem 0.85rem !important;
+        font-size: 0.78rem !important;
+        border-radius: 10px !important;
+        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25) !important;
+      }
+
+      /* Level, Score, XP, Streak, Lessons, Last Active Badges */
+      #admin-section-users .admin-table td.admin-col-level,
+      #admin-section-users .admin-table td.admin-col-score,
+      #admin-section-users .admin-table td.admin-col-xp,
+      #admin-section-users .admin-table td.admin-col-streak,
+      #admin-section-users .admin-table td.admin-col-lessons,
+      #admin-section-users .admin-table td.admin-col-active {
+        display: inline-flex !important;
+        align-items: center !important;
+        font-size: 0.76rem !important;
+      }
+
+      #admin-section-users .admin-table td.admin-col-level span,
+      #admin-section-users .admin-table td.admin-col-score span,
+      #admin-section-users .admin-table td.admin-col-xp span,
+      #admin-section-users .admin-table td.admin-col-streak span,
+      #admin-section-users .admin-table td.admin-col-lessons span,
+      #admin-section-users .admin-table td.admin-col-active span {
+        padding: 0.25rem 0.6rem !important;
+        font-size: 0.74rem !important;
       }
 
       /* Activity Rows */
@@ -751,48 +975,253 @@
         padding-top: 0.5rem !important;
       }
 
-      /* Podium on Mobile */
-      #admin-leaderboard-podium {
-        flex-direction: column !important;
-        align-items: stretch !important;
+      /* ════════════════════════════════════════════════════════════════
+         MOBILE LEADERBOARD RESPONSIVENESS (≤ 899px)
+         ════════════════════════════════════════════════════════════════ */
+      .admin-leaderboard-header-row {
         gap: 0.75rem !important;
       }
 
-      .podium-gold {
-        order: 1 !important;
+      #admin-award-top3-btn {
+        width: auto !important;
+      }
+
+      /* Top 3 Champions Podium on Mobile */
+      #admin-leaderboard-podium {
+        display: grid !important;
+        grid-template-columns: 1fr 1.15fr 1fr !important;
+        gap: 0.45rem !important;
+        align-items: flex-end !important;
+        margin-bottom: 1.5rem !important;
         width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .podium-card {
+        width: 100% !important;
+        min-width: 0 !important;
         max-width: 100% !important;
+        padding: 1rem 0.35rem 0.85rem !important;
+        border-radius: 18px !important;
+        box-sizing: border-box !important;
       }
 
       .podium-silver {
+        order: 1 !important;
+      }
+
+      .podium-gold {
         order: 2 !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        padding: 1.25rem 0.35rem 1rem !important;
+        border-radius: 20px !important;
       }
 
       .podium-bronze {
         order: 3 !important;
+      }
+
+      .podium-card .podium-crown-icon {
+        font-size: 1.35rem !important;
+        margin-bottom: 0.2rem !important;
+      }
+
+      .podium-gold .podium-crown-icon {
+        font-size: 1.75rem !important;
+      }
+
+      .podium-card .podium-avatar {
+        width: 38px !important;
+        height: 38px !important;
+        font-size: 1rem !important;
+        margin: 0 auto 0.4rem !important;
+      }
+
+      .podium-gold .podium-avatar {
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 1.2rem !important;
+      }
+
+      .podium-card .podium-name {
+        font-size: 0.8rem !important;
+      }
+
+      .podium-card .podium-xp-badge {
+        font-size: 0.72rem !important;
+        padding: 0.2rem 0.5rem !important;
+        gap: 0.2rem !important;
+        margin-top: 0.3rem !important;
+      }
+
+      /* Leaderboard Table to Cards on Mobile */
+      #admin-section-leaderboard .leaderboard-table-container {
+        border: none !important;
+        background: transparent !important;
+        overflow: visible !important;
+        padding: 0 !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table {
+        display: block !important;
         width: 100% !important;
-        max-width: 100% !important;
+        min-width: 100% !important;
+        background: transparent !important;
+        border-spacing: 0 !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table thead {
+        display: none !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table tbody {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.65rem !important;
+        width: 100% !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table tr.leaderboard-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        background: #ffffff !important;
+        border: 1.5px solid #e2e8f0 !important;
+        border-radius: 16px !important;
+        padding: 0.85rem 0.85rem !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03) !important;
+        position: relative !important;
+        gap: 0.4rem !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+        transition: all 0.2s ease !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table tr.leaderboard-row:hover {
+        border-color: #c7d2fe !important;
+        box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08) !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table td {
+        border: none !important;
+        padding: 0 !important;
+      }
+
+      /* Rank Badge */
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-rank {
+        display: inline-flex !important;
+        align-items: center !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-rank-badge {
+        min-width: 36px !important;
+        padding: 0.25rem 0.55rem !important;
+        font-size: 0.82rem !important;
+      }
+
+      /* User Cell */
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-user {
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-user-cell {
+        gap: 0.55rem !important;
+        min-width: 0 !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-avatar {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 0.95rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-name {
+        font-size: 0.9rem !important;
+        font-weight: 800 !important;
+      }
+
+      /* XP Badge on Right */
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-xp {
+        display: inline-flex !important;
+        align-items: center !important;
+        margin-left: auto !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-xp span {
+        font-size: 0.9rem !important;
+      }
+
+      /* Streak & Coins Badges */
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-streak,
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins {
+        display: inline-flex !important;
+        align-items: center !important;
+        font-size: 0.76rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-streak span,
+      #admin-section-leaderboard .leaderboard-table td.leaderboard-col-coins span {
+        padding: 0.2rem 0.55rem !important;
+        font-size: 0.74rem !important;
       }
 
       /* User Detail Modal on Mobile */
+      #admin-user-modal {
+        padding: 0.5rem !important;
+      }
+
       .admin-modal-card {
         width: 100% !important;
         max-width: 100% !important;
-        padding: 1.25rem 1rem !important;
+        padding: 1.25rem 0.85rem !important;
         border-radius: 24px !important;
-        max-height: 92vh !important;
+        max-height: 90vh !important;
+        box-sizing: border-box !important;
+      }
+
+      .admin-modal-header {
+        gap: 0.85rem !important;
+        padding-bottom: 1rem !important;
+      }
+
+      .admin-modal-header .dash-avatar {
+        width: 52px !important;
+        height: 52px !important;
+        font-size: 1.4rem !important;
+      }
+
+      #admin-modal-name {
+        font-size: 1.25rem !important;
+      }
+
+      #admin-modal-email {
+        font-size: 0.82rem !important;
       }
 
       .admin-modal-stats-row {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.65rem !important;
+        gap: 0.5rem !important;
+        margin: 1.25rem 0 !important;
+      }
+
+      .admin-modal-stat {
+        padding: 0.85rem 0.5rem !important;
+        border-radius: 16px !important;
+      }
+
+      .admin-modal-stat span {
+        font-size: 1.2rem !important;
+      }
+
+      .admin-modal-stat label {
+        font-size: 0.68rem !important;
       }
 
       .admin-edit-grid {
         grid-template-columns: 1fr !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
       }
 
       .admin-edit-fullwidth {
@@ -802,49 +1231,133 @@
       .admin-danger-actions {
         flex-direction: column !important;
         width: 100% !important;
+        gap: 0.5rem !important;
       }
 
       .admin-danger-actions button {
         width: 100% !important;
+        justify-content: center !important;
       }
 
       .trend-summary-strip {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.65rem !important;
+        gap: 0.5rem !important;
       }
 
       .trend-chart-stage {
         overflow-x: auto !important;
         padding-bottom: 0.5rem !important;
+        -webkit-overflow-scrolling: touch !important;
       }
 
       .trend-bar-column {
-        min-width: 38px !important;
+        min-width: 34px !important;
       }
 
       .trend-footer-axis {
         overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
       }
 
       .trend-axis-node {
-        min-width: 38px !important;
+        min-width: 34px !important;
       }
     }
 
-    /* Very Small Mobile (< 400px) */
-    @media (max-width: 399px) {
-
-      div[style*="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))"],
-      div[style*="grid-template-columns: repeat(auto-fit, minmax(210px, 1fr))"] {
-        grid-template-columns: 1fr !important;
+    /* Very Small Mobile (< 400px down to 350px) */
+    @media (max-width: 400px) {
+      .admin-user-kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.35rem !important;
       }
 
-      .admin-modal-stats-row {
-        grid-template-columns: 1fr !important;
+      #admin-section-users .admin-table tr.admin-user-row {
+        padding: 0.75rem 0.65rem !important;
+        border-radius: 15px !important;
+        gap: 0.35rem !important;
+      }
+
+      #admin-section-users .admin-table td.admin-col-user {
+        padding-right: 4.2rem !important;
+      }
+
+      #admin-section-users .admin-table .admin-view-btn {
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.74rem !important;
+      }
+
+      .admin-modal-card {
+        padding: 1rem 0.65rem !important;
+        border-radius: 20px !important;
+      }
+
+      /* Leaderboard on Ultra-Narrow screens */
+      .admin-leaderboard-header-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.65rem !important;
+      }
+
+      #admin-award-top3-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+        font-size: 0.82rem !important;
+        padding: 0.55rem 1rem !important;
+      }
+
+      #admin-leaderboard-podium {
+        gap: 0.3rem !important;
+      }
+
+      .podium-card {
+        padding: 0.75rem 0.2rem 0.65rem !important;
+        border-radius: 14px !important;
+      }
+
+      .podium-gold {
+        padding: 0.95rem 0.2rem 0.85rem !important;
+      }
+
+      .podium-card .podium-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+      }
+
+      .podium-gold .podium-avatar {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 1rem !important;
+      }
+
+      .podium-card .podium-name {
+        font-size: 0.72rem !important;
+      }
+
+      .podium-card .podium-xp-badge {
+        font-size: 0.68rem !important;
+        padding: 0.15rem 0.35rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table tr.leaderboard-row {
+        padding: 0.65rem 0.65rem !important;
+        border-radius: 14px !important;
+        gap: 0.3rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+      }
+
+      #admin-section-leaderboard .leaderboard-table .leaderboard-name {
+        font-size: 0.85rem !important;
       }
     }
 
-    /* Responsive Tables Horizontal Scrolling */
+    /* Responsive Tables Container (Desktop / Horizontal Scrolling fallback) */
     .admin-table-wrap,
     .leaderboard-table-container {
       width: 100% !important;
@@ -853,9 +1366,11 @@
       -webkit-overflow-scrolling: touch !important;
     }
 
-    .admin-table,
-    .leaderboard-table {
-      min-width: 680px !important;
+    @media (min-width: 900px) {
+      .admin-table,
+      .leaderboard-table {
+        min-width: 680px !important;
+      }
     }
 
     /* ════════════════════════════════════════════════════════════════
@@ -907,30 +1422,370 @@
       display: block !important;
     }
 
-    /* Active State on Mobile Bottom Nav: Distinct Indigo Pill with Rich Colors */
-    #admin-mobile-bottom-nav .dash-nav-item.active {
-      background: linear-gradient(135deg, #eef2ff, #e0e7ff) !important;
-      border: 1.5px solid #a5b4fc !important;
-      color: #4338ca !important;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.2) !important;
-      transform: translateY(-2px) !important;
+    /* ════════════════════════════════════════════════════════════════
+         ADMIN MOBILE TOPBAR & SLIDE-OUT DRAWER SYSTEM
+         ════════════════════════════════════════════════════════════════ */
+    #admin-mobile-topbar.mobile-topbar {
+      display: none;
+      position: fixed !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      height: 64px !important;
+      z-index: 1000 !important;
+      margin: 0 !important;
+      padding: 0 1rem !important;
+      padding-top: env(safe-area-inset-top, 0px) !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(20px) !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      box-sizing: border-box !important;
     }
 
-    #admin-mobile-bottom-nav .dash-nav-item.active .dash-nav-icon {
-      color: #4338ca !important;
+    .mobile-topbar-brand .nav-logo {
+      font-size: 1.25rem !important;
+      gap: 0.5rem !important;
     }
 
-    #admin-mobile-bottom-nav .dash-nav-item.active .dash-nav-icon i,
-    #admin-mobile-bottom-nav .dash-nav-item.active .dash-nav-icon svg {
-      stroke: #4338ca !important;
-      color: #4338ca !important;
-      stroke-width: 2.5px !important;
-      transform: scale(1.15) !important;
+    .mobile-topbar-brand .nav-logo-icon {
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 1.1rem !important;
+      border-radius: 11px !important;
     }
 
-    #admin-mobile-bottom-nav .dash-nav-item.active .mobile-nav-label {
-      color: #4338ca !important;
-      font-weight: 900 !important;
+    /* Mobile Navigation Backdrop */
+    .mobile-nav-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      background: rgba(15, 23, 42, 0.5) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      backdrop-filter: blur(8px) !important;
+      z-index: 1010 !important;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .mobile-nav-backdrop.active {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-nav-drawer {
+      position: fixed !important;
+      top: 0 !important;
+      right: 0 !important;
+      width: 85vw !important;
+      max-width: 360px !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      background: rgba(255, 255, 255, 0.98) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
+      backdrop-filter: blur(24px) !important;
+      border-left: 1.5px solid #e2e8f0 !important;
+      z-index: 1020 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      padding: 1.25rem 1rem calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
+      box-sizing: border-box !important;
+      transform: translateX(100%) !important;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      box-shadow: -10px 0 40px rgba(15, 23, 42, 0.15) !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    .mobile-nav-drawer.active {
+      transform: translateX(0) !important;
+    }
+
+    .mobile-nav-header {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding-bottom: 0.85rem !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+    }
+
+    .mobile-nav-close {
+      background: #f1f5f9 !important;
+      border: 1px solid #cbd5e1 !important;
+      color: #64748b !important;
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+    }
+
+    .mobile-drawer-nav-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.75rem !important;
+      padding: 0.75rem 0.9rem !important;
+      border-radius: 14px !important;
+      color: #334155 !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-size: 0.92rem !important;
+      font-weight: 700 !important;
+      border: none !important;
+      background: transparent !important;
+      width: 100% !important;
+      text-align: left !important;
+      cursor: pointer !important;
+      transition: all 0.18s ease !important;
+      box-sizing: border-box !important;
+    }
+
+    .mobile-drawer-nav-item:hover,
+    .mobile-drawer-nav-item:active {
+      background: #f1f5f9 !important;
+      color: #6366f1 !important;
+    }
+
+    .mobile-drawer-nav-item.active {
+      background: #eef2ff !important;
+      color: #4f46e5 !important;
+      font-weight: 800 !important;
+    }
+
+    .mobile-drawer-nav-item.active .dash-nav-icon {
+      color: #4f46e5 !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+         OVERVIEW RESPONSIVE STYLES
+         ════════════════════════════════════════════════════════════════ */
+    .admin-kpi-grid {
+      display: grid !important;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important;
+      gap: 1rem !important;
+      margin-bottom: 2rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    .admin-kpi-card {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+      border-radius: 22px !important;
+      padding: clamp(0.85rem, 2vw, 1.25rem) !important;
+      box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04) !important;
+      backdrop-filter: blur(16px) !important;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+    }
+
+    .admin-kpi-card:hover {
+      transform: translateY(-3px) !important;
+      box-shadow: 0 14px 30px -6px rgba(99, 102, 241, 0.15) !important;
+      border-color: #c7d2fe !important;
+    }
+
+    .dash-card.analysis-section-card {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
+      border-radius: 26px !important;
+      padding: clamp(1rem, 2.5vw, 1.75rem) !important;
+      box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06) !important;
+      box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+         MOBILE BREAKPOINTS (≤ 899px)
+         ════════════════════════════════════════════════════════════════ */
+    @media (max-width: 899px) {
+      html, body#page-admin {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      #admin-top-navbar.dash-top-navbar {
+        display: none !important;
+      }
+
+      #admin-mobile-topbar.mobile-topbar {
+        display: flex !important;
+      }
+
+      .dash-main-wrap {
+        padding: 78px 0.75rem 2.5rem 0.75rem !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
+      }
+
+      #admin-section-overview .analysis-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.15rem !important;
+        width: 100% !important;
+      }
+
+      .admin-kpi-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.75rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .admin-kpi-card {
+        padding: 0.95rem 0.75rem !important;
+        border-radius: 18px !important;
+      }
+
+      .admin-kpi-card .analysis-stat-value {
+        font-size: 1.5rem !important;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .admin-kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: clamp(0.35rem, 1.5vw, 0.55rem) !important;
+      }
+
+      .admin-kpi-card {
+        padding: clamp(0.65rem, 1.8vw, 0.85rem) clamp(0.4rem, 1.5vw, 0.65rem) !important;
+        border-radius: 16px !important;
+      }
+
+      .admin-kpi-card .analysis-stat-value {
+        font-size: clamp(1.2rem, 3.8vw, 1.35rem) !important;
+      }
+
+      .admin-kpi-card > div:first-child {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 11px !important;
+        margin-bottom: 0.4rem !important;
+      }
+
+      .admin-kpi-card > div:last-child {
+        font-size: clamp(0.64rem, 1.8vw, 0.72rem) !important;
+      }
+
+      .dash-card.analysis-section-card {
+        padding: 1rem 0.75rem !important;
+        border-radius: 18px !important;
+      }
+
+      .weekly-chart-container {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .weekly-chart-inner {
+        min-width: 260px !important;
+      }
+
+      .admin-activity-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+        padding: 0.75rem 0.65rem !important;
+        border-radius: 14px !important;
+      }
+
+      .admin-activity-row > div:last-child {
+        width: 100% !important;
+        justify-content: space-between !important;
+        padding-top: 0.35rem !important;
+        border-top: 1px dashed #e2e8f0 !important;
+      }
+    }
+
+    /* Ultra-Narrow Screen (≤ 400px down to 350px) */
+    @media (max-width: 400px) {
+      .dash-main-wrap {
+        padding: 72px 0.4rem 2rem 0.4rem !important;
+      }
+
+      .admin-kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.35rem !important;
+      }
+
+      .admin-kpi-card {
+        padding: 0.65rem 0.35rem !important;
+        border-radius: 14px !important;
+      }
+
+      .admin-kpi-card .analysis-stat-value {
+        font-size: 1.15rem !important;
+      }
+
+      .admin-kpi-card > div:first-child {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 10px !important;
+        margin-bottom: 0.3rem !important;
+      }
+
+      .admin-kpi-card > div:first-child i,
+      .admin-kpi-card > div:first-child svg {
+        width: 16px !important;
+        height: 16px !important;
+      }
+
+      .admin-kpi-card > div:last-child {
+        font-size: 0.62rem !important;
+        letter-spacing: 0 !important;
+      }
+
+      .dash-card.analysis-section-card {
+        padding: 0.85rem 0.5rem !important;
+        border-radius: 16px !important;
+      }
+
+      .dash-card-header.admin-header-row-flex > div:first-child {
+        width: 34px !important;
+        height: 34px !important;
+        margin-right: 0.35rem !important;
+      }
+
+      .dash-card-header.admin-header-row-flex > div:first-child i,
+      .dash-card-header.admin-header-row-flex > div:first-child svg {
+        width: 18px !important;
+        height: 18px !important;
+      }
+
+      .dash-card-title {
+        font-size: 1.05rem !important;
+      }
+
+      .dash-card-subtitle {
+        font-size: 0.76rem !important;
+      }
+
+      .skill-bar-item {
+        margin-bottom: 0.65rem !important;
+      }
+
+      .skill-bar-label {
+        font-size: 0.78rem !important;
+      }
+
+      .skill-bar-status-tag {
+        font-size: 0.7rem !important;
+        padding: 0.1rem 0.4rem !important;
+      }
     }
 
     /* ════════════════════════════════════════════════════════════════
@@ -1050,33 +1905,97 @@
         </div>
       </header>
 
-      <!-- ═══════════ FLIPKART/DUOLINGO STYLE MOBILE BOTTOM NAVBAR ═══════════ -->
-      <nav class="mobile-bottom-nav" id="admin-mobile-bottom-nav">
-        <button class="dash-nav-item active" data-section="overview" title="Overview">
-          <span class="dash-nav-icon"><i data-lucide="layout-dashboard" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Overview</span>
-        </button>
-        <button class="dash-nav-item" data-section="users" title="Users">
-          <span class="dash-nav-icon"><i data-lucide="users" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Users</span>
-        </button>
-        <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
-          <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Leaderboard</span>
-        </button>
-        <button class="dash-nav-item" data-section="announcements" title="Announcements">
-          <span class="dash-nav-icon"><i data-lucide="megaphone" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Announce</span>
-        </button>
-        <button class="dash-nav-item" data-section="feedback" title="Feedback">
-          <span class="dash-nav-icon"><i data-lucide="message-square" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Feedback</span>
-        </button>
-        <button class="dash-nav-item" data-section="errors" title="Error Logs">
-          <span class="dash-nav-icon"><i data-lucide="bug" aria-hidden="true"></i></span><span
-            class="mobile-nav-label">Errors</span>
-        </button>
-      </nav>
+      <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
+      <div id="admin-mobile-topbar" class="mobile-topbar">
+        <div class="mobile-topbar-brand">
+          <a href="landing.html" class="nav-logo" style="font-size: 1.25rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+            <div class="nav-logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem; border-radius: 11px; background: linear-gradient(135deg, #6366f1, #4f46e5); display: flex; align-items: center; justify-content: center; color: white;">📖</div>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; color: #0f172a;">Akshar<span class="brand-gradient" style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gyan</span>
+              <span style="font-size: 0.65rem; font-weight: 800; background: rgba(99, 102, 241, 0.1); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.25); padding: 0.15rem 0.5rem; border-radius: 9999px; vertical-align: middle; margin-left: 0.2rem; letter-spacing: 0.5px;">ADMIN</span>
+            </span>
+          </a>
+        </div>
+        <div class="mobile-topbar-right" style="display: flex; align-items: center; gap: 0.65rem;">
+          <button class="mobile-nav-toggle" id="admin-mobile-nav-toggle" aria-label="Open Navigation Menu" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #0f172a; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+            <i data-lucide="menu" style="width: 22px; height: 22px;"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══════════ MOBILE NAVIGATION DRAWER ═══════════ -->
+      <div class="mobile-nav-backdrop" id="admin-mobile-nav-backdrop"></div>
+      <div class="mobile-nav-drawer" id="admin-mobile-nav-drawer" aria-hidden="true">
+        <div class="mobile-nav-header">
+          <a href="landing.html" class="nav-logo" style="font-size: 1.25rem; text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+            <div class="nav-logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem; border-radius: 11px; background: linear-gradient(135deg, #6366f1, #4f46e5); display: flex; align-items: center; justify-content: center; color: white;">📖</div>
+            <span style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900; color: #0f172a;">Akshar<span class="brand-gradient" style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gyan</span>
+              <span style="font-size: 0.65rem; font-weight: 800; background: rgba(99, 102, 241, 0.1); color: #6366f1; border: 1px solid rgba(99, 102, 241, 0.25); padding: 0.15rem 0.5rem; border-radius: 9999px; vertical-align: middle; margin-left: 0.2rem; letter-spacing: 0.5px;">ADMIN</span>
+            </span>
+          </a>
+          <button class="mobile-nav-close" id="admin-mobile-nav-close" aria-label="Close Navigation Menu">
+            <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+          </button>
+        </div>
+
+        <!-- Admin User Info in Drawer -->
+        <div style="margin-top: 1rem; padding: 0.85rem 1rem; border-radius: 16px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 1.5px solid #e2e8f0; display: flex; align-items: center; gap: 0.75rem;">
+          <div class="dash-avatar" style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem;">A</div>
+          <div style="min-width: 0; flex: 1;">
+            <div style="font-weight: 800; font-size: 0.92rem; color: #0f172a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Administrator</div>
+            <div style="font-size: 0.74rem; font-weight: 700; color: #10b981; display: flex; align-items: center; gap: 0.3rem;">
+              <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span> System Controller
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Links List -->
+        <ul class="mobile-drawer-nav-list" style="list-style: none; padding: 1rem 0; margin: 0; display: flex; flex-direction: column; gap: 0.4rem; flex-grow: 1; overflow-y: auto;">
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item active" data-section="overview">
+              <span class="dash-nav-icon"><i data-lucide="layout-dashboard"></i></span>
+              <span class="sidebar-nav-label">Overview</span>
+            </button>
+          </li>
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item" data-section="users">
+              <span class="dash-nav-icon"><i data-lucide="users"></i></span>
+              <span class="sidebar-nav-label">Users</span>
+            </button>
+          </li>
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item" data-section="leaderboard">
+              <span class="dash-nav-icon"><i data-lucide="trophy"></i></span>
+              <span class="sidebar-nav-label">Leaderboard</span>
+            </button>
+          </li>
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item" data-section="announcements">
+              <span class="dash-nav-icon"><i data-lucide="megaphone"></i></span>
+              <span class="sidebar-nav-label">Announcements</span>
+            </button>
+          </li>
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item" data-section="feedback">
+              <span class="dash-nav-icon"><i data-lucide="message-square"></i></span>
+              <span class="sidebar-nav-label">Feedback</span>
+            </button>
+          </li>
+          <li>
+            <button class="mobile-drawer-nav-item dash-nav-item" data-section="errors">
+              <span class="dash-nav-icon"><i data-lucide="bug"></i></span>
+              <span class="sidebar-nav-label">Error Logs</span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Logout Button in Drawer -->
+        <div style="padding-top: 1rem; border-top: 1px solid #e2e8f0; margin-top: auto;">
+          <button id="admin-drawer-logout-btn" class="mobile-drawer-logout-btn" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem; border-radius: 14px; background: #fee2e2; color: #dc2626; border: 1.5px solid #fecaca; font-weight: 800; font-size: 0.9rem; cursor: pointer;">
+            <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+            <span>Logout Admin</span>
+          </button>
+        </div>
+      </div>
 
       <!-- ═══════════ MAIN CONTENT ═══════════ -->
       <main class="dash-main-wrap" id="admin-main-body">
@@ -1084,23 +2003,23 @@
         <section id="admin-section-overview" class="admin-section">
           <!-- Header Row -->
           <div
-            style="margin-bottom: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem;">
             <div>
               <h2
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 0.65rem;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.25rem, 3vw, 1.8rem); font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 0.65rem;">
                 <span
-                  style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(99,102,241,0.35);">
-                  <i data-lucide="layout-dashboard" style="width: 22px; height: 22px;"></i>
+                  style="width: clamp(36px, 7vw, 44px); height: clamp(36px, 7vw, 44px); border-radius: 14px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(99,102,241,0.35); flex-shrink: 0;">
+                  <i data-lucide="layout-dashboard" style="width: clamp(18px, 4vw, 22px); height: clamp(18px, 4vw, 22px);"></i>
                 </span>
                 Platform Overview & Analytics
               </h2>
-              <p style="margin-top: 0.35rem; font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0;">
+              <p style="margin-top: 0.35rem; font-size: clamp(0.8rem, 1.8vw, 0.95rem); font-weight: 600; color: #64748b; margin-bottom: 0;">
                 Live statistics, curriculum progression, user acquisition, and recent activity
               </p>
             </div>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
               <span
-                style="background: #ecfdf5; color: #16a34a; border: 1px solid #86efac; border-radius: 9999px; padding: 0.4rem 0.9rem; font-size: 0.8rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.4rem;">
+                style="background: #ecfdf5; color: #16a34a; border: 1px solid #86efac; border-radius: 9999px; padding: 0.35rem 0.8rem; font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.4rem;">
                 <span
                   style="width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 8px #22c55e; display: inline-block;"></span>
                 Live Sync Active
@@ -1109,97 +2028,89 @@
           </div>
 
           <!-- Modern 6-Card Stat Grid -->
-          <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+          <div class="admin-kpi-grid">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
-                <i data-lucide="users" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
+                <i data-lucide="users" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-total-users"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 0</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Total Users</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
-                <i data-lucide="activity" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
+                <i data-lucide="activity" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-active-today"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 0</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Active Today</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #fff7ed; color: #f59e0b; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(245,158,11,0.15);">
-                <i data-lucide="calendar" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #fff7ed; color: #f59e0b; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(245,158,11,0.15);">
+                <i data-lucide="calendar" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-active-week"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 0</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Active This Week</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #fff1f2; color: #f43f5e; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(244,63,94,0.15);">
-                <i data-lucide="target" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #fff1f2; color: #f43f5e; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(244,63,94,0.15);">
+                <i data-lucide="target" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-avg-score"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 —</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Avg Assessment</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(59,130,246,0.15);">
-                <i data-lucide="book-open" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #eff6ff; color: #3b82f6; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(59,130,246,0.15);">
+                <i data-lucide="book-open" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-lessons"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 0</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Lessons Done</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 46px; height: 46px; border-radius: 14px; background: #fefce8; color: #d97706; display: flex; align-items: center; justify-content: center; margin-bottom: 0.85rem; box-shadow: 0 6px 16px rgba(217,119,6,0.15);">
-                <i data-lucide="zap" style="width: 22px; height: 22px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #fefce8; color: #d97706; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(217,119,6,0.15);">
+                <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
               </div>
               <div class="analysis-stat-value" id="admin-stat-xp"
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
                 0</div>
               <div
-                style="font-size: 0.8rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
                 Total XP</div>
             </div>
           </div>
 
           <!-- Analysis Grid: Distribution, Signups, Recent Activity -->
           <div class="analysis-grid">
-            <div class="dash-card analysis-section-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+            <div class="dash-card analysis-section-card">
               <div class="dash-card-header admin-header-row-flex">
                 <div
                   style="width: 42px; height: 42px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
@@ -1219,8 +2130,7 @@
               <div id="admin-level-distribution" class="skill-bd-bars" style="margin-top: 1.25rem;"></div>
             </div>
 
-            <div class="dash-card analysis-section-card"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+            <div class="dash-card analysis-section-card">
               <div class="dash-card-header admin-header-row-flex">
                 <div
                   style="width: 42px; height: 42px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
@@ -1242,8 +2152,7 @@
               </div>
             </div>
 
-            <div class="dash-card analysis-section-card analysis-card-full"
-              style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 26px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+            <div class="dash-card analysis-section-card analysis-card-full">
               <div class="dash-card-header admin-header-row-flex" style="margin-bottom: 1.25rem;">
                 <div
                   style="width: 42px; height: 42px; border-radius: 14px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 0.75rem;">
@@ -1270,28 +2179,31 @@
 
         <!-- ═══════════ LEADERBOARD SECTION ═══════════ -->
         <section id="admin-section-leaderboard" class="admin-section hidden">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <div class="admin-leaderboard-header-row"
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.75rem; flex-wrap: wrap; gap: 1rem;">
             <div>
               <h2
-                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0;">
-                Community Leaderboard</h2>
-              <p style="margin-top: 0.25rem; font-size: 0.95rem; font-weight: 600; color: #64748b;">Top learners ranked
-                by XP</p>
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.8rem; font-weight: 900; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 0.65rem;">
+                <span
+                  style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(245,158,11,0.35);">
+                  <i data-lucide="trophy" style="width: 22px; height: 22px;"></i>
+                </span>
+                Community Leaderboard
+              </h2>
+              <p style="margin-top: 0.35rem; font-size: 0.95rem; font-weight: 600; color: #64748b; margin-bottom: 0;">
+                Top learners ranked across the platform by total earned XP
+              </p>
             </div>
             <button id="admin-award-top3-btn" class="btn-primary"
-              style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; padding: 0.6rem 1.25rem; font-size: 0.9rem; font-weight: 800; border-radius: 14px; width: max-content !important; min-width: auto !important; max-width: max-content !important; display: inline-flex !important; align-items: center !important;">
-              <i data-lucide="gift" style="margin-right: 6px; width: 16px; height: 16px;"></i> <span>Award Top 3
-                Users</span>
+              style="background: linear-gradient(135deg, #6366f1, #4f46e5); border: none; padding: 0.65rem 1.25rem; font-size: 0.9rem; font-weight: 800; border-radius: 14px; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; box-shadow: 0 4px 14px rgba(99,102,241,0.25);">
+              <i data-lucide="gift" style="width: 16px; height: 16px;"></i> <span>Award Top 3 Users</span>
             </button>
           </div>
 
           <!-- Top 3 Champions Podium Container -->
-          <div id="admin-leaderboard-podium"
-            style="display: flex; justify-content: center; align-items: flex-end; gap: 1.25rem; margin-bottom: 2.25rem; flex-wrap: wrap;">
-          </div>
+          <div id="admin-leaderboard-podium" class="admin-podium-container"></div>
 
-          <div class="dash-card leaderboard-card"
-            style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 28px; padding: 1.75rem; box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.07);">
+          <div class="dash-card leaderboard-card analysis-section-card">
             <div class="leaderboard-table-container" style="overflow-x: auto;">
               <table class="leaderboard-table"
                 style="width: 100%; border-collapse: separate; border-spacing: 0 0.6rem; text-align: left;">
@@ -1350,114 +2262,101 @@
           </div>
 
           <!-- Quick Summary KPI Metric Cards -->
-          <div
-            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; margin-bottom: 1.75rem;">
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+          <div class="admin-kpi-grid admin-user-kpi-grid">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 50px; height: 50px; border-radius: 16px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
-                <i data-lucide="users" style="width: 24px; height: 24px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #eef2ff; color: #6366f1; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(99,102,241,0.15);">
+                <i data-lucide="users" style="width: 20px; height: 20px;"></i>
               </div>
-              <div>
-                <div id="admin-user-stat-total"
-                  style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
-                  0</div>
-                <div
-                  style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
-                  Total Learners</div>
-              </div>
+              <div id="admin-user-stat-total" class="analysis-stat-value"
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
+                0</div>
+              <div
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                Total Learners</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 50px; height: 50px; border-radius: 16px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
-                <i data-lucide="user-check" style="width: 24px; height: 24px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #ecfdf5; color: #10b981; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(16,185,129,0.15);">
+                <i data-lucide="user-check" style="width: 20px; height: 20px;"></i>
               </div>
-              <div>
-                <div id="admin-user-stat-active"
-                  style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
-                  0</div>
-                <div
-                  style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
-                  Active Today</div>
-              </div>
+              <div id="admin-user-stat-active" class="analysis-stat-value"
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
+                0</div>
+              <div
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                Active Today</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 50px; height: 50px; border-radius: 16px; background: #f0fdf4; color: #16a34a; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(22,163,74,0.15);">
-                <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #f0fdf4; color: #16a34a; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(22,163,74,0.15);">
+                <i data-lucide="award" style="width: 20px; height: 20px;"></i>
               </div>
-              <div>
-                <div id="admin-user-stat-assessed"
-                  style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
-                  0</div>
-                <div
-                  style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
-                  Assessed</div>
-              </div>
+              <div id="admin-user-stat-assessed" class="analysis-stat-value"
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
+                0</div>
+              <div
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                Assessed</div>
             </div>
 
-            <div class="admin-kpi-card"
-              style="background: rgba(255, 255, 255, 0.92); border: 1.5px solid rgba(226, 232, 240, 0.9); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: 0 10px 28px -8px rgba(15, 23, 42, 0.04); display: flex; align-items: center; gap: 1rem; backdrop-filter: blur(16px); cursor: pointer;">
+            <div class="admin-kpi-card" style="cursor: pointer;">
               <div
-                style="width: 50px; height: 50px; border-radius: 16px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(234,88,12,0.15);">
-                <i data-lucide="zap" style="width: 24px; height: 24px;"></i>
+                style="width: 44px; height: 44px; border-radius: 14px; background: #fff7ed; color: #ea580c; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; box-shadow: 0 6px 16px rgba(234,88,12,0.15);">
+                <i data-lucide="zap" style="width: 20px; height: 20px;"></i>
               </div>
-              <div>
-                <div id="admin-user-stat-avgxp"
-                  style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.65rem; font-weight: 900; color: #0f172a; line-height: 1.1;">
-                  0</div>
-                <div
-                  style="font-size: 0.82rem; font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
-                  Avg XP / User</div>
-              </div>
+              <div id="admin-user-stat-avgxp" class="analysis-stat-value"
+                style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 900; color: #0f172a; line-height: 1.1;">
+                0</div>
+              <div
+                style="font-size: clamp(0.72rem, 1.4vw, 0.8rem); font-weight: 800; color: #64748b; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.4px;">
+                Avg XP / User</div>
             </div>
           </div>
 
           <!-- Main Table Container Card -->
-          <div class="dash-card analysis-section-card"
-            style="padding: 1.75rem; border-radius: 26px; background: rgba(255, 255, 255, 0.95); border: 1.5px solid rgba(226, 232, 240, 0.9); box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.06);">
+          <div class="dash-card analysis-section-card">
             <!-- Controls Toolbar -->
-            <div class="admin-controls-row"
-              style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between;">
-              <div
-                style="display: flex; flex-wrap: wrap; gap: 0.75rem; flex: 1; min-width: 280px; align-items: center;">
-                <!-- Search Box -->
-                <div style="position: relative; flex: 1; min-width: 240px;">
-                  <i data-lucide="search"
-                    style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; color: #94a3b8; pointer-events: none;"></i>
-                  <input type="text" id="admin-search-input" class="admin-search-input"
-                    placeholder="Search learners by name or email…"
-                    style="width: 100%; padding-left: 2.75rem !important; background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; font-weight: 600; font-size: 0.92rem; color: #0f172a; transition: all 0.2s ease;" />
+            <div class="admin-controls-row">
+              <div class="admin-search-filter-group">
+                <!-- Search Box + Mobile Filter Button Row -->
+                <div class="admin-search-bar-row">
+                  <div class="admin-search-input-wrap">
+                    <i data-lucide="search" class="admin-search-icon"></i>
+                    <input type="text" id="admin-search-input" class="admin-search-input"
+                      placeholder="Search learners by name or email…" />
+                  </div>
+                  <button id="admin-user-filter-toggle" class="admin-filter-toggle-btn" aria-label="Toggle Filter Options" title="Filter & Sort">
+                    <i data-lucide="sliders-horizontal" style="width: 18px; height: 18px;"></i>
+                  </button>
                 </div>
 
-                <!-- Level Filter -->
-                <select id="admin-filter-level" class="admin-sort-select"
-                  style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; padding: 0 1rem; font-weight: 700; font-size: 0.88rem; color: #334155; cursor: pointer;">
-                  <option value="all">All Levels</option>
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="advanced">Advanced</option>
-                </select>
+                <!-- Expandable Filter Selectors (Inline on Desktop, collapsible drawer on Mobile) -->
+                <div id="admin-user-filters-drawer" class="admin-filters-drawer">
+                  <!-- Level Filter -->
+                  <select id="admin-filter-level" class="admin-sort-select">
+                    <option value="all">All Levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                  </select>
 
-                <!-- Sort Selector -->
-                <select id="admin-sort-select" class="admin-sort-select"
-                  style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 14px; height: 46px; padding: 0 1rem; font-weight: 700; font-size: 0.88rem; color: #334155; cursor: pointer;">
-                  <option value="xp_desc">Sort: XP (Highest)</option>
-                  <option value="streak_desc">Sort: Streak (Longest)</option>
-                  <option value="score_desc">Sort: Score</option>
-                  <option value="active_desc">Sort: Last Active</option>
-                  <option value="name_asc">Sort: Name (A–Z)</option>
-                </select>
+                  <!-- Sort Selector -->
+                  <select id="admin-sort-select" class="admin-sort-select">
+                    <option value="xp_desc">Sort: XP (Highest)</option>
+                    <option value="streak_desc">Sort: Streak (Longest)</option>
+                    <option value="score_desc">Sort: Score</option>
+                    <option value="active_desc">Sort: Last Active</option>
+                    <option value="name_asc">Sort: Name (A–Z)</option>
+                  </select>
+                </div>
               </div>
 
               <!-- Showing Learners Count Badge -->
-              <div>
-                <span id="admin-users-count-badge"
-                  style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; border-radius: 9999px; padding: 0.45rem 1rem; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.4rem;">
+              <div class="admin-count-badge-wrap">
+                <span id="admin-users-count-badge">
                   <i data-lucide="users" style="width: 14px; height: 14px;"></i>
                   <span id="admin-users-count-text">Showing 0 learners</span>
                 </span>

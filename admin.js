@@ -784,50 +784,50 @@ function renderUsersTable() {
         : `<span style="color:#94a3b8; font-weight:700; font-size:0.82rem;">—</span>`;
 
       return `
-      <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.15s ease;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='#ffffff'">
-        <td style="padding: 1rem 1.25rem;">
+      <tr class="admin-user-row" style="border-bottom: 1px solid #f1f5f9; transition: background 0.15s ease;">
+        <td class="admin-col-user" style="padding: 1rem 1.25rem;">
           <div class="admin-user-cell" style="display: flex; align-items: center; gap: 0.85rem;">
             <div class="admin-user-avatar" style="width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; font-weight: 900; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(99,102,241,0.25); flex-shrink: 0;">
               ${initial}
             </div>
-            <div>
-              <div class="admin-user-name" style="font-weight: 800; font-size: 0.95rem; color: #0f172a; display: flex; align-items: center; gap: 0.5rem;">
+            <div style="min-width: 0; flex: 1;">
+              <div class="admin-user-name" style="font-weight: 800; font-size: 0.95rem; color: #0f172a; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                 ${u.fullName || "Unnamed Learner"}
                 ${u.isBanned ? '<span style="background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800;">Suspended</span>' : ''}
                 ${u.isAdmin ? '<span style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 800;">Admin</span>' : ''}
               </div>
-              <div class="admin-user-email" style="font-size: 0.82rem; font-weight: 600; color: #64748b; margin-top: 0.1rem;">${u.email || "No email"}</div>
+              <div class="admin-user-email" style="font-size: 0.82rem; font-weight: 600; color: #64748b; margin-top: 0.1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${u.email || "No email"}</div>
             </div>
           </div>
         </td>
-        <td style="padding: 1rem 1.25rem;">
+        <td class="admin-col-level" style="padding: 1rem 1.25rem;">
           <span style="background: ${cfg.bg}; color: ${cfg.color}; border: 1px solid ${cfg.border}; padding: 0.35rem 0.8rem; border-radius: 9999px; font-weight: 800; font-size: 0.78rem; display: inline-flex; align-items: center; gap: 0.35rem;">
             <i data-lucide="${cfg.icon}" style="width: 14px; height: 14px;"></i>
             ${cfg.label}
           </span>
         </td>
-        <td style="padding: 1rem 1.25rem;">${scoreBadge}</td>
-        <td style="padding: 1rem 1.25rem;">
+        <td class="admin-col-score" style="padding: 1rem 1.25rem;">${scoreBadge}</td>
+        <td class="admin-col-xp" style="padding: 1rem 1.25rem;">
           <span style="background: #eef2ff; color: #4f46e5; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
             <i data-lucide="zap" style="width: 13px; height: 13px; color: #6366f1;"></i> ${u.xp || 0}
           </span>
         </td>
-        <td style="padding: 1rem 1.25rem;">
+        <td class="admin-col-streak" style="padding: 1rem 1.25rem;">
           <span style="background: #fff7ed; color: #ea580c; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
             <i data-lucide="flame" style="width: 13px; height: 13px; color: #f97316;"></i> ${u.streak || 0}d
           </span>
         </td>
-        <td style="padding: 1rem 1.25rem;">
+        <td class="admin-col-lessons" style="padding: 1rem 1.25rem;">
           <span style="background: #f1f5f9; color: #475569; border-radius: 9999px; padding: 0.3rem 0.75rem; font-weight: 800; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.3rem;">
             <i data-lucide="book-open" style="width: 13px; height: 13px; color: #64748b;"></i> ${(u.completedLessons || []).length}
           </span>
         </td>
-        <td style="padding: 1rem 1.25rem;">
+        <td class="admin-col-active" style="padding: 1rem 1.25rem;">
           ${isToday
             ? '<span style="display:inline-flex; align-items:center; gap:0.4rem; color:#16a34a; font-weight:800; font-size:0.82rem;"><span style="width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span> Active Today</span>'
             : `<span style="color:#64748b; font-weight:600; font-size:0.82rem;">${u.lastActiveDate || "Never"}</span>`}
         </td>
-        <td style="padding: 1rem 1.25rem; text-align: right;">
+        <td class="admin-col-actions" style="padding: 1rem 1.25rem; text-align: right;">
           <button class="admin-view-btn" data-uid="${u.uid}" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; border-radius: 12px; padding: 0.5rem 1.05rem; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 4px 14px rgba(99,102,241,0.25); transition: all 0.2s ease;">
             <i data-lucide="eye" style="width: 14px; height: 14px;"></i> View
           </button>
@@ -870,6 +870,15 @@ function setupAdminEvents() {
     });
   }
 
+  const filterToggleBtn = document.getElementById("admin-user-filter-toggle");
+  const filtersDrawer = document.getElementById("admin-user-filters-drawer");
+  if (filterToggleBtn && filtersDrawer) {
+    filterToggleBtn.addEventListener("click", () => {
+      const isOpen = filtersDrawer.classList.toggle("open");
+      filterToggleBtn.classList.toggle("active", isOpen);
+    });
+  }
+
   const awardBtn = document.getElementById("admin-award-top3-btn");
   if (awardBtn) {
     awardBtn.addEventListener("click", awardTopThree);
@@ -878,8 +887,31 @@ function setupAdminEvents() {
   const exportBtn = document.getElementById("admin-export-btn");
   if (exportBtn) exportBtn.addEventListener("click", exportUsersCSV);
 
+  // Mobile Navigation Drawer Toggle & Close
+  const mobileNavToggle = document.getElementById("admin-mobile-nav-toggle");
+  const mobileNavClose = document.getElementById("admin-mobile-nav-close");
+  const mobileNavBackdrop = document.getElementById("admin-mobile-nav-backdrop");
+  const mobileNavDrawer = document.getElementById("admin-mobile-nav-drawer");
+
+  function openAdminDrawer() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.add("active");
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeAdminDrawer() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove("active");
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (mobileNavToggle) mobileNavToggle.addEventListener("click", openAdminDrawer);
+  if (mobileNavClose) mobileNavClose.addEventListener("click", closeAdminDrawer);
+  if (mobileNavBackdrop) mobileNavBackdrop.addEventListener("click", closeAdminDrawer);
+
   document.querySelectorAll(".dash-nav-item[data-section]").forEach((item) => {
     item.addEventListener("click", () => {
+      closeAdminDrawer();
       const targetSec = item.dataset.section;
       document
         .querySelectorAll(".dash-nav-item[data-section]")
@@ -939,6 +971,13 @@ function setupAdminEvents() {
   const logoutBtn = document.getElementById("admin-logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
+      logoutUser().then(() => (window.location.href = "login.html"));
+    });
+  }
+
+  const drawerLogoutBtn = document.getElementById("admin-drawer-logout-btn");
+  if (drawerLogoutBtn) {
+    drawerLogoutBtn.addEventListener("click", () => {
       logoutUser().then(() => (window.location.href = "login.html"));
     });
   }
@@ -1799,12 +1838,12 @@ function renderAdminLeaderboard() {
         if (second) {
           podiumHtml += `
             <div class="podium-card podium-silver" style="flex: 1; min-width: 160px; max-width: 210px; background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 2px solid #cbd5e1; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(15,23,42,0.06);">
-              <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥈</div>
-              <div style="width: 52px; height: 52px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
+              <div class="podium-crown-icon" style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥈</div>
+              <div class="podium-avatar" style="width: 52px; height: 52px; border-radius: 50%; background: #94a3b8; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(148,163,184,0.3);">
                 ${second.initial}
               </div>
-              <div style="font-weight: 800; font-size: 0.95rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
-              <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #475569; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #e2e8f0;">
+              <div class="podium-name" style="font-weight: 800; font-size: 0.95rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${second.name}</div>
+              <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #475569; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #e2e8f0;">
                 ⚡ ${second.xp} XP
               </div>
             </div>
@@ -1814,12 +1853,12 @@ function renderAdminLeaderboard() {
         // 1st Place (Gold Crown)
         podiumHtml += `
           <div class="podium-card podium-gold" style="flex: 1; min-width: 180px; max-width: 230px; background: linear-gradient(135deg, #fffbeb, #fef08a); border: 2px solid #eab308; border-radius: 26px; padding: 1.75rem 1rem 1.5rem; text-align: center; box-shadow: 0 16px 36px -8px rgba(234,179,8,0.3); z-index: 2;">
-            <div style="font-size: 2rem; margin-bottom: 0.2rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
-            <div style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 4px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
+            <div class="podium-crown-icon" style="font-size: 2rem; margin-bottom: 0.2rem; filter: drop-shadow(0 4px 8px rgba(234,179,8,0.4));">👑</div>
+            <div class="podium-avatar" style="width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #eab308, #ca8a04); color: white; font-weight: 900; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 4px solid #ffffff; box-shadow: 0 6px 16px rgba(234,179,8,0.4);">
               ${first.initial}
             </div>
-            <div style="font-weight: 900; font-size: 1.05rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
-            <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.35rem 0.9rem; border-radius: 9999px; font-weight: 900; font-size: 0.92rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.3rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
+            <div class="podium-name" style="font-weight: 900; font-size: 1.05rem; color: #854d0e; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Plus Jakarta Sans', sans-serif;">${first.name}</div>
+            <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.35rem 0.9rem; border-radius: 9999px; font-weight: 900; font-size: 0.92rem; color: #854d0e; display: inline-flex; align-items: center; gap: 0.3rem; border: 1.5px solid #fef08a; box-shadow: 0 4px 12px rgba(234,179,8,0.2);">
               ⚡ ${first.xp} XP
             </div>
           </div>
@@ -1829,12 +1868,12 @@ function renderAdminLeaderboard() {
         if (third) {
           podiumHtml += `
             <div class="podium-card podium-bronze" style="flex: 1; min-width: 160px; max-width: 210px; background: linear-gradient(135deg, #fff7ed, #ffedd5); border: 2px solid #fdba74; border-radius: 24px; padding: 1.5rem 1rem 1.25rem; text-align: center; box-shadow: 0 10px 25px -5px rgba(249,115,22,0.1);">
-              <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥉</div>
-              <div style="width: 52px; height: 52px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
+              <div class="podium-crown-icon" style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥉</div>
+              <div class="podium-avatar" style="width: 52px; height: 52px; border-radius: 50%; background: #ea580c; color: white; font-weight: 900; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 0.6rem; border: 3px solid #ffffff; box-shadow: 0 4px 12px rgba(234,88,12,0.3);">
                 ${third.initial}
               </div>
-              <div style="font-weight: 800; font-size: 0.95rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
-              <div style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #fed7aa;">
+              <div class="podium-name" style="font-weight: 800; font-size: 0.95rem; color: #9a3412; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${third.name}</div>
+              <div class="podium-xp-badge" style="margin-top: 0.4rem; background: #ffffff; padding: 0.25rem 0.75rem; border-radius: 9999px; font-weight: 900; font-size: 0.85rem; color: #9a3412; display: inline-flex; align-items: center; gap: 0.25rem; border: 1px solid #fed7aa;">
                 ⚡ ${third.xp} XP
               </div>
             </div>
@@ -1864,31 +1903,31 @@ function renderAdminLeaderboard() {
         }
 
         html += `
-          <tr style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; transition: transform 0.2s ease;">
-            <td style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
-              <span style="${rankStyle} font-size: 0.9rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 9999px; display: inline-block; min-width: 42px; text-align: center;">${rankBadge}</span>
+          <tr class="leaderboard-row" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; transition: transform 0.2s ease;">
+            <td class="leaderboard-col-rank" style="padding: 0.9rem 1rem; border-top-left-radius: 16px; border-bottom-left-radius: 16px;">
+              <span class="leaderboard-rank-badge" style="${rankStyle} font-size: 0.9rem; font-weight: 900; padding: 0.35rem 0.75rem; border-radius: 9999px; display: inline-block; min-width: 42px; text-align: center;">${rankBadge}</span>
             </td>
-            <td style="padding: 0.9rem 1rem;">
-              <div style="display: flex; align-items: center; gap: 0.85rem;">
-                <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
+            <td class="leaderboard-col-user" style="padding: 0.9rem 1rem;">
+              <div class="leaderboard-user-cell" style="display: flex; align-items: center; gap: 0.85rem;">
+                <div class="leaderboard-avatar" style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99,102,241,0.3);">
                   ${u.initial}
                 </div>
-                <div style="font-weight: 800; font-size: 1rem; color: #0f172a;">${u.name}</div>
+                <div class="leaderboard-name" style="font-weight: 800; font-size: 1rem; color: #0f172a;">${u.name}</div>
               </div>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: center;">
+            <td class="leaderboard-col-streak" style="padding: 0.9rem 1rem; text-align: center;">
               <span style="background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
                 <i data-lucide="flame" style="width: 14px; height: 14px; fill: #ea580c;"></i>
                 <span>${u.streak}d</span>
               </span>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: center;">
+            <td class="leaderboard-col-coins" style="padding: 0.9rem 1rem; text-align: center;">
               <span style="background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; padding: 0.25rem 0.7rem; border-radius: 9999px; font-size: 0.82rem; font-weight: 800; display: inline-flex; align-items: center; gap: 0.3rem;">
                 <i data-lucide="coins" style="width: 14px; height: 14px; fill: #eab308;"></i>
                 <span>${u.coins}</span>
               </span>
             </td>
-            <td style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
+            <td class="leaderboard-col-xp" style="padding: 0.9rem 1rem; text-align: right; border-top-right-radius: 16px; border-bottom-right-radius: 16px;">
               <span style="font-weight: 900; font-size: 1.05rem; color: #6366f1; display: inline-flex; align-items: center; gap: 0.3rem;">
                 <i data-lucide="zap" style="width: 16px; height: 16px; fill: #6366f1;"></i>
                 <span>${u.xp} XP</span>
