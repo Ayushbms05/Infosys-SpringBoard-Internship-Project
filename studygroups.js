@@ -86,7 +86,7 @@ function renderStudyGroupsUI() {
   if (!container) return;
 
   const html = `
-    <div class="dash-card studygroups-card" style="max-width: 900px; margin: 0 auto; padding: 2rem;">
+    <div class="dash-card studygroups-card" style="max-width: 900px; margin: 0 auto; width: 100%; box-sizing: border-box;">
       
       <!-- Header -->
       <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">

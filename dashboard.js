@@ -747,18 +747,13 @@ function renderTopBar(profile) {
   // Streak
   const streakCount = document.getElementById("streak-count");
   if (streakCount) streakCount.textContent = profile.streak || 0;
-  const mobileStreakCount = document.getElementById("mobile-streak-count");
-  if (mobileStreakCount) mobileStreakCount.textContent = profile.streak || 0;
-
-  // Level badge
-  const levelBadge = document.getElementById("user-level-badge");
-  if (levelBadge) {
-    const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en") || "en";
-    const level = profile.currentLevel || profile.assessmentLevel || "beginner";
-    const config = LEVEL_CONFIG[level] || LEVEL_CONFIG.beginner;
-    levelBadge.className = `dash-level-badge ${level}`;
-    levelBadge.innerHTML = `${config.icon} <span>${getTranslation(prefLang, config.label) || config.fallback}</span>`;
-  }
+  // Drawer stats
+  const drawerXp = document.getElementById("drawer-xp-count");
+  if (drawerXp) drawerXp.textContent = profile.xp || 0;
+  const drawerStreak = document.getElementById("drawer-streak-count");
+  if (drawerStreak) drawerStreak.textContent = profile.streak || 0;
+  const drawerCoins = document.getElementById("drawer-coin-count");
+  if (drawerCoins) drawerCoins.textContent = profile.coins || 0;
 }
 
 // Global function to toggle unlock state of placed-above tracks
@@ -1790,27 +1785,67 @@ function setupDashboardEvents(profile) {
     );
   }
 
-  // ── Mobile "More" sheet ──
-  const mobileMoreBtn = document.getElementById("mobile-more-btn");
-  const mobileMoreSheet = document.getElementById("mobile-more-sheet");
-  const mobileMoreBackdrop = document.getElementById("mobile-more-backdrop");
+  // ── Mobile Navigation Drawer (Landing page style 3-horizontal-line menu) ──
+  const mobileNavToggle = document.getElementById("mobile-nav-toggle");
+  const mobileNavClose = document.getElementById("mobile-nav-close");
+  const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
+  const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
+  const drawerLogoutBtn = document.getElementById("drawer-logout-btn");
+  const drawerLangSelect = document.getElementById("drawer-lang-select");
 
-  function closeMobileMoreSheet() {
-    if (mobileMoreSheet) mobileMoreSheet.classList.remove("open");
-    if (mobileMoreBackdrop) mobileMoreBackdrop.classList.remove("open");
-    if (mobileMoreBtn) mobileMoreBtn.classList.remove("active");
+  function openMobileNavDrawer() {
+    if (mobileNavDrawer) {
+      mobileNavDrawer.classList.add("active");
+      mobileNavDrawer.setAttribute("aria-hidden", "false");
+    }
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.add("active");
+    document.body.style.overflow = "hidden";
+    if (window.lucide) lucide.createIcons();
   }
 
-  if (mobileMoreBtn && mobileMoreSheet && mobileMoreBackdrop) {
-    mobileMoreBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = mobileMoreSheet.classList.toggle("open");
-      mobileMoreBackdrop.classList.toggle("open", isOpen);
-      mobileMoreBtn.classList.toggle("active", isOpen);
+  function closeMobileNavDrawer() {
+    if (mobileNavDrawer) {
+      mobileNavDrawer.classList.remove("active");
+      mobileNavDrawer.setAttribute("aria-hidden", "true");
+    }
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  if (mobileNavToggle) mobileNavToggle.addEventListener("click", openMobileNavDrawer);
+  if (mobileNavClose) mobileNavClose.addEventListener("click", closeMobileNavDrawer);
+  if (mobileNavBackdrop) mobileNavBackdrop.addEventListener("click", closeMobileNavDrawer);
+
+  if (mobileNavDrawer) {
+    mobileNavDrawer.querySelectorAll(".dash-nav-item").forEach((item) => {
+      item.addEventListener("click", closeMobileNavDrawer);
     });
-    mobileMoreBackdrop.addEventListener("click", closeMobileMoreSheet);
-    mobileMoreSheet.querySelectorAll(".dash-nav-item").forEach((item) => {
-      item.addEventListener("click", closeMobileMoreSheet);
+  }
+
+  if (drawerLogoutBtn) {
+    drawerLogoutBtn.addEventListener("click", () => {
+      closeMobileNavDrawer();
+      const desktopLogout = document.getElementById("nav-logout-btn");
+      if (desktopLogout) desktopLogout.click();
+      else if (typeof handleLogout === "function") handleLogout();
+      else {
+        auth.signOut().then(() => {
+          window.location.href = "login.html";
+        });
+      }
+    });
+  }
+
+  if (drawerLangSelect) {
+    drawerLangSelect.value = selectedLang || "en";
+    drawerLangSelect.addEventListener("change", (e) => {
+      const newLang = e.target.value;
+      if (typeof handleLanguageChange === "function") {
+        handleLanguageChange(newLang);
+      } else {
+        localStorage.setItem("saksharLang", newLang);
+        window.location.reload();
+      }
     });
   }
 

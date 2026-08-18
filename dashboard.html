@@ -4,7 +4,7 @@
 <head>
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="AksharGyan Dashboard — Your Duolingo-style personalized literacy learning space." />
   <meta name="theme-color" content="#6366f1" />
   <title>AksharGyan — Dashboard</title>
@@ -5443,6 +5443,13 @@
 
     /* ─── Standard Mobile (<= 899px) ─── */
     @media (max-width: 899px) {
+      html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
       .dash-top-navbar {
         display: none !important;
       }
@@ -5451,21 +5458,26 @@
         padding-top: 0 !important;
       }
 
-      .mobile-topbar {
+      /* Fixed Mobile Top Bar (Zero Gap with Address Bar) */
+      #mobile-topbar.mobile-topbar {
         display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        height: 62px !important;
-        padding: 0.5rem 1rem !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        height: 64px !important;
+        z-index: 1000 !important;
+        margin: 0 !important;
+        padding: 0 1rem !important;
+        padding-top: env(safe-area-inset-top, 0px) !important;
         background: rgba(255, 255, 255, 0.98) !important;
         -webkit-backdrop-filter: blur(20px) !important;
         backdrop-filter: blur(20px) !important;
         border-bottom: 1.5px solid #e2e8f0 !important;
-        position: sticky !important;
-        top: 0 !important;
-        z-index: 990 !important;
         box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
-        width: 100% !important;
+        align-items: center !important;
+        justify-content: space-between !important;
         box-sizing: border-box !important;
       }
 
@@ -5482,150 +5494,96 @@
       }
 
       .dash-main-wrap {
-        padding: 1rem 0.85rem 6.5rem 0.85rem !important;
-      }
-
-      /* Fixed Bottom Navigation Bar */
-      .mobile-bottom-nav {
-        display: flex !important;
-        position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        height: 64px !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
-        backdrop-filter: blur(24px) saturate(180%) !important;
-        border-top: 1.5px solid #e2e8f0 !important;
-        box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.08) !important;
-        z-index: 1000 !important;
-        align-items: center !important;
-        justify-content: space-around !important;
-        padding: 0 0.5rem !important;
-        padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-        box-sizing: border-box !important;
+        padding: 78px 0.75rem 2.5rem 0.75rem !important;
         width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
       }
 
-      .mobile-bottom-nav .dash-nav-item {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        flex: 1 1 0 !important;
-        height: 100% !important;
-        padding: 0.35rem 0.25rem !important;
-        border-radius: 12px !important;
-        background: transparent !important;
-        border: none !important;
-        color: #64748b !important;
-        gap: 0.2rem !important;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        cursor: pointer !important;
-        box-shadow: none !important;
-        text-decoration: none !important;
+      /* Hide old bottom navigation bar completely */
+      .mobile-bottom-nav,
+      #mobile-bottom-nav,
+      .mobile-more-sheet,
+      #mobile-more-sheet,
+      .mobile-more-backdrop,
+      #mobile-more-backdrop {
+        display: none !important;
       }
 
-      .mobile-bottom-nav .dash-nav-item .dash-nav-icon {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-
-      .mobile-bottom-nav .dash-nav-item .dash-nav-icon i,
-      .mobile-bottom-nav .dash-nav-item .dash-nav-icon svg {
-        width: 20px !important;
-        height: 20px !important;
-        color: #64748b !important;
-        stroke: #64748b !important;
-        transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
-      }
-
-      .mobile-bottom-nav .dash-nav-item .mobile-nav-label {
-        font-family: 'Plus Jakarta Sans', sans-serif !important;
-        font-size: 0.68rem !important;
-        font-weight: 700 !important;
-        line-height: 1 !important;
-        white-space: nowrap !important;
-      }
-
-      .mobile-bottom-nav .dash-nav-item.active {
-        color: #4f46e5 !important;
-        background: #eef2ff !important;
-      }
-
-      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon,
-      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon i,
-      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon svg {
-        color: #4f46e5 !important;
-        stroke: #4f46e5 !important;
-        transform: translateY(-1px) scale(1.1) !important;
-      }
-
-      .mobile-bottom-nav .dash-nav-item.active .mobile-nav-label {
-        font-weight: 800 !important;
-        color: #4f46e5 !important;
-      }
-
-      /* Slide-up "More" Bottom Sheet */
-      .mobile-more-backdrop {
+      /* Mobile Navigation Drawer (Landing Page Style) */
+      .mobile-nav-backdrop {
         position: fixed !important;
         inset: 0 !important;
         background: rgba(15, 23, 42, 0.45) !important;
-        -webkit-backdrop-filter: blur(4px) !important;
-        backdrop-filter: blur(4px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        backdrop-filter: blur(8px) !important;
         z-index: 1010 !important;
         opacity: 0;
-        visibility: hidden;
-        transition: all 0.25s ease !important;
+        pointer-events: none;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
 
-      .mobile-more-backdrop.open,
-      .mobile-more-backdrop.active {
+      .mobile-nav-backdrop.active {
         opacity: 1 !important;
-        visibility: visible !important;
+        pointer-events: auto !important;
       }
 
-      .mobile-more-sheet {
+      .mobile-nav-drawer {
         position: fixed !important;
-        bottom: 0 !important;
-        left: 0 !important;
+        top: 0 !important;
         right: 0 !important;
+        width: 85vw !important;
+        max-width: 360px !important;
+        height: 100vh !important;
+        height: 100dvh !important;
         background: rgba(255, 255, 255, 0.98) !important;
         -webkit-backdrop-filter: blur(24px) !important;
         backdrop-filter: blur(24px) !important;
-        border-top: 1.5px solid #e2e8f0 !important;
-        border-top-left-radius: 28px !important;
-        border-top-right-radius: 28px !important;
-        box-shadow: 0 -15px 45px rgba(15, 23, 42, 0.16) !important;
+        border-left: 1.5px solid #e2e8f0 !important;
         z-index: 1020 !important;
-        padding: 0.85rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px)) 1rem !important;
-        max-height: 85vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding: 1.25rem 1rem calc(1.5rem + env(safe-area-inset-bottom, 0px)) !important;
+        box-sizing: border-box !important;
+        transform: translateX(100%) !important;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-shadow: -10px 0 40px rgba(15, 23, 42, 0.15) !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
-        transform: translateY(100%) !important;
-        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        box-sizing: border-box !important;
       }
 
-      .mobile-more-sheet.open,
-      .mobile-more-sheet.active {
-        transform: translateY(0) !important;
+      .mobile-nav-drawer.active {
+        transform: translateX(0) !important;
       }
 
-      .mobile-more-sheet-handle {
-        width: 44px !important;
-        height: 5px !important;
-        background: #cbd5e1 !important;
-        border-radius: 9999px !important;
-        margin: 0 auto 0.85rem auto !important;
-      }
-
-      .mobile-more-sheet .dash-nav-item {
+      .mobile-nav-header {
         display: flex !important;
         align-items: center !important;
-        gap: 0.85rem !important;
-        padding: 0.85rem 1rem !important;
+        justify-content: space-between !important;
+        padding-bottom: 0.85rem !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+      }
+
+      .mobile-nav-close {
+        background: #f1f5f9 !important;
+        border: 1px solid #cbd5e1 !important;
+        color: #64748b !important;
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+      }
+
+      .mobile-drawer-nav-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.75rem !important;
+        padding: 0.75rem 0.9rem !important;
         border-radius: 14px !important;
         color: #334155 !important;
         font-family: 'Plus Jakarta Sans', sans-serif !important;
@@ -5640,23 +5598,56 @@
         box-sizing: border-box !important;
       }
 
-      .mobile-more-sheet .dash-nav-item:hover,
-      .mobile-more-sheet .dash-nav-item:active {
+      .mobile-drawer-nav-item:hover,
+      .mobile-drawer-nav-item:active {
         background: #f1f5f9 !important;
         color: #6366f1 !important;
-        transform: translateX(3px) !important;
+      }
+
+      .mobile-drawer-nav-item.active {
+        background: #eef2ff !important;
+        color: #4f46e5 !important;
+        font-weight: 800 !important;
+      }
+
+      .mobile-drawer-nav-item.active .dash-nav-icon i,
+      .mobile-drawer-nav-item.active .dash-nav-icon svg {
+        color: #4f46e5 !important;
+        stroke: #4f46e5 !important;
+      }
+
+      /* ─── Global Card Reset (Zero Horizontal Overflow) ─── */
+      .dash-card,
+      .leagues-card,
+      .studygroups-card,
+      .hw-studio-card,
+      .path-hero-card,
+      .path-level-section,
+      .units-hero-card,
+      .leaderboard-card,
+      .profile-hero-card,
+      .ai-growth-advisor-card,
+      .recommendation-card,
+      .analysis-section-card {
+        padding: 1.25rem 0.95rem !important;
+        border-radius: 20px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
       }
 
       /* ─── Learn Sub-Tabs Bar ─── */
       .learn-sub-tabs {
         display: flex !important;
-        gap: 0.45rem !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
         overflow-x: auto !important;
         scrollbar-width: none !important;
         -webkit-overflow-scrolling: touch !important;
-        padding: 0.35rem 0.15rem 0.65rem !important;
+        padding: 0.25rem 0 !important;
         margin-bottom: 1.15rem !important;
-        width: 100% !important;
         box-sizing: border-box !important;
       }
 
@@ -5665,18 +5656,22 @@
       }
 
       .learn-sub-tab {
-        padding: 0.55rem 1rem !important;
-        font-size: 0.85rem !important;
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        padding: 0.55rem 0.4rem !important;
+        font-size: 0.8rem !important;
         border-radius: 9999px !important;
         white-space: nowrap !important;
-        flex-shrink: 0 !important;
+        text-align: center !important;
+        justify-content: center !important;
         min-height: 38px !important;
       }
 
-      /* ─── Cards & Grids Responsiveness ─── */
-      .dash-card {
-        padding: 1.35rem 1.15rem !important;
-        border-radius: 22px !important;
+      /* ─── Learn: Results View ─── */
+      .hero-dual-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
       }
 
       .phrase-of-day-card .phrase-text {
@@ -5686,29 +5681,240 @@
       .phrase-actions {
         flex-direction: column !important;
         gap: 0.6rem !important;
+        width: 100% !important;
       }
 
       .phrase-listen-btn,
       .phrase-speak-btn {
         width: 100% !important;
         justify-content: center !important;
+        height: 44px !important;
+        min-height: 44px !important;
+        box-sizing: border-box !important;
       }
 
-      /* ─── Practice Section ─── */
+      .rec-score-row {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
+      }
+
+      .rec-score-meta {
+        width: 100% !important;
+        min-width: 0 !important;
+        text-align: center !important;
+      }
+
+      .rec-diag-pills {
+        justify-content: center !important;
+        width: 100% !important;
+      }
+
+      /* ─── Learn: Learning Path View ─── */
+      .path-hero-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1rem !important;
+        width: 100% !important;
+      }
+
+      .path-hero-info {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+
+      .path-hero-title {
+        font-size: 1.35rem !important;
+      }
+
+      .path-hero-desc {
+        font-size: 0.85rem !important;
+        max-width: 100% !important;
+      }
+
+      .path-hero-stats {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.45rem !important;
+        width: 100% !important;
+      }
+
+      .path-stat-chip {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 0.78rem !important;
+      }
+
+      .path-hero-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        height: 44px !important;
+      }
+
+      .path-level-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      .path-level-title-wrap {
+        gap: 0.65rem !important;
+        width: 100% !important;
+      }
+
+      .path-level-title {
+        font-size: 1.15rem !important;
+      }
+
+      .path-skill-chapter {
+        padding: 0.95rem 0.75rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+      }
+
+      .path-skill-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+      }
+
+      .path-lesson-grid {
+        grid-template-columns: 1fr !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      /* ─── Learn: Units View ─── */
+      .units-hero-card {
+        padding: 1.35rem 1rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+      }
+
+      .units-filters-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+        margin-top: 1rem !important;
+      }
+
+      .unit-filter-btn {
+        flex: 1 1 calc(50% - 0.4rem) !important;
+        font-size: 0.76rem !important;
+        padding: 0.45rem 0.5rem !important;
+        text-align: center !important;
+        white-space: normal !important;
+        border-radius: 10px !important;
+      }
+
+      .units-grid-wrapper {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+      }
+
+      .units-unit-card {
+        padding: 1.15rem 0.9rem !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+      }
+
+      /* ─── Practice & Games Hub ─── */
       #section-practice .practice-grid,
       #section-practice .scenario-grid,
       #section-games .games-grid,
       #section-games .scenario-grid {
         grid-template-columns: 1fr !important;
         gap: 1.15rem !important;
+        width: 100% !important;
       }
 
-      /* ─── Handwriting Canvas Tracing ─── */
+      /* ─── Handwriting Studio ─── */
+      .hw-studio-card {
+        padding: 1.15rem 0.75rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+      }
+
+      .hw-studio-hero {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.65rem !important;
+        width: 100% !important;
+      }
+
+      .hw-hero-title {
+        font-size: 1.2rem !important;
+      }
+
+      .hw-script-section {
+        width: 100% !important;
+        margin-top: 0.85rem !important;
+      }
+
+      .hw-script-strip {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 0.4rem !important;
+        padding: 0.35rem 0 !important;
+        width: 100% !important;
+      }
+
+      .hw-script-pill {
+        flex-shrink: 0 !important;
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.75rem !important;
+      }
+
+      .hw-modes-container {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.6rem !important;
+        width: 100% !important;
+      }
+
+      .hw-mode-tabs {
+        display: flex !important;
+        width: 100% !important;
+        gap: 0.35rem !important;
+      }
+
+      .hw-mode-tab {
+        flex: 1 1 0 !important;
+        padding: 0.45rem 0.2rem !important;
+        font-size: 0.76rem !important;
+        text-align: center !important;
+        justify-content: center !important;
+      }
+
+      .hw-workspace-box {
+        padding: 0.85rem 0.5rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+      }
+
+      .hw-nav-strip {
+        gap: 0.5rem !important;
+        width: 100% !important;
+      }
+
       .hw-canvas-wrapper {
         width: 100% !important;
-        max-width: 520px !important;
-        margin: 0 auto 1.15rem !important;
-        box-sizing: border-box !important;
+        max-width: 100% !important;
+        aspect-ratio: 520 / 320 !important;
+        margin: 0 auto 0.85rem !important;
+        border-radius: 16px !important;
+        overflow: hidden !important;
       }
 
       #hw-canvas {
@@ -5716,30 +5922,174 @@
         height: auto !important;
         aspect-ratio: 520 / 320 !important;
         max-width: 100% !important;
-        border-radius: 18px !important;
-        touch-action: none !important;
         display: block !important;
-        background: #ffffff !important;
-        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
       }
 
       .hw-toolbar {
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
+        width: 100% !important;
       }
 
       .hw-colors-group,
       .hw-sizes-group,
       .hw-aux-actions {
-        justify-content: center !important;
+        display: flex !important;
         flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 0.35rem !important;
+        width: 100% !important;
+      }
+
+      .hw-color-circle {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      .hw-size-btn-pill {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.76rem !important;
+      }
+
+      .hw-btn-tool {
+        padding: 0.35rem 0.65rem !important;
+        font-size: 0.76rem !important;
+      }
+
+      .hw-check-btn {
+        width: 100% !important;
+        height: 46px !important;
+        font-size: 0.92rem !important;
+      }
+
+      /* ─── Leagues ─── */
+      .leagues-card {
+        padding: 1.15rem 0.75rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+      }
+
+      .league-tier-banner {
+        padding: 1.15rem 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+      }
+
+      .league-tier-banner > div:last-child {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.85rem !important;
+      }
+
+      .league-tier-banner [style*="min-width: 260px"],
+      .league-tier-banner [style*="min-width: 180px"] {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+
+      .leagues-card [style*="grid-template-columns: repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+      }
+
+      .league-member-row {
+        padding: 0.65rem 0.75rem !important;
+        border-radius: 12px !important;
+        font-size: 0.82rem !important;
+        gap: 0.4rem !important;
+      }
+
+      /* ─── Leaderboard ─── */
+      .leaderboard-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+      }
+
+      #leaderboard-podium {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-end !important;
+        justify-content: center !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+        margin-bottom: 1.25rem !important;
+      }
+
+      .leaderboard-card {
+        padding: 1rem 0.65rem !important;
+        border-radius: 18px !important;
+        width: 100% !important;
+        overflow-x: hidden !important;
+      }
+
+      .leaderboard-card > div[style*="overflow-x: auto"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+
+      .leaderboard-table {
+        min-width: 380px !important;
+        width: 100% !important;
+      }
+
+      .leaderboard-table th,
+      .leaderboard-table td {
+        padding: 0.5rem 0.4rem !important;
+        font-size: 0.78rem !important;
+      }
+
+      /* ─── Study Groups ─── */
+      .studygroups-card {
+        padding: 1.15rem 0.75rem !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+      }
+
+      .sg-sub-tabs {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.35rem !important;
+        width: 100% !important;
+      }
+
+      .sg-tab {
+        flex: 1 1 calc(50% - 0.35rem) !important;
+        padding: 0.45rem 0.5rem !important;
+        font-size: 0.78rem !important;
+        text-align: center !important;
+        justify-content: center !important;
+        border-radius: 8px !important;
+      }
+
+      #sg-view-container > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+      }
+
+      .sg-group-card,
+      .sg-post-card {
+        padding: 1rem 0.85rem !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+      }
+
+      .sg-reply-form {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
       }
 
       /* ─── Chat Simulator ─── */
       #section-chat .chat-messages-container {
         max-height: 55vh !important;
         padding: 0.75rem 0.4rem !important;
+        width: 100% !important;
       }
 
       #section-chat .chat-bubble {
@@ -5748,36 +6098,17 @@
         font-size: 0.9rem !important;
       }
 
-      /* ─── Leaderboard ─── */
-      #leaderboard-podium {
-        gap: 0.65rem !important;
-        margin-bottom: 1.5rem !important;
-      }
-
-      .leaderboard-podium-item {
-        min-width: 90px !important;
-      }
-
-      .leaderboard-card {
-        padding: 1.15rem 0.85rem !important;
-        border-radius: 22px !important;
-      }
-
-      .leaderboard-table th,
-      .leaderboard-table td {
-        padding: 0.6rem 0.5rem !important;
-        font-size: 0.82rem !important;
-      }
-
       /* ─── Diagnostic & Analysis ─── */
       #section-analysis .analysis-stats-row {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 0.75rem !important;
+        width: 100% !important;
       }
 
       #section-analysis .analysis-grid {
         grid-template-columns: 1fr !important;
         gap: 1.15rem !important;
+        width: 100% !important;
       }
 
       /* ─── Profile & Forms ─── */
@@ -5786,12 +6117,14 @@
       .profile-edit-grid,
       .edit-form-grid {
         grid-template-columns: 1fr !important;
+        width: 100% !important;
       }
 
       .profile-hero-top-row {
         flex-direction: column !important;
         align-items: flex-start !important;
         gap: 1rem !important;
+        width: 100% !important;
       }
 
       .profile-hero-actions {
@@ -5810,41 +6143,13 @@
       .profile-tags-strip {
         flex-wrap: wrap !important;
         gap: 0.4rem !important;
+        width: 100% !important;
       }
 
       .badges-grid {
         grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important;
         gap: 0.6rem !important;
-      }
-
-      /* ─── Leagues & Study Groups ─── */
-      .leagues-card,
-      .studygroups-card {
-        padding: 1.25rem 1rem !important;
-        border-radius: 22px !important;
-      }
-
-      .league-tier-banner {
-        padding: 1.25rem 1rem !important;
-        border-radius: 20px !important;
-        margin-bottom: 1.25rem !important;
-      }
-
-      .league-member-row,
-      .sg-group-card,
-      .sg-post-card {
-        padding: 0.85rem 0.95rem !important;
-        border-radius: 16px !important;
-      }
-
-      .sg-sub-tabs {
-        flex-wrap: wrap !important;
-        gap: 0.4rem !important;
-      }
-
-      .sg-reply-form {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
+        width: 100% !important;
       }
 
       /* ─── Modals (Lesson, Market/Shop, Certificate) ─── */
@@ -5875,16 +6180,16 @@
     /* ─── Small / Narrow Phones (<= 480px) ─── */
     @media (max-width: 480px) {
       .dash-main-wrap {
-        padding: 0.75rem 0.65rem 6.5rem 0.65rem !important;
+        padding: 74px 0.55rem 2.5rem 0.55rem !important;
       }
 
       .dash-card {
-        padding: 1.2rem 1rem !important;
-        border-radius: 20px !important;
+        padding: 1.15rem 0.85rem !important;
+        border-radius: 18px !important;
       }
 
-      .mobile-topbar {
-        padding: 0.45rem 0.75rem !important;
+      #mobile-topbar.mobile-topbar {
+        padding: 0 0.75rem !important;
       }
 
       .mobile-topbar-brand .nav-logo {
@@ -5923,17 +6228,143 @@
     </div>
     <!-- ═══════════ MOBILE TOP BAR (≤900px only) ═══════════ -->
     <div id="mobile-topbar" class="mobile-topbar">
-      <!-- Hamburger menu removed as per user request (sidebar no longer needed on mobile) -->
       <div class="mobile-topbar-brand">
         <a href="landing.html" class="nav-logo" style="font-size: 1.25rem; text-decoration: none;">
           <div class="nav-logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">📖</div>
           <span>Akshar<span class="brand-gradient">Gyan</span></span>
         </a>
       </div>
-      <div class="mobile-topbar-avatar-slot"></div>
+      <div class="mobile-topbar-right" style="display: flex; align-items: center; gap: 0.65rem;">
+        <div class="mobile-topbar-avatar-slot"></div>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Open Navigation Menu" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; color: #0f172a; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+          <i data-lucide="menu" style="width: 22px; height: 22px;"></i>
+        </button>
+      </div>
     </div>
-    <!-- ═══════════ SIDEBAR BACKDROP (mobile) ═══════════ -->
-    <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- ═══════════ MOBILE NAVIGATION DRAWER (LANDING PAGE STYLE) ═══════════ -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+      <div class="mobile-nav-header">
+        <a href="landing.html" class="nav-logo" style="font-size: 1.25rem; text-decoration: none;">
+          <div class="nav-logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">📖</div>
+          <span>Akshar<span class="brand-gradient">Gyan</span></span>
+        </a>
+        <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close Navigation Menu">
+          <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+        </button>
+      </div>
+
+      <!-- Quick Stats Pill Row -->
+      <div class="mobile-drawer-stats" style="display: flex; gap: 0.4rem; justify-content: space-between; margin-top: 1rem;">
+        <div class="dash-stat-pill streak-pill" style="flex: 1; justify-content: center; padding: 0.35rem 0.4rem; font-size: 0.76rem;">
+          <span class="stat-icon"><i data-lucide="flame" style="width: 14px; height: 14px;"></i></span>
+          <span id="drawer-streak-count" class="stat-value">0</span>
+        </div>
+        <div class="dash-stat-pill xp-pill" style="flex: 1; justify-content: center; padding: 0.35rem 0.4rem; font-size: 0.76rem;">
+          <span class="stat-icon"><i data-lucide="zap" style="width: 14px; height: 14px;"></i></span>
+          <span id="drawer-xp-count" class="stat-value">0</span>
+        </div>
+        <div class="dash-stat-pill coins-pill" style="flex: 1; justify-content: center; padding: 0.35rem 0.4rem; font-size: 0.76rem; cursor: pointer;" onclick="document.getElementById('nav-shop-btn')?.click()">
+          <span class="stat-icon"><i data-lucide="coins" style="width: 14px; height: 14px;"></i></span>
+          <span id="drawer-coin-count" class="stat-value">0</span>
+        </div>
+      </div>
+
+      <!-- Language Switcher in Drawer -->
+      <div style="margin-top: 0.85rem; padding: 0.65rem 0.85rem; border-radius: 14px; background: #ffffff; border: 1.5px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between;">
+        <span style="font-size: 0.82rem; font-weight: 800; color: #475569; display: flex; align-items: center; gap: 0.4rem;">
+          <i data-lucide="globe" style="width: 15px; height: 15px; color: #6366f1;"></i> Language
+        </span>
+        <select id="drawer-lang-select" style="font-size: 0.82rem; font-weight: 700; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.3rem 0.6rem; background: #f8fafc; color: #0f172a;">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ta">தமிழ்</option>
+          <option value="te">తెలుగు</option>
+          <option value="kn">ಕನ್ನಡ</option>
+          <option value="bn">বাংলা</option>
+          <option value="mr">मराठी</option>
+        </select>
+      </div>
+
+      <!-- Navigation Links -->
+      <ul class="mobile-drawer-nav-list" style="list-style: none; padding: 0.85rem 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem; flex-grow: 1; overflow-y: auto;">
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item active" data-section="learn">
+            <span class="dash-nav-icon"><i data-lucide="book-open"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navLearn">Learn & Curriculum</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="practice">
+            <span class="dash-nav-icon"><i data-lucide="target"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navPractice">Interactive Practice</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="handwriting">
+            <span class="dash-nav-icon"><i data-lucide="edit-3"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navHandwriting">Handwriting Studio</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="games">
+            <span class="dash-nav-icon"><i data-lucide="gamepad-2"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navGames">Games Hub</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="chat">
+            <span class="dash-nav-icon"><i data-lucide="message-circle"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navChat">AI Chat Simulator</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="leaderboard">
+            <span class="dash-nav-icon"><i data-lucide="award"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navLeaderboard">Leaderboard</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="leagues">
+            <span class="dash-nav-icon"><i data-lucide="shield"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navLeagues">Weekly Leagues</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="studygroups">
+            <span class="dash-nav-icon"><i data-lucide="users"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navStudyGroups">Study Groups</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="profile">
+            <span class="dash-nav-icon"><i data-lucide="user"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navProfile">My Profile</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="analysis">
+            <span class="dash-nav-icon"><i data-lucide="bar-chart-2"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navAnalysis">Diagnostic Analysis</span>
+          </button>
+        </li>
+        <li>
+          <button class="mobile-drawer-nav-item dash-nav-item" data-section="feedback">
+            <span class="dash-nav-icon"><i data-lucide="lightbulb"></i></span>
+            <span class="sidebar-nav-label" data-i18n="navFeedback">Platform Feedback</span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Logout CTA at bottom of Drawer -->
+      <div style="padding-top: 0.75rem; border-top: 1px solid #e2e8f0; margin-top: auto;">
+        <button id="drawer-logout-btn" style="width: 100%; padding: 0.75rem 1rem; border-radius: 14px; background: #fef2f2; border: 1.5px solid #fecaca; color: #dc2626; font-size: 0.92rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 0.5rem; cursor: pointer;">
+          <i data-lucide="log-out" style="width: 18px; height: 18px;"></i>
+          <span>Sign Out</span>
+        </button>
+      </div>
+    </div>
 
     <div class="dash-shell">
       <!-- ═══════════ MODERN TOP NAVBAR (DESKTOP) ═══════════ -->
@@ -6067,104 +6498,6 @@
           </div>
         </div>
       </header>
-
-      <!-- ═══════════ FLIPKART/DUOLINGO STYLE MOBILE BOTTOM NAVBAR ═══════════ -->
-      <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
-        <button class="dash-nav-item active" data-section="learn" title="Learn">
-          <span class="dash-nav-icon"><i data-lucide="book-open" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navLearn">Learn</span>
-        </button>
-        <button class="dash-nav-item" data-section="practice" title="Practice">
-          <span class="dash-nav-icon"><i data-lucide="target" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navPractice">Practice</span>
-        </button>
-        <button class="dash-nav-item" data-section="handwriting" title="Handwriting">
-          <span class="dash-nav-icon"><i data-lucide="edit-3" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label">Handwriting</span>
-        </button>
-        <button class="dash-nav-item" id="mobile-more-btn" title="More">
-          <span class="dash-nav-icon"><i data-lucide="more-horizontal" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navMore">More</span>
-        </button>
-      </nav>
-
-      <div id="mobile-more-backdrop" class="mobile-more-backdrop"></div>
-      <div id="mobile-more-sheet" class="mobile-more-sheet">
-        <div class="mobile-more-sheet-handle"></div>
-        <!-- Mobile Stats Header -->
-        <div class="mobile-sheet-stats"
-          style="display:flex; justify-content:space-around; padding: 1rem 0; border-bottom: 1px solid var(--color-border); margin-bottom: 0.5rem;">
-          <div class="dash-stat-pill streak-pill" title="Daily Streak"
-            style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fff1ee; border:1px solid #ffd9cf; color:#e8582f; display:flex; align-items:center; gap:0.25rem; font-weight:700;">
-            <span class="stat-icon"><i data-lucide="flame" style="width: 14px; height: 14px;"></i></span><span
-              id="mobile-streak-count" class="stat-value">0</span>
-          </div>
-          <div class="dash-stat-pill xp-pill" title="Experience Points"
-            style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#f1efff; border:1px solid #ddd7ff; color:var(--color-primary); display:flex; align-items:center; gap:0.25rem; font-weight:700;">
-            <span class="stat-icon"><i data-lucide="zap" style="width: 14px; height: 14px;"></i></span><span
-              id="mobile-xp-count" class="stat-value">0</span>
-          </div>
-          <div class="dash-stat-pill coins-pill" title="Open Gyan Market" id="mobile-open-shop-btn"
-            style="padding:0.4rem 0.6rem; font-size:0.8rem; border-radius:9999px; background:#fdf6e3; border:1px solid #f3e3ad; color:#9c7a12; display:flex; align-items:center; gap:0.25rem; font-weight:700; cursor:pointer;">
-            <span class="stat-icon"><i data-lucide="coins" style="width: 14px; height: 14px;"></i></span><span
-              id="mobile-coin-count" class="stat-value">0</span>
-          </div>
-        </div>
-
-        <div
-          style="padding: 0.5rem 1rem; border-bottom: 1px solid var(--color-border); margin-bottom: 0.5rem; display:flex; justify-content:space-between; align-items:center;">
-          <span style="font-size:0.9rem; font-weight:600; color:var(--color-text-primary);">Language</span>
-          <select id="mobile-dash-lang-select" class="dash-lang-select"
-            style="padding:0.3rem; font-size:0.85rem; border-radius:8px; border:1px solid var(--color-border);">
-            <option value="en">English</option>
-            <option value="hi">हिन्दी</option>
-            <option value="ta">தமிழ்</option>
-            <option value="te">తెలుగు</option>
-            <option value="kn">ಕನ್ನಡ</option>
-            <option value="bn">বাংলা</option>
-            <option value="mr">मराठी</option>
-          </select>
-        </div>
-
-        <button class="dash-nav-item" data-section="chat" title="Chat">
-          <span class="dash-nav-icon"><i data-lucide="message-circle" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navChatSimulator">Chat Simulator</span>
-        </button>
-        <button class="dash-nav-item" data-section="games" title="Games">
-          <span class="dash-nav-icon"><i data-lucide="gamepad-2" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navGames">Games</span>
-        </button>
-        <button class="dash-nav-item" data-section="leaderboard" title="Leaderboard">
-          <span class="dash-nav-icon"><i data-lucide="trophy" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navLeaderboard">Ranks</span>
-        </button>
-        <button class="dash-nav-item" data-section="leagues" title="Leagues">
-          <span class="dash-nav-icon"><i data-lucide="shield" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label">Leagues</span>
-        </button>
-        <button class="dash-nav-item" data-section="studygroups" title="Study Groups">
-          <span class="dash-nav-icon"><i data-lucide="users" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label">Study Groups</span>
-        </button>
-        <button class="dash-nav-item" data-section="profile" title="Profile">
-          <span class="dash-nav-icon"><i data-lucide="user" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navProfile">Profile</span>
-        </button>
-        <button class="dash-nav-item" data-section="feedback" title="Feedback">
-          <span class="dash-nav-icon"><i data-lucide="lightbulb" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navFeedback">Feedback</span>
-        </button>
-        <button class="dash-nav-item" data-section="analysis" title="Analysis">
-          <span class="dash-nav-icon"><i data-lucide="bar-chart-2" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="navAnalysis">Analysis</span>
-        </button>
-
-        <button class="dash-nav-item" id="mobile-logout-btn"
-          style="color:#e11d48; margin-top:0.5rem; border-top:1px solid var(--color-border); border-radius:0; padding-top:1rem;">
-          <span class="dash-nav-icon"><i data-lucide="log-out" aria-hidden="true"></i></span>
-          <span class="mobile-nav-label" data-i18n="logoutBtn">Logout</span>
-        </button>
-      </div>
 
       <!-- ═══════════ MAIN CONTENT ═══════════ -->
       <main class="dash-main-wrap">

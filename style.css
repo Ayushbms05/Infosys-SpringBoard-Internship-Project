@@ -11493,7 +11493,8 @@ body#page-register {
 /* Global Mobile Fixes for Small Viewports (<= 768px) */
 @media (max-width: 768px) {
   .dashboard-layout {
-    padding: 1rem 0.65rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
@@ -11647,7 +11648,8 @@ body#page-register {
 /* Compact Adjustments for Ultra-Narrow Screens (<= 480px) */
 @media (max-width: 480px) {
   .dashboard-layout {
-    padding: 0.6rem 0.4rem !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 
   .dash-card,

@@ -228,10 +228,10 @@ async function renderLeaguesUI() {
 
   // Render full gamified container
   let html = `
-    <div class="dash-card leagues-card" style="max-width: 960px; margin: 0 auto; padding: 2rem; box-sizing: border-box; width: 100%; border-radius: 32px; background: #ffffff; border: 1.5px solid #e2e8f0; box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.08);">
+    <div class="dash-card leagues-card" style="max-width: 960px; margin: 0 auto; box-sizing: border-box; width: 100%;">
       
       <!-- ═══ 1. LEAGUE HERO CARD ═══ -->
-      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; border-radius: 26px; padding: 2rem; margin-bottom: 2rem; color: #ffffff; position: relative; overflow: hidden; box-shadow: 0 16px 40px rgba(0,0,0,0.18);">
+      <div class="league-tier-banner" style="background: ${tierInfo.bgGradient}; color: #ffffff; position: relative; overflow: hidden;">
         
         <!-- Ambient Glow Orb -->
         <div style="position: absolute; right: -40px; top: -40px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0) 70%); pointer-events: none;"></div>
@@ -239,7 +239,7 @@ async function renderLeaguesUI() {
         <div style="display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; position: relative; z-index: 2;">
           
           <!-- Tier Emblem & Titles -->
-          <div style="display: flex; align-items: center; gap: 1.25rem; min-width: 260px;">
+          <div style="display: flex; align-items: center; gap: 1.25rem;">
             <div style="width: 76px; height: 76px; border-radius: 24px; background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.3); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-shrink: 0;">
               ${tierInfo.icon}
             </div>
@@ -258,7 +258,7 @@ async function renderLeaguesUI() {
           </div>
 
           <!-- Weekly Countdown Timer -->
-          <div style="background: rgba(0, 0, 0, 0.25); border: 1.5px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 0.85rem 1.35rem; border-radius: 18px; text-align: right; min-width: 180px;">
+          <div style="background: rgba(0, 0, 0, 0.25); border: 1.5px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 0.85rem 1.35rem; border-radius: 18px; text-align: right;">
             <div style="font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: rgba(255,255,255,0.75);">
               ${lTr("weekEndsIn")}
             </div>
