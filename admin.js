@@ -85,14 +85,13 @@ function showAdminToast(message, type = "success", title = "") {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1.5px solid ${
-      type === "success"
-        ? "rgba(16, 185, 129, 0.35)"
-        : type === "error"
-          ? "rgba(239, 68, 68, 0.35)"
-          : type === "warning"
-            ? "rgba(245, 158, 11, 0.35)"
-            : "rgba(99, 102, 241, 0.35)"
+    border: 1.5px solid ${type === "success"
+      ? "rgba(16, 185, 129, 0.35)"
+      : type === "error"
+        ? "rgba(239, 68, 68, 0.35)"
+        : type === "warning"
+          ? "rgba(245, 158, 11, 0.35)"
+          : "rgba(99, 102, 241, 0.35)"
     };
     border-radius: 20px;
     padding: 1rem 1.25rem;
@@ -425,8 +424,8 @@ function computeOverviewStats() {
   );
   const avgScore = assessed.length
     ? Math.round(
-        assessed.reduce((s, u) => s + u.assessmentScore, 0) / assessed.length,
-      )
+      assessed.reduce((s, u) => s + u.assessmentScore, 0) / assessed.length,
+    )
     : null;
 
   const totalLessons = users.reduce((s, u) => s + u.completedLessons.length, 0);
@@ -824,8 +823,8 @@ function renderUsersTable() {
         </td>
         <td class="admin-col-active" style="padding: 1rem 1.25rem;">
           ${isToday
-            ? '<span style="display:inline-flex; align-items:center; gap:0.4rem; color:#16a34a; font-weight:800; font-size:0.82rem;"><span style="width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span> Active Today</span>'
-            : `<span style="color:#64748b; font-weight:600; font-size:0.82rem;">${u.lastActiveDate || "Never"}</span>`}
+          ? '<span style="display:inline-flex; align-items:center; gap:0.4rem; color:#16a34a; font-weight:800; font-size:0.82rem;"><span style="width:8px; height:8px; border-radius:50%; background:#22c55e; box-shadow:0 0 8px #22c55e; display:inline-block;"></span> Active Today</span>'
+          : `<span style="color:#64748b; font-weight:600; font-size:0.82rem;">${u.lastActiveDate || "Never"}</span>`}
         </td>
         <td class="admin-col-actions" style="padding: 1rem 1.25rem; text-align: right;">
           <button class="admin-view-btn" data-uid="${u.uid}" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: none; border-radius: 12px; padding: 0.5rem 1.05rem; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; box-shadow: 0 4px 14px rgba(99,102,241,0.25); transition: all 0.2s ease;">
@@ -1310,8 +1309,8 @@ function renderModalSkillBreakdown(history) {
 
       const avg = hasAttempts
         ? Math.round(
-            attempts.reduce((s, a) => s + (typeof a.accuracy === "number" ? a.accuracy : (a.score || 0)), 0) / attempts.length
-          )
+          attempts.reduce((s, a) => s + (typeof a.accuracy === "number" ? a.accuracy : (a.score || 0)), 0) / attempts.length
+        )
         : 0;
 
       let scoreBadgeHtml = "";
@@ -1795,13 +1794,13 @@ function renderAdminLeaderboard() {
   const podium = document.getElementById("admin-leaderboard-podium");
   const loading = document.getElementById("admin-leaderboard-loading");
   const empty = document.getElementById("admin-leaderboard-empty");
-  
+
   if (!tbody) return;
-  
+
   tbody.innerHTML = "";
   if (loading) loading.classList.remove("hidden");
   if (empty) empty.classList.add("hidden");
-  
+
   db.collection("users")
     .orderBy("xp", "desc")
     .limit(50)
@@ -1812,7 +1811,7 @@ function renderAdminLeaderboard() {
         if (empty) empty.classList.remove("hidden");
         return;
       }
-      
+
       const userList = [];
       snap.forEach((doc) => {
         const data = doc.data();
