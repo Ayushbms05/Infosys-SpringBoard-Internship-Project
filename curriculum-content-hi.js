@@ -1,6 +1,7 @@
 /**
  * curriculum-content-hi.js — Hardcoded Curriculum Pack
  * Language: HI | Lessons: 75 | Questions: 750
+ * Pedagogical Progressive Difficulty Ladder (Beginner -> Intermediate -> Advanced)
  */
 
 window.CURRICULUM_LESSONS_HI = {
@@ -9,2310 +10,2282 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नमस्ते, आपसे मिलकर बहुत खुशी हुई। हमारी कक्षा में आपका स्वागत है।",
-          "translation": "अभिवादन",
-          "question": "यह पाठ किस बारे में है?",
+          "content": "नमस्ते मेरे अच्छे दोस्त",
+          "translation": "Hello, my good friend",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हार्दिक स्वागत",
-            "बस का समय",
-            "खाना पकाने की विधि",
-            "खेल का मैच"
+            "This is a new book",
+            "Yes, I want this",
+            "Thank you very much",
+            "Hello, my good friend"
           ],
-          "answerIndex": 0,
-          "explanation": "'नमस्ते' और 'स्वागत' सम्मानजनक अभिवादन हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Hello, my good friend'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सुप्रभात! आज का मौसम बहुत सुहावना, ठंडा और धूपदार है।",
-          "translation": "मौसम",
-          "question": "आज का मौसम कैसा है?",
+          "content": "आपका बहुत-बहुत धन्यवाद",
+          "translation": "Thank you very much",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुहावना और धूपदार",
-            "तूफानी और वर्षा",
-            "अत्यधिक ठंडा",
-            "अंधेरा"
+            "I drink clean water",
+            "Good morning to you",
+            "Welcome to our class",
+            "Thank you very much"
           ],
-          "answerIndex": 0,
-          "explanation": "मौसम को सुहावना और धूपदार बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Thank you very much'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मेरा नाम राहुल है। मैं एक जिज्ञासु छात्र हूँ जिसे पढ़ना पसंद है।",
-          "translation": "आत्म-परिचय",
-          "question": "राहुल कौन है?",
+          "content": "आपको शुभ प्रभात",
+          "translation": "Good morning to you",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक छात्र",
-            "एक पायलट",
-            "एक डॉक्टर",
-            "एक रसोइया"
+            "We will meet tomorrow",
+            "Yes, I want this",
+            "Good morning to you",
+            "My name is Rahul"
           ],
-          "answerIndex": 0,
-          "explanation": "राहुल ने स्वयं को छात्र बताया है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Good morning to you'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "रोज़ाना स्वच्छ पानी पीने से शरीर स्वस्थ और ऊर्जावान रहता है।",
-          "translation": "स्वास्थ्य",
-          "question": "शरीर को स्वस्थ क्या रखता है?",
+          "content": "हाँ, मुझे यह चाहिए",
+          "translation": "Yes, I want this",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "स्वच्छ पानी",
-            "कोल्ड ड्रिंक",
-            "मिठाई",
-            "फास्ट फूड"
+            "I want hot tea",
+            "Yes, I want this",
+            "I drink clean water",
+            "Hello, my good friend"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ पानी स्वास्थ्य के लिए उत्तम है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Yes, I want this'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह हरे-भरे पेड़ों से घिरे एक सुंदर घर में रहती है।",
-          "translation": "घर",
-          "question": "वह कहाँ रहती है?",
+          "content": "मैं स्वच्छ पानी पीता हूँ",
+          "translation": "I drink clean water",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक घर में",
-            "रेलगाड़ी में",
-            "हवाई अड्डे पर",
-            "जहाज में"
+            "Thank you very much",
+            "This is a new book",
+            "I drink clean water",
+            "My name is Rahul"
           ],
-          "answerIndex": 0,
-          "explanation": "सुंदर घर का वर्णन है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'I drink clean water'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पक्षी नीले खुले आकाश में स्वतंत्रता से उड़ते हैं।",
-          "translation": "प्रकृति",
-          "question": "पक्षी कहाँ उड़ते हैं?",
+          "content": "मेरा नाम राहुल है",
+          "translation": "My name is Rahul",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "आकाश में",
-            "पानी के अंदर",
-            "गुफा में",
-            "रेल की पटरी पर"
+            "Welcome to our class",
+            "I want hot tea",
+            "Good morning to you",
+            "My name is Rahul"
           ],
-          "answerIndex": 0,
-          "explanation": "पक्षी खुले आकाश में उड़ते हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'My name is Rahul'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह रोज़ दोपहर को एक ताज़ा और मीठा सेब खाता है।",
-          "translation": "आहार",
-          "question": "वह क्या खाता है?",
+          "content": "मुझे गर्म चाय चाहिए",
+          "translation": "I want hot tea",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक सेब",
-            "पिज्जा",
-            "बर्गर",
-            "केक"
+            "I want hot tea",
+            "We will meet tomorrow",
+            "Yes, I want this",
+            "This is a new book"
           ],
           "answerIndex": 0,
-          "explanation": "सेब का उल्लेख है।"
+          "explanation": "The correct meaning is: 'I want hot tea'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "हम सब मिलकर रोज़ नई भाषा का अभ्यास करते हैं।",
-          "translation": "अध्ययन",
-          "question": "वे क्या कर रहे हैं?",
+          "content": "यह एक नई किताब है",
+          "translation": "This is a new book",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "भाषा का अभ्यास",
-            "टीवी देखना",
-            "सोना",
-            "गाड़ी चलाना"
+            "Hello, my good friend",
+            "Welcome to our class",
+            "I drink clean water",
+            "This is a new book"
           ],
-          "answerIndex": 0,
-          "explanation": "वे नई भाषा सीख रहे हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'This is a new book'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पुस्तकालय में अध्ययन के लिए हज़ारों उपयोगी पुस्तकें उपलब्ध हैं।",
-          "translation": "पुस्तकालय",
-          "question": "पुस्तकालय में क्या है?",
+          "content": "हमारी कक्षा में आपका स्वागत है",
+          "translation": "Welcome to our class",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पुस्तकें",
-            "साइकिलें",
-            "जूते",
-            "दुकानें"
+            "My name is Rahul",
+            "We will meet tomorrow",
+            "Thank you very much",
+            "Welcome to our class"
           ],
-          "answerIndex": 0,
-          "explanation": "पुस्तकालय में पुस्तकें होती हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Welcome to our class'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित व्यायाम से शारीरिक शक्ति और मानसिक एकाग्रता बढ़ती है।",
-          "translation": "व्यायाम",
-          "question": "व्यायाम से क्या बढ़ता है?",
+          "content": "हम कल फिर मिलेंगे",
+          "translation": "We will meet tomorrow",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शक्ति और एकाग्रता",
-            "केवल नींद",
-            "आंखों का रंग",
-            "कद"
+            "I want hot tea",
+            "We will meet tomorrow",
+            "Hello, my good friend",
+            "Good morning to you"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से एकाग्रता बढ़ती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'We will meet tomorrow'."
         }
       ],
       "2": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नमस्ते, आपसे मिलकर बहुत खुशी हुई। हमारी कक्षा में आपका स्वागत है।",
-          "translation": "अभिवादन",
-          "question": "यह पाठ किस बारे में है?",
+          "content": "आप आज कैसे हैं?",
+          "translation": "How are you today?",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हार्दिक स्वागत",
-            "बस का समय",
-            "खाना पकाने की विधि",
-            "खेल का मैच"
+            "Please open the door",
+            "She is very happy today",
+            "I am fine today",
+            "How are you today?"
           ],
-          "answerIndex": 0,
-          "explanation": "'नमस्ते' और 'स्वागत' सम्मानजनक अभिवादन हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'How are you today?'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सुप्रभात! आज का मौसम बहुत सुहावना, ठंडा और धूपदार है।",
-          "translation": "मौसम",
-          "question": "आज का मौसम कैसा है?",
+          "content": "मैं आज बहुत ठीक हूँ",
+          "translation": "I am fine today",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुहावना और धूपदार",
-            "तूफानी और वर्षा",
-            "अत्यधिक ठंडा",
-            "अंधेरा"
+            "This red apple is sweet",
+            "Where is drinking water?",
+            "Please come here now",
+            "I am fine today"
           ],
-          "answerIndex": 0,
-          "explanation": "मौसम को सुहावना और धूपदार बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'I am fine today'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मेरा नाम राहुल है। मैं एक जिज्ञासु छात्र हूँ जिसे पढ़ना पसंद है।",
-          "translation": "आत्म-परिचय",
-          "question": "राहुल कौन है?",
+          "content": "यह लाल सेब बहुत मीठा है",
+          "translation": "This red apple is sweet",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक छात्र",
-            "एक पायलट",
-            "एक डॉक्टर",
-            "एक रसोइया"
+            "I wish you good night",
+            "Please open the door",
+            "This red apple is sweet",
+            "See you tomorrow morning"
           ],
-          "answerIndex": 0,
-          "explanation": "राहुल ने स्वयं को छात्र बताया है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'This red apple is sweet'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "रोज़ाना स्वच्छ पानी पीने से शरीर स्वस्थ और ऊर्जावान रहता है।",
-          "translation": "स्वास्थ्य",
-          "question": "शरीर को स्वस्थ क्या रखता है?",
+          "content": "कृपया सामने का दरवाज़ा खोलो",
+          "translation": "Please open the door",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "स्वच्छ पानी",
-            "कोल्ड ड्रिंक",
-            "मिठाई",
-            "फास्ट फूड"
+            "Where is drinking water?",
+            "How are you today?",
+            "I like fresh sweet milk",
+            "Please open the door"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ पानी स्वास्थ्य के लिए उत्तम है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Please open the door'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह हरे-भरे पेड़ों से घिरे एक सुंदर घर में रहती है।",
-          "translation": "घर",
-          "question": "वह कहाँ रहती है?",
+          "content": "पीने का साफ़ पानी कहाँ है?",
+          "translation": "Where is drinking water?",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक घर में",
-            "रेलगाड़ी में",
-            "हवाई अड्डे पर",
-            "जहाज में"
+            "I wish you good night",
+            "Where is drinking water?",
+            "I am fine today",
+            "She is very happy today"
           ],
-          "answerIndex": 0,
-          "explanation": "सुंदर घर का वर्णन है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Where is drinking water?'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पक्षी नीले खुले आकाश में स्वतंत्रता से उड़ते हैं।",
-          "translation": "प्रकृति",
-          "question": "पक्षी कहाँ उड़ते हैं?",
+          "content": "आपको बहुत शुभ रात्रि",
+          "translation": "I wish you good night",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "आकाश में",
-            "पानी के अंदर",
-            "गुफा में",
-            "रेल की पटरी पर"
+            "Please come here now",
+            "This red apple is sweet",
+            "I like fresh sweet milk",
+            "I wish you good night"
           ],
-          "answerIndex": 0,
-          "explanation": "पक्षी खुले आकाश में उड़ते हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'I wish you good night'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह रोज़ दोपहर को एक ताज़ा और मीठा सेब खाता है।",
-          "translation": "आहार",
-          "question": "वह क्या खाता है?",
+          "content": "मुझे ताज़ा मीठा दूध पसंद है",
+          "translation": "I like fresh sweet milk",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक सेब",
-            "पिज्जा",
-            "बर्गर",
-            "केक"
+            "Please open the door",
+            "She is very happy today",
+            "I like fresh sweet milk",
+            "See you tomorrow morning"
           ],
-          "answerIndex": 0,
-          "explanation": "सेब का उल्लेख है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'I like fresh sweet milk'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "हम सब मिलकर रोज़ नई भाषा का अभ्यास करते हैं।",
-          "translation": "अध्ययन",
-          "question": "वे क्या कर रहे हैं?",
+          "content": "वह आज बहुत खुश है",
+          "translation": "She is very happy today",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "भाषा का अभ्यास",
-            "टीवी देखना",
-            "सोना",
-            "गाड़ी चलाना"
+            "Please come here now",
+            "Where is drinking water?",
+            "How are you today?",
+            "She is very happy today"
           ],
-          "answerIndex": 0,
-          "explanation": "वे नई भाषा सीख रहे हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'She is very happy today'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पुस्तकालय में अध्ययन के लिए हज़ारों उपयोगी पुस्तकें उपलब्ध हैं।",
-          "translation": "पुस्तकालय",
-          "question": "पुस्तकालय में क्या है?",
+          "content": "कृपया अभी यहाँ आइए",
+          "translation": "Please come here now",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पुस्तकें",
-            "साइकिलें",
-            "जूते",
-            "दुकानें"
+            "Please come here now",
+            "See you tomorrow morning",
+            "I wish you good night",
+            "I am fine today"
           ],
           "answerIndex": 0,
-          "explanation": "पुस्तकालय में पुस्तकें होती हैं।"
+          "explanation": "The correct meaning is: 'Please come here now'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित व्यायाम से शारीरिक शक्ति और मानसिक एकाग्रता बढ़ती है।",
-          "translation": "व्यायाम",
-          "question": "व्यायाम से क्या बढ़ता है?",
+          "content": "कल सुबह फिर मिलेंगे",
+          "translation": "See you tomorrow morning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शक्ति और एकाग्रता",
-            "केवल नींद",
-            "आंखों का रंग",
-            "कद"
+            "I like fresh sweet milk",
+            "This red apple is sweet",
+            "See you tomorrow morning",
+            "How are you today?"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से एकाग्रता बढ़ती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'See you tomorrow morning'."
         }
       ],
       "3": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नमस्ते, आपसे मिलकर बहुत खुशी हुई। हमारी कक्षा में आपका स्वागत है।",
-          "translation": "अभिवादन",
-          "question": "यह पाठ किस बारे में है?",
+          "content": "मैं यह अच्छी किताब पढ़ता हूँ",
+          "translation": "I read this good book",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हार्दिक स्वागत",
-            "बस का समय",
-            "खाना पकाने की विधि",
-            "खेल का मैच"
+            "She drinks clean water daily",
+            "I read this good book",
+            "This is our beautiful home",
+            "Birds fly in the sky"
           ],
-          "answerIndex": 0,
-          "explanation": "'नमस्ते' और 'स्वागत' सम्मानजनक अभिवादन हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'I read this good book'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सुप्रभात! आज का मौसम बहुत सुहावना, ठंडा और धूपदार है।",
-          "translation": "मौसम",
-          "question": "आज का मौसम कैसा है?",
+          "content": "वह रोज़ स्वच्छ पानी पीती है",
+          "translation": "She drinks clean water daily",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुहावना और धूपदार",
-            "तूफानी और वर्षा",
-            "अत्यधिक ठंडा",
-            "अंधेरा"
+            "Mother cooks delicious warm food",
+            "We eat fresh sweet fruits",
+            "The clear sky is blue",
+            "She drinks clean water daily"
           ],
-          "answerIndex": 0,
-          "explanation": "मौसम को सुहावना और धूपदार बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'She drinks clean water daily'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मेरा नाम राहुल है। मैं एक जिज्ञासु छात्र हूँ जिसे पढ़ना पसंद है।",
-          "translation": "आत्म-परिचय",
-          "question": "राहुल कौन है?",
+          "content": "साफ़ आकाश नीला है",
+          "translation": "The clear sky is blue",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक छात्र",
-            "एक पायलट",
-            "एक डॉक्टर",
-            "एक रसोइया"
+            "Father is at home now",
+            "This is our beautiful home",
+            "Children laugh and play happily",
+            "The clear sky is blue"
           ],
-          "answerIndex": 0,
-          "explanation": "राहुल ने स्वयं को छात्र बताया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'The clear sky is blue'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "रोज़ाना स्वच्छ पानी पीने से शरीर स्वस्थ और ऊर्जावान रहता है।",
-          "translation": "स्वास्थ्य",
-          "question": "शरीर को स्वस्थ क्या रखता है?",
+          "content": "यह हमारा सुंदर घर है",
+          "translation": "This is our beautiful home",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "स्वच्छ पानी",
-            "कोल्ड ड्रिंक",
-            "मिठाई",
-            "फास्ट फूड"
+            "This is our beautiful home",
+            "I read this good book",
+            "We eat fresh sweet fruits",
+            "I write with a pen"
           ],
           "answerIndex": 0,
-          "explanation": "स्वच्छ पानी स्वास्थ्य के लिए उत्तम है।"
+          "explanation": "The correct meaning is: 'This is our beautiful home'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह हरे-भरे पेड़ों से घिरे एक सुंदर घर में रहती है।",
-          "translation": "घर",
-          "question": "वह कहाँ रहती है?",
+          "content": "हम ताज़े मीठे फल खाते हैं",
+          "translation": "We eat fresh sweet fruits",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक घर में",
-            "रेलगाड़ी में",
-            "हवाई अड्डे पर",
-            "जहाज में"
+            "Birds fly in the sky",
+            "Father is at home now",
+            "We eat fresh sweet fruits",
+            "She drinks clean water daily"
           ],
-          "answerIndex": 0,
-          "explanation": "सुंदर घर का वर्णन है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'We eat fresh sweet fruits'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पक्षी नीले खुले आकाश में स्वतंत्रता से उड़ते हैं।",
-          "translation": "प्रकृति",
-          "question": "पक्षी कहाँ उड़ते हैं?",
+          "content": "पिताजी अभी घर पर हैं",
+          "translation": "Father is at home now",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "आकाश में",
-            "पानी के अंदर",
-            "गुफा में",
-            "रेल की पटरी पर"
+            "I write with a pen",
+            "Father is at home now",
+            "Mother cooks delicious warm food",
+            "The clear sky is blue"
           ],
-          "answerIndex": 0,
-          "explanation": "पक्षी खुले आकाश में उड़ते हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Father is at home now'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह रोज़ दोपहर को एक ताज़ा और मीठा सेब खाता है।",
-          "translation": "आहार",
-          "question": "वह क्या खाता है?",
+          "content": "मैं कलम से लिखता हूँ",
+          "translation": "I write with a pen",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक सेब",
-            "पिज्जा",
-            "बर्गर",
-            "केक"
+            "Children laugh and play happily",
+            "This is our beautiful home",
+            "I write with a pen",
+            "Birds fly in the sky"
           ],
-          "answerIndex": 0,
-          "explanation": "सेब का उल्लेख है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'I write with a pen'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "हम सब मिलकर रोज़ नई भाषा का अभ्यास करते हैं।",
-          "translation": "अध्ययन",
-          "question": "वे क्या कर रहे हैं?",
+          "content": "पक्षी आकाश में उड़ते हैं",
+          "translation": "Birds fly in the sky",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "भाषा का अभ्यास",
-            "टीवी देखना",
-            "सोना",
-            "गाड़ी चलाना"
+            "We eat fresh sweet fruits",
+            "I read this good book",
+            "Mother cooks delicious warm food",
+            "Birds fly in the sky"
           ],
-          "answerIndex": 0,
-          "explanation": "वे नई भाषा सीख रहे हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Birds fly in the sky'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पुस्तकालय में अध्ययन के लिए हज़ारों उपयोगी पुस्तकें उपलब्ध हैं।",
-          "translation": "पुस्तकालय",
-          "question": "पुस्तकालय में क्या है?",
+          "content": "माँ स्वादिष्ट गरम खाना बनाती हैं",
+          "translation": "Mother cooks delicious warm food",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पुस्तकें",
-            "साइकिलें",
-            "जूते",
-            "दुकानें"
+            "Mother cooks delicious warm food",
+            "Children laugh and play happily",
+            "Father is at home now",
+            "She drinks clean water daily"
           ],
           "answerIndex": 0,
-          "explanation": "पुस्तकालय में पुस्तकें होती हैं।"
+          "explanation": "The correct meaning is: 'Mother cooks delicious warm food'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित व्यायाम से शारीरिक शक्ति और मानसिक एकाग्रता बढ़ती है।",
-          "translation": "व्यायाम",
-          "question": "व्यायाम से क्या बढ़ता है?",
+          "content": "बच्चे खुशी से हँसते और खेलते हैं",
+          "translation": "Children laugh and play happily",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शक्ति और एकाग्रता",
-            "केवल नींद",
-            "आंखों का रंग",
-            "कद"
+            "The clear sky is blue",
+            "Children laugh and play happily",
+            "I read this good book",
+            "I write with a pen"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से एकाग्रता बढ़ती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Children laugh and play happily'."
         }
       ],
       "4": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नमस्ते, आपसे मिलकर बहुत खुशी हुई। हमारी कक्षा में आपका स्वागत है।",
-          "translation": "अभिवादन",
-          "question": "यह पाठ किस बारे में है?",
+          "content": "सुबह चमकीला सूरज उगता है",
+          "translation": "The bright sun rises in morning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हार्दिक स्वागत",
-            "बस का समय",
-            "खाना पकाने की विधि",
-            "खेल का मैच"
+            "We listen to sweet peaceful music",
+            "The bright sun rises in morning",
+            "She speaks kindly to all friends",
+            "Children go to school every morning"
           ],
-          "answerIndex": 0,
-          "explanation": "'नमस्ते' और 'स्वागत' सम्मानजनक अभिवादन हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'The bright sun rises in morning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सुप्रभात! आज का मौसम बहुत सुहावना, ठंडा और धूपदार है।",
-          "translation": "मौसम",
-          "question": "आज का मौसम कैसा है?",
+          "content": "बच्चे रोज़ सुबह स्कूल जाते हैं",
+          "translation": "Children go to school every morning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुहावना और धूपदार",
-            "तूफानी और वर्षा",
-            "अत्यधिक ठंडा",
-            "अंधेरा"
+            "They play games in green park",
+            "He likes reading colorful story books",
+            "We take a walk in evening",
+            "Children go to school every morning"
           ],
-          "answerIndex": 0,
-          "explanation": "मौसम को सुहावना और धूपदार बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Children go to school every morning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मेरा नाम राहुल है। मैं एक जिज्ञासु छात्र हूँ जिसे पढ़ना पसंद है।",
-          "translation": "आत्म-परिचय",
-          "question": "राहुल कौन है?",
+          "content": "वे हरे पार्क में खेल खेलते हैं",
+          "translation": "They play games in green park",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक छात्र",
-            "एक पायलट",
-            "एक डॉक्टर",
-            "एक रसोइया"
+            "I sleep early at night daily",
+            "We listen to sweet peaceful music",
+            "Learning new words brings great joy",
+            "They play games in green park"
           ],
-          "answerIndex": 0,
-          "explanation": "राहुल ने स्वयं को छात्र बताया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'They play games in green park'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "रोज़ाना स्वच्छ पानी पीने से शरीर स्वस्थ और ऊर्जावान रहता है।",
-          "translation": "स्वास्थ्य",
-          "question": "शरीर को स्वस्थ क्या रखता है?",
+          "content": "हम मधुर और शांत संगीत सुनते हैं",
+          "translation": "We listen to sweet peaceful music",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "स्वच्छ पानी",
-            "कोल्ड ड्रिंक",
-            "मिठाई",
-            "फास्ट फूड"
+            "Fresh colorful flowers bloom in garden",
+            "He likes reading colorful story books",
+            "We listen to sweet peaceful music",
+            "The bright sun rises in morning"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ पानी स्वास्थ्य के लिए उत्तम है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'We listen to sweet peaceful music'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह हरे-भरे पेड़ों से घिरे एक सुंदर घर में रहती है।",
-          "translation": "घर",
-          "question": "वह कहाँ रहती है?",
+          "content": "उसे रंगीन कहानियों की किताबें पसंद हैं",
+          "translation": "He likes reading colorful story books",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक घर में",
-            "रेलगाड़ी में",
-            "हवाई अड्डे पर",
-            "जहाज में"
+            "I sleep early at night daily",
+            "She speaks kindly to all friends",
+            "He likes reading colorful story books",
+            "Children go to school every morning"
           ],
-          "answerIndex": 0,
-          "explanation": "सुंदर घर का वर्णन है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'He likes reading colorful story books'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पक्षी नीले खुले आकाश में स्वतंत्रता से उड़ते हैं।",
-          "translation": "प्रकृति",
-          "question": "पक्षी कहाँ उड़ते हैं?",
+          "content": "मैं रोज़ रात को जल्दी सोता हूँ",
+          "translation": "I sleep early at night daily",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "आकाश में",
-            "पानी के अंदर",
-            "गुफा में",
-            "रेल की पटरी पर"
+            "I sleep early at night daily",
+            "We take a walk in evening",
+            "Fresh colorful flowers bloom in garden",
+            "They play games in green park"
           ],
           "answerIndex": 0,
-          "explanation": "पक्षी खुले आकाश में उड़ते हैं।"
+          "explanation": "The correct meaning is: 'I sleep early at night daily'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह रोज़ दोपहर को एक ताज़ा और मीठा सेब खाता है।",
-          "translation": "आहार",
-          "question": "वह क्या खाता है?",
+          "content": "बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं",
+          "translation": "Fresh colorful flowers bloom in garden",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक सेब",
-            "पिज्जा",
-            "बर्गर",
-            "केक"
+            "Learning new words brings great joy",
+            "We listen to sweet peaceful music",
+            "She speaks kindly to all friends",
+            "Fresh colorful flowers bloom in garden"
           ],
-          "answerIndex": 0,
-          "explanation": "सेब का उल्लेख है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Fresh colorful flowers bloom in garden'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "हम सब मिलकर रोज़ नई भाषा का अभ्यास करते हैं।",
-          "translation": "अध्ययन",
-          "question": "वे क्या कर रहे हैं?",
+          "content": "वह सभी दोस्तों से विनम्रता से बोलती है",
+          "translation": "She speaks kindly to all friends",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "भाषा का अभ्यास",
-            "टीवी देखना",
-            "सोना",
-            "गाड़ी चलाना"
+            "We take a walk in evening",
+            "The bright sun rises in morning",
+            "He likes reading colorful story books",
+            "She speaks kindly to all friends"
           ],
-          "answerIndex": 0,
-          "explanation": "वे नई भाषा सीख रहे हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'She speaks kindly to all friends'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पुस्तकालय में अध्ययन के लिए हज़ारों उपयोगी पुस्तकें उपलब्ध हैं।",
-          "translation": "पुस्तकालय",
-          "question": "पुस्तकालय में क्या है?",
+          "content": "हम शाम को सैर करने जाते हैं",
+          "translation": "We take a walk in evening",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पुस्तकें",
-            "साइकिलें",
-            "जूते",
-            "दुकानें"
+            "We take a walk in evening",
+            "Children go to school every morning",
+            "Learning new words brings great joy",
+            "I sleep early at night daily"
           ],
           "answerIndex": 0,
-          "explanation": "पुस्तकालय में पुस्तकें होती हैं।"
+          "explanation": "The correct meaning is: 'We take a walk in evening'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित व्यायाम से शारीरिक शक्ति और मानसिक एकाग्रता बढ़ती है।",
-          "translation": "व्यायाम",
-          "question": "व्यायाम से क्या बढ़ता है?",
+          "content": "नए शब्द सीखने से बहुत खुशी मिलती है",
+          "translation": "Learning new words brings great joy",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शक्ति और एकाग्रता",
-            "केवल नींद",
-            "आंखों का रंग",
-            "कद"
+            "Learning new words brings great joy",
+            "Fresh colorful flowers bloom in garden",
+            "They play games in green park",
+            "The bright sun rises in morning"
           ],
           "answerIndex": 0,
-          "explanation": "व्यायाम से एकाग्रता बढ़ती है।"
+          "explanation": "The correct meaning is: 'Learning new words brings great joy'."
         }
       ],
       "5": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नमस्ते, आपसे मिलकर बहुत खुशी हुई। हमारी कक्षा में आपका स्वागत है।",
-          "translation": "अभिवादन",
-          "question": "यह पाठ किस बारे में है?",
+          "content": "नियमित अभ्यास से सीखना बहुत आसान होता है",
+          "translation": "Regular practice makes learning very easy",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हार्दिक स्वागत",
-            "बस का समय",
-            "खाना पकाने की विधि",
-            "खेल का मैच"
+            "Regular practice makes learning very easy",
+            "Kind words bring peaceful happiness everywhere around",
+            "Green trees give clean air and shade",
+            "We drink clean water for good health"
           ],
           "answerIndex": 0,
-          "explanation": "'नमस्ते' और 'स्वागत' सम्मानजनक अभिवादन हैं।"
+          "explanation": "The correct meaning is: 'Regular practice makes learning very easy'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सुप्रभात! आज का मौसम बहुत सुहावना, ठंडा और धूपदार है।",
-          "translation": "मौसम",
-          "question": "आज का मौसम कैसा है?",
+          "content": "हरे पेड़ ताज़ा हवा और छाया देते हैं",
+          "translation": "Green trees give clean air and shade",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुहावना और धूपदार",
-            "तूफानी और वर्षा",
-            "अत्यधिक ठंडा",
-            "अंधेरा"
+            "I love learning new words every day",
+            "Good books always give inspiring positive thoughts",
+            "A morning walk keeps your mind fresh",
+            "Green trees give clean air and shade"
           ],
-          "answerIndex": 0,
-          "explanation": "मौसम को सुहावना और धूपदार बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Green trees give clean air and shade'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मेरा नाम राहुल है। मैं एक जिज्ञासु छात्र हूँ जिसे पढ़ना पसंद है।",
-          "translation": "आत्म-परिचय",
-          "question": "राहुल कौन है?",
+          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है",
+          "translation": "I love learning new words every day",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक छात्र",
-            "एक पायलट",
-            "एक डॉक्टर",
-            "एक रसोइया"
+            "I love learning new words every day",
+            "We drink clean water for good health",
+            "A loving family gives us warmth always",
+            "Honest hard work brings true happy success"
           ],
           "answerIndex": 0,
-          "explanation": "राहुल ने स्वयं को छात्र बताया है।"
+          "explanation": "The correct meaning is: 'I love learning new words every day'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "रोज़ाना स्वच्छ पानी पीने से शरीर स्वस्थ और ऊर्जावान रहता है।",
-          "translation": "स्वास्थ्य",
-          "question": "शरीर को स्वस्थ क्या रखता है?",
+          "content": "हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं",
+          "translation": "We drink clean water for good health",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "स्वच्छ पानी",
-            "कोल्ड ड्रिंक",
-            "मिठाई",
-            "फास्ट फूड"
+            "Regular practice makes learning very easy",
+            "We drink clean water for good health",
+            "Good books always give inspiring positive thoughts",
+            "Healthy food keeps our body active strong"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ पानी स्वास्थ्य के लिए उत्तम है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'We drink clean water for good health'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह हरे-भरे पेड़ों से घिरे एक सुंदर घर में रहती है।",
-          "translation": "घर",
-          "question": "वह कहाँ रहती है?",
+          "content": "अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं",
+          "translation": "Good books always give inspiring positive thoughts",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक घर में",
-            "रेलगाड़ी में",
-            "हवाई अड्डे पर",
-            "जहाज में"
+            "Kind words bring peaceful happiness everywhere around",
+            "Good books always give inspiring positive thoughts",
+            "Green trees give clean air and shade",
+            "Honest hard work brings true happy success"
           ],
-          "answerIndex": 0,
-          "explanation": "सुंदर घर का वर्णन है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Good books always give inspiring positive thoughts'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पक्षी नीले खुले आकाश में स्वतंत्रता से उड़ते हैं।",
-          "translation": "प्रकृति",
-          "question": "पक्षी कहाँ उड़ते हैं?",
+          "content": "सच्ची मेहनत से ही असली सफलता मिलती है",
+          "translation": "Honest hard work brings true happy success",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "आकाश में",
-            "पानी के अंदर",
-            "गुफा में",
-            "रेल की पटरी पर"
+            "A morning walk keeps your mind fresh",
+            "I love learning new words every day",
+            "Healthy food keeps our body active strong",
+            "Honest hard work brings true happy success"
           ],
-          "answerIndex": 0,
-          "explanation": "पक्षी खुले आकाश में उड़ते हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Honest hard work brings true happy success'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वह रोज़ दोपहर को एक ताज़ा और मीठा सेब खाता है।",
-          "translation": "आहार",
-          "question": "वह क्या खाता है?",
+          "content": "पौष्टिक आहार हमारे शरीर को बलवान बनाता है",
+          "translation": "Healthy food keeps our body active strong",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "एक सेब",
-            "पिज्जा",
-            "बर्गर",
-            "केक"
+            "A loving family gives us warmth always",
+            "Kind words bring peaceful happiness everywhere around",
+            "Healthy food keeps our body active strong",
+            "We drink clean water for good health"
           ],
-          "answerIndex": 0,
-          "explanation": "सेब का उल्लेख है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Healthy food keeps our body active strong'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "हम सब मिलकर रोज़ नई भाषा का अभ्यास करते हैं।",
-          "translation": "अध्ययन",
-          "question": "वे क्या कर रहे हैं?",
+          "content": "मीठे बोल चारों ओर शांति और खुशी लाते हैं",
+          "translation": "Kind words bring peaceful happiness everywhere around",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "भाषा का अभ्यास",
-            "टीवी देखना",
-            "सोना",
-            "गाड़ी चलाना"
+            "Kind words bring peaceful happiness everywhere around",
+            "Good books always give inspiring positive thoughts",
+            "A morning walk keeps your mind fresh",
+            "Regular practice makes learning very easy"
           ],
           "answerIndex": 0,
-          "explanation": "वे नई भाषा सीख रहे हैं।"
+          "explanation": "The correct meaning is: 'Kind words bring peaceful happiness everywhere around'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "पुस्तकालय में अध्ययन के लिए हज़ारों उपयोगी पुस्तकें उपलब्ध हैं।",
-          "translation": "पुस्तकालय",
-          "question": "पुस्तकालय में क्या है?",
+          "content": "सुबह की सैर मन को तरोताज़ा रखती है",
+          "translation": "A morning walk keeps your mind fresh",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पुस्तकें",
-            "साइकिलें",
-            "जूते",
-            "दुकानें"
+            "Green trees give clean air and shade",
+            "A loving family gives us warmth always",
+            "A morning walk keeps your mind fresh",
+            "Honest hard work brings true happy success"
           ],
-          "answerIndex": 0,
-          "explanation": "पुस्तकालय में पुस्तकें होती हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'A morning walk keeps your mind fresh'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित व्यायाम से शारीरिक शक्ति और मानसिक एकाग्रता बढ़ती है।",
-          "translation": "व्यायाम",
-          "question": "व्यायाम से क्या बढ़ता है?",
+          "content": "प्यारा परिवार हमें सदा संबल और स्नेह देता है",
+          "translation": "A loving family gives us warmth always",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शक्ति और एकाग्रता",
-            "केवल नींद",
-            "आंखों का रंग",
-            "कद"
+            "A loving family gives us warmth always",
+            "Healthy food keeps our body active strong",
+            "Regular practice makes learning very easy",
+            "I love learning new words every day"
           ],
           "answerIndex": 0,
-          "explanation": "व्यायाम से एकाग्रता बढ़ती है।"
+          "explanation": "The correct meaning is: 'A loving family gives us warmth always'."
         }
       ]
     },
     "writing": {
       "1": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "I love learning new things",
-          "question": "मुझे नई बातें सीखना बहुत पसंद है",
-          "questionTranslation": "I love learning new things",
-          "translation": "I love learning new things",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Hello, my good friend",
+          "question": "नमस्ते मेरे अच्छे दोस्त",
+          "questionTranslation": "Hello, my good friend",
+          "translation": "Hello, my good friend",
           "options": [
-            "बातें",
+            "अच्छे",
+            "मेरे",
+            "नमस्ते",
+            "दोस्त"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'नमस्ते मेरे अच्छे दोस्त'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Thank you very much",
+          "question": "आपका बहुत-बहुत धन्यवाद",
+          "questionTranslation": "Thank you very much",
+          "translation": "Thank you very much",
+          "options": [
+            "धन्यवाद",
+            "बहुत-बहुत",
+            "आपका"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आपका बहुत-बहुत धन्यवाद'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Good morning to you",
+          "question": "आपको शुभ प्रभात",
+          "questionTranslation": "Good morning to you",
+          "translation": "Good morning to you",
+          "options": [
+            "प्रभात",
+            "शुभ",
+            "आपको"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आपको शुभ प्रभात'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Yes, I want this",
+          "question": "हाँ, मुझे यह चाहिए",
+          "questionTranslation": "Yes, I want this",
+          "translation": "Yes, I want this",
+          "options": [
             "मुझे",
-            "नई",
-            "सीखना",
-            "बहुत",
-            "है",
-            "पसंद"
+            "चाहिए",
+            "हाँ,",
+            "यह"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'मुझे नई बातें सीखना बहुत पसंद है'."
+          "explanation": "The correct translation is: 'हाँ, मुझे यह चाहिए'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "The sun rises in the east",
-          "question": "सूरज पूर्व दिशा से उगता है",
-          "questionTranslation": "The sun rises in the east",
-          "translation": "The sun rises in the east",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I drink clean water",
+          "question": "मैं स्वच्छ पानी पीता हूँ",
+          "questionTranslation": "I drink clean water",
+          "translation": "I drink clean water",
           "options": [
-            "सूरज",
-            "दिशा",
-            "पूर्व",
-            "है",
-            "से",
-            "उगता"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'सूरज पूर्व दिशा से उगता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "She reads good books daily",
-          "question": "वह रोज़ अच्छी पुस्तकें पढ़ती है",
-          "questionTranslation": "She reads good books daily",
-          "translation": "She reads good books daily",
-          "options": [
-            "अच्छी",
-            "रोज़",
-            "पुस्तकें",
-            "वह",
-            "पढ़ती",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वह रोज़ अच्छी पुस्तकें पढ़ती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "We all drink clean water daily",
-          "question": "हम सब रोज़ स्वच्छ पानी पीते हैं",
-          "questionTranslation": "We all drink clean water daily",
-          "translation": "We all drink clean water daily",
-          "options": [
-            "स्वच्छ",
-            "हैं",
             "पानी",
-            "रोज़",
-            "सब",
-            "हम",
-            "पीते"
+            "हूँ",
+            "मैं",
+            "स्वच्छ",
+            "पीता"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'हम सब रोज़ स्वच्छ पानी पीते हैं'."
+          "explanation": "The correct translation is: 'मैं स्वच्छ पानी पीता हूँ'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Children go to school happily",
-          "question": "बच्चे खुशी से स्कूल जाते हैं",
-          "questionTranslation": "Children go to school happily",
-          "translation": "Children go to school happily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "My name is Rahul",
+          "question": "मेरा नाम राहुल है",
+          "questionTranslation": "My name is Rahul",
+          "translation": "My name is Rahul",
           "options": [
-            "हैं",
-            "से",
-            "खुशी",
-            "स्कूल",
-            "जाते",
-            "बच्चे"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'बच्चे खुशी से स्कूल जाते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Trees give us fresh air and shade",
-          "question": "पेड़ हमें ताज़ा हवा और छाया देते हैं",
-          "questionTranslation": "Trees give us fresh air and shade",
-          "translation": "Trees give us fresh air and shade",
-          "options": [
-            "और",
-            "देते",
-            "ताज़ा",
-            "हवा",
-            "पेड़",
-            "छाया",
-            "हमें",
-            "हैं"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पेड़ हमें ताज़ा हवा और छाया देते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "They play games in the evening",
-          "question": "वे शाम को खेल खेलते हैं",
-          "questionTranslation": "They play games in the evening",
-          "translation": "They play games in the evening",
-          "options": [
-            "शाम",
-            "को",
-            "वे",
-            "खेलते",
-            "खेल",
-            "हैं"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वे शाम को खेल खेलते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Music brings peace to the mind",
-          "question": "संगीत मन को शांति देता है",
-          "questionTranslation": "Music brings peace to the mind",
-          "translation": "Music brings peace to the mind",
-          "options": [
-            "मन",
+            "राहुल",
             "है",
-            "संगीत",
-            "देता",
-            "शांति",
-            "को"
+            "मेरा",
+            "नाम"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संगीत मन को शांति देता है'."
+          "explanation": "The correct translation is: 'मेरा नाम राहुल है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Knowledge is the greatest power",
-          "question": "ज्ञान ही सबसे बड़ी शक्ति है",
-          "questionTranslation": "Knowledge is the greatest power",
-          "translation": "Knowledge is the greatest power",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I want hot tea",
+          "question": "मुझे गर्म चाय चाहिए",
+          "questionTranslation": "I want hot tea",
+          "translation": "I want hot tea",
           "options": [
-            "है",
-            "सबसे",
-            "ही",
-            "शक्ति",
-            "ज्ञान",
-            "बड़ी"
+            "चाहिए",
+            "चाय",
+            "मुझे",
+            "गर्म"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान ही सबसे बड़ी शक्ति है'."
+          "explanation": "The correct translation is: 'मुझे गर्म चाय चाहिए'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Regular practice makes learning easy",
-          "question": "नियमित अभ्यास से सीखना आसान होता है",
-          "questionTranslation": "Regular practice makes learning easy",
-          "translation": "Regular practice makes learning easy",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "This is a new book",
+          "question": "यह एक नई किताब है",
+          "questionTranslation": "This is a new book",
+          "translation": "This is a new book",
           "options": [
-            "होता",
-            "नियमित",
-            "अभ्यास",
+            "किताब",
+            "एक",
+            "यह",
             "है",
-            "से",
-            "सीखना",
-            "आसान"
+            "नई"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'नियमित अभ्यास से सीखना आसान होता है'."
+          "explanation": "The correct translation is: 'यह एक नई किताब है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Welcome to our class",
+          "question": "हमारी कक्षा में आपका स्वागत है",
+          "questionTranslation": "Welcome to our class",
+          "translation": "Welcome to our class",
+          "options": [
+            "में",
+            "कक्षा",
+            "स्वागत",
+            "हमारी",
+            "है",
+            "आपका"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हमारी कक्षा में आपका स्वागत है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We will meet tomorrow",
+          "question": "हम कल फिर मिलेंगे",
+          "questionTranslation": "We will meet tomorrow",
+          "translation": "We will meet tomorrow",
+          "options": [
+            "फिर",
+            "मिलेंगे",
+            "कल",
+            "हम"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हम कल फिर मिलेंगे'."
         }
       ],
       "2": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "I love learning new things",
-          "question": "मुझे नई बातें सीखना बहुत पसंद है",
-          "questionTranslation": "I love learning new things",
-          "translation": "I love learning new things",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "How are you today?",
+          "question": "आप आज कैसे हैं?",
+          "questionTranslation": "How are you today?",
+          "translation": "How are you today?",
           "options": [
-            "मुझे",
-            "सीखना",
-            "नई",
+            "आप",
+            "कैसे",
+            "आज",
+            "हैं?"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आप आज कैसे हैं?'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I am fine today",
+          "question": "मैं आज बहुत ठीक हूँ",
+          "questionTranslation": "I am fine today",
+          "translation": "I am fine today",
+          "options": [
+            "ठीक",
+            "आज",
+            "हूँ",
+            "मैं",
+            "बहुत"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मैं आज बहुत ठीक हूँ'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "This red apple is sweet",
+          "question": "यह लाल सेब बहुत मीठा है",
+          "questionTranslation": "This red apple is sweet",
+          "translation": "This red apple is sweet",
+          "options": [
+            "लाल",
+            "सेब",
+            "मीठा",
+            "यह",
             "बहुत",
-            "पसंद",
-            "बातें",
             "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'मुझे नई बातें सीखना बहुत पसंद है'."
+          "explanation": "The correct translation is: 'यह लाल सेब बहुत मीठा है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "The sun rises in the east",
-          "question": "सूरज पूर्व दिशा से उगता है",
-          "questionTranslation": "The sun rises in the east",
-          "translation": "The sun rises in the east",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Please open the door",
+          "question": "कृपया सामने का दरवाज़ा खोलो",
+          "questionTranslation": "Please open the door",
+          "translation": "Please open the door",
           "options": [
-            "है",
-            "से",
-            "सूरज",
-            "दिशा",
-            "पूर्व",
-            "उगता"
+            "खोलो",
+            "का",
+            "सामने",
+            "कृपया",
+            "दरवाज़ा"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'सूरज पूर्व दिशा से उगता है'."
+          "explanation": "The correct translation is: 'कृपया सामने का दरवाज़ा खोलो'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "She reads good books daily",
-          "question": "वह रोज़ अच्छी पुस्तकें पढ़ती है",
-          "questionTranslation": "She reads good books daily",
-          "translation": "She reads good books daily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Where is drinking water?",
+          "question": "पीने का साफ़ पानी कहाँ है?",
+          "questionTranslation": "Where is drinking water?",
+          "translation": "Where is drinking water?",
           "options": [
-            "रोज़",
-            "वह",
-            "पढ़ती",
-            "पुस्तकें",
-            "अच्छी",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वह रोज़ अच्छी पुस्तकें पढ़ती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "We all drink clean water daily",
-          "question": "हम सब रोज़ स्वच्छ पानी पीते हैं",
-          "questionTranslation": "We all drink clean water daily",
-          "translation": "We all drink clean water daily",
-          "options": [
-            "स्वच्छ",
-            "पीते",
             "पानी",
-            "हैं",
-            "सब",
-            "रोज़",
-            "हम"
+            "है?",
+            "का",
+            "पीने",
+            "साफ़",
+            "कहाँ"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'हम सब रोज़ स्वच्छ पानी पीते हैं'."
+          "explanation": "The correct translation is: 'पीने का साफ़ पानी कहाँ है?'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Children go to school happily",
-          "question": "बच्चे खुशी से स्कूल जाते हैं",
-          "questionTranslation": "Children go to school happily",
-          "translation": "Children go to school happily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I wish you good night",
+          "question": "आपको बहुत शुभ रात्रि",
+          "questionTranslation": "I wish you good night",
+          "translation": "I wish you good night",
           "options": [
-            "बच्चे",
-            "स्कूल",
-            "खुशी",
-            "हैं",
-            "जाते",
-            "से"
+            "आपको",
+            "शुभ",
+            "बहुत",
+            "रात्रि"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'बच्चे खुशी से स्कूल जाते हैं'."
+          "explanation": "The correct translation is: 'आपको बहुत शुभ रात्रि'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Trees give us fresh air and shade",
-          "question": "पेड़ हमें ताज़ा हवा और छाया देते हैं",
-          "questionTranslation": "Trees give us fresh air and shade",
-          "translation": "Trees give us fresh air and shade",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I like fresh sweet milk",
+          "question": "मुझे ताज़ा मीठा दूध पसंद है",
+          "questionTranslation": "I like fresh sweet milk",
+          "translation": "I like fresh sweet milk",
           "options": [
-            "पेड़",
-            "देते",
-            "और",
-            "छाया",
-            "हवा",
-            "हमें",
-            "हैं",
-            "ताज़ा"
+            "पसंद",
+            "मुझे",
+            "मीठा",
+            "ताज़ा",
+            "है",
+            "दूध"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पेड़ हमें ताज़ा हवा और छाया देते हैं'."
+          "explanation": "The correct translation is: 'मुझे ताज़ा मीठा दूध पसंद है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "They play games in the evening",
-          "question": "वे शाम को खेल खेलते हैं",
-          "questionTranslation": "They play games in the evening",
-          "translation": "They play games in the evening",
-          "options": [
-            "को",
-            "हैं",
-            "खेलते",
-            "वे",
-            "शाम",
-            "खेल"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वे शाम को खेल खेलते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Music brings peace to the mind",
-          "question": "संगीत मन को शांति देता है",
-          "questionTranslation": "Music brings peace to the mind",
-          "translation": "Music brings peace to the mind",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "She is very happy today",
+          "question": "वह आज बहुत खुश है",
+          "questionTranslation": "She is very happy today",
+          "translation": "She is very happy today",
           "options": [
             "है",
-            "मन",
-            "शांति",
-            "देता",
-            "संगीत",
-            "को"
+            "वह",
+            "बहुत",
+            "खुश",
+            "आज"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संगीत मन को शांति देता है'."
+          "explanation": "The correct translation is: 'वह आज बहुत खुश है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Knowledge is the greatest power",
-          "question": "ज्ञान ही सबसे बड़ी शक्ति है",
-          "questionTranslation": "Knowledge is the greatest power",
-          "translation": "Knowledge is the greatest power",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Please come here now",
+          "question": "कृपया अभी यहाँ आइए",
+          "questionTranslation": "Please come here now",
+          "translation": "Please come here now",
           "options": [
-            "सबसे",
-            "है",
-            "ज्ञान",
-            "बड़ी",
-            "ही",
-            "शक्ति"
+            "यहाँ",
+            "आइए",
+            "कृपया",
+            "अभी"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान ही सबसे बड़ी शक्ति है'."
+          "explanation": "The correct translation is: 'कृपया अभी यहाँ आइए'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Regular practice makes learning easy",
-          "question": "नियमित अभ्यास से सीखना आसान होता है",
-          "questionTranslation": "Regular practice makes learning easy",
-          "translation": "Regular practice makes learning easy",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "See you tomorrow morning",
+          "question": "कल सुबह फिर मिलेंगे",
+          "questionTranslation": "See you tomorrow morning",
+          "translation": "See you tomorrow morning",
           "options": [
-            "नियमित",
-            "से",
-            "होता",
-            "सीखना",
-            "है",
-            "अभ्यास",
-            "आसान"
+            "कल",
+            "मिलेंगे",
+            "फिर",
+            "सुबह"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'नियमित अभ्यास से सीखना आसान होता है'."
+          "explanation": "The correct translation is: 'कल सुबह फिर मिलेंगे'."
         }
       ],
       "3": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "I love learning new things",
-          "question": "मुझे नई बातें सीखना बहुत पसंद है",
-          "questionTranslation": "I love learning new things",
-          "translation": "I love learning new things",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I read this good book",
+          "question": "मैं यह अच्छी किताब पढ़ता हूँ",
+          "questionTranslation": "I read this good book",
+          "translation": "I read this good book",
           "options": [
-            "मुझे",
-            "नई",
-            "बातें",
-            "सीखना",
-            "पसंद",
-            "है",
-            "बहुत"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'मुझे नई बातें सीखना बहुत पसंद है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "The sun rises in the east",
-          "question": "सूरज पूर्व दिशा से उगता है",
-          "questionTranslation": "The sun rises in the east",
-          "translation": "The sun rises in the east",
-          "options": [
-            "दिशा",
-            "सूरज",
-            "है",
-            "पूर्व",
-            "उगता",
-            "से"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'सूरज पूर्व दिशा से उगता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "She reads good books daily",
-          "question": "वह रोज़ अच्छी पुस्तकें पढ़ती है",
-          "questionTranslation": "She reads good books daily",
-          "translation": "She reads good books daily",
-          "options": [
-            "रोज़",
-            "वह",
-            "पुस्तकें",
+            "पढ़ता",
+            "मैं",
+            "यह",
+            "हूँ",
             "अच्छी",
-            "पढ़ती",
-            "है"
+            "किताब"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वह रोज़ अच्छी पुस्तकें पढ़ती है'."
+          "explanation": "The correct translation is: 'मैं यह अच्छी किताब पढ़ता हूँ'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "We all drink clean water daily",
-          "question": "हम सब रोज़ स्वच्छ पानी पीते हैं",
-          "questionTranslation": "We all drink clean water daily",
-          "translation": "We all drink clean water daily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "She drinks clean water daily",
+          "question": "वह रोज़ स्वच्छ पानी पीती है",
+          "questionTranslation": "She drinks clean water daily",
+          "translation": "She drinks clean water daily",
           "options": [
+            "पीती",
+            "है",
+            "वह",
             "रोज़",
+            "स्वच्छ",
+            "पानी"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'वह रोज़ स्वच्छ पानी पीती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "The clear sky is blue",
+          "question": "साफ़ आकाश नीला है",
+          "questionTranslation": "The clear sky is blue",
+          "translation": "The clear sky is blue",
+          "options": [
+            "है",
+            "साफ़",
+            "नीला",
+            "आकाश"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'साफ़ आकाश नीला है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "This is our beautiful home",
+          "question": "यह हमारा सुंदर घर है",
+          "questionTranslation": "This is our beautiful home",
+          "translation": "This is our beautiful home",
+          "options": [
+            "घर",
+            "हमारा",
+            "है",
+            "यह",
+            "सुंदर"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'यह हमारा सुंदर घर है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We eat fresh sweet fruits",
+          "question": "हम ताज़े मीठे फल खाते हैं",
+          "questionTranslation": "We eat fresh sweet fruits",
+          "translation": "We eat fresh sweet fruits",
+          "options": [
             "हम",
-            "सब",
-            "पीते",
             "हैं",
-            "पानी",
-            "स्वच्छ"
+            "मीठे",
+            "ताज़े",
+            "खाते",
+            "फल"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'हम सब रोज़ स्वच्छ पानी पीते हैं'."
+          "explanation": "The correct translation is: 'हम ताज़े मीठे फल खाते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Children go to school happily",
-          "question": "बच्चे खुशी से स्कूल जाते हैं",
-          "questionTranslation": "Children go to school happily",
-          "translation": "Children go to school happily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Father is at home now",
+          "question": "पिताजी अभी घर पर हैं",
+          "questionTranslation": "Father is at home now",
+          "translation": "Father is at home now",
           "options": [
-            "हैं",
+            "घर",
+            "पिताजी",
+            "अभी",
+            "पर",
+            "हैं"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'पिताजी अभी घर पर हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I write with a pen",
+          "question": "मैं कलम से लिखता हूँ",
+          "questionTranslation": "I write with a pen",
+          "translation": "I write with a pen",
+          "options": [
+            "हूँ",
+            "कलम",
+            "से",
+            "लिखता",
+            "मैं"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मैं कलम से लिखता हूँ'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Birds fly in the sky",
+          "question": "पक्षी आकाश में उड़ते हैं",
+          "questionTranslation": "Birds fly in the sky",
+          "translation": "Birds fly in the sky",
+          "options": [
+            "में",
+            "आकाश",
+            "उड़ते",
+            "पक्षी",
+            "हैं"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'पक्षी आकाश में उड़ते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Mother cooks delicious warm food",
+          "question": "माँ स्वादिष्ट गरम खाना बनाती हैं",
+          "questionTranslation": "Mother cooks delicious warm food",
+          "translation": "Mother cooks delicious warm food",
+          "options": [
+            "माँ",
+            "खाना",
+            "बनाती",
+            "गरम",
+            "स्वादिष्ट",
+            "हैं"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'माँ स्वादिष्ट गरम खाना बनाती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Children laugh and play happily",
+          "question": "बच्चे खुशी से हँसते और खेलते हैं",
+          "questionTranslation": "Children laugh and play happily",
+          "translation": "Children laugh and play happily",
+          "options": [
+            "से",
             "बच्चे",
-            "जाते",
-            "खुशी",
-            "से",
-            "स्कूल"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'बच्चे खुशी से स्कूल जाते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Trees give us fresh air and shade",
-          "question": "पेड़ हमें ताज़ा हवा और छाया देते हैं",
-          "questionTranslation": "Trees give us fresh air and shade",
-          "translation": "Trees give us fresh air and shade",
-          "options": [
-            "देते",
+            "हँसते",
+            "खेलते",
             "और",
-            "ताज़ा",
-            "हमें",
-            "पेड़",
-            "हवा",
-            "हैं",
-            "छाया"
+            "खुशी",
+            "हैं"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पेड़ हमें ताज़ा हवा और छाया देते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "They play games in the evening",
-          "question": "वे शाम को खेल खेलते हैं",
-          "questionTranslation": "They play games in the evening",
-          "translation": "They play games in the evening",
-          "options": [
-            "को",
-            "शाम",
-            "हैं",
-            "वे",
-            "खेल",
-            "खेलते"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वे शाम को खेल खेलते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Music brings peace to the mind",
-          "question": "संगीत मन को शांति देता है",
-          "questionTranslation": "Music brings peace to the mind",
-          "translation": "Music brings peace to the mind",
-          "options": [
-            "शांति",
-            "देता",
-            "को",
-            "संगीत",
-            "है",
-            "मन"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संगीत मन को शांति देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Knowledge is the greatest power",
-          "question": "ज्ञान ही सबसे बड़ी शक्ति है",
-          "questionTranslation": "Knowledge is the greatest power",
-          "translation": "Knowledge is the greatest power",
-          "options": [
-            "बड़ी",
-            "है",
-            "ज्ञान",
-            "ही",
-            "सबसे",
-            "शक्ति"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान ही सबसे बड़ी शक्ति है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Regular practice makes learning easy",
-          "question": "नियमित अभ्यास से सीखना आसान होता है",
-          "questionTranslation": "Regular practice makes learning easy",
-          "translation": "Regular practice makes learning easy",
-          "options": [
-            "नियमित",
-            "आसान",
-            "से",
-            "होता",
-            "सीखना",
-            "है",
-            "अभ्यास"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'नियमित अभ्यास से सीखना आसान होता है'."
+          "explanation": "The correct translation is: 'बच्चे खुशी से हँसते और खेलते हैं'."
         }
       ],
       "4": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "I love learning new things",
-          "question": "मुझे नई बातें सीखना बहुत पसंद है",
-          "questionTranslation": "I love learning new things",
-          "translation": "I love learning new things",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "The bright sun rises in morning",
+          "question": "सुबह चमकीला सूरज उगता है",
+          "questionTranslation": "The bright sun rises in morning",
+          "translation": "The bright sun rises in morning",
           "options": [
-            "है",
-            "नई",
-            "बातें",
-            "पसंद",
-            "बहुत",
-            "सीखना",
-            "मुझे"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'मुझे नई बातें सीखना बहुत पसंद है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "The sun rises in the east",
-          "question": "सूरज पूर्व दिशा से उगता है",
-          "questionTranslation": "The sun rises in the east",
-          "translation": "The sun rises in the east",
-          "options": [
-            "है",
-            "सूरज",
-            "दिशा",
-            "से",
             "उगता",
-            "पूर्व"
+            "चमकीला",
+            "सुबह",
+            "सूरज",
+            "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'सूरज पूर्व दिशा से उगता है'."
+          "explanation": "The correct translation is: 'सुबह चमकीला सूरज उगता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "She reads good books daily",
-          "question": "वह रोज़ अच्छी पुस्तकें पढ़ती है",
-          "questionTranslation": "She reads good books daily",
-          "translation": "She reads good books daily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Children go to school every morning",
+          "question": "बच्चे रोज़ सुबह स्कूल जाते हैं",
+          "questionTranslation": "Children go to school every morning",
+          "translation": "Children go to school every morning",
           "options": [
-            "रोज़",
-            "अच्छी",
-            "पढ़ती",
-            "पुस्तकें",
-            "है",
-            "वह"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वह रोज़ अच्छी पुस्तकें पढ़ती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "We all drink clean water daily",
-          "question": "हम सब रोज़ स्वच्छ पानी पीते हैं",
-          "questionTranslation": "We all drink clean water daily",
-          "translation": "We all drink clean water daily",
-          "options": [
-            "पीते",
-            "हैं",
-            "स्वच्छ",
-            "पानी",
-            "रोज़",
-            "हम",
-            "सब"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'हम सब रोज़ स्वच्छ पानी पीते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Children go to school happily",
-          "question": "बच्चे खुशी से स्कूल जाते हैं",
-          "questionTranslation": "Children go to school happily",
-          "translation": "Children go to school happily",
-          "options": [
-            "जाते",
-            "से",
-            "खुशी",
             "बच्चे",
+            "स्कूल",
+            "सुबह",
             "हैं",
-            "स्कूल"
+            "रोज़",
+            "जाते"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'बच्चे खुशी से स्कूल जाते हैं'."
+          "explanation": "The correct translation is: 'बच्चे रोज़ सुबह स्कूल जाते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Trees give us fresh air and shade",
-          "question": "पेड़ हमें ताज़ा हवा और छाया देते हैं",
-          "questionTranslation": "Trees give us fresh air and shade",
-          "translation": "Trees give us fresh air and shade",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "They play games in green park",
+          "question": "वे हरे पार्क में खेल खेलते हैं",
+          "questionTranslation": "They play games in green park",
+          "translation": "They play games in green park",
           "options": [
-            "पेड़",
-            "हवा",
-            "और",
-            "हमें",
-            "छाया",
-            "देते",
+            "में",
             "हैं",
-            "ताज़ा"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पेड़ हमें ताज़ा हवा और छाया देते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "They play games in the evening",
-          "question": "वे शाम को खेल खेलते हैं",
-          "questionTranslation": "They play games in the evening",
-          "translation": "They play games in the evening",
-          "options": [
-            "हैं",
-            "खेल",
-            "वे",
+            "हरे",
+            "पार्क",
             "खेलते",
-            "शाम",
-            "को"
+            "खेल",
+            "वे"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वे शाम को खेल खेलते हैं'."
+          "explanation": "The correct translation is: 'वे हरे पार्क में खेल खेलते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Music brings peace to the mind",
-          "question": "संगीत मन को शांति देता है",
-          "questionTranslation": "Music brings peace to the mind",
-          "translation": "Music brings peace to the mind",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We listen to sweet peaceful music",
+          "question": "हम मधुर और शांत संगीत सुनते हैं",
+          "questionTranslation": "We listen to sweet peaceful music",
+          "translation": "We listen to sweet peaceful music",
           "options": [
+            "शांत",
+            "सुनते",
+            "हैं",
+            "और",
+            "मधुर",
+            "हम",
+            "संगीत"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हम मधुर और शांत संगीत सुनते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "He likes reading colorful story books",
+          "question": "उसे रंगीन कहानियों की किताबें पसंद हैं",
+          "questionTranslation": "He likes reading colorful story books",
+          "translation": "He likes reading colorful story books",
+          "options": [
+            "हैं",
+            "की",
+            "किताबें",
+            "उसे",
+            "पसंद",
+            "कहानियों",
+            "रंगीन"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'उसे रंगीन कहानियों की किताबें पसंद हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I sleep early at night daily",
+          "question": "मैं रोज़ रात को जल्दी सोता हूँ",
+          "questionTranslation": "I sleep early at night daily",
+          "translation": "I sleep early at night daily",
+          "options": [
+            "जल्दी",
             "को",
-            "है",
-            "मन",
-            "देता",
-            "संगीत",
-            "शांति"
+            "सोता",
+            "रात",
+            "हूँ",
+            "रोज़",
+            "मैं"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संगीत मन को शांति देता है'."
+          "explanation": "The correct translation is: 'मैं रोज़ रात को जल्दी सोता हूँ'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Knowledge is the greatest power",
-          "question": "ज्ञान ही सबसे बड़ी शक्ति है",
-          "questionTranslation": "Knowledge is the greatest power",
-          "translation": "Knowledge is the greatest power",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Fresh colorful flowers bloom in garden",
+          "question": "बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं",
+          "questionTranslation": "Fresh colorful flowers bloom in garden",
+          "translation": "Fresh colorful flowers bloom in garden",
           "options": [
-            "सबसे",
-            "है",
-            "बड़ी",
-            "ही",
-            "शक्ति",
-            "ज्ञान"
+            "बगीचे",
+            "खिलते",
+            "में",
+            "ताज़े",
+            "फूल",
+            "हैं",
+            "रंग-बिरंगे"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान ही सबसे बड़ी शक्ति है'."
+          "explanation": "The correct translation is: 'बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Regular practice makes learning easy",
-          "question": "नियमित अभ्यास से सीखना आसान होता है",
-          "questionTranslation": "Regular practice makes learning easy",
-          "translation": "Regular practice makes learning easy",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "She speaks kindly to all friends",
+          "question": "वह सभी दोस्तों से विनम्रता से बोलती है",
+          "questionTranslation": "She speaks kindly to all friends",
+          "translation": "She speaks kindly to all friends",
           "options": [
-            "नियमित",
-            "आसान",
+            "वह",
             "है",
-            "अभ्यास",
             "से",
-            "होता",
-            "सीखना"
+            "से",
+            "सभी",
+            "विनम्रता",
+            "बोलती",
+            "दोस्तों"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'नियमित अभ्यास से सीखना आसान होता है'."
+          "explanation": "The correct translation is: 'वह सभी दोस्तों से विनम्रता से बोलती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We take a walk in evening",
+          "question": "हम शाम को सैर करने जाते हैं",
+          "questionTranslation": "We take a walk in evening",
+          "translation": "We take a walk in evening",
+          "options": [
+            "हैं",
+            "शाम",
+            "हम",
+            "को",
+            "जाते",
+            "करने",
+            "सैर"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हम शाम को सैर करने जाते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Learning new words brings great joy",
+          "question": "नए शब्द सीखने से बहुत खुशी मिलती है",
+          "questionTranslation": "Learning new words brings great joy",
+          "translation": "Learning new words brings great joy",
+          "options": [
+            "मिलती",
+            "बहुत",
+            "नए",
+            "शब्द",
+            "खुशी",
+            "है",
+            "से",
+            "सीखने"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'नए शब्द सीखने से बहुत खुशी मिलती है'."
         }
       ],
       "5": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "I love learning new things",
-          "question": "मुझे नई बातें सीखना बहुत पसंद है",
-          "questionTranslation": "I love learning new things",
-          "translation": "I love learning new things",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Regular practice makes learning very easy",
+          "question": "नियमित अभ्यास से सीखना बहुत आसान होता है",
+          "questionTranslation": "Regular practice makes learning very easy",
+          "translation": "Regular practice makes learning very easy",
           "options": [
             "सीखना",
-            "नई",
-            "मुझे",
-            "बातें",
+            "होता",
             "बहुत",
-            "पसंद",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'मुझे नई बातें सीखना बहुत पसंद है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "The sun rises in the east",
-          "question": "सूरज पूर्व दिशा से उगता है",
-          "questionTranslation": "The sun rises in the east",
-          "translation": "The sun rises in the east",
-          "options": [
-            "उगता",
-            "सूरज",
-            "पूर्व",
-            "से",
+            "अभ्यास",
             "है",
-            "दिशा"
+            "नियमित",
+            "आसान",
+            "से"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'सूरज पूर्व दिशा से उगता है'."
+          "explanation": "The correct translation is: 'नियमित अभ्यास से सीखना बहुत आसान होता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "She reads good books daily",
-          "question": "वह रोज़ अच्छी पुस्तकें पढ़ती है",
-          "questionTranslation": "She reads good books daily",
-          "translation": "She reads good books daily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Green trees give clean air and shade",
+          "question": "हरे पेड़ ताज़ा हवा और छाया देते हैं",
+          "questionTranslation": "Green trees give clean air and shade",
+          "translation": "Green trees give clean air and shade",
           "options": [
-            "अच्छी",
-            "पुस्तकें",
-            "है",
-            "रोज़",
-            "पढ़ती",
-            "वह"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वह रोज़ अच्छी पुस्तकें पढ़ती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "We all drink clean water daily",
-          "question": "हम सब रोज़ स्वच्छ पानी पीते हैं",
-          "questionTranslation": "We all drink clean water daily",
-          "translation": "We all drink clean water daily",
-          "options": [
-            "रोज़",
-            "सब",
             "हैं",
+            "छाया",
+            "ताज़ा",
+            "देते",
+            "हवा",
+            "हरे",
+            "और",
+            "पेड़"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हरे पेड़ ताज़ा हवा और छाया देते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "I love learning new words every day",
+          "question": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है",
+          "questionTranslation": "I love learning new words every day",
+          "translation": "I love learning new words every day",
+          "options": [
+            "रोज़",
+            "नए",
+            "पसंद",
+            "बहुत",
+            "है",
+            "मुझे",
+            "सीखना",
+            "शब्द"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We drink clean water for good health",
+          "question": "हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं",
+          "questionTranslation": "We drink clean water for good health",
+          "translation": "We drink clean water for good health",
+          "options": [
             "पीते",
-            "स्वच्छ",
+            "अच्छे",
+            "लिए",
+            "के",
+            "स्वास्थ्य",
             "हम",
+            "स्वच्छ",
+            "हैं",
             "पानी"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'हम सब रोज़ स्वच्छ पानी पीते हैं'."
+          "explanation": "The correct translation is: 'हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Children go to school happily",
-          "question": "बच्चे खुशी से स्कूल जाते हैं",
-          "questionTranslation": "Children go to school happily",
-          "translation": "Children go to school happily",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Good books always give inspiring positive thoughts",
+          "question": "अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं",
+          "questionTranslation": "Good books always give inspiring positive thoughts",
+          "translation": "Good books always give inspiring positive thoughts",
           "options": [
-            "जाते",
-            "खुशी",
+            "अच्छी",
+            "हैं",
+            "देती",
+            "पुस्तकें",
+            "सदा",
+            "विचार",
+            "सकारात्मक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Honest hard work brings true happy success",
+          "question": "सच्ची मेहनत से ही असली सफलता मिलती है",
+          "questionTranslation": "Honest hard work brings true happy success",
+          "translation": "Honest hard work brings true happy success",
+          "options": [
+            "मिलती",
+            "सफलता",
+            "असली",
+            "ही",
+            "सच्ची",
             "से",
-            "स्कूल",
-            "बच्चे",
-            "हैं"
+            "है",
+            "मेहनत"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'बच्चे खुशी से स्कूल जाते हैं'."
+          "explanation": "The correct translation is: 'सच्ची मेहनत से ही असली सफलता मिलती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Trees give us fresh air and shade",
-          "question": "पेड़ हमें ताज़ा हवा और छाया देते हैं",
-          "questionTranslation": "Trees give us fresh air and shade",
-          "translation": "Trees give us fresh air and shade",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Healthy food keeps our body active strong",
+          "question": "पौष्टिक आहार हमारे शरीर को बलवान बनाता है",
+          "questionTranslation": "Healthy food keeps our body active strong",
+          "translation": "Healthy food keeps our body active strong",
           "options": [
-            "हमें",
-            "देते",
-            "हवा",
-            "पेड़",
-            "ताज़ा",
-            "हैं",
-            "छाया",
-            "और"
+            "हमारे",
+            "पौष्टिक",
+            "आहार",
+            "बलवान",
+            "है",
+            "को",
+            "शरीर",
+            "बनाता"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पेड़ हमें ताज़ा हवा और छाया देते हैं'."
+          "explanation": "The correct translation is: 'पौष्टिक आहार हमारे शरीर को बलवान बनाता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "They play games in the evening",
-          "question": "वे शाम को खेल खेलते हैं",
-          "questionTranslation": "They play games in the evening",
-          "translation": "They play games in the evening",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Kind words bring peaceful happiness everywhere around",
+          "question": "मीठे बोल चारों ओर शांति और खुशी लाते हैं",
+          "questionTranslation": "Kind words bring peaceful happiness everywhere around",
+          "translation": "Kind words bring peaceful happiness everywhere around",
           "options": [
-            "खेलते",
-            "शाम",
-            "खेल",
             "हैं",
-            "वे",
-            "को"
+            "लाते",
+            "और",
+            "मीठे",
+            "चारों",
+            "बोल",
+            "खुशी",
+            "शांति",
+            "ओर"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वे शाम को खेल खेलते हैं'."
+          "explanation": "The correct translation is: 'मीठे बोल चारों ओर शांति और खुशी लाते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Music brings peace to the mind",
-          "question": "संगीत मन को शांति देता है",
-          "questionTranslation": "Music brings peace to the mind",
-          "translation": "Music brings peace to the mind",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "A morning walk keeps your mind fresh",
+          "question": "सुबह की सैर मन को तरोताज़ा रखती है",
+          "questionTranslation": "A morning walk keeps your mind fresh",
+          "translation": "A morning walk keeps your mind fresh",
+          "options": [
+            "मन",
+            "की",
+            "रखती",
+            "को",
+            "सुबह",
+            "सैर",
+            "है",
+            "तरोताज़ा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'सुबह की सैर मन को तरोताज़ा रखती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "A loving family gives us warmth always",
+          "question": "प्यारा परिवार हमें सदा संबल और स्नेह देता है",
+          "questionTranslation": "A loving family gives us warmth always",
+          "translation": "A loving family gives us warmth always",
           "options": [
             "देता",
-            "संगीत",
-            "शांति",
-            "मन",
-            "को",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संगीत मन को शांति देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Knowledge is the greatest power",
-          "question": "ज्ञान ही सबसे बड़ी शक्ति है",
-          "questionTranslation": "Knowledge is the greatest power",
-          "translation": "Knowledge is the greatest power",
-          "options": [
-            "ही",
-            "शक्ति",
-            "बड़ी",
-            "ज्ञान",
+            "प्यारा",
+            "संबल",
+            "हमें",
+            "और",
             "है",
-            "सबसे"
+            "स्नेह",
+            "सदा",
+            "परिवार"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान ही सबसे बड़ी शक्ति है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Regular practice makes learning easy",
-          "question": "नियमित अभ्यास से सीखना आसान होता है",
-          "questionTranslation": "Regular practice makes learning easy",
-          "translation": "Regular practice makes learning easy",
-          "options": [
-            "से",
-            "है",
-            "सीखना",
-            "होता",
-            "आसान",
-            "अभ्यास",
-            "नियमित"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'नियमित अभ्यास से सीखना आसान होता है'."
+          "explanation": "The correct translation is: 'प्यारा परिवार हमें सदा संबल और स्नेह देता है'."
         }
       ]
     },
     "listening": {
       "1": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हमारी कम्युनिटी लर्निंग कक्षा में आपका हार्दिक स्वागत है।",
-          "translation": "स्वागत",
-          "question": "कहाँ स्वागत किया जा रहा है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नमस्ते मेरे अच्छे दोस्त",
+          "translation": "Hello, my good friend",
+          "question": "What did the speaker say?",
           "options": [
-            "लर्निंग कक्षा में",
-            "फुटबॉल मैच में",
-            "सिनेमा घर में",
-            "बस स्टॉप पर"
+            "Good morning to you",
+            "I drink clean water",
+            "Hello, my good friend",
+            "I want hot tea"
           ],
-          "answerIndex": 0,
-          "explanation": "कक्षा में स्वागत किया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Hello, my good friend'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी पुस्तक का पृष्ठ दस ध्यान से खोलिए।",
-          "translation": "कक्षा निर्देश",
-          "question": "कौन सा पृष्ठ खोलना है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आपका बहुत-बहुत धन्यवाद",
+          "translation": "Thank you very much",
+          "question": "What did the speaker say?",
           "options": [
-            "पृष्ठ 10",
-            "पृष्ठ 25",
-            "पृष्ठ 50",
-            "पृष्ठ 5"
+            "This is a new book",
+            "My name is Rahul",
+            "Thank you very much",
+            "Yes, I want this"
           ],
-          "answerIndex": 0,
-          "explanation": "पृष्ठ दस का निर्देश दिया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Thank you very much'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक्सप्रेस रेलगाड़ी प्लेटफार्म नंबर तीन पर आ रही है।",
-          "translation": "रेलवे घोषणा",
-          "question": "ट्रेन किस प्लेटफार्म पर आएगी?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आपको शुभ प्रभात",
+          "translation": "Good morning to you",
+          "question": "What did the speaker say?",
           "options": [
-            "प्लेटफार्म 3",
-            "प्लेटफार्म 1",
-            "प्लेटफार्म 7",
-            "प्लेटफार्म 9"
+            "Welcome to our class",
+            "I drink clean water",
+            "Good morning to you",
+            "I want hot tea"
           ],
-          "answerIndex": 0,
-          "explanation": "प्लेटफार्म तीन की घोषणा हुई है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Good morning to you'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सदा अपने दिन की शुरुआत पौष्टिक नाश्ते से करें।",
-          "translation": "स्वास्थ्य सलाह",
-          "question": "किस भोजन की बात हो रही है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हाँ, मुझे यह चाहिए",
+          "translation": "Yes, I want this",
+          "question": "What did the speaker say?",
           "options": [
-            "नाश्ता",
-            "रात का खाना",
-            "मिठाई",
-            "फास्ट फूड"
+            "Yes, I want this",
+            "We will meet tomorrow",
+            "This is a new book",
+            "My name is Rahul"
           ],
           "answerIndex": 0,
-          "explanation": "नाश्ता दिन का पहला भोजन है।"
+          "explanation": "The spoken sentence means: 'Yes, I want this'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक प्यारी मुस्कान चारों ओर सकारात्मक ऊर्जा फैलाती है।",
-          "translation": "सद्भावना",
-          "question": "सकारात्मकता क्या फैलाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मैं स्वच्छ पानी पीता हूँ",
+          "translation": "I drink clean water",
+          "question": "What did the speaker say?",
           "options": [
-            "एक मुस्कान",
-            "एक कोट",
-            "एक छाता",
-            "एक टोपी"
+            "Welcome to our class",
+            "I drink clean water",
+            "I want hot tea",
+            "Hello, my good friend"
           ],
-          "answerIndex": 0,
-          "explanation": "मुस्कान से प्रसन्नता फैलती है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'I drink clean water'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आज की ठंडी और ताज़ी हवा मन को आनंदित कर देती है।",
-          "translation": "मौसम",
-          "question": "हवा कैसी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मेरा नाम राहुल है",
+          "translation": "My name is Rahul",
+          "question": "What did the speaker say?",
           "options": [
-            "ठंडी और ताज़ी",
-            "तूफानी",
-            "धूल भरी",
-            "गर्म"
+            "This is a new book",
+            "We will meet tomorrow",
+            "My name is Rahul",
+            "Thank you very much"
           ],
-          "answerIndex": 0,
-          "explanation": "हवा को आनंददायक बताया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'My name is Rahul'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कल सुबह हम सब मुख्य पुस्तकालय में अध्ययन करेंगे।",
-          "translation": "स्थान",
-          "question": "अध्ययन कहाँ होगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मुझे गर्म चाय चाहिए",
+          "translation": "I want hot tea",
+          "question": "What did the speaker say?",
           "options": [
-            "पुस्तकालय",
-            "बाज़ार",
-            "स्टेडियम",
-            "समुद्र तट"
+            "I want hot tea",
+            "Welcome to our class",
+            "Hello, my good friend",
+            "Good morning to you"
           ],
           "answerIndex": 0,
-          "explanation": "पुस्तकालय में मिलने की बात है।"
+          "explanation": "The spoken sentence means: 'I want hot tea'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ताज़े मौसमी फल शरीर को आवश्यक विटामिन्स प्रदान करते हैं।",
-          "translation": "पोषण",
-          "question": "फल क्या प्रदान करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "यह एक नई किताब है",
+          "translation": "This is a new book",
+          "question": "What did the speaker say?",
           "options": [
-            "विटामिन्स",
-            "हानिकारक चीनी",
-            "थकान",
-            "कमज़ोरी"
+            "We will meet tomorrow",
+            "This is a new book",
+            "Yes, I want this",
+            "Thank you very much"
           ],
-          "answerIndex": 0,
-          "explanation": "फलों से विटामिन मिलते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'This is a new book'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "प्रतिदिन का निरंतर अभ्यास आत्मविश्वास को मजबूत करता है।",
-          "translation": "प्रेरणा",
-          "question": "आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हमारी कक्षा में आपका स्वागत है",
+          "translation": "Welcome to our class",
+          "question": "What did the speaker say?",
           "options": [
-            "निरंतर अभ्यास से",
-            "हार मानने से",
-            "समय व्यर्थ करने से",
-            "आलस्य से"
+            "Welcome to our class",
+            "Hello, my good friend",
+            "Good morning to you",
+            "I drink clean water"
           ],
           "answerIndex": 0,
-          "explanation": "अभ्यास से आत्मविश्वास बढ़ता है।"
+          "explanation": "The spoken sentence means: 'Welcome to our class'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आपसी सहयोग और एकता से हर कठिन कार्य आसान हो जाता है।",
-          "translation": "सहयोग",
-          "question": "कठिन कार्य किससे आसान होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हम कल फिर मिलेंगे",
+          "translation": "We will meet tomorrow",
+          "question": "What did the speaker say?",
           "options": [
-            "सहयोग और एकता से",
-            "अकेले रहने से",
-            "झगड़ा करने से",
-            "काम टालने से"
+            "Yes, I want this",
+            "My name is Rahul",
+            "Thank you very much",
+            "We will meet tomorrow"
           ],
-          "answerIndex": 0,
-          "explanation": "सहयोग से सफलता मिलती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'We will meet tomorrow'."
         }
       ],
       "2": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हमारी कम्युनिटी लर्निंग कक्षा में आपका हार्दिक स्वागत है।",
-          "translation": "स्वागत",
-          "question": "कहाँ स्वागत किया जा रहा है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आप आज कैसे हैं?",
+          "translation": "How are you today?",
+          "question": "What did the speaker say?",
           "options": [
-            "लर्निंग कक्षा में",
-            "फुटबॉल मैच में",
-            "सिनेमा घर में",
-            "बस स्टॉप पर"
+            "I like fresh sweet milk",
+            "How are you today?",
+            "This red apple is sweet",
+            "Where is drinking water?"
           ],
-          "answerIndex": 0,
-          "explanation": "कक्षा में स्वागत किया गया है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'How are you today?'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी पुस्तक का पृष्ठ दस ध्यान से खोलिए।",
-          "translation": "कक्षा निर्देश",
-          "question": "कौन सा पृष्ठ खोलना है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मैं आज बहुत ठीक हूँ",
+          "translation": "I am fine today",
+          "question": "What did the speaker say?",
           "options": [
-            "पृष्ठ 10",
-            "पृष्ठ 25",
-            "पृष्ठ 50",
-            "पृष्ठ 5"
+            "Please open the door",
+            "I wish you good night",
+            "I am fine today",
+            "She is very happy today"
           ],
-          "answerIndex": 0,
-          "explanation": "पृष्ठ दस का निर्देश दिया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'I am fine today'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक्सप्रेस रेलगाड़ी प्लेटफार्म नंबर तीन पर आ रही है।",
-          "translation": "रेलवे घोषणा",
-          "question": "ट्रेन किस प्लेटफार्म पर आएगी?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "यह लाल सेब बहुत मीठा है",
+          "translation": "This red apple is sweet",
+          "question": "What did the speaker say?",
           "options": [
-            "प्लेटफार्म 3",
-            "प्लेटफार्म 1",
-            "प्लेटफार्म 7",
-            "प्लेटफार्म 9"
+            "I like fresh sweet milk",
+            "Please come here now",
+            "This red apple is sweet",
+            "Where is drinking water?"
           ],
-          "answerIndex": 0,
-          "explanation": "प्लेटफार्म तीन की घोषणा हुई है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'This red apple is sweet'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सदा अपने दिन की शुरुआत पौष्टिक नाश्ते से करें।",
-          "translation": "स्वास्थ्य सलाह",
-          "question": "किस भोजन की बात हो रही है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कृपया सामने का दरवाज़ा खोलो",
+          "translation": "Please open the door",
+          "question": "What did the speaker say?",
           "options": [
-            "नाश्ता",
-            "रात का खाना",
-            "मिठाई",
-            "फास्ट फूड"
+            "I wish you good night",
+            "She is very happy today",
+            "Please open the door",
+            "See you tomorrow morning"
           ],
-          "answerIndex": 0,
-          "explanation": "नाश्ता दिन का पहला भोजन है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Please open the door'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक प्यारी मुस्कान चारों ओर सकारात्मक ऊर्जा फैलाती है।",
-          "translation": "सद्भावना",
-          "question": "सकारात्मकता क्या फैलाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "पीने का साफ़ पानी कहाँ है?",
+          "translation": "Where is drinking water?",
+          "question": "What did the speaker say?",
           "options": [
-            "एक मुस्कान",
-            "एक कोट",
-            "एक छाता",
-            "एक टोपी"
+            "I like fresh sweet milk",
+            "How are you today?",
+            "Please come here now",
+            "Where is drinking water?"
           ],
-          "answerIndex": 0,
-          "explanation": "मुस्कान से प्रसन्नता फैलती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Where is drinking water?'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आज की ठंडी और ताज़ी हवा मन को आनंदित कर देती है।",
-          "translation": "मौसम",
-          "question": "हवा कैसी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आपको बहुत शुभ रात्रि",
+          "translation": "I wish you good night",
+          "question": "What did the speaker say?",
           "options": [
-            "ठंडी और ताज़ी",
-            "तूफानी",
-            "धूल भरी",
-            "गर्म"
+            "I am fine today",
+            "She is very happy today",
+            "I wish you good night",
+            "See you tomorrow morning"
           ],
-          "answerIndex": 0,
-          "explanation": "हवा को आनंददायक बताया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'I wish you good night'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कल सुबह हम सब मुख्य पुस्तकालय में अध्ययन करेंगे।",
-          "translation": "स्थान",
-          "question": "अध्ययन कहाँ होगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मुझे ताज़ा मीठा दूध पसंद है",
+          "translation": "I like fresh sweet milk",
+          "question": "What did the speaker say?",
           "options": [
-            "पुस्तकालय",
-            "बाज़ार",
-            "स्टेडियम",
-            "समुद्र तट"
+            "This red apple is sweet",
+            "How are you today?",
+            "Please come here now",
+            "I like fresh sweet milk"
           ],
-          "answerIndex": 0,
-          "explanation": "पुस्तकालय में मिलने की बात है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'I like fresh sweet milk'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ताज़े मौसमी फल शरीर को आवश्यक विटामिन्स प्रदान करते हैं।",
-          "translation": "पोषण",
-          "question": "फल क्या प्रदान करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वह आज बहुत खुश है",
+          "translation": "She is very happy today",
+          "question": "What did the speaker say?",
           "options": [
-            "विटामिन्स",
-            "हानिकारक चीनी",
-            "थकान",
-            "कमज़ोरी"
+            "See you tomorrow morning",
+            "She is very happy today",
+            "Please open the door",
+            "I am fine today"
           ],
-          "answerIndex": 0,
-          "explanation": "फलों से विटामिन मिलते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'She is very happy today'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "प्रतिदिन का निरंतर अभ्यास आत्मविश्वास को मजबूत करता है।",
-          "translation": "प्रेरणा",
-          "question": "आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कृपया अभी यहाँ आइए",
+          "translation": "Please come here now",
+          "question": "What did the speaker say?",
           "options": [
-            "निरंतर अभ्यास से",
-            "हार मानने से",
-            "समय व्यर्थ करने से",
-            "आलस्य से"
+            "Where is drinking water?",
+            "This red apple is sweet",
+            "Please come here now",
+            "How are you today?"
           ],
-          "answerIndex": 0,
-          "explanation": "अभ्यास से आत्मविश्वास बढ़ता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Please come here now'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आपसी सहयोग और एकता से हर कठिन कार्य आसान हो जाता है।",
-          "translation": "सहयोग",
-          "question": "कठिन कार्य किससे आसान होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कल सुबह फिर मिलेंगे",
+          "translation": "See you tomorrow morning",
+          "question": "What did the speaker say?",
           "options": [
-            "सहयोग और एकता से",
-            "अकेले रहने से",
-            "झगड़ा करने से",
-            "काम टालने से"
+            "See you tomorrow morning",
+            "I wish you good night",
+            "I am fine today",
+            "Please open the door"
           ],
           "answerIndex": 0,
-          "explanation": "सहयोग से सफलता मिलती है।"
+          "explanation": "The spoken sentence means: 'See you tomorrow morning'."
         }
       ],
       "3": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हमारी कम्युनिटी लर्निंग कक्षा में आपका हार्दिक स्वागत है।",
-          "translation": "स्वागत",
-          "question": "कहाँ स्वागत किया जा रहा है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मैं यह अच्छी किताब पढ़ता हूँ",
+          "translation": "I read this good book",
+          "question": "What did the speaker say?",
           "options": [
-            "लर्निंग कक्षा में",
-            "फुटबॉल मैच में",
-            "सिनेमा घर में",
-            "बस स्टॉप पर"
+            "We eat fresh sweet fruits",
+            "The clear sky is blue",
+            "I write with a pen",
+            "I read this good book"
           ],
-          "answerIndex": 0,
-          "explanation": "कक्षा में स्वागत किया गया है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'I read this good book'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी पुस्तक का पृष्ठ दस ध्यान से खोलिए।",
-          "translation": "कक्षा निर्देश",
-          "question": "कौन सा पृष्ठ खोलना है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वह रोज़ स्वच्छ पानी पीती है",
+          "translation": "She drinks clean water daily",
+          "question": "What did the speaker say?",
           "options": [
-            "पृष्ठ 10",
-            "पृष्ठ 25",
-            "पृष्ठ 50",
-            "पृष्ठ 5"
+            "Birds fly in the sky",
+            "Father is at home now",
+            "She drinks clean water daily",
+            "This is our beautiful home"
           ],
-          "answerIndex": 0,
-          "explanation": "पृष्ठ दस का निर्देश दिया गया है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'She drinks clean water daily'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक्सप्रेस रेलगाड़ी प्लेटफार्म नंबर तीन पर आ रही है।",
-          "translation": "रेलवे घोषणा",
-          "question": "ट्रेन किस प्लेटफार्म पर आएगी?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "साफ़ आकाश नीला है",
+          "translation": "The clear sky is blue",
+          "question": "What did the speaker say?",
           "options": [
-            "प्लेटफार्म 3",
-            "प्लेटफार्म 1",
-            "प्लेटफार्म 7",
-            "प्लेटफार्म 9"
+            "Mother cooks delicious warm food",
+            "We eat fresh sweet fruits",
+            "The clear sky is blue",
+            "I write with a pen"
           ],
-          "answerIndex": 0,
-          "explanation": "प्लेटफार्म तीन की घोषणा हुई है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'The clear sky is blue'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सदा अपने दिन की शुरुआत पौष्टिक नाश्ते से करें।",
-          "translation": "स्वास्थ्य सलाह",
-          "question": "किस भोजन की बात हो रही है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "यह हमारा सुंदर घर है",
+          "translation": "This is our beautiful home",
+          "question": "What did the speaker say?",
           "options": [
-            "नाश्ता",
-            "रात का खाना",
-            "मिठाई",
-            "फास्ट फूड"
+            "Birds fly in the sky",
+            "Children laugh and play happily",
+            "This is our beautiful home",
+            "Father is at home now"
           ],
-          "answerIndex": 0,
-          "explanation": "नाश्ता दिन का पहला भोजन है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'This is our beautiful home'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक प्यारी मुस्कान चारों ओर सकारात्मक ऊर्जा फैलाती है।",
-          "translation": "सद्भावना",
-          "question": "सकारात्मकता क्या फैलाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हम ताज़े मीठे फल खाते हैं",
+          "translation": "We eat fresh sweet fruits",
+          "question": "What did the speaker say?",
           "options": [
-            "एक मुस्कान",
-            "एक कोट",
-            "एक छाता",
-            "एक टोपी"
+            "We eat fresh sweet fruits",
+            "I read this good book",
+            "Mother cooks delicious warm food",
+            "I write with a pen"
           ],
           "answerIndex": 0,
-          "explanation": "मुस्कान से प्रसन्नता फैलती है।"
+          "explanation": "The spoken sentence means: 'We eat fresh sweet fruits'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आज की ठंडी और ताज़ी हवा मन को आनंदित कर देती है।",
-          "translation": "मौसम",
-          "question": "हवा कैसी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "पिताजी अभी घर पर हैं",
+          "translation": "Father is at home now",
+          "question": "What did the speaker say?",
           "options": [
-            "ठंडी और ताज़ी",
-            "तूफानी",
-            "धूल भरी",
-            "गर्म"
+            "Father is at home now",
+            "She drinks clean water daily",
+            "Children laugh and play happily",
+            "Birds fly in the sky"
           ],
           "answerIndex": 0,
-          "explanation": "हवा को आनंददायक बताया गया है।"
+          "explanation": "The spoken sentence means: 'Father is at home now'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कल सुबह हम सब मुख्य पुस्तकालय में अध्ययन करेंगे।",
-          "translation": "स्थान",
-          "question": "अध्ययन कहाँ होगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मैं कलम से लिखता हूँ",
+          "translation": "I write with a pen",
+          "question": "What did the speaker say?",
           "options": [
-            "पुस्तकालय",
-            "बाज़ार",
-            "स्टेडियम",
-            "समुद्र तट"
+            "I read this good book",
+            "I write with a pen",
+            "The clear sky is blue",
+            "Mother cooks delicious warm food"
           ],
-          "answerIndex": 0,
-          "explanation": "पुस्तकालय में मिलने की बात है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'I write with a pen'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ताज़े मौसमी फल शरीर को आवश्यक विटामिन्स प्रदान करते हैं।",
-          "translation": "पोषण",
-          "question": "फल क्या प्रदान करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "पक्षी आकाश में उड़ते हैं",
+          "translation": "Birds fly in the sky",
+          "question": "What did the speaker say?",
           "options": [
-            "विटामिन्स",
-            "हानिकारक चीनी",
-            "थकान",
-            "कमज़ोरी"
+            "Children laugh and play happily",
+            "Birds fly in the sky",
+            "She drinks clean water daily",
+            "This is our beautiful home"
           ],
-          "answerIndex": 0,
-          "explanation": "फलों से विटामिन मिलते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Birds fly in the sky'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "प्रतिदिन का निरंतर अभ्यास आत्मविश्वास को मजबूत करता है।",
-          "translation": "प्रेरणा",
-          "question": "आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "माँ स्वादिष्ट गरम खाना बनाती हैं",
+          "translation": "Mother cooks delicious warm food",
+          "question": "What did the speaker say?",
           "options": [
-            "निरंतर अभ्यास से",
-            "हार मानने से",
-            "समय व्यर्थ करने से",
-            "आलस्य से"
+            "Mother cooks delicious warm food",
+            "The clear sky is blue",
+            "I read this good book",
+            "We eat fresh sweet fruits"
           ],
           "answerIndex": 0,
-          "explanation": "अभ्यास से आत्मविश्वास बढ़ता है।"
+          "explanation": "The spoken sentence means: 'Mother cooks delicious warm food'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आपसी सहयोग और एकता से हर कठिन कार्य आसान हो जाता है।",
-          "translation": "सहयोग",
-          "question": "कठिन कार्य किससे आसान होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "बच्चे खुशी से हँसते और खेलते हैं",
+          "translation": "Children laugh and play happily",
+          "question": "What did the speaker say?",
           "options": [
-            "सहयोग और एकता से",
-            "अकेले रहने से",
-            "झगड़ा करने से",
-            "काम टालने से"
+            "She drinks clean water daily",
+            "Father is at home now",
+            "Children laugh and play happily",
+            "This is our beautiful home"
           ],
-          "answerIndex": 0,
-          "explanation": "सहयोग से सफलता मिलती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Children laugh and play happily'."
         }
       ],
       "4": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हमारी कम्युनिटी लर्निंग कक्षा में आपका हार्दिक स्वागत है।",
-          "translation": "स्वागत",
-          "question": "कहाँ स्वागत किया जा रहा है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सुबह चमकीला सूरज उगता है",
+          "translation": "The bright sun rises in morning",
+          "question": "What did the speaker say?",
           "options": [
-            "लर्निंग कक्षा में",
-            "फुटबॉल मैच में",
-            "सिनेमा घर में",
-            "बस स्टॉप पर"
+            "He likes reading colorful story books",
+            "The bright sun rises in morning",
+            "They play games in green park",
+            "Fresh colorful flowers bloom in garden"
           ],
-          "answerIndex": 0,
-          "explanation": "कक्षा में स्वागत किया गया है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'The bright sun rises in morning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी पुस्तक का पृष्ठ दस ध्यान से खोलिए।",
-          "translation": "कक्षा निर्देश",
-          "question": "कौन सा पृष्ठ खोलना है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "बच्चे रोज़ सुबह स्कूल जाते हैं",
+          "translation": "Children go to school every morning",
+          "question": "What did the speaker say?",
           "options": [
-            "पृष्ठ 10",
-            "पृष्ठ 25",
-            "पृष्ठ 50",
-            "पृष्ठ 5"
+            "Children go to school every morning",
+            "I sleep early at night daily",
+            "She speaks kindly to all friends",
+            "We listen to sweet peaceful music"
           ],
           "answerIndex": 0,
-          "explanation": "पृष्ठ दस का निर्देश दिया गया है।"
+          "explanation": "The spoken sentence means: 'Children go to school every morning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक्सप्रेस रेलगाड़ी प्लेटफार्म नंबर तीन पर आ रही है।",
-          "translation": "रेलवे घोषणा",
-          "question": "ट्रेन किस प्लेटफार्म पर आएगी?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वे हरे पार्क में खेल खेलते हैं",
+          "translation": "They play games in green park",
+          "question": "What did the speaker say?",
           "options": [
-            "प्लेटफार्म 3",
-            "प्लेटफार्म 1",
-            "प्लेटफार्म 7",
-            "प्लेटफार्म 9"
+            "He likes reading colorful story books",
+            "We take a walk in evening",
+            "They play games in green park",
+            "Fresh colorful flowers bloom in garden"
           ],
-          "answerIndex": 0,
-          "explanation": "प्लेटफार्म तीन की घोषणा हुई है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'They play games in green park'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सदा अपने दिन की शुरुआत पौष्टिक नाश्ते से करें।",
-          "translation": "स्वास्थ्य सलाह",
-          "question": "किस भोजन की बात हो रही है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हम मधुर और शांत संगीत सुनते हैं",
+          "translation": "We listen to sweet peaceful music",
+          "question": "What did the speaker say?",
           "options": [
-            "नाश्ता",
-            "रात का खाना",
-            "मिठाई",
-            "फास्ट फूड"
+            "Learning new words brings great joy",
+            "We listen to sweet peaceful music",
+            "She speaks kindly to all friends",
+            "I sleep early at night daily"
           ],
-          "answerIndex": 0,
-          "explanation": "नाश्ता दिन का पहला भोजन है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'We listen to sweet peaceful music'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक प्यारी मुस्कान चारों ओर सकारात्मक ऊर्जा फैलाती है।",
-          "translation": "सद्भावना",
-          "question": "सकारात्मकता क्या फैलाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "उसे रंगीन कहानियों की किताबें पसंद हैं",
+          "translation": "He likes reading colorful story books",
+          "question": "What did the speaker say?",
           "options": [
-            "एक मुस्कान",
-            "एक कोट",
-            "एक छाता",
-            "एक टोपी"
+            "The bright sun rises in morning",
+            "Fresh colorful flowers bloom in garden",
+            "He likes reading colorful story books",
+            "We take a walk in evening"
           ],
-          "answerIndex": 0,
-          "explanation": "मुस्कान से प्रसन्नता फैलती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'He likes reading colorful story books'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आज की ठंडी और ताज़ी हवा मन को आनंदित कर देती है।",
-          "translation": "मौसम",
-          "question": "हवा कैसी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मैं रोज़ रात को जल्दी सोता हूँ",
+          "translation": "I sleep early at night daily",
+          "question": "What did the speaker say?",
           "options": [
-            "ठंडी और ताज़ी",
-            "तूफानी",
-            "धूल भरी",
-            "गर्म"
+            "Learning new words brings great joy",
+            "I sleep early at night daily",
+            "She speaks kindly to all friends",
+            "Children go to school every morning"
           ],
-          "answerIndex": 0,
-          "explanation": "हवा को आनंददायक बताया गया है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'I sleep early at night daily'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कल सुबह हम सब मुख्य पुस्तकालय में अध्ययन करेंगे।",
-          "translation": "स्थान",
-          "question": "अध्ययन कहाँ होगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं",
+          "translation": "Fresh colorful flowers bloom in garden",
+          "question": "What did the speaker say?",
           "options": [
-            "पुस्तकालय",
-            "बाज़ार",
-            "स्टेडियम",
-            "समुद्र तट"
+            "They play games in green park",
+            "The bright sun rises in morning",
+            "Fresh colorful flowers bloom in garden",
+            "We take a walk in evening"
           ],
-          "answerIndex": 0,
-          "explanation": "पुस्तकालय में मिलने की बात है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Fresh colorful flowers bloom in garden'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ताज़े मौसमी फल शरीर को आवश्यक विटामिन्स प्रदान करते हैं।",
-          "translation": "पोषण",
-          "question": "फल क्या प्रदान करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वह सभी दोस्तों से विनम्रता से बोलती है",
+          "translation": "She speaks kindly to all friends",
+          "question": "What did the speaker say?",
           "options": [
-            "विटामिन्स",
-            "हानिकारक चीनी",
-            "थकान",
-            "कमज़ोरी"
+            "She speaks kindly to all friends",
+            "We listen to sweet peaceful music",
+            "Children go to school every morning",
+            "Learning new words brings great joy"
           ],
           "answerIndex": 0,
-          "explanation": "फलों से विटामिन मिलते हैं।"
+          "explanation": "The spoken sentence means: 'She speaks kindly to all friends'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "प्रतिदिन का निरंतर अभ्यास आत्मविश्वास को मजबूत करता है।",
-          "translation": "प्रेरणा",
-          "question": "आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हम शाम को सैर करने जाते हैं",
+          "translation": "We take a walk in evening",
+          "question": "What did the speaker say?",
           "options": [
-            "निरंतर अभ्यास से",
-            "हार मानने से",
-            "समय व्यर्थ करने से",
-            "आलस्य से"
+            "The bright sun rises in morning",
+            "They play games in green park",
+            "We take a walk in evening",
+            "He likes reading colorful story books"
           ],
-          "answerIndex": 0,
-          "explanation": "अभ्यास से आत्मविश्वास बढ़ता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'We take a walk in evening'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आपसी सहयोग और एकता से हर कठिन कार्य आसान हो जाता है।",
-          "translation": "सहयोग",
-          "question": "कठिन कार्य किससे आसान होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नए शब्द सीखने से बहुत खुशी मिलती है",
+          "translation": "Learning new words brings great joy",
+          "question": "What did the speaker say?",
           "options": [
-            "सहयोग और एकता से",
-            "अकेले रहने से",
-            "झगड़ा करने से",
-            "काम टालने से"
+            "We listen to sweet peaceful music",
+            "Learning new words brings great joy",
+            "Children go to school every morning",
+            "I sleep early at night daily"
           ],
-          "answerIndex": 0,
-          "explanation": "सहयोग से सफलता मिलती है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Learning new words brings great joy'."
         }
       ],
       "5": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हमारी कम्युनिटी लर्निंग कक्षा में आपका हार्दिक स्वागत है।",
-          "translation": "स्वागत",
-          "question": "कहाँ स्वागत किया जा रहा है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नियमित अभ्यास से सीखना बहुत आसान होता है",
+          "translation": "Regular practice makes learning very easy",
+          "question": "What did the speaker say?",
           "options": [
-            "लर्निंग कक्षा में",
-            "फुटबॉल मैच में",
-            "सिनेमा घर में",
-            "बस स्टॉप पर"
+            "Regular practice makes learning very easy",
+            "Good books always give inspiring positive thoughts",
+            "Healthy food keeps our body active strong",
+            "I love learning new words every day"
           ],
           "answerIndex": 0,
-          "explanation": "कक्षा में स्वागत किया गया है।"
+          "explanation": "The spoken sentence means: 'Regular practice makes learning very easy'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी पुस्तक का पृष्ठ दस ध्यान से खोलिए।",
-          "translation": "कक्षा निर्देश",
-          "question": "कौन सा पृष्ठ खोलना है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हरे पेड़ ताज़ा हवा और छाया देते हैं",
+          "translation": "Green trees give clean air and shade",
+          "question": "What did the speaker say?",
           "options": [
-            "पृष्ठ 10",
-            "पृष्ठ 25",
-            "पृष्ठ 50",
-            "पृष्ठ 5"
+            "Honest hard work brings true happy success",
+            "We drink clean water for good health",
+            "Kind words bring peaceful happiness everywhere around",
+            "Green trees give clean air and shade"
           ],
-          "answerIndex": 0,
-          "explanation": "पृष्ठ दस का निर्देश दिया गया है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Green trees give clean air and shade'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक्सप्रेस रेलगाड़ी प्लेटफार्म नंबर तीन पर आ रही है।",
-          "translation": "रेलवे घोषणा",
-          "question": "ट्रेन किस प्लेटफार्म पर आएगी?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है",
+          "translation": "I love learning new words every day",
+          "question": "What did the speaker say?",
           "options": [
-            "प्लेटफार्म 3",
-            "प्लेटफार्म 1",
-            "प्लेटफार्म 7",
-            "प्लेटफार्म 9"
+            "A morning walk keeps your mind fresh",
+            "Healthy food keeps our body active strong",
+            "I love learning new words every day",
+            "Good books always give inspiring positive thoughts"
           ],
-          "answerIndex": 0,
-          "explanation": "प्लेटफार्म तीन की घोषणा हुई है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'I love learning new words every day'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सदा अपने दिन की शुरुआत पौष्टिक नाश्ते से करें।",
-          "translation": "स्वास्थ्य सलाह",
-          "question": "किस भोजन की बात हो रही है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं",
+          "translation": "We drink clean water for good health",
+          "question": "What did the speaker say?",
           "options": [
-            "नाश्ता",
-            "रात का खाना",
-            "मिठाई",
-            "फास्ट फूड"
+            "We drink clean water for good health",
+            "Honest hard work brings true happy success",
+            "Kind words bring peaceful happiness everywhere around",
+            "A loving family gives us warmth always"
           ],
           "answerIndex": 0,
-          "explanation": "नाश्ता दिन का पहला भोजन है।"
+          "explanation": "The spoken sentence means: 'We drink clean water for good health'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "एक प्यारी मुस्कान चारों ओर सकारात्मक ऊर्जा फैलाती है।",
-          "translation": "सद्भावना",
-          "question": "सकारात्मकता क्या फैलाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं",
+          "translation": "Good books always give inspiring positive thoughts",
+          "question": "What did the speaker say?",
           "options": [
-            "एक मुस्कान",
-            "एक कोट",
-            "एक छाता",
-            "एक टोपी"
+            "Good books always give inspiring positive thoughts",
+            "A morning walk keeps your mind fresh",
+            "Regular practice makes learning very easy",
+            "Healthy food keeps our body active strong"
           ],
           "answerIndex": 0,
-          "explanation": "मुस्कान से प्रसन्नता फैलती है।"
+          "explanation": "The spoken sentence means: 'Good books always give inspiring positive thoughts'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आज की ठंडी और ताज़ी हवा मन को आनंदित कर देती है।",
-          "translation": "मौसम",
-          "question": "हवा कैसी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सच्ची मेहनत से ही असली सफलता मिलती है",
+          "translation": "Honest hard work brings true happy success",
+          "question": "What did the speaker say?",
           "options": [
-            "ठंडी और ताज़ी",
-            "तूफानी",
-            "धूल भरी",
-            "गर्म"
+            "A loving family gives us warmth always",
+            "Kind words bring peaceful happiness everywhere around",
+            "Green trees give clean air and shade",
+            "Honest hard work brings true happy success"
           ],
-          "answerIndex": 0,
-          "explanation": "हवा को आनंददायक बताया गया है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Honest hard work brings true happy success'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कल सुबह हम सब मुख्य पुस्तकालय में अध्ययन करेंगे।",
-          "translation": "स्थान",
-          "question": "अध्ययन कहाँ होगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "पौष्टिक आहार हमारे शरीर को बलवान बनाता है",
+          "translation": "Healthy food keeps our body active strong",
+          "question": "What did the speaker say?",
           "options": [
-            "पुस्तकालय",
-            "बाज़ार",
-            "स्टेडियम",
-            "समुद्र तट"
+            "Healthy food keeps our body active strong",
+            "A morning walk keeps your mind fresh",
+            "I love learning new words every day",
+            "Regular practice makes learning very easy"
           ],
           "answerIndex": 0,
-          "explanation": "पुस्तकालय में मिलने की बात है।"
+          "explanation": "The spoken sentence means: 'Healthy food keeps our body active strong'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ताज़े मौसमी फल शरीर को आवश्यक विटामिन्स प्रदान करते हैं।",
-          "translation": "पोषण",
-          "question": "फल क्या प्रदान करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मीठे बोल चारों ओर शांति और खुशी लाते हैं",
+          "translation": "Kind words bring peaceful happiness everywhere around",
+          "question": "What did the speaker say?",
           "options": [
-            "विटामिन्स",
-            "हानिकारक चीनी",
-            "थकान",
-            "कमज़ोरी"
+            "Green trees give clean air and shade",
+            "Kind words bring peaceful happiness everywhere around",
+            "A loving family gives us warmth always",
+            "We drink clean water for good health"
           ],
-          "answerIndex": 0,
-          "explanation": "फलों से विटामिन मिलते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Kind words bring peaceful happiness everywhere around'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "प्रतिदिन का निरंतर अभ्यास आत्मविश्वास को मजबूत करता है।",
-          "translation": "प्रेरणा",
-          "question": "आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सुबह की सैर मन को तरोताज़ा रखती है",
+          "translation": "A morning walk keeps your mind fresh",
+          "question": "What did the speaker say?",
           "options": [
-            "निरंतर अभ्यास से",
-            "हार मानने से",
-            "समय व्यर्थ करने से",
-            "आलस्य से"
+            "Regular practice makes learning very easy",
+            "Good books always give inspiring positive thoughts",
+            "A morning walk keeps your mind fresh",
+            "I love learning new words every day"
           ],
-          "answerIndex": 0,
-          "explanation": "अभ्यास से आत्मविश्वास बढ़ता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'A morning walk keeps your mind fresh'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "आपसी सहयोग और एकता से हर कठिन कार्य आसान हो जाता है।",
-          "translation": "सहयोग",
-          "question": "कठिन कार्य किससे आसान होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "प्यारा परिवार हमें सदा संबल और स्नेह देता है",
+          "translation": "A loving family gives us warmth always",
+          "question": "What did the speaker say?",
           "options": [
-            "सहयोग और एकता से",
-            "अकेले रहने से",
-            "झगड़ा करने से",
-            "काम टालने से"
+            "We drink clean water for good health",
+            "Honest hard work brings true happy success",
+            "A loving family gives us warmth always",
+            "Green trees give clean air and shade"
           ],
-          "answerIndex": 0,
-          "explanation": "सहयोग से सफलता मिलती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'A loving family gives us warmth always'."
         }
       ]
     },
@@ -2320,461 +2293,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "नमस्ते, आप आज कैसे हैं?",
-          "translation": "Polite daily greeting",
+          "content": "नमस्ते मेरे अच्छे दोस्त",
+          "translation": "Hello, my good friend",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'नमस्ते, आप आज कैसे हैं?'"
+          "explanation": "Practice speaking: 'नमस्ते मेरे अच्छे दोस्त'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपसे मिलकर मुझे बहुत प्रसन्नता हुई।",
-          "translation": "Expressing joy in meeting",
+          "content": "आपका बहुत-बहुत धन्यवाद",
+          "translation": "Thank you very much",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपसे मिलकर मुझे बहुत प्रसन्नता हुई।'"
+          "explanation": "Practice speaking: 'आपका बहुत-बहुत धन्यवाद'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप मेरी सहायता कर सकते हैं?",
-          "translation": "Polite request for help",
+          "content": "आपको शुभ प्रभात",
+          "translation": "Good morning to you",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप मेरी सहायता कर सकते हैं?'"
+          "explanation": "Practice speaking: 'आपको शुभ प्रभात'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपकी सहायता के लिए बहुत-बहुत धन्यवाद।",
-          "translation": "Expressing sincere gratitude",
+          "content": "हाँ, मुझे यह चाहिए",
+          "translation": "Yes, I want this",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपकी सहायता के लिए बहुत-बहुत धन्यवाद।'"
+          "explanation": "Practice speaking: 'हाँ, मुझे यह चाहिए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है।",
-          "translation": "Sharing learning interest",
+          "content": "मैं स्वच्छ पानी पीता हूँ",
+          "translation": "I drink clean water",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है।'"
+          "explanation": "Practice speaking: 'मैं स्वच्छ पानी पीता हूँ'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निकटतम रेलवे स्टेशन का रास्ता किधर है?",
-          "translation": "Asking for directions",
+          "content": "मेरा नाम राहुल है",
+          "translation": "My name is Rahul",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निकटतम रेलवे स्टेशन का रास्ता किधर है?'"
+          "explanation": "Practice speaking: 'मेरा नाम राहुल है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपका सप्ताहांत शुभ और मंगलमय हो।",
-          "translation": "Polite weekend greeting",
+          "content": "मुझे गर्म चाय चाहिए",
+          "translation": "I want hot tea",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपका सप्ताहांत शुभ और मंगलमय हो।'"
+          "explanation": "Practice speaking: 'मुझे गर्म चाय चाहिए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मिलकर सीखना पढ़ाई को आनंददायक बनाता है।",
-          "translation": "Group learning thought",
+          "content": "यह एक नई किताब है",
+          "translation": "This is a new book",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मिलकर सीखना पढ़ाई को आनंददायक बनाता है।'"
+          "explanation": "Practice speaking: 'यह एक नई किताब है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आइए हम सब मिलकर इस काम को पूरा करें।",
-          "translation": "Encouraging teamwork",
+          "content": "हमारी कक्षा में आपका स्वागत है",
+          "translation": "Welcome to our class",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आइए हम सब मिलकर इस काम को पूरा करें।'"
+          "explanation": "Practice speaking: 'हमारी कक्षा में आपका स्वागत है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।",
-          "translation": "Language encouragement",
+          "content": "हम कल फिर मिलेंगे",
+          "translation": "We will meet tomorrow",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।'"
+          "explanation": "Practice speaking: 'हम कल फिर मिलेंगे'."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "नमस्ते, आप आज कैसे हैं?",
-          "translation": "Polite daily greeting",
+          "content": "आप आज कैसे हैं?",
+          "translation": "How are you today?",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'नमस्ते, आप आज कैसे हैं?'"
+          "explanation": "Practice speaking: 'आप आज कैसे हैं?'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपसे मिलकर मुझे बहुत प्रसन्नता हुई।",
-          "translation": "Expressing joy in meeting",
+          "content": "मैं आज बहुत ठीक हूँ",
+          "translation": "I am fine today",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपसे मिलकर मुझे बहुत प्रसन्नता हुई।'"
+          "explanation": "Practice speaking: 'मैं आज बहुत ठीक हूँ'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप मेरी सहायता कर सकते हैं?",
-          "translation": "Polite request for help",
+          "content": "यह लाल सेब बहुत मीठा है",
+          "translation": "This red apple is sweet",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप मेरी सहायता कर सकते हैं?'"
+          "explanation": "Practice speaking: 'यह लाल सेब बहुत मीठा है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपकी सहायता के लिए बहुत-बहुत धन्यवाद।",
-          "translation": "Expressing sincere gratitude",
+          "content": "कृपया सामने का दरवाज़ा खोलो",
+          "translation": "Please open the door",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपकी सहायता के लिए बहुत-बहुत धन्यवाद।'"
+          "explanation": "Practice speaking: 'कृपया सामने का दरवाज़ा खोलो'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है।",
-          "translation": "Sharing learning interest",
+          "content": "पीने का साफ़ पानी कहाँ है?",
+          "translation": "Where is drinking water?",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है।'"
+          "explanation": "Practice speaking: 'पीने का साफ़ पानी कहाँ है?'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निकटतम रेलवे स्टेशन का रास्ता किधर है?",
-          "translation": "Asking for directions",
+          "content": "आपको बहुत शुभ रात्रि",
+          "translation": "I wish you good night",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निकटतम रेलवे स्टेशन का रास्ता किधर है?'"
+          "explanation": "Practice speaking: 'आपको बहुत शुभ रात्रि'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपका सप्ताहांत शुभ और मंगलमय हो।",
-          "translation": "Polite weekend greeting",
+          "content": "मुझे ताज़ा मीठा दूध पसंद है",
+          "translation": "I like fresh sweet milk",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपका सप्ताहांत शुभ और मंगलमय हो।'"
+          "explanation": "Practice speaking: 'मुझे ताज़ा मीठा दूध पसंद है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मिलकर सीखना पढ़ाई को आनंददायक बनाता है।",
-          "translation": "Group learning thought",
+          "content": "वह आज बहुत खुश है",
+          "translation": "She is very happy today",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मिलकर सीखना पढ़ाई को आनंददायक बनाता है।'"
+          "explanation": "Practice speaking: 'वह आज बहुत खुश है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आइए हम सब मिलकर इस काम को पूरा करें।",
-          "translation": "Encouraging teamwork",
+          "content": "कृपया अभी यहाँ आइए",
+          "translation": "Please come here now",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आइए हम सब मिलकर इस काम को पूरा करें।'"
+          "explanation": "Practice speaking: 'कृपया अभी यहाँ आइए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।",
-          "translation": "Language encouragement",
+          "content": "कल सुबह फिर मिलेंगे",
+          "translation": "See you tomorrow morning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।'"
+          "explanation": "Practice speaking: 'कल सुबह फिर मिलेंगे'."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "नमस्ते, आप आज कैसे हैं?",
-          "translation": "Polite daily greeting",
+          "content": "मैं यह अच्छी किताब पढ़ता हूँ",
+          "translation": "I read this good book",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'नमस्ते, आप आज कैसे हैं?'"
+          "explanation": "Practice speaking: 'मैं यह अच्छी किताब पढ़ता हूँ'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपसे मिलकर मुझे बहुत प्रसन्नता हुई।",
-          "translation": "Expressing joy in meeting",
+          "content": "वह रोज़ स्वच्छ पानी पीती है",
+          "translation": "She drinks clean water daily",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपसे मिलकर मुझे बहुत प्रसन्नता हुई।'"
+          "explanation": "Practice speaking: 'वह रोज़ स्वच्छ पानी पीती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप मेरी सहायता कर सकते हैं?",
-          "translation": "Polite request for help",
+          "content": "साफ़ आकाश नीला है",
+          "translation": "The clear sky is blue",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप मेरी सहायता कर सकते हैं?'"
+          "explanation": "Practice speaking: 'साफ़ आकाश नीला है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपकी सहायता के लिए बहुत-बहुत धन्यवाद।",
-          "translation": "Expressing sincere gratitude",
+          "content": "यह हमारा सुंदर घर है",
+          "translation": "This is our beautiful home",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपकी सहायता के लिए बहुत-बहुत धन्यवाद।'"
+          "explanation": "Practice speaking: 'यह हमारा सुंदर घर है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है।",
-          "translation": "Sharing learning interest",
+          "content": "हम ताज़े मीठे फल खाते हैं",
+          "translation": "We eat fresh sweet fruits",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है।'"
+          "explanation": "Practice speaking: 'हम ताज़े मीठे फल खाते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निकटतम रेलवे स्टेशन का रास्ता किधर है?",
-          "translation": "Asking for directions",
+          "content": "पिताजी अभी घर पर हैं",
+          "translation": "Father is at home now",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निकटतम रेलवे स्टेशन का रास्ता किधर है?'"
+          "explanation": "Practice speaking: 'पिताजी अभी घर पर हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपका सप्ताहांत शुभ और मंगलमय हो।",
-          "translation": "Polite weekend greeting",
+          "content": "मैं कलम से लिखता हूँ",
+          "translation": "I write with a pen",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपका सप्ताहांत शुभ और मंगलमय हो।'"
+          "explanation": "Practice speaking: 'मैं कलम से लिखता हूँ'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मिलकर सीखना पढ़ाई को आनंददायक बनाता है।",
-          "translation": "Group learning thought",
+          "content": "पक्षी आकाश में उड़ते हैं",
+          "translation": "Birds fly in the sky",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मिलकर सीखना पढ़ाई को आनंददायक बनाता है।'"
+          "explanation": "Practice speaking: 'पक्षी आकाश में उड़ते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आइए हम सब मिलकर इस काम को पूरा करें।",
-          "translation": "Encouraging teamwork",
+          "content": "माँ स्वादिष्ट गरम खाना बनाती हैं",
+          "translation": "Mother cooks delicious warm food",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आइए हम सब मिलकर इस काम को पूरा करें।'"
+          "explanation": "Practice speaking: 'माँ स्वादिष्ट गरम खाना बनाती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।",
-          "translation": "Language encouragement",
+          "content": "बच्चे खुशी से हँसते और खेलते हैं",
+          "translation": "Children laugh and play happily",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।'"
+          "explanation": "Practice speaking: 'बच्चे खुशी से हँसते और खेलते हैं'."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "नमस्ते, आप आज कैसे हैं?",
-          "translation": "Polite daily greeting",
+          "content": "सुबह चमकीला सूरज उगता है",
+          "translation": "The bright sun rises in morning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'नमस्ते, आप आज कैसे हैं?'"
+          "explanation": "Practice speaking: 'सुबह चमकीला सूरज उगता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपसे मिलकर मुझे बहुत प्रसन्नता हुई।",
-          "translation": "Expressing joy in meeting",
+          "content": "बच्चे रोज़ सुबह स्कूल जाते हैं",
+          "translation": "Children go to school every morning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपसे मिलकर मुझे बहुत प्रसन्नता हुई।'"
+          "explanation": "Practice speaking: 'बच्चे रोज़ सुबह स्कूल जाते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप मेरी सहायता कर सकते हैं?",
-          "translation": "Polite request for help",
+          "content": "वे हरे पार्क में खेल खेलते हैं",
+          "translation": "They play games in green park",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप मेरी सहायता कर सकते हैं?'"
+          "explanation": "Practice speaking: 'वे हरे पार्क में खेल खेलते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपकी सहायता के लिए बहुत-बहुत धन्यवाद।",
-          "translation": "Expressing sincere gratitude",
+          "content": "हम मधुर और शांत संगीत सुनते हैं",
+          "translation": "We listen to sweet peaceful music",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपकी सहायता के लिए बहुत-बहुत धन्यवाद।'"
+          "explanation": "Practice speaking: 'हम मधुर और शांत संगीत सुनते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है।",
-          "translation": "Sharing learning interest",
+          "content": "उसे रंगीन कहानियों की किताबें पसंद हैं",
+          "translation": "He likes reading colorful story books",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है।'"
+          "explanation": "Practice speaking: 'उसे रंगीन कहानियों की किताबें पसंद हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निकटतम रेलवे स्टेशन का रास्ता किधर है?",
-          "translation": "Asking for directions",
+          "content": "मैं रोज़ रात को जल्दी सोता हूँ",
+          "translation": "I sleep early at night daily",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निकटतम रेलवे स्टेशन का रास्ता किधर है?'"
+          "explanation": "Practice speaking: 'मैं रोज़ रात को जल्दी सोता हूँ'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपका सप्ताहांत शुभ और मंगलमय हो।",
-          "translation": "Polite weekend greeting",
+          "content": "बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं",
+          "translation": "Fresh colorful flowers bloom in garden",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपका सप्ताहांत शुभ और मंगलमय हो।'"
+          "explanation": "Practice speaking: 'बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मिलकर सीखना पढ़ाई को आनंददायक बनाता है।",
-          "translation": "Group learning thought",
+          "content": "वह सभी दोस्तों से विनम्रता से बोलती है",
+          "translation": "She speaks kindly to all friends",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मिलकर सीखना पढ़ाई को आनंददायक बनाता है।'"
+          "explanation": "Practice speaking: 'वह सभी दोस्तों से विनम्रता से बोलती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आइए हम सब मिलकर इस काम को पूरा करें।",
-          "translation": "Encouraging teamwork",
+          "content": "हम शाम को सैर करने जाते हैं",
+          "translation": "We take a walk in evening",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आइए हम सब मिलकर इस काम को पूरा करें।'"
+          "explanation": "Practice speaking: 'हम शाम को सैर करने जाते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।",
-          "translation": "Language encouragement",
+          "content": "नए शब्द सीखने से बहुत खुशी मिलती है",
+          "translation": "Learning new words brings great joy",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।'"
+          "explanation": "Practice speaking: 'नए शब्द सीखने से बहुत खुशी मिलती है'."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "नमस्ते, आप आज कैसे हैं?",
-          "translation": "Polite daily greeting",
+          "content": "नियमित अभ्यास से सीखना बहुत आसान होता है",
+          "translation": "Regular practice makes learning very easy",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'नमस्ते, आप आज कैसे हैं?'"
+          "explanation": "Practice speaking: 'नियमित अभ्यास से सीखना बहुत आसान होता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपसे मिलकर मुझे बहुत प्रसन्नता हुई।",
-          "translation": "Expressing joy in meeting",
+          "content": "हरे पेड़ ताज़ा हवा और छाया देते हैं",
+          "translation": "Green trees give clean air and shade",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपसे मिलकर मुझे बहुत प्रसन्नता हुई।'"
+          "explanation": "Practice speaking: 'हरे पेड़ ताज़ा हवा और छाया देते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप मेरी सहायता कर सकते हैं?",
-          "translation": "Polite request for help",
+          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है",
+          "translation": "I love learning new words every day",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप मेरी सहायता कर सकते हैं?'"
+          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपकी सहायता के लिए बहुत-बहुत धन्यवाद।",
-          "translation": "Expressing sincere gratitude",
+          "content": "हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं",
+          "translation": "We drink clean water for good health",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपकी सहायता के लिए बहुत-बहुत धन्यवाद।'"
+          "explanation": "Practice speaking: 'हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मुझे रोज़ नए शब्द सीखना बहुत पसंद है।",
-          "translation": "Sharing learning interest",
+          "content": "अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं",
+          "translation": "Good books always give inspiring positive thoughts",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है।'"
+          "explanation": "Practice speaking: 'अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निकटतम रेलवे स्टेशन का रास्ता किधर है?",
-          "translation": "Asking for directions",
+          "content": "सच्ची मेहनत से ही असली सफलता मिलती है",
+          "translation": "Honest hard work brings true happy success",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निकटतम रेलवे स्टेशन का रास्ता किधर है?'"
+          "explanation": "Practice speaking: 'सच्ची मेहनत से ही असली सफलता मिलती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आपका सप्ताहांत शुभ और मंगलमय हो।",
-          "translation": "Polite weekend greeting",
+          "content": "पौष्टिक आहार हमारे शरीर को बलवान बनाता है",
+          "translation": "Healthy food keeps our body active strong",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आपका सप्ताहांत शुभ और मंगलमय हो।'"
+          "explanation": "Practice speaking: 'पौष्टिक आहार हमारे शरीर को बलवान बनाता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मिलकर सीखना पढ़ाई को आनंददायक बनाता है।",
-          "translation": "Group learning thought",
+          "content": "मीठे बोल चारों ओर शांति और खुशी लाते हैं",
+          "translation": "Kind words bring peaceful happiness everywhere around",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मिलकर सीखना पढ़ाई को आनंददायक बनाता है।'"
+          "explanation": "Practice speaking: 'मीठे बोल चारों ओर शांति और खुशी लाते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "आइए हम सब मिलकर इस काम को पूरा करें।",
-          "translation": "Encouraging teamwork",
+          "content": "सुबह की सैर मन को तरोताज़ा रखती है",
+          "translation": "A morning walk keeps your mind fresh",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'आइए हम सब मिलकर इस काम को पूरा करें।'"
+          "explanation": "Practice speaking: 'सुबह की सैर मन को तरोताज़ा रखती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।",
-          "translation": "Language encouragement",
+          "content": "प्यारा परिवार हमें सदा संबल और स्नेह देता है",
+          "translation": "A loving family gives us warmth always",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'रोज़ाना बोलकर अभ्यास करने से भाषा सुधरती है।'"
+          "explanation": "Practice speaking: 'प्यारा परिवार हमें सदा संबल और स्नेह देता है'."
         }
       ]
     },
@@ -2782,461 +2755,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अनुसंधान",
-          "translation": "uh-noo-sun-DHAAN (Research / Investigation)",
+          "content": "नमस्ते",
+          "translation": "From: 'नमस्ते मेरे अच्छे दोस्त' (Hello, my good friend)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-noo-sun-DHAAN (Research / Investigation)"
+          "explanation": "Practice pronouncing: 'नमस्ते' (Hello, my good friend)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूति",
-          "translation": "suh-haa-noo-BHOO-tee (Empathy / Compassion)",
+          "content": "आपका",
+          "translation": "From: 'आपका बहुत-बहुत धन्यवाद' (Thank you very much)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-BHOO-tee (Empathy / Compassion)"
+          "explanation": "Practice pronouncing: 'आपका' (Thank you very much)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्साह",
-          "translation": "OOT-saah (Enthusiasm / Zeal)",
+          "content": "आपको",
+          "translation": "From: 'आपको शुभ प्रभात' (Good morning to you)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: OOT-saah (Enthusiasm / Zeal)"
+          "explanation": "Practice pronouncing: 'आपको' (Good morning to you)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिश्रम",
-          "translation": "puh-REESH-rum (Diligence / Hard Work)",
+          "content": "हाँ,",
+          "translation": "From: 'हाँ, मुझे यह चाहिए' (Yes, I want this)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-REESH-rum (Diligence / Hard Work)"
+          "explanation": "Practice pronouncing: 'हाँ,' (Yes, I want this)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "आत्मविश्वास",
-          "translation": "aat-muh-veesh-VAAS (Self Confidence)",
+          "content": "मैं",
+          "translation": "From: 'मैं स्वच्छ पानी पीता हूँ' (I drink clean water)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: aat-muh-veesh-VAAS (Self Confidence)"
+          "explanation": "Practice pronouncing: 'मैं' (I drink clean water)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़संकल्प",
-          "translation": "dridh-sun-KULP (Determination / Resolve)",
+          "content": "मेरा",
+          "translation": "From: 'मेरा नाम राहुल है' (My name is Rahul)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-sun-KULP (Determination / Resolve)"
+          "explanation": "Practice pronouncing: 'मेरा' (My name is Rahul)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "संवेदनशीलता",
-          "translation": "sum-vay-dun-SHEEL-taa (Sensitivity)",
+          "content": "मुझे",
+          "translation": "From: 'मुझे गर्म चाय चाहिए' (I want hot tea)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sum-vay-dun-SHEEL-taa (Sensitivity)"
+          "explanation": "Practice pronouncing: 'मुझे' (I want hot tea)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पर्यावरण",
-          "translation": "pur-yaa-vuh-RUN (Environment / Ecology)",
+          "content": "यह",
+          "translation": "From: 'यह एक नई किताब है' (This is a new book)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pur-yaa-vuh-RUN (Environment / Ecology)"
+          "explanation": "Practice pronouncing: 'यह' (This is a new book)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सकारात्मकता",
-          "translation": "suh-kaa-raat-MUK-taa (Positivity / Optimism)",
+          "content": "हमारी",
+          "translation": "From: 'हमारी कक्षा में आपका स्वागत है' (Welcome to our class)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-kaa-raat-MUK-taa (Positivity / Optimism)"
+          "explanation": "Practice pronouncing: 'हमारी' (Welcome to our class)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कृतज्ञता",
-          "translation": "kree-tugh-NYUH-taa (Gratitude / Thankfulness)",
+          "content": "हम",
+          "translation": "From: 'हम कल फिर मिलेंगे' (We will meet tomorrow)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kree-tugh-NYUH-taa (Gratitude / Thankfulness)"
+          "explanation": "Practice pronouncing: 'हम' (We will meet tomorrow)."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अनुसंधान",
-          "translation": "uh-noo-sun-DHAAN (Research / Investigation)",
+          "content": "आप",
+          "translation": "From: 'आप आज कैसे हैं?' (How are you today?)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-noo-sun-DHAAN (Research / Investigation)"
+          "explanation": "Practice pronouncing: 'आप' (How are you today?)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूति",
-          "translation": "suh-haa-noo-BHOO-tee (Empathy / Compassion)",
+          "content": "मैं",
+          "translation": "From: 'मैं आज बहुत ठीक हूँ' (I am fine today)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-BHOO-tee (Empathy / Compassion)"
+          "explanation": "Practice pronouncing: 'मैं' (I am fine today)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्साह",
-          "translation": "OOT-saah (Enthusiasm / Zeal)",
+          "content": "यह",
+          "translation": "From: 'यह लाल सेब बहुत मीठा है' (This red apple is sweet)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: OOT-saah (Enthusiasm / Zeal)"
+          "explanation": "Practice pronouncing: 'यह' (This red apple is sweet)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिश्रम",
-          "translation": "puh-REESH-rum (Diligence / Hard Work)",
+          "content": "कृपया",
+          "translation": "From: 'कृपया सामने का दरवाज़ा खोलो' (Please open the door)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-REESH-rum (Diligence / Hard Work)"
+          "explanation": "Practice pronouncing: 'कृपया' (Please open the door)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "आत्मविश्वास",
-          "translation": "aat-muh-veesh-VAAS (Self Confidence)",
+          "content": "पीने",
+          "translation": "From: 'पीने का साफ़ पानी कहाँ है?' (Where is drinking water?)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: aat-muh-veesh-VAAS (Self Confidence)"
+          "explanation": "Practice pronouncing: 'पीने' (Where is drinking water?)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़संकल्प",
-          "translation": "dridh-sun-KULP (Determination / Resolve)",
+          "content": "आपको",
+          "translation": "From: 'आपको बहुत शुभ रात्रि' (I wish you good night)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-sun-KULP (Determination / Resolve)"
+          "explanation": "Practice pronouncing: 'आपको' (I wish you good night)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "संवेदनशीलता",
-          "translation": "sum-vay-dun-SHEEL-taa (Sensitivity)",
+          "content": "मुझे",
+          "translation": "From: 'मुझे ताज़ा मीठा दूध पसंद है' (I like fresh sweet milk)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sum-vay-dun-SHEEL-taa (Sensitivity)"
+          "explanation": "Practice pronouncing: 'मुझे' (I like fresh sweet milk)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पर्यावरण",
-          "translation": "pur-yaa-vuh-RUN (Environment / Ecology)",
+          "content": "वह",
+          "translation": "From: 'वह आज बहुत खुश है' (She is very happy today)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pur-yaa-vuh-RUN (Environment / Ecology)"
+          "explanation": "Practice pronouncing: 'वह' (She is very happy today)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सकारात्मकता",
-          "translation": "suh-kaa-raat-MUK-taa (Positivity / Optimism)",
+          "content": "कृपया",
+          "translation": "From: 'कृपया अभी यहाँ आइए' (Please come here now)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-kaa-raat-MUK-taa (Positivity / Optimism)"
+          "explanation": "Practice pronouncing: 'कृपया' (Please come here now)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कृतज्ञता",
-          "translation": "kree-tugh-NYUH-taa (Gratitude / Thankfulness)",
+          "content": "कल",
+          "translation": "From: 'कल सुबह फिर मिलेंगे' (See you tomorrow morning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kree-tugh-NYUH-taa (Gratitude / Thankfulness)"
+          "explanation": "Practice pronouncing: 'कल' (See you tomorrow morning)."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अनुसंधान",
-          "translation": "uh-noo-sun-DHAAN (Research / Investigation)",
+          "content": "मैं",
+          "translation": "From: 'मैं यह अच्छी किताब पढ़ता हूँ' (I read this good book)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-noo-sun-DHAAN (Research / Investigation)"
+          "explanation": "Practice pronouncing: 'मैं' (I read this good book)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूति",
-          "translation": "suh-haa-noo-BHOO-tee (Empathy / Compassion)",
+          "content": "वह",
+          "translation": "From: 'वह रोज़ स्वच्छ पानी पीती है' (She drinks clean water daily)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-BHOO-tee (Empathy / Compassion)"
+          "explanation": "Practice pronouncing: 'वह' (She drinks clean water daily)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्साह",
-          "translation": "OOT-saah (Enthusiasm / Zeal)",
+          "content": "साफ़",
+          "translation": "From: 'साफ़ आकाश नीला है' (The clear sky is blue)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: OOT-saah (Enthusiasm / Zeal)"
+          "explanation": "Practice pronouncing: 'साफ़' (The clear sky is blue)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिश्रम",
-          "translation": "puh-REESH-rum (Diligence / Hard Work)",
+          "content": "यह",
+          "translation": "From: 'यह हमारा सुंदर घर है' (This is our beautiful home)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-REESH-rum (Diligence / Hard Work)"
+          "explanation": "Practice pronouncing: 'यह' (This is our beautiful home)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "आत्मविश्वास",
-          "translation": "aat-muh-veesh-VAAS (Self Confidence)",
+          "content": "हम",
+          "translation": "From: 'हम ताज़े मीठे फल खाते हैं' (We eat fresh sweet fruits)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: aat-muh-veesh-VAAS (Self Confidence)"
+          "explanation": "Practice pronouncing: 'हम' (We eat fresh sweet fruits)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़संकल्प",
-          "translation": "dridh-sun-KULP (Determination / Resolve)",
+          "content": "पिताजी",
+          "translation": "From: 'पिताजी अभी घर पर हैं' (Father is at home now)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-sun-KULP (Determination / Resolve)"
+          "explanation": "Practice pronouncing: 'पिताजी' (Father is at home now)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "संवेदनशीलता",
-          "translation": "sum-vay-dun-SHEEL-taa (Sensitivity)",
+          "content": "मैं",
+          "translation": "From: 'मैं कलम से लिखता हूँ' (I write with a pen)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sum-vay-dun-SHEEL-taa (Sensitivity)"
+          "explanation": "Practice pronouncing: 'मैं' (I write with a pen)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पर्यावरण",
-          "translation": "pur-yaa-vuh-RUN (Environment / Ecology)",
+          "content": "पक्षी",
+          "translation": "From: 'पक्षी आकाश में उड़ते हैं' (Birds fly in the sky)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pur-yaa-vuh-RUN (Environment / Ecology)"
+          "explanation": "Practice pronouncing: 'पक्षी' (Birds fly in the sky)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सकारात्मकता",
-          "translation": "suh-kaa-raat-MUK-taa (Positivity / Optimism)",
+          "content": "माँ",
+          "translation": "From: 'माँ स्वादिष्ट गरम खाना बनाती हैं' (Mother cooks delicious warm food)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-kaa-raat-MUK-taa (Positivity / Optimism)"
+          "explanation": "Practice pronouncing: 'माँ' (Mother cooks delicious warm food)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कृतज्ञता",
-          "translation": "kree-tugh-NYUH-taa (Gratitude / Thankfulness)",
+          "content": "बच्चे",
+          "translation": "From: 'बच्चे खुशी से हँसते और खेलते हैं' (Children laugh and play happily)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kree-tugh-NYUH-taa (Gratitude / Thankfulness)"
+          "explanation": "Practice pronouncing: 'बच्चे' (Children laugh and play happily)."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अनुसंधान",
-          "translation": "uh-noo-sun-DHAAN (Research / Investigation)",
+          "content": "सुबह",
+          "translation": "From: 'सुबह चमकीला सूरज उगता है' (The bright sun rises in morning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-noo-sun-DHAAN (Research / Investigation)"
+          "explanation": "Practice pronouncing: 'सुबह' (The bright sun rises in morning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूति",
-          "translation": "suh-haa-noo-BHOO-tee (Empathy / Compassion)",
+          "content": "बच्चे",
+          "translation": "From: 'बच्चे रोज़ सुबह स्कूल जाते हैं' (Children go to school every morning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-BHOO-tee (Empathy / Compassion)"
+          "explanation": "Practice pronouncing: 'बच्चे' (Children go to school every morning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्साह",
-          "translation": "OOT-saah (Enthusiasm / Zeal)",
+          "content": "वे",
+          "translation": "From: 'वे हरे पार्क में खेल खेलते हैं' (They play games in green park)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: OOT-saah (Enthusiasm / Zeal)"
+          "explanation": "Practice pronouncing: 'वे' (They play games in green park)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिश्रम",
-          "translation": "puh-REESH-rum (Diligence / Hard Work)",
+          "content": "हम",
+          "translation": "From: 'हम मधुर और शांत संगीत सुनते हैं' (We listen to sweet peaceful music)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-REESH-rum (Diligence / Hard Work)"
+          "explanation": "Practice pronouncing: 'हम' (We listen to sweet peaceful music)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "आत्मविश्वास",
-          "translation": "aat-muh-veesh-VAAS (Self Confidence)",
+          "content": "उसे",
+          "translation": "From: 'उसे रंगीन कहानियों की किताबें पसंद हैं' (He likes reading colorful story books)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: aat-muh-veesh-VAAS (Self Confidence)"
+          "explanation": "Practice pronouncing: 'उसे' (He likes reading colorful story books)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़संकल्प",
-          "translation": "dridh-sun-KULP (Determination / Resolve)",
+          "content": "मैं",
+          "translation": "From: 'मैं रोज़ रात को जल्दी सोता हूँ' (I sleep early at night daily)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-sun-KULP (Determination / Resolve)"
+          "explanation": "Practice pronouncing: 'मैं' (I sleep early at night daily)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "संवेदनशीलता",
-          "translation": "sum-vay-dun-SHEEL-taa (Sensitivity)",
+          "content": "बगीचे",
+          "translation": "From: 'बगीचे में ताज़े रंग-बिरंगे फूल खिलते हैं' (Fresh colorful flowers bloom in garden)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sum-vay-dun-SHEEL-taa (Sensitivity)"
+          "explanation": "Practice pronouncing: 'बगीचे' (Fresh colorful flowers bloom in garden)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पर्यावरण",
-          "translation": "pur-yaa-vuh-RUN (Environment / Ecology)",
+          "content": "वह",
+          "translation": "From: 'वह सभी दोस्तों से विनम्रता से बोलती है' (She speaks kindly to all friends)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pur-yaa-vuh-RUN (Environment / Ecology)"
+          "explanation": "Practice pronouncing: 'वह' (She speaks kindly to all friends)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सकारात्मकता",
-          "translation": "suh-kaa-raat-MUK-taa (Positivity / Optimism)",
+          "content": "हम",
+          "translation": "From: 'हम शाम को सैर करने जाते हैं' (We take a walk in evening)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-kaa-raat-MUK-taa (Positivity / Optimism)"
+          "explanation": "Practice pronouncing: 'हम' (We take a walk in evening)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कृतज्ञता",
-          "translation": "kree-tugh-NYUH-taa (Gratitude / Thankfulness)",
+          "content": "नए",
+          "translation": "From: 'नए शब्द सीखने से बहुत खुशी मिलती है' (Learning new words brings great joy)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kree-tugh-NYUH-taa (Gratitude / Thankfulness)"
+          "explanation": "Practice pronouncing: 'नए' (Learning new words brings great joy)."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अनुसंधान",
-          "translation": "uh-noo-sun-DHAAN (Research / Investigation)",
+          "content": "नियमित",
+          "translation": "From: 'नियमित अभ्यास से सीखना बहुत आसान होता है' (Regular practice makes learning very easy)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-noo-sun-DHAAN (Research / Investigation)"
+          "explanation": "Practice pronouncing: 'नियमित' (Regular practice makes learning very easy)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूति",
-          "translation": "suh-haa-noo-BHOO-tee (Empathy / Compassion)",
+          "content": "हरे",
+          "translation": "From: 'हरे पेड़ ताज़ा हवा और छाया देते हैं' (Green trees give clean air and shade)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-BHOO-tee (Empathy / Compassion)"
+          "explanation": "Practice pronouncing: 'हरे' (Green trees give clean air and shade)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्साह",
-          "translation": "OOT-saah (Enthusiasm / Zeal)",
+          "content": "मुझे",
+          "translation": "From: 'मुझे रोज़ नए शब्द सीखना बहुत पसंद है' (I love learning new words every day)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: OOT-saah (Enthusiasm / Zeal)"
+          "explanation": "Practice pronouncing: 'मुझे' (I love learning new words every day)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिश्रम",
-          "translation": "puh-REESH-rum (Diligence / Hard Work)",
+          "content": "हम",
+          "translation": "From: 'हम अच्छे स्वास्थ्य के लिए स्वच्छ पानी पीते हैं' (We drink clean water for good health)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-REESH-rum (Diligence / Hard Work)"
+          "explanation": "Practice pronouncing: 'हम' (We drink clean water for good health)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "आत्मविश्वास",
-          "translation": "aat-muh-veesh-VAAS (Self Confidence)",
+          "content": "अच्छी",
+          "translation": "From: 'अच्छी पुस्तकें सदा सकारात्मक विचार देती हैं' (Good books always give inspiring positive thoughts)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: aat-muh-veesh-VAAS (Self Confidence)"
+          "explanation": "Practice pronouncing: 'अच्छी' (Good books always give inspiring positive thoughts)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़संकल्प",
-          "translation": "dridh-sun-KULP (Determination / Resolve)",
+          "content": "सच्ची",
+          "translation": "From: 'सच्ची मेहनत से ही असली सफलता मिलती है' (Honest hard work brings true happy success)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-sun-KULP (Determination / Resolve)"
+          "explanation": "Practice pronouncing: 'सच्ची' (Honest hard work brings true happy success)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "संवेदनशीलता",
-          "translation": "sum-vay-dun-SHEEL-taa (Sensitivity)",
+          "content": "पौष्टिक",
+          "translation": "From: 'पौष्टिक आहार हमारे शरीर को बलवान बनाता है' (Healthy food keeps our body active strong)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sum-vay-dun-SHEEL-taa (Sensitivity)"
+          "explanation": "Practice pronouncing: 'पौष्टिक' (Healthy food keeps our body active strong)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पर्यावरण",
-          "translation": "pur-yaa-vuh-RUN (Environment / Ecology)",
+          "content": "मीठे",
+          "translation": "From: 'मीठे बोल चारों ओर शांति और खुशी लाते हैं' (Kind words bring peaceful happiness everywhere around)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pur-yaa-vuh-RUN (Environment / Ecology)"
+          "explanation": "Practice pronouncing: 'मीठे' (Kind words bring peaceful happiness everywhere around)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सकारात्मकता",
-          "translation": "suh-kaa-raat-MUK-taa (Positivity / Optimism)",
+          "content": "सुबह",
+          "translation": "From: 'सुबह की सैर मन को तरोताज़ा रखती है' (A morning walk keeps your mind fresh)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-kaa-raat-MUK-taa (Positivity / Optimism)"
+          "explanation": "Practice pronouncing: 'सुबह' (A morning walk keeps your mind fresh)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कृतज्ञता",
-          "translation": "kree-tugh-NYUH-taa (Gratitude / Thankfulness)",
+          "content": "प्यारा",
+          "translation": "From: 'प्यारा परिवार हमें सदा संबल और स्नेह देता है' (A loving family gives us warmth always)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kree-tugh-NYUH-taa (Gratitude / Thankfulness)"
+          "explanation": "Practice pronouncing: 'प्यारा' (A loving family gives us warmth always)."
         }
       ]
     }
@@ -3246,2505 +3219,2600 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सार्थक संवाद के लिए ध्यानपूर्वक सुनना और दूसरों के प्रति सम्मान आवश्यक है।",
-          "translation": "संवाद",
-          "question": "सार्थक संवाद के लिए क्या आवश्यक है?",
+          "content": "कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें",
+          "translation": "Please submit your completed project report on time",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "ध्यानपूर्वक सुनना व सम्मान",
-            "तेज़ आवाज़ में बोलना",
-            "अनदेखा करना",
-            "लगातार बोलना"
+            "Please submit your completed project report on time",
+            "Reading informative books enhances vocabulary and mental focus",
+            "Drinking herbal tea relieves stress after work",
+            "Let us collaborate closely to achieve our goal"
           ],
           "answerIndex": 0,
-          "explanation": "संवाद में दूसरों को सुनना आवश्यक है।"
+          "explanation": "The correct meaning is: 'Please submit your completed project report on time'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सौर और पवन जैसी स्वच्छ ऊर्जा पर्यावरण को प्रदूषण से बचाती है।",
-          "translation": "पर्यावरण",
-          "question": "कौन सी ऊर्जा पर्यावरण को बचाती है?",
+          "content": "ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है",
+          "translation": "Reading informative books enhances vocabulary and mental focus",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सौर और पवन ऊर्जा",
-            "कोयला व तेल",
-            "पेट्रोल",
-            "लकड़ी"
+            "We enjoyed a wonderful train journey together yesterday",
+            "Reading informative books enhances vocabulary and mental focus",
+            "Public transportation helps reduce traffic congestion in cities",
+            "Saving electricity protects environment and reduces utility bills"
           ],
-          "answerIndex": 0,
-          "explanation": "सौर और पवन नवीकरणीय ऊर्जा हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Reading informative books enhances vocabulary and mental focus'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "तार्किक सोच मनुष्य को सही और उत्तरदायी निर्णय लेने में समर्थ बनाती है।",
-          "translation": "चिंतन",
-          "question": "तार्किक सोच का परिणाम क्या है?",
+          "content": "कल हम सबने मिलकर एक सुखद रेल यात्रा की",
+          "translation": "We enjoyed a wonderful train journey together yesterday",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सही और उत्तरदायी निर्णय",
-            "जल्दबाजी में भूल",
-            "भ्रम",
-            "क्रोध"
+            "We enjoyed a wonderful train journey together yesterday",
+            "Active listening is the key to meaningful conversations",
+            "She manages her daily schedule with great discipline",
+            "Drinking herbal tea relieves stress after work"
           ],
           "answerIndex": 0,
-          "explanation": "तर्कशीलता से सही निर्णय होते हैं।"
+          "explanation": "The correct meaning is: 'We enjoyed a wonderful train journey together yesterday'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सांस्कृतिक विविधता हमारे विचारों को समृद्ध और व्यापक बनाती है।",
-          "translation": "समाज",
-          "question": "विविधता का क्या लाभ है?",
+          "content": "हर्बल चाय पीने से काम के बाद थकान दूर होती है",
+          "translation": "Drinking herbal tea relieves stress after work",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "विचारों की समृद्धि",
-            "समाज में बिखराव",
-            "व्यापार में हानि",
-            "रुकावट"
+            "Please submit your completed project report on time",
+            "Eating balanced meals strengthens your natural immune system",
+            "Public transportation helps reduce traffic congestion in cities",
+            "Drinking herbal tea relieves stress after work"
           ],
-          "answerIndex": 0,
-          "explanation": "विविधता नए विचारों को जन्म देती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Drinking herbal tea relieves stress after work'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "उचित समय प्रबंधन व्यक्तिगत और व्यावसायिक जीवन में संतुलन लाता है।",
-          "translation": "समय",
-          "question": "समय प्रबंधन क्यों आवश्यक है?",
+          "content": "सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है",
+          "translation": "Public transportation helps reduce traffic congestion in cities",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवन में संतुलन हेतु",
-            "बिना सोए काम करने हेतु",
-            "काम टालने हेतु",
-            "काम से बचने हेतु"
+            "Let us collaborate closely to achieve our goal",
+            "Reading informative books enhances vocabulary and mental focus",
+            "She manages her daily schedule with great discipline",
+            "Public transportation helps reduce traffic congestion in cities"
           ],
-          "answerIndex": 0,
-          "explanation": "समय प्रबंधन से संतुलन बनता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Public transportation helps reduce traffic congestion in cities'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वैज्ञानिक शोध दुनिया भर में नई जीवनरक्षक दवाइयों की खोज कर रहे हैं।",
-          "translation": "चिकित्सा",
-          "question": "शोध क्या खोज रहे हैं?",
+          "content": "वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है",
+          "translation": "She manages her daily schedule with great discipline",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवनरक्षक दवाइयां",
-            "राकेट के चित्र",
-            "विज्ञापन",
-            "कहानियां"
+            "Saving electricity protects environment and reduces utility bills",
+            "She manages her daily schedule with great discipline",
+            "We enjoyed a wonderful train journey together yesterday",
+            "Eating balanced meals strengthens your natural immune system"
           ],
-          "answerIndex": 0,
-          "explanation": "वैज्ञानिक शोध से दवाएं बनती हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'She manages her daily schedule with great discipline'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "धैर्यवान दृष्टिकोण असफलताओं को सीखने के अमूल्य अवसर में बदल देता है।",
-          "translation": "प्रेरणा",
-          "question": "धैर्य असफलताओं को किसमें बदलता है?",
+          "content": "संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है",
+          "translation": "Eating balanced meals strengthens your natural immune system",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सीखने के अवसर में",
-            "स्थायी हार में",
-            "निराशा में",
-            "चिंता में"
+            "Let us collaborate closely to achieve our goal",
+            "Drinking herbal tea relieves stress after work",
+            "Eating balanced meals strengthens your natural immune system",
+            "Active listening is the key to meaningful conversations"
           ],
-          "answerIndex": 0,
-          "explanation": "धैर्य से हर चुनौती अवसर बनती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Eating balanced meals strengthens your natural immune system'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "डिजिटल साक्षरता आधुनिक शिक्षा प्रणाली का एक अत्यंत आवश्यक अंग है।",
-          "translation": "शिक्षा",
-          "question": "डिजिटल साक्षरता क्या है?",
+          "content": "आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें",
+          "translation": "Let us collaborate closely to achieve our goal",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शिक्षा का आवश्यक अंग",
-            "व्यर्थ का शौक",
-            "हानिकारक आदत",
-            "पुरानी तकनीक"
+            "Let us collaborate closely to achieve our goal",
+            "Public transportation helps reduce traffic congestion in cities",
+            "Saving electricity protects environment and reduces utility bills",
+            "Please submit your completed project report on time"
           ],
           "answerIndex": 0,
-          "explanation": "डिजिटल साक्षरता अनिवार्य है।"
+          "explanation": "The correct meaning is: 'Let us collaborate closely to achieve our goal'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित शारीरिक गतिविधि हृदय स्वास्थ्य और मानसिक सतर्कता को बढ़ाती है।",
-          "translation": "स्वास्थ्य",
-          "question": "शारीरिक गतिविधि क्या बढ़ाती है?",
+          "content": "बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है",
+          "translation": "Saving electricity protects environment and reduces utility bills",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हृदय स्वास्थ्य व सतर्कता",
-            "केवल वजन",
-            "आंखों का रंग",
-            "अनिद्रा"
+            "Active listening is the key to meaningful conversations",
+            "Saving electricity protects environment and reduces utility bills",
+            "She manages her daily schedule with great discipline",
+            "Reading informative books enhances vocabulary and mental focus"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से ऊर्जा और एकाग्रता बढ़ती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Saving electricity protects environment and reduces utility bills'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक समझदारी परिवारों को वित्तीय आत्मनिर्भरता और सुरक्षा प्रदान करती है।",
-          "translation": "अर्थशास्त्र",
-          "question": "आर्थिक समझदारी का क्या लाभ है?",
+          "content": "दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है",
+          "translation": "Active listening is the key to meaningful conversations",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुरक्षा व आत्मनिर्भरता",
-            "अनावश्यक कर्ज",
-            "जल्दबाजी में खर्चे",
-            "अस्थिरता"
+            "Eating balanced meals strengthens your natural immune system",
+            "Active listening is the key to meaningful conversations",
+            "Please submit your completed project report on time",
+            "We enjoyed a wonderful train journey together yesterday"
           ],
-          "answerIndex": 0,
-          "explanation": "आर्थिक जागरूकता सुरक्षा देती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Active listening is the key to meaningful conversations'."
         }
       ],
       "2": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सार्थक संवाद के लिए ध्यानपूर्वक सुनना और दूसरों के प्रति सम्मान आवश्यक है।",
-          "translation": "संवाद",
-          "question": "सार्थक संवाद के लिए क्या आवश्यक है?",
+          "content": "क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?",
+          "translation": "Could you please direct me to the nearest pharmacy?",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "ध्यानपूर्वक सुनना व सम्मान",
-            "तेज़ आवाज़ में बोलना",
-            "अनदेखा करना",
-            "लगातार बोलना"
+            "We planted colorful flowering plants in our community garden",
+            "Our team successfully completed the client presentation this morning",
+            "Could you please direct me to the nearest pharmacy?",
+            "He purchased fresh vegetables and fruits from local market"
           ],
-          "answerIndex": 0,
-          "explanation": "संवाद में दूसरों को सुनना आवश्यक है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Could you please direct me to the nearest pharmacy?'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सौर और पवन जैसी स्वच्छ ऊर्जा पर्यावरण को प्रदूषण से बचाती है।",
-          "translation": "पर्यावरण",
-          "question": "कौन सी ऊर्जा पर्यावरण को बचाती है?",
+          "content": "हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया",
+          "translation": "Our team successfully completed the client presentation this morning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सौर और पवन ऊर्जा",
-            "कोयला व तेल",
-            "पेट्रोल",
-            "लकड़ी"
+            "Our team successfully completed the client presentation this morning",
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "Clear instructions prevent costly mistakes during complex project execution",
+            "Digital banking makes money transfers fast, secure, and convenient"
           ],
           "answerIndex": 0,
-          "explanation": "सौर और पवन नवीकरणीय ऊर्जा हैं।"
+          "explanation": "The correct meaning is: 'Our team successfully completed the client presentation this morning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "तार्किक सोच मनुष्य को सही और उत्तरदायी निर्णय लेने में समर्थ बनाती है।",
-          "translation": "चिंतन",
-          "question": "तार्किक सोच का परिणाम क्या है?",
+          "content": "डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है",
+          "translation": "Digital banking makes money transfers fast, secure, and convenient",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सही और उत्तरदायी निर्णय",
-            "जल्दबाजी में भूल",
-            "भ्रम",
-            "क्रोध"
+            "The flight will depart on time from gate five",
+            "He purchased fresh vegetables and fruits from local market",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "They celebrated their grand anniversary with close friends and family"
           ],
-          "answerIndex": 0,
-          "explanation": "तर्कशीलता से सही निर्णय होते हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Digital banking makes money transfers fast, secure, and convenient'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सांस्कृतिक विविधता हमारे विचारों को समृद्ध और व्यापक बनाती है।",
-          "translation": "समाज",
-          "question": "विविधता का क्या लाभ है?",
+          "content": "उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे",
+          "translation": "He purchased fresh vegetables and fruits from local market",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "विचारों की समृद्धि",
-            "समाज में बिखराव",
-            "व्यापार में हानि",
-            "रुकावट"
+            "She organized her study notes neatly for the upcoming exam",
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "He purchased fresh vegetables and fruits from local market",
+            "Could you please direct me to the nearest pharmacy?"
           ],
-          "answerIndex": 0,
-          "explanation": "विविधता नए विचारों को जन्म देती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'He purchased fresh vegetables and fruits from local market'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "उचित समय प्रबंधन व्यक्तिगत और व्यावसायिक जीवन में संतुलन लाता है।",
-          "translation": "समय",
-          "question": "समय प्रबंधन क्यों आवश्यक है?",
+          "content": "नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है",
+          "translation": "Regular physical exercise reduces stress and boosts daily energy",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवन में संतुलन हेतु",
-            "बिना सोए काम करने हेतु",
-            "काम टालने हेतु",
-            "काम से बचने हेतु"
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "Our team successfully completed the client presentation this morning",
+            "The flight will depart on time from gate five",
+            "We planted colorful flowering plants in our community garden"
           ],
           "answerIndex": 0,
-          "explanation": "समय प्रबंधन से संतुलन बनता है।"
+          "explanation": "The correct meaning is: 'Regular physical exercise reduces stress and boosts daily energy'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वैज्ञानिक शोध दुनिया भर में नई जीवनरक्षक दवाइयों की खोज कर रहे हैं।",
-          "translation": "चिकित्सा",
-          "question": "शोध क्या खोज रहे हैं?",
+          "content": "विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा",
+          "translation": "The flight will depart on time from gate five",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवनरक्षक दवाइयां",
-            "राकेट के चित्र",
-            "विज्ञापन",
-            "कहानियां"
+            "The flight will depart on time from gate five",
+            "Clear instructions prevent costly mistakes during complex project execution",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "She organized her study notes neatly for the upcoming exam"
           ],
           "answerIndex": 0,
-          "explanation": "वैज्ञानिक शोध से दवाएं बनती हैं।"
+          "explanation": "The correct meaning is: 'The flight will depart on time from gate five'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "धैर्यवान दृष्टिकोण असफलताओं को सीखने के अमूल्य अवसर में बदल देता है।",
-          "translation": "प्रेरणा",
-          "question": "धैर्य असफलताओं को किसमें बदलता है?",
+          "content": "उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए",
+          "translation": "She organized her study notes neatly for the upcoming exam",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सीखने के अवसर में",
-            "स्थायी हार में",
-            "निराशा में",
-            "चिंता में"
+            "She organized her study notes neatly for the upcoming exam",
+            "We planted colorful flowering plants in our community garden",
+            "They celebrated their grand anniversary with close friends and family",
+            "He purchased fresh vegetables and fruits from local market"
           ],
           "answerIndex": 0,
-          "explanation": "धैर्य से हर चुनौती अवसर बनती है।"
+          "explanation": "The correct meaning is: 'She organized her study notes neatly for the upcoming exam'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "डिजिटल साक्षरता आधुनिक शिक्षा प्रणाली का एक अत्यंत आवश्यक अंग है।",
-          "translation": "शिक्षा",
-          "question": "डिजिटल साक्षरता क्या है?",
+          "content": "हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए",
+          "translation": "We planted colorful flowering plants in our community garden",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शिक्षा का आवश्यक अंग",
-            "व्यर्थ का शौक",
-            "हानिकारक आदत",
-            "पुरानी तकनीक"
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "We planted colorful flowering plants in our community garden",
+            "Could you please direct me to the nearest pharmacy?",
+            "Clear instructions prevent costly mistakes during complex project execution"
           ],
-          "answerIndex": 0,
-          "explanation": "डिजिटल साक्षरता अनिवार्य है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'We planted colorful flowering plants in our community garden'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित शारीरिक गतिविधि हृदय स्वास्थ्य और मानसिक सतर्कता को बढ़ाती है।",
-          "translation": "स्वास्थ्य",
-          "question": "शारीरिक गतिविधि क्या बढ़ाती है?",
+          "content": "स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है",
+          "translation": "Clear instructions prevent costly mistakes during complex project execution",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हृदय स्वास्थ्य व सतर्कता",
-            "केवल वजन",
-            "आंखों का रंग",
-            "अनिद्रा"
+            "They celebrated their grand anniversary with close friends and family",
+            "Our team successfully completed the client presentation this morning",
+            "The flight will depart on time from gate five",
+            "Clear instructions prevent costly mistakes during complex project execution"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से ऊर्जा और एकाग्रता बढ़ती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Clear instructions prevent costly mistakes during complex project execution'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक समझदारी परिवारों को वित्तीय आत्मनिर्भरता और सुरक्षा प्रदान करती है।",
-          "translation": "अर्थशास्त्र",
-          "question": "आर्थिक समझदारी का क्या लाभ है?",
+          "content": "उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई",
+          "translation": "They celebrated their grand anniversary with close friends and family",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुरक्षा व आत्मनिर्भरता",
-            "अनावश्यक कर्ज",
-            "जल्दबाजी में खर्चे",
-            "अस्थिरता"
+            "Could you please direct me to the nearest pharmacy?",
+            "She organized her study notes neatly for the upcoming exam",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "They celebrated their grand anniversary with close friends and family"
           ],
-          "answerIndex": 0,
-          "explanation": "आर्थिक जागरूकता सुरक्षा देती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'They celebrated their grand anniversary with close friends and family'."
         }
       ],
       "3": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सार्थक संवाद के लिए ध्यानपूर्वक सुनना और दूसरों के प्रति सम्मान आवश्यक है।",
-          "translation": "संवाद",
-          "question": "सार्थक संवाद के लिए क्या आवश्यक है?",
+          "content": "मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है",
+          "translation": "In my opinion, sustainable innovation is essential for climate recovery",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "ध्यानपूर्वक सुनना व सम्मान",
-            "तेज़ आवाज़ में बोलना",
-            "अनदेखा करना",
-            "लगातार बोलना"
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm"
           ],
-          "answerIndex": 0,
-          "explanation": "संवाद में दूसरों को सुनना आवश्यक है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'In my opinion, sustainable innovation is essential for climate recovery'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सौर और पवन जैसी स्वच्छ ऊर्जा पर्यावरण को प्रदूषण से बचाती है।",
-          "translation": "पर्यावरण",
-          "question": "कौन सी ऊर्जा पर्यावरण को बचाती है?",
+          "content": "सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं",
+          "translation": "Constructive feedback helps individuals refine their professional workplace skills",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सौर और पवन ऊर्जा",
-            "कोयला व तेल",
-            "पेट्रोल",
-            "लकड़ी"
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Consistent practice bridges the distance between ambitious dreams and achievements"
           ],
-          "answerIndex": 0,
-          "explanation": "सौर और पवन नवीकरणीय ऊर्जा हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Constructive feedback helps individuals refine their professional workplace skills'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "तार्किक सोच मनुष्य को सही और उत्तरदायी निर्णय लेने में समर्थ बनाती है।",
-          "translation": "चिंतन",
-          "question": "तार्किक सोच का परिणाम क्या है?",
+          "content": "निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है",
+          "translation": "Consistent practice bridges the distance between ambitious dreams and achievements",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सही और उत्तरदायी निर्णय",
-            "जल्दबाजी में भूल",
-            "भ्रम",
-            "क्रोध"
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+            "Consistent practice bridges the distance between ambitious dreams and achievements",
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "Organic agriculture preserves fertile soil and conserves vital water resources"
           ],
-          "answerIndex": 0,
-          "explanation": "तर्कशीलता से सही निर्णय होते हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Consistent practice bridges the distance between ambitious dreams and achievements'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सांस्कृतिक विविधता हमारे विचारों को समृद्ध और व्यापक बनाती है।",
-          "translation": "समाज",
-          "question": "विविधता का क्या लाभ है?",
+          "content": "जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है",
+          "translation": "Protecting biodiversity is vital for sustaining ecological balance globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "विचारों की समृद्धि",
-            "समाज में बिखराव",
-            "व्यापार में हानि",
-            "रुकावट"
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations"
           ],
           "answerIndex": 0,
-          "explanation": "विविधता नए विचारों को जन्म देती है।"
+          "explanation": "The correct meaning is: 'Protecting biodiversity is vital for sustaining ecological balance globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "उचित समय प्रबंधन व्यक्तिगत और व्यावसायिक जीवन में संतुलन लाता है।",
-          "translation": "समय",
-          "question": "समय प्रबंधन क्यों आवश्यक है?",
+          "content": "तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए",
+          "translation": "Technological advancements must always prioritize ethical human dignity and values",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवन में संतुलन हेतु",
-            "बिना सोए काम करने हेतु",
-            "काम टालने हेतु",
-            "काम से बचने हेतु"
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "Technological advancements must always prioritize ethical human dignity and values"
           ],
-          "answerIndex": 0,
-          "explanation": "समय प्रबंधन से संतुलन बनता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Technological advancements must always prioritize ethical human dignity and values'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वैज्ञानिक शोध दुनिया भर में नई जीवनरक्षक दवाइयों की खोज कर रहे हैं।",
-          "translation": "चिकित्सा",
-          "question": "शोध क्या खोज रहे हैं?",
+          "content": "जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है",
+          "translation": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवनरक्षक दवाइयां",
-            "राकेट के चित्र",
-            "विज्ञापन",
-            "कहानियां"
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+            "Consistent practice bridges the distance between ambitious dreams and achievements"
           ],
-          "answerIndex": 0,
-          "explanation": "वैज्ञानिक शोध से दवाएं बनती हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'A curious mind continuously discovers knowledge beyond conventional classroom boundaries'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "धैर्यवान दृष्टिकोण असफलताओं को सीखने के अमूल्य अवसर में बदल देता है।",
-          "translation": "प्रेरणा",
-          "question": "धैर्य असफलताओं को किसमें बदलता है?",
+          "content": "उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है",
+          "translation": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सीखने के अवसर में",
-            "स्थायी हार में",
-            "निराशा में",
-            "चिंता में"
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm"
           ],
           "answerIndex": 0,
-          "explanation": "धैर्य से हर चुनौती अवसर बनती है।"
+          "explanation": "The correct meaning is: 'Effective leadership inspires confidence and fosters strong teamwork across organizations'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "डिजिटल साक्षरता आधुनिक शिक्षा प्रणाली का एक अत्यंत आवश्यक अंग है।",
-          "translation": "शिक्षा",
-          "question": "डिजिटल साक्षरता क्या है?",
+          "content": "आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है",
+          "translation": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शिक्षा का आवश्यक अंग",
-            "व्यर्थ का शौक",
-            "हानिकारक आदत",
-            "पुरानी तकनीक"
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Technological advancements must always prioritize ethical human dignity and values"
           ],
-          "answerIndex": 0,
-          "explanation": "डिजिटल साक्षरता अनिवार्य है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Mindful reflection promotes emotional intelligence and lasting daily mental calm'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित शारीरिक गतिविधि हृदय स्वास्थ्य और मानसिक सतर्कता को बढ़ाती है।",
-          "translation": "स्वास्थ्य",
-          "question": "शारीरिक गतिविधि क्या बढ़ाती है?",
+          "content": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है",
+          "translation": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हृदय स्वास्थ्य व सतर्कता",
-            "केवल वजन",
-            "आंखों का रंग",
-            "अनिद्रा"
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से ऊर्जा और एकाग्रता बढ़ती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Global connectivity enables meaningful cross-cultural exchange between distant societies'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक समझदारी परिवारों को वित्तीय आत्मनिर्भरता और सुरक्षा प्रदान करती है।",
-          "translation": "अर्थशास्त्र",
-          "question": "आर्थिक समझदारी का क्या लाभ है?",
+          "content": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है",
+          "translation": "Organic agriculture preserves fertile soil and conserves vital water resources",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुरक्षा व आत्मनिर्भरता",
-            "अनावश्यक कर्ज",
-            "जल्दबाजी में खर्चे",
-            "अस्थिरता"
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Consistent practice bridges the distance between ambitious dreams and achievements",
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Organic agriculture preserves fertile soil and conserves vital water resources"
           ],
-          "answerIndex": 0,
-          "explanation": "आर्थिक जागरूकता सुरक्षा देती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Organic agriculture preserves fertile soil and conserves vital water resources'."
         }
       ],
       "4": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सार्थक संवाद के लिए ध्यानपूर्वक सुनना और दूसरों के प्रति सम्मान आवश्यक है।",
-          "translation": "संवाद",
-          "question": "सार्थक संवाद के लिए क्या आवश्यक है?",
+          "content": "नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं",
+          "translation": "Renewable energy initiatives create thousands of green jobs for young professionals",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "ध्यानपूर्वक सुनना व सम्मान",
-            "तेज़ आवाज़ में बोलना",
-            "अनदेखा करना",
-            "लगातार बोलना"
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+            "Digital literacy empowers rural communities to access essential healthcare and government services"
           ],
-          "answerIndex": 0,
-          "explanation": "संवाद में दूसरों को सुनना आवश्यक है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Renewable energy initiatives create thousands of green jobs for young professionals'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सौर और पवन जैसी स्वच्छ ऊर्जा पर्यावरण को प्रदूषण से बचाती है।",
-          "translation": "पर्यावरण",
-          "question": "कौन सी ऊर्जा पर्यावरण को बचाती है?",
+          "content": "शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं",
+          "translation": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सौर और पवन ऊर्जा",
-            "कोयला व तेल",
-            "पेट्रोल",
-            "लकड़ी"
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+            "The international symposium brought together researchers from forty nations to exchange ideas"
           ],
-          "answerIndex": 0,
-          "explanation": "सौर और पवन नवीकरणीय ऊर्जा हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Urban planners design walkable neighborhoods to reduce traffic congestion and pollution'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "तार्किक सोच मनुष्य को सही और उत्तरदायी निर्णय लेने में समर्थ बनाती है।",
-          "translation": "चिंतन",
-          "question": "तार्किक सोच का परिणाम क्या है?",
+          "content": "काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है",
+          "translation": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सही और उत्तरदायी निर्णय",
-            "जल्दबाजी में भूल",
-            "भ्रम",
-            "क्रोध"
+            "Digital literacy empowers rural communities to access essential healthcare and government services",
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations"
           ],
-          "answerIndex": 0,
-          "explanation": "तर्कशीलता से सही निर्णय होते हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सांस्कृतिक विविधता हमारे विचारों को समृद्ध और व्यापक बनाती है।",
-          "translation": "समाज",
-          "question": "विविधता का क्या लाभ है?",
+          "content": "डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है",
+          "translation": "Digital literacy empowers rural communities to access essential healthcare and government services",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "विचारों की समृद्धि",
-            "समाज में बिखराव",
-            "व्यापार में हानि",
-            "रुकावट"
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Digital literacy empowers rural communities to access essential healthcare and government services",
+            "The international symposium brought together researchers from forty nations to exchange ideas"
           ],
-          "answerIndex": 0,
-          "explanation": "विविधता नए विचारों को जन्म देती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Digital literacy empowers rural communities to access essential healthcare and government services'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "उचित समय प्रबंधन व्यक्तिगत और व्यावसायिक जीवन में संतुलन लाता है।",
-          "translation": "समय",
-          "question": "समय प्रबंधन क्यों आवश्यक है?",
+          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की",
+          "translation": "The international symposium brought together researchers from forty nations to exchange ideas",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवन में संतुलन हेतु",
-            "बिना सोए काम करने हेतु",
-            "काम टालने हेतु",
-            "काम से बचने हेतु"
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations"
           ],
-          "answerIndex": 0,
-          "explanation": "समय प्रबंधन से संतुलन बनता है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'The international symposium brought together researchers from forty nations to exchange ideas'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वैज्ञानिक शोध दुनिया भर में नई जीवनरक्षक दवाइयों की खोज कर रहे हैं।",
-          "translation": "चिकित्सा",
-          "question": "शोध क्या खोज रहे हैं?",
+          "content": "स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है",
+          "translation": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवनरक्षक दवाइयां",
-            "राकेट के चित्र",
-            "विज्ञापन",
-            "कहानियां"
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers"
           ],
-          "answerIndex": 0,
-          "explanation": "वैज्ञानिक शोध से दवाएं बनती हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "धैर्यवान दृष्टिकोण असफलताओं को सीखने के अमूल्य अवसर में बदल देता है।",
-          "translation": "प्रेरणा",
-          "question": "धैर्य असफलताओं को किसमें बदलता है?",
+          "content": "समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है",
+          "translation": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सीखने के अवसर में",
-            "स्थायी हार में",
-            "निराशा में",
-            "चिंता में"
+            "Digital literacy empowers rural communities to access essential healthcare and government services",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries"
           ],
-          "answerIndex": 0,
-          "explanation": "धैर्य से हर चुनौती अवसर बनती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Protecting endangered marine life preserves fragile oceanic ecosystems for future generations'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "डिजिटल साक्षरता आधुनिक शिक्षा प्रणाली का एक अत्यंत आवश्यक अंग है।",
-          "translation": "शिक्षा",
-          "question": "डिजिटल साक्षरता क्या है?",
+          "content": "सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है",
+          "translation": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शिक्षा का आवश्यक अंग",
-            "व्यर्थ का शौक",
-            "हानिकारक आदत",
-            "पुरानी तकनीक"
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries"
           ],
-          "answerIndex": 0,
-          "explanation": "डिजिटल साक्षरता अनिवार्य है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Lifelong learning empowers professionals to adapt to fast-evolving global technological industries'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित शारीरिक गतिविधि हृदय स्वास्थ्य और मानसिक सतर्कता को बढ़ाती है।",
-          "translation": "स्वास्थ्य",
-          "question": "शारीरिक गतिविधि क्या बढ़ाती है?",
+          "content": "नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है",
+          "translation": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हृदय स्वास्थ्य व सतर्कता",
-            "केवल वजन",
-            "आंखों का रंग",
-            "अनिद्रा"
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से ऊर्जा और एकाग्रता बढ़ती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Ethical decision-making builds enduring trust between modern organizations and conscious consumers'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक समझदारी परिवारों को वित्तीय आत्मनिर्भरता और सुरक्षा प्रदान करती है।",
-          "translation": "अर्थशास्त्र",
-          "question": "आर्थिक समझदारी का क्या लाभ है?",
+          "content": "सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है",
+          "translation": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुरक्षा व आत्मनिर्भरता",
-            "अनावश्यक कर्ज",
-            "जल्दबाजी में खर्चे",
-            "अस्थिरता"
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue"
           ],
           "answerIndex": 0,
-          "explanation": "आर्थिक जागरूकता सुरक्षा देती है।"
+          "explanation": "The correct meaning is: 'Active participation in public debates sharpens persuasive speaking and logical reasoning'."
         }
       ],
       "5": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सार्थक संवाद के लिए ध्यानपूर्वक सुनना और दूसरों के प्रति सम्मान आवश्यक है।",
-          "translation": "संवाद",
-          "question": "सार्थक संवाद के लिए क्या आवश्यक है?",
+          "content": "मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है",
+          "translation": "Transformative education equips future generations to navigate complex ethical societal challenges",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "ध्यानपूर्वक सुनना व सम्मान",
-            "तेज़ आवाज़ में बोलना",
-            "अनदेखा करना",
-            "लगातार बोलना"
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Transformative education equips future generations to navigate complex ethical societal challenges"
           ],
-          "answerIndex": 0,
-          "explanation": "संवाद में दूसरों को सुनना आवश्यक है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Transformative education equips future generations to navigate complex ethical societal challenges'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सौर और पवन जैसी स्वच्छ ऊर्जा पर्यावरण को प्रदूषण से बचाती है।",
-          "translation": "पर्यावरण",
-          "question": "कौन सी ऊर्जा पर्यावरण को बचाती है?",
+          "content": "स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है",
+          "translation": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सौर और पवन ऊर्जा",
-            "कोयला व तेल",
-            "पेट्रोल",
-            "लकड़ी"
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises"
           ],
           "answerIndex": 0,
-          "explanation": "सौर और पवन नवीकरणीय ऊर्जा हैं।"
+          "explanation": "The correct meaning is: 'Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "तार्किक सोच मनुष्य को सही और उत्तरदायी निर्णय लेने में समर्थ बनाती है।",
-          "translation": "चिंतन",
-          "question": "तार्किक सोच का परिणाम क्या है?",
+          "content": "विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है",
+          "translation": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सही और उत्तरदायी निर्णय",
-            "जल्दबाजी में भूल",
-            "भ्रम",
-            "क्रोध"
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions"
           ],
           "answerIndex": 0,
-          "explanation": "तर्कशीलता से सही निर्णय होते हैं।"
+          "explanation": "The correct meaning is: 'Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "सांस्कृतिक विविधता हमारे विचारों को समृद्ध और व्यापक बनाती है।",
-          "translation": "समाज",
-          "question": "विविधता का क्या लाभ है?",
+          "content": "प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं",
+          "translation": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "विचारों की समृद्धि",
-            "समाज में बिखराव",
-            "व्यापार में हानि",
-            "रुकावट"
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Transformative education equips future generations to navigate complex ethical societal challenges"
           ],
           "answerIndex": 0,
-          "explanation": "विविधता नए विचारों को जन्म देती है।"
+          "explanation": "The correct meaning is: 'Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "उचित समय प्रबंधन व्यक्तिगत और व्यावसायिक जीवन में संतुलन लाता है।",
-          "translation": "समय",
-          "question": "समय प्रबंधन क्यों आवश्यक है?",
+          "content": "पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है",
+          "translation": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवन में संतुलन हेतु",
-            "बिना सोए काम करने हेतु",
-            "काम टालने हेतु",
-            "काम से बचने हेतु"
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development"
           ],
-          "answerIndex": 0,
-          "explanation": "समय प्रबंधन से संतुलन बनता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Transparent governance fosters profound public trust and accelerates socio-economic community development'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "वैज्ञानिक शोध दुनिया भर में नई जीवनरक्षक दवाइयों की खोज कर रहे हैं।",
-          "translation": "चिकित्सा",
-          "question": "शोध क्या खोज रहे हैं?",
+          "content": "भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं",
+          "translation": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जीवनरक्षक दवाइयां",
-            "राकेट के चित्र",
-            "विज्ञापन",
-            "कहानियां"
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes"
           ],
-          "answerIndex": 0,
-          "explanation": "वैज्ञानिक शोध से दवाएं बनती हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "धैर्यवान दृष्टिकोण असफलताओं को सीखने के अमूल्य अवसर में बदल देता है।",
-          "translation": "प्रेरणा",
-          "question": "धैर्य असफलताओं को किसमें बदलता है?",
+          "content": "टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है",
+          "translation": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सीखने के अवसर में",
-            "स्थायी हार में",
-            "निराशा में",
-            "चिंता में"
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes"
           ],
           "answerIndex": 0,
-          "explanation": "धैर्य से हर चुनौती अवसर बनती है।"
+          "explanation": "The correct meaning is: 'Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "डिजिटल साक्षरता आधुनिक शिक्षा प्रणाली का एक अत्यंत आवश्यक अंग है।",
-          "translation": "शिक्षा",
-          "question": "डिजिटल साक्षरता क्या है?",
+          "content": "कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए",
+          "translation": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "शिक्षा का आवश्यक अंग",
-            "व्यर्थ का शौक",
-            "हानिकारक आदत",
-            "पुरानी तकनीक"
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Transformative education equips future generations to navigate complex ethical societal challenges"
           ],
-          "answerIndex": 0,
-          "explanation": "डिजिटल साक्षरता अनिवार्य है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "नियमित शारीरिक गतिविधि हृदय स्वास्थ्य और मानसिक सतर्कता को बढ़ाती है।",
-          "translation": "स्वास्थ्य",
-          "question": "शारीरिक गतिविधि क्या बढ़ाती है?",
+          "content": "सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है",
+          "translation": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "हृदय स्वास्थ्य व सतर्कता",
-            "केवल वजन",
-            "आंखों का रंग",
-            "अनिद्रा"
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide"
           ],
-          "answerIndex": 0,
-          "explanation": "व्यायाम से ऊर्जा और एकाग्रता बढ़ती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Access to affordable quality healthcare remains a fundamental universal human right worldwide'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक समझदारी परिवारों को वित्तीय आत्मनिर्भरता और सुरक्षा प्रदान करती है।",
-          "translation": "अर्थशास्त्र",
-          "question": "आर्थिक समझदारी का क्या लाभ है?",
+          "content": "गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है",
+          "translation": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सुरक्षा व आत्मनिर्भरता",
-            "अनावश्यक कर्ज",
-            "जल्दबाजी में खर्चे",
-            "अस्थिरता"
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+            "Transformative education equips future generations to navigate complex ethical societal challenges",
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity"
           ],
-          "answerIndex": 0,
-          "explanation": "आर्थिक जागरूकता सुरक्षा देती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes'."
         }
       ]
     },
     "writing": {
       "1": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Constructive feedback helps individuals improve professional skills",
-          "question": "रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं",
-          "questionTranslation": "Constructive feedback helps individuals improve professional skills",
-          "translation": "Constructive feedback helps individuals improve professional skills",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Please submit your completed project report on time",
+          "question": "कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें",
+          "questionTranslation": "Please submit your completed project report on time",
+          "translation": "Please submit your completed project report on time",
           "options": [
-            "करते",
-            "निखारने",
-            "में",
-            "मदद",
-            "को",
-            "सुझाव",
-            "कौशल",
-            "पेशेवर",
-            "रचनात्मक",
-            "हैं"
+            "पर",
+            "अपनी",
+            "समय",
+            "जमा",
+            "करें",
+            "कृपया",
+            "पूरी",
+            "रिपोर्ट",
+            "परियोजना"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं'."
+          "explanation": "The correct translation is: 'कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Consistent hard work is the bridge to success",
-          "question": "कठिन परिश्रम ही सफलता का मजबूत मार्ग है",
-          "questionTranslation": "Consistent hard work is the bridge to success",
-          "translation": "Consistent hard work is the bridge to success",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Reading informative books enhances vocabulary and mental focus",
+          "question": "ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है",
+          "questionTranslation": "Reading informative books enhances vocabulary and mental focus",
+          "translation": "Reading informative books enhances vocabulary and mental focus",
           "options": [
-            "सफलता",
-            "परिश्रम",
-            "मार्ग",
-            "ही",
-            "मजबूत",
-            "कठिन",
-            "का",
+            "ज्ञानवर्धक",
+            "एकाग्रता",
+            "पुस्तकें",
+            "पढ़ने",
+            "से",
+            "और",
+            "शब्दावली",
+            "बढ़ती",
             "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठिन परिश्रम ही सफलता का मजबूत मार्ग है'."
+          "explanation": "The correct translation is: 'ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Protecting biodiversity is essential for ecological balance",
-          "question": "जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है",
-          "questionTranslation": "Protecting biodiversity is essential for ecological balance",
-          "translation": "Protecting biodiversity is essential for ecological balance",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We enjoyed a wonderful train journey together yesterday",
+          "question": "कल हम सबने मिलकर एक सुखद रेल यात्रा की",
+          "questionTranslation": "We enjoyed a wonderful train journey together yesterday",
+          "translation": "We enjoyed a wonderful train journey together yesterday",
           "options": [
-            "लिए",
-            "संरक्षण",
-            "विविधता",
-            "है",
-            "जैव",
-            "पर्यावरण",
-            "के",
-            "आवश्यक",
-            "का",
-            "संतुलन"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Technology should always prioritize human ethical values",
-          "question": "तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए",
-          "questionTranslation": "Technology should always prioritize human ethical values",
-          "translation": "Technology should always prioritize human ethical values",
-          "options": [
-            "नैतिक",
-            "प्राथमिकता",
-            "मिलनी",
-            "तकनीक",
-            "मानवीय",
-            "को",
-            "में",
-            "चाहिए",
-            "मूल्यों"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "A curious mind constantly seeks new knowledge and experiences",
-          "question": "जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है",
-          "questionTranslation": "A curious mind constantly seeks new knowledge and experiences",
-          "translation": "A curious mind constantly seeks new knowledge and experiences",
-          "options": [
-            "में",
-            "रहता",
-            "अनुभवों",
-            "मन",
-            "सदैव",
+            "सुखद",
+            "एक",
+            "रेल",
+            "यात्रा",
             "की",
-            "और",
-            "नए",
-            "जिज्ञासु",
-            "खोज",
-            "है",
-            "ज्ञान"
+            "हम",
+            "सबने",
+            "कल",
+            "मिलकर"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है'."
+          "explanation": "The correct translation is: 'कल हम सबने मिलकर एक सुखद रेल यात्रा की'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Good leadership inspires confidence in every team member",
-          "question": "कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है",
-          "questionTranslation": "Good leadership inspires confidence in every team member",
-          "translation": "Good leadership inspires confidence in every team member",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Drinking herbal tea relieves stress after work",
+          "question": "हर्बल चाय पीने से काम के बाद थकान दूर होती है",
+          "questionTranslation": "Drinking herbal tea relieves stress after work",
+          "translation": "Drinking herbal tea relieves stress after work",
           "options": [
-            "भरता",
-            "कुशल",
-            "नेतृत्व",
-            "में",
+            "काम",
             "है",
-            "प्रत्येक",
-            "टीम",
-            "सदस्य",
-            "के",
-            "आत्मविश्वास"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Self reflection brings emotional understanding and peace of mind",
-          "question": "आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है",
-          "questionTranslation": "Self reflection brings emotional understanding and peace of mind",
-          "translation": "Self reflection brings emotional understanding and peace of mind",
-          "options": [
-            "भावनात्मक",
-            "और",
-            "है",
-            "शांति",
-            "प्राप्त",
+            "हर्बल",
+            "दूर",
             "से",
-            "मानसिक",
+            "चाय",
+            "थकान",
+            "बाद",
             "होती",
-            "समझ",
-            "आत्म-निरीक्षण"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global connectivity enables dialogue between diverse cultures",
-          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है",
-          "questionTranslation": "Global connectivity enables dialogue between diverse cultures",
-          "translation": "Global connectivity enables dialogue between diverse cultures",
-          "options": [
             "के",
-            "बनाता",
-            "संस्कृतियों",
-            "बीच",
-            "संवाद",
-            "विभिन्न",
-            "संपर्क",
-            "है",
-            "सुगम",
-            "वैश्विक",
-            "को"
+            "पीने"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है'."
+          "explanation": "The correct translation is: 'हर्बल चाय पीने से काम के बाद थकान दूर होती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Organic farming preserves soil fertility and water resources",
-          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है",
-          "questionTranslation": "Organic farming preserves soil fertility and water resources",
-          "translation": "Organic farming preserves soil fertility and water resources",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Public transportation helps reduce traffic congestion in cities",
+          "question": "सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है",
+          "questionTranslation": "Public transportation helps reduce traffic congestion in cities",
+          "translation": "Public transportation helps reduce traffic congestion in cities",
           "options": [
-            "बढ़ावा",
-            "और",
-            "की",
-            "प्राकृतिक",
-            "जल",
-            "कृषि",
-            "संरक्षण",
-            "है",
-            "मिट्टी",
-            "देती",
-            "उर्वरता",
-            "को"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Clear communication makes complex topics easy to understand",
-          "question": "स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है",
-          "questionTranslation": "Clear communication makes complex topics easy to understand",
-          "translation": "Clear communication makes complex topics easy to understand",
-          "options": [
-            "जटिल",
-            "सरल",
-            "है",
-            "संवाद",
-            "देता",
+            "में",
+            "सार्वजनिक",
+            "शहरों",
+            "कम",
+            "करता",
+            "जाम",
+            "परिवहन",
+            "यातायात",
             "को",
-            "सुगम",
-            "स्पष्ट",
-            "और",
-            "भी",
-            "बना",
-            "विषयों"
+            "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है'."
+          "explanation": "The correct translation is: 'सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "She manages her daily schedule with great discipline",
+          "question": "वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है",
+          "questionTranslation": "She manages her daily schedule with great discipline",
+          "translation": "She manages her daily schedule with great discipline",
+          "options": [
+            "बड़े",
+            "दैनिक",
+            "है",
+            "वह",
+            "को",
+            "कार्यों",
+            "अपने",
+            "से",
+            "अनुशासन",
+            "संभालती"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Eating balanced meals strengthens your natural immune system",
+          "question": "संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है",
+          "questionTranslation": "Eating balanced meals strengthens your natural immune system",
+          "translation": "Eating balanced meals strengthens your natural immune system",
+          "options": [
+            "को",
+            "शरीर",
+            "प्रतिरोधक",
+            "रोग",
+            "की",
+            "बढ़ाता",
+            "है",
+            "संतुलित",
+            "भोजन",
+            "क्षमता"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Let us collaborate closely to achieve our goal",
+          "question": "आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें",
+          "questionTranslation": "Let us collaborate closely to achieve our goal",
+          "translation": "Let us collaborate closely to achieve our goal",
+          "options": [
+            "हम",
+            "पाने",
+            "लक्ष्य",
+            "अपने",
+            "को",
+            "आइए",
+            "लिए",
+            "काम",
+            "के",
+            "मिलकर",
+            "करें"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Saving electricity protects environment and reduces utility bills",
+          "question": "बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है",
+          "questionTranslation": "Saving electricity protects environment and reduces utility bills",
+          "translation": "Saving electricity protects environment and reduces utility bills",
+          "options": [
+            "से",
+            "खर्च",
+            "पर्यावरण",
+            "की",
+            "बिजली",
+            "है",
+            "सुरक्षित",
+            "और",
+            "बचत",
+            "रहता",
+            "है",
+            "घटता"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Active listening is the key to meaningful conversations",
+          "question": "दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है",
+          "questionTranslation": "Active listening is the key to meaningful conversations",
+          "translation": "Active listening is the key to meaningful conversations",
+          "options": [
+            "दूसरों",
+            "सुनना",
+            "है",
+            "को",
+            "बातचीत",
+            "ही",
+            "सार्थक",
+            "ध्यान",
+            "कुंजी",
+            "की",
+            "से"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है'."
         }
       ],
       "2": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Constructive feedback helps individuals improve professional skills",
-          "question": "रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं",
-          "questionTranslation": "Constructive feedback helps individuals improve professional skills",
-          "translation": "Constructive feedback helps individuals improve professional skills",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Could you please direct me to the nearest pharmacy?",
+          "question": "क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?",
+          "questionTranslation": "Could you please direct me to the nearest pharmacy?",
+          "translation": "Could you please direct me to the nearest pharmacy?",
           "options": [
-            "हैं",
-            "सुझाव",
-            "करते",
-            "को",
-            "मदद",
-            "पेशेवर",
-            "रचनात्मक",
-            "में",
-            "निखारने",
-            "कौशल"
+            "क्या",
+            "का",
+            "मेडिकल",
+            "मुझे",
+            "निकटतम",
+            "हैं?",
+            "बता",
+            "स्टोर",
+            "सकते",
+            "आप",
+            "रास्ता"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं'."
+          "explanation": "The correct translation is: 'क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Consistent hard work is the bridge to success",
-          "question": "कठिन परिश्रम ही सफलता का मजबूत मार्ग है",
-          "questionTranslation": "Consistent hard work is the bridge to success",
-          "translation": "Consistent hard work is the bridge to success",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Our team successfully completed the client presentation this morning",
+          "question": "हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया",
+          "questionTranslation": "Our team successfully completed the client presentation this morning",
+          "translation": "Our team successfully completed the client presentation this morning",
           "options": [
-            "कठिन",
-            "है",
-            "ही",
-            "मजबूत",
-            "मार्ग",
-            "परिश्रम",
-            "सफलता",
-            "का"
+            "पूरा",
+            "हमारी",
+            "टीम",
+            "प्रेजेंटेशन",
+            "ने",
+            "क्लाइंट",
+            "आज",
+            "सफलतापूर्वक",
+            "सुबह",
+            "किया"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठिन परिश्रम ही सफलता का मजबूत मार्ग है'."
+          "explanation": "The correct translation is: 'हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Protecting biodiversity is essential for ecological balance",
-          "question": "जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है",
-          "questionTranslation": "Protecting biodiversity is essential for ecological balance",
-          "translation": "Protecting biodiversity is essential for ecological balance",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Digital banking makes money transfers fast, secure, and convenient",
+          "question": "डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है",
+          "questionTranslation": "Digital banking makes money transfers fast, secure, and convenient",
+          "translation": "Digital banking makes money transfers fast, secure, and convenient",
           "options": [
-            "पर्यावरण",
-            "आवश्यक",
-            "संतुलन",
-            "विविधता",
+            "पैसे",
             "का",
             "है",
-            "के",
-            "जैव",
-            "लिए",
-            "संरक्षण"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Technology should always prioritize human ethical values",
-          "question": "तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए",
-          "questionTranslation": "Technology should always prioritize human ethical values",
-          "translation": "Technology should always prioritize human ethical values",
-          "options": [
-            "प्राथमिकता",
-            "मिलनी",
-            "मानवीय",
-            "चाहिए",
-            "में",
-            "मूल्यों",
-            "को",
-            "तकनीक",
-            "नैतिक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "A curious mind constantly seeks new knowledge and experiences",
-          "question": "जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है",
-          "questionTranslation": "A curious mind constantly seeks new knowledge and experiences",
-          "translation": "A curious mind constantly seeks new knowledge and experiences",
-          "options": [
-            "खोज",
-            "नए",
-            "अनुभवों",
+            "होता",
+            "डिजिटल",
+            "तेज़",
             "और",
-            "ज्ञान",
-            "की",
-            "रहता",
-            "मन",
-            "जिज्ञासु",
-            "सदैव",
-            "है",
-            "में"
+            "सुरक्षित",
+            "बैंकिंग",
+            "से",
+            "लेन-देन"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है'."
+          "explanation": "The correct translation is: 'डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Good leadership inspires confidence in every team member",
-          "question": "कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है",
-          "questionTranslation": "Good leadership inspires confidence in every team member",
-          "translation": "Good leadership inspires confidence in every team member",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "He purchased fresh vegetables and fruits from local market",
+          "question": "उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे",
+          "questionTranslation": "He purchased fresh vegetables and fruits from local market",
+          "translation": "He purchased fresh vegetables and fruits from local market",
           "options": [
+            "और",
+            "बाज़ार",
+            "सब्जियाँ",
+            "खरीदे",
+            "फल",
+            "उसने",
+            "ताज़ी",
+            "से",
+            "स्थानीय"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Regular physical exercise reduces stress and boosts daily energy",
+          "question": "नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है",
+          "questionTranslation": "Regular physical exercise reduces stress and boosts daily energy",
+          "translation": "Regular physical exercise reduces stress and boosts daily energy",
+          "options": [
+            "ऊर्जा",
+            "से",
+            "और",
+            "नियमित",
             "है",
-            "नेतृत्व",
-            "भरता",
-            "टीम",
-            "कुशल",
-            "आत्मविश्वास",
-            "प्रत्येक",
+            "बनी",
+            "व्यायाम",
+            "रहती",
+            "तनाव",
+            "दिनभर",
+            "घटता",
+            "है"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "The flight will depart on time from gate five",
+          "question": "विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा",
+          "questionTranslation": "The flight will depart on time from gate five",
+          "translation": "The flight will depart on time from gate five",
+          "options": [
+            "समय",
+            "निर्धारित",
+            "नंबर",
+            "पाँच",
+            "से",
+            "अपने",
+            "उड़ेगा",
+            "विमान",
+            "गेट",
+            "पर"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "She organized her study notes neatly for the upcoming exam",
+          "question": "उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए",
+          "questionTranslation": "She organized her study notes neatly for the upcoming exam",
+          "translation": "She organized her study notes neatly for the upcoming exam",
+          "options": [
+            "नोट्स",
+            "लिए",
+            "उसने",
             "के",
-            "में",
-            "सदस्य"
+            "वाली",
+            "परीक्षा",
+            "किए",
+            "व्यवस्थित",
+            "अपने",
+            "आने"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है'."
+          "explanation": "The correct translation is: 'उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Self reflection brings emotional understanding and peace of mind",
-          "question": "आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है",
-          "questionTranslation": "Self reflection brings emotional understanding and peace of mind",
-          "translation": "Self reflection brings emotional understanding and peace of mind",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We planted colorful flowering plants in our community garden",
+          "question": "हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए",
+          "questionTranslation": "We planted colorful flowering plants in our community garden",
+          "translation": "We planted colorful flowering plants in our community garden",
           "options": [
-            "शांति",
+            "बगीचे",
+            "लगाए",
+            "में",
+            "फूलों",
+            "पौधे",
+            "अपने",
+            "हमने",
+            "रंग-बिरंगे",
+            "के",
+            "आवासीय"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Clear instructions prevent costly mistakes during complex project execution",
+          "question": "स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है",
+          "questionTranslation": "Clear instructions prevent costly mistakes during complex project execution",
+          "translation": "Clear instructions prevent costly mistakes during complex project execution",
+          "options": [
+            "काम",
+            "वाली",
             "से",
             "है",
-            "आत्म-निरीक्षण",
-            "भावनात्मक",
-            "मानसिक",
-            "समझ",
-            "और",
-            "होती",
-            "प्राप्त"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global connectivity enables dialogue between diverse cultures",
-          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है",
-          "questionTranslation": "Global connectivity enables dialogue between diverse cultures",
-          "translation": "Global connectivity enables dialogue between diverse cultures",
-          "options": [
-            "संवाद",
-            "वैश्विक",
-            "बनाता",
-            "है",
-            "को",
-            "सुगम",
-            "संस्कृतियों",
-            "संपर्क",
-            "के",
-            "विभिन्न",
-            "बीच"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Organic farming preserves soil fertility and water resources",
-          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है",
-          "questionTranslation": "Organic farming preserves soil fertility and water resources",
-          "translation": "Organic farming preserves soil fertility and water resources",
-          "options": [
-            "की",
-            "है",
-            "को",
-            "बढ़ावा",
-            "जल",
-            "और",
-            "कृषि",
-            "संरक्षण",
-            "देती",
-            "उर्वरता",
-            "मिट्टी",
-            "प्राकृतिक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Clear communication makes complex topics easy to understand",
-          "question": "स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है",
-          "questionTranslation": "Clear communication makes complex topics easy to understand",
-          "translation": "Clear communication makes complex topics easy to understand",
-          "options": [
-            "सरल",
-            "है",
-            "और",
-            "विषयों",
-            "बना",
-            "देता",
-            "भी",
-            "संवाद",
             "स्पष्ट",
-            "जटिल",
-            "को",
-            "सुगम"
+            "में",
+            "से",
+            "सकता",
+            "होने",
+            "बचा",
+            "जा",
+            "गलतियों",
+            "निर्देशों"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है'."
+          "explanation": "The correct translation is: 'स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "They celebrated their grand anniversary with close friends and family",
+          "question": "उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई",
+          "questionTranslation": "They celebrated their grand anniversary with close friends and family",
+          "translation": "They celebrated their grand anniversary with close friends and family",
+          "options": [
+            "और",
+            "अपने",
+            "दोस्तों",
+            "वर्षगांठ",
+            "साथ",
+            "के",
+            "मनाई",
+            "परिवार",
+            "उन्होंने"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई'."
         }
       ],
       "3": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Constructive feedback helps individuals improve professional skills",
-          "question": "रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं",
-          "questionTranslation": "Constructive feedback helps individuals improve professional skills",
-          "translation": "Constructive feedback helps individuals improve professional skills",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "In my opinion, sustainable innovation is essential for climate recovery",
+          "question": "मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है",
+          "questionTranslation": "In my opinion, sustainable innovation is essential for climate recovery",
+          "translation": "In my opinion, sustainable innovation is essential for climate recovery",
           "options": [
-            "हैं",
-            "सुझाव",
-            "रचनात्मक",
+            "सतत",
+            "बहुत",
+            "के",
+            "लिए",
+            "आवश्यक",
+            "मेरे",
+            "नवाचार",
+            "में",
+            "विचार",
+            "है",
+            "सुधार",
+            "पर्यावरण"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Constructive feedback helps individuals refine their professional workplace skills",
+          "question": "सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं",
+          "questionTranslation": "Constructive feedback helps individuals refine their professional workplace skills",
+          "translation": "Constructive feedback helps individuals refine their professional workplace skills",
+          "options": [
             "को",
-            "पेशेवर",
             "कौशल",
             "निखारने",
+            "कार्यक्षेत्र",
+            "हैं",
+            "में",
             "मदद",
+            "सकारात्मक",
             "करते",
+            "सुझाव",
+            "पेशेवर",
             "में"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं'."
+          "explanation": "The correct translation is: 'सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Consistent hard work is the bridge to success",
-          "question": "कठिन परिश्रम ही सफलता का मजबूत मार्ग है",
-          "questionTranslation": "Consistent hard work is the bridge to success",
-          "translation": "Consistent hard work is the bridge to success",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Consistent practice bridges the distance between ambitious dreams and achievements",
+          "question": "निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है",
+          "questionTranslation": "Consistent practice bridges the distance between ambitious dreams and achievements",
+          "translation": "Consistent practice bridges the distance between ambitious dreams and achievements",
           "options": [
-            "है",
-            "मार्ग",
-            "का",
-            "परिश्रम",
-            "मजबूत",
+            "बड़े",
+            "सपनों",
+            "बीच",
+            "ही",
+            "सेतु",
+            "और",
             "सफलता",
-            "कठिन",
-            "ही"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठिन परिश्रम ही सफलता का मजबूत मार्ग है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Protecting biodiversity is essential for ecological balance",
-          "question": "जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है",
-          "questionTranslation": "Protecting biodiversity is essential for ecological balance",
-          "translation": "Protecting biodiversity is essential for ecological balance",
-          "options": [
-            "आवश्यक",
+            "अभ्यास",
+            "निरंतर",
             "है",
-            "का",
-            "संतुलन",
-            "लिए",
-            "विविधता",
-            "जैव",
-            "पर्यावरण",
             "के",
-            "संरक्षण"
+            "का",
+            "वास्तविक"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है'."
+          "explanation": "The correct translation is: 'निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Technology should always prioritize human ethical values",
-          "question": "तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए",
-          "questionTranslation": "Technology should always prioritize human ethical values",
-          "translation": "Technology should always prioritize human ethical values",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Protecting biodiversity is vital for sustaining ecological balance globally",
+          "question": "जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है",
+          "questionTranslation": "Protecting biodiversity is vital for sustaining ecological balance globally",
+          "translation": "Protecting biodiversity is vital for sustaining ecological balance globally",
           "options": [
-            "में",
-            "मिलनी",
-            "तकनीक",
-            "प्राथमिकता",
-            "नैतिक",
+            "संरक्षण",
+            "विश्व",
+            "विविधता",
+            "के",
+            "के",
+            "पारिस्थितिक",
+            "आवश्यक",
+            "का",
+            "लिए",
+            "संपूर्ण",
+            "संतुलन",
+            "जैव",
+            "है"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Technological advancements must always prioritize ethical human dignity and values",
+          "question": "तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए",
+          "questionTranslation": "Technological advancements must always prioritize ethical human dignity and values",
+          "translation": "Technological advancements must always prioritize ethical human dignity and values",
+          "options": [
+            "सदैव",
+            "तकनीकी",
             "मानवीय",
-            "को",
+            "प्राथमिकता",
+            "में",
+            "और",
             "चाहिए",
+            "को",
+            "विकास",
+            "गरिमा",
+            "मिलनी",
             "मूल्यों"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए'."
+          "explanation": "The correct translation is: 'तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "A curious mind constantly seeks new knowledge and experiences",
-          "question": "जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है",
-          "questionTranslation": "A curious mind constantly seeks new knowledge and experiences",
-          "translation": "A curious mind constantly seeks new knowledge and experiences",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+          "question": "जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है",
+          "questionTranslation": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+          "translation": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
           "options": [
-            "है",
-            "अनुभवों",
-            "में",
-            "ज्ञान",
-            "खोज",
-            "मन",
-            "की",
+            "सीमाओं",
             "जिज्ञासु",
-            "और",
+            "है",
+            "जाकर",
             "सदैव",
-            "नए",
-            "रहता"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Good leadership inspires confidence in every team member",
-          "question": "कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है",
-          "questionTranslation": "Good leadership inspires confidence in every team member",
-          "translation": "Good leadership inspires confidence in every team member",
-          "options": [
-            "सदस्य",
-            "प्रत्येक",
-            "है",
-            "के",
-            "कुशल",
-            "भरता",
-            "टीम",
-            "नेतृत्व",
-            "में",
-            "आत्मविश्वास"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Self reflection brings emotional understanding and peace of mind",
-          "question": "आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है",
-          "questionTranslation": "Self reflection brings emotional understanding and peace of mind",
-          "translation": "Self reflection brings emotional understanding and peace of mind",
-          "options": [
-            "आत्म-निरीक्षण",
             "से",
-            "होती",
-            "भावनात्मक",
-            "और",
-            "शांति",
-            "समझ",
-            "प्राप्त",
-            "है",
-            "मानसिक"
+            "खोजता",
+            "ज्ञान",
+            "मन",
+            "किताबी",
+            "नया",
+            "परे"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है'."
+          "explanation": "The correct translation is: 'जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global connectivity enables dialogue between diverse cultures",
-          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है",
-          "questionTranslation": "Global connectivity enables dialogue between diverse cultures",
-          "translation": "Global connectivity enables dialogue between diverse cultures",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+          "question": "उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है",
+          "questionTranslation": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+          "translation": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
           "options": [
+            "संस्था",
+            "सदस्यों",
+            "बढ़ाता",
+            "नेतृत्व",
+            "उत्कृष्ट",
+            "सभी",
+            "सहयोग",
             "के",
+            "और",
+            "आत्मविश्वास",
             "है",
-            "बीच",
-            "को",
-            "संवाद",
-            "सुगम",
-            "संपर्क",
-            "संस्कृतियों",
-            "विभिन्न",
-            "बनाता",
-            "वैश्विक"
+            "में"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है'."
+          "explanation": "The correct translation is: 'उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Organic farming preserves soil fertility and water resources",
-          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है",
-          "questionTranslation": "Organic farming preserves soil fertility and water resources",
-          "translation": "Organic farming preserves soil fertility and water resources",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+          "question": "आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है",
+          "questionTranslation": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+          "translation": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
           "options": [
+            "प्राप्त",
+            "होती",
+            "शांति",
+            "है",
+            "समझ",
+            "मानसिक",
+            "आत्म-चिंतन",
+            "और",
+            "से",
+            "भावनात्मक",
+            "दैनिक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है",
+          "questionTranslation": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+          "translation": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+          "options": [
+            "बनाता",
+            "संस्कृतियों",
+            "संवाद",
+            "वैश्विक",
+            "के",
+            "संपर्क",
+            "सुगम",
+            "है",
+            "सार्थक",
+            "को",
+            "बीच",
+            "विभिन्न"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Organic agriculture preserves fertile soil and conserves vital water resources",
+          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है",
+          "questionTranslation": "Organic agriculture preserves fertile soil and conserves vital water resources",
+          "translation": "Organic agriculture preserves fertile soil and conserves vital water resources",
+          "options": [
+            "संसाधनों",
+            "का",
+            "की",
+            "कृषि",
             "है",
             "उर्वरता",
-            "और",
-            "प्राकृतिक",
-            "कृषि",
-            "को",
             "संरक्षण",
-            "देती",
-            "मिट्टी",
-            "की",
-            "जल",
-            "बढ़ावा"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Clear communication makes complex topics easy to understand",
-          "question": "स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है",
-          "questionTranslation": "Clear communication makes complex topics easy to understand",
-          "translation": "Clear communication makes complex topics easy to understand",
-          "options": [
-            "सुगम",
-            "स्पष्ट",
-            "संवाद",
-            "सरल",
-            "है",
-            "देता",
-            "भी",
-            "जटिल",
-            "बना",
-            "विषयों",
             "और",
-            "को"
+            "मिट्टी",
+            "प्राकृतिक",
+            "जल",
+            "करती"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है'."
+          "explanation": "The correct translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है'."
         }
       ],
       "4": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Constructive feedback helps individuals improve professional skills",
-          "question": "रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं",
-          "questionTranslation": "Constructive feedback helps individuals improve professional skills",
-          "translation": "Constructive feedback helps individuals improve professional skills",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Renewable energy initiatives create thousands of green jobs for young professionals",
+          "question": "नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं",
+          "questionTranslation": "Renewable energy initiatives create thousands of green jobs for young professionals",
+          "translation": "Renewable energy initiatives create thousands of green jobs for young professionals",
           "options": [
-            "में",
-            "करते",
-            "पेशेवर",
-            "को",
-            "सुझाव",
-            "रचनात्मक",
-            "मदद",
-            "निखारने",
-            "कौशल",
-            "हैं"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Consistent hard work is the bridge to success",
-          "question": "कठिन परिश्रम ही सफलता का मजबूत मार्ग है",
-          "questionTranslation": "Consistent hard work is the bridge to success",
-          "translation": "Consistent hard work is the bridge to success",
-          "options": [
-            "कठिन",
-            "मजबूत",
-            "ही",
-            "सफलता",
-            "है",
-            "का",
-            "मार्ग",
-            "परिश्रम"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठिन परिश्रम ही सफलता का मजबूत मार्ग है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Protecting biodiversity is essential for ecological balance",
-          "question": "जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है",
-          "questionTranslation": "Protecting biodiversity is essential for ecological balance",
-          "translation": "Protecting biodiversity is essential for ecological balance",
-          "options": [
-            "जैव",
-            "आवश्यक",
-            "के",
-            "संरक्षण",
-            "विविधता",
-            "लिए",
-            "का",
-            "संतुलन",
-            "पर्यावरण",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Technology should always prioritize human ethical values",
-          "question": "तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए",
-          "questionTranslation": "Technology should always prioritize human ethical values",
-          "translation": "Technology should always prioritize human ethical values",
-          "options": [
-            "चाहिए",
-            "मिलनी",
-            "तकनीक",
-            "को",
-            "नैतिक",
-            "में",
-            "मानवीय",
-            "प्राथमिकता",
-            "मूल्यों"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "A curious mind constantly seeks new knowledge and experiences",
-          "question": "जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है",
-          "questionTranslation": "A curious mind constantly seeks new knowledge and experiences",
-          "translation": "A curious mind constantly seeks new knowledge and experiences",
-          "options": [
-            "खोज",
-            "की",
-            "है",
             "नए",
-            "अनुभवों",
-            "मन",
-            "रहता",
-            "और",
-            "जिज्ञासु",
-            "सदैव",
-            "में",
-            "ज्ञान"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Good leadership inspires confidence in every team member",
-          "question": "कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है",
-          "questionTranslation": "Good leadership inspires confidence in every team member",
-          "translation": "Good leadership inspires confidence in every team member",
-          "options": [
-            "है",
-            "नेतृत्व",
-            "भरता",
-            "टीम",
+            "नवीकरणीय",
+            "युवाओं",
             "के",
-            "में",
-            "सदस्य",
-            "कुशल",
-            "आत्मविश्वास",
-            "प्रत्येक"
+            "हैं",
+            "रोजगार",
+            "सृजित",
+            "लाखों",
+            "लिए",
+            "परियोजनाएं",
+            "हरित",
+            "करती",
+            "ऊर्जा"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है'."
+          "explanation": "The correct translation is: 'नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Self reflection brings emotional understanding and peace of mind",
-          "question": "आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है",
-          "questionTranslation": "Self reflection brings emotional understanding and peace of mind",
-          "translation": "Self reflection brings emotional understanding and peace of mind",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+          "question": "शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं",
+          "questionTranslation": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+          "translation": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
           "options": [
-            "होती",
-            "शांति",
-            "आत्म-निरीक्षण",
+            "पैदल",
+            "घटाने",
+            "निर्माण",
+            "हैं",
+            "हेतु",
+            "जाम",
+            "मार्गों",
+            "करते",
+            "प्रदूषण",
+            "शहर",
+            "का",
+            "और",
+            "योजनाकार"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+          "question": "काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है",
+          "questionTranslation": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+          "translation": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+          "options": [
+            "बनाए",
+            "जीवन",
+            "है",
+            "काम",
+            "व्यक्तिगत",
             "से",
-            "मानसिक",
-            "समझ",
             "और",
-            "भावनात्मक",
-            "प्राप्त",
-            "है"
+            "होता",
+            "में",
+            "रखने",
+            "मानसिक",
+            "संतुलन",
+            "तनाव",
+            "समाप्त"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है'."
+          "explanation": "The correct translation is: 'काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global connectivity enables dialogue between diverse cultures",
-          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है",
-          "questionTranslation": "Global connectivity enables dialogue between diverse cultures",
-          "translation": "Global connectivity enables dialogue between diverse cultures",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Digital literacy empowers rural communities to access essential healthcare and government services",
+          "question": "डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है",
+          "questionTranslation": "Digital literacy empowers rural communities to access essential healthcare and government services",
+          "translation": "Digital literacy empowers rural communities to access essential healthcare and government services",
           "options": [
+            "स्वास्थ्य",
+            "से",
+            "है",
+            "ग्रामीण",
+            "और",
+            "समाज",
+            "साक्षरता",
+            "जुड़",
+            "से",
+            "सरकारी",
+            "डिजिटल",
+            "सेवाओं",
+            "रहा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "The international symposium brought together researchers from forty nations to exchange ideas",
+          "question": "अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की",
+          "questionTranslation": "The international symposium brought together researchers from forty nations to exchange ideas",
+          "translation": "The international symposium brought together researchers from forty nations to exchange ideas",
+          "options": [
+            "विचारों",
+            "ने",
+            "सम्मेलन",
+            "की",
+            "में",
+            "वैज्ञानिकों",
+            "के",
+            "अंतरराष्ट्रीय",
+            "देशों",
+            "चालीस",
+            "चर्चा",
+            "पर",
+            "नए"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+          "question": "स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है",
+          "questionTranslation": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+          "translation": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+          "options": [
+            "स्पष्ट",
+            "बड़े",
+            "समझौतों",
             "को",
-            "बनाता",
-            "विभिन्न",
-            "सुगम",
-            "संपर्क",
-            "बीच",
-            "वैश्विक",
+            "में",
+            "रोकती",
+            "वाले",
+            "में",
+            "होने",
+            "कार्यक्षेत्र",
+            "अभिव्यक्ति",
+            "है",
+            "गलतफहमियों"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+          "question": "समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है",
+          "questionTranslation": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+          "translation": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+          "options": [
+            "जीवों",
+            "सुरक्षित",
+            "वाली",
+            "पर्यावरण",
+            "रक्षा",
+            "लिए",
             "के",
             "है",
-            "संस्कृतियों",
-            "संवाद"
+            "करने",
+            "पीढ़ियों",
+            "से",
+            "समुद्री",
+            "आने",
+            "रहता",
+            "की"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है'."
+          "explanation": "The correct translation is: 'समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Organic farming preserves soil fertility and water resources",
-          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है",
-          "questionTranslation": "Organic farming preserves soil fertility and water resources",
-          "translation": "Organic farming preserves soil fertility and water resources",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+          "question": "सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है",
+          "questionTranslation": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+          "translation": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
           "options": [
+            "पेशेवरों",
+            "बनाती",
+            "से",
+            "तकनीकी",
+            "सतत",
+            "को",
+            "वैश्विक",
+            "बदलती",
+            "दुनिया",
+            "के",
+            "तेज़ी",
+            "अनुकूल",
+            "है",
+            "शिक्षा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+          "question": "नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है",
+          "questionTranslation": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+          "translation": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+          "options": [
+            "संस्थाओं",
+            "जागरूक",
+            "बीच",
+            "नीतियों",
+            "के",
+            "बनता",
+            "है",
+            "स्थायी",
+            "नैतिक",
+            "से",
             "और",
-            "को",
-            "देती",
-            "बढ़ावा",
-            "है",
-            "संरक्षण",
-            "कृषि",
-            "की",
-            "मिट्टी",
-            "प्राकृतिक",
-            "जल",
-            "उर्वरता"
+            "ग्राहकों",
+            "विश्वास"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है'."
+          "explanation": "The correct translation is: 'नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Clear communication makes complex topics easy to understand",
-          "question": "स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है",
-          "questionTranslation": "Clear communication makes complex topics easy to understand",
-          "translation": "Clear communication makes complex topics easy to understand",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+          "question": "सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है",
+          "questionTranslation": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+          "translation": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
           "options": [
-            "को",
-            "संवाद",
-            "विषयों",
-            "सरल",
-            "सुगम",
-            "देता",
-            "भी",
-            "बना",
-            "जटिल",
-            "स्पष्ट",
+            "सार्वजनिक",
+            "में",
+            "प्रखर",
+            "वाद-विवाद",
+            "और",
+            "से",
+            "क्षमता",
+            "तार्किक",
+            "सोच",
             "है",
-            "और"
+            "भाग",
+            "लेने",
+            "अभिव्यक्ति",
+            "होती"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है'."
+          "explanation": "The correct translation is: 'सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है'."
         }
       ],
       "5": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Constructive feedback helps individuals improve professional skills",
-          "question": "रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं",
-          "questionTranslation": "Constructive feedback helps individuals improve professional skills",
-          "translation": "Constructive feedback helps individuals improve professional skills",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Transformative education equips future generations to navigate complex ethical societal challenges",
+          "question": "मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है",
+          "questionTranslation": "Transformative education equips future generations to navigate complex ethical societal challenges",
+          "translation": "Transformative education equips future generations to navigate complex ethical societal challenges",
           "options": [
-            "करते",
-            "रचनात्मक",
-            "सुझाव",
-            "निखारने",
+            "निपटने",
+            "बनाती",
+            "में",
+            "मूल्यपरक",
             "को",
-            "मदद",
-            "हैं",
-            "पेशेवर",
-            "कौशल",
-            "में"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'रचनात्मक सुझाव पेशेवर कौशल को निखारने में मदद करते हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Consistent hard work is the bridge to success",
-          "question": "कठिन परिश्रम ही सफलता का मजबूत मार्ग है",
-          "questionTranslation": "Consistent hard work is the bridge to success",
-          "translation": "Consistent hard work is the bridge to success",
-          "options": [
-            "कठिन",
-            "का",
-            "मजबूत",
-            "परिश्रम",
-            "मार्ग",
+            "चुनौतियों",
+            "जटिल",
+            "सक्षम",
             "है",
-            "सफलता",
-            "ही"
+            "की",
+            "से",
+            "नैतिक",
+            "पीढ़ियों",
+            "समाज",
+            "भावी",
+            "शिक्षा"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठिन परिश्रम ही सफलता का मजबूत मार्ग है'."
+          "explanation": "The correct translation is: 'मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Protecting biodiversity is essential for ecological balance",
-          "question": "जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है",
-          "questionTranslation": "Protecting biodiversity is essential for ecological balance",
-          "translation": "Protecting biodiversity is essential for ecological balance",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+          "question": "स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है",
+          "questionTranslation": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+          "translation": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
           "options": [
-            "पर्यावरण",
-            "के",
-            "आवश्यक",
+            "भाषाई",
+            "अनूठी",
+            "रखता",
+            "स्थानीय",
+            "जीवित",
+            "प्राचीन",
+            "परंपराओं",
+            "है",
+            "और",
+            "धरोहर",
+            "को",
+            "सांस्कृतिक",
             "का",
             "संरक्षण",
-            "है",
-            "जैव",
-            "संतुलन",
-            "विविधता",
-            "लिए"
+            "ज्ञान"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जैव विविधता का संरक्षण पर्यावरण संतुलन के लिए आवश्यक है'."
+          "explanation": "The correct translation is: 'स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Technology should always prioritize human ethical values",
-          "question": "तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए",
-          "questionTranslation": "Technology should always prioritize human ethical values",
-          "translation": "Technology should always prioritize human ethical values",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+          "question": "विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है",
+          "questionTranslation": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+          "translation": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
           "options": [
-            "मानवीय",
-            "प्राथमिकता",
-            "नैतिक",
-            "मिलनी",
-            "चाहिए",
-            "में",
-            "तकनीक",
-            "को",
-            "मूल्यों"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'तकनीक में मानवीय नैतिक मूल्यों को प्राथमिकता मिलनी चाहिए'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "A curious mind constantly seeks new knowledge and experiences",
-          "question": "जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है",
-          "questionTranslation": "A curious mind constantly seeks new knowledge and experiences",
-          "translation": "A curious mind constantly seeks new knowledge and experiences",
-          "options": [
-            "नए",
-            "खोज",
-            "है",
-            "रहता",
-            "और",
-            "ज्ञान",
-            "मन",
-            "जिज्ञासु",
-            "की",
-            "अनुभवों",
-            "में",
-            "सदैव"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जिज्ञासु मन सदैव नए ज्ञान और अनुभवों की खोज में रहता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Good leadership inspires confidence in every team member",
-          "question": "कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है",
-          "questionTranslation": "Good leadership inspires confidence in every team member",
-          "translation": "Good leadership inspires confidence in every team member",
-          "options": [
-            "नेतृत्व",
-            "कुशल",
-            "है",
-            "टीम",
-            "सदस्य",
-            "भरता",
-            "में",
-            "के",
-            "आत्मविश्वास",
-            "प्रत्येक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कुशल नेतृत्व टीम के प्रत्येक सदस्य में आत्मविश्वास भरता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Self reflection brings emotional understanding and peace of mind",
-          "question": "आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है",
-          "questionTranslation": "Self reflection brings emotional understanding and peace of mind",
-          "translation": "Self reflection brings emotional understanding and peace of mind",
-          "options": [
-            "मानसिक",
-            "से",
-            "आत्म-निरीक्षण",
-            "होती",
-            "प्राप्त",
-            "है",
-            "समझ",
-            "शांति",
-            "भावनात्मक",
-            "और"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'आत्म-निरीक्षण से भावनात्मक समझ और मानसिक शांति प्राप्त होती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global connectivity enables dialogue between diverse cultures",
-          "question": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है",
-          "questionTranslation": "Global connectivity enables dialogue between diverse cultures",
-          "translation": "Global connectivity enables dialogue between diverse cultures",
-          "options": [
-            "है",
-            "सुगम",
-            "बनाता",
             "विभिन्न",
-            "को",
-            "बीच",
-            "के",
-            "संपर्क",
+            "स्थायी",
+            "है",
             "वैश्विक",
-            "संस्कृतियों",
-            "संवाद"
+            "नए",
+            "प्रस्तुत",
+            "समाधान",
+            "और",
+            "विधाओं",
+            "साझा",
+            "करता",
+            "संकटों",
+            "का",
+            "शोध",
+            "के",
+            "स्वास्थ्य"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच संवाद को सुगम बनाता है'."
+          "explanation": "The correct translation is: 'विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Organic farming preserves soil fertility and water resources",
-          "question": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है",
-          "questionTranslation": "Organic farming preserves soil fertility and water resources",
-          "translation": "Organic farming preserves soil fertility and water resources",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+          "question": "प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं",
+          "questionTranslation": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+          "translation": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
           "options": [
-            "मिट्टी",
-            "जल",
-            "कृषि",
-            "की",
-            "उर्वरता",
+            "हैं",
+            "और",
+            "वैज्ञानिक",
+            "पारदर्शी",
+            "लिए",
+            "देती",
+            "समाधान",
+            "नीतियों",
+            "प्रमाण-आधारित",
+            "ठोस",
+            "के",
+            "पद्धतियां",
+            "जलवायु"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+          "question": "पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है",
+          "questionTranslation": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+          "translation": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+          "options": [
+            "गति",
+            "देती",
+            "है",
+            "पैदा",
+            "पारदर्शी",
+            "विकास",
+            "में",
             "और",
             "को",
-            "प्राकृतिक",
+            "करती",
+            "अटूट",
             "है",
-            "बढ़ावा",
-            "देती",
-            "संरक्षण"
+            "जनविश्वास",
+            "समाज",
+            "व्यवस्था",
+            "शासन"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संरक्षण को बढ़ावा देती है'."
+          "explanation": "The correct translation is: 'पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Clear communication makes complex topics easy to understand",
-          "question": "स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है",
-          "questionTranslation": "Clear communication makes complex topics easy to understand",
-          "translation": "Clear communication makes complex topics easy to understand",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+          "question": "भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं",
+          "questionTranslation": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+          "translation": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
           "options": [
-            "स्पष्ट",
-            "है",
-            "बना",
-            "सुगम",
-            "सरल",
-            "भी",
+            "नेताओं",
+            "दिखाते",
+            "आर्थिक",
+            "और",
+            "और",
+            "हैं",
             "को",
-            "देता",
-            "जटिल",
-            "संवाद",
-            "विषयों",
-            "और"
+            "संतुलन",
+            "सही",
+            "समय",
+            "भावनात्मक",
+            "कठिन",
+            "में",
+            "दिशा",
+            "अनिश्चित",
+            "धैर्य"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'स्पष्ट संवाद जटिल विषयों को भी सरल और सुगम बना देता है'."
+          "explanation": "The correct translation is: 'भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+          "question": "टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है",
+          "questionTranslation": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+          "translation": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+          "options": [
+            "निर्माण",
+            "नगर",
+            "और",
+            "है",
+            "टिकाऊ",
+            "नागरिकों",
+            "हरियाली",
+            "शामिल",
+            "का",
+            "करने",
+            "स्वास्थ्य",
+            "से",
+            "को",
+            "में",
+            "सुधरता",
+            "पर्यावरण"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+          "question": "कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए",
+          "questionTranslation": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+          "translation": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+          "options": [
+            "नैतिक",
+            "नियमों",
+            "चाहिए",
+            "कृत्रिम",
+            "प्रगति",
+            "बुद्धिमत्ता",
+            "विकास",
+            "होना",
+            "के",
+            "की",
+            "निरंतर",
+            "साथ-साथ",
+            "भी",
+            "का"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+          "question": "सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है",
+          "questionTranslation": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+          "translation": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+          "options": [
+            "दुनिया",
+            "गुणवत्तापूर्ण",
+            "है",
+            "और",
+            "मूल",
+            "का",
+            "स्वास्थ्य",
+            "नागरिक",
+            "के",
+            "प्रत्येक",
+            "सुलभ",
+            "अधिकार",
+            "सेवा",
+            "पाना"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+          "question": "गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है",
+          "questionTranslation": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+          "translation": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+          "options": [
+            "करता",
+            "में",
+            "गहन",
+            "और",
+            "निर्णय",
+            "और",
+            "नीति-निर्माण",
+            "दूरदर्शी",
+            "विश्लेषण",
+            "लेने",
+            "संतुलित",
+            "जटिल",
+            "है",
+            "में",
+            "मदद",
+            "सही"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है'."
         }
       ]
     },
     "listening": {
       "1": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य वक्ता ने कृत्रिम बुद्धिमत्ता की अपार संभावनाओं पर विस्तार से प्रकाश डाला।",
-          "translation": "सम्मेलन",
-          "question": "मुख्य वक्ता का विषय क्या था?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें",
+          "translation": "Please submit your completed project report on time",
+          "question": "What did the speaker say?",
           "options": [
-            "कृत्रिम बुद्धिमत्ता की संभावनाएं",
-            "कागज़ का इतिहास",
-            "गाड़ी की मरम्मत",
-            "प्राचीन इमारतें"
+            "Please submit your completed project report on time",
+            "We enjoyed a wonderful train journey together yesterday",
+            "Eating balanced meals strengthens your natural immune system",
+            "Public transportation helps reduce traffic congestion in cities"
           ],
           "answerIndex": 0,
-          "explanation": "एआई की संभावनाओं पर चर्चा थी।"
+          "explanation": "The spoken sentence means: 'Please submit your completed project report on time'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी विस्तृत तिमाही रिपोर्ट शुक्रवार दोपहर से पहले जमा कर दें।",
-          "translation": "कार्यालय",
-          "question": "रिपोर्ट कब तक जमा करनी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है",
+          "translation": "Reading informative books enhances vocabulary and mental focus",
+          "question": "What did the speaker say?",
           "options": [
-            "शुक्रवार दोपहर से पहले",
-            "अगले महीने",
-            "रविवार रात",
-            "कल सुबह"
+            "Reading informative books enhances vocabulary and mental focus",
+            "Let us collaborate closely to achieve our goal",
+            "She manages her daily schedule with great discipline",
+            "Drinking herbal tea relieves stress after work"
           ],
           "answerIndex": 0,
-          "explanation": "शुक्रवार दोपहर की समय सीमा है।"
+          "explanation": "The spoken sentence means: 'Reading informative books enhances vocabulary and mental focus'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस विभिन्न देशों के वैज्ञानिकों ने भाग लिया।",
-          "translation": "सम्मेलन",
-          "question": "कितने देशों के प्रतिनिधि थे?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कल हम सबने मिलकर एक सुखद रेल यात्रा की",
+          "translation": "We enjoyed a wonderful train journey together yesterday",
+          "question": "What did the speaker say?",
           "options": [
-            "40 देश",
-            "14 देश",
-            "4 देश",
-            "100 देश"
+            "Eating balanced meals strengthens your natural immune system",
+            "Saving electricity protects environment and reduces utility bills",
+            "We enjoyed a wonderful train journey together yesterday",
+            "Public transportation helps reduce traffic congestion in cities"
           ],
-          "answerIndex": 0,
-          "explanation": "सम्मेलन में चालीस देश उपस्थित थे।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'We enjoyed a wonderful train journey together yesterday'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "शहर के योजनाकार प्रदूषण घटाने के लिए पैदल मार्गों का निर्माण कर रहे हैं।",
-          "translation": "नगर योजना",
-          "question": "पैदल मार्ग क्यों बनाए जा रहे हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हर्बल चाय पीने से काम के बाद थकान दूर होती है",
+          "translation": "Drinking herbal tea relieves stress after work",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रदूषण व जाम घटाने हेतु",
-            "गाड़ियां बेचने हेतु",
-            "पार्क हटाने हेतु",
-            "बसें बंद करने हेतु"
+            "She manages her daily schedule with great discipline",
+            "Drinking herbal tea relieves stress after work",
+            "Active listening is the key to meaningful conversations",
+            "Let us collaborate closely to achieve our goal"
           ],
-          "answerIndex": 0,
-          "explanation": "पैदल मार्ग से जाम कम होता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Drinking herbal tea relieves stress after work'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हरित ऊर्जा परियोजनाओं ने लाखों युवाओं के लिए नए रोजगार सृजित किए हैं।",
-          "translation": "रोजगार",
-          "question": "रोजगार किसने सृजित किए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है",
+          "translation": "Public transportation helps reduce traffic congestion in cities",
+          "question": "What did the speaker say?",
           "options": [
-            "हरित ऊर्जा परियोजनाओं ने",
-            "कोयला खदानों ने",
-            "कागज़ मिलों ने",
-            "होटलों ने"
+            "Eating balanced meals strengthens your natural immune system",
+            "Saving electricity protects environment and reduces utility bills",
+            "Public transportation helps reduce traffic congestion in cities",
+            "Please submit your completed project report on time"
           ],
-          "answerIndex": 0,
-          "explanation": "ग्रीन एनर्जी में नए रोजगार बने हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Public transportation helps reduce traffic congestion in cities'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सार्थक वाद-विवाद में हिस्सा लेने से बोलने का आत्मविश्वास बढ़ता है।",
-          "translation": "शिक्षा",
-          "question": "बोलने का आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है",
+          "translation": "She manages her daily schedule with great discipline",
+          "question": "What did the speaker say?",
           "options": [
-            "सार्थक वाद-विवाद से",
-            "चुप रहने से",
-            "रटने से",
-            "अकेले रहने से"
+            "Reading informative books enhances vocabulary and mental focus",
+            "She manages her daily schedule with great discipline",
+            "Let us collaborate closely to achieve our goal",
+            "Active listening is the key to meaningful conversations"
           ],
-          "answerIndex": 0,
-          "explanation": "वाद-विवाद से विचार निखरते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'She manages her daily schedule with great discipline'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ईमानदार व्यापारिक नीतियों से ग्राहकों और संस्था के बीच अटूट विश्वास बनता है।",
-          "translation": "व्यापार",
-          "question": "विश्वास किससे बनता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है",
+          "translation": "Eating balanced meals strengthens your natural immune system",
+          "question": "What did the speaker say?",
           "options": [
-            "ईमानदार व्यापारिक नीतियों से",
-            "झूठे विज्ञापनों से",
-            "अधिक दामों से",
-            "दबाव से"
+            "Eating balanced meals strengthens your natural immune system",
+            "Saving electricity protects environment and reduces utility bills",
+            "We enjoyed a wonderful train journey together yesterday",
+            "Please submit your completed project report on time"
           ],
           "answerIndex": 0,
-          "explanation": "ईमानदारी से विश्वास बनता है।"
+          "explanation": "The spoken sentence means: 'Eating balanced meals strengthens your natural immune system'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री संरक्षण कार्यक्रम दुर्लभ समुद्री जीवों और उनके आवास की रक्षा करते हैं।",
-          "translation": "संरक्षण",
-          "question": "संरक्षण कार्यक्रम किसकी रक्षा करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें",
+          "translation": "Let us collaborate closely to achieve our goal",
+          "question": "What did the speaker say?",
           "options": [
-            "समुद्री जीवों और आवास की",
-            "रेगिस्तान की",
-            "पहाड़ों की",
-            "उपग्रहों की"
+            "Active listening is the key to meaningful conversations",
+            "Reading informative books enhances vocabulary and mental focus",
+            "Drinking herbal tea relieves stress after work",
+            "Let us collaborate closely to achieve our goal"
           ],
-          "answerIndex": 0,
-          "explanation": "समुद्री जीवन की रक्षा होती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Let us collaborate closely to achieve our goal'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सचेत ध्यान से मानसिक तनाव घटता है और भावनात्मक संतुलन सुधरता है।",
-          "translation": "ध्यान",
-          "question": "ध्यान से क्या घटता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है",
+          "translation": "Saving electricity protects environment and reduces utility bills",
+          "question": "What did the speaker say?",
           "options": [
-            "मानसिक तनाव",
-            "बुद्धिमानी",
-            "याददाश्त",
-            "कद"
+            "Public transportation helps reduce traffic congestion in cities",
+            "We enjoyed a wonderful train journey together yesterday",
+            "Please submit your completed project report on time",
+            "Saving electricity protects environment and reduces utility bills"
           ],
-          "answerIndex": 0,
-          "explanation": "ध्यान से तनाव कम होता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Saving electricity protects environment and reduces utility bills'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जीवनभर नया सीखते रहने से व्यक्ति बदलते समय के साथ कदम मिला पाता है।",
-          "translation": "कैरियर",
-          "question": "नया सीखने से क्या लाभ है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है",
+          "translation": "Active listening is the key to meaningful conversations",
+          "question": "What did the speaker say?",
           "options": [
-            "बदलते समय से कदम मिलाना",
-            "रुक जाना",
-            "तकनीक से डरना",
-            "काम छोड़ना"
+            "Active listening is the key to meaningful conversations",
+            "Drinking herbal tea relieves stress after work",
+            "She manages her daily schedule with great discipline",
+            "Reading informative books enhances vocabulary and mental focus"
           ],
           "answerIndex": 0,
-          "explanation": "सतत अध्ययन प्रगति दिलाता है।"
+          "explanation": "The spoken sentence means: 'Active listening is the key to meaningful conversations'."
         }
       ],
       "2": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य वक्ता ने कृत्रिम बुद्धिमत्ता की अपार संभावनाओं पर विस्तार से प्रकाश डाला।",
-          "translation": "सम्मेलन",
-          "question": "मुख्य वक्ता का विषय क्या था?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?",
+          "translation": "Could you please direct me to the nearest pharmacy?",
+          "question": "What did the speaker say?",
           "options": [
-            "कृत्रिम बुद्धिमत्ता की संभावनाएं",
-            "कागज़ का इतिहास",
-            "गाड़ी की मरम्मत",
-            "प्राचीन इमारतें"
+            "Could you please direct me to the nearest pharmacy?",
+            "She organized her study notes neatly for the upcoming exam",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "Regular physical exercise reduces stress and boosts daily energy"
           ],
           "answerIndex": 0,
-          "explanation": "एआई की संभावनाओं पर चर्चा थी।"
+          "explanation": "The spoken sentence means: 'Could you please direct me to the nearest pharmacy?'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी विस्तृत तिमाही रिपोर्ट शुक्रवार दोपहर से पहले जमा कर दें।",
-          "translation": "कार्यालय",
-          "question": "रिपोर्ट कब तक जमा करनी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया",
+          "translation": "Our team successfully completed the client presentation this morning",
+          "question": "What did the speaker say?",
           "options": [
-            "शुक्रवार दोपहर से पहले",
-            "अगले महीने",
-            "रविवार रात",
-            "कल सुबह"
+            "The flight will depart on time from gate five",
+            "We planted colorful flowering plants in our community garden",
+            "Our team successfully completed the client presentation this morning",
+            "He purchased fresh vegetables and fruits from local market"
           ],
-          "answerIndex": 0,
-          "explanation": "शुक्रवार दोपहर की समय सीमा है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Our team successfully completed the client presentation this morning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस विभिन्न देशों के वैज्ञानिकों ने भाग लिया।",
-          "translation": "सम्मेलन",
-          "question": "कितने देशों के प्रतिनिधि थे?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है",
+          "translation": "Digital banking makes money transfers fast, secure, and convenient",
+          "question": "What did the speaker say?",
           "options": [
-            "40 देश",
-            "14 देश",
-            "4 देश",
-            "100 देश"
+            "She organized her study notes neatly for the upcoming exam",
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "Clear instructions prevent costly mistakes during complex project execution"
           ],
-          "answerIndex": 0,
-          "explanation": "सम्मेलन में चालीस देश उपस्थित थे।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Digital banking makes money transfers fast, secure, and convenient'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "शहर के योजनाकार प्रदूषण घटाने के लिए पैदल मार्गों का निर्माण कर रहे हैं।",
-          "translation": "नगर योजना",
-          "question": "पैदल मार्ग क्यों बनाए जा रहे हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे",
+          "translation": "He purchased fresh vegetables and fruits from local market",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रदूषण व जाम घटाने हेतु",
-            "गाड़ियां बेचने हेतु",
-            "पार्क हटाने हेतु",
-            "बसें बंद करने हेतु"
+            "The flight will depart on time from gate five",
+            "We planted colorful flowering plants in our community garden",
+            "He purchased fresh vegetables and fruits from local market",
+            "They celebrated their grand anniversary with close friends and family"
           ],
-          "answerIndex": 0,
-          "explanation": "पैदल मार्ग से जाम कम होता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'He purchased fresh vegetables and fruits from local market'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हरित ऊर्जा परियोजनाओं ने लाखों युवाओं के लिए नए रोजगार सृजित किए हैं।",
-          "translation": "रोजगार",
-          "question": "रोजगार किसने सृजित किए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है",
+          "translation": "Regular physical exercise reduces stress and boosts daily energy",
+          "question": "What did the speaker say?",
           "options": [
-            "हरित ऊर्जा परियोजनाओं ने",
-            "कोयला खदानों ने",
-            "कागज़ मिलों ने",
-            "होटलों ने"
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "Clear instructions prevent costly mistakes during complex project execution",
+            "Could you please direct me to the nearest pharmacy?",
+            "She organized her study notes neatly for the upcoming exam"
           ],
           "answerIndex": 0,
-          "explanation": "ग्रीन एनर्जी में नए रोजगार बने हैं।"
+          "explanation": "The spoken sentence means: 'Regular physical exercise reduces stress and boosts daily energy'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सार्थक वाद-विवाद में हिस्सा लेने से बोलने का आत्मविश्वास बढ़ता है।",
-          "translation": "शिक्षा",
-          "question": "बोलने का आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा",
+          "translation": "The flight will depart on time from gate five",
+          "question": "What did the speaker say?",
           "options": [
-            "सार्थक वाद-विवाद से",
-            "चुप रहने से",
-            "रटने से",
-            "अकेले रहने से"
+            "The flight will depart on time from gate five",
+            "We planted colorful flowering plants in our community garden",
+            "They celebrated their grand anniversary with close friends and family",
+            "Our team successfully completed the client presentation this morning"
           ],
           "answerIndex": 0,
-          "explanation": "वाद-विवाद से विचार निखरते हैं।"
+          "explanation": "The spoken sentence means: 'The flight will depart on time from gate five'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ईमानदार व्यापारिक नीतियों से ग्राहकों और संस्था के बीच अटूट विश्वास बनता है।",
-          "translation": "व्यापार",
-          "question": "विश्वास किससे बनता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए",
+          "translation": "She organized her study notes neatly for the upcoming exam",
+          "question": "What did the speaker say?",
           "options": [
-            "ईमानदार व्यापारिक नीतियों से",
-            "झूठे विज्ञापनों से",
-            "अधिक दामों से",
-            "दबाव से"
+            "Clear instructions prevent costly mistakes during complex project execution",
+            "She organized her study notes neatly for the upcoming exam",
+            "Could you please direct me to the nearest pharmacy?",
+            "Digital banking makes money transfers fast, secure, and convenient"
           ],
-          "answerIndex": 0,
-          "explanation": "ईमानदारी से विश्वास बनता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'She organized her study notes neatly for the upcoming exam'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री संरक्षण कार्यक्रम दुर्लभ समुद्री जीवों और उनके आवास की रक्षा करते हैं।",
-          "translation": "संरक्षण",
-          "question": "संरक्षण कार्यक्रम किसकी रक्षा करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए",
+          "translation": "We planted colorful flowering plants in our community garden",
+          "question": "What did the speaker say?",
           "options": [
-            "समुद्री जीवों और आवास की",
-            "रेगिस्तान की",
-            "पहाड़ों की",
-            "उपग्रहों की"
+            "He purchased fresh vegetables and fruits from local market",
+            "They celebrated their grand anniversary with close friends and family",
+            "Our team successfully completed the client presentation this morning",
+            "We planted colorful flowering plants in our community garden"
           ],
-          "answerIndex": 0,
-          "explanation": "समुद्री जीवन की रक्षा होती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'We planted colorful flowering plants in our community garden'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सचेत ध्यान से मानसिक तनाव घटता है और भावनात्मक संतुलन सुधरता है।",
-          "translation": "ध्यान",
-          "question": "ध्यान से क्या घटता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है",
+          "translation": "Clear instructions prevent costly mistakes during complex project execution",
+          "question": "What did the speaker say?",
           "options": [
-            "मानसिक तनाव",
-            "बुद्धिमानी",
-            "याददाश्त",
-            "कद"
+            "Regular physical exercise reduces stress and boosts daily energy",
+            "Clear instructions prevent costly mistakes during complex project execution",
+            "Digital banking makes money transfers fast, secure, and convenient",
+            "Could you please direct me to the nearest pharmacy?"
           ],
-          "answerIndex": 0,
-          "explanation": "ध्यान से तनाव कम होता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Clear instructions prevent costly mistakes during complex project execution'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जीवनभर नया सीखते रहने से व्यक्ति बदलते समय के साथ कदम मिला पाता है।",
-          "translation": "कैरियर",
-          "question": "नया सीखने से क्या लाभ है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई",
+          "translation": "They celebrated their grand anniversary with close friends and family",
+          "question": "What did the speaker say?",
           "options": [
-            "बदलते समय से कदम मिलाना",
-            "रुक जाना",
-            "तकनीक से डरना",
-            "काम छोड़ना"
+            "The flight will depart on time from gate five",
+            "Our team successfully completed the client presentation this morning",
+            "They celebrated their grand anniversary with close friends and family",
+            "He purchased fresh vegetables and fruits from local market"
           ],
-          "answerIndex": 0,
-          "explanation": "सतत अध्ययन प्रगति दिलाता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'They celebrated their grand anniversary with close friends and family'."
         }
       ],
       "3": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य वक्ता ने कृत्रिम बुद्धिमत्ता की अपार संभावनाओं पर विस्तार से प्रकाश डाला।",
-          "translation": "सम्मेलन",
-          "question": "मुख्य वक्ता का विषय क्या था?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है",
+          "translation": "In my opinion, sustainable innovation is essential for climate recovery",
+          "question": "What did the speaker say?",
           "options": [
-            "कृत्रिम बुद्धिमत्ता की संभावनाएं",
-            "कागज़ का इतिहास",
-            "गाड़ी की मरम्मत",
-            "प्राचीन इमारतें"
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Consistent practice bridges the distance between ambitious dreams and achievements"
           ],
           "answerIndex": 0,
-          "explanation": "एआई की संभावनाओं पर चर्चा थी।"
+          "explanation": "The spoken sentence means: 'In my opinion, sustainable innovation is essential for climate recovery'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी विस्तृत तिमाही रिपोर्ट शुक्रवार दोपहर से पहले जमा कर दें।",
-          "translation": "कार्यालय",
-          "question": "रिपोर्ट कब तक जमा करनी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं",
+          "translation": "Constructive feedback helps individuals refine their professional workplace skills",
+          "question": "What did the speaker say?",
           "options": [
-            "शुक्रवार दोपहर से पहले",
-            "अगले महीने",
-            "रविवार रात",
-            "कल सुबह"
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries"
           ],
-          "answerIndex": 0,
-          "explanation": "शुक्रवार दोपहर की समय सीमा है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Constructive feedback helps individuals refine their professional workplace skills'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस विभिन्न देशों के वैज्ञानिकों ने भाग लिया।",
-          "translation": "सम्मेलन",
-          "question": "कितने देशों के प्रतिनिधि थे?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है",
+          "translation": "Consistent practice bridges the distance between ambitious dreams and achievements",
+          "question": "What did the speaker say?",
           "options": [
-            "40 देश",
-            "14 देश",
-            "4 देश",
-            "100 देश"
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "Consistent practice bridges the distance between ambitious dreams and achievements"
           ],
-          "answerIndex": 0,
-          "explanation": "सम्मेलन में चालीस देश उपस्थित थे।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Consistent practice bridges the distance between ambitious dreams and achievements'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "शहर के योजनाकार प्रदूषण घटाने के लिए पैदल मार्गों का निर्माण कर रहे हैं।",
-          "translation": "नगर योजना",
-          "question": "पैदल मार्ग क्यों बनाए जा रहे हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है",
+          "translation": "Protecting biodiversity is vital for sustaining ecological balance globally",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रदूषण व जाम घटाने हेतु",
-            "गाड़ियां बेचने हेतु",
-            "पार्क हटाने हेतु",
-            "बसें बंद करने हेतु"
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+            "Protecting biodiversity is vital for sustaining ecological balance globally"
           ],
-          "answerIndex": 0,
-          "explanation": "पैदल मार्ग से जाम कम होता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Protecting biodiversity is vital for sustaining ecological balance globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हरित ऊर्जा परियोजनाओं ने लाखों युवाओं के लिए नए रोजगार सृजित किए हैं।",
-          "translation": "रोजगार",
-          "question": "रोजगार किसने सृजित किए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए",
+          "translation": "Technological advancements must always prioritize ethical human dignity and values",
+          "question": "What did the speaker say?",
           "options": [
-            "हरित ऊर्जा परियोजनाओं ने",
-            "कोयला खदानों ने",
-            "कागज़ मिलों ने",
-            "होटलों ने"
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies"
           ],
-          "answerIndex": 0,
-          "explanation": "ग्रीन एनर्जी में नए रोजगार बने हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Technological advancements must always prioritize ethical human dignity and values'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सार्थक वाद-विवाद में हिस्सा लेने से बोलने का आत्मविश्वास बढ़ता है।",
-          "translation": "शिक्षा",
-          "question": "बोलने का आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है",
+          "translation": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
+          "question": "What did the speaker say?",
           "options": [
-            "सार्थक वाद-विवाद से",
-            "चुप रहने से",
-            "रटने से",
-            "अकेले रहने से"
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries"
           ],
-          "answerIndex": 0,
-          "explanation": "वाद-विवाद से विचार निखरते हैं।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'A curious mind continuously discovers knowledge beyond conventional classroom boundaries'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ईमानदार व्यापारिक नीतियों से ग्राहकों और संस्था के बीच अटूट विश्वास बनता है।",
-          "translation": "व्यापार",
-          "question": "विश्वास किससे बनता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है",
+          "translation": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+          "question": "What did the speaker say?",
           "options": [
-            "ईमानदार व्यापारिक नीतियों से",
-            "झूठे विज्ञापनों से",
-            "अधिक दामों से",
-            "दबाव से"
+            "In my opinion, sustainable innovation is essential for climate recovery",
+            "Effective leadership inspires confidence and fosters strong teamwork across organizations",
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "Consistent practice bridges the distance between ambitious dreams and achievements"
           ],
-          "answerIndex": 0,
-          "explanation": "ईमानदारी से विश्वास बनता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Effective leadership inspires confidence and fosters strong teamwork across organizations'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री संरक्षण कार्यक्रम दुर्लभ समुद्री जीवों और उनके आवास की रक्षा करते हैं।",
-          "translation": "संरक्षण",
-          "question": "संरक्षण कार्यक्रम किसकी रक्षा करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है",
+          "translation": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+          "question": "What did the speaker say?",
           "options": [
-            "समुद्री जीवों और आवास की",
-            "रेगिस्तान की",
-            "पहाड़ों की",
-            "उपग्रहों की"
+            "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "Protecting biodiversity is vital for sustaining ecological balance globally"
           ],
           "answerIndex": 0,
-          "explanation": "समुद्री जीवन की रक्षा होती है।"
+          "explanation": "The spoken sentence means: 'Mindful reflection promotes emotional intelligence and lasting daily mental calm'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सचेत ध्यान से मानसिक तनाव घटता है और भावनात्मक संतुलन सुधरता है।",
-          "translation": "ध्यान",
-          "question": "ध्यान से क्या घटता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है",
+          "translation": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+          "question": "What did the speaker say?",
           "options": [
-            "मानसिक तनाव",
-            "बुद्धिमानी",
-            "याददाश्त",
-            "कद"
+            "Global connectivity enables meaningful cross-cultural exchange between distant societies",
+            "Technological advancements must always prioritize ethical human dignity and values",
+            "Consistent practice bridges the distance between ambitious dreams and achievements",
+            "In my opinion, sustainable innovation is essential for climate recovery"
           ],
           "answerIndex": 0,
-          "explanation": "ध्यान से तनाव कम होता है।"
+          "explanation": "The spoken sentence means: 'Global connectivity enables meaningful cross-cultural exchange between distant societies'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जीवनभर नया सीखते रहने से व्यक्ति बदलते समय के साथ कदम मिला पाता है।",
-          "translation": "कैरियर",
-          "question": "नया सीखने से क्या लाभ है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है",
+          "translation": "Organic agriculture preserves fertile soil and conserves vital water resources",
+          "question": "What did the speaker say?",
           "options": [
-            "बदलते समय से कदम मिलाना",
-            "रुक जाना",
-            "तकनीक से डरना",
-            "काम छोड़ना"
+            "Organic agriculture preserves fertile soil and conserves vital water resources",
+            "Protecting biodiversity is vital for sustaining ecological balance globally",
+            "Constructive feedback helps individuals refine their professional workplace skills",
+            "A curious mind continuously discovers knowledge beyond conventional classroom boundaries"
           ],
           "answerIndex": 0,
-          "explanation": "सतत अध्ययन प्रगति दिलाता है।"
+          "explanation": "The spoken sentence means: 'Organic agriculture preserves fertile soil and conserves vital water resources'."
         }
       ],
       "4": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य वक्ता ने कृत्रिम बुद्धिमत्ता की अपार संभावनाओं पर विस्तार से प्रकाश डाला।",
-          "translation": "सम्मेलन",
-          "question": "मुख्य वक्ता का विषय क्या था?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं",
+          "translation": "Renewable energy initiatives create thousands of green jobs for young professionals",
+          "question": "What did the speaker say?",
           "options": [
-            "कृत्रिम बुद्धिमत्ता की संभावनाएं",
-            "कागज़ का इतिहास",
-            "गाड़ी की मरम्मत",
-            "प्राचीन इमारतें"
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Renewable energy initiatives create thousands of green jobs for young professionals"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई की संभावनाओं पर चर्चा थी।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Renewable energy initiatives create thousands of green jobs for young professionals'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी विस्तृत तिमाही रिपोर्ट शुक्रवार दोपहर से पहले जमा कर दें।",
-          "translation": "कार्यालय",
-          "question": "रिपोर्ट कब तक जमा करनी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं",
+          "translation": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+          "question": "What did the speaker say?",
           "options": [
-            "शुक्रवार दोपहर से पहले",
-            "अगले महीने",
-            "रविवार रात",
-            "कल सुबह"
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Digital literacy empowers rural communities to access essential healthcare and government services"
           ],
-          "answerIndex": 0,
-          "explanation": "शुक्रवार दोपहर की समय सीमा है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Urban planners design walkable neighborhoods to reduce traffic congestion and pollution'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस विभिन्न देशों के वैज्ञानिकों ने भाग लिया।",
-          "translation": "सम्मेलन",
-          "question": "कितने देशों के प्रतिनिधि थे?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है",
+          "translation": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+          "question": "What did the speaker say?",
           "options": [
-            "40 देश",
-            "14 देश",
-            "4 देश",
-            "100 देश"
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers"
           ],
-          "answerIndex": 0,
-          "explanation": "सम्मेलन में चालीस देश उपस्थित थे।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "शहर के योजनाकार प्रदूषण घटाने के लिए पैदल मार्गों का निर्माण कर रहे हैं।",
-          "translation": "नगर योजना",
-          "question": "पैदल मार्ग क्यों बनाए जा रहे हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है",
+          "translation": "Digital literacy empowers rural communities to access essential healthcare and government services",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रदूषण व जाम घटाने हेतु",
-            "गाड़ियां बेचने हेतु",
-            "पार्क हटाने हेतु",
-            "बसें बंद करने हेतु"
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Digital literacy empowers rural communities to access essential healthcare and government services"
           ],
-          "answerIndex": 0,
-          "explanation": "पैदल मार्ग से जाम कम होता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Digital literacy empowers rural communities to access essential healthcare and government services'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हरित ऊर्जा परियोजनाओं ने लाखों युवाओं के लिए नए रोजगार सृजित किए हैं।",
-          "translation": "रोजगार",
-          "question": "रोजगार किसने सृजित किए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की",
+          "translation": "The international symposium brought together researchers from forty nations to exchange ideas",
+          "question": "What did the speaker say?",
           "options": [
-            "हरित ऊर्जा परियोजनाओं ने",
-            "कोयला खदानों ने",
-            "कागज़ मिलों ने",
-            "होटलों ने"
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers"
           ],
-          "answerIndex": 0,
-          "explanation": "ग्रीन एनर्जी में नए रोजगार बने हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'The international symposium brought together researchers from forty nations to exchange ideas'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सार्थक वाद-विवाद में हिस्सा लेने से बोलने का आत्मविश्वास बढ़ता है।",
-          "translation": "शिक्षा",
-          "question": "बोलने का आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है",
+          "translation": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+          "question": "What did the speaker say?",
           "options": [
-            "सार्थक वाद-विवाद से",
-            "चुप रहने से",
-            "रटने से",
-            "अकेले रहने से"
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries"
           ],
           "answerIndex": 0,
-          "explanation": "वाद-विवाद से विचार निखरते हैं।"
+          "explanation": "The spoken sentence means: 'Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ईमानदार व्यापारिक नीतियों से ग्राहकों और संस्था के बीच अटूट विश्वास बनता है।",
-          "translation": "व्यापार",
-          "question": "विश्वास किससे बनता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है",
+          "translation": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+          "question": "What did the speaker say?",
           "options": [
-            "ईमानदार व्यापारिक नीतियों से",
-            "झूठे विज्ञापनों से",
-            "अधिक दामों से",
-            "दबाव से"
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
+            "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers"
           ],
-          "answerIndex": 0,
-          "explanation": "ईमानदारी से विश्वास बनता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Protecting endangered marine life preserves fragile oceanic ecosystems for future generations'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री संरक्षण कार्यक्रम दुर्लभ समुद्री जीवों और उनके आवास की रक्षा करते हैं।",
-          "translation": "संरक्षण",
-          "question": "संरक्षण कार्यक्रम किसकी रक्षा करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है",
+          "translation": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+          "question": "What did the speaker say?",
           "options": [
-            "समुद्री जीवों और आवास की",
-            "रेगिस्तान की",
-            "पहाड़ों की",
-            "उपग्रहों की"
+            "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Digital literacy empowers rural communities to access essential healthcare and government services"
           ],
           "answerIndex": 0,
-          "explanation": "समुद्री जीवन की रक्षा होती है।"
+          "explanation": "The spoken sentence means: 'Lifelong learning empowers professionals to adapt to fast-evolving global technological industries'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सचेत ध्यान से मानसिक तनाव घटता है और भावनात्मक संतुलन सुधरता है।",
-          "translation": "ध्यान",
-          "question": "ध्यान से क्या घटता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है",
+          "translation": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+          "question": "What did the speaker say?",
           "options": [
-            "मानसिक तनाव",
-            "बुद्धिमानी",
-            "याददाश्त",
-            "कद"
+            "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
+            "The international symposium brought together researchers from forty nations to exchange ideas",
+            "Renewable energy initiatives create thousands of green jobs for young professionals",
+            "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue"
           ],
           "answerIndex": 0,
-          "explanation": "ध्यान से तनाव कम होता है।"
+          "explanation": "The spoken sentence means: 'Ethical decision-making builds enduring trust between modern organizations and conscious consumers'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जीवनभर नया सीखते रहने से व्यक्ति बदलते समय के साथ कदम मिला पाता है।",
-          "translation": "कैरियर",
-          "question": "नया सीखने से क्या लाभ है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है",
+          "translation": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+          "question": "What did the speaker say?",
           "options": [
-            "बदलते समय से कदम मिलाना",
-            "रुक जाना",
-            "तकनीक से डरना",
-            "काम छोड़ना"
+            "Digital literacy empowers rural communities to access essential healthcare and government services",
+            "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
+            "Active participation in public debates sharpens persuasive speaking and logical reasoning",
+            "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution"
           ],
-          "answerIndex": 0,
-          "explanation": "सतत अध्ययन प्रगति दिलाता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Active participation in public debates sharpens persuasive speaking and logical reasoning'."
         }
       ],
       "5": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य वक्ता ने कृत्रिम बुद्धिमत्ता की अपार संभावनाओं पर विस्तार से प्रकाश डाला।",
-          "translation": "सम्मेलन",
-          "question": "मुख्य वक्ता का विषय क्या था?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है",
+          "translation": "Transformative education equips future generations to navigate complex ethical societal challenges",
+          "question": "What did the speaker say?",
           "options": [
-            "कृत्रिम बुद्धिमत्ता की संभावनाएं",
-            "कागज़ का इतिहास",
-            "गाड़ी की मरम्मत",
-            "प्राचीन इमारतें"
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Transformative education equips future generations to navigate complex ethical societal challenges",
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई की संभावनाओं पर चर्चा थी।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Transformative education equips future generations to navigate complex ethical societal challenges'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "कृपया अपनी विस्तृत तिमाही रिपोर्ट शुक्रवार दोपहर से पहले जमा कर दें।",
-          "translation": "कार्यालय",
-          "question": "रिपोर्ट कब तक जमा करनी है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है",
+          "translation": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+          "question": "What did the speaker say?",
           "options": [
-            "शुक्रवार दोपहर से पहले",
-            "अगले महीने",
-            "रविवार रात",
-            "कल सुबह"
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom"
           ],
-          "answerIndex": 0,
-          "explanation": "शुक्रवार दोपहर की समय सीमा है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस विभिन्न देशों के वैज्ञानिकों ने भाग लिया।",
-          "translation": "सम्मेलन",
-          "question": "कितने देशों के प्रतिनिधि थे?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है",
+          "translation": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+          "question": "What did the speaker say?",
           "options": [
-            "40 देश",
-            "14 देश",
-            "4 देश",
-            "100 देश"
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises"
           ],
-          "answerIndex": 0,
-          "explanation": "सम्मेलन में चालीस देश उपस्थित थे।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "शहर के योजनाकार प्रदूषण घटाने के लिए पैदल मार्गों का निर्माण कर रहे हैं।",
-          "translation": "नगर योजना",
-          "question": "पैदल मार्ग क्यों बनाए जा रहे हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं",
+          "translation": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रदूषण व जाम घटाने हेतु",
-            "गाड़ियां बेचने हेतु",
-            "पार्क हटाने हेतु",
-            "बसें बंद करने हेतु"
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes"
           ],
-          "answerIndex": 0,
-          "explanation": "पैदल मार्ग से जाम कम होता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "हरित ऊर्जा परियोजनाओं ने लाखों युवाओं के लिए नए रोजगार सृजित किए हैं।",
-          "translation": "रोजगार",
-          "question": "रोजगार किसने सृजित किए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है",
+          "translation": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+          "question": "What did the speaker say?",
           "options": [
-            "हरित ऊर्जा परियोजनाओं ने",
-            "कोयला खदानों ने",
-            "कागज़ मिलों ने",
-            "होटलों ने"
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Transformative education equips future generations to navigate complex ethical societal challenges"
           ],
-          "answerIndex": 0,
-          "explanation": "ग्रीन एनर्जी में नए रोजगार बने हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Transparent governance fosters profound public trust and accelerates socio-economic community development'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सार्थक वाद-विवाद में हिस्सा लेने से बोलने का आत्मविश्वास बढ़ता है।",
-          "translation": "शिक्षा",
-          "question": "बोलने का आत्मविश्वास किससे बढ़ता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं",
+          "translation": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+          "question": "What did the speaker say?",
           "options": [
-            "सार्थक वाद-विवाद से",
-            "चुप रहने से",
-            "रटने से",
-            "अकेले रहने से"
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally"
           ],
-          "answerIndex": 0,
-          "explanation": "वाद-विवाद से विचार निखरते हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "ईमानदार व्यापारिक नीतियों से ग्राहकों और संस्था के बीच अटूट विश्वास बनता है।",
-          "translation": "व्यापार",
-          "question": "विश्वास किससे बनता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है",
+          "translation": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
+          "question": "What did the speaker say?",
           "options": [
-            "ईमानदार व्यापारिक नीतियों से",
-            "झूठे विज्ञापनों से",
-            "अधिक दामों से",
-            "दबाव से"
+            "Transformative education equips future generations to navigate complex ethical societal challenges",
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity"
           ],
-          "answerIndex": 0,
-          "explanation": "ईमानदारी से विश्वास बनता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री संरक्षण कार्यक्रम दुर्लभ समुद्री जीवों और उनके आवास की रक्षा करते हैं।",
-          "translation": "संरक्षण",
-          "question": "संरक्षण कार्यक्रम किसकी रक्षा करते हैं?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए",
+          "translation": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+          "question": "What did the speaker say?",
           "options": [
-            "समुद्री जीवों और आवास की",
-            "रेगिस्तान की",
-            "पहाड़ों की",
-            "उपग्रहों की"
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
+            "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes"
           ],
-          "answerIndex": 0,
-          "explanation": "समुद्री जीवन की रक्षा होती है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "सचेत ध्यान से मानसिक तनाव घटता है और भावनात्मक संतुलन सुधरता है।",
-          "translation": "ध्यान",
-          "question": "ध्यान से क्या घटता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है",
+          "translation": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+          "question": "What did the speaker say?",
           "options": [
-            "मानसिक तनाव",
-            "बुद्धिमानी",
-            "याददाश्त",
-            "कद"
+            "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
+            "Transparent governance fosters profound public trust and accelerates socio-economic community development",
+            "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
+            "Transformative education equips future generations to navigate complex ethical societal challenges"
           ],
-          "answerIndex": 0,
-          "explanation": "ध्यान से तनाव कम होता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Access to affordable quality healthcare remains a fundamental universal human right worldwide'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जीवनभर नया सीखते रहने से व्यक्ति बदलते समय के साथ कदम मिला पाता है।",
-          "translation": "कैरियर",
-          "question": "नया सीखने से क्या लाभ है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है",
+          "translation": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+          "question": "What did the speaker say?",
           "options": [
-            "बदलते समय से कदम मिलाना",
-            "रुक जाना",
-            "तकनीक से डरना",
-            "काम छोड़ना"
+            "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
+            "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
+            "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
+            "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom"
           ],
-          "answerIndex": 0,
-          "explanation": "सतत अध्ययन प्रगति दिलाता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes'."
         }
       ]
     },
@@ -5752,461 +5820,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।",
-          "translation": "Expressing viewpoint",
+          "content": "कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें",
+          "translation": "Please submit your completed project report on time",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।'"
+          "explanation": "Practice speaking: 'कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?",
-          "translation": "Academic inquiry",
+          "content": "ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है",
+          "translation": "Reading informative books enhances vocabulary and mental focus",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?'"
+          "explanation": "Practice speaking: 'ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।",
-          "translation": "Environmental advocacy",
+          "content": "कल हम सबने मिलकर एक सुखद रेल यात्रा की",
+          "translation": "We enjoyed a wonderful train journey together yesterday",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।'"
+          "explanation": "Practice speaking: 'कल हम सबने मिलकर एक सुखद रेल यात्रा की'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।",
-          "translation": "Teamwork perspective",
+          "content": "हर्बल चाय पीने से काम के बाद थकान दूर होती है",
+          "translation": "Drinking herbal tea relieves stress after work",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।'"
+          "explanation": "Practice speaking: 'हर्बल चाय पीने से काम के बाद थकान दूर होती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।",
-          "translation": "Workplace proposal",
+          "content": "सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है",
+          "translation": "Public transportation helps reduce traffic congestion in cities",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।'"
+          "explanation": "Practice speaking: 'सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।",
-          "translation": "Career viewpoint",
+          "content": "वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है",
+          "translation": "She manages her daily schedule with great discipline",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।'"
+          "explanation": "Practice speaking: 'वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।",
-          "translation": "Wellness opinion",
+          "content": "संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है",
+          "translation": "Eating balanced meals strengthens your natural immune system",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।'"
+          "explanation": "Practice speaking: 'संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।",
-          "translation": "Strategic management",
+          "content": "आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें",
+          "translation": "Let us collaborate closely to achieve our goal",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।'"
+          "explanation": "Practice speaking: 'आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।",
-          "translation": "Organizational insight",
+          "content": "बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है",
+          "translation": "Saving electricity protects environment and reduces utility bills",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।'"
+          "explanation": "Practice speaking: 'बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।",
-          "translation": "Philosophy on education",
+          "content": "दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है",
+          "translation": "Active listening is the key to meaningful conversations",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।'"
+          "explanation": "Practice speaking: 'दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है'."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।",
-          "translation": "Expressing viewpoint",
+          "content": "क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?",
+          "translation": "Could you please direct me to the nearest pharmacy?",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।'"
+          "explanation": "Practice speaking: 'क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?",
-          "translation": "Academic inquiry",
+          "content": "हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया",
+          "translation": "Our team successfully completed the client presentation this morning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?'"
+          "explanation": "Practice speaking: 'हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।",
-          "translation": "Environmental advocacy",
+          "content": "डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है",
+          "translation": "Digital banking makes money transfers fast, secure, and convenient",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।'"
+          "explanation": "Practice speaking: 'डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।",
-          "translation": "Teamwork perspective",
+          "content": "उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे",
+          "translation": "He purchased fresh vegetables and fruits from local market",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।'"
+          "explanation": "Practice speaking: 'उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।",
-          "translation": "Workplace proposal",
+          "content": "नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है",
+          "translation": "Regular physical exercise reduces stress and boosts daily energy",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।'"
+          "explanation": "Practice speaking: 'नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।",
-          "translation": "Career viewpoint",
+          "content": "विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा",
+          "translation": "The flight will depart on time from gate five",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।'"
+          "explanation": "Practice speaking: 'विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।",
-          "translation": "Wellness opinion",
+          "content": "उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए",
+          "translation": "She organized her study notes neatly for the upcoming exam",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।'"
+          "explanation": "Practice speaking: 'उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।",
-          "translation": "Strategic management",
+          "content": "हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए",
+          "translation": "We planted colorful flowering plants in our community garden",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।'"
+          "explanation": "Practice speaking: 'हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।",
-          "translation": "Organizational insight",
+          "content": "स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है",
+          "translation": "Clear instructions prevent costly mistakes during complex project execution",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।'"
+          "explanation": "Practice speaking: 'स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।",
-          "translation": "Philosophy on education",
+          "content": "उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई",
+          "translation": "They celebrated their grand anniversary with close friends and family",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।'"
+          "explanation": "Practice speaking: 'उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई'."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।",
-          "translation": "Expressing viewpoint",
+          "content": "मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है",
+          "translation": "In my opinion, sustainable innovation is essential for climate recovery",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।'"
+          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?",
-          "translation": "Academic inquiry",
+          "content": "सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं",
+          "translation": "Constructive feedback helps individuals refine their professional workplace skills",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?'"
+          "explanation": "Practice speaking: 'सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।",
-          "translation": "Environmental advocacy",
+          "content": "निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है",
+          "translation": "Consistent practice bridges the distance between ambitious dreams and achievements",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।'"
+          "explanation": "Practice speaking: 'निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।",
-          "translation": "Teamwork perspective",
+          "content": "जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है",
+          "translation": "Protecting biodiversity is vital for sustaining ecological balance globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।'"
+          "explanation": "Practice speaking: 'जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।",
-          "translation": "Workplace proposal",
+          "content": "तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए",
+          "translation": "Technological advancements must always prioritize ethical human dignity and values",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।'"
+          "explanation": "Practice speaking: 'तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।",
-          "translation": "Career viewpoint",
+          "content": "जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है",
+          "translation": "A curious mind continuously discovers knowledge beyond conventional classroom boundaries",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।'"
+          "explanation": "Practice speaking: 'जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।",
-          "translation": "Wellness opinion",
+          "content": "उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है",
+          "translation": "Effective leadership inspires confidence and fosters strong teamwork across organizations",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।'"
+          "explanation": "Practice speaking: 'उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।",
-          "translation": "Strategic management",
+          "content": "आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है",
+          "translation": "Mindful reflection promotes emotional intelligence and lasting daily mental calm",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।'"
+          "explanation": "Practice speaking: 'आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।",
-          "translation": "Organizational insight",
+          "content": "वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है",
+          "translation": "Global connectivity enables meaningful cross-cultural exchange between distant societies",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।'"
+          "explanation": "Practice speaking: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।",
-          "translation": "Philosophy on education",
+          "content": "प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है",
+          "translation": "Organic agriculture preserves fertile soil and conserves vital water resources",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।'"
+          "explanation": "Practice speaking: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है'."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।",
-          "translation": "Expressing viewpoint",
+          "content": "नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं",
+          "translation": "Renewable energy initiatives create thousands of green jobs for young professionals",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।'"
+          "explanation": "Practice speaking: 'नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?",
-          "translation": "Academic inquiry",
+          "content": "शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं",
+          "translation": "Urban planners design walkable neighborhoods to reduce traffic congestion and pollution",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?'"
+          "explanation": "Practice speaking: 'शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।",
-          "translation": "Environmental advocacy",
+          "content": "काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है",
+          "translation": "Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।'"
+          "explanation": "Practice speaking: 'काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।",
-          "translation": "Teamwork perspective",
+          "content": "डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है",
+          "translation": "Digital literacy empowers rural communities to access essential healthcare and government services",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।'"
+          "explanation": "Practice speaking: 'डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।",
-          "translation": "Workplace proposal",
+          "content": "अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की",
+          "translation": "The international symposium brought together researchers from forty nations to exchange ideas",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।'"
+          "explanation": "Practice speaking: 'अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।",
-          "translation": "Career viewpoint",
+          "content": "स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है",
+          "translation": "Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।'"
+          "explanation": "Practice speaking: 'स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।",
-          "translation": "Wellness opinion",
+          "content": "समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है",
+          "translation": "Protecting endangered marine life preserves fragile oceanic ecosystems for future generations",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।'"
+          "explanation": "Practice speaking: 'समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।",
-          "translation": "Strategic management",
+          "content": "सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है",
+          "translation": "Lifelong learning empowers professionals to adapt to fast-evolving global technological industries",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।'"
+          "explanation": "Practice speaking: 'सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।",
-          "translation": "Organizational insight",
+          "content": "नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है",
+          "translation": "Ethical decision-making builds enduring trust between modern organizations and conscious consumers",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।'"
+          "explanation": "Practice speaking: 'नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।",
-          "translation": "Philosophy on education",
+          "content": "सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है",
+          "translation": "Active participation in public debates sharpens persuasive speaking and logical reasoning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।'"
+          "explanation": "Practice speaking: 'सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है'."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।",
-          "translation": "Expressing viewpoint",
+          "content": "मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है",
+          "translation": "Transformative education equips future generations to navigate complex ethical societal challenges",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मेरे विचार में पर्यावरण की सुरक्षा हमारी सबसे पहली प्राथमिकता होनी चाहिए।'"
+          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?",
-          "translation": "Academic inquiry",
+          "content": "स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है",
+          "translation": "Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'क्या आप इस शोध कार्य की मुख्य कार्यप्रणाली पर विस्तार से बता सकते हैं?'"
+          "explanation": "Practice speaking: 'स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।",
-          "translation": "Environmental advocacy",
+          "content": "विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है",
+          "translation": "Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'धरती को बचाने के लिए हमें स्वच्छ ऊर्जा विकल्पों को अपनाना होगा।'"
+          "explanation": "Practice speaking: 'विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।",
-          "translation": "Teamwork perspective",
+          "content": "प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं",
+          "translation": "Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विविध टीम का आपसी तालमेल हमेशा उत्कृष्ट परिणाम प्रदान करता है।'"
+          "explanation": "Practice speaking: 'प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।",
-          "translation": "Workplace proposal",
+          "content": "पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है",
+          "translation": "Transparent governance fosters profound public trust and accelerates socio-economic community development",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कार्यक्षमता बढ़ाने के लिए मैं एक सुव्यवस्थित योजना का प्रस्ताव रखना चाहता हूँ।'"
+          "explanation": "Practice speaking: 'पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।",
-          "translation": "Career viewpoint",
+          "content": "भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं",
+          "translation": "Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'निरंतर व्यावसायिक विकास कैरियर की उन्नति को सुगम बनाता है।'"
+          "explanation": "Practice speaking: 'भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।",
-          "translation": "Wellness opinion",
+          "content": "टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है",
+          "translation": "Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सकारात्मक सोच और तनाव प्रबंधन दैनिक उत्पादकता को बढ़ाते हैं।'"
+          "explanation": "Practice speaking: 'टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।",
-          "translation": "Strategic management",
+          "content": "कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए",
+          "translation": "Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'बड़ा निवेश करने से पहले सभी संभावित जोखिमों का मूल्यांकन आवश्यक है।'"
+          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।",
-          "translation": "Organizational insight",
+          "content": "सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है",
+          "translation": "Access to affordable quality healthcare remains a fundamental universal human right worldwide",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'स्पष्ट संवाद सभी प्रकार की गलतफहमियों को दूर कर देता है।'"
+          "explanation": "Practice speaking: 'सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।",
-          "translation": "Philosophy on education",
+          "content": "गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है",
+          "translation": "Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सतत शिक्षा हमें इस गतिशील संसार में प्रासंगिक बनाए रखती है।'"
+          "explanation": "Practice speaking: 'गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है'."
         }
       ]
     },
@@ -6214,461 +6282,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पारदर्शिता",
-          "translation": "paar-dur-SHEEL-taa (Transparency / Openness)",
+          "content": "कृपया",
+          "translation": "From: 'कृपया अपनी पूरी परियोजना रिपोर्ट समय पर जमा करें' (Please submit your completed project report on time)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: paar-dur-SHEEL-taa (Transparency / Openness)"
+          "explanation": "Practice pronouncing: 'कृपया' (Please submit your completed project report on time)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूतिपूर्ण",
-          "translation": "suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)",
+          "content": "ज्ञानवर्धक",
+          "translation": "From: 'ज्ञानवर्धक पुस्तकें पढ़ने से शब्दावली और एकाग्रता बढ़ती है' (Reading informative books enhances vocabulary and mental focus)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)"
+          "explanation": "Practice pronouncing: 'ज्ञानवर्धक' (Reading informative books enhances vocabulary and mental focus)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्तरदायित्व",
-          "translation": "oot-tur-DAA-yit-vuh (Responsibility / Accountability)",
+          "content": "कल",
+          "translation": "From: 'कल हम सबने मिलकर एक सुखद रेल यात्रा की' (We enjoyed a wonderful train journey together yesterday)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: oot-tur-DAA-yit-vuh (Responsibility / Accountability)"
+          "explanation": "Practice pronouncing: 'कल' (We enjoyed a wonderful train journey together yesterday)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सशक्तिकरण",
-          "translation": "suh-shuk-tee-KUH-run (Empowerment)",
+          "content": "हर्बल",
+          "translation": "From: 'हर्बल चाय पीने से काम के बाद थकान दूर होती है' (Drinking herbal tea relieves stress after work)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-shuk-tee-KUH-run (Empowerment)"
+          "explanation": "Practice pronouncing: 'हर्बल' (Drinking herbal tea relieves stress after work)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अभिनवकरण",
-          "translation": "uh-bhee-nuh-vuh-KUH-run (Innovation)",
+          "content": "सार्वजनिक",
+          "translation": "From: 'सार्वजनिक परिवहन शहरों में यातायात जाम को कम करता है' (Public transportation helps reduce traffic congestion in cities)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-bhee-nuh-vuh-KUH-run (Innovation)"
+          "explanation": "Practice pronouncing: 'सार्वजनिक' (Public transportation helps reduce traffic congestion in cities)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दूरदर्शिता",
-          "translation": "door-dur-SHEE-taa (Foresight / Vision)",
+          "content": "वह",
+          "translation": "From: 'वह अपने दैनिक कार्यों को बड़े अनुशासन से संभालती है' (She manages her daily schedule with great discipline)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: door-dur-SHEE-taa (Foresight / Vision)"
+          "explanation": "Practice pronouncing: 'वह' (She manages her daily schedule with great discipline)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वसमावेशी",
-          "translation": "sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)",
+          "content": "संतुलित",
+          "translation": "From: 'संतुलित भोजन शरीर की रोग प्रतिरोधक क्षमता को बढ़ाता है' (Eating balanced meals strengthens your natural immune system)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)"
+          "explanation": "Practice pronouncing: 'संतुलित' (Eating balanced meals strengthens your natural immune system)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कर्तव्यनिष्ठा",
-          "translation": "kur-tuv-yuh-NEESH-thaa (Devotion to Duty)",
+          "content": "आइए",
+          "translation": "From: 'आइए हम अपने लक्ष्य को पाने के लिए मिलकर काम करें' (Let us collaborate closely to achieve our goal)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kur-tuv-yuh-NEESH-thaa (Devotion to Duty)"
+          "explanation": "Practice pronouncing: 'आइए' (Let us collaborate closely to achieve our goal)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "प्रतिबद्धता",
-          "translation": "pruh-tee-budh-DHUH-taa (Commitment / Dedication)",
+          "content": "बिजली",
+          "translation": "From: 'बिजली की बचत से पर्यावरण सुरक्षित रहता है और खर्च घटता है' (Saving electricity protects environment and reduces utility bills)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pruh-tee-budh-DHUH-taa (Commitment / Dedication)"
+          "explanation": "Practice pronouncing: 'बिजली' (Saving electricity protects environment and reduces utility bills)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "स्वावलंबन",
-          "translation": "swaa-vuh-LUM-bun (Self Reliance / Independence)",
+          "content": "दूसरों",
+          "translation": "From: 'दूसरों को ध्यान से सुनना ही सार्थक बातचीत की कुंजी है' (Active listening is the key to meaningful conversations)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: swaa-vuh-LUM-bun (Self Reliance / Independence)"
+          "explanation": "Practice pronouncing: 'दूसरों' (Active listening is the key to meaningful conversations)."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पारदर्शिता",
-          "translation": "paar-dur-SHEEL-taa (Transparency / Openness)",
+          "content": "क्या",
+          "translation": "From: 'क्या आप मुझे निकटतम मेडिकल स्टोर का रास्ता बता सकते हैं?' (Could you please direct me to the nearest pharmacy?)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: paar-dur-SHEEL-taa (Transparency / Openness)"
+          "explanation": "Practice pronouncing: 'क्या' (Could you please direct me to the nearest pharmacy?)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूतिपूर्ण",
-          "translation": "suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)",
+          "content": "हमारी",
+          "translation": "From: 'हमारी टीम ने आज सुबह क्लाइंट प्रेजेंटेशन सफलतापूर्वक पूरा किया' (Our team successfully completed the client presentation this morning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)"
+          "explanation": "Practice pronouncing: 'हमारी' (Our team successfully completed the client presentation this morning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्तरदायित्व",
-          "translation": "oot-tur-DAA-yit-vuh (Responsibility / Accountability)",
+          "content": "डिजिटल",
+          "translation": "From: 'डिजिटल बैंकिंग से पैसे का लेन-देन तेज़ और सुरक्षित होता है' (Digital banking makes money transfers fast, secure, and convenient)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: oot-tur-DAA-yit-vuh (Responsibility / Accountability)"
+          "explanation": "Practice pronouncing: 'डिजिटल' (Digital banking makes money transfers fast, secure, and convenient)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सशक्तिकरण",
-          "translation": "suh-shuk-tee-KUH-run (Empowerment)",
+          "content": "उसने",
+          "translation": "From: 'उसने स्थानीय बाज़ार से ताज़ी सब्जियाँ और फल खरीदे' (He purchased fresh vegetables and fruits from local market)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-shuk-tee-KUH-run (Empowerment)"
+          "explanation": "Practice pronouncing: 'उसने' (He purchased fresh vegetables and fruits from local market)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अभिनवकरण",
-          "translation": "uh-bhee-nuh-vuh-KUH-run (Innovation)",
+          "content": "नियमित",
+          "translation": "From: 'नियमित व्यायाम से तनाव घटता है और दिनभर ऊर्जा बनी रहती है' (Regular physical exercise reduces stress and boosts daily energy)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-bhee-nuh-vuh-KUH-run (Innovation)"
+          "explanation": "Practice pronouncing: 'नियमित' (Regular physical exercise reduces stress and boosts daily energy)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दूरदर्शिता",
-          "translation": "door-dur-SHEE-taa (Foresight / Vision)",
+          "content": "विमान",
+          "translation": "From: 'विमान गेट नंबर पाँच से अपने निर्धारित समय पर उड़ेगा' (The flight will depart on time from gate five)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: door-dur-SHEE-taa (Foresight / Vision)"
+          "explanation": "Practice pronouncing: 'विमान' (The flight will depart on time from gate five)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वसमावेशी",
-          "translation": "sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)",
+          "content": "उसने",
+          "translation": "From: 'उसने आने वाली परीक्षा के लिए अपने नोट्स व्यवस्थित किए' (She organized her study notes neatly for the upcoming exam)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)"
+          "explanation": "Practice pronouncing: 'उसने' (She organized her study notes neatly for the upcoming exam)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कर्तव्यनिष्ठा",
-          "translation": "kur-tuv-yuh-NEESH-thaa (Devotion to Duty)",
+          "content": "हमने",
+          "translation": "From: 'हमने अपने आवासीय बगीचे में रंग-बिरंगे फूलों के पौधे लगाए' (We planted colorful flowering plants in our community garden)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kur-tuv-yuh-NEESH-thaa (Devotion to Duty)"
+          "explanation": "Practice pronouncing: 'हमने' (We planted colorful flowering plants in our community garden)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "प्रतिबद्धता",
-          "translation": "pruh-tee-budh-DHUH-taa (Commitment / Dedication)",
+          "content": "स्पष्ट",
+          "translation": "From: 'स्पष्ट निर्देशों से काम में होने वाली गलतियों से बचा जा सकता है' (Clear instructions prevent costly mistakes during complex project execution)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pruh-tee-budh-DHUH-taa (Commitment / Dedication)"
+          "explanation": "Practice pronouncing: 'स्पष्ट' (Clear instructions prevent costly mistakes during complex project execution)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "स्वावलंबन",
-          "translation": "swaa-vuh-LUM-bun (Self Reliance / Independence)",
+          "content": "उन्होंने",
+          "translation": "From: 'उन्होंने अपने परिवार और दोस्तों के साथ वर्षगांठ मनाई' (They celebrated their grand anniversary with close friends and family)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: swaa-vuh-LUM-bun (Self Reliance / Independence)"
+          "explanation": "Practice pronouncing: 'उन्होंने' (They celebrated their grand anniversary with close friends and family)."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पारदर्शिता",
-          "translation": "paar-dur-SHEEL-taa (Transparency / Openness)",
+          "content": "मेरे",
+          "translation": "From: 'मेरे विचार में पर्यावरण सुधार के लिए सतत नवाचार बहुत आवश्यक है' (In my opinion, sustainable innovation is essential for climate recovery)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: paar-dur-SHEEL-taa (Transparency / Openness)"
+          "explanation": "Practice pronouncing: 'मेरे' (In my opinion, sustainable innovation is essential for climate recovery)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूतिपूर्ण",
-          "translation": "suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)",
+          "content": "सकारात्मक",
+          "translation": "From: 'सकारात्मक सुझाव कार्यक्षेत्र में पेशेवर कौशल को निखारने में मदद करते हैं' (Constructive feedback helps individuals refine their professional workplace skills)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)"
+          "explanation": "Practice pronouncing: 'सकारात्मक' (Constructive feedback helps individuals refine their professional workplace skills)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्तरदायित्व",
-          "translation": "oot-tur-DAA-yit-vuh (Responsibility / Accountability)",
+          "content": "निरंतर",
+          "translation": "From: 'निरंतर अभ्यास ही बड़े सपनों और वास्तविक सफलता के बीच का सेतु है' (Consistent practice bridges the distance between ambitious dreams and achievements)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: oot-tur-DAA-yit-vuh (Responsibility / Accountability)"
+          "explanation": "Practice pronouncing: 'निरंतर' (Consistent practice bridges the distance between ambitious dreams and achievements)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सशक्तिकरण",
-          "translation": "suh-shuk-tee-KUH-run (Empowerment)",
+          "content": "जैव",
+          "translation": "From: 'जैव विविधता का संरक्षण संपूर्ण विश्व के पारिस्थितिक संतुलन के लिए आवश्यक है' (Protecting biodiversity is vital for sustaining ecological balance globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-shuk-tee-KUH-run (Empowerment)"
+          "explanation": "Practice pronouncing: 'जैव' (Protecting biodiversity is vital for sustaining ecological balance globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अभिनवकरण",
-          "translation": "uh-bhee-nuh-vuh-KUH-run (Innovation)",
+          "content": "तकनीकी",
+          "translation": "From: 'तकनीकी विकास में सदैव मानवीय मूल्यों और गरिमा को प्राथमिकता मिलनी चाहिए' (Technological advancements must always prioritize ethical human dignity and values)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-bhee-nuh-vuh-KUH-run (Innovation)"
+          "explanation": "Practice pronouncing: 'तकनीकी' (Technological advancements must always prioritize ethical human dignity and values)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दूरदर्शिता",
-          "translation": "door-dur-SHEE-taa (Foresight / Vision)",
+          "content": "जिज्ञासु",
+          "translation": "From: 'जिज्ञासु मन सदैव किताबी सीमाओं से परे जाकर नया ज्ञान खोजता है' (A curious mind continuously discovers knowledge beyond conventional classroom boundaries)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: door-dur-SHEE-taa (Foresight / Vision)"
+          "explanation": "Practice pronouncing: 'जिज्ञासु' (A curious mind continuously discovers knowledge beyond conventional classroom boundaries)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वसमावेशी",
-          "translation": "sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)",
+          "content": "उत्कृष्ट",
+          "translation": "From: 'उत्कृष्ट नेतृत्व संस्था के सभी सदस्यों में आत्मविश्वास और सहयोग बढ़ाता है' (Effective leadership inspires confidence and fosters strong teamwork across organizations)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)"
+          "explanation": "Practice pronouncing: 'उत्कृष्ट' (Effective leadership inspires confidence and fosters strong teamwork across organizations)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कर्तव्यनिष्ठा",
-          "translation": "kur-tuv-yuh-NEESH-thaa (Devotion to Duty)",
+          "content": "आत्म-चिंतन",
+          "translation": "From: 'आत्म-चिंतन से भावनात्मक समझ और दैनिक मानसिक शांति प्राप्त होती है' (Mindful reflection promotes emotional intelligence and lasting daily mental calm)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kur-tuv-yuh-NEESH-thaa (Devotion to Duty)"
+          "explanation": "Practice pronouncing: 'आत्म-चिंतन' (Mindful reflection promotes emotional intelligence and lasting daily mental calm)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "प्रतिबद्धता",
-          "translation": "pruh-tee-budh-DHUH-taa (Commitment / Dedication)",
+          "content": "वैश्विक",
+          "translation": "From: 'वैश्विक संपर्क विभिन्न संस्कृतियों के बीच सार्थक संवाद को सुगम बनाता है' (Global connectivity enables meaningful cross-cultural exchange between distant societies)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pruh-tee-budh-DHUH-taa (Commitment / Dedication)"
+          "explanation": "Practice pronouncing: 'वैश्विक' (Global connectivity enables meaningful cross-cultural exchange between distant societies)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "स्वावलंबन",
-          "translation": "swaa-vuh-LUM-bun (Self Reliance / Independence)",
+          "content": "प्राकृतिक",
+          "translation": "From: 'प्राकृतिक कृषि मिट्टी की उर्वरता और जल संसाधनों का संरक्षण करती है' (Organic agriculture preserves fertile soil and conserves vital water resources)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: swaa-vuh-LUM-bun (Self Reliance / Independence)"
+          "explanation": "Practice pronouncing: 'प्राकृतिक' (Organic agriculture preserves fertile soil and conserves vital water resources)."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पारदर्शिता",
-          "translation": "paar-dur-SHEEL-taa (Transparency / Openness)",
+          "content": "नवीकरणीय",
+          "translation": "From: 'नवीकरणीय ऊर्जा परियोजनाएं युवाओं के लिए लाखों नए हरित रोजगार सृजित करती हैं' (Renewable energy initiatives create thousands of green jobs for young professionals)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: paar-dur-SHEEL-taa (Transparency / Openness)"
+          "explanation": "Practice pronouncing: 'नवीकरणीय' (Renewable energy initiatives create thousands of green jobs for young professionals)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूतिपूर्ण",
-          "translation": "suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)",
+          "content": "शहर",
+          "translation": "From: 'शहर योजनाकार प्रदूषण और जाम घटाने हेतु पैदल मार्गों का निर्माण करते हैं' (Urban planners design walkable neighborhoods to reduce traffic congestion and pollution)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)"
+          "explanation": "Practice pronouncing: 'शहर' (Urban planners design walkable neighborhoods to reduce traffic congestion and pollution)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्तरदायित्व",
-          "translation": "oot-tur-DAA-yit-vuh (Responsibility / Accountability)",
+          "content": "काम",
+          "translation": "From: 'काम और व्यक्तिगत जीवन में संतुलन बनाए रखने से मानसिक तनाव समाप्त होता है' (Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: oot-tur-DAA-yit-vuh (Responsibility / Accountability)"
+          "explanation": "Practice pronouncing: 'काम' (Maintaining a healthy work-life balance reduces chronic anxiety and mental fatigue)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सशक्तिकरण",
-          "translation": "suh-shuk-tee-KUH-run (Empowerment)",
+          "content": "डिजिटल",
+          "translation": "From: 'डिजिटल साक्षरता से ग्रामीण समाज स्वास्थ्य और सरकारी सेवाओं से जुड़ रहा है' (Digital literacy empowers rural communities to access essential healthcare and government services)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-shuk-tee-KUH-run (Empowerment)"
+          "explanation": "Practice pronouncing: 'डिजिटल' (Digital literacy empowers rural communities to access essential healthcare and government services)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अभिनवकरण",
-          "translation": "uh-bhee-nuh-vuh-KUH-run (Innovation)",
+          "content": "अंतरराष्ट्रीय",
+          "translation": "From: 'अंतरराष्ट्रीय सम्मेलन में चालीस देशों के वैज्ञानिकों ने नए विचारों पर चर्चा की' (The international symposium brought together researchers from forty nations to exchange ideas)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-bhee-nuh-vuh-KUH-run (Innovation)"
+          "explanation": "Practice pronouncing: 'अंतरराष्ट्रीय' (The international symposium brought together researchers from forty nations to exchange ideas)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दूरदर्शिता",
-          "translation": "door-dur-SHEE-taa (Foresight / Vision)",
+          "content": "स्पष्ट",
+          "translation": "From: 'स्पष्ट अभिव्यक्ति कार्यक्षेत्र में होने वाले बड़े समझौतों में गलतफहमियों को रोकती है' (Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: door-dur-SHEE-taa (Foresight / Vision)"
+          "explanation": "Practice pronouncing: 'स्पष्ट' (Clear articulation of ideas prevents misunderstandings during critical workplace strategic negotiations)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वसमावेशी",
-          "translation": "sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)",
+          "content": "समुद्री",
+          "translation": "From: 'समुद्री जीवों की रक्षा करने से आने वाली पीढ़ियों के लिए पर्यावरण सुरक्षित रहता है' (Protecting endangered marine life preserves fragile oceanic ecosystems for future generations)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)"
+          "explanation": "Practice pronouncing: 'समुद्री' (Protecting endangered marine life preserves fragile oceanic ecosystems for future generations)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कर्तव्यनिष्ठा",
-          "translation": "kur-tuv-yuh-NEESH-thaa (Devotion to Duty)",
+          "content": "सतत",
+          "translation": "From: 'सतत शिक्षा पेशेवरों को तेज़ी से बदलती वैश्विक तकनीकी दुनिया के अनुकूल बनाती है' (Lifelong learning empowers professionals to adapt to fast-evolving global technological industries)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kur-tuv-yuh-NEESH-thaa (Devotion to Duty)"
+          "explanation": "Practice pronouncing: 'सतत' (Lifelong learning empowers professionals to adapt to fast-evolving global technological industries)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "प्रतिबद्धता",
-          "translation": "pruh-tee-budh-DHUH-taa (Commitment / Dedication)",
+          "content": "नैतिक",
+          "translation": "From: 'नैतिक नीतियों से संस्थाओं और जागरूक ग्राहकों के बीच स्थायी विश्वास बनता है' (Ethical decision-making builds enduring trust between modern organizations and conscious consumers)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pruh-tee-budh-DHUH-taa (Commitment / Dedication)"
+          "explanation": "Practice pronouncing: 'नैतिक' (Ethical decision-making builds enduring trust between modern organizations and conscious consumers)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "स्वावलंबन",
-          "translation": "swaa-vuh-LUM-bun (Self Reliance / Independence)",
+          "content": "सार्वजनिक",
+          "translation": "From: 'सार्वजनिक वाद-विवाद में भाग लेने से तार्किक सोच और अभिव्यक्ति क्षमता प्रखर होती है' (Active participation in public debates sharpens persuasive speaking and logical reasoning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: swaa-vuh-LUM-bun (Self Reliance / Independence)"
+          "explanation": "Practice pronouncing: 'सार्वजनिक' (Active participation in public debates sharpens persuasive speaking and logical reasoning)."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "पारदर्शिता",
-          "translation": "paar-dur-SHEEL-taa (Transparency / Openness)",
+          "content": "मूल्यपरक",
+          "translation": "From: 'मूल्यपरक शिक्षा भावी पीढ़ियों को समाज की जटिल नैतिक चुनौतियों से निपटने में सक्षम बनाती है' (Transformative education equips future generations to navigate complex ethical societal challenges)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: paar-dur-SHEEL-taa (Transparency / Openness)"
+          "explanation": "Practice pronouncing: 'मूल्यपरक' (Transformative education equips future generations to navigate complex ethical societal challenges)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सहानुभूतिपूर्ण",
-          "translation": "suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)",
+          "content": "स्थानीय",
+          "translation": "From: 'स्थानीय भाषाई धरोहर का संरक्षण अनूठी सांस्कृतिक परंपराओं और प्राचीन ज्ञान को जीवित रखता है' (Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-haa-noo-bhoo-tee-POORN (Empathetic / Compassionate)"
+          "explanation": "Practice pronouncing: 'स्थानीय' (Preserving regional linguistic heritage safeguards unique cultural traditions and indigenous historical wisdom)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "उत्तरदायित्व",
-          "translation": "oot-tur-DAA-yit-vuh (Responsibility / Accountability)",
+          "content": "विभिन्न",
+          "translation": "From: 'विभिन्न विधाओं का साझा शोध वैश्विक स्वास्थ्य संकटों के नए और स्थायी समाधान प्रस्तुत करता है' (Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: oot-tur-DAA-yit-vuh (Responsibility / Accountability)"
+          "explanation": "Practice pronouncing: 'विभिन्न' (Collaborative cross-disciplinary research generates innovative breakthroughs for persistent global healthcare crises)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सशक्तिकरण",
-          "translation": "suh-shuk-tee-KUH-run (Empowerment)",
+          "content": "प्रमाण-आधारित",
+          "translation": "From: 'प्रमाण-आधारित वैज्ञानिक पद्धतियां जलवायु नीतियों के लिए ठोस और पारदर्शी समाधान देती हैं' (Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-shuk-tee-KUH-run (Empowerment)"
+          "explanation": "Practice pronouncing: 'प्रमाण-आधारित' (Empirical scientific methods provide transparent evidence-based solutions for urgent climate policy decisions)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अभिनवकरण",
-          "translation": "uh-bhee-nuh-vuh-KUH-run (Innovation)",
+          "content": "पारदर्शी",
+          "translation": "From: 'पारदर्शी शासन व्यवस्था समाज में अटूट जनविश्वास पैदा करती है और विकास को गति देती है' (Transparent governance fosters profound public trust and accelerates socio-economic community development)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-bhee-nuh-vuh-KUH-run (Innovation)"
+          "explanation": "Practice pronouncing: 'पारदर्शी' (Transparent governance fosters profound public trust and accelerates socio-economic community development)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दूरदर्शिता",
-          "translation": "door-dur-SHEE-taa (Foresight / Vision)",
+          "content": "भावनात्मक",
+          "translation": "From: 'भावनात्मक संतुलन और धैर्य नेताओं को कठिन और अनिश्चित आर्थिक समय में सही दिशा दिखाते हैं' (Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: door-dur-SHEE-taa (Foresight / Vision)"
+          "explanation": "Practice pronouncing: 'भावनात्मक' (Developing emotional resilience enables leaders to navigate volatile and uncertain macroeconomic landscapes)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वसमावेशी",
-          "translation": "sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)",
+          "content": "टिकाऊ",
+          "translation": "From: 'टिकाऊ नगर निर्माण में हरियाली को शामिल करने से नागरिकों का स्वास्थ्य और पर्यावरण सुधरता है' (Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vuh-sum-aa-VAY-shee (Inclusive / All-encompassing)"
+          "explanation": "Practice pronouncing: 'टिकाऊ' (Sustainable urban architecture integrates green spaces to promote citizen health and biodiversity)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कर्तव्यनिष्ठा",
-          "translation": "kur-tuv-yuh-NEESH-thaa (Devotion to Duty)",
+          "content": "कृत्रिम",
+          "translation": "From: 'कृत्रिम बुद्धिमत्ता की प्रगति के साथ-साथ नैतिक नियमों का विकास भी निरंतर होना चाहिए' (Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kur-tuv-yuh-NEESH-thaa (Devotion to Duty)"
+          "explanation": "Practice pronouncing: 'कृत्रिम' (Ethical frameworks must continuously evolve alongside exponential artificial intelligence advancements globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "प्रतिबद्धता",
-          "translation": "pruh-tee-budh-DHUH-taa (Commitment / Dedication)",
+          "content": "सुलभ",
+          "translation": "From: 'सुलभ और गुणवत्तापूर्ण स्वास्थ्य सेवा पाना दुनिया के प्रत्येक नागरिक का मूल अधिकार है' (Access to affordable quality healthcare remains a fundamental universal human right worldwide)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: pruh-tee-budh-DHUH-taa (Commitment / Dedication)"
+          "explanation": "Practice pronouncing: 'सुलभ' (Access to affordable quality healthcare remains a fundamental universal human right worldwide)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "स्वावलंबन",
-          "translation": "swaa-vuh-LUM-bun (Self Reliance / Independence)",
+          "content": "गहन",
+          "translation": "From: 'गहन और संतुलित विश्लेषण जटिल नीति-निर्माण में सही और दूरदर्शी निर्णय लेने में मदद करता है' (Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: swaa-vuh-LUM-bun (Self Reliance / Independence)"
+          "explanation": "Practice pronouncing: 'गहन' (Comprehensive critical analysis ensures informed decision-making during complex administrative policymaking processes)."
         }
       ]
     }
@@ -6678,2540 +6746,2727 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है।",
-          "translation": "दर्शनशास्त्र",
-          "question": "ज्ञानमीमांसा किसका अन्वेषण करती है?",
+          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है",
+          "translation": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मानवीय संज्ञान और सत्य के आधार",
-            "मौसम की स्थिति",
-            "बाज़ार की कीमतें",
-            "भौतिक खेल"
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates"
           ],
           "answerIndex": 0,
-          "explanation": "ज्ञानमीमांसा ज्ञान की प्रकृति और सीमाओं का अध्ययन है।"
+          "explanation": "The correct meaning is: 'Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "क्वांटम भौतिकी के अनुसार कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं।",
-          "translation": "क्वांटम भौतिकी",
-          "question": "क्वांटम सिद्धांत की क्या विशेषता है?",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "अनेक संभावित अवस्थाओं में विद्यमानता",
-            "सरल सीधी गति",
-            "स्थिर तापमान",
-            "केवल गुरुत्वाकर्षण"
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively"
           ],
           "answerIndex": 0,
-          "explanation": "सुपरपोजिशन सिद्धांत कणों की बहु-अवस्थाओं को सिद्ध करता है।"
+          "explanation": "The correct meaning is: 'Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है।",
-          "translation": "अर्थनीति",
-          "question": "आर्थिक स्थिरता के लिए क्या आवश्यक है?",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "राजकोषीय व मौद्रिक समन्वय",
-            "असीमित नोट छापना",
-            "बाज़ार बंद करना",
-            "मुद्रास्फीति की उपेक्षा"
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
-          "answerIndex": 0,
-          "explanation": "संतुलित आर्थिक नीतियां देश की समृद्धि की आधारशिला हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है।",
-          "translation": "जीव विज्ञान",
-          "question": "जैव-आनुवंशिकी क्या उजागर करती है?",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जटिल आनुवंशिक परिवर्तन",
-            "साधारण पाचन क्रिया",
-            "त्वचा की ऊपरी परत",
-            "पानी का चक्र"
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases"
           ],
-          "answerIndex": 0,
-          "explanation": "आनुवंशिक शोध से गंभीर रोगों की रोकथाम संभव होती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है।",
-          "translation": "विधि दर्शन",
-          "question": "संवैधानिक न्यायशास्त्र क्या संतुलित करता है?",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "संप्रभुता और मूल अधिकार",
-            "कंपनियों का लाभ",
-            "विदेश यात्राएं",
-            "केवल पुलिस शक्ति"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates"
           ],
-          "answerIndex": 0,
-          "explanation": "संविधान राज्य की शक्ति और नागरिक स्वतंत्रता में संतुलन बनाए रखता है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है।",
-          "translation": "समुद्री पर्यावरण",
-          "question": "समुद्री पारिस्थितिकी को किसने संकट में डाला?",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "औद्योगिक उत्सर्जन",
-            "चंद्रमा की गति",
-            "समुद्री लहरें",
-            "ऋतु परिवर्तन"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases"
           ],
           "answerIndex": 0,
-          "explanation": "प्रदूषण और कार्बन उत्सर्जन से समुद्री जीवन पर दुष्प्रभाव पड़ रहा है।"
+          "explanation": "The correct meaning is: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं।",
-          "translation": "डेटा नैतिकता",
-          "question": "निष्पक्ष एआई के लिए क्या आवश्यक है?",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पक्षपातों से मुक्ति",
-            "तेज़ कंप्यूटर",
-            "इंटरनेट की गति",
-            "अधिक स्टोरेज"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
           "answerIndex": 0,
-          "explanation": "डेटा की निष्पक्षता से ही सही और न्यायपूर्ण निर्णय संभव हैं।"
+          "explanation": "The correct meaning is: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है।",
-          "translation": "मस्तिष्क विज्ञान",
-          "question": "न्यूरोप्लास्टिसिटी क्या दर्शाती है?",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मस्तिष्क की अनुकूलन क्षमता",
-            "स्थिर विचार",
-            "स्मृति का लोप",
-            "कमज़ोर स्नायुतंत्र"
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "मस्तिष्क निरंतर नए न्यूरल संपर्क बनाता रहता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है।",
-          "translation": "साहित्य सिद्धांत",
-          "question": "साहित्यिक समालोचना क्या करती है?",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सांस्कृतिक मूल्यों को उद्घाटित करती है",
-            "पृष्ठ संख्या गिनती है",
-            "व्याकरण रटवाती है",
-            "किताबें बेचती है"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
           "answerIndex": 0,
-          "explanation": "समालोचना साहित्य की अंतर्निहित चेतना को स्पष्ट करती है।"
+          "explanation": "The correct meaning is: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है।",
-          "translation": "अंतरराष्ट्रीय संबंध",
-          "question": "बहुपक्षवाद किस पर बल देता है?",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "कूटनीतिक संवाद",
-            "सैनिक आक्रमण",
-            "पूर्ण अलगाववाद",
-            "मौन रहना"
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
-          "answerIndex": 0,
-          "explanation": "पारस्परिक कूटनीति से विश्व शांति और सहयोग सुनिश्चित होता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ],
       "2": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है।",
-          "translation": "दर्शनशास्त्र",
-          "question": "ज्ञानमीमांसा किसका अन्वेषण करती है?",
+          "content": "शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है",
+          "translation": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मानवीय संज्ञान और सत्य के आधार",
-            "मौसम की स्थिति",
-            "बाज़ार की कीमतें",
-            "भौतिक खेल"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally"
           ],
-          "answerIndex": 0,
-          "explanation": "ज्ञानमीमांसा ज्ञान की प्रकृति और सीमाओं का अध्ययन है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "क्वांटम भौतिकी के अनुसार कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं।",
-          "translation": "क्वांटम भौतिकी",
-          "question": "क्वांटम सिद्धांत की क्या विशेषता है?",
+          "content": "अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है",
+          "translation": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "अनेक संभावित अवस्थाओं में विद्यमानता",
-            "सरल सीधी गति",
-            "स्थिर तापमान",
-            "केवल गुरुत्वाकर्षण"
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions"
           ],
-          "answerIndex": 0,
-          "explanation": "सुपरपोजिशन सिद्धांत कणों की बहु-अवस्थाओं को सिद्ध करता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है।",
-          "translation": "अर्थनीति",
-          "question": "आर्थिक स्थिरता के लिए क्या आवश्यक है?",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "राजकोषीय व मौद्रिक समन्वय",
-            "असीमित नोट छापना",
-            "बाज़ार बंद करना",
-            "मुद्रास्फीति की उपेक्षा"
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "संतुलित आर्थिक नीतियां देश की समृद्धि की आधारशिला हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है।",
-          "translation": "जीव विज्ञान",
-          "question": "जैव-आनुवंशिकी क्या उजागर करती है?",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जटिल आनुवंशिक परिवर्तन",
-            "साधारण पाचन क्रिया",
-            "त्वचा की ऊपरी परत",
-            "पानी का चक्र"
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage"
           ],
-          "answerIndex": 0,
-          "explanation": "आनुवंशिक शोध से गंभीर रोगों की रोकथाम संभव होती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है।",
-          "translation": "विधि दर्शन",
-          "question": "संवैधानिक न्यायशास्त्र क्या संतुलित करता है?",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "संप्रभुता और मूल अधिकार",
-            "कंपनियों का लाभ",
-            "विदेश यात्राएं",
-            "केवल पुलिस शक्ति"
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium"
           ],
-          "answerIndex": 0,
-          "explanation": "संविधान राज्य की शक्ति और नागरिक स्वतंत्रता में संतुलन बनाए रखता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है।",
-          "translation": "समुद्री पर्यावरण",
-          "question": "समुद्री पारिस्थितिकी को किसने संकट में डाला?",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "औद्योगिक उत्सर्जन",
-            "चंद्रमा की गति",
-            "समुद्री लहरें",
-            "ऋतु परिवर्तन"
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks"
           ],
           "answerIndex": 0,
-          "explanation": "प्रदूषण और कार्बन उत्सर्जन से समुद्री जीवन पर दुष्प्रभाव पड़ रहा है।"
+          "explanation": "The correct meaning is: 'Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं।",
-          "translation": "डेटा नैतिकता",
-          "question": "निष्पक्ष एआई के लिए क्या आवश्यक है?",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पक्षपातों से मुक्ति",
-            "तेज़ कंप्यूटर",
-            "इंटरनेट की गति",
-            "अधिक स्टोरेज"
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications"
           ],
-          "answerIndex": 0,
-          "explanation": "डेटा की निष्पक्षता से ही सही और न्यायपूर्ण निर्णय संभव हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है।",
-          "translation": "मस्तिष्क विज्ञान",
-          "question": "न्यूरोप्लास्टिसिटी क्या दर्शाती है?",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मस्तिष्क की अनुकूलन क्षमता",
-            "स्थिर विचार",
-            "स्मृति का लोप",
-            "कमज़ोर स्नायुतंत्र"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium"
           ],
           "answerIndex": 0,
-          "explanation": "मस्तिष्क निरंतर नए न्यूरल संपर्क बनाता रहता है।"
+          "explanation": "The correct meaning is: 'Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है।",
-          "translation": "साहित्य सिद्धांत",
-          "question": "साहित्यिक समालोचना क्या करती है?",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सांस्कृतिक मूल्यों को उद्घाटित करती है",
-            "पृष्ठ संख्या गिनती है",
-            "व्याकरण रटवाती है",
-            "किताबें बेचती है"
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent"
           ],
-          "answerIndex": 0,
-          "explanation": "समालोचना साहित्य की अंतर्निहित चेतना को स्पष्ट करती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है।",
-          "translation": "अंतरराष्ट्रीय संबंध",
-          "question": "बहुपक्षवाद किस पर बल देता है?",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "कूटनीतिक संवाद",
-            "सैनिक आक्रमण",
-            "पूर्ण अलगाववाद",
-            "मौन रहना"
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally"
           ],
           "answerIndex": 0,
-          "explanation": "पारस्परिक कूटनीति से विश्व शांति और सहयोग सुनिश्चित होता है।"
+          "explanation": "The correct meaning is: 'Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability'."
         }
       ],
       "3": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है।",
-          "translation": "दर्शनशास्त्र",
-          "question": "ज्ञानमीमांसा किसका अन्वेषण करती है?",
+          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है",
+          "translation": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मानवीय संज्ञान और सत्य के आधार",
-            "मौसम की स्थिति",
-            "बाज़ार की कीमतें",
-            "भौतिक खेल"
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine"
           ],
-          "answerIndex": 0,
-          "explanation": "ज्ञानमीमांसा ज्ञान की प्रकृति और सीमाओं का अध्ययन है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "क्वांटम भौतिकी के अनुसार कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं।",
-          "translation": "क्वांटम भौतिकी",
-          "question": "क्वांटम सिद्धांत की क्या विशेषता है?",
+          "content": "हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे",
+          "translation": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "अनेक संभावित अवस्थाओं में विद्यमानता",
-            "सरल सीधी गति",
-            "स्थिर तापमान",
-            "केवल गुरुत्वाकर्षण"
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies"
           ],
-          "answerIndex": 0,
-          "explanation": "सुपरपोजिशन सिद्धांत कणों की बहु-अवस्थाओं को सिद्ध करता है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है।",
-          "translation": "अर्थनीति",
-          "question": "आर्थिक स्थिरता के लिए क्या आवश्यक है?",
+          "content": "अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है",
+          "translation": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "राजकोषीय व मौद्रिक समन्वय",
-            "असीमित नोट छापना",
-            "बाज़ार बंद करना",
-            "मुद्रास्फीति की उपेक्षा"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments"
           ],
-          "answerIndex": 0,
-          "explanation": "संतुलित आर्थिक नीतियां देश की समृद्धि की आधारशिला हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है।",
-          "translation": "जीव विज्ञान",
-          "question": "जैव-आनुवंशिकी क्या उजागर करती है?",
+          "content": "दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं",
+          "translation": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जटिल आनुवंशिक परिवर्तन",
-            "साधारण पाचन क्रिया",
-            "त्वचा की ऊपरी परत",
-            "पानी का चक्र"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines"
           ],
-          "answerIndex": 0,
-          "explanation": "आनुवंशिक शोध से गंभीर रोगों की रोकथाम संभव होती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है।",
-          "translation": "विधि दर्शन",
-          "question": "संवैधानिक न्यायशास्त्र क्या संतुलित करता है?",
+          "content": "कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है",
+          "translation": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "संप्रभुता और मूल अधिकार",
-            "कंपनियों का लाभ",
-            "विदेश यात्राएं",
-            "केवल पुलिस शक्ति"
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally"
           ],
           "answerIndex": 0,
-          "explanation": "संविधान राज्य की शक्ति और नागरिक स्वतंत्रता में संतुलन बनाए रखता है।"
+          "explanation": "The correct meaning is: 'Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है।",
-          "translation": "समुद्री पर्यावरण",
-          "question": "समुद्री पारिस्थितिकी को किसने संकट में डाला?",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "औद्योगिक उत्सर्जन",
-            "चंद्रमा की गति",
-            "समुद्री लहरें",
-            "ऋतु परिवर्तन"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully"
           ],
-          "answerIndex": 0,
-          "explanation": "प्रदूषण और कार्बन उत्सर्जन से समुद्री जीवन पर दुष्प्रभाव पड़ रहा है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं।",
-          "translation": "डेटा नैतिकता",
-          "question": "निष्पक्ष एआई के लिए क्या आवश्यक है?",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पक्षपातों से मुक्ति",
-            "तेज़ कंप्यूटर",
-            "इंटरनेट की गति",
-            "अधिक स्टोरेज"
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "डेटा की निष्पक्षता से ही सही और न्यायपूर्ण निर्णय संभव हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है।",
-          "translation": "मस्तिष्क विज्ञान",
-          "question": "न्यूरोप्लास्टिसिटी क्या दर्शाती है?",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मस्तिष्क की अनुकूलन क्षमता",
-            "स्थिर विचार",
-            "स्मृति का लोप",
-            "कमज़ोर स्नायुतंत्र"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine"
           ],
           "answerIndex": 0,
-          "explanation": "मस्तिष्क निरंतर नए न्यूरल संपर्क बनाता रहता है।"
+          "explanation": "The correct meaning is: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है।",
-          "translation": "साहित्य सिद्धांत",
-          "question": "साहित्यिक समालोचना क्या करती है?",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सांस्कृतिक मूल्यों को उद्घाटित करती है",
-            "पृष्ठ संख्या गिनती है",
-            "व्याकरण रटवाती है",
-            "किताबें बेचती है"
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally"
           ],
-          "answerIndex": 0,
-          "explanation": "समालोचना साहित्य की अंतर्निहित चेतना को स्पष्ट करती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है।",
-          "translation": "अंतरराष्ट्रीय संबंध",
-          "question": "बहुपक्षवाद किस पर बल देता है?",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "कूटनीतिक संवाद",
-            "सैनिक आक्रमण",
-            "पूर्ण अलगाववाद",
-            "मौन रहना"
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine"
           ],
           "answerIndex": 0,
-          "explanation": "पारस्परिक कूटनीति से विश्व शांति और सहयोग सुनिश्चित होता है।"
+          "explanation": "The correct meaning is: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ],
       "4": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है।",
-          "translation": "दर्शनशास्त्र",
-          "question": "ज्ञानमीमांसा किसका अन्वेषण करती है?",
+          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है",
+          "translation": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मानवीय संज्ञान और सत्य के आधार",
-            "मौसम की स्थिति",
-            "बाज़ार की कीमतें",
-            "भौतिक खेल"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries"
           ],
-          "answerIndex": 0,
-          "explanation": "ज्ञानमीमांसा ज्ञान की प्रकृति और सीमाओं का अध्ययन है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "क्वांटम भौतिकी के अनुसार कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं।",
-          "translation": "क्वांटम भौतिकी",
-          "question": "क्वांटम सिद्धांत की क्या विशेषता है?",
+          "content": "आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं",
+          "translation": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "अनेक संभावित अवस्थाओं में विद्यमानता",
-            "सरल सीधी गति",
-            "स्थिर तापमान",
-            "केवल गुरुत्वाकर्षण"
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility"
           ],
-          "answerIndex": 0,
-          "explanation": "सुपरपोजिशन सिद्धांत कणों की बहु-अवस्थाओं को सिद्ध करता है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है।",
-          "translation": "अर्थनीति",
-          "question": "आर्थिक स्थिरता के लिए क्या आवश्यक है?",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "राजकोषीय व मौद्रिक समन्वय",
-            "असीमित नोट छापना",
-            "बाज़ार बंद करना",
-            "मुद्रास्फीति की उपेक्षा"
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage"
           ],
           "answerIndex": 0,
-          "explanation": "संतुलित आर्थिक नीतियां देश की समृद्धि की आधारशिला हैं।"
+          "explanation": "The correct meaning is: 'Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है।",
-          "translation": "जीव विज्ञान",
-          "question": "जैव-आनुवंशिकी क्या उजागर करती है?",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जटिल आनुवंशिक परिवर्तन",
-            "साधारण पाचन क्रिया",
-            "त्वचा की ऊपरी परत",
-            "पानी का चक्र"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries"
           ],
           "answerIndex": 0,
-          "explanation": "आनुवंशिक शोध से गंभीर रोगों की रोकथाम संभव होती है।"
+          "explanation": "The correct meaning is: 'Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है।",
-          "translation": "विधि दर्शन",
-          "question": "संवैधानिक न्यायशास्त्र क्या संतुलित करता है?",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "संप्रभुता और मूल अधिकार",
-            "कंपनियों का लाभ",
-            "विदेश यात्राएं",
-            "केवल पुलिस शक्ति"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy"
           ],
-          "answerIndex": 0,
-          "explanation": "संविधान राज्य की शक्ति और नागरिक स्वतंत्रता में संतुलन बनाए रखता है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है।",
-          "translation": "समुद्री पर्यावरण",
-          "question": "समुद्री पारिस्थितिकी को किसने संकट में डाला?",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "औद्योगिक उत्सर्जन",
-            "चंद्रमा की गति",
-            "समुद्री लहरें",
-            "ऋतु परिवर्तन"
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "प्रदूषण और कार्बन उत्सर्जन से समुद्री जीवन पर दुष्प्रभाव पड़ रहा है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं।",
-          "translation": "डेटा नैतिकता",
-          "question": "निष्पक्ष एआई के लिए क्या आवश्यक है?",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पक्षपातों से मुक्ति",
-            "तेज़ कंप्यूटर",
-            "इंटरनेट की गति",
-            "अधिक स्टोरेज"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage"
           ],
-          "answerIndex": 0,
-          "explanation": "डेटा की निष्पक्षता से ही सही और न्यायपूर्ण निर्णय संभव हैं।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है।",
-          "translation": "मस्तिष्क विज्ञान",
-          "question": "न्यूरोप्लास्टिसिटी क्या दर्शाती है?",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मस्तिष्क की अनुकूलन क्षमता",
-            "स्थिर विचार",
-            "स्मृति का लोप",
-            "कमज़ोर स्नायुतंत्र"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility"
           ],
           "answerIndex": 0,
-          "explanation": "मस्तिष्क निरंतर नए न्यूरल संपर्क बनाता रहता है।"
+          "explanation": "The correct meaning is: 'Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है।",
-          "translation": "साहित्य सिद्धांत",
-          "question": "साहित्यिक समालोचना क्या करती है?",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सांस्कृतिक मूल्यों को उद्घाटित करती है",
-            "पृष्ठ संख्या गिनती है",
-            "व्याकरण रटवाती है",
-            "किताबें बेचती है"
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability"
           ],
-          "answerIndex": 0,
-          "explanation": "समालोचना साहित्य की अंतर्निहित चेतना को स्पष्ट करती है।"
+          "answerIndex": 1,
+          "explanation": "The correct meaning is: 'Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है।",
-          "translation": "अंतरराष्ट्रीय संबंध",
-          "question": "बहुपक्षवाद किस पर बल देता है?",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "कूटनीतिक संवाद",
-            "सैनिक आक्रमण",
-            "पूर्ण अलगाववाद",
-            "मौन रहना"
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "पारस्परिक कूटनीति से विश्व शांति और सहयोग सुनिश्चित होता है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability'."
         }
       ],
       "5": [
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है।",
-          "translation": "दर्शनशास्त्र",
-          "question": "ज्ञानमीमांसा किसका अन्वेषण करती है?",
+          "content": "विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है",
+          "translation": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मानवीय संज्ञान और सत्य के आधार",
-            "मौसम की स्थिति",
-            "बाज़ार की कीमतें",
-            "भौतिक खेल"
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity"
           ],
-          "answerIndex": 0,
-          "explanation": "ज्ञानमीमांसा ज्ञान की प्रकृति और सीमाओं का अध्ययन है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "क्वांटम भौतिकी के अनुसार कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं।",
-          "translation": "क्वांटम भौतिकी",
-          "question": "क्वांटम सिद्धांत की क्या विशेषता है?",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "अनेक संभावित अवस्थाओं में विद्यमानता",
-            "सरल सीधी गति",
-            "स्थिर तापमान",
-            "केवल गुरुत्वाकर्षण"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively"
           ],
-          "answerIndex": 0,
-          "explanation": "सुपरपोजिशन सिद्धांत कणों की बहु-अवस्थाओं को सिद्ध करता है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है।",
-          "translation": "अर्थनीति",
-          "question": "आर्थिक स्थिरता के लिए क्या आवश्यक है?",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "राजकोषीय व मौद्रिक समन्वय",
-            "असीमित नोट छापना",
-            "बाज़ार बंद करना",
-            "मुद्रास्फीति की उपेक्षा"
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "संतुलित आर्थिक नीतियां देश की समृद्धि की आधारशिला हैं।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है।",
-          "translation": "जीव विज्ञान",
-          "question": "जैव-आनुवंशिकी क्या उजागर करती है?",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "जटिल आनुवंशिक परिवर्तन",
-            "साधारण पाचन क्रिया",
-            "त्वचा की ऊपरी परत",
-            "पानी का चक्र"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity"
           ],
-          "answerIndex": 0,
-          "explanation": "आनुवंशिक शोध से गंभीर रोगों की रोकथाम संभव होती है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है।",
-          "translation": "विधि दर्शन",
-          "question": "संवैधानिक न्यायशास्त्र क्या संतुलित करता है?",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "संप्रभुता और मूल अधिकार",
-            "कंपनियों का लाभ",
-            "विदेश यात्राएं",
-            "केवल पुलिस शक्ति"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively"
           ],
-          "answerIndex": 0,
-          "explanation": "संविधान राज्य की शक्ति और नागरिक स्वतंत्रता में संतुलन बनाए रखता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है।",
-          "translation": "समुद्री पर्यावरण",
-          "question": "समुद्री पारिस्थितिकी को किसने संकट में डाला?",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "औद्योगिक उत्सर्जन",
-            "चंद्रमा की गति",
-            "समुद्री लहरें",
-            "ऋतु परिवर्तन"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases"
           ],
-          "answerIndex": 0,
-          "explanation": "प्रदूषण और कार्बन उत्सर्जन से समुद्री जीवन पर दुष्प्रभाव पड़ रहा है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं।",
-          "translation": "डेटा नैतिकता",
-          "question": "निष्पक्ष एआई के लिए क्या आवश्यक है?",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "पक्षपातों से मुक्ति",
-            "तेज़ कंप्यूटर",
-            "इंटरनेट की गति",
-            "अधिक स्टोरेज"
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
-          "answerIndex": 0,
-          "explanation": "डेटा की निष्पक्षता से ही सही और न्यायपूर्ण निर्णय संभव हैं।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है।",
-          "translation": "मस्तिष्क विज्ञान",
-          "question": "न्यूरोप्लास्टिसिटी क्या दर्शाती है?",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "मस्तिष्क की अनुकूलन क्षमता",
-            "स्थिर विचार",
-            "स्मृति का लोप",
-            "कमज़ोर स्नायुतंत्र"
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "मस्तिष्क निरंतर नए न्यूरल संपर्क बनाता रहता है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है।",
-          "translation": "साहित्य सिद्धांत",
-          "question": "साहित्यिक समालोचना क्या करती है?",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "सांस्कृतिक मूल्यों को उद्घाटित करती है",
-            "पृष्ठ संख्या गिनती है",
-            "व्याकरण रटवाती है",
-            "किताबें बेचती है"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies"
           ],
-          "answerIndex": 0,
-          "explanation": "समालोचना साहित्य की अंतर्निहित चेतना को स्पष्ट करती है।"
+          "answerIndex": 3,
+          "explanation": "The correct meaning is: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
           "instruction": "Read the passage carefully and choose the correct answer",
-          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है।",
-          "translation": "अंतरराष्ट्रीय संबंध",
-          "question": "बहुपक्षवाद किस पर बल देता है?",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What is the meaning of this sentence?",
           "options": [
-            "कूटनीतिक संवाद",
-            "सैनिक आक्रमण",
-            "पूर्ण अलगाववाद",
-            "मौन रहना"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity"
           ],
-          "answerIndex": 0,
-          "explanation": "पारस्परिक कूटनीति से विश्व शांति और सहयोग सुनिश्चित होता है।"
+          "answerIndex": 2,
+          "explanation": "The correct meaning is: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ]
     },
     "writing": {
       "1": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "question": "दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है",
-          "questionTranslation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "translation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+          "question": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है",
+          "questionTranslation": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+          "translation": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
           "options": [
+            "गहन",
             "दार्शनिक",
-            "को",
-            "गंभीर",
-            "देता",
-            "मान्यताओं",
-            "विमर्श",
-            "है",
-            "चुनौती",
-            "को",
-            "देकर",
-            "चिंतन",
-            "बढ़ावा"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "question": "अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है",
-          "questionTranslation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "translation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "options": [
-            "है",
-            "क्षेत्रों",
-            "अंतःविषयक",
-            "शोध",
-            "को",
-            "युगांतरकारी",
-            "विभिन्न",
-            "करता",
-            "उपलब्धियां",
-            "प्रदान",
-            "जोड़कर"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Mitigating cognitive biases is foundational for fair decision making",
-          "question": "संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है",
-          "questionTranslation": "Mitigating cognitive biases is foundational for fair decision making",
-          "translation": "Mitigating cognitive biases is foundational for fair decision making",
-          "options": [
-            "की",
-            "है",
-            "ही",
-            "से",
-            "पूर्वाग्रहों",
-            "मजबूत",
-            "संज्ञानात्मक",
-            "निर्णयों",
-            "निष्पक्ष",
-            "मुक्ति",
-            "आधारशिला"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "question": "वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है",
-          "questionTranslation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "translation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "options": [
-            "कूटनीति",
-            "है",
-            "सुदृढ़",
-            "परस्पर",
-            "निर्भर",
+            "चेतना,",
+            "आधारों",
+            "अन्वेषण",
             "और",
-            "विश्वास",
-            "स्थिरता",
-            "पर",
+            "सत्य",
+            "संज्ञान",
             "करती",
-            "वैश्विक"
+            "है",
+            "के",
+            "का",
+            "ज्ञानमीमांसा",
+            "मानवीय"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है'."
+          "explanation": "The correct translation is: 'ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Adaptive policy frameworks build a resilient and prosperous society",
-          "question": "अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं",
-          "questionTranslation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "translation": "Adaptive policy frameworks build a resilient and prosperous society",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "questionTranslation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
           "options": [
-            "समृद्ध",
-            "सुरक्षित,",
-            "और",
-            "बनाती",
+            "कण",
+            "विद्यमान",
+            "अनुसार",
+            "सकते",
+            "सूक्ष्म",
+            "रह",
+            "अनेक",
+            "में",
+            "एक",
+            "संभावित",
+            "क्वांटम",
+            "के",
+            "भौतिकी",
             "हैं",
-            "समाज",
-            "नीतियां",
-            "को",
-            "अनुकूलनशील",
-            "आत्मनिर्भर"
+            "साथ",
+            "अवस्थाओं"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं'."
+          "explanation": "The correct translation is: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interplay between environment and genetics drives modern medicine",
-          "question": "पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है",
-          "questionTranslation": "Interplay between environment and genetics drives modern medicine",
-          "translation": "Interplay between environment and genetics drives modern medicine",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "questionTranslation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
           "options": [
-            "आधुनिक",
-            "संबंध",
-            "गहरा",
-            "पर्यावरण",
-            "आनुवंशिकी",
+            "आर्थिक",
+            "समन्वय",
+            "स्थिरता",
+            "मौद्रिक",
+            "के",
+            "लिए",
             "और",
-            "चिकित्सा",
+            "नीति",
+            "राजकोषीय",
+            "सटीक",
+            "अनिवार्य",
             "है",
             "का",
-            "केंद्र",
-            "का"
+            "नियंत्रण"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है'."
+          "explanation": "The correct translation is: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "question": "लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं",
-          "questionTranslation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "translation": "Democratic institutions thrive on transparent and deliberative public dialogue",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "questionTranslation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
           "options": [
-            "और",
-            "होती",
-            "पारदर्शी",
-            "सार्थक",
-            "ही",
-            "से",
-            "संस्थाएं",
-            "लोकतांत्रिक",
-            "हैं",
-            "संवाद",
-            "मजबूत"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Equitable access to knowledge accelerates global human progress",
-          "question": "ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है",
-          "questionTranslation": "Equitable access to knowledge accelerates global human progress",
-          "translation": "Equitable access to knowledge accelerates global human progress",
-          "options": [
-            "मानवीय",
-            "उपलब्धता",
-            "की",
-            "प्रगति",
-            "देती",
-            "समान",
-            "ज्ञान",
-            "गति",
+            "कोशिकीय",
+            "वाले",
+            "परिवर्तनों",
+            "जटिल",
+            "स्तर",
+            "पर",
+            "होने",
+            "जैव-आनुवंशिकी",
             "को",
-            "तीव्र",
-            "वैश्विक",
+            "उजागर",
+            "करती",
             "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है'."
+          "explanation": "The correct translation is: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Holistic study of complex systems reveals deeper organizational patterns",
-          "question": "जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है",
-          "questionTranslation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "translation": "Holistic study of complex systems reveals deeper organizational patterns",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "questionTranslation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
           "options": [
-            "करता",
+            "नागरिक",
+            "संतुलन",
+            "न्यायशास्त्र",
+            "संवैधानिक",
+            "के",
+            "अधिकारों",
+            "है",
+            "और",
+            "के",
+            "साधता",
+            "मध्य",
+            "मूल",
+            "संप्रभुता"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "questionTranslation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "options": [
+            "दिया",
             "को",
-            "प्रणालियों",
-            "का",
-            "उनके",
-            "समग्र",
-            "गहरे",
-            "नियमों",
-            "है",
-            "अध्ययन",
-            "जटिल",
-            "उजागर"
+            "ने",
+            "में",
+            "मानवजनित",
+            "डाल",
+            "उत्सर्जन",
+            "तंत्र",
+            "समुद्री",
+            "वैश्विक",
+            "औद्योगिक",
+            "संकट",
+            "जैव-पारिस्थितिकी",
+            "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है'."
+          "explanation": "The correct translation is: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "question": "कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है",
-          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "translation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "questionTranslation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "options": [
-            "पद्धति",
+            "नींव",
+            "सकते",
+            "बुद्धिमत्ता",
+            "ऐतिहासिक",
+            "एल्गोरिदम",
+            "कृत्रिम",
+            "हैं",
             "की",
-            "है",
-            "रीढ़",
+            "से",
             "ही",
-            "विकास",
-            "प्रमाण-आधारित",
-            "वैज्ञानिक",
-            "कठोर",
-            "प्रामाणिक"
+            "रख",
+            "पक्षपातों",
+            "मुक्त",
+            "निष्पक्ष"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है'."
+          "explanation": "The correct translation is: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "questionTranslation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "options": [
+            "न्यूरोप्लास्टिसिटी",
+            "परिस्थितियों",
+            "क्षमता",
+            "मस्तिष्क",
+            "दर्शाती",
+            "के",
+            "मानव",
+            "अनुसार",
+            "की",
+            "ढलने",
+            "नई",
+            "है",
+            "अद्भुत",
+            "की"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "questionTranslation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "options": [
+            "समालोचना",
+            "है",
+            "करती",
+            "सांस्कृतिक",
+            "और",
+            "सामाजिक",
+            "गहन",
+            "साहित्यिक",
+            "को",
+            "मूल्यों",
+            "उद्घाटित",
+            "सूक्ष्म",
+            "अर्थों",
+            "के"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "questionTranslation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "options": [
+            "बहुपक्षवाद",
+            "पर",
+            "माध्यम",
+            "देता",
+            "विवादों",
+            "कूटनीतिक",
+            "को",
+            "बल",
+            "संवाद",
+            "सीमा-पार",
+            "सुलझाने",
+            "के",
+            "है",
+            "अंतरराष्ट्रीय",
+            "से"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ],
       "2": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "question": "दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है",
-          "questionTranslation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "translation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+          "question": "शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है",
+          "questionTranslation": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+          "translation": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
           "options": [
-            "को",
+            "आवश्यकता",
+            "वैश्विक",
+            "पूंजीगत",
+            "हासिल",
+            "भारी",
+            "स्तर",
+            "करने",
+            "निवेश",
+            "लक्ष्य",
             "है",
-            "विमर्श",
-            "चिंतन",
-            "को",
-            "दार्शनिक",
-            "बढ़ावा",
-            "गंभीर",
-            "देकर",
-            "देता",
-            "मान्यताओं",
-            "चुनौती"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "question": "अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है",
-          "questionTranslation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "translation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "options": [
-            "करता",
-            "क्षेत्रों",
-            "है",
-            "अंतःविषयक",
-            "विभिन्न",
-            "को",
-            "प्रदान",
-            "शोध",
-            "उपलब्धियां",
-            "युगांतरकारी",
-            "जोड़कर"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Mitigating cognitive biases is foundational for fair decision making",
-          "question": "संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है",
-          "questionTranslation": "Mitigating cognitive biases is foundational for fair decision making",
-          "translation": "Mitigating cognitive biases is foundational for fair decision making",
-          "options": [
-            "है",
-            "संज्ञानात्मक",
-            "मजबूत",
-            "निर्णयों",
-            "पूर्वाग्रहों",
-            "मुक्ति",
-            "की",
-            "से",
-            "निष्पक्ष",
-            "आधारशिला",
-            "ही"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "question": "वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है",
-          "questionTranslation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "translation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "options": [
-            "स्थिरता",
-            "कूटनीति",
-            "सुदृढ़",
-            "निर्भर",
             "पर",
-            "और",
-            "करती",
-            "है",
-            "वैश्विक",
-            "परस्पर",
-            "विश्वास"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Adaptive policy frameworks build a resilient and prosperous society",
-          "question": "अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं",
-          "questionTranslation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "translation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "options": [
-            "समाज",
-            "नीतियां",
-            "हैं",
-            "को",
-            "अनुकूलनशील",
-            "आत्मनिर्भर",
-            "समृद्ध",
-            "सुरक्षित,",
-            "और",
-            "बनाती"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interplay between environment and genetics drives modern medicine",
-          "question": "पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है",
-          "questionTranslation": "Interplay between environment and genetics drives modern medicine",
-          "translation": "Interplay between environment and genetics drives modern medicine",
-          "options": [
-            "आधुनिक",
-            "केंद्र",
-            "चिकित्सा",
-            "पर्यावरण",
-            "गहरा",
-            "और",
-            "आनुवंशिकी",
-            "का",
-            "का",
-            "संबंध",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "question": "लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं",
-          "questionTranslation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "translation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "options": [
-            "हैं",
-            "सार्थक",
-            "होती",
-            "और",
-            "ही",
-            "से",
-            "मजबूत",
-            "पारदर्शी",
-            "लोकतांत्रिक",
-            "संस्थाएं",
-            "संवाद"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Equitable access to knowledge accelerates global human progress",
-          "question": "ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है",
-          "questionTranslation": "Equitable access to knowledge accelerates global human progress",
-          "translation": "Equitable access to knowledge accelerates global human progress",
-          "options": [
-            "को",
-            "उपलब्धता",
-            "मानवीय",
-            "है",
-            "गति",
-            "तीव्र",
-            "देती",
-            "ज्ञान",
-            "वैश्विक",
-            "समान",
-            "प्रगति",
-            "की"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Holistic study of complex systems reveals deeper organizational patterns",
-          "question": "जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है",
-          "questionTranslation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "translation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "options": [
-            "अध्ययन",
-            "नियमों",
-            "करता",
-            "प्रणालियों",
-            "को",
-            "उनके",
-            "का",
-            "उजागर",
-            "समग्र",
-            "है",
-            "जटिल",
-            "गहरे"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "question": "कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है",
-          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "translation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "options": [
-            "रीढ़",
-            "प्रमाण-आधारित",
-            "कठोर",
-            "ही",
-            "वैज्ञानिक",
-            "विकास",
-            "प्रामाणिक",
             "की",
-            "पद्धति",
+            "हेतु",
+            "शून्य-उत्सर्जन"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+          "question": "अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है",
+          "questionTranslation": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+          "translation": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+          "options": [
+            "मस्तिष्क",
+            "भाषाएं",
+            "की",
+            "सुदृढ़",
+            "अनेक",
+            "संरचनात्मक",
+            "और",
+            "मानव",
+            "है",
+            "से",
+            "क्षमता",
+            "तंत्र",
+            "तंत्रिका",
+            "सीखने",
+            "होता"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "questionTranslation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "options": [
+            "के",
+            "को",
+            "हैं",
+            "मुद्रास्फीति",
+            "मंदी",
+            "आने",
+            "बाधाएं",
+            "में",
+            "आर्थिक",
+            "आपूर्ति",
+            "और",
+            "वाली",
+            "जोखिम",
+            "श्रृंखला",
+            "बढ़ाती"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "questionTranslation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "options": [
+            "मानवता",
+            "संपूर्ण",
+            "अंतरराष्ट्रीय",
+            "लागू",
+            "तकनीकों",
+            "पर",
+            "नियम",
+            "कड़े",
+            "के",
+            "में",
+            "हित",
+            "जीन-संपादन",
+            "करना",
             "है"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है'."
+          "explanation": "The correct translation is: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "questionTranslation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "options": [
+            "की",
+            "के",
+            "अत्यंत",
+            "श्रृंखला",
+            "संपूर्ण",
+            "जैव",
+            "और",
+            "समुद्री",
+            "घातक",
+            "खाद्य",
+            "बढ़ती",
+            "लिए",
+            "अम्लता",
+            "महासागरों",
+            "विविधता",
+            "है"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "questionTranslation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "options": [
+            "भावना",
+            "व्याख्या",
+            "हो",
+            "यह",
+            "संवैधानिक",
+            "कानूनों",
+            "है",
+            "न्यायिक",
+            "कि",
+            "सुनिश्चित",
+            "की",
+            "करती",
+            "के",
+            "अनुरूप",
+            "समीक्षा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "questionTranslation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "options": [
+            "के",
+            "सुरक्षित",
+            "क्वांटम-प्रतिरोधी",
+            "नेटवर्क",
+            "अभेद्य",
+            "डिजिटल",
+            "क्रिप्टोग्राफी",
+            "को",
+            "बनाएगी",
+            "भविष्य",
+            "और",
+            "पूरी",
+            "तरह"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "questionTranslation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "options": [
+            "शोध",
+            "को",
+            "बोलियों",
+            "विविधता",
+            "सामाजिक",
+            "का",
+            "है",
+            "सिद्ध",
+            "की",
+            "भाषाविदों",
+            "दर्शाती",
+            "करता",
+            "कि",
+            "संरचना",
+            "है",
+            "यह"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "questionTranslation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "options": [
+            "लिए",
+            "निधि",
+            "बचाव",
+            "प्रणालीगत",
+            "बैंकों",
+            "हैं",
+            "हेतु",
+            "करते",
+            "से",
+            "वित्तीय",
+            "नियामक",
+            "के",
+            "संकट",
+            "अनिवार्य",
+            "अतिरिक्त",
+            "सुरक्षा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "questionTranslation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "options": [
+            "जवाबदेही",
+            "की",
+            "नई",
+            "बुद्धिमत्ता",
+            "और",
+            "परिभाषाएं",
+            "नैतिक",
+            "स्वायत्त",
+            "कानूनी",
+            "मांगती",
+            "है",
+            "कृत्रिम",
+            "उत्तरदायित्व"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है'."
         }
       ],
       "3": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "question": "दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है",
-          "questionTranslation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "translation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+          "question": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है",
+          "questionTranslation": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+          "translation": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
           "options": [
-            "गंभीर",
-            "विमर्श",
-            "बढ़ावा",
-            "को",
+            "कर",
             "है",
-            "देता",
-            "दार्शनिक",
-            "चुनौती",
-            "को",
-            "देकर",
-            "चिंतन",
-            "मान्यताओं"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "question": "अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है",
-          "questionTranslation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "translation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "options": [
-            "विभिन्न",
-            "जोड़कर",
-            "प्रदान",
-            "युगांतरकारी",
-            "उपलब्धियां",
-            "अंतःविषयक",
-            "शोध",
-            "क्षेत्रों",
-            "को",
-            "है",
-            "करता"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Mitigating cognitive biases is foundational for fair decision making",
-          "question": "संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है",
-          "questionTranslation": "Mitigating cognitive biases is foundational for fair decision making",
-          "translation": "Mitigating cognitive biases is foundational for fair decision making",
-          "options": [
-            "मजबूत",
-            "निर्णयों",
-            "ही",
-            "निष्पक्ष",
-            "आधारशिला",
-            "पूर्वाग्रहों",
-            "से",
-            "मुक्ति",
-            "की",
-            "है",
-            "संज्ञानात्मक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "question": "वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है",
-          "questionTranslation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "translation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "options": [
-            "स्थिरता",
-            "परस्पर",
+            "का",
+            "रहा",
             "और",
-            "विश्वास",
-            "पर",
-            "निर्भर",
-            "सुदृढ़",
-            "वैश्विक",
-            "है",
-            "कूटनीति",
-            "करती"
+            "का",
+            "बुद्धिमत्ता",
+            "सूत्रपात",
+            "संगम",
+            "में",
+            "क्रांतिकारी",
+            "चिकित्सा",
+            "जैव-प्रौद्योगिकी",
+            "क्षेत्र",
+            "युग",
+            "कृत्रिम"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है'."
+          "explanation": "The correct translation is: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Adaptive policy frameworks build a resilient and prosperous society",
-          "question": "अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं",
-          "questionTranslation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "translation": "Adaptive policy frameworks build a resilient and prosperous society",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+          "question": "हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे",
+          "questionTranslation": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+          "translation": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
           "options": [
-            "बनाती",
-            "समृद्ध",
-            "आत्मनिर्भर",
+            "के",
+            "एक",
+            "निर्माण",
+            "उपलब्ध",
             "समाज",
-            "हैं",
-            "अनुकूलनशील",
+            "हमें",
+            "कराने",
+            "समावेशी",
+            "और",
+            "हेतु",
+            "अवसर",
             "को",
-            "और",
-            "नीतियां",
-            "सुरक्षित,"
+            "समान",
+            "प्रत्येक",
+            "समतामूलक",
+            "नागरिक",
+            "होंगे"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं'."
+          "explanation": "The correct translation is: 'हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interplay between environment and genetics drives modern medicine",
-          "question": "पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है",
-          "questionTranslation": "Interplay between environment and genetics drives modern medicine",
-          "translation": "Interplay between environment and genetics drives modern medicine",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+          "question": "अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है",
+          "questionTranslation": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+          "translation": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
           "options": [
-            "पर्यावरण",
-            "और",
-            "आधुनिक",
-            "का",
+            "केवल",
+            "संवाद",
+            "चुनौतियों",
+            "अंतरराष्ट्रीय",
+            "ही",
+            "समाधान",
+            "विवादों",
             "है",
-            "केंद्र",
+            "पारदर्शी",
             "का",
-            "संबंध",
-            "गहरा",
-            "आनुवंशिकी",
-            "चिकित्सा"
+            "से",
+            "और",
+            "सीमा",
+            "संभव",
+            "कूटनीतिक",
+            "स्थायी"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है'."
+          "explanation": "The correct translation is: 'अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "question": "लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं",
-          "questionTranslation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "translation": "Democratic institutions thrive on transparent and deliberative public dialogue",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+          "question": "दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं",
+          "questionTranslation": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+          "translation": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+          "options": [
+            "करते",
+            "दिशा",
+            "नेतृत्व",
+            "प्रदान",
+            "धैर्य",
+            "सही",
+            "में",
+            "ही",
+            "और",
+            "हैं",
+            "दूरदर्शिता",
+            "को",
+            "अनुभवी",
+            "आर्थिक",
+            "अनिश्चित",
+            "दौर",
+            "मानसिक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+          "question": "कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है",
+          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+          "translation": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+          "options": [
+            "प्रामाणिक",
+            "ही",
+            "की",
+            "मजबूत",
+            "और",
+            "है",
+            "शोध",
+            "सबसे",
+            "प्रमाण-आधारित",
+            "वैज्ञानिक",
+            "आधारशिला",
+            "पद्धति",
+            "कठोर",
+            "ज्ञान"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "questionTranslation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "options": [
+            "तंत्र",
+            "संकट",
+            "ने",
+            "डाल",
+            "है",
+            "में",
+            "मानवजनित",
+            "वैश्विक",
+            "समुद्री",
+            "जैव-पारिस्थितिकी",
+            "औद्योगिक",
+            "दिया",
+            "को",
+            "उत्सर्जन"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "questionTranslation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "options": [
             "ही",
             "से",
-            "सार्थक",
-            "संस्थाएं",
-            "होती",
-            "पारदर्शी",
-            "संवाद",
+            "कृत्रिम",
+            "सकते",
+            "की",
+            "पक्षपातों",
+            "ऐतिहासिक",
+            "हैं",
+            "रख",
+            "नींव",
+            "एल्गोरिदम",
+            "मुक्त",
+            "बुद्धिमत्ता",
+            "निष्पक्ष"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "questionTranslation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "options": [
+            "नई",
+            "अनुसार",
+            "न्यूरोप्लास्टिसिटी",
+            "क्षमता",
+            "की",
+            "के",
+            "की",
+            "परिस्थितियों",
+            "मस्तिष्क",
+            "अद्भुत",
+            "है",
+            "ढलने",
+            "मानव",
+            "दर्शाती"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "questionTranslation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "options": [
+            "अर्थों",
+            "समालोचना",
+            "उद्घाटित",
+            "के",
+            "साहित्यिक",
+            "मूल्यों",
+            "सामाजिक",
+            "को",
+            "सांस्कृतिक",
+            "है",
+            "सूक्ष्म",
+            "करती",
             "और",
-            "मजबूत",
-            "लोकतांत्रिक",
-            "हैं"
+            "गहन"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं'."
+          "explanation": "The correct translation is: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Equitable access to knowledge accelerates global human progress",
-          "question": "ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है",
-          "questionTranslation": "Equitable access to knowledge accelerates global human progress",
-          "translation": "Equitable access to knowledge accelerates global human progress",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "questionTranslation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
           "options": [
-            "मानवीय",
+            "बल",
+            "अंतरराष्ट्रीय",
+            "सीमा-पार",
+            "है",
+            "विवादों",
+            "संवाद",
+            "माध्यम",
+            "के",
+            "देता",
+            "पर",
             "को",
-            "उपलब्धता",
-            "समान",
-            "वैश्विक",
-            "देती",
-            "तीव्र",
-            "की",
-            "प्रगति",
-            "ज्ञान",
-            "है",
-            "गति"
+            "कूटनीतिक",
+            "बहुपक्षवाद",
+            "से",
+            "सुलझाने"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Holistic study of complex systems reveals deeper organizational patterns",
-          "question": "जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है",
-          "questionTranslation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "translation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "options": [
-            "करता",
-            "उनके",
-            "अध्ययन",
-            "प्रणालियों",
-            "जटिल",
-            "गहरे",
-            "समग्र",
-            "उजागर",
-            "को",
-            "है",
-            "नियमों",
-            "का"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "question": "कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है",
-          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "translation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "options": [
-            "प्रमाण-आधारित",
-            "की",
-            "ही",
-            "है",
-            "विकास",
-            "कठोर",
-            "रीढ़",
-            "प्रामाणिक",
-            "पद्धति",
-            "वैज्ञानिक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है'."
+          "explanation": "The correct translation is: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ],
       "4": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "question": "दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है",
-          "questionTranslation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "translation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+          "question": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है",
+          "questionTranslation": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+          "translation": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
           "options": [
-            "को",
-            "देकर",
-            "मान्यताओं",
-            "बढ़ावा",
-            "को",
-            "चुनौती",
-            "है",
-            "गंभीर",
-            "चिंतन",
-            "देता",
-            "विमर्श",
-            "दार्शनिक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "question": "अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है",
-          "questionTranslation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "translation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "options": [
-            "क्षेत्रों",
-            "जोड़कर",
-            "उपलब्धियां",
-            "शोध",
-            "को",
-            "करता",
-            "विभिन्न",
-            "युगांतरकारी",
-            "अंतःविषयक",
-            "प्रदान",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Mitigating cognitive biases is foundational for fair decision making",
-          "question": "संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है",
-          "questionTranslation": "Mitigating cognitive biases is foundational for fair decision making",
-          "translation": "Mitigating cognitive biases is foundational for fair decision making",
-          "options": [
-            "निष्पक्ष",
-            "ही",
-            "आधारशिला",
-            "की",
-            "मुक्ति",
-            "से",
-            "पूर्वाग्रहों",
-            "है",
-            "मजबूत",
-            "संज्ञानात्मक",
-            "निर्णयों"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "question": "वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है",
-          "questionTranslation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "translation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "options": [
-            "कूटनीति",
-            "विश्वास",
-            "और",
-            "स्थिरता",
-            "पर",
-            "निर्भर",
-            "वैश्विक",
-            "है",
-            "परस्पर",
-            "करती",
-            "सुदृढ़"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Adaptive policy frameworks build a resilient and prosperous society",
-          "question": "अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं",
-          "questionTranslation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "translation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "options": [
-            "समाज",
-            "अनुकूलनशील",
-            "हैं",
-            "समृद्ध",
-            "को",
-            "और",
-            "बनाती",
-            "आत्मनिर्भर",
-            "नीतियां",
-            "सुरक्षित,"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interplay between environment and genetics drives modern medicine",
-          "question": "पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है",
-          "questionTranslation": "Interplay between environment and genetics drives modern medicine",
-          "translation": "Interplay between environment and genetics drives modern medicine",
-          "options": [
-            "पर्यावरण",
-            "संबंध",
-            "है",
-            "केंद्र",
-            "का",
-            "और",
-            "आनुवंशिकी",
-            "चिकित्सा",
-            "आधुनिक",
-            "गहरा",
-            "का"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "question": "लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं",
-          "questionTranslation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "translation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "options": [
-            "और",
-            "लोकतांत्रिक",
-            "मजबूत",
-            "ही",
-            "संस्थाएं",
-            "होती",
-            "से",
-            "हैं",
-            "पारदर्शी",
-            "संवाद",
-            "सार्थक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Equitable access to knowledge accelerates global human progress",
-          "question": "ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है",
-          "questionTranslation": "Equitable access to knowledge accelerates global human progress",
-          "translation": "Equitable access to knowledge accelerates global human progress",
-          "options": [
-            "उपलब्धता",
-            "देती",
-            "तीव्र",
-            "प्रगति",
-            "गति",
+            "लिए",
+            "विविधता",
+            "सांस्कृतिक",
             "ज्ञान",
-            "की",
-            "को",
+            "धरोहर",
+            "अमूल्य",
+            "रखने",
+            "हमारी",
+            "संरक्षण",
+            "और",
             "है",
-            "मानवीय",
-            "समान",
-            "वैश्विक"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Holistic study of complex systems reveals deeper organizational patterns",
-          "question": "जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है",
-          "questionTranslation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "translation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "options": [
-            "नियमों",
-            "उजागर",
+            "जीवित",
             "को",
-            "जटिल",
-            "है",
-            "समग्र",
-            "अध्ययन",
             "का",
-            "प्रणालियों",
-            "गहरे",
-            "करता",
-            "उनके"
+            "ऐतिहासिक",
+            "के",
+            "अनिवार्य",
+            "भाषाई"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है'."
+          "explanation": "The correct translation is: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "question": "कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है",
-          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "translation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+          "question": "आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं",
+          "questionTranslation": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+          "translation": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
           "options": [
-            "प्रामाणिक",
-            "विकास",
-            "कठोर",
-            "रीढ़",
-            "प्रमाण-आधारित",
-            "पद्धति",
-            "की",
-            "वैज्ञानिक",
-            "है",
-            "ही"
+            "के",
+            "बनाई",
+            "को",
+            "मानवीय",
+            "सकती",
+            "साथ",
+            "कल्याणकारी",
+            "नीतियां",
+            "आंकड़ों",
+            "जा",
+            "विश्लेषण",
+            "के",
+            "ही",
+            "और",
+            "जोड़कर",
+            "न्यायपूर्ण",
+            "हैं",
+            "दृष्टिकोण",
+            "गणितीय"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है'."
+          "explanation": "The correct translation is: 'आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "questionTranslation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "options": [
+            "में",
+            "हैं",
+            "मंदी",
+            "बाधाएं",
+            "को",
+            "आने",
+            "के",
+            "आर्थिक",
+            "आपूर्ति",
+            "और",
+            "जोखिम",
+            "मुद्रास्फीति",
+            "बढ़ाती",
+            "श्रृंखला",
+            "वाली"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "questionTranslation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "options": [
+            "तकनीकों",
+            "संपूर्ण",
+            "लागू",
+            "पर",
+            "कड़े",
+            "अंतरराष्ट्रीय",
+            "में",
+            "जीन-संपादन",
+            "है",
+            "नियम",
+            "मानवता",
+            "करना",
+            "हित",
+            "के"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "questionTranslation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "options": [
+            "अम्लता",
+            "खाद्य",
+            "समुद्री",
+            "बढ़ती",
+            "जैव",
+            "की",
+            "अत्यंत",
+            "घातक",
+            "है",
+            "के",
+            "श्रृंखला",
+            "विविधता",
+            "लिए",
+            "और",
+            "संपूर्ण",
+            "महासागरों"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "questionTranslation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "options": [
+            "कि",
+            "हो",
+            "के",
+            "संवैधानिक",
+            "अनुरूप",
+            "व्याख्या",
+            "है",
+            "समीक्षा",
+            "न्यायिक",
+            "यह",
+            "करती",
+            "सुनिश्चित",
+            "की",
+            "भावना",
+            "कानूनों"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "questionTranslation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "options": [
+            "सुरक्षित",
+            "पूरी",
+            "बनाएगी",
+            "और",
+            "को",
+            "क्वांटम-प्रतिरोधी",
+            "भविष्य",
+            "नेटवर्क",
+            "क्रिप्टोग्राफी",
+            "अभेद्य",
+            "के",
+            "डिजिटल",
+            "तरह"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "questionTranslation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "options": [
+            "बोलियों",
+            "दर्शाती",
+            "है",
+            "करता",
+            "को",
+            "यह",
+            "सिद्ध",
+            "शोध",
+            "सामाजिक",
+            "भाषाविदों",
+            "का",
+            "विविधता",
+            "संरचना",
+            "है",
+            "कि",
+            "की"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "questionTranslation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "options": [
+            "हेतु",
+            "लिए",
+            "के",
+            "बैंकों",
+            "निधि",
+            "नियामक",
+            "प्रणालीगत",
+            "अनिवार्य",
+            "बचाव",
+            "वित्तीय",
+            "अतिरिक्त",
+            "संकट",
+            "से",
+            "हैं",
+            "करते",
+            "सुरक्षा"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "questionTranslation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "options": [
+            "कानूनी",
+            "है",
+            "नैतिक",
+            "बुद्धिमत्ता",
+            "मांगती",
+            "और",
+            "कृत्रिम",
+            "उत्तरदायित्व",
+            "नई",
+            "की",
+            "स्वायत्त",
+            "परिभाषाएं",
+            "जवाबदेही"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है'."
         }
       ],
       "5": [
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "question": "दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है",
-          "questionTranslation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
-          "translation": "Philosophical inquiry challenges assumptions and fosters deep thinking",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+          "question": "विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है",
+          "questionTranslation": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+          "translation": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
           "options": [
-            "चुनौती",
-            "देता",
-            "बढ़ावा",
-            "विमर्श",
-            "दार्शनिक",
-            "को",
-            "मान्यताओं",
+            "संकटों",
             "है",
-            "गंभीर",
-            "को",
-            "चिंतन",
-            "देकर"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'दार्शनिक विमर्श मान्यताओं को चुनौती देकर गंभीर चिंतन को बढ़ावा देता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "question": "अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है",
-          "questionTranslation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "translation": "Interdisciplinary research connects diverse fields to achieve scientific breakthroughs",
-          "options": [
-            "क्षेत्रों",
-            "को",
-            "है",
-            "उपलब्धियां",
-            "विभिन्न",
-            "शोध",
-            "प्रदान",
-            "करता",
-            "जोड़कर",
-            "अंतःविषयक",
-            "युगांतरकारी"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अंतःविषयक शोध विभिन्न क्षेत्रों को जोड़कर युगांतरकारी उपलब्धियां प्रदान करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Mitigating cognitive biases is foundational for fair decision making",
-          "question": "संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है",
-          "questionTranslation": "Mitigating cognitive biases is foundational for fair decision making",
-          "translation": "Mitigating cognitive biases is foundational for fair decision making",
-          "options": [
-            "निर्णयों",
-            "की",
-            "है",
-            "पूर्वाग्रहों",
-            "आधारशिला",
-            "निष्पक्ष",
-            "मजबूत",
-            "ही",
-            "से",
-            "संज्ञानात्मक",
-            "मुक्ति"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'संज्ञानात्मक पूर्वाग्रहों से मुक्ति ही निष्पक्ष निर्णयों की मजबूत आधारशिला है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "question": "वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है",
-          "questionTranslation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "translation": "Global geopolitical stability relies on diplomacy and mutual trust",
-          "options": [
-            "पर",
-            "स्थिरता",
-            "कूटनीति",
-            "करती",
-            "विश्वास",
+            "उपस्थित",
+            "समक्ष",
+            "बहुआयामी",
+            "वैज्ञानिक",
+            "जटिल",
+            "के",
+            "समग्र",
+            "स्थायी",
+            "अनुशासनों",
+            "समन्वय",
+            "का",
+            "कर",
             "वैश्विक",
-            "सुदृढ़",
-            "परस्पर",
+            "और",
+            "मानवता",
+            "समाधान",
+            "सकता",
+            "विभिन्न",
+            "का",
+            "प्रस्तुत",
+            "ही"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "questionTranslation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "options": [
+            "सकते",
+            "अनेक",
+            "क्वांटम",
+            "संभावित",
+            "हैं",
+            "कण",
+            "अवस्थाओं",
+            "के",
+            "रह",
+            "भौतिकी",
+            "सूक्ष्म",
+            "में",
+            "विद्यमान",
+            "साथ",
+            "अनुसार",
+            "एक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "questionTranslation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "options": [
+            "स्थिरता",
+            "आर्थिक",
             "है",
-            "निर्भर",
+            "नीति",
+            "राजकोषीय",
+            "अनिवार्य",
+            "सटीक",
+            "नियंत्रण",
+            "का",
+            "मौद्रिक",
+            "लिए",
+            "समन्वय",
+            "के",
             "और"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'वैश्विक स्थिरता सुदृढ़ कूटनीति और परस्पर विश्वास पर निर्भर करती है'."
+          "explanation": "The correct translation is: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Adaptive policy frameworks build a resilient and prosperous society",
-          "question": "अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं",
-          "questionTranslation": "Adaptive policy frameworks build a resilient and prosperous society",
-          "translation": "Adaptive policy frameworks build a resilient and prosperous society",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "questionTranslation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
           "options": [
-            "बनाती",
-            "सुरक्षित,",
-            "और",
-            "नीतियां",
-            "को",
-            "समृद्ध",
-            "हैं",
-            "अनुकूलनशील",
-            "आत्मनिर्भर",
-            "समाज"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'अनुकूलनशील नीतियां समाज को सुरक्षित, समृद्ध और आत्मनिर्भर बनाती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Interplay between environment and genetics drives modern medicine",
-          "question": "पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है",
-          "questionTranslation": "Interplay between environment and genetics drives modern medicine",
-          "translation": "Interplay between environment and genetics drives modern medicine",
-          "options": [
-            "और",
-            "आनुवंशिकी",
-            "संबंध",
-            "आधुनिक",
-            "गहरा",
-            "का",
-            "पर्यावरण",
+            "जैव-आनुवंशिकी",
             "है",
-            "का",
-            "चिकित्सा",
-            "केंद्र"
+            "परिवर्तनों",
+            "जटिल",
+            "होने",
+            "स्तर",
+            "पर",
+            "करती",
+            "कोशिकीय",
+            "को",
+            "वाले",
+            "उजागर"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'पर्यावरण और आनुवंशिकी का गहरा संबंध आधुनिक चिकित्सा का केंद्र है'."
+          "explanation": "The correct translation is: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "question": "लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं",
-          "questionTranslation": "Democratic institutions thrive on transparent and deliberative public dialogue",
-          "translation": "Democratic institutions thrive on transparent and deliberative public dialogue",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "questionTranslation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "options": [
+            "के",
+            "और",
+            "है",
+            "मूल",
+            "संप्रभुता",
+            "संवैधानिक",
+            "के",
+            "नागरिक",
+            "साधता",
+            "न्यायशास्त्र",
+            "मध्य",
+            "संतुलन",
+            "अधिकारों"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "questionTranslation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "options": [
+            "समुद्री",
+            "है",
+            "तंत्र",
+            "में",
+            "संकट",
+            "दिया",
+            "को",
+            "वैश्विक",
+            "डाल",
+            "ने",
+            "मानवजनित",
+            "जैव-पारिस्थितिकी",
+            "औद्योगिक",
+            "उत्सर्जन"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "questionTranslation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "options": [
             "ही",
-            "मजबूत",
-            "संवाद",
-            "होती",
-            "पारदर्शी",
-            "और",
+            "एल्गोरिदम",
+            "निष्पक्ष",
+            "नींव",
+            "ऐतिहासिक",
+            "हैं",
+            "पक्षपातों",
+            "कृत्रिम",
+            "बुद्धिमत्ता",
             "से",
-            "सार्थक",
-            "संस्थाएं",
-            "लोकतांत्रिक",
-            "हैं"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'लोकतांत्रिक संस्थाएं पारदर्शी और सार्थक संवाद से ही मजबूत होती हैं'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Equitable access to knowledge accelerates global human progress",
-          "question": "ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है",
-          "questionTranslation": "Equitable access to knowledge accelerates global human progress",
-          "translation": "Equitable access to knowledge accelerates global human progress",
-          "options": [
-            "उपलब्धता",
-            "देती",
-            "को",
-            "ज्ञान",
-            "प्रगति",
-            "है",
-            "गति",
-            "समान",
-            "मानवीय",
-            "वैश्विक",
-            "तीव्र",
+            "सकते",
+            "मुक्त",
+            "रख",
             "की"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'ज्ञान की समान उपलब्धता वैश्विक मानवीय प्रगति को तीव्र गति देती है'."
+          "explanation": "The correct translation is: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
         },
         {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Holistic study of complex systems reveals deeper organizational patterns",
-          "question": "जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है",
-          "questionTranslation": "Holistic study of complex systems reveals deeper organizational patterns",
-          "translation": "Holistic study of complex systems reveals deeper organizational patterns",
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "questionTranslation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
           "options": [
-            "को",
-            "समग्र",
-            "जटिल",
-            "गहरे",
-            "प्रणालियों",
-            "अध्ययन",
-            "उनके",
-            "का",
-            "नियमों",
-            "करता",
-            "उजागर",
-            "है"
-          ],
-          "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'जटिल प्रणालियों का समग्र अध्ययन उनके गहरे नियमों को उजागर करता है'."
-        },
-        {
-          "instruction": "Arrange words to translate into HI",
-          "content": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "question": "कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है",
-          "questionTranslation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "translation": "Rigorous empirical methodology remains indispensable for authentic scientific advancement",
-          "options": [
-            "रीढ़",
-            "वैज्ञानिक",
-            "कठोर",
             "की",
-            "प्रामाणिक",
-            "ही",
+            "मानव",
+            "परिस्थितियों",
+            "मस्तिष्क",
+            "दर्शाती",
+            "के",
             "है",
-            "पद्धति",
-            "प्रमाण-आधारित",
-            "विकास"
+            "क्षमता",
+            "की",
+            "अद्भुत",
+            "अनुसार",
+            "न्यूरोप्लास्टिसिटी",
+            "ढलने",
+            "नई"
           ],
           "answerIndex": 0,
-          "explanation": "The correct HI translation is: 'कठोर प्रमाण-आधारित पद्धति ही प्रामाणिक वैज्ञानिक विकास की रीढ़ है'."
+          "explanation": "The correct translation is: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "questionTranslation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "options": [
+            "है",
+            "के",
+            "और",
+            "अर्थों",
+            "समालोचना",
+            "गहन",
+            "को",
+            "उद्घाटित",
+            "सूक्ष्म",
+            "सांस्कृतिक",
+            "करती",
+            "मूल्यों",
+            "सामाजिक",
+            "साहित्यिक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
+        },
+        {
+          "instruction": "Arrange the words below to form the correct sentence",
+          "content": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "questionTranslation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "options": [
+            "के",
+            "अंतरराष्ट्रीय",
+            "संवाद",
+            "पर",
+            "सुलझाने",
+            "सीमा-पार",
+            "देता",
+            "विवादों",
+            "बल",
+            "बहुपक्षवाद",
+            "से",
+            "माध्यम",
+            "है",
+            "को",
+            "कूटनीतिक"
+          ],
+          "answerIndex": 0,
+          "explanation": "The correct translation is: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ]
     },
     "listening": {
       "1": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैश्विक सम्मेलन ने स्पष्ट किया कि शून्य-उत्सर्जन लक्ष्य हेतु भारी पूंजीगत निवेश की आवश्यकता है।",
-          "translation": "आर्थिक शिखर वार्ता",
-          "question": "शून्य-उत्सर्जन लक्ष्य हेतु क्या चाहिए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है",
+          "translation": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+          "question": "What did the speaker say?",
           "options": [
-            "भारी पूंजीगत निवेश",
-            "कोयले का अधिक उपयोग",
-            "नियमों को समाप्त करना",
-            "प्रदूषण की अनदेखी"
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening"
           ],
           "answerIndex": 0,
-          "explanation": "स्वच्छ ऊर्जा की ओर अग्रसर होने के लिए बड़े वित्तीय संसाधनों की आवश्यकता है।"
+          "explanation": "The spoken sentence means: 'Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैज्ञानिकों ने पाया कि बहुभाषा सीखना मस्तिष्क की संरचनात्मक क्षमता को सुदृढ़ करता है।",
-          "translation": "न्यूरोसाइंस बुलेटिन",
-          "question": "बहुभाषा सीखने से क्या लाभ होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "What did the speaker say?",
           "options": [
-            "मस्तिष्क की क्षमता सुदृढ़ होती है",
-            "याददाश्त कमजोर होती है",
-            "दृष्टि कमजोर होती है",
-            "तनाव बढ़ता है"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways"
           ],
-          "answerIndex": 0,
-          "explanation": "अनेक भाषाएं बोलने से मस्तिष्क सक्रिय और तीव्र रहता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य अर्थशास्त्री ने चेतावनी दी कि आपूर्ति श्रृंखला में बाधाएं मुद्रास्फीति को बढ़ा सकती हैं।",
-          "translation": "केंद्रीय बैंक रिपोर्ट",
-          "question": "मुद्रास्फीति किससे बढ़ सकती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "What did the speaker say?",
           "options": [
-            "आपूर्ति श्रृंखला में बाधाओं से",
-            "अधिक उत्पादन से",
-            "मुद्रा के शून्य होने से",
-            "रोजगार बढ़ने से"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "आपूर्ति बाधित होने पर वस्तुओं की कीमतें बढ़ती हैं।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जैव-नीतिशास्त्रियों ने जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करने की मांग की।",
-          "translation": "जैव-नैतिकता सभा",
-          "question": "किस पर कड़े नियम मांगे गए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "What did the speaker say?",
           "options": [
-            "जीन-संपादन तकनीकों पर",
-            "कृषि उत्पादों पर",
-            "दवाइयों के विज्ञापनों पर",
-            "सौंदर्य प्रसाधनों पर"
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "जीन संपादन में नैतिक सीमाओं का पालन अनिवार्य है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री वैज्ञानिकों के अनुसार महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला के लिए घातक है।",
-          "translation": "समुद्र विज्ञान",
-          "question": "समुद्री खाद्य श्रृंखला के लिए क्या घातक है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "What did the speaker say?",
           "options": [
-            "महासागरों की बढ़ती अम्लता",
-            "ताजे पानी की वर्षा",
-            "तटीय पौधे",
-            "मछलियों का प्रवास"
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively"
           ],
-          "answerIndex": 0,
-          "explanation": "अम्लता बढ़ने से सूक्ष्म समुद्री जीवों का अस्तित्व संकट में है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "न्यायालय की पीठ ने पुनर्पुष्टि की कि विधायी अस्पष्टता का समाधान संवैधानिक भावना के अनुरूप होना चाहिए।",
-          "translation": "न्यायिक समीक्षा",
-          "question": "विधायी अस्पष्टता का समाधान कैसे हो?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What did the speaker say?",
           "options": [
-            "संवैधानिक भावना के अनुरूप",
-            "व्यक्तिगत पसंद से",
-            "जनमत संग्रह से",
-            "कानून निरस्त करके"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
-          "answerIndex": 0,
-          "explanation": "संवैधानिक आदर्श ही न्याय का अंतिम मार्गदर्शन करते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित बनाएगी।",
-          "translation": "साइबर सुरक्षा",
-          "question": "डिजिटल नेटवर्क को क्या सुरक्षित बनाएगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What did the speaker say?",
           "options": [
-            "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी",
-            "सरल पासवर्ड",
-            "खुला नेटवर्क",
-            "तार वाले टेलीफोन"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation"
           ],
-          "answerIndex": 0,
-          "explanation": "उन्नत क्रिप्टोग्राफी भविष्य के साइबर हमलों से रक्षा करती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "भाषाविदों ने सिद्ध किया कि बोलियों की विविधता सामाजिक और ऐतिहासिक संरचना को दर्शाती है।",
-          "translation": "भाषा विज्ञान",
-          "question": "बोलियों की विविधता क्या दर्शाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What did the speaker say?",
           "options": [
-            "सामाजिक व ऐतिहासिक संरचना",
-            "व्याकरण की गलतियां",
-            "भौगोलिक तापमान",
-            "केवल अनुवांशिकी"
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "भाषा समाज के इतिहास और संस्कृति का सजीव दर्पण है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वित्तीय नियामकों ने प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य की।",
-          "translation": "बैंकिंग विनियमन",
-          "question": "अतिरिक्त सुरक्षा निधि क्यों अनिवार्य की?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रणालीगत संकट से बचाव हेतु",
-            "सट्टा बाज़ार बढ़ाने के लिए",
-            "बैंक बंद करने के लिए",
-            "कर्ज जोखिम बढ़ाने के लिए"
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies"
           ],
-          "answerIndex": 0,
-          "explanation": "सुरक्षा निधि आर्थिक मंदी के समय बैंकों को मजबूती देती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "दार्शनिकों का मत है कि स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व की नई परिभाषाएं मांगती है।",
-          "translation": "एआई नैतिकता",
-          "question": "स्वायत्त एआई क्या मांगती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What did the speaker say?",
           "options": [
-            "नैतिक उत्तरदायित्व की नई परिभाषाएं",
-            "कंप्यूटर बंद करना",
-            "पुरानी किताबें पढ़ना",
-            "मैन्युअल काम करना"
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई के निर्णयों में नैतिक जिम्मेदारी का निर्धारण आवश्यक है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ],
       "2": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैश्विक सम्मेलन ने स्पष्ट किया कि शून्य-उत्सर्जन लक्ष्य हेतु भारी पूंजीगत निवेश की आवश्यकता है।",
-          "translation": "आर्थिक शिखर वार्ता",
-          "question": "शून्य-उत्सर्जन लक्ष्य हेतु क्या चाहिए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है",
+          "translation": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+          "question": "What did the speaker say?",
           "options": [
-            "भारी पूंजीगत निवेश",
-            "कोयले का अधिक उपयोग",
-            "नियमों को समाप्त करना",
-            "प्रदूषण की अनदेखी"
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks"
           ],
           "answerIndex": 0,
-          "explanation": "स्वच्छ ऊर्जा की ओर अग्रसर होने के लिए बड़े वित्तीय संसाधनों की आवश्यकता है।"
+          "explanation": "The spoken sentence means: 'Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैज्ञानिकों ने पाया कि बहुभाषा सीखना मस्तिष्क की संरचनात्मक क्षमता को सुदृढ़ करता है।",
-          "translation": "न्यूरोसाइंस बुलेटिन",
-          "question": "बहुभाषा सीखने से क्या लाभ होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है",
+          "translation": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+          "question": "What did the speaker say?",
           "options": [
-            "मस्तिष्क की क्षमता सुदृढ़ होती है",
-            "याददाश्त कमजोर होती है",
-            "दृष्टि कमजोर होती है",
-            "तनाव बढ़ता है"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions"
           ],
-          "answerIndex": 0,
-          "explanation": "अनेक भाषाएं बोलने से मस्तिष्क सक्रिय और तीव्र रहता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य अर्थशास्त्री ने चेतावनी दी कि आपूर्ति श्रृंखला में बाधाएं मुद्रास्फीति को बढ़ा सकती हैं।",
-          "translation": "केंद्रीय बैंक रिपोर्ट",
-          "question": "मुद्रास्फीति किससे बढ़ सकती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "What did the speaker say?",
           "options": [
-            "आपूर्ति श्रृंखला में बाधाओं से",
-            "अधिक उत्पादन से",
-            "मुद्रा के शून्य होने से",
-            "रोजगार बढ़ने से"
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility"
           ],
-          "answerIndex": 0,
-          "explanation": "आपूर्ति बाधित होने पर वस्तुओं की कीमतें बढ़ती हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जैव-नीतिशास्त्रियों ने जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करने की मांग की।",
-          "translation": "जैव-नैतिकता सभा",
-          "question": "किस पर कड़े नियम मांगे गए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "What did the speaker say?",
           "options": [
-            "जीन-संपादन तकनीकों पर",
-            "कृषि उत्पादों पर",
-            "दवाइयों के विज्ञापनों पर",
-            "सौंदर्य प्रसाधनों पर"
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability"
           ],
-          "answerIndex": 0,
-          "explanation": "जीन संपादन में नैतिक सीमाओं का पालन अनिवार्य है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री वैज्ञानिकों के अनुसार महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला के लिए घातक है।",
-          "translation": "समुद्र विज्ञान",
-          "question": "समुद्री खाद्य श्रृंखला के लिए क्या घातक है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "What did the speaker say?",
           "options": [
-            "महासागरों की बढ़ती अम्लता",
-            "ताजे पानी की वर्षा",
-            "तटीय पौधे",
-            "मछलियों का प्रवास"
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally"
           ],
-          "answerIndex": 0,
-          "explanation": "अम्लता बढ़ने से सूक्ष्म समुद्री जीवों का अस्तित्व संकट में है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "न्यायालय की पीठ ने पुनर्पुष्टि की कि विधायी अस्पष्टता का समाधान संवैधानिक भावना के अनुरूप होना चाहिए।",
-          "translation": "न्यायिक समीक्षा",
-          "question": "विधायी अस्पष्टता का समाधान कैसे हो?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "What did the speaker say?",
           "options": [
-            "संवैधानिक भावना के अनुरूप",
-            "व्यक्तिगत पसंद से",
-            "जनमत संग्रह से",
-            "कानून निरस्त करके"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions"
           ],
-          "answerIndex": 0,
-          "explanation": "संवैधानिक आदर्श ही न्याय का अंतिम मार्गदर्शन करते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित बनाएगी।",
-          "translation": "साइबर सुरक्षा",
-          "question": "डिजिटल नेटवर्क को क्या सुरक्षित बनाएगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "What did the speaker say?",
           "options": [
-            "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी",
-            "सरल पासवर्ड",
-            "खुला नेटवर्क",
-            "तार वाले टेलीफोन"
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally"
           ],
-          "answerIndex": 0,
-          "explanation": "उन्नत क्रिप्टोग्राफी भविष्य के साइबर हमलों से रक्षा करती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "भाषाविदों ने सिद्ध किया कि बोलियों की विविधता सामाजिक और ऐतिहासिक संरचना को दर्शाती है।",
-          "translation": "भाषा विज्ञान",
-          "question": "बोलियों की विविधता क्या दर्शाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "What did the speaker say?",
           "options": [
-            "सामाजिक व ऐतिहासिक संरचना",
-            "व्याकरण की गलतियां",
-            "भौगोलिक तापमान",
-            "केवल अनुवांशिकी"
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications"
           ],
-          "answerIndex": 0,
-          "explanation": "भाषा समाज के इतिहास और संस्कृति का सजीव दर्पण है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वित्तीय नियामकों ने प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य की।",
-          "translation": "बैंकिंग विनियमन",
-          "question": "अतिरिक्त सुरक्षा निधि क्यों अनिवार्य की?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रणालीगत संकट से बचाव हेतु",
-            "सट्टा बाज़ार बढ़ाने के लिए",
-            "बैंक बंद करने के लिए",
-            "कर्ज जोखिम बढ़ाने के लिए"
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally"
           ],
-          "answerIndex": 0,
-          "explanation": "सुरक्षा निधि आर्थिक मंदी के समय बैंकों को मजबूती देती है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "दार्शनिकों का मत है कि स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व की नई परिभाषाएं मांगती है।",
-          "translation": "एआई नैतिकता",
-          "question": "स्वायत्त एआई क्या मांगती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "What did the speaker say?",
           "options": [
-            "नैतिक उत्तरदायित्व की नई परिभाषाएं",
-            "कंप्यूटर बंद करना",
-            "पुरानी किताबें पढ़ना",
-            "मैन्युअल काम करना"
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent"
           ],
           "answerIndex": 0,
-          "explanation": "एआई के निर्णयों में नैतिक जिम्मेदारी का निर्धारण आवश्यक है।"
+          "explanation": "The spoken sentence means: 'Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability'."
         }
       ],
       "3": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैश्विक सम्मेलन ने स्पष्ट किया कि शून्य-उत्सर्जन लक्ष्य हेतु भारी पूंजीगत निवेश की आवश्यकता है।",
-          "translation": "आर्थिक शिखर वार्ता",
-          "question": "शून्य-उत्सर्जन लक्ष्य हेतु क्या चाहिए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है",
+          "translation": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+          "question": "What did the speaker say?",
           "options": [
-            "भारी पूंजीगत निवेश",
-            "कोयले का अधिक उपयोग",
-            "नियमों को समाप्त करना",
-            "प्रदूषण की अनदेखी"
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ ऊर्जा की ओर अग्रसर होने के लिए बड़े वित्तीय संसाधनों की आवश्यकता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैज्ञानिकों ने पाया कि बहुभाषा सीखना मस्तिष्क की संरचनात्मक क्षमता को सुदृढ़ करता है।",
-          "translation": "न्यूरोसाइंस बुलेटिन",
-          "question": "बहुभाषा सीखने से क्या लाभ होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे",
+          "translation": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+          "question": "What did the speaker say?",
           "options": [
-            "मस्तिष्क की क्षमता सुदृढ़ होती है",
-            "याददाश्त कमजोर होती है",
-            "दृष्टि कमजोर होती है",
-            "तनाव बढ़ता है"
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments"
           ],
           "answerIndex": 0,
-          "explanation": "अनेक भाषाएं बोलने से मस्तिष्क सक्रिय और तीव्र रहता है।"
+          "explanation": "The spoken sentence means: 'We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य अर्थशास्त्री ने चेतावनी दी कि आपूर्ति श्रृंखला में बाधाएं मुद्रास्फीति को बढ़ा सकती हैं।",
-          "translation": "केंद्रीय बैंक रिपोर्ट",
-          "question": "मुद्रास्फीति किससे बढ़ सकती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है",
+          "translation": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+          "question": "What did the speaker say?",
           "options": [
-            "आपूर्ति श्रृंखला में बाधाओं से",
-            "अधिक उत्पादन से",
-            "मुद्रा के शून्य होने से",
-            "रोजगार बढ़ने से"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully"
           ],
-          "answerIndex": 0,
-          "explanation": "आपूर्ति बाधित होने पर वस्तुओं की कीमतें बढ़ती हैं।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जैव-नीतिशास्त्रियों ने जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करने की मांग की।",
-          "translation": "जैव-नैतिकता सभा",
-          "question": "किस पर कड़े नियम मांगे गए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं",
+          "translation": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+          "question": "What did the speaker say?",
           "options": [
-            "जीन-संपादन तकनीकों पर",
-            "कृषि उत्पादों पर",
-            "दवाइयों के विज्ञापनों पर",
-            "सौंदर्य प्रसाधनों पर"
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes"
           ],
           "answerIndex": 0,
-          "explanation": "जीन संपादन में नैतिक सीमाओं का पालन अनिवार्य है।"
+          "explanation": "The spoken sentence means: 'Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री वैज्ञानिकों के अनुसार महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला के लिए घातक है।",
-          "translation": "समुद्र विज्ञान",
-          "question": "समुद्री खाद्य श्रृंखला के लिए क्या घातक है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है",
+          "translation": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+          "question": "What did the speaker say?",
           "options": [
-            "महासागरों की बढ़ती अम्लता",
-            "ताजे पानी की वर्षा",
-            "तटीय पौधे",
-            "मछलियों का प्रवास"
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies"
           ],
-          "answerIndex": 0,
-          "explanation": "अम्लता बढ़ने से सूक्ष्म समुद्री जीवों का अस्तित्व संकट में है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "न्यायालय की पीठ ने पुनर्पुष्टि की कि विधायी अस्पष्टता का समाधान संवैधानिक भावना के अनुरूप होना चाहिए।",
-          "translation": "न्यायिक समीक्षा",
-          "question": "विधायी अस्पष्टता का समाधान कैसे हो?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What did the speaker say?",
           "options": [
-            "संवैधानिक भावना के अनुरूप",
-            "व्यक्तिगत पसंद से",
-            "जनमत संग्रह से",
-            "कानून निरस्त करके"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally"
           ],
-          "answerIndex": 0,
-          "explanation": "संवैधानिक आदर्श ही न्याय का अंतिम मार्गदर्शन करते हैं।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित बनाएगी।",
-          "translation": "साइबर सुरक्षा",
-          "question": "डिजिटल नेटवर्क को क्या सुरक्षित बनाएगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What did the speaker say?",
           "options": [
-            "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी",
-            "सरल पासवर्ड",
-            "खुला नेटवर्क",
-            "तार वाले टेलीफोन"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully"
           ],
           "answerIndex": 0,
-          "explanation": "उन्नत क्रिप्टोग्राफी भविष्य के साइबर हमलों से रक्षा करती है।"
+          "explanation": "The spoken sentence means: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "भाषाविदों ने सिद्ध किया कि बोलियों की विविधता सामाजिक और ऐतिहासिक संरचना को दर्शाती है।",
-          "translation": "भाषा विज्ञान",
-          "question": "बोलियों की विविधता क्या दर्शाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What did the speaker say?",
           "options": [
-            "सामाजिक व ऐतिहासिक संरचना",
-            "व्याकरण की गलतियां",
-            "भौगोलिक तापमान",
-            "केवल अनुवांशिकी"
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics"
           ],
-          "answerIndex": 0,
-          "explanation": "भाषा समाज के इतिहास और संस्कृति का सजीव दर्पण है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वित्तीय नियामकों ने प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य की।",
-          "translation": "बैंकिंग विनियमन",
-          "question": "अतिरिक्त सुरक्षा निधि क्यों अनिवार्य की?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रणालीगत संकट से बचाव हेतु",
-            "सट्टा बाज़ार बढ़ाने के लिए",
-            "बैंक बंद करने के लिए",
-            "कर्ज जोखिम बढ़ाने के लिए"
+            "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
+            "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
+            "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies"
           ],
-          "answerIndex": 0,
-          "explanation": "सुरक्षा निधि आर्थिक मंदी के समय बैंकों को मजबूती देती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "दार्शनिकों का मत है कि स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व की नई परिभाषाएं मांगती है।",
-          "translation": "एआई नैतिकता",
-          "question": "स्वायत्त एआई क्या मांगती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What did the speaker say?",
           "options": [
-            "नैतिक उत्तरदायित्व की नई परिभाषाएं",
-            "कंप्यूटर बंद करना",
-            "पुरानी किताबें पढ़ना",
-            "मैन्युअल काम करना"
+            "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
+            "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई के निर्णयों में नैतिक जिम्मेदारी का निर्धारण आवश्यक है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ],
       "4": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैश्विक सम्मेलन ने स्पष्ट किया कि शून्य-उत्सर्जन लक्ष्य हेतु भारी पूंजीगत निवेश की आवश्यकता है।",
-          "translation": "आर्थिक शिखर वार्ता",
-          "question": "शून्य-उत्सर्जन लक्ष्य हेतु क्या चाहिए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है",
+          "translation": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+          "question": "What did the speaker say?",
           "options": [
-            "भारी पूंजीगत निवेश",
-            "कोयले का अधिक उपयोग",
-            "नियमों को समाप्त करना",
-            "प्रदूषण की अनदेखी"
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ ऊर्जा की ओर अग्रसर होने के लिए बड़े वित्तीय संसाधनों की आवश्यकता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैज्ञानिकों ने पाया कि बहुभाषा सीखना मस्तिष्क की संरचनात्मक क्षमता को सुदृढ़ करता है।",
-          "translation": "न्यूरोसाइंस बुलेटिन",
-          "question": "बहुभाषा सीखने से क्या लाभ होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं",
+          "translation": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+          "question": "What did the speaker say?",
           "options": [
-            "मस्तिष्क की क्षमता सुदृढ़ होती है",
-            "याददाश्त कमजोर होती है",
-            "दृष्टि कमजोर होती है",
-            "तनाव बढ़ता है"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage"
           ],
-          "answerIndex": 0,
-          "explanation": "अनेक भाषाएं बोलने से मस्तिष्क सक्रिय और तीव्र रहता है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य अर्थशास्त्री ने चेतावनी दी कि आपूर्ति श्रृंखला में बाधाएं मुद्रास्फीति को बढ़ा सकती हैं।",
-          "translation": "केंद्रीय बैंक रिपोर्ट",
-          "question": "मुद्रास्फीति किससे बढ़ सकती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+          "question": "What did the speaker say?",
           "options": [
-            "आपूर्ति श्रृंखला में बाधाओं से",
-            "अधिक उत्पादन से",
-            "मुद्रा के शून्य होने से",
-            "रोजगार बढ़ने से"
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "आपूर्ति बाधित होने पर वस्तुओं की कीमतें बढ़ती हैं।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जैव-नीतिशास्त्रियों ने जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करने की मांग की।",
-          "translation": "जैव-नैतिकता सभा",
-          "question": "किस पर कड़े नियम मांगे गए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+          "question": "What did the speaker say?",
           "options": [
-            "जीन-संपादन तकनीकों पर",
-            "कृषि उत्पादों पर",
-            "दवाइयों के विज्ञापनों पर",
-            "सौंदर्य प्रसाधनों पर"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent"
           ],
           "answerIndex": 0,
-          "explanation": "जीन संपादन में नैतिक सीमाओं का पालन अनिवार्य है।"
+          "explanation": "The spoken sentence means: 'Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री वैज्ञानिकों के अनुसार महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला के लिए घातक है।",
-          "translation": "समुद्र विज्ञान",
-          "question": "समुद्री खाद्य श्रृंखला के लिए क्या घातक है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+          "question": "What did the speaker say?",
           "options": [
-            "महासागरों की बढ़ती अम्लता",
-            "ताजे पानी की वर्षा",
-            "तटीय पौधे",
-            "मछलियों का प्रवास"
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility"
           ],
-          "answerIndex": 0,
-          "explanation": "अम्लता बढ़ने से सूक्ष्म समुद्री जीवों का अस्तित्व संकट में है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "न्यायालय की पीठ ने पुनर्पुष्टि की कि विधायी अस्पष्टता का समाधान संवैधानिक भावना के अनुरूप होना चाहिए।",
-          "translation": "न्यायिक समीक्षा",
-          "question": "विधायी अस्पष्टता का समाधान कैसे हो?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+          "question": "What did the speaker say?",
           "options": [
-            "संवैधानिक भावना के अनुरूप",
-            "व्यक्तिगत पसंद से",
-            "जनमत संग्रह से",
-            "कानून निरस्त करके"
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy"
           ],
-          "answerIndex": 0,
-          "explanation": "संवैधानिक आदर्श ही न्याय का अंतिम मार्गदर्शन करते हैं।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित बनाएगी।",
-          "translation": "साइबर सुरक्षा",
-          "question": "डिजिटल नेटवर्क को क्या सुरक्षित बनाएगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+          "question": "What did the speaker say?",
           "options": [
-            "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी",
-            "सरल पासवर्ड",
-            "खुला नेटवर्क",
-            "तार वाले टेलीफोन"
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries"
           ],
-          "answerIndex": 0,
-          "explanation": "उन्नत क्रिप्टोग्राफी भविष्य के साइबर हमलों से रक्षा करती है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "भाषाविदों ने सिद्ध किया कि बोलियों की विविधता सामाजिक और ऐतिहासिक संरचना को दर्शाती है।",
-          "translation": "भाषा विज्ञान",
-          "question": "बोलियों की विविधता क्या दर्शाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+          "question": "What did the speaker say?",
           "options": [
-            "सामाजिक व ऐतिहासिक संरचना",
-            "व्याकरण की गलतियां",
-            "भौगोलिक तापमान",
-            "केवल अनुवांशिकी"
+            "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy"
           ],
           "answerIndex": 0,
-          "explanation": "भाषा समाज के इतिहास और संस्कृति का सजीव दर्पण है।"
+          "explanation": "The spoken sentence means: 'Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वित्तीय नियामकों ने प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य की।",
-          "translation": "बैंकिंग विनियमन",
-          "question": "अतिरिक्त सुरक्षा निधि क्यों अनिवार्य की?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रणालीगत संकट से बचाव हेतु",
-            "सट्टा बाज़ार बढ़ाने के लिए",
-            "बैंक बंद करने के लिए",
-            "कर्ज जोखिम बढ़ाने के लिए"
+            "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
+            "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
+            "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
+            "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility"
           ],
-          "answerIndex": 0,
-          "explanation": "सुरक्षा निधि आर्थिक मंदी के समय बैंकों को मजबूती देती है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "दार्शनिकों का मत है कि स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व की नई परिभाषाएं मांगती है।",
-          "translation": "एआई नैतिकता",
-          "question": "स्वायत्त एआई क्या मांगती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+          "question": "What did the speaker say?",
           "options": [
-            "नैतिक उत्तरदायित्व की नई परिभाषाएं",
-            "कंप्यूटर बंद करना",
-            "पुरानी किताबें पढ़ना",
-            "मैन्युअल काम करना"
+            "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
+            "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
+            "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
+            "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई के निर्णयों में नैतिक जिम्मेदारी का निर्धारण आवश्यक है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability'."
         }
       ],
       "5": [
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैश्विक सम्मेलन ने स्पष्ट किया कि शून्य-उत्सर्जन लक्ष्य हेतु भारी पूंजीगत निवेश की आवश्यकता है।",
-          "translation": "आर्थिक शिखर वार्ता",
-          "question": "शून्य-उत्सर्जन लक्ष्य हेतु क्या चाहिए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है",
+          "translation": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+          "question": "What did the speaker say?",
           "options": [
-            "भारी पूंजीगत निवेश",
-            "कोयले का अधिक उपयोग",
-            "नियमों को समाप्त करना",
-            "प्रदूषण की अनदेखी"
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening"
           ],
-          "answerIndex": 0,
-          "explanation": "स्वच्छ ऊर्जा की ओर अग्रसर होने के लिए बड़े वित्तीय संसाधनों की आवश्यकता है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वैज्ञानिकों ने पाया कि बहुभाषा सीखना मस्तिष्क की संरचनात्मक क्षमता को सुदृढ़ करता है।",
-          "translation": "न्यूरोसाइंस बुलेटिन",
-          "question": "बहुभाषा सीखने से क्या लाभ होता है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+          "question": "What did the speaker say?",
           "options": [
-            "मस्तिष्क की क्षमता सुदृढ़ होती है",
-            "याददाश्त कमजोर होती है",
-            "दृष्टि कमजोर होती है",
-            "तनाव बढ़ता है"
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates"
           ],
-          "answerIndex": 0,
-          "explanation": "अनेक भाषाएं बोलने से मस्तिष्क सक्रिय और तीव्र रहता है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "मुख्य अर्थशास्त्री ने चेतावनी दी कि आपूर्ति श्रृंखला में बाधाएं मुद्रास्फीति को बढ़ा सकती हैं।",
-          "translation": "केंद्रीय बैंक रिपोर्ट",
-          "question": "मुद्रास्फीति किससे बढ़ सकती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+          "question": "What did the speaker say?",
           "options": [
-            "आपूर्ति श्रृंखला में बाधाओं से",
-            "अधिक उत्पादन से",
-            "मुद्रा के शून्य होने से",
-            "रोजगार बढ़ने से"
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases"
           ],
           "answerIndex": 0,
-          "explanation": "आपूर्ति बाधित होने पर वस्तुओं की कीमतें बढ़ती हैं।"
+          "explanation": "The spoken sentence means: 'Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "जैव-नीतिशास्त्रियों ने जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करने की मांग की।",
-          "translation": "जैव-नैतिकता सभा",
-          "question": "किस पर कड़े नियम मांगे गए?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
+          "question": "What did the speaker say?",
           "options": [
-            "जीन-संपादन तकनीकों पर",
-            "कृषि उत्पादों पर",
-            "दवाइयों के विज्ञापनों पर",
-            "सौंदर्य प्रसाधनों पर"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways"
           ],
-          "answerIndex": 0,
-          "explanation": "जीन संपादन में नैतिक सीमाओं का पालन अनिवार्य है।"
+          "answerIndex": 3,
+          "explanation": "The spoken sentence means: 'Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "समुद्री वैज्ञानिकों के अनुसार महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला के लिए घातक है।",
-          "translation": "समुद्र विज्ञान",
-          "question": "समुद्री खाद्य श्रृंखला के लिए क्या घातक है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+          "question": "What did the speaker say?",
           "options": [
-            "महासागरों की बढ़ती अम्लता",
-            "ताजे पानी की वर्षा",
-            "तटीय पौधे",
-            "मछलियों का प्रवास"
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases"
           ],
-          "answerIndex": 0,
-          "explanation": "अम्लता बढ़ने से सूक्ष्म समुद्री जीवों का अस्तित्व संकट में है।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "न्यायालय की पीठ ने पुनर्पुष्टि की कि विधायी अस्पष्टता का समाधान संवैधानिक भावना के अनुरूप होना चाहिए।",
-          "translation": "न्यायिक समीक्षा",
-          "question": "विधायी अस्पष्टता का समाधान कैसे हो?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+          "question": "What did the speaker say?",
           "options": [
-            "संवैधानिक भावना के अनुरूप",
-            "व्यक्तिगत पसंद से",
-            "जनमत संग्रह से",
-            "कानून निरस्त करके"
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning"
           ],
-          "answerIndex": 0,
-          "explanation": "संवैधानिक आदर्श ही न्याय का अंतिम मार्गदर्शन करते हैं।"
+          "answerIndex": 1,
+          "explanation": "The spoken sentence means: 'Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित बनाएगी।",
-          "translation": "साइबर सुरक्षा",
-          "question": "डिजिटल नेटवर्क को क्या सुरक्षित बनाएगा?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+          "question": "What did the speaker say?",
           "options": [
-            "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी",
-            "सरल पासवर्ड",
-            "खुला नेटवर्क",
-            "तार वाले टेलीफोन"
+            "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity"
           ],
           "answerIndex": 0,
-          "explanation": "उन्नत क्रिप्टोग्राफी भविष्य के साइबर हमलों से रक्षा करती है।"
+          "explanation": "The spoken sentence means: 'Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "भाषाविदों ने सिद्ध किया कि बोलियों की विविधता सामाजिक और ऐतिहासिक संरचना को दर्शाती है।",
-          "translation": "भाषा विज्ञान",
-          "question": "बोलियों की विविधता क्या दर्शाती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+          "question": "What did the speaker say?",
           "options": [
-            "सामाजिक व ऐतिहासिक संरचना",
-            "व्याकरण की गलतियां",
-            "भौगोलिक तापमान",
-            "केवल अनुवांशिकी"
+            "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways"
           ],
           "answerIndex": 0,
-          "explanation": "भाषा समाज के इतिहास और संस्कृति का सजीव दर्पण है।"
+          "explanation": "The spoken sentence means: 'Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "वित्तीय नियामकों ने प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य की।",
-          "translation": "बैंकिंग विनियमन",
-          "question": "अतिरिक्त सुरक्षा निधि क्यों अनिवार्य की?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+          "question": "What did the speaker say?",
           "options": [
-            "प्रणालीगत संकट से बचाव हेतु",
-            "सट्टा बाज़ार बढ़ाने के लिए",
-            "बैंक बंद करने के लिए",
-            "कर्ज जोखिम बढ़ाने के लिए"
+            "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
+            "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
+            "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
+            "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity"
           ],
           "answerIndex": 0,
-          "explanation": "सुरक्षा निधि आर्थिक मंदी के समय बैंकों को मजबूती देती है।"
+          "explanation": "The spoken sentence means: 'Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies'."
         },
         {
-          "instruction": "Listen to the audio carefully and select the correct option",
-          "content": "दार्शनिकों का मत है कि स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व की नई परिभाषाएं मांगती है।",
-          "translation": "एआई नैतिकता",
-          "question": "स्वायत्त एआई क्या मांगती है?",
+          "instruction": "Listen to the audio carefully and select the right option",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+          "question": "What did the speaker say?",
           "options": [
-            "नैतिक उत्तरदायित्व की नई परिभाषाएं",
-            "कंप्यूटर बंद करना",
-            "पुरानी किताबें पढ़ना",
-            "मैन्युअल काम करना"
+            "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
+            "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
+            "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
+            "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways"
           ],
-          "answerIndex": 0,
-          "explanation": "एआई के निर्णयों में नैतिक जिम्मेदारी का निर्धारण आवश्यक है।"
+          "answerIndex": 2,
+          "explanation": "The spoken sentence means: 'Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes'."
         }
       ]
     },
@@ -9219,461 +9474,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।",
-          "translation": "Scientific discourse",
+          "content": "ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है",
+          "translation": "Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।'"
+          "explanation": "Practice speaking: 'ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।",
-          "translation": "Sociological advocacy",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।'"
+          "explanation": "Practice speaking: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।",
-          "translation": "Diplomatic policy",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।'"
+          "explanation": "Practice speaking: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।",
-          "translation": "Leadership rhetoric",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।'"
+          "explanation": "Practice speaking: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।",
-          "translation": "Health policy",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।'"
+          "explanation": "Practice speaking: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।",
-          "translation": "Technology ethics",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।'"
+          "explanation": "Practice speaking: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।",
-          "translation": "Academic perspective",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।'"
+          "explanation": "Practice speaking: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।",
-          "translation": "Cultural preservation",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।'"
+          "explanation": "Practice speaking: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।",
-          "translation": "Analytical thinking",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।'"
+          "explanation": "Practice speaking: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।",
-          "translation": "Educational vision",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।'"
+          "explanation": "Practice speaking: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।",
-          "translation": "Scientific discourse",
+          "content": "शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है",
+          "translation": "Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।'"
+          "explanation": "Practice speaking: 'शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।",
-          "translation": "Sociological advocacy",
+          "content": "अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है",
+          "translation": "Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।'"
+          "explanation": "Practice speaking: 'अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।",
-          "translation": "Diplomatic policy",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।'"
+          "explanation": "Practice speaking: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।",
-          "translation": "Leadership rhetoric",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।'"
+          "explanation": "Practice speaking: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।",
-          "translation": "Health policy",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।'"
+          "explanation": "Practice speaking: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।",
-          "translation": "Technology ethics",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।'"
+          "explanation": "Practice speaking: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।",
-          "translation": "Academic perspective",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।'"
+          "explanation": "Practice speaking: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।",
-          "translation": "Cultural preservation",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।'"
+          "explanation": "Practice speaking: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।",
-          "translation": "Analytical thinking",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।'"
+          "explanation": "Practice speaking: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।",
-          "translation": "Educational vision",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।'"
+          "explanation": "Practice speaking: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है'."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।",
-          "translation": "Scientific discourse",
+          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है",
+          "translation": "The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।'"
+          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।",
-          "translation": "Sociological advocacy",
+          "content": "हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे",
+          "translation": "We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।'"
+          "explanation": "Practice speaking: 'हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।",
-          "translation": "Diplomatic policy",
+          "content": "अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है",
+          "translation": "Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।'"
+          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।",
-          "translation": "Leadership rhetoric",
+          "content": "दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं",
+          "translation": "Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।'"
+          "explanation": "Practice speaking: 'दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।",
-          "translation": "Health policy",
+          "content": "कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है",
+          "translation": "Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।'"
+          "explanation": "Practice speaking: 'कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।",
-          "translation": "Technology ethics",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।'"
+          "explanation": "Practice speaking: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।",
-          "translation": "Academic perspective",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।'"
+          "explanation": "Practice speaking: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।",
-          "translation": "Cultural preservation",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।'"
+          "explanation": "Practice speaking: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।",
-          "translation": "Analytical thinking",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।'"
+          "explanation": "Practice speaking: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।",
-          "translation": "Educational vision",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।'"
+          "explanation": "Practice speaking: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।",
-          "translation": "Scientific discourse",
+          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है",
+          "translation": "Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।'"
+          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।",
-          "translation": "Sociological advocacy",
+          "content": "आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं",
+          "translation": "Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।'"
+          "explanation": "Practice speaking: 'आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।",
-          "translation": "Diplomatic policy",
+          "content": "आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं",
+          "translation": "Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।'"
+          "explanation": "Practice speaking: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।",
-          "translation": "Leadership rhetoric",
+          "content": "जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है",
+          "translation": "Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।'"
+          "explanation": "Practice speaking: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।",
-          "translation": "Health policy",
+          "content": "महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है",
+          "translation": "Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।'"
+          "explanation": "Practice speaking: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।",
-          "translation": "Technology ethics",
+          "content": "न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो",
+          "translation": "Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।'"
+          "explanation": "Practice speaking: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।",
-          "translation": "Academic perspective",
+          "content": "क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी",
+          "translation": "Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।'"
+          "explanation": "Practice speaking: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।",
-          "translation": "Cultural preservation",
+          "content": "भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है",
+          "translation": "Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।'"
+          "explanation": "Practice speaking: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।",
-          "translation": "Analytical thinking",
+          "content": "वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं",
+          "translation": "Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।'"
+          "explanation": "Practice speaking: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।",
-          "translation": "Educational vision",
+          "content": "स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है",
+          "translation": "Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।'"
+          "explanation": "Practice speaking: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है'."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।",
-          "translation": "Scientific discourse",
+          "content": "विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है",
+          "translation": "Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में नवयुग का सूत्रपात कर रहा है।'"
+          "explanation": "Practice speaking: 'विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।",
-          "translation": "Sociological advocacy",
+          "content": "क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं",
+          "translation": "Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'हमें समावेशी समाज के निर्माण हेतु प्रत्येक वर्ग को समान अवसर उपलब्ध कराने होंगे।'"
+          "explanation": "Practice speaking: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।",
-          "translation": "Diplomatic policy",
+          "content": "आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है",
+          "translation": "Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'अंतरराष्ट्रीय चुनौतियों का स्थायी समाधान केवल पारदर्शी कूटनीति से ही संभव है।'"
+          "explanation": "Practice speaking: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।",
-          "translation": "Leadership rhetoric",
+          "content": "जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है",
+          "translation": "Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'सच्चा नेतृत्व वही है जो अनिश्चितता के दौर में भी टीम को स्पष्ट दिशा प्रदान करे।'"
+          "explanation": "Practice speaking: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।",
-          "translation": "Health policy",
+          "content": "संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है",
+          "translation": "Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'लोक स्वास्थ्य नीतियों की सफलता उनके वैज्ञानिक और साक्ष्य-आधारित क्रियान्वयन पर टिकी है।'"
+          "explanation": "Practice speaking: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।",
-          "translation": "Technology ethics",
+          "content": "मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है",
+          "translation": "Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तकनीकी प्रगति की गति के साथ-साथ नैतिक नियमों का विकास भी अत्यंत आवश्यक है।'"
+          "explanation": "Practice speaking: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।",
-          "translation": "Academic perspective",
+          "content": "ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं",
+          "translation": "Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'विभिन्न विधाओं का परस्पर समन्वय ही मानवता की जटिल समस्याओं का समाधान प्रस्तुत कर सकता है।'"
+          "explanation": "Practice speaking: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।",
-          "translation": "Cultural preservation",
+          "content": "न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है",
+          "translation": "Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर को जीवित रखने के लिए अनिवार्य है।'"
+          "explanation": "Practice speaking: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।",
-          "translation": "Analytical thinking",
+          "content": "गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है",
+          "translation": "Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'तथ्यों का गहन विश्लेषण और मानवीय दृष्टिकोण ही संतुलित निर्णयों की कुंजी हैं।'"
+          "explanation": "Practice speaking: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है'."
         },
         {
           "instruction": "Tap the microphone and speak this sentence aloud",
-          "content": "मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।",
-          "translation": "Educational vision",
+          "content": "अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है",
+          "translation": "Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes",
           "question": "Speak clearly into your microphone",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Practice speaking: 'मूल्यपरक शिक्षा ही भावी पीढ़ियों को उत्तरदायी और संवेदनशील नागरिक बना सकती है।'"
+          "explanation": "Practice speaking: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है'."
         }
       ]
     },
@@ -9681,461 +9936,461 @@ window.CURRICULUM_LESSONS_HI = {
       "1": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कालभ्रमित",
-          "translation": "kaal-bhruh-MEET (Anachronistic / Out of time)",
+          "content": "ज्ञानमीमांसा",
+          "translation": "From: 'ज्ञानमीमांसा मानवीय चेतना, संज्ञान और सत्य के दार्शनिक आधारों का गहन अन्वेषण करती है' (Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kaal-bhruh-MEET (Anachronistic / Out of time)"
+          "explanation": "Practice pronouncing: 'ज्ञानमीमांसा' (Epistemological inquiries challenge foundational assumptions and encourage rigorous critical philosophical contemplation)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "विशिष्टता",
-          "translation": "vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)",
+          "content": "क्वांटम",
+          "translation": "From: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं' (Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)"
+          "explanation": "Practice pronouncing: 'क्वांटम' (Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "समानाधिकरण",
-          "translation": "suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)",
+          "content": "आर्थिक",
+          "translation": "From: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है' (Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)"
+          "explanation": "Practice pronouncing: 'आर्थिक' (Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "औदार्य",
-          "translation": "au-DAAR-yuh (Magnanimity / Generosity)",
+          "content": "जैव-आनुवंशिकी",
+          "translation": "From: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है' (Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: au-DAAR-yuh (Magnanimity / Generosity)"
+          "explanation": "Practice pronouncing: 'जैव-आनुवंशिकी' (Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अस्पष्टता",
-          "translation": "uh-spush-tuh-TAA (Obfuscation / Ambiguity)",
+          "content": "संवैधानिक",
+          "translation": "From: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है' (Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-spush-tuh-TAA (Obfuscation / Ambiguity)"
+          "explanation": "Practice pronouncing: 'संवैधानिक' (Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वोत्कृष्ट",
-          "translation": "sur-vot-KRISHT (Quintessential / Excellence)",
+          "content": "मानवजनित",
+          "translation": "From: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vot-KRISHT (Quintessential / Excellence)"
+          "explanation": "Practice pronouncing: 'मानवजनित' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दीर्घवृत्त",
-          "translation": "deergh-VRIT (Extensive / Sesquipedalian)",
+          "content": "ऐतिहासिक",
+          "translation": "From: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: deergh-VRIT (Extensive / Sesquipedalian)"
+          "explanation": "Practice pronouncing: 'ऐतिहासिक' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिवर्तनशीलता",
-          "translation": "puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)",
+          "content": "न्यूरोप्लास्टिसिटी",
+          "translation": "From: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)"
+          "explanation": "Practice pronouncing: 'न्यूरोप्लास्टिसिटी' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "गुप्तता",
-          "translation": "goop-tuh-TAA (Surreptitious / Secrecy)",
+          "content": "गहन",
+          "translation": "From: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: goop-tuh-TAA (Surreptitious / Secrecy)"
+          "explanation": "Practice pronouncing: 'गहन' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़प्रतिज्ञ",
-          "translation": "dridh-pruh-TEEQ-nyuh (Unyielding / Determined)",
+          "content": "अंतरराष्ट्रीय",
+          "translation": "From: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-pruh-TEEQ-nyuh (Unyielding / Determined)"
+          "explanation": "Practice pronouncing: 'अंतरराष्ट्रीय' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)."
         }
       ],
       "2": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कालभ्रमित",
-          "translation": "kaal-bhruh-MEET (Anachronistic / Out of time)",
+          "content": "शून्य-उत्सर्जन",
+          "translation": "From: 'शून्य-उत्सर्जन लक्ष्य हासिल करने हेतु वैश्विक स्तर पर भारी पूंजीगत निवेश की आवश्यकता है' (Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kaal-bhruh-MEET (Anachronistic / Out of time)"
+          "explanation": "Practice pronouncing: 'शून्य-उत्सर्जन' (Decarbonization pathways necessitate unprecedented capital reallocation toward renewable technological infrastructure globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "विशिष्टता",
-          "translation": "vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)",
+          "content": "अनेक",
+          "translation": "From: 'अनेक भाषाएं सीखने से मानव मस्तिष्क की संरचनात्मक क्षमता और तंत्रिका तंत्र सुदृढ़ होता है' (Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)"
+          "explanation": "Practice pronouncing: 'अनेक' (Multilingual acquisition induces structural neuroplastic remodeling across human cortical language processing regions)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "समानाधिकरण",
-          "translation": "suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)",
+          "content": "आपूर्ति",
+          "translation": "From: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं' (Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)"
+          "explanation": "Practice pronouncing: 'आपूर्ति' (Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "औदार्य",
-          "translation": "au-DAAR-yuh (Magnanimity / Generosity)",
+          "content": "जीन-संपादन",
+          "translation": "From: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है' (Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: au-DAAR-yuh (Magnanimity / Generosity)"
+          "explanation": "Practice pronouncing: 'जीन-संपादन' (Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अस्पष्टता",
-          "translation": "uh-spush-tuh-TAA (Obfuscation / Ambiguity)",
+          "content": "महासागरों",
+          "translation": "From: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है' (Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-spush-tuh-TAA (Obfuscation / Ambiguity)"
+          "explanation": "Practice pronouncing: 'महासागरों' (Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वोत्कृष्ट",
-          "translation": "sur-vot-KRISHT (Quintessential / Excellence)",
+          "content": "न्यायिक",
+          "translation": "From: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो' (Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vot-KRISHT (Quintessential / Excellence)"
+          "explanation": "Practice pronouncing: 'न्यायिक' (Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दीर्घवृत्त",
-          "translation": "deergh-VRIT (Extensive / Sesquipedalian)",
+          "content": "क्वांटम-प्रतिरोधी",
+          "translation": "From: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी' (Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: deergh-VRIT (Extensive / Sesquipedalian)"
+          "explanation": "Practice pronouncing: 'क्वांटम-प्रतिरोधी' (Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिवर्तनशीलता",
-          "translation": "puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)",
+          "content": "भाषाविदों",
+          "translation": "From: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है' (Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)"
+          "explanation": "Practice pronouncing: 'भाषाविदों' (Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "गुप्तता",
-          "translation": "goop-tuh-TAA (Surreptitious / Secrecy)",
+          "content": "वित्तीय",
+          "translation": "From: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं' (Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: goop-tuh-TAA (Surreptitious / Secrecy)"
+          "explanation": "Practice pronouncing: 'वित्तीय' (Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़प्रतिज्ञ",
-          "translation": "dridh-pruh-TEEQ-nyuh (Unyielding / Determined)",
+          "content": "स्वायत्त",
+          "translation": "From: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है' (Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-pruh-TEEQ-nyuh (Unyielding / Determined)"
+          "explanation": "Practice pronouncing: 'स्वायत्त' (Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability)."
         }
       ],
       "3": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कालभ्रमित",
-          "translation": "kaal-bhruh-MEET (Anachronistic / Out of time)",
+          "content": "कृत्रिम",
+          "translation": "From: 'कृत्रिम बुद्धिमत्ता और जैव-प्रौद्योगिकी का संगम चिकित्सा क्षेत्र में क्रांतिकारी युग का सूत्रपात कर रहा है' (The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kaal-bhruh-MEET (Anachronistic / Out of time)"
+          "explanation": "Practice pronouncing: 'कृत्रिम' (The convergence of advanced artificial intelligence and genomic biotechnology heralds a profound paradigm shift in precision medicine)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "विशिष्टता",
-          "translation": "vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)",
+          "content": "हमें",
+          "translation": "From: 'हमें एक समावेशी और समतामूलक समाज के निर्माण हेतु प्रत्येक नागरिक को समान अवसर उपलब्ध कराने होंगे' (We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)"
+          "explanation": "Practice pronouncing: 'हमें' (We must systematically dismantle institutional barriers to cultivate genuine equitable opportunities across diverse societal demographics)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "समानाधिकरण",
-          "translation": "suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)",
+          "content": "अंतरराष्ट्रीय",
+          "translation": "From: 'अंतरराष्ट्रीय चुनौतियों और सीमा विवादों का स्थायी समाधान केवल पारदर्शी कूटनीतिक संवाद से ही संभव है' (Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)"
+          "explanation": "Practice pronouncing: 'अंतरराष्ट्रीय' (Multilateral diplomatic negotiations remain the most viable instrument for de-escalating perilous geopolitical confrontations peacefully)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "औदार्य",
-          "translation": "au-DAAR-yuh (Magnanimity / Generosity)",
+          "content": "दूरदर्शिता",
+          "translation": "From: 'दूरदर्शिता और मानसिक धैर्य ही अनुभवी नेतृत्व को अनिश्चित आर्थिक दौर में सही दिशा प्रदान करते हैं' (Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: au-DAAR-yuh (Magnanimity / Generosity)"
+          "explanation": "Practice pronouncing: 'दूरदर्शिता' (Cognitive resilience and strategic foresight empower organizational leaders to successfully navigate volatile macroeconomic environments)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अस्पष्टता",
-          "translation": "uh-spush-tuh-TAA (Obfuscation / Ambiguity)",
+          "content": "कठोर",
+          "translation": "From: 'कठोर प्रमाण-आधारित पद्धति ही वैज्ञानिक शोध और प्रामाणिक ज्ञान की सबसे मजबूत आधारशिला है' (Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-spush-tuh-TAA (Obfuscation / Ambiguity)"
+          "explanation": "Practice pronouncing: 'कठोर' (Rigorous empirical methodology remains indispensable for authentic epistemological validation across scientific disciplines)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वोत्कृष्ट",
-          "translation": "sur-vot-KRISHT (Quintessential / Excellence)",
+          "content": "मानवजनित",
+          "translation": "From: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vot-KRISHT (Quintessential / Excellence)"
+          "explanation": "Practice pronouncing: 'मानवजनित' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दीर्घवृत्त",
-          "translation": "deergh-VRIT (Extensive / Sesquipedalian)",
+          "content": "ऐतिहासिक",
+          "translation": "From: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: deergh-VRIT (Extensive / Sesquipedalian)"
+          "explanation": "Practice pronouncing: 'ऐतिहासिक' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिवर्तनशीलता",
-          "translation": "puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)",
+          "content": "न्यूरोप्लास्टिसिटी",
+          "translation": "From: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)"
+          "explanation": "Practice pronouncing: 'न्यूरोप्लास्टिसिटी' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "गुप्तता",
-          "translation": "goop-tuh-TAA (Surreptitious / Secrecy)",
+          "content": "गहन",
+          "translation": "From: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: goop-tuh-TAA (Surreptitious / Secrecy)"
+          "explanation": "Practice pronouncing: 'गहन' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़प्रतिज्ञ",
-          "translation": "dridh-pruh-TEEQ-nyuh (Unyielding / Determined)",
+          "content": "अंतरराष्ट्रीय",
+          "translation": "From: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-pruh-TEEQ-nyuh (Unyielding / Determined)"
+          "explanation": "Practice pronouncing: 'अंतरराष्ट्रीय' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)."
         }
       ],
       "4": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कालभ्रमित",
-          "translation": "kaal-bhruh-MEET (Anachronistic / Out of time)",
+          "content": "भाषाई",
+          "translation": "From: 'भाषाई विविधता का संरक्षण हमारी अमूल्य सांस्कृतिक धरोहर और ऐतिहासिक ज्ञान को जीवित रखने के लिए अनिवार्य है' (Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kaal-bhruh-MEET (Anachronistic / Out of time)"
+          "explanation": "Practice pronouncing: 'भाषाई' (Linguistic diversity encapsulates the unique cultural paradigms and collective historical consciousness of human civilizations across centuries)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "विशिष्टता",
-          "translation": "vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)",
+          "content": "आंकड़ों",
+          "translation": "From: 'आंकड़ों के गणितीय विश्लेषण को मानवीय दृष्टिकोण के साथ जोड़कर ही न्यायपूर्ण और कल्याणकारी नीतियां बनाई जा सकती हैं' (Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)"
+          "explanation": "Practice pronouncing: 'आंकड़ों' (Quantitative statistical modeling must be tempered with nuanced qualitative human insight to formulate equitable public policy)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "समानाधिकरण",
-          "translation": "suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)",
+          "content": "आपूर्ति",
+          "translation": "From: 'आपूर्ति श्रृंखला में आने वाली बाधाएं मुद्रास्फीति और आर्थिक मंदी के जोखिम को बढ़ाती हैं' (Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)"
+          "explanation": "Practice pronouncing: 'आपूर्ति' (Stagflation risks intensify when severe supply bottlenecks coincide with monetary policy tightening)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "औदार्य",
-          "translation": "au-DAAR-yuh (Magnanimity / Generosity)",
+          "content": "जीन-संपादन",
+          "translation": "From: 'जीन-संपादन तकनीकों पर कड़े अंतरराष्ट्रीय नियम लागू करना संपूर्ण मानवता के हित में है' (Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: au-DAAR-yuh (Magnanimity / Generosity)"
+          "explanation": "Practice pronouncing: 'जीन-संपादन' (Universal bioethical protocols must govern germline genetic editing technologies globally to safeguard human heritage)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अस्पष्टता",
-          "translation": "uh-spush-tuh-TAA (Obfuscation / Ambiguity)",
+          "content": "महासागरों",
+          "translation": "From: 'महासागरों की बढ़ती अम्लता संपूर्ण समुद्री खाद्य श्रृंखला और जैव विविधता के लिए अत्यंत घातक है' (Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-spush-tuh-TAA (Obfuscation / Ambiguity)"
+          "explanation": "Practice pronouncing: 'महासागरों' (Ocean acidification severely threatens foundational marine trophic cascades and global biodiversity equilibrium)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वोत्कृष्ट",
-          "translation": "sur-vot-KRISHT (Quintessential / Excellence)",
+          "content": "न्यायिक",
+          "translation": "From: 'न्यायिक समीक्षा यह सुनिश्चित करती है कि कानूनों की व्याख्या संवैधानिक भावना के अनुरूप हो' (Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vot-KRISHT (Quintessential / Excellence)"
+          "explanation": "Practice pronouncing: 'न्यायिक' (Judicial review reaffirms that statutory ambiguities must be interpreted in light of constitutional intent)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दीर्घवृत्त",
-          "translation": "deergh-VRIT (Extensive / Sesquipedalian)",
+          "content": "क्वांटम-प्रतिरोधी",
+          "translation": "From: 'क्वांटम-प्रतिरोधी क्रिप्टोग्राफी भविष्य के डिजिटल नेटवर्क को पूरी तरह सुरक्षित और अभेद्य बनाएगी' (Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: deergh-VRIT (Extensive / Sesquipedalian)"
+          "explanation": "Practice pronouncing: 'क्वांटम-प्रतिरोधी' (Quantum-resistant cryptographic algorithms utilize multidimensional mathematical lattices to secure telecommunication networks)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिवर्तनशीलता",
-          "translation": "puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)",
+          "content": "भाषाविदों",
+          "translation": "From: 'भाषाविदों का शोध यह सिद्ध करता है कि बोलियों की विविधता सामाजिक संरचना को दर्शाती है' (Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)"
+          "explanation": "Practice pronouncing: 'भाषाविदों' (Sociolinguistic research demonstrates that dialectal variations accurately mirror complex socioeconomic stratifications)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "गुप्तता",
-          "translation": "goop-tuh-TAA (Surreptitious / Secrecy)",
+          "content": "वित्तीय",
+          "translation": "From: 'वित्तीय नियामक प्रणालीगत संकट से बचाव हेतु बैंकों के लिए अतिरिक्त सुरक्षा निधि अनिवार्य करते हैं' (Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: goop-tuh-TAA (Surreptitious / Secrecy)"
+          "explanation": "Practice pronouncing: 'वित्तीय' (Prudential regulatory frameworks implement countercyclical capital buffers to mitigate systemic financial volatility)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़प्रतिज्ञ",
-          "translation": "dridh-pruh-TEEQ-nyuh (Unyielding / Determined)",
+          "content": "स्वायत्त",
+          "translation": "From: 'स्वायत्त कृत्रिम बुद्धिमत्ता नैतिक उत्तरदायित्व और कानूनी जवाबदेही की नई परिभाषाएं मांगती है' (Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-pruh-TEEQ-nyuh (Unyielding / Determined)"
+          "explanation": "Practice pronouncing: 'स्वायत्त' (Autonomous algorithmic agents challenge traditional philosophical concepts regarding moral culpability and legal accountability)."
         }
       ],
       "5": [
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "कालभ्रमित",
-          "translation": "kaal-bhruh-MEET (Anachronistic / Out of time)",
+          "content": "विभिन्न",
+          "translation": "From: 'विभिन्न वैज्ञानिक अनुशासनों का समग्र समन्वय ही मानवता के समक्ष उपस्थित जटिल और बहुआयामी वैश्विक संकटों का स्थायी समाधान प्रस्तुत कर सकता है' (Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: kaal-bhruh-MEET (Anachronistic / Out of time)"
+          "explanation": "Practice pronouncing: 'विभिन्न' (Interdisciplinary scientific synthesis generates groundbreaking innovative paradigms capable of resolving deeply interconnected multi-faceted existential challenges confronting global humanity)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "विशिष्टता",
-          "translation": "vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)",
+          "content": "क्वांटम",
+          "translation": "From: 'क्वांटम भौतिकी के अनुसार सूक्ष्म कण एक साथ अनेक संभावित अवस्थाओं में विद्यमान रह सकते हैं' (Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: vee-sheesh-TAA (Distinctiveness / Idiosyncrasy)"
+          "explanation": "Practice pronouncing: 'क्वांटम' (Quantum mechanics posits that subatomic particles simultaneously occupy multiple probabilistic eigenstates)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "समानाधिकरण",
-          "translation": "suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)",
+          "content": "आर्थिक",
+          "translation": "From: 'आर्थिक स्थिरता के लिए राजकोषीय नीति और मौद्रिक नियंत्रण का सटीक समन्वय अनिवार्य है' (Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: suh-maa-naa-dhee-KUH-run (Juxtaposition / Parallelism)"
+          "explanation": "Practice pronouncing: 'आर्थिक' (Macroeconomic stabilization policies necessitate calibrated synchronization between fiscal expenditures and monetary tightening)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "औदार्य",
-          "translation": "au-DAAR-yuh (Magnanimity / Generosity)",
+          "content": "जैव-आनुवंशिकी",
+          "translation": "From: 'जैव-आनुवंशिकी कोशिकीय स्तर पर होने वाले जटिल परिवर्तनों को उजागर करती है' (Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: au-DAAR-yuh (Magnanimity / Generosity)"
+          "explanation": "Practice pronouncing: 'जैव-आनुवंशिकी' (Genomic biology illuminates subtle epigenetic alterations that drive cellular oncogenic proliferation pathways)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "अस्पष्टता",
-          "translation": "uh-spush-tuh-TAA (Obfuscation / Ambiguity)",
+          "content": "संवैधानिक",
+          "translation": "From: 'संवैधानिक न्यायशास्त्र संप्रभुता और नागरिक के मूल अधिकारों के मध्य संतुलन साधता है' (Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: uh-spush-tuh-TAA (Obfuscation / Ambiguity)"
+          "explanation": "Practice pronouncing: 'संवैधानिक' (Constitutional jurisprudence balances sovereign prerogative against inviolable fundamental civil liberties deliberatively)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "सर्वोत्कृष्ट",
-          "translation": "sur-vot-KRISHT (Quintessential / Excellence)",
+          "content": "मानवजनित",
+          "translation": "From: 'मानवजनित औद्योगिक उत्सर्जन ने वैश्विक समुद्री जैव-पारिस्थितिकी तंत्र को संकट में डाल दिया है' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: sur-vot-KRISHT (Quintessential / Excellence)"
+          "explanation": "Practice pronouncing: 'मानवजनित' (Anthropogenic carbon emissions accelerate irreversible ecological tipping points across sensitive biomes globally)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दीर्घवृत्त",
-          "translation": "deergh-VRIT (Extensive / Sesquipedalian)",
+          "content": "ऐतिहासिक",
+          "translation": "From: 'ऐतिहासिक पक्षपातों से मुक्त एल्गोरिदम ही निष्पक्ष कृत्रिम बुद्धिमत्ता की नींव रख सकते हैं' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: deergh-VRIT (Extensive / Sesquipedalian)"
+          "explanation": "Practice pronouncing: 'ऐतिहासिक' (Algorithmic neutrality remains deeply contentious when training models inherit systemic historical biases)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "परिवर्तनशीलता",
-          "translation": "puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)",
+          "content": "न्यूरोप्लास्टिसिटी",
+          "translation": "From: 'न्यूरोप्लास्टिसिटी मानव मस्तिष्क की नई परिस्थितियों के अनुसार ढलने की अद्भुत क्षमता दर्शाती है' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: puh-ree-vur-tun-sheel-TAA (Vicissitude / Fluidity)"
+          "explanation": "Practice pronouncing: 'न्यूरोप्लास्टिसिटी' (Neuroplasticity demonstrates the adult brain's dynamic architecture in response to continuous learning)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "गुप्तता",
-          "translation": "goop-tuh-TAA (Surreptitious / Secrecy)",
+          "content": "गहन",
+          "translation": "From: 'गहन साहित्यिक समालोचना सामाजिक और सांस्कृतिक मूल्यों के सूक्ष्म अर्थों को उद्घाटित करती है' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: goop-tuh-TAA (Surreptitious / Secrecy)"
+          "explanation": "Practice pronouncing: 'गहन' (Hermeneutic analysis deconstructs multifaceted literary subtexts to illuminate pervasive socio-political ideologies)."
         },
         {
           "instruction": "Tap the microphone and pronounce this word clearly",
-          "content": "दृढ़प्रतिज्ञ",
-          "translation": "dridh-pruh-TEEQ-nyuh (Unyielding / Determined)",
+          "content": "अंतरराष्ट्रीय",
+          "translation": "From: 'अंतरराष्ट्रीय बहुपक्षवाद सीमा-पार विवादों को कूटनीतिक संवाद के माध्यम से सुलझाने पर बल देता है' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)",
           "question": "Pronounce this word clearly",
           "options": [],
           "answerIndex": 0,
-          "explanation": "Phonetics & meaning: dridh-pruh-TEEQ-nyuh (Unyielding / Determined)"
+          "explanation": "Practice pronouncing: 'अंतरराष्ट्रीय' (Multilateral diplomatic engagement demands rigorous reciprocity to resolve contentious transnational resource disputes)."
         }
       ]
     }

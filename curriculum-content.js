@@ -82,7 +82,7 @@ function getCurriculumLessonExercises(lang, level, skill, lessonIndex) {
 
   // 1. Try requested language pack
   const pack = (window.CURRICULUM_LESSONS_CONTENT && window.CURRICULUM_LESSONS_CONTENT[langKey]) ||
-               (window[`CURRICULUM_LESSONS_${langKey.toUpperCase()}`]) || {};
+    (window[`CURRICULUM_LESSONS_${langKey.toUpperCase()}`]) || {};
   const questions = pack[lvlKey]?.[skillKey]?.[lIdx];
   if (questions && Array.isArray(questions) && questions.length > 0) {
     return sanitizeCurriculumExercises(questions, langKey, lvlKey, skillKey);
@@ -90,7 +90,7 @@ function getCurriculumLessonExercises(lang, level, skill, lessonIndex) {
 
   // 2. Fallback to English pack if language missing
   const enPack = (window.CURRICULUM_LESSONS_CONTENT && window.CURRICULUM_LESSONS_CONTENT["en"]) ||
-                 window.CURRICULUM_LESSONS_EN || {};
+    window.CURRICULUM_LESSONS_EN || {};
   const enQuestions = enPack[lvlKey]?.[skillKey]?.[lIdx];
   if (enQuestions && Array.isArray(enQuestions) && enQuestions.length > 0) {
     return sanitizeCurriculumExercises(enQuestions, "en", lvlKey, skillKey);

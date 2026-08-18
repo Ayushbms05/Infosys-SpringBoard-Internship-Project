@@ -1,2271 +1,2534 @@
 /**
- * units-content.js — Hardcoded lesson content for the Units tab
+ * units-content.js — Hardcoded Multilingual Lesson Content for the Units Tab
  *
- * Schema per exercise:
- *   reading / listening:
- *     { instruction, content, translation, question, options[4], answerIndex, explanation }
- *   writing (sentence builder):
- *     { instruction, content, question, options[5 words], answerIndex, explanation }
- *   speaking / pronunciation:
- *     { instruction, content, translation, question, options: [], answerIndex }
- *
- * Coverage: 10 units × 5 skills = 50 lesson objects, 5 exercises each = 250 exercises total.
- * Content is in English (target language). Translation field is in Hindi (knownLanguage fallback).
- * The rendering layer handles TTS/STT for audio-based skill types via the existing speakText() /
- * startSpeechToText() functions — this file only supplies the text.
+ * Fully supports ALL 7 Languages:
+ *   - English (en), Hindi (hi), Tamil (ta), Telugu (te), Kannada (kn), Bengali (bn), Marathi (mr)
+ * Supports dynamic pairing for ALL language combinations.
  */
 
-const UNITS_CONTENT = {
-
-  // ═══════════════════════════════════════════════════════════════
-  // BEGINNER
-  // ═══════════════════════════════════════════════════════════════
-
-  // ── Unit 1: Greetings & Numbers ─────────────────────────────────
-  unit_greetings_numbers: {
-    reading: [
+const UNITS_DATA_RAW = {
+  "unit_greetings_numbers": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "Good morning! My name is Ravi.",
-        translation: "सुप्रभात! मेरा नाम रवि है।",
-        question: "What is the person's name?",
-        options: ["Ravi", "Raj", "Rohit", "Rita"],
-        answerIndex: 0,
-        explanation: "'My name is Ravi' tells us the name directly."
+        "en": "Good morning! My name is Ravi.",
+        "hi": "सुप्रभात! मेरा नाम रवि है।",
+        "ta": "காலை வணக்கம்! என் பெயர் ரவி.",
+        "te": "శుభోదయం! నా పేరు రవి.",
+        "kn": "ಶುಭೋದಯ! ನನ್ನ ಹೆಸರು ರವಿ.",
+        "bn": "সুপ্রভাত! আমার নাম রবি।",
+        "mr": "शुभ प्रभात! माझे नाव रवी आहे."
       },
       {
-        instruction: "Read and answer",
-        content: "Hello! How are you today?",
-        translation: "नमस्ते! आज आप कैसे हैं?",
-        question: "What is the speaker asking about?",
-        options: ["Your age", "Your wellbeing", "Your name", "Your job"],
-        answerIndex: 1,
-        explanation: "'How are you?' asks about wellbeing."
+        "en": "Hello! How are you today?",
+        "hi": "नमस्ते! आज आप कैसे हैं?",
+        "ta": "வணக்கம்! இன்று நீங்கள் எப்படி இருக்கிறீர்கள்?",
+        "te": "నమస్కారం! ఈరోజు మీరు ఎలా ఉన్నారు?",
+        "kn": "ನಮಸ್ಕಾರ! ನೀವು ಇಂದು ಹೇಗಿದ್ದೀರಿ?",
+        "bn": "নমস্কার! আপনি আজ কেমন আছেন?",
+        "mr": "नमस्ते! आज तुम्ही कसे आहात?"
       },
       {
-        instruction: "Read and answer",
-        content: "There are five students in the class.",
-        translation: "कक्षा में पाँच छात्र हैं।",
-        question: "How many students are there?",
-        options: ["Two", "Three", "Four", "Five"],
-        answerIndex: 3,
-        explanation: "'Five students' is stated directly in the sentence."
+        "en": "There are five students in the class.",
+        "hi": "कक्षा में पाँच छात्र हैं।",
+        "ta": "வகுப்பில் ஐந்து மாணவர்கள் உள்ளனர்.",
+        "te": "తరగతిలో ఐదుగురు విద్యార్థులు ఉన్నారు.",
+        "kn": "ತರಗತಿಯಲ್ಲಿ ಐದು ವಿದ್ಯಾರ್ಥಿಗಳಿದ್ದಾರೆ.",
+        "bn": "ক্লাসে পাঁচজন ছাত্র আছে।",
+        "mr": "वर्गात पाच विद्यार्थी आहेत."
       },
       {
-        instruction: "Read and answer",
-        content: "The shop opens at nine o'clock.",
-        translation: "दुकान नौ बजे खुलती है।",
-        question: "When does the shop open?",
-        options: ["At eight", "At nine", "At ten", "At eleven"],
-        answerIndex: 1,
-        explanation: "'At nine o'clock' tells us the opening time."
+        "en": "The shop opens at nine o'clock.",
+        "hi": "दुकान नौ बजे खुलती है।",
+        "ta": "கடை ஒன்பது மணிக்கு திறக்கிறது.",
+        "te": "దుకాణం తొమ్మిది గంటలకు తెరుచుకుంటుంది.",
+        "kn": "ಅಂಗಡಿ ಒಂಬತ್ತು ಗಂಟೆಗೆ ತೆರೆಯುತ್ತದೆ.",
+        "bn": "দোকানটি নটায় খোলে।",
+        "mr": "दुकान नऊ वाजता उघडते."
       },
       {
-        instruction: "Read and answer",
-        content: "Nice to meet you. Please sit down.",
-        translation: "आपसे मिलकर अच्छा लगा। कृपया बैठिए।",
-        question: "What is the speaker asking the person to do?",
-        options: ["Stand up", "Go away", "Sit down", "Come back"],
-        answerIndex: 2,
-        explanation: "'Please sit down' is a polite request to take a seat."
+        "en": "Nice to meet you. Please sit down.",
+        "hi": "आपसे मिलकर अच्छा लगा। कृपया बैठिए।",
+        "ta": "உங்களை சந்தித்ததில் மகிழ்ச்சி. தயவுசெய்து உட்காருங்கள்.",
+        "te": "మిమ్మల్ని కలవడం సంతోషంగా ఉంది. దయచేసి కూర్చోండి.",
+        "kn": "ನಿಮ್ಮನ್ನು ಭೇಟಿಯಾಗಿದ್ದಕ್ಕೆ ಸಂತೋಷ. ದಯವಿಟ್ಟು ಕುಳಿತುಕೊಳ್ಳಿ.",
+        "bn": "আপনার সাথে দেখা করে ভালো লাগল। দয়া করে বসুন।",
+        "mr": "तुम्हाला भेटून आनंद झाला. कृपया बसा."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "A sentence about greeting someone in the morning",
-        question: "Good morning how are you",
-        options: ["morning", "Good", "how", "are", "you"],
-        answerIndex: 0,
-        explanation: "Standard morning greeting in English."
+        "en": "Good morning how are you",
+        "hi": "सुप्रभात आप कैसे हैं",
+        "ta": "காலை வணக்கம் எப்படி இருக்கிறீர்கள்",
+        "te": "శుభోదయం మీరు ఎలా ఉన్నారు",
+        "kn": "ಶುಭೋದಯ ನೀವು ಹೇಗಿದ್ದೀರಿ",
+        "bn": "সুপ্রভাত আপনি কেমন আছেন",
+        "mr": "शुभ प्रभात तुम्ही कसे आहात"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying what your name is",
-        question: "My name is Priya",
-        options: ["name", "Priya", "My", "is"],
-        answerIndex: 0,
-        explanation: "Subject + 'name is' + name is the correct order."
+        "en": "My name is Priya",
+        "hi": "मेरा नाम प्रिया है",
+        "ta": "என் பெயர் பிரியா",
+        "te": "నా పేరు ప్రియ",
+        "kn": "ನನ್ನ ಹೆಸರು ಪ್ರಿಯಾ",
+        "bn": "আমার নাম প্রিয়া",
+        "mr": "माझे नाव प्रिया आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Counting ten items on a table",
-        question: "There are ten apples here",
-        options: ["ten", "are", "There", "here", "apples"],
-        answerIndex: 0,
-        explanation: "'There are' + number + noun is standard English structure."
+        "en": "There are ten apples here",
+        "hi": "यहाँ दस सेब हैं",
+        "ta": "இங்கே பத்து ஆப்பிள்கள் உள்ளன",
+        "te": "ఇక్కడ పది యాపిల్స్ ఉన్నాయి",
+        "kn": "ಇಲ್ಲಿ ಹತ್ತು ಸೇಬುಗಳಿವೆ",
+        "bn": "এখানে দশটি আপেল আছে",
+        "mr": "येथे दहा सफरचंद आहेत"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "A polite goodbye when leaving",
-        question: "Goodbye see you tomorrow",
-        options: ["tomorrow", "Goodbye", "you", "see"],
-        answerIndex: 0,
-        explanation: "Goodbye followed by 'see you' is a common farewell."
+        "en": "Goodbye see you tomorrow",
+        "hi": "अलविदा कल फिर मिलेंगे",
+        "ta": "விடைபெறுகிறேன் நாளை சந்திப்போம்",
+        "te": "వీడ్కోలు రేపు కలుద్దాం",
+        "kn": "ವಿದಾಯ ನಾಳೆ ಮತ್ತೆ ಸಿಗೋಣ",
+        "bn": "বিদায় কাল দেখা হবে",
+        "mr": "निरोप उद्या पुन्हा भेटू"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Expressing pleasure at meeting someone new",
-        question: "Nice to meet you today",
-        options: ["meet", "Nice", "today", "to", "you"],
-        answerIndex: 0,
-        explanation: "'Nice to meet you' is a fixed polite greeting phrase."
+        "en": "Nice to meet you today",
+        "hi": "आज आपसे मिलकर खुशी हुई",
+        "ta": "இன்று உங்களை சந்தித்ததில் மகிழ்ச்சி",
+        "te": "ఈరోజు మిమ్మల్ని కలవడం సంతోషం",
+        "kn": "ಇಂದು ನಿಮ್ಮನ್ನು ಭೇಟಿಯಾಗಿದ್ದು ಸಂತೋಷ",
+        "bn": "আজ আপনার সাথে দেখা হয়ে ভালো লাগল",
+        "mr": "आज तुम्हाला भेटून आनंद झाला"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "Hello, my name is Anita. I am from Delhi.",
-        translation: "नमस्ते, मेरा नाम अनिता है। मैं दिल्ली से हूँ।",
-        question: "Where is Anita from?",
-        options: ["Mumbai", "Pune", "Delhi", "Jaipur"],
-        answerIndex: 2,
-        explanation: "The sentence says 'I am from Delhi'."
+        "en": "Hello, my name is Anita. I am from Delhi.",
+        "hi": "नमस्ते, मेरा नाम अनिता है। मैं दिल्ली से हूँ।",
+        "ta": "வணக்கம், என் பெயர் அனிதா. நான் டெல்லியைச் சேர்ந்தவன்.",
+        "te": "నమస్కారం, నా పేరు అనిత. నేను ఢిల్లీకి చెందినదాన్ని.",
+        "kn": "ನಮಸ್ಕಾರ, ನನ್ನ ಹೆಸರು ಅನಿತಾ. ನಾನು ದೆಹಲಿಯವಳು.",
+        "bn": "নমস্কার, আমার নাম অনিতা। আমি দিল্লির বাসিন্দা।",
+        "mr": "नमस्ते, माझे नाव अनिता आहे. मी दिल्लीची आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "The price is two hundred rupees.",
-        translation: "कीमत दो सौ रुपये है।",
-        question: "What is the price?",
-        options: ["₹100", "₹150", "₹200", "₹250"],
-        answerIndex: 2,
-        explanation: "'Two hundred rupees' = ₹200."
+        "en": "The price is two hundred rupees.",
+        "hi": "कीमत दो सौ रुपये है।",
+        "ta": "விலை இருநூறு ரூபாய்.",
+        "te": "ధర రెండు వందల రూపాయలు.",
+        "kn": "ಬೆಲೆ ಇನ್ನೂರು ರೂಪಾಯಿಗಳು.",
+        "bn": "দাম দুইশত টাকা।",
+        "mr": "किंमत दोनशे रुपये आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Good evening! Welcome to our store.",
-        translation: "शुभ संध्या! हमारी दुकान में आपका स्वागत है।",
-        question: "What time of day is it?",
-        options: ["Morning", "Afternoon", "Evening", "Night"],
-        answerIndex: 2,
-        explanation: "'Good evening' is used in the evening."
+        "en": "Good evening! Welcome to our store.",
+        "hi": "शुभ संध्या! हमारी दुकान में आपका स्वागत है।",
+        "ta": "மாலை வணக்கம்! எங்கள் கடைக்கு நல்வரவு.",
+        "te": "శుభ సాయంత్రం! మా దుకాణానికి స్వాగతం.",
+        "kn": "ಶುಭ ಸಂಜೆ! ನಮ್ಮ ಅಂಗಡಿಗೆ ಸುಸ್ವಾಗತ.",
+        "bn": "শুভ সন্ধ্যা! আমাদের দোকানে স্বাগতম।",
+        "mr": "शुभ संध्याकाळ! आमच्या दुकानात स्वागत आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "I have three brothers and one sister.",
-        translation: "मेरे तीन भाई और एक बहन है।",
-        question: "How many brothers does the speaker have?",
-        options: ["One", "Two", "Three", "Four"],
-        answerIndex: 2,
-        explanation: "The audio says 'three brothers'."
+        "en": "I have three brothers and one sister.",
+        "hi": "मेरे तीन भाई और एक बहन है।",
+        "ta": "எனக்கு மூன்று சகோதரர்கள் மற்றும் ஒரு சகோதரி உள்ளனர்.",
+        "te": "నాకు ముగ్గురు సోదరులు మరియు ఒక సోదరి ఉన్నారు.",
+        "kn": "ನನಗೆ ಮೂರು ಜನ ಸಹೋದರರು ಮತ್ತು ಒಬ್ಬ ಸಹೋದರಿ ಇದ್ದಾರೆ.",
+        "bn": "আমার তিনজন ভাই এবং একজন বোন আছে।",
+        "mr": "मला तीन भाऊ आणि एक बहीण आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please write your phone number here.",
-        translation: "कृपया यहाँ अपना फोन नंबर लिखें।",
-        question: "What should you write?",
-        options: ["Your name", "Your address", "Your phone number", "Your age"],
-        answerIndex: 2,
-        explanation: "'Your phone number here' is clearly stated."
+        "en": "Please write your phone number here.",
+        "hi": "कृपया यहाँ अपना फोन नंबर लिखें।",
+        "ta": "தயவுசெய்து உங்கள் தொலைபேசி எண்ணை இங்கே எழுதுங்கள்.",
+        "te": "దయచేసి మీ ఫోన్ నంబర్‌ను ఇక్కడ రాయండి.",
+        "kn": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ.",
+        "bn": "দয়া করে আপনার ফোন নম্বর এখানে লিখুন।",
+        "mr": "कृपया आपला फोन नंबर येथे लिहा."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Hello, my name is Ravi.",
-        translation: "नमस्ते, मेरा नाम रवि है।",
-        question: "Repeat this greeting",
-        options: [],
-        answerIndex: 0
+        "en": "Hello, my name is Ravi.",
+        "hi": "नमस्ते, मेरा नाम रवि है।",
+        "ta": "வணக்கம், என் பெயர் ரவி.",
+        "te": "నమస్కారం, నా పేరు రవి.",
+        "kn": "ನಮಸ್ಕಾರ, ನನ್ನ ಹೆಸರು ರವಿ.",
+        "bn": "নমস্কার, আমার নাম রবি।",
+        "mr": "नमस्ते, माझे नाव रवी आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Good morning! How are you?",
-        translation: "सुप्रभात! आप कैसे हैं?",
-        question: "Repeat this morning greeting",
-        options: [],
-        answerIndex: 0
+        "en": "Good morning! How are you?",
+        "hi": "सुप्रभात! आप कैसे हैं?",
+        "ta": "காலை வணக்கம்! எப்படி இருக்கிறீர்கள்?",
+        "te": "శుభోదయం! మీరు ఎలా ఉన్నారు?",
+        "kn": "ಶುಭೋದಯ! ನೀವು ಹೇಗಿದ್ದೀರಿ?",
+        "bn": "সুপ্রভাত! আপনি কেমন আছেন?",
+        "mr": "शुभ प्रभात! तुम्ही कसे आहात?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Nice to meet you.",
-        translation: "आपसे मिलकर खुशी हुई।",
-        question: "Repeat this polite phrase",
-        options: [],
-        answerIndex: 0
+        "en": "Nice to meet you.",
+        "hi": "आपसे मिलकर खुशी हुई।",
+        "ta": "உங்களை சந்தித்ததில் மகிழ்ச்சி.",
+        "te": "మిమ్మల్ని కలవడం సంతోషం.",
+        "kn": "ನಿಮ್ಮನ್ನು ಭೇಟಿಯಾಗಿದ್ದಕ್ಕೆ ಸಂತೋಷ.",
+        "bn": "আপনার সাথে দেখা করে আনন্দিত।",
+        "mr": "तुम्हाला भेटून आनंद झाला."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My phone number is nine eight seven six.",
-        translation: "मेरा फोन नंबर नौ आठ सात छह है।",
-        question: "Repeat the number sentence",
-        options: [],
-        answerIndex: 0
+        "en": "My phone number is nine eight seven six.",
+        "hi": "मेरा फोन नंबर नौ आठ सात छह है।",
+        "ta": "என் தொலைபேசி எண் ஒன்பது எட்டு ஏழு ஆறு.",
+        "te": "నా ఫోన్ నంబర్ తొమ్మిది ఎనిమిది ఏడు ఆరు.",
+        "kn": "ನನ್ನ ಫೋನ್ ಸಂಖ್ಯೆ ಒಂಬತ್ತು ಎಂಟು ಏಳು ಆರು.",
+        "bn": "আমার ফোন নম্বর নয় আট সাত ছয়।",
+        "mr": "माझा फोन नंबर नऊ आठ सात सहा आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Goodbye, see you tomorrow!",
-        translation: "अलविदा, कल मिलते हैं!",
-        question: "Repeat this farewell",
-        options: [],
-        answerIndex: 0
+        "en": "Goodbye, see you tomorrow!",
+        "hi": "अलविदा, कल मिलते हैं!",
+        "ta": "விடைபெறுகிறேன், நாளை சந்திப்போம்!",
+        "te": "వీడ్కోలు, రేపు కలుద్దాం!",
+        "kn": "ವಿದಾಯ, ನಾಳೆ ಮತ್ತೆ ಸಿಗೋಣ!",
+        "bn": "বিদায়, কাল দেখা হবে!",
+        "mr": "निरोप, उद्या भेटू!"
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Hello",
-        translation: "नमस्ते",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Hello",
+        "hi": "नमस्ते",
+        "ta": "வணக்கம்",
+        "te": "నమస్కారం",
+        "kn": "ನಮಸ್ಕಾರ",
+        "bn": "নমস্কার",
+        "mr": "नमस्ते"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Welcome",
-        translation: "स्वागत",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Welcome",
+        "hi": "स्वागत",
+        "ta": "நல்வரவு",
+        "te": "స్వాగతం",
+        "kn": "ಸುಸ್ವಾಗತ",
+        "bn": "স্বাগতম",
+        "mr": "स्वागत"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Hundred",
-        translation: "सौ",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Hundred",
+        "hi": "सौ",
+        "ta": "நூறு",
+        "te": "వంద",
+        "kn": "ನೂರು",
+        "bn": "একশত",
+        "mr": "शंभर"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Thousand",
-        translation: "हज़ार",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Thousand",
+        "hi": "हज़ार",
+        "ta": "ஆயிரம்",
+        "te": "వెయ్యి",
+        "kn": "ಸಾವಿರ",
+        "bn": "হাজার",
+        "mr": "हजार"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Goodbye",
-        translation: "अलविदा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Goodbye",
+        "hi": "अलविदा",
+        "ta": "விடைபெறுகிறேன்",
+        "te": "వీడ్కోలు",
+        "kn": "ವಿದಾಯ",
+        "bn": "বিদায়",
+        "mr": "निरोप"
       }
     ]
   },
-
-  // ── Unit 2: Daily Life ───────────────────────────────────────────
-  unit_daily_life: {
-    reading: [
+  "unit_daily_life": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "I wake up at six o'clock every morning.",
-        translation: "मैं हर सुबह छह बजे उठता हूँ।",
-        question: "What time does this person wake up?",
-        options: ["Five o'clock", "Six o'clock", "Seven o'clock", "Eight o'clock"],
-        answerIndex: 1,
-        explanation: "'At six o'clock' gives the wake-up time."
+        "en": "I wake up at six o'clock every morning.",
+        "hi": "मैं हर सुबह छह बजे उठता हूँ।",
+        "ta": "நான் தினமும் காலை ஆறு மணிக்கு எழுந்திருக்கிறேன்.",
+        "te": "నేను ప్రతిరోజూ ఉదయం ఆరు గంటలకు నిద్రలేస్తాను.",
+        "kn": "ನಾನು ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ಆರು ಗಂಟೆಗೆ ಏಳುತ್ತೇನೆ.",
+        "bn": "আমি প্রতিদিন সকাল ছটায় ঘুম থেকে উঠি।",
+        "mr": "मी रोज सकाळी सहा वाजता उठतो."
       },
       {
-        instruction: "Read and answer",
-        content: "She cooks rice and vegetables for dinner.",
-        translation: "वह रात के खाने के लिए चावल और सब्जी पकाती है।",
-        question: "What does she cook?",
-        options: ["Bread and soup", "Rice and vegetables", "Eggs and toast", "Fish and rice"],
-        answerIndex: 1,
-        explanation: "The sentence says 'rice and vegetables'."
+        "en": "She cooks rice and vegetables for dinner.",
+        "hi": "वह रात के खाने में चावल और सब्ज़ियाँ पकाती है।",
+        "ta": "அவள் இரவு உணவிற்கு சாதம் மற்றும் காய்கறிகளை சமைக்கிறாள்.",
+        "te": "ఆమె రాత్రి భోజనానికి అన్నం మరియు కూరగాయలు వండుతుంది.",
+        "kn": "ಅವಳು ರಾತ್ರಿಯ ಊಟಕ್ಕೆ ಅನ್ನ ಮತ್ತು ತರಕಾರಿಗಳನ್ನು ಅಡುಗೆ ಮಾಡುತ್ತಾಳೆ.",
+        "bn": "সে রাতের খাবারের জন্য ভাত এবং সবজি রান্না করে।",
+        "mr": "ती रात्रीच्या जेवणासाठी भात आणि भाज्या बनवते."
       },
       {
-        instruction: "Read and answer",
-        content: "The electricity bill is due on the fifth.",
-        translation: "बिजली का बिल पाँच तारीख को देय है।",
-        question: "When is the electricity bill due?",
-        options: ["The first", "The third", "The fifth", "The tenth"],
-        answerIndex: 2,
-        explanation: "'On the fifth' gives the due date."
+        "en": "The electricity bill is due on the fifth.",
+        "hi": "बिजली का बिल पाँच तारीख तक देय है।",
+        "ta": "மின்சாரக் கட்டணம் ஐந்தாம் தேதிக்குள் செலுத்தப்பட வேண்டும்.",
+        "te": "విద్యుత్ బిల్లు ఐదవ తేదీ లోపు చెల్లించాలి.",
+        "kn": "ವಿದ್ಯುತ್ ಬಿಲ್ ಐದನೇ ತಾರೀಖಿನೊಳಗೆ ಪಾವತಿಸಬೇಕು.",
+        "bn": "বিদ্যুৎ বিল পাঁচ তারিখের মধ্যে দিতে হবে।",
+        "mr": "लाईट बिल पाच तारखेपर्यंत भरायचे आहे."
       },
       {
-        instruction: "Read and answer",
-        content: "He walks to the bus stop every day.",
-        translation: "वह हर दिन बस स्टॉप तक पैदल जाता है।",
-        question: "How does he get to the bus stop?",
-        options: ["By car", "By bicycle", "On foot", "By auto"],
-        answerIndex: 2,
-        explanation: "'Walks to the bus stop' means on foot."
+        "en": "He walks to the bus stop every day.",
+        "hi": "वह हर दिन बस स्टॉप तक पैदल जाता है।",
+        "ta": "அவர் தினமும் பேருந்து நிறுத்தத்திற்கு நடந்து செல்கிறார்.",
+        "te": "అతను ప్రతిరోజూ బస్టాప్‌కు నడుచుకుంటూ వెళ్తాడు.",
+        "kn": "ಅವನು ಪ್ರತಿದಿನ ಬಸ್ ನಿಲ್ದಾಣಕ್ಕೆ ನಡೆದುಕೊಂಡು ಹೋಗುತ್ತಾನೆ.",
+        "bn": "তিনি প্রতিদিন হেঁটে বাস স্টপে যান।",
+        "mr": "तो रोज बस स्टॉपपर्यंत चालत जातो."
       },
       {
-        instruction: "Read and answer",
-        content: "The water supply is cut for two hours today.",
-        translation: "आज दो घंटे पानी की आपूर्ति बंद है।",
-        question: "How long is the water supply cut?",
-        options: ["One hour", "Two hours", "Three hours", "Four hours"],
-        answerIndex: 1,
-        explanation: "'For two hours' gives the duration."
+        "en": "The water supply is cut for two hours today.",
+        "hi": "आज पानी की आपूर्ति दो घंटे के लिए बंद है।",
+        "ta": "இன்று இரண்டு மணி நேரம் குடிநீர் விநியோகம் நிறுத்தப்பட்டுள்ளது.",
+        "te": "ఈరోజు రెండు గంటల పాటు నీటి సరఫరా నిలిపివేయబడింది.",
+        "kn": "ಇಂದು ಎರಡು ಗಂಟೆಗಳ ಕಾಲ ನೀರು ಸರಬರಾಜು ಸ್ಥಗಿತಗೊಂಡಿದೆ.",
+        "bn": "আজ দুই ঘণ্টার জন্য জল সরবরাহ বন্ধ থাকবে।",
+        "mr": "आज दोन तास पाणीपुरवठा बंद आहे."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Describing when you eat breakfast",
-        question: "I eat breakfast at seven",
-        options: ["eat", "I", "seven", "at", "breakfast"],
-        answerIndex: 0,
-        explanation: "Subject + verb + object + time is the correct order."
+        "en": "I eat breakfast at eight in morning",
+        "hi": "मैं सुबह आठ बजे नाश्ता करता हूँ",
+        "ta": "நான் காலை எட்டு மணிக்கு காலை உணவு சாப்பிடுகிறேன்",
+        "te": "నేను ఉదయం ఎనిమిది గంటలకు అల్పాహారం తింటాను",
+        "kn": "ನಾನು ಬೆಳಿಗ್ಗೆ ಎಂಟು ಗಂಟೆಗೆ ಉಪಾಹಾರ ಸೇವಿಸುತ್ತೇನೆ",
+        "bn": "আমি সকাল আটটায় প্রাতরাশ খাই",
+        "mr": "मी सकाळी आठ वाजता नाश्ता करतो"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying that you go to work daily",
-        question: "I go to work every day",
-        options: ["work", "go", "I", "every", "to", "day"],
-        answerIndex: 0,
-        explanation: "'I go to work every day' follows natural English word order."
+        "en": "He goes to work by bus every day",
+        "hi": "वह हर दिन बस से काम पर जाता है",
+        "ta": "அவர் தினமும் பேருந்தில் வேலைக்குச் செல்கிறார்",
+        "te": "అతను ప్రతిరోజూ బస్సులో పనికి వెళ్తాడు",
+        "kn": "ಅವನು ಪ್ರತಿದಿನ ಬಸ್ಸಿನಲ್ಲಿ ಕೆಲಸಕ್ಕೆ ಹೋಗುತ್ತಾನೆ",
+        "bn": "তিনি প্রতিদিন বাসে করে কাজে যান",
+        "mr": "तो रोज बसने कामावर जातो"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Talking about cooking at home",
-        question: "She cooks food at home",
-        options: ["home", "cooks", "She", "at", "food"],
-        answerIndex: 0,
-        explanation: "Subject + verb + object + location is standard."
+        "en": "We cook fresh food at home together",
+        "hi": "हम घर पर मिलकर ताज़ा खाना बनाते हैं",
+        "ta": "நாம் வீட்டில் ஒன்றாக புதிய உணவை சமைக்கிறோம்",
+        "te": "మేము ఇంట్లో కలిసి తాజా ఆహారాన్ని వండుకుంటాము",
+        "kn": "ನಾವು ಮನೆಯಲ್ಲಿ ಒಟ್ಟಿಗೆ ತಾಜಾ ಆಹಾರವನ್ನು ಬೇಯಿಸುತ್ತೇವೆ",
+        "bn": "আমরা একসাথে বাড়িতে তাজা খাবার রান্না করি",
+        "mr": "आम्ही घरी एकत्र ताजे जेवण बनवतो"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Mentioning that you drink water",
-        question: "I drink water every morning",
-        options: ["every", "drink", "I", "morning", "water"],
-        answerIndex: 0,
-        explanation: "Simple present tense: subject + verb + object + time."
+        "en": "I drink eight glasses of water daily",
+        "hi": "मैं रोज़ाना आठ गिलास पानी पीता हूँ",
+        "ta": "நான் தினமும் எட்டு டம்ளர் தண்ணீர் குடிக்கிறேன்",
+        "te": "నేను రోజూ ఎనిమిది గ్లాసుల నీళ్లు తాగుతాను",
+        "kn": "ನಾನು ಪ್ರತಿದಿನ ಎಂಟು ಲೋಟ ನೀರು ಕುಡಿಯುತ್ತೇನೆ",
+        "bn": "আমি প্রতিদিন আট গ্লাস জল খাই",
+        "mr": "मी दररोज आठ ग्लास पाणी पितो"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying when you sleep at night",
-        question: "I sleep at ten at night",
-        options: ["at", "sleep", "I", "night", "ten"],
-        answerIndex: 0,
-        explanation: "'I sleep at ten at night' gives both time and period."
+        "en": "I sleep at ten o'clock at night",
+        "hi": "मैं रात को दस बजे सोता हूँ",
+        "ta": "நான் இரவு பத்து மணிக்கு தூங்குகிறேன்",
+        "te": "నేను రాత్రి పది గంటలకు పడుకుంటాను",
+        "kn": "ನಾನು ರಾತ್ರಿ ಹತ್ತು ಗಂಟೆಗೆ ಮಲಗುತ್ತೇನೆ",
+        "bn": "আমি রাত দশটায় ঘুমাই",
+        "mr": "मी रात्री दहा वाजता झोपतो"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "The market opens at eight in the morning.",
-        translation: "बाज़ार सुबह आठ बजे खुलता है।",
-        question: "When does the market open?",
-        options: ["Seven", "Eight", "Nine", "Ten"],
-        answerIndex: 1,
-        explanation: "'Eight in the morning' gives the opening time."
+        "en": "The market opens at eight in the morning.",
+        "hi": "बाज़ार सुबह आठ बजे खुलता है।",
+        "ta": "சந்தை காலை எட்டு மணிக்கு திறக்கிறது.",
+        "te": "మార్కెట్ ఉదయం ఎనిమిది గంటలకు తెరుచుకుంటుంది.",
+        "kn": "ಮಾರುಕಟ್ಟೆ ಬೆಳಿಗ್ಗೆ ಎಂಟು ಗಂಟೆಗೆ ತೆರೆಯುತ್ತದೆ.",
+        "bn": "বাজার সকাল আটটায় খোলে।",
+        "mr": "बाजार सकाळी आठ वाजता उघडतो."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please pay the rent by the first of the month.",
-        translation: "कृपया महीने की पहली तारीख तक किराया दें।",
-        question: "When should you pay the rent?",
-        options: ["The fifth", "The tenth", "The first", "The fifteenth"],
-        answerIndex: 2,
-        explanation: "'By the first of the month' is the deadline."
+        "en": "Please pay the rent by the first of the month.",
+        "hi": "कृपया महीने की पहली तारीख तक किराया दें।",
+        "ta": "தயவுசெய்து மாதத்தின் முதல் தேதிக்குள் வாடகையை செலுத்துங்கள்.",
+        "te": "దయచేసి నెల మొదటి తేదీ నాటికి అద్దె చెల్లించండి.",
+        "kn": "ದಯವಿಟ್ಟು ತಿಂಗಳ ಮೊದಲ ದಿನದೊಳಗೆ ಬಾಡಿಗೆ ಪಾವತಿಸಿ.",
+        "bn": "দয়া করে মাসের প্রথম তারিখের মধ্যে ভাড়া পরিশোধ করুন।",
+        "mr": "कृपया महिन्याच्या पहिल्या तारखेपर्यंत घरभाडे द्या."
       },
       {
-        instruction: "Listen and answer",
-        content: "She buys vegetables from the local market.",
-        translation: "वह स्थानीय बाज़ार से सब्जियाँ खरीदती है।",
-        question: "What does she buy?",
-        options: ["Fruits", "Vegetables", "Clothes", "Medicine"],
-        answerIndex: 1,
-        explanation: "'Buys vegetables' is stated in the sentence."
+        "en": "She buys vegetables from the local market.",
+        "hi": "वह स्थानीय बाज़ार से सब्ज़ियाँ खरीदती है।",
+        "ta": "அவள் உள்ளூர் சந்தையிலிருந்து காய்கறிகளை வாங்குகிறாள்.",
+        "te": "ఆమె స్థానిక మార్కెట్ నుండి కూరగాయలు కొంటుంది.",
+        "kn": "ಅವಳು ಸ್ಥಳೀಯ ಮಾರುಕಟ್ಟೆಯಿಂದ ತರಕಾರಿಗಳನ್ನು ಖರೀದಿಸುತ್ತಾಳೆ.",
+        "bn": "সে স্থানীয় বাজার থেকে শাকসবজি কেনে।",
+        "mr": "ती स्थानिक बाजारातून भाज्या खरेदी करते."
       },
       {
-        instruction: "Listen and answer",
-        content: "The bus arrives every thirty minutes.",
-        translation: "बस हर तीस मिनट में आती है।",
-        question: "How often does the bus arrive?",
-        options: ["Every ten minutes", "Every twenty minutes", "Every thirty minutes", "Every hour"],
-        answerIndex: 2,
-        explanation: "'Every thirty minutes' gives the frequency."
+        "en": "The bus arrives every thirty minutes.",
+        "hi": "बस हर तीस मिनट में आती है।",
+        "ta": "பேருந்து ஒவ்வொரு முப்பது நிமிடங்களுக்கும் வருகிறது.",
+        "te": "బస్సు ప్రతి ముప్పై నిమిషాలకు వస్తుంది.",
+        "kn": "ಬಸ್ ಪ್ರತಿ ಮೂವತ್ತು ನಿಮಿಷಕ್ಕೆ ಒಮ್ಮೆ ಬರುತ್ತದೆ.",
+        "bn": "বাস প্রতি ত্রিশ মিনিট অন্তর আসে।",
+        "mr": "बस दर तीस मिनिटांनी येते."
       },
       {
-        instruction: "Listen and answer",
-        content: "I take a bath before going to work.",
-        translation: "मैं काम पर जाने से पहले नहाता हूँ।",
-        question: "When does the speaker take a bath?",
-        options: ["After work", "Before work", "At night", "In the afternoon"],
-        answerIndex: 1,
-        explanation: "'Before going to work' gives the timing."
+        "en": "I take a bath before going to work.",
+        "hi": "मैं काम पर जाने से पहले स्नान करता हूँ।",
+        "ta": "நான் வேலைக்குச் செல்வதற்கு முன் குளிக்கிறேன்.",
+        "te": "నేను పనికి వెళ్లే ముందు స్నానం చేస్తాను.",
+        "kn": "ನಾನು ಕೆಲಸಕ್ಕೆ ಹೋಗುವ ಮುನ್ನ ಸ್ನಾನ ಮಾಡುತ್ತೇನೆ.",
+        "bn": "আমি কাজে যাওয়ার আগে স্নান করি।",
+        "mr": "मी कामावर जाण्यापूर्वी आंघोळ करतो."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I wake up at six every morning.",
-        translation: "मैं हर सुबह छह बजे उठता हूँ।",
-        question: "Repeat this daily routine sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I wake up at six every morning.",
+        "hi": "मैं हर सुबह छह बजे उठता हूँ।",
+        "ta": "நான் தினமும் காலை ஆறு மணிக்கு எழுந்திருக்கிறேன்.",
+        "te": "నేను ప్రతిరోజూ ఉదయం ఆరు గంటలకు నిద్రలేస్తాను.",
+        "kn": "ನಾನು ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ಆರು ಗಂಟೆಗೆ ಏಳುತ್ತೇನೆ.",
+        "bn": "আমি প্রতিদিন সকাল ছটায় উঠি।",
+        "mr": "मी रोज सकाळी सहा वाजता उठतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please give me the electricity bill.",
-        translation: "कृपया मुझे बिजली का बिल दें।",
-        question: "Repeat this request",
-        options: [],
-        answerIndex: 0
+        "en": "Please give me the electricity bill.",
+        "hi": "कृपया मुझे बिजली का बिल दीजिए।",
+        "ta": "தயவுசெய்து எனக்கு மின்சார கட்டண ரசீதை கொடுங்கள்.",
+        "te": "దయచేసి నాకు కరెంట్ బిల్లు ఇవ్వండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಕರೆಂಟ್ ಬಿಲ್ ಕೊಡಿ.",
+        "bn": "দয়া করে আমাকে বিদ্যুৎ বিলটি দিন।",
+        "mr": "कृपया मला विजेचे बिल द्या."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "The water is not coming today.",
-        translation: "आज पानी नहीं आ रहा है।",
-        question: "Repeat this statement",
-        options: [],
-        answerIndex: 0
+        "en": "The water is not coming today.",
+        "hi": "आज पानी नहीं आ रहा है।",
+        "ta": "இன்று தண்ணீர் வரவில்லை.",
+        "te": "ఈరోజు నీళ్లు రావడం లేదు.",
+        "kn": "ಇಂದು ನೀರು ಬರುತ್ತಿಲ್ಲ.",
+        "bn": "আজ জল আসছে না।",
+        "mr": "आज पाणी येत नाही आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I cook food at home every evening.",
-        translation: "मैं हर शाम घर पर खाना बनाता हूँ।",
-        question: "Repeat this routine sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I cook food at home every evening.",
+        "hi": "मैं हर शाम घर पर खाना बनाता हूँ।",
+        "ta": "நான் தினமும் மாலையில் வீட்டில் சமைக்கிறேன்.",
+        "te": "నేను ప్రతి సాయంత్రం ఇంట్లో వంట చేస్తాను.",
+        "kn": "ನಾನು ಪ್ರತಿದಿನ ಸಂಜೆ ಮನೆಯಲ್ಲಿ ಅಡುಗೆ ಮಾಡುತ್ತೇನೆ.",
+        "bn": "আমি প্রতিদিন সন্ধ্যায় বাড়িতে রান্না করি।",
+        "mr": "मी रोज संध्याकाळी घरी जेवण बनवतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My house has two rooms.",
-        translation: "मेरे घर में दो कमरे हैं।",
-        question: "Repeat this description",
-        options: [],
-        answerIndex: 0
+        "en": "My house has two rooms.",
+        "hi": "मेरे घर में दो कमरे हैं।",
+        "ta": "என் வீட்டில் இரண்டு அறைகள் உள்ளன.",
+        "te": "మా ఇంట్లో రెండు గదులు ఉన్నాయి.",
+        "kn": "ನನ್ನ ಮನೆಯಲ್ಲಿ ಎರಡು ಕೋಣೆಗಳಿವೆ.",
+        "bn": "আমার বাড়িতে দুটি ঘর আছে।",
+        "mr": "माझ्या घरात दोन खोल्या आहेत."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Electricity",
-        translation: "बिजली",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Electricity",
+        "hi": "बिजली",
+        "ta": "மின்சாரம்",
+        "te": "విద్యుత్",
+        "kn": "ವಿದ್ಯುತ್",
+        "bn": "বিদ্যুৎ",
+        "mr": "वीज"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Vegetables",
-        translation: "सब्जियाँ",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Vegetables",
+        "hi": "सब्जियां",
+        "ta": "காய்கறிகள்",
+        "te": "కూరగాయలు",
+        "kn": "ತರಕಾರಿಗಳು",
+        "bn": "শাকসবজি",
+        "mr": "भाज्या"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Morning",
-        translation: "सुबह",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Morning",
+        "hi": "सुबह",
+        "ta": "காலை",
+        "te": "ఉదయం",
+        "kn": "ಬೆಳಿಗ್ಗೆ",
+        "bn": "সকাল",
+        "mr": "सकाळ"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Kitchen",
-        translation: "रसोई",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Kitchen",
+        "hi": "रसोई",
+        "ta": "சமையலறை",
+        "te": "వంటగది",
+        "kn": "ಅಡುಗೆಮನೆ",
+        "bn": "রান্নাঘর",
+        "mr": "स्वयंपाकघर"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Neighbourhood",
-        translation: "पड़ोस",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Neighbourhood",
+        "hi": "पड़ोस",
+        "ta": "அக்கம் பக்கம்",
+        "te": "పొరుగు",
+        "kn": "ನೆರೆಹೊರೆ",
+        "bn": "প্রতিবেশ",
+        "mr": "शेजार"
       }
     ]
   },
-
-  // ── Unit 3: Family & Relations ───────────────────────────────────
-  unit_family: {
-    reading: [
+  "unit_family": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "My father works in a government office.",
-        translation: "मेरे पिताजी सरकारी दफ्तर में काम करते हैं।",
-        question: "Where does the father work?",
-        options: ["In a school", "In a hospital", "In a government office", "In a shop"],
-        answerIndex: 2,
-        explanation: "'Government office' is where the father works."
+        "en": "My elder brother is an engineer in Bangalore.",
+        "hi": "मेरे बड़े भाई बैंगलोर में एक इंजीनियर हैं।",
+        "ta": "என் மூத்த சகோதரர் பெங்களூரில் ஒரு பொறியாளர்.",
+        "te": "మా అన్నయ్య బెంగళూరులో ఇంజనీర్.",
+        "kn": "ನನ್ನ ಅಣ್ಣ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಇಂಜಿನಿಯರ್ ಆಗಿದ್ದಾರೆ.",
+        "bn": "আমার বড় ভাই ব্যাঙ্গালোরে একজন প্রকৌশলী।",
+        "mr": "माझे मोठे भाऊ बंगळुरूमध्ये अभियंता आहेत."
       },
       {
-        instruction: "Read and answer",
-        content: "My elder sister got married last year.",
-        translation: "मेरी बड़ी बहन की शादी पिछले साल हुई थी।",
-        question: "Who got married last year?",
-        options: ["Younger sister", "Elder brother", "Elder sister", "Mother"],
-        answerIndex: 2,
-        explanation: "'My elder sister got married' is clearly stated."
+        "en": "My mother takes care of our entire home.",
+        "hi": "मेरी माँ हमारे पूरे घर की देखभाल करती हैं।",
+        "ta": "என் அம்மா எங்கள் முழு வீட்டையும் கவனித்துக்கொள்கிறார்.",
+        "te": "మా అమ్మ మా ఇల్లంతటినీ చూసుకుంటుంది.",
+        "kn": "ನನ್ನ ತಾಯಿ ನಮ್ಮ ಇಡೀ ಮನೆಯನ್ನು ನೋಡಿಕೊಳ್ಳುತ್ತಾರೆ.",
+        "bn": "আমার মা আমাদের পুরো পরিবারের যত্ন নেন।",
+        "mr": "माझी आई आमच्या संपूर्ण घराची काळजी घेते."
       },
       {
-        instruction: "Read and answer",
-        content: "We have three children — two sons and one daughter.",
-        translation: "हमारे तीन बच्चे हैं — दो बेटे और एक बेटी।",
-        question: "How many daughters do they have?",
-        options: ["None", "One", "Two", "Three"],
-        answerIndex: 1,
-        explanation: "'One daughter' is mentioned in the sentence."
+        "en": "We live with our grandparents in the village.",
+        "hi": "हम गाँव में अपने दादा-दादी के साथ रहते हैं।",
+        "ta": "நாங்கள் கிராமத்தில் எங்கள் தாத்தா பாட்டியுடன் வாழ்கிறோம்.",
+        "te": "మేము గ్రామంలో మా తాతయ్య నానమ్మలతో కలిసి ఉంటాము.",
+        "kn": "ನಾವು ಹಳ್ಳಿಯಲ್ಲಿ ನಮ್ಮ ಅಜ್ಜ-ಅಜ್ಜಿಯೊಂದಿಗೆ ವಾಸಿಸುತ್ತೇವೆ.",
+        "bn": "আমরা গ্রামে আমাদের ঠাকুরদা-ঠাকুমার সাথে থাকি।",
+        "mr": "आम्ही गावात आजोबा-आजींसोबत राहतो."
       },
       {
-        instruction: "Read and answer",
-        content: "My grandmother lives with us in the same house.",
-        translation: "मेरी दादी हमारे साथ उसी घर में रहती हैं।",
-        question: "Who lives in the same house?",
-        options: ["Grandfather", "Uncle", "Grandmother", "Cousin"],
-        answerIndex: 2,
-        explanation: "'My grandmother lives with us' gives the answer."
+        "en": "My younger sister studies in class ten.",
+        "hi": "मेरी छोटी बहन दसवीं कक्षा में पढ़ती है।",
+        "ta": "என் தங்கை பத்தாம் வகுப்பில் படிக்கிறாள்.",
+        "te": "నా చెల్లెలు పదో తరగతి చదువుతోంది.",
+        "kn": "ನನ್ನ ತಂಗಿ ಹತ್ತನೇ ತರಗತಿಯಲ್ಲಿ ಓದುತ್ತಿದ್ದಾಳೆ.",
+        "bn": "আমার ছোট বোন দশম শ্রেণীতে পড়ে।",
+        "mr": "माझी धाकटी बहीण दहावीच्या वर्गात शिकते."
       },
       {
-        instruction: "Read and answer",
-        content: "My son is studying in class five.",
-        translation: "मेरा बेटा पाँचवीं कक्षा में पढ़ता है।",
-        question: "Which class is the son studying in?",
-        options: ["Class three", "Class four", "Class five", "Class six"],
-        answerIndex: 2,
-        explanation: "'Class five' is directly stated."
+        "en": "All our relatives visit us during festive days.",
+        "hi": "त्योहारों के दिनों में हमारे सभी रिश्तेदार आते हैं।",
+        "ta": "பண்டிகை நாட்களில் எங்கள் உறவினர்கள் அனைவரும் வருகிறார்கள்.",
+        "te": "పండుగ రోజుల్లో మా బంధువులందరూ మా వద్దకు వస్తారు.",
+        "kn": "ಹಬ್ಬದ ದಿನಗಳಲ್ಲಿ ನಮ್ಮ ಎಲ್ಲಾ ಸಂಬಂಧಿಕರು ಬರುತ್ತಾರೆ.",
+        "bn": "উৎসবের দিনে আমাদের সব আত্মীয়রা আমাদের বাড়ি আসেন।",
+        "mr": "सणासुदीच्या दिवसात आमचे सर्व नातेवाईक येतात."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Talking about where your father works",
-        question: "My father works in a factory",
-        options: ["in", "father", "My", "works", "factory", "a"],
-        answerIndex: 0,
-        explanation: "Possessive + noun + verb + location is the correct structure."
+        "en": "My father works hard for our family",
+        "hi": "मेरे पिता हमारे परिवार के लिए कड़ी मेहनत करते हैं",
+        "ta": "என் தந்தை எங்கள் குடும்பத்திற்காக கடினமாக உழைக்கிறார்",
+        "te": "మా నాన్న మా కుటుంబం కోసం కష్టపడి పనిచేస్తారు",
+        "kn": "ನನ್ನ ತಂದೆ ನಮ್ಮ ಕುಟುಂಬಕ್ಕಾಗಿ ಕಷ್ಟಪಟ್ಟು ಕೆಲಸ ಮಾಡುತ್ತಾರೆ",
+        "bn": "আমার বাবা আমাদের পরিবারের জন্য কঠোর পরিশ্রম করেন",
+        "mr": "माझे वडील आमच्या कुटुंबासाठी खूप कष्ट करतात"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Describing how many siblings you have",
-        question: "I have two brothers",
-        options: ["brothers", "have", "I", "two"],
-        answerIndex: 0,
-        explanation: "Subject + 'have' + number + noun."
+        "en": "We have four members in our house",
+        "hi": "हमारे घर में चार सदस्य हैं",
+        "ta": "எங்கள் வீட்டில் நான்கு உறுப்பினர்கள் உள்ளனர்",
+        "te": "మా ఇంట్లో నలుగురు సభ్యులు ఉన్నారు",
+        "kn": "ನಮ್ಮ ಮನೆಯಲ್ಲಿ ನಾಲ್ಕು ಸದಸ್ಯರಿದ್ದಾರೆ",
+        "bn": "আমাদের পরিবারে চারজন সদস্য আছেন",
+        "mr": "आमच्या घरात चार सदस्य आहेत"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying that your mother is at home",
-        question: "My mother is at home",
-        options: ["at", "mother", "My", "home", "is"],
-        answerIndex: 0,
-        explanation: "Possessive + noun + 'is' + location."
+        "en": "My sister helps me with homework daily",
+        "hi": "मेरी बहन रोज़ गृहकार्य में मेरी मदद करती है",
+        "ta": "என் சகோதரி தினமும் வீட்டுப்பாடத்தில் எனக்கு உதவுகிறாள்",
+        "te": "నా సోదరి రోజూ హోమ్‌వర్క్‌లో నాకు సహాయం చేస్తుంది",
+        "kn": "ನನ್ನ ಸಹೋದರಿ ಪ್ರತಿದಿನ ಮನೆಕೆಲಸದಲ್ಲಿ ನನಗೆ ಸಹಾಯ ಮಾಡುತ್ತಾಳೆ",
+        "bn": "আমার বোন প্রতিদিন পড়াশোনায় আমাকে সাহায্য করে",
+        "mr": "माझी बहीण दररोज गृहपाठात मला मदत करते"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Describing your child going to school",
-        question: "My daughter goes to school daily",
-        options: ["school", "goes", "My", "daily", "daughter", "to"],
-        answerIndex: 0,
-        explanation: "Subject + verb + location + time adverb."
+        "en": "Our parents give us good loving advice",
+        "hi": "हमारे माता-पिता हमें अच्छी और प्यारी सलाह देते हैं",
+        "ta": "எங்கள் பெற்றோர் எங்களுக்கு நல்ல அன்பான அறிவுரைகளை வழங்குகிறார்கள்",
+        "te": "మా తల్లిదండ్రులు మాకు మంచి ప్రేమపూర్వక సలహాలు ఇస్తారు",
+        "kn": "ನಮ್ಮ ಪೋಷಕರು ನಮಗೆ ಒಳ್ಳೆಯ ಪ್ರೀತಿಯ ಸಲಹೆಗಳನ್ನು ನೀಡುತ್ತಾರೆ",
+        "bn": "আমাদের বাবা-মা আমাদের ভালো ও স্নেহপূর্ণ উপদেশ দেন",
+        "mr": "आमचे आई-वडील आम्हाला चांगला व प्रेमाचा सल्ला देतात"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying where your grandparents live",
-        question: "My grandparents live in the village",
-        options: ["village", "live", "My", "in", "grandparents", "the"],
-        answerIndex: 0,
-        explanation: "Possessive + noun + verb + location is standard."
+        "en": "We eat dinner together every single night",
+        "hi": "हम हर रात एक साथ मिलकर खाना खाते हैं",
+        "ta": "நாங்கள் தினமும் இரவு ஒன்றாக உணவு சாப்பிடுகிறோம்",
+        "te": "మేము ప్రతి రాత్రి కలిసి భోజనం చేస్తాము",
+        "kn": "ನಾವು ಪ್ರತಿದಿನ ರಾತ್ರಿ ಒಟ್ಟಿಗೆ ಊಟ ಮಾಡುತ್ತೇವೆ",
+        "bn": "আমরা প্রতিদিন রাতে একসাথে রাতের খাবার খাই",
+        "mr": "आम्ही दररोज रात्री एकत्र जेवण करतो"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "My husband works in a factory in the city.",
-        translation: "मेरे पति शहर की एक फैक्ट्री में काम करते हैं।",
-        question: "Where does the husband work?",
-        options: ["A school", "A hospital", "A factory", "A bank"],
-        answerIndex: 2,
-        explanation: "'Works in a factory' is stated in the audio."
+        "en": "My uncle lives in a quiet village.",
+        "hi": "मेरे चाचा एक शांत गाँव में रहते हैं।",
+        "ta": "என் மாமா ஒரு அமைதியான கிராமத்தில் வசிக்கிறார்.",
+        "te": "మా బాబాయ్ ఒక ప్రశాంతమైన గ్రామంలో ఉంటారు.",
+        "kn": "ನನ್ನ ಚಿಕ್ಕಪ್ಪ ಒಂದು ಪ್ರಶಾಂತವಾದ ಹಳ್ಳಿಯಲ್ಲಿ ವಾಸಿಸುತ್ತಿದ್ದಾರೆ.",
+        "bn": "আমার কাকা একটি শান্ত গ্রামে থাকেন।",
+        "mr": "माझे काका एका शांत गावात राहतात."
       },
       {
-        instruction: "Listen and answer",
-        content: "Our family has five members.",
-        translation: "हमारे परिवार में पाँच सदस्य हैं।",
-        question: "How many family members are there?",
-        options: ["Three", "Four", "Five", "Six"],
-        answerIndex: 2,
-        explanation: "'Five members' is clearly stated."
+        "en": "Her daughter is learning classical Indian music.",
+        "hi": "उनकी बेटी भारतीय शास्त्रीय संगीत सीख रही है।",
+        "ta": "அவரது மகள் இந்திய பாரம்பரிய இசையைக் கற்றுக்கொள்கிறார்.",
+        "te": "ఆమె కుమార్తె భారతీయ శాస్త్రీయ సంగీతం నేర్చుకుంటోంది.",
+        "kn": "ಅವರ ಮಗಳು ಭಾರತೀಯ ಶಾಸ್ತ್ರೀಯ ಸಂಗೀತವನ್ನು ಕಲಿಯುತ್ತಿದ್ದಾಳೆ.",
+        "bn": "তার মেয়ে ভারতীয় শাস্ত্রীয় সঙ্গীত শিখছে।",
+        "mr": "त्यांची मुलगी भारतीय शास्त्रीय संगीत शिकत आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "My younger brother is learning to read.",
-        translation: "मेरा छोटा भाई पढ़ना सीख रहा है।",
-        question: "What is the younger brother doing?",
-        options: ["Learning to write", "Learning to cook", "Learning to read", "Learning to drive"],
-        answerIndex: 2,
-        explanation: "'Learning to read' is mentioned in the audio."
+        "en": "My grandfather reads the newspaper every morning.",
+        "hi": "मेरे दादाजी रोज़ सुबह अखबार पढ़ते हैं।",
+        "ta": "என் தாத்தா தினமும் காலையில் செய்தித்தாள் படிக்கிறார்.",
+        "te": "మా తాతగారు రోజూ ఉదయం వార్తాపత్రిక చదువుతారు.",
+        "kn": "ನನ್ನ ಅಜ್ಜ ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ದಿನಪತ್ರಿಕೆ ಓದುತ್ತಾರೆ.",
+        "bn": "আমার ঠাকুরদা প্রতিদিন সকালে সংবাদপত্র পড়েন।",
+        "mr": "माझे आजोबा रोज सकाळी वर्तमानपत्र वाचतात."
       },
       {
-        instruction: "Listen and answer",
-        content: "We celebrate festivals together as a family.",
-        translation: "हम परिवार के रूप में एक साथ त्योहार मनाते हैं।",
-        question: "What do they do together as a family?",
-        options: ["Work", "Study", "Celebrate festivals", "Travel"],
-        answerIndex: 2,
-        explanation: "'Celebrate festivals together' is the key phrase."
+        "en": "We celebrate birthdays with our close family.",
+        "hi": "हम अपने करीबी परिवार के साथ जन्मदिन मनाते हैं।",
+        "ta": "நாங்கள் எங்கள் நெருங்கிய குடும்பத்துடன் பிறந்தநாளைக் கொண்டாடுகிறோம்.",
+        "te": "మేము మా సన్నిహిత కుటుంబంతో పుట్టినరోజులు జరుపుకుంటాము.",
+        "kn": "ನಾವು ನಮ್ಮ ಹತ್ತಿರದ ಕುಟುಂಬದೊಂದಿಗೆ ಹುಟ್ಟುಹಬ್ಬವನ್ನು ಆಚರಿಸುತ್ತೇವೆ.",
+        "bn": "আমরা আমাদের পরিবারের সাথে জন্মদিন উদযাপন করি।",
+        "mr": "आम्ही आमच्या जवळच्या कुटुंबासोबत वाढदिवस साजरा करतो."
       },
       {
-        instruction: "Listen and answer",
-        content: "My mother takes care of our elderly grandfather.",
-        translation: "मेरी माँ हमारे बुजुर्ग दादाजी की देखभाल करती हैं।",
-        question: "Who does the mother take care of?",
-        options: ["The children", "The grandmother", "The elderly grandfather", "The neighbours"],
-        answerIndex: 2,
-        explanation: "'Takes care of our elderly grandfather' gives the answer."
+        "en": "She teaches good values to her children.",
+        "hi": "वह अपने बच्चों को अच्छे संस्कार सिखाती है।",
+        "ta": "அவள் தன் குழந்தைகளுக்கு நல்ல பண்புகளைக் கற்றுக்கொடுக்கிறாள்.",
+        "te": "ఆమె తన పిల్లలకు మంచి విలువలను నేర్పుతుంది.",
+        "kn": "ಅವಳು ತನ್ನ ಮಕ್ಕಳಿಗೆ ಉತ್ತಮ ಸಂಸ್ಕಾರ ಮತ್ತು ಮೌಲ್ಯಗಳನ್ನು ಕಲಿಸುತ್ತಾಳೆ.",
+        "bn": "তিনি তার সন্তানদের ভালো নীতিশিক্ষা দেন।",
+        "mr": "ती तिच्या मुलांना चांगले संस्कार शिकवते."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I have one brother and two sisters.",
-        translation: "मेरे एक भाई और दो बहनें हैं।",
-        question: "Repeat this family description",
-        options: [],
-        answerIndex: 0
+        "en": "This is my lovely happy family.",
+        "hi": "यह मेरा प्यारा और खुशहाल परिवार है।",
+        "ta": "இது எனது அழகான மகிழ்ச்சியான குடும்பம்.",
+        "te": "ఇది నా అందమైన సంతోషకరమైన కుటుంబం.",
+        "kn": "ಇದು ನನ್ನ ಸುಂದರ ಮತ್ತು ಸಂತೋಷದ ಕುಟುಂಬ.",
+        "bn": "এটি আমার সুন্দর সুখী পরিবার।",
+        "mr": "हे माझे सुंदर आणि आनंदी कुटुंब आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My parents live in the village.",
-        translation: "मेरे माता-पिता गाँव में रहते हैं।",
-        question: "Repeat this sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I love and respect my parents.",
+        "hi": "मैं अपने माता-पिता से प्यार और उनका सम्मान करता हूँ।",
+        "ta": "நான் என் பெற்றோரை நேசிக்கிறேன் மற்றும் மதிக்கிறேன்.",
+        "te": "నేను నా తల్లిదండ్రులను ప్రేమిస్తాను మరియు గౌరవిస్తాను.",
+        "kn": "ನಾನು ನನ್ನ ಪೋಷಕರನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ ಮತ್ತು ಗೌರವಿಸುತ್ತೇನೆ.",
+        "bn": "আমি আমার পিতামাতাকে ভালোবাসি ও শ্রদ্ধা করি।",
+        "mr": "मी माझ्या आई-वडिलांवर प्रेम आणि आदर करतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My son is five years old.",
-        translation: "मेरे बेटे की उम्र पाँच साल है।",
-        question: "Repeat this sentence",
-        options: [],
-        answerIndex: 0
+        "en": "My brother is my best friend.",
+        "hi": "मेरा भाई मेरा सबसे अच्छा दोस्त है।",
+        "ta": "என் சகோதரன் என் சிறந்த நண்பன்.",
+        "te": "మా అన్నయ్య నా ప్రాణ స్నేహితుడు.",
+        "kn": "ನನ್ನ ಸಹೋದರನೇ ನನ್ನ ಆತ್ಮೀಯ ಗೆಳೆಯ.",
+        "bn": "আমার ভাই আমার সেরা বন্ধু।",
+        "mr": "माझा भाऊ माझा सर्वात चांगला मित्र आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My wife is a teacher.",
-        translation: "मेरी पत्नी शिक्षिका हैं।",
-        question: "Repeat this description",
-        options: [],
-        answerIndex: 0
+        "en": "We help each other at home.",
+        "hi": "हम घर पर एक-दूसरे की मदद करते हैं।",
+        "ta": "நாங்கள் வீட்டில் ஒருவருக்கொருவர் உதவுகிறோம்.",
+        "te": "మేము ఇంట్లో ఒకరికొకరు సహాయం చేసుకుంటాము.",
+        "kn": "ನಾವು ಮನೆಯಲ್ಲಿ ಒಬ್ಬರಿಗೊಬ್ಬರು ಸಹಾಯ ಮಾಡುತ್ತೇವೆ.",
+        "bn": "আমরা বাড়িতে একে অপরকে সাহায্য করি।",
+        "mr": "आम्ही घरात एकमेकांना मदत करतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "We all eat together in the evening.",
-        translation: "हम सब शाम को एक साथ खाते हैं।",
-        question: "Repeat this routine sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Family always comes first in life.",
+        "hi": "जीवन में परिवार हमेशा सबसे पहले आता है।",
+        "ta": "வாழ்க்கையில் குடும்பம் எப்போதும் முதன்மையானது.",
+        "te": "జీవితంలో కుటుంబం ఎల్లప్పుడూ మొదటి స్థానంలో ఉంటుంది.",
+        "kn": "ಜೀವನದಲ್ಲಿ ಕುಟುಂಬ ಯಾವಾಗಲೂ ಮೊದಲ ಸ್ಥಾನದಲ್ಲಿದೆ.",
+        "bn": "জীবনে পরিবারই সবসময় সবার আগে।",
+        "mr": "जीवनात कुटुंब नेहमीच प्रथम स्थानी असते."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Family",
-        translation: "परिवार",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Parents",
+        "hi": "माता-पिता",
+        "ta": "பெற்றோர்",
+        "te": "తల్లిదండ్రులు",
+        "kn": "ಪೋಷಕರು",
+        "bn": "পিতামাতা",
+        "mr": "पालक"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Brother",
-        translation: "भाई",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Grandmother",
+        "hi": "दादी",
+        "ta": "பாட்டி",
+        "te": "నానమ్మ",
+        "kn": "ಅಜ್ಜಿ",
+        "bn": "ঠাকুমা",
+        "mr": "आजी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Daughter",
-        translation: "बेटी",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Brother",
+        "hi": "भाई",
+        "ta": "சகோதரன்",
+        "te": "సోదరుడు",
+        "kn": "ಸಹೋದರ",
+        "bn": "ভাই",
+        "mr": "भाऊ"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Grandfather",
-        translation: "दादाजी",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Daughter",
+        "hi": "बेटी",
+        "ta": "மகள்",
+        "te": "కుమార్తె",
+        "kn": "ಮಗಳು",
+        "bn": "কন্যা",
+        "mr": "मुलगी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Husband",
-        translation: "पति",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Relative",
+        "hi": "रिश्तेदार",
+        "ta": "உறவினர்",
+        "te": "బంధువు",
+        "kn": "ಸಂಬಂಧಿ",
+        "bn": "আত্মীয়",
+        "mr": "नातेवाईक"
       }
     ]
   },
-
-  // ── Unit 4: Shopping & Market ────────────────────────────────────
-  unit_shopping: {
-    reading: [
+  "unit_shopping": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "One kilogram of tomatoes costs twenty rupees.",
-        translation: "एक किलोग्राम टमाटर की कीमत बीस रुपये है।",
-        question: "What is the cost of one kg of tomatoes?",
-        options: ["₹10", "₹15", "₹20", "₹25"],
-        answerIndex: 2,
-        explanation: "'Twenty rupees' is the price stated."
+        "en": "How much does one kilo of tomatoes cost?",
+        "hi": "एक किलो टमाटर की कीमत कितनी है?",
+        "ta": "ஒரு கிலோ தக்காளி விலை என்ன?",
+        "te": "ఒక కిలో టమాటాల ధర ఎంత?",
+        "kn": "ಒಂದು ಕಿಲೋ ಟೊಮೆಟೊ ಬೆಲೆ ಎಷ್ಟು?",
+        "bn": "এক কেজি টমেটোর দাম কত?",
+        "mr": "एक किलो टोमॅटोची किंमत किती आहे?"
       },
       {
-        instruction: "Read and answer",
-        content: "Do you have this shirt in a larger size?",
-        translation: "क्या आपके पास इस शर्ट का बड़ा साइज़ है?",
-        question: "What is the customer asking for?",
-        options: ["A different colour", "A cheaper price", "A larger size", "A different style"],
-        answerIndex: 2,
-        explanation: "'Larger size' is what the customer wants."
+        "en": "Please give me a fresh cotton shirt.",
+        "hi": "कृपया मुझे एक ताज़ा सूती शर्ट दीजिए।",
+        "ta": "தயவுசெய்து எனக்கு ஒரு புதிய பருத்தி சட்டை கொடுங்கள்.",
+        "te": "దయచేసి నాకు ఒక మంచి కాటన్ చొక్కా ఇవ్వండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಒಂದು ಉತ್ತಮ ಹತ್ತಿ ಅಂಗಿ ಕೊಡಿ.",
+        "bn": "দয়া করে আমাকে একটি সুতির শার্ট দিন।",
+        "mr": "कृपया मला एक चांगला सुती शर्ट द्या."
       },
       {
-        instruction: "Read and answer",
-        content: "The total bill is five hundred and fifty rupees.",
-        translation: "कुल बिल पाँच सौ पचास रुपये है।",
-        question: "What is the total amount?",
-        options: ["₹500", "₹550", "₹600", "₹650"],
-        answerIndex: 1,
-        explanation: "'Five hundred and fifty rupees' = ₹550."
+        "en": "Do you accept digital payments via UPI?",
+        "hi": "क्या आप UPI के माध्यम से डिजिटल भुगतान स्वीकार करते हैं?",
+        "ta": "நீங்கள் UPI மூலம் கட்டணத்தை ஏற்றுக்கொள்கிறீர்களா?",
+        "te": "మీరు UPI ద్వారా డిజిటల్ చెల్లింపులను స్వీకరిస్తారా?",
+        "kn": "ನೀವು UPI ಮೂಲಕ ಡಿಜಿಟಲ್ ಪಾವತಿಯನ್ನು ಸ್ವೀಕರಿಸುತ್ತೀರಾ?",
+        "bn": "আপনি কি UPI মাধ্যমে ডিজিটাল পেমেন্ট নেন?",
+        "mr": "तुम्ही UPI द्वारे डिजिटल पेमेंट स्वीकारता का?"
       },
       {
-        instruction: "Read and answer",
-        content: "I need two packets of milk and some bread.",
-        translation: "मुझे दो पैकेट दूध और कुछ रोटी चाहिए।",
-        question: "How many packets of milk are needed?",
-        options: ["One", "Two", "Three", "Four"],
-        answerIndex: 1,
-        explanation: "'Two packets of milk' is stated clearly."
+        "en": "Please provide me with a printed bill.",
+        "hi": "कृपया मुझे एक मुद्रित बिल प्रदान करें।",
+        "ta": "தயவுசெய்து எனக்கு ஒரு ரசீதை வழங்கவும்.",
+        "te": "దయచేసి నాకు ప్రింటెడ్ బిల్లు ఇవ్వండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಮುದ್ರಿತ ಬಿಲ್ ನೀಡಿ.",
+        "bn": "দয়া করে আমাকে একটি রসিদ দিন।",
+        "mr": "कृपया मला छापील बिल द्या."
       },
       {
-        instruction: "Read and answer",
-        content: "This shop gives a ten percent discount on Sundays.",
-        translation: "यह दुकान रविवार को दस प्रतिशत छूट देती है।",
-        question: "When is the discount available?",
-        options: ["Saturday", "Sunday", "Monday", "Friday"],
-        answerIndex: 1,
-        explanation: "'On Sundays' tells us when the discount applies."
+        "en": "Can I get a discount on these groceries?",
+        "hi": "क्या मुझे इन किराना सामानों पर छूट मिल सकती है?",
+        "ta": "இந்த மளிகைப் பொருட்களுக்கு எனக்கு தள்ளுபடி கிடைக்குமா?",
+        "te": "ఈ కిరాణా సామాన్లపై నాకు ఏదైనా తగ్గింపు లభిస్తుందా?",
+        "kn": "ಈ ದಿನಸಿ ಸಾಮಗ್ರಿಗಳ ಮೇಲೆ ನನಗೆ ರಿಯಾಯಿತಿ ಸಿಗುತ್ತದೆಯೇ?",
+        "bn": "আমি কি এই মুদি সামগ্রীতে কোনো ছাড় পেতে পারি?",
+        "mr": "मला या किराणा मालावर काही सूट मिळू शकेल का?"
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking what something costs",
-        question: "How much does this cost",
-        options: ["this", "How", "does", "much", "cost"],
-        answerIndex: 0,
-        explanation: "Standard question form: 'How much does X cost?'"
+        "en": "I want to buy fresh red apples",
+        "hi": "मैं ताज़े लाल सेब खरीदना चाहता हूँ",
+        "ta": "நான் புதிய சிவப்பு ஆப்பிள்களை வாங்க விரும்புகிறேன்",
+        "te": "నేను తాజా ఎరుపు యాపిల్స్ కొనాలనుకుంటున్నాను",
+        "kn": "ನಾನು ತಾಜಾ ಕೆಂಪು ಸೇಬುಗಳನ್ನು ಖರೀದಿಸಲು ಬಯಸುತ್ತೇನೆ",
+        "bn": "আমি তাজা লাল আপেল কিনতে চাই",
+        "mr": "मला ताजी लाल सफरचंद खरेदी करायची आहेत"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying you want to buy vegetables",
-        question: "I want to buy vegetables",
-        options: ["buy", "want", "I", "to", "vegetables"],
-        answerIndex: 0,
-        explanation: "Subject + 'want to' + verb + object."
+        "en": "Please pack two litres of milk here",
+        "hi": "कृपया यहाँ दो लीटर दूध पैक करें",
+        "ta": "தயவுசெய்து இங்கே இரண்டு லிட்டர் பால் கொடுங்கள்",
+        "te": "దయచేసి ఇక్కడ రెండు లీటర్ల పాలు ప్యాక్ చేయండి",
+        "kn": "ದಯವಿಟ್ಟು ಇಲ್ಲಿ ಎರಡು ಲೀಟರ್ ಹಾಲು ಪ್ಯಾಕ್ ಮಾಡಿ",
+        "bn": "দয়া করে এখানে দুই লিটার দুধ প্যাক করুন",
+        "mr": "कृपया येथे दोन लिटर दूध पॅक करा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying the price is too high",
-        question: "The price is too high",
-        options: ["too", "price", "The", "is", "high"],
-        answerIndex: 0,
-        explanation: "Subject + verb + adjective phrase."
+        "en": "This blue cotton shirt fits me perfectly",
+        "hi": "यह नीली सूती शर्ट मुझ पर बिल्कुल सही बैठती है",
+        "ta": "இந்த நீல நிற பருத்தி சட்டை எனக்கு சரியாக பொருந்துகிறது",
+        "te": "ఈ నీలిరంగు కాటన్ చొక్కా నాకు సరిగ్గా సరిపోతుంది",
+        "kn": "ಈ ನೀಲಿ ಹತ್ತಿ ಅಂಗಿ ನನಗೆ ಸರಿಯಾಗಿ ಸರಿಹೊಂದುತ್ತದೆ",
+        "bn": "এই নীল সুতির শার্টটি আমার শরীরে নিখুঁতভাবে মানায়",
+        "mr": "हा निळा सुती शर्ट मला अगदी व्यवस्थित बसतो"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking for a bag at the store",
-        question: "Please give me a bag",
-        options: ["me", "Please", "bag", "give", "a"],
-        answerIndex: 0,
-        explanation: "Polite imperative with 'please' at the start."
+        "en": "How much is the total shopping amount",
+        "hi": "कुल खरीदारी की राशि कितनी है",
+        "ta": "மொத்த ஷாப்பிங் தொகை எவ்வளவு",
+        "te": "మొత్తం షాపింగ్ మొత్తం ఎంతైంది",
+        "kn": "ಒಟ್ಟು ಶಾಪಿಂಗ್ ಮೊತ್ತ ಎಷ್ಟು ಆಗಿದೆ",
+        "bn": "মোট কেনাকাটার বিল কত হয়েছে",
+        "mr": "एकूण खरेदीची रक्कम किती झाली आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Requesting a receipt",
-        question: "Can I have the bill please",
-        options: ["please", "Can", "have", "I", "bill", "the"],
-        answerIndex: 0,
-        explanation: "'Can I have the bill please?' is a polite request."
+        "en": "I will pay the bill through card",
+        "hi": "मैं कार्ड के माध्यम से बिल का भुगतान करूँगा",
+        "ta": "நான் அட்டை மூலம் பில் செலுத்துவேன்",
+        "te": "నేను కార్డు ద్వారా బిల్లు చెల్లిస్తాను",
+        "kn": "ನಾನು ಕಾರ್ಡ್ ಮೂಲಕ ಬಿಲ್ ಪಾವತಿಸುತ್ತೇನೆ",
+        "bn": "আমি কার্ডের মাধ্যমে বিল পরিশোধ করব",
+        "mr": "मी कार्डद्वारे बिल भरेन"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "The vegetables are fresh today. Onions are fifteen rupees per kilo.",
-        translation: "आज सब्जियाँ ताज़ी हैं। प्याज पंद्रह रुपये प्रति किलो है।",
-        question: "What is the price of onions per kg?",
-        options: ["₹10", "₹12", "₹15", "₹20"],
-        answerIndex: 2,
-        explanation: "'Fifteen rupees per kilo' is stated for onions."
+        "en": "The total cost of your items is five hundred rupees.",
+        "hi": "आपके सामान की कुल कीमत पाँच सौ रुपये है।",
+        "ta": "உங்கள் பொருட்களின் மொத்த விலை ஐந்நூறு ரூபாய்.",
+        "te": "మీ వస్తువుల మొత్తం ఖరీదు ఐదు వందల రూపాయలు.",
+        "kn": "ನಿಮ್ಮ ವಸ್ತುಗಳ ಒಟ್ಟು ವೆಚ್ಚ ಐನೂರು ರೂಪಾಯಿಗಳು.",
+        "bn": "আপনার পণ্যের মোট মূল্য পাঁচশত টাকা।",
+        "mr": "तुमच्या मालाची एकूण किंमत पाचशे रुपये आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "We accept cash and UPI payments here.",
-        translation: "हम यहाँ नकद और UPI भुगतान स्वीकार करते हैं।",
-        question: "What payment methods are accepted?",
-        options: ["Only cash", "Only card", "Cash and UPI", "Card and cheque"],
-        answerIndex: 2,
-        explanation: "'Cash and UPI payments' are both accepted."
+        "en": "Fresh organic vegetables arrive every Tuesday morning.",
+        "hi": "ताज़ा जैविक सब्ज़ियाँ हर मंगलवार सुबह आती हैं।",
+        "ta": "புதிய இயற்கை காய்கறிகள் ஒவ்வொரு செவ்வாய்க்கிழமை காலையிலும் வருகின்றன.",
+        "te": "తాజా కూరగాయలు ప్రతి మంగళవారం ఉదయం వస్తాయి.",
+        "kn": "ತಾಜಾ ತರಕಾರಿಗಳು ಪ್ರತಿ ಮಂಗಳವಾರ ಬೆಳಿಗ್ಗೆ ಬರುತ್ತವೆ.",
+        "bn": "তাজা শাকসবজি প্রতি মঙ্গলবার সকালে আসে।",
+        "mr": "ताजी भाजी दर मंगळवारी सकाळी येते."
       },
       {
-        instruction: "Listen and answer",
-        content: "Your change is thirty rupees.",
-        translation: "आपका बाकी पैसा तीस रुपये है।",
-        question: "How much change does the customer get?",
-        options: ["₹10", "₹20", "₹30", "₹40"],
-        answerIndex: 2,
-        explanation: "'Thirty rupees' is the change."
+        "en": "Please keep your payment receipt safely.",
+        "hi": "कृपया अपनी भुगतान रसीद सुरक्षित रखें।",
+        "ta": "தயவுசெய்து உங்கள் கட்டண ரசீதை பாதுகாப்பாக வைத்திருங்கள்.",
+        "te": "దయచేసి మీ రశీదును భద్రంగా ఉంచుకోండి.",
+        "kn": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಪಾವತಿ ರಶೀದಿಯನ್ನು ಸುರಕ್ಷಿತವಾಗಿ ಇಟ್ಟುಕೊಳ್ಳಿ.",
+        "bn": "দয়া করে আপনার অর্থপ্রদানের রসিদটি সাবধানে রাখুন।",
+        "mr": "कृपया आपली पेमेंट पावती जपून ठेवा."
       },
       {
-        instruction: "Listen and answer",
-        content: "This item is out of stock. We will get it next week.",
-        translation: "यह वस्तु स्टॉक में नहीं है। हमें यह अगले सप्ताह मिलेगी।",
-        question: "When will the item be available?",
-        options: ["Tomorrow", "This weekend", "Next week", "Next month"],
-        answerIndex: 2,
-        explanation: "'Next week' is when the stock will arrive."
+        "en": "We offer a ten percent discount on large orders.",
+        "hi": "हम बड़े ऑर्डर पर दस प्रतिशत की छूट देते हैं।",
+        "ta": "பெரிய ஆர்டர்களுக்கு பத்து சதவீத தள்ளுபடி வழங்குகிறோம்.",
+        "te": "మేము పెద్ద ఆర్డర్లపై పది శాతం తగ్గింపును అందిస్తాము.",
+        "kn": "ನಾವು ದೊಡ್ಡ ಆರ್ಡರ್‌ಗಳ ಮೇಲೆ ಶೇಕಡಾ ಹತ್ತರಷ್ಟು ರಿಯಾಯಿತಿಯನ್ನು ನೀಡುತ್ತೇವೆ.",
+        "bn": "আমরা বড় অর্ডারে দশ শতাংশ ছাড় দিয়ে থাকি।",
+        "mr": "आम्ही मोठ्या खरेदीवर दहा टक्के सूट देतो."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please take your bag. Have a good day.",
-        translation: "कृपया अपना थैला ले जाइए। आपका दिन शुभ हो।",
-        question: "What is the shopkeeper saying?",
-        options: ["Come back tomorrow", "Take your bag and have a good day", "The shop is closed", "Pay at the counter"],
-        answerIndex: 1,
-        explanation: "'Take your bag. Have a good day.' is a farewell."
+        "en": "This shop closes at nine in the evening.",
+        "hi": "यह दुकान शाम को नौ बजे बंद होती है।",
+        "ta": "இந்தக் கடை மாலை ஒன்பது மணிக்கு மூடப்படும்.",
+        "te": "ఈ దుకాణం రాత్రి తొమ్మిది గంటలకు మూసివేయబడుతుంది.",
+        "kn": "ಈ ಅಂಗಡಿ ರಾತ್ರಿ ಒಂಬತ್ತು ಗಂಟೆಗೆ ಮುಚ್ಚುತ್ತದೆ.",
+        "bn": "এই দোকানটি রাত নটায় বন্ধ হয়।",
+        "mr": "हे दुकान रात्री नऊ वाजता बंद होते."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "How much does this cost?",
-        translation: "इसकी कीमत कितनी है?",
-        question: "Repeat this shopping question",
-        options: [],
-        answerIndex: 0
+        "en": "Please give me one kilogram of rice.",
+        "hi": "कृपया मुझे एक किलोग्राम चावल दीजिए।",
+        "ta": "தயவுசெய்து எனக்கு ஒரு கிலோ அரிசி கொடுங்கள்.",
+        "te": "దయచేసి నాకు ఒక కిలో బియ్యం ఇవ్వండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಒಂದು ಕಿಲೋಗ್ರಾಂ ಅಕ್ಕಿ ಕೊಡಿ.",
+        "bn": "দয়া করে আমাকে এক কেজি চাল দিন।",
+        "mr": "कृपया मला एक किलो तांदूळ द्या."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I want two kilograms of rice.",
-        translation: "मुझे दो किलोग्राम चावल चाहिए।",
-        question: "Repeat this shopping request",
-        options: [],
-        answerIndex: 0
+        "en": "What is the final price for this?",
+        "hi": "इसके लिए अंतिम कीमत क्या है?",
+        "ta": "இதன் இறுதி விலை என்ன?",
+        "te": "దీని తుది ధర ఎంత?",
+        "kn": "ಇದರ ಅಂತಿಮ ಬೆಲೆ ಎಷ್ಟು?",
+        "bn": "এটির শেষ দাম কত?",
+        "mr": "याची अंतिम किंमत काय आहे?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please give me the bill.",
-        translation: "कृपया मुझे बिल दें।",
-        question: "Repeat this request",
-        options: [],
-        answerIndex: 0
+        "en": "Do you accept online payment methods?",
+        "hi": "क्या आप ऑनलाइन भुगतान स्वीकार करते हैं?",
+        "ta": "நீங்கள் இணையவழி கட்டண முறைகளை ஏற்றுக்கொள்கிறீர்களா?",
+        "te": "మీరు ఆన్‌లైన్ చెల్లింపులను స్వీకరిస్తారా?",
+        "kn": "ನೀವು ಆನ್‌ಲೈನ್ ಪಾವತಿ ವಿಧಾನಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತೀರಾ?",
+        "bn": "আপনি কি অনলাইন পেমেন্ট গ্রহণ করেন?",
+        "mr": "तुम्ही ऑनलाइन पेमेंट पद्धती स्वीकारता का?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Can you give a small discount?",
-        translation: "क्या आप थोड़ी छूट दे सकते हैं?",
-        question: "Repeat this bargaining phrase",
-        options: [],
-        answerIndex: 0
+        "en": "Please pack these groceries carefully.",
+        "hi": "कृपया इन किराना सामानों को सावधानी से पैक करें।",
+        "ta": "தயவுசெய்து இந்த மளிகைப் பொருட்களை கவனமாக பேக் செய்யுங்கள்.",
+        "te": "దయచేసి ఈ వస్తువులను జాగ్రత్తగా ప్యాక్ చేయండి.",
+        "kn": "ದಯವಿಟ್ಟು ಈ ದಿನಸಿ ವಸ್ತುಗಳನ್ನು ಎಚ್ಚರಿಕೆಯಿಂದ ಪ್ಯಾಕ್ ಮಾಡಿ.",
+        "bn": "দয়া করে এই পণ্যগুলি সাবধানে প্যাক করুন।",
+        "mr": "कृपया या वस्तू काळजीपूर्वक पॅक करा."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I will pay by UPI.",
-        translation: "मैं UPI से भुगतान करूँगा।",
-        question: "Repeat this payment sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Thank you for the good service.",
+        "hi": "अच्छी सेवा के लिए आपका धन्यवाद।",
+        "ta": "நல்ல சேவைக்கு நன்றி.",
+        "te": "మంచి సేవకు ధన్యవాదాలు.",
+        "kn": "ಉತ್ತಮ ಸೇವೆಗಾಗಿ ಧನ್ಯವಾದಗಳು.",
+        "bn": "উত্তম সেবার জন্য আপনাকে ধন্যবাদ।",
+        "mr": "चांगल्या सेवेबद्दल धन्यवाद."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Market",
-        translation: "बाज़ार",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Discount",
+        "hi": "छूट",
+        "ta": "தள்ளுபடி",
+        "te": "తగ్గింపు",
+        "kn": "ರಿಯಾಯಿತಿ",
+        "bn": "ছাড়",
+        "mr": "सूट"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Discount",
-        translation: "छूट",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Groceries",
+        "hi": "किराना",
+        "ta": "மளிகைப் பொருட்கள்",
+        "te": "కిరాణా",
+        "kn": "ದಿನಸಿ ಸಾಮಗ್ರಿಗಳು",
+        "bn": "মুদি সামগ্রী",
+        "mr": "किराणा माल"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Receipt",
-        translation: "रसीद",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Receipt",
+        "hi": "रसीद",
+        "ta": "ரசீது",
+        "te": "రశీదు",
+        "kn": "ರಶೀದಿ",
+        "bn": "রসিদ",
+        "mr": "पावती"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Kilogram",
-        translation: "किलोग्राम",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Kilogram",
+        "hi": "किलोग्राम",
+        "ta": "கிலோகிராம்",
+        "te": "కిలోగ్రాము",
+        "kn": "ಕಿಲೋಗ್ರಾಂ",
+        "bn": "কিলোগ্রাম",
+        "mr": "किलोग्रॅम"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Payment",
-        translation: "भुगतान",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Customer",
+        "hi": "ग्राहक",
+        "ta": "வாடிக்கையாளர்",
+        "te": "వినియోగదారుడు",
+        "kn": "ಗ್ರಾಹಕ",
+        "bn": "ক্রেতা",
+        "mr": "ग्राहक"
       }
     ]
   },
-
-  // ═══════════════════════════════════════════════════════════════
-  // INTERMEDIATE
-  // ═══════════════════════════════════════════════════════════════
-
-  // ── Unit 5: Work & Employment ────────────────────────────────────
-  unit_work: {
-    reading: [
+  "unit_work": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "Please bring your original documents for the interview.",
-        translation: "कृपया साक्षात्कार के लिए अपने मूल दस्तावेज़ लाएँ।",
-        question: "What should you bring for the interview?",
-        options: ["Your photograph", "Your original documents", "A reference letter", "Your work experience certificate"],
-        answerIndex: 1,
-        explanation: "'Original documents' is what is required."
+        "en": "I submitted my job application online yesterday.",
+        "hi": "मैंने कल अपना नौकरी का आवेदन ऑनलाइन जमा किया।",
+        "ta": "நான் நேற்று எனது வேலை விண்ணப்பத்தை இணையத்தில் சமர்ப்பித்தேன்.",
+        "te": "నేను నిన్న నా ఉద్యోగ దరఖాస్తును ఆన్‌లైన్‌లో సమర్పించాను.",
+        "kn": "ನಾನು ನಿನ್ನೆ ನನ್ನ ಉದ್ಯೋಗ ಅರ್ಜಿಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಸಲ್ಲಿಸಿದೆ.",
+        "bn": "আমি গতকাল অনলাইনে আমার চাকরির আবেদন জমা দিয়েছি।",
+        "mr": "मी काल माझा नोकरीचा अर्ज ऑनलाइन सादर केला."
       },
       {
-        instruction: "Read and answer",
-        content: "His salary is credited on the last working day of every month.",
-        translation: "उनका वेतन हर महीने के आखिरी कार्य दिवस पर जमा होता है।",
-        question: "When is his salary credited?",
-        options: ["First working day", "Fifteenth of the month", "Last working day", "Every Friday"],
-        answerIndex: 2,
-        explanation: "'Last working day of every month' is the answer."
+        "en": "The interview is scheduled for ten tomorrow morning.",
+        "hi": "साक्षात्कार कल सुबह दस बजे निर्धारित है।",
+        "ta": "நேர்காணல் நாளை காலை பத்து மணிக்கு திட்டமிடப்பட்டுள்ளது.",
+        "te": "ఇంటర్వ్యూ రేపు ఉదయం పది గంటలకు నిర్ణయించబడింది.",
+        "kn": "ಸಂದರ್ಶನವು ನಾಳೆ ಬೆಳಿಗ್ಗೆ ಹತ್ತು ಗಂಟೆಗೆ ನಿಗದಿಯಾಗಿದೆ.",
+        "bn": "সাক্ষাৎকারটি কাল সকাল দশটায় নির্ধারিত হয়েছে।",
+        "mr": "मुलाखत उद्या सकाळी दहा वाजता नियोजित आहे."
       },
       {
-        instruction: "Read and answer",
-        content: "You must apply for leave at least two days in advance.",
-        translation: "आपको कम से कम दो दिन पहले छुट्टी के लिए आवेदन करना होगा।",
-        question: "How far in advance should you apply for leave?",
-        options: ["One day", "Two days", "Three days", "One week"],
-        answerIndex: 1,
-        explanation: "'At least two days in advance' is the requirement."
+        "en": "Our office works five days a week.",
+        "hi": "हमारा कार्यालय सप्ताह में पाँच दिन काम करता है।",
+        "ta": "எங்கள் அலுவலகம் வாரத்தில் ஐந்து நாட்கள் செயல்படுகிறது.",
+        "te": "మా కార్యాలయం వారానికి ఐదు రోజులు పనిచేస్తుంది.",
+        "kn": "ನಮ್ಮ ಕಚೇರಿಯು ವಾರದಲ್ಲಿ ಐದು ದಿನ ಕೆಲಸ ಮಾಡುತ್ತದೆ.",
+        "bn": "আমাদের অফিস সপ্তাহে পাঁচ দিন কাজ করে।",
+        "mr": "आमचे कार्यालय आठवड्यातून पाच दिवस काम करते."
       },
       {
-        instruction: "Read and answer",
-        content: "The company offers medical insurance for all permanent employees.",
-        translation: "कंपनी सभी स्थायी कर्मचारियों के लिए चिकित्सा बीमा प्रदान करती है।",
-        question: "Who gets medical insurance?",
-        options: ["All employees", "Managers only", "All permanent employees", "Contract workers"],
-        answerIndex: 2,
-        explanation: "'All permanent employees' receive medical insurance."
+        "en": "Please bring your original educational certificates.",
+        "hi": "कृपया अपने मूल शैक्षणिक प्रमाण पत्र साथ लाएं।",
+        "ta": "தயவுசெய்து உங்கள் அசல் கல்விச் சான்றிதழ்களைக் கொண்டு வாருங்கள்.",
+        "te": "దయచేసి మీ అసలు విద్యా ధృవీకరణ పత్రాలను తీసుకురండి.",
+        "kn": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೂಲ ಶೈಕ್ಷಣಿಕ ಪ್ರಮಾಣಪತ್ರಗಳನ್ನು ತಂದುಕೊಳ್ಳಿ.",
+        "bn": "দয়া করে আপনার মূল শিক্ষাগত শংসাপত্রগুলি সাথে আনুন।",
+        "mr": "कृपया आपली मूळ शैक्षणिक प्रमाणपत्रे सोबत आणा."
       },
       {
-        instruction: "Read and answer",
-        content: "Please sign the attendance register when you arrive.",
-        translation: "जब आप पहुँचें तो कृपया उपस्थिति रजिस्टर में हस्ताक्षर करें।",
-        question: "What should you do when you arrive?",
-        options: ["Report to the manager", "Sign the attendance register", "Get your ID card", "Go to your desk"],
-        answerIndex: 1,
-        explanation: "'Sign the attendance register' is the instruction."
+        "en": "The manager appreciated my dedicated work.",
+        "hi": "प्रबंधक ने मेरे समर्पित कार्य की सराहना की।",
+        "ta": "மேலாளர் எனது அர்ப்பணிப்பான பணியைப் பாராட்டினார்.",
+        "te": "మేనేజర్ నా పనితీరును అభినందించారు.",
+        "kn": "ಮ್ಯಾನೇಜರ್ ನನ್ನ ಶ್ರದ್ಧೆಯ ಕೆಲಸವನ್ನು ಪ್ರಶಂಸಿಸಿದರು.",
+        "bn": "ম্যানেজার আমার নিষ্ঠাবান কাজের প্রশংসা করেছেন।",
+        "mr": "व्यवस्थापकांनी माझ्या प्रामाणिक कामाचे कौतुक केले."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Requesting a day off from your boss",
-        question: "I need one day of leave",
-        options: ["leave", "need", "I", "one", "of", "day"],
-        answerIndex: 0,
-        explanation: "Subject + verb + object is the correct structure."
+        "en": "I have five years of work experience",
+        "hi": "मेरे पास पाँच साल का कार्य अनुभव है",
+        "ta": "எனக்கு ஐந்து வருட வேலை அனுபவம் உள்ளது",
+        "te": "నాకు ఐదు సంవత్సరాల పని అనుభవం ఉంది",
+        "kn": "ನನಗೆ ಐದು ವರ್ಷಗಳ ಕೆಲಸದ ಅನುಭವವಿದೆ",
+        "bn": "আমার পাঁচ বছরের কাজের অভিজ্ঞতা আছে",
+        "mr": "माझ्याकडे पाच वर्षांचा कामाचा अनुभव आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking about the timing of work",
-        question: "What time does the shift start",
-        options: ["start", "What", "the", "time", "does", "shift"],
-        answerIndex: 0,
-        explanation: "Question word + auxiliary + subject + verb."
+        "en": "Please find attached my updated resume here",
+        "hi": "कृपया यहाँ मेरा अद्यतन बायोडाटा संलग्न देखें",
+        "ta": "தயவுசெய்து எனது புதுப்பிக்கப்பட்ட சுயவிவரத்தை இணைத்துள்ளேன்",
+        "te": "దయచేసి నా తాజా రెజ్యూమ్‌ను ఇక్కడ జతచేశాను",
+        "kn": "ದಯವಿಟ್ಟು ನನ್ನ ನವೀಕರಿಸಿದ ಬಯೋಡೇಟಾವನ್ನು ಇಲ್ಲಿ ಲಗತ್ತಿಸಲಾಗಿದೆ",
+        "bn": "দয়া করে আমার জীবনবৃত্তান্তটি সংযুক্তিতে দেখুন",
+        "mr": "कृपया माझा अद्ययावत बायोडाटा येथे जोडलेला पहा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying you have experience in a field",
-        question: "I have five years of experience",
-        options: ["years", "have", "I", "of", "five", "experience"],
-        answerIndex: 0,
-        explanation: "Subject + 'have' + duration + 'of' + noun."
+        "en": "Our team completed the project on time",
+        "hi": "हमारी टीम ने समय पर परियोजना पूरी की",
+        "ta": "எங்கள் குழு திட்டத்தை சரியான நேரத்தில் முடித்தது",
+        "te": "మా బృందం ప్రాజెక్ట్‌ను సమయానికి పూర్తి చేసింది",
+        "kn": "ನಮ್ಮ ತಂಡವು ಯೋಜನೆಯನ್ನು ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಪೂರ್ಣಗೊಳಿಸಿತು",
+        "bn": "আমাদের দল সময়মতো প্রকল্পটি সম্পন্ন করেছে",
+        "mr": "आमच्या टीमने वेळेवर प्रकल्प पूर्ण केला"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking where to submit your application",
-        question: "Where should I submit my application",
-        options: ["submit", "Where", "I", "my", "should", "application"],
-        answerIndex: 0,
-        explanation: "Question word + modal + subject + verb + object."
+        "en": "I am looking for a suitable position",
+        "hi": "मैं एक उपयुक्त पद की तलाश कर रहा हूँ",
+        "ta": "நான் ஒரு பொருத்தமான வேலை வாய்ப்பைத் தேடுகிறேன்",
+        "te": "నేను సరైన ఉద్యోగం కోసం చూస్తున్నాను",
+        "kn": "ನಾನು ಸೂಕ್ತವಾದ ಉದ್ಯೋಗ ಸ್ಥಾನಕ್ಕಾಗಿ ಹುಡುಕುತ್ತಿದ್ದೇನೆ",
+        "bn": "আমি একটি উপযুক্ত পদের সন্ধান করছি",
+        "mr": "मी एका योग्य पदाच्या शोधात आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying that your salary was not received",
-        question: "My salary has not been received",
-        options: ["been", "salary", "My", "not", "has", "received"],
-        answerIndex: 0,
-        explanation: "Subject + 'has not been' + past participle for passive voice."
+        "en": "She works as a skilled software developer",
+        "hi": "वह एक कुशल सॉफ्टवेयर डेवलपर के रूप में काम करती है",
+        "ta": "அவள் ஒரு திறமையான மென்பொருள் உருவாக்குநராகப் பணியாற்றுகிறாள்",
+        "te": "ఆమె నైపుణ్యం గల సాఫ్ట్‌వేర్ డెవలపర్‌గా పనిచేస్తుంది",
+        "kn": "ಅವಳು ನುರಿತ ಸಾಫ್ಟ್‌ವೇರ್ ಡೆವಲಪರ್ ಆಗಿ ಕೆಲಸ ಮಾಡುತ್ತಿದ್ದಾಳೆ",
+        "bn": "তিনি একজন দক্ষ সফটওয়্যার ডেভেলপার হিসেবে কাজ করেন",
+        "mr": "ती एक कुशल सॉफ्टवेअर डेव्हलपर म्हणून काम करते"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "Your appointment letter will be sent by email within three days.",
-        translation: "आपका नियुक्ति पत्र तीन दिनों के भीतर ईमेल द्वारा भेजा जाएगा।",
-        question: "How will the appointment letter be sent?",
-        options: ["By post", "By hand delivery", "By email", "By SMS"],
-        answerIndex: 2,
-        explanation: "'Sent by email' is clearly stated."
+        "en": "Your appointment letter will be sent by email within three days.",
+        "hi": "आपका नियुक्ति पत्र तीन दिनों के भीतर ईमेल द्वारा भेजा जाएगा।",
+        "ta": "உங்கள் நியமனக் கடிதம் மூன்று நாட்களுக்குள் மின்னஞ்சல் மூலம் அனுப்பப்படும்.",
+        "te": "మీ నియామక పత్రం మూడు రోజుల్లో ఇమెయిల్ ద్వారా పంపబడుతుంది.",
+        "kn": "ನಿಮ್ಮ ನೇಮಕಾತಿ ಪತ್ರವನ್ನು ಮೂರು ದಿನಗಳಲ್ಲಿ ಇಮೇಲ್ ಮೂಲಕ ಕಳುಹಿಸಲಾಗುವುದು.",
+        "bn": "আপনার নিয়োগপত্র তিন দিনের মধ্যে ইমেলের মাধ্যমে পাঠানো হবে।",
+        "mr": "आपले नियुक्ती पत्र तीन दिवसांत ईमेलद्वारे पाठवले जाईल."
       },
       {
-        instruction: "Listen and answer",
-        content: "Overtime pay is double the normal rate.",
-        translation: "ओवरटाइम का वेतन सामान्य दर का दोगुना है।",
-        question: "How much is overtime pay compared to normal?",
-        options: ["Same as normal", "One and a half times", "Double", "Triple"],
-        answerIndex: 2,
-        explanation: "'Double the normal rate' is stated."
+        "en": "Please join the morning team meeting at nine sharp.",
+        "hi": "कृपया सुबह ठीक नौ बजे टीम की बैठक में शामिल हों।",
+        "ta": "தயவுசெய்து காலை ஒன்பது மணிக்கு குழு கூட்டத்தில் இணையுங்கள்.",
+        "te": "దయచేసి ఉదయం తొమ్మిది గంటలకు బృంద సమావేశంలో చేరండి.",
+        "kn": "ದಯವಿಟ್ಟು ಬೆಳಿಗ್ಗೆ ಒಂಬತ್ತು ಗಂಟೆಗೆ ಸರಿಯಾಗಿ ತಂಡದ ಸಭೆಗೆ ಸೇರಿಕೊಳ್ಳಿ.",
+        "bn": "দয়া করে সকাল ঠিক নটায় দলীয় বৈঠকে যোগ দিন।",
+        "mr": "कृपया सकाळी ठीक नऊ वाजता टीमच्या बैठकीत सामील व्हा."
       },
       {
-        instruction: "Listen and answer",
-        content: "Report to the HR department on your first day.",
-        translation: "पहले दिन HR विभाग में रिपोर्ट करें।",
-        question: "Where should you report on the first day?",
-        options: ["The manager's office", "The canteen", "The HR department", "The security desk"],
-        answerIndex: 2,
-        explanation: "'HR department' is where you should report."
+        "en": "Salary will be credited to your bank account directly.",
+        "hi": "वेतन सीधे आपके बैंक खाते में जमा किया जाएगा।",
+        "ta": "சம்பளம் நேரடியாக உங்கள் வங்கிக் கணக்கில் வரவு வைக்கப்படும்.",
+        "te": "జీతం నేరుగా మీ బ్యాంక్ ఖాతాలో జమ చేయబడుతుంది.",
+        "kn": "ವೇತನವನ್ನು ನೇರವಾಗಿ ನಿಮ್ಮ ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಜಮೆ ಮಾಡಲಾಗುವುದು.",
+        "bn": "বেতন সরাসরি আপনার ব্যাংক অ্যাকাউন্টে জমা হবে।",
+        "mr": "पगार थेट तुमच्या बँक खात्यात जमा केला जाईल."
       },
       {
-        instruction: "Listen and answer",
-        content: "The probation period for this role is six months.",
-        translation: "इस भूमिका के लिए परिवीक्षा अवधि छह महीने है।",
-        question: "How long is the probation period?",
-        options: ["Three months", "Four months", "Five months", "Six months"],
-        answerIndex: 3,
-        explanation: "'Six months' is stated as the probation period."
+        "en": "You are eligible for medical insurance benefits.",
+        "hi": "आप चिकित्सा बीमा लाभ के पात्र हैं।",
+        "ta": "நீங்கள் மருத்துவக் காப்பீட்டுப் பலன்களுக்கு தகுதியுடையவர்.",
+        "te": "మీరు వైద్య బీమా ప్రయోజనాలకు అర్హులు.",
+        "kn": "ನೀವು ವೈದ್ಯಕೀಯ ವಿಮಾ ಸೌಲಭ್ಯಗಳಿಗೆ ಅರ್ಹರಾಗಿದ್ದೀರಿ.",
+        "bn": "আপনি স্বাস্থ্য বীমা সুবিধার জন্য যোগ্য।",
+        "mr": "तुम्ही वैद्यकीय विमा लाभांसाठी पात्र आहात."
       },
       {
-        instruction: "Listen and answer",
-        content: "Punctuality is very important in this organization.",
-        translation: "इस संस्था में समय पालन बहुत महत्वपूर्ण है।",
-        question: "What is described as very important?",
-        options: ["Dress code", "Teamwork", "Punctuality", "Communication"],
-        answerIndex: 2,
-        explanation: "'Punctuality is very important' is stated."
+        "en": "Please submit your monthly expense report on Friday.",
+        "hi": "कृपया शुक्रवार को अपनी मासिक व्यय रिपोर्ट जमा करें।",
+        "ta": "தயவுசெய்து வெள்ளிக்கிழமை உங்கள் மாதாந்திர செலவு அறிக்கையை சமர்ப்பிக்கவும்.",
+        "te": "దయచేసి శుక్రవారం మీ నెలవారీ ఖర్చుల నివేదికను సమర్పించండి.",
+        "kn": "ದಯವಿಟ್ಟು ಶುಕ್ರವಾರ ನಿಮ್ಮ ಮಾಸಿಕ ಖರ್ಚು ವರದಿಯನ್ನು ಸಲ್ಲಿಸಿ.",
+        "bn": "দয়া করে শুক্রবার আপনার মাসিক খরচের রিপোর্ট জমা দিন।",
+        "mr": "कृपया शुक्रवारी आपला मासिक खर्च अहवाल सादर करा."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I am applying for the supervisor position.",
-        translation: "मैं पर्यवेक्षक के पद के लिए आवेदन कर रहा हूँ।",
-        question: "Repeat this application sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I am passionate about my professional career.",
+        "hi": "मैं अपने पेशेवर करियर के प्रति समर्पित हूँ।",
+        "ta": "நான் எனது தொழில் வாழ்க்கையில் மிகுந்த ஆர்வம் கொண்டுள்ளேன்.",
+        "te": "నేను నా వృత్తిపరమైన కెరీర్‌పై ఎంతో అంకితభావంతో ఉన్నాను.",
+        "kn": "ನಾನು ನನ್ನ ವೃತ್ತಿಪರ ಉದ್ಯೋಗದ ಬಗ್ಗೆ ಅಪಾರ ಆಸಕ್ತಿ ಹೊಂದಿದ್ದೇನೆ.",
+        "bn": "আমি আমার পেশাগত কর্মজীবনের প্রতি নিবেদিতপ্রাণ।",
+        "mr": "मी माझ्या व्यावसायिक कारकिर्दीबद्दल खूप उत्सुक आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I have three years of work experience.",
-        translation: "मेरे पास तीन साल का कार्य अनुभव है।",
-        question: "Repeat this experience sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I look forward to working with your company.",
+        "hi": "मैं आपकी कंपनी के साथ काम करने के लिए उत्सुक हूँ।",
+        "ta": "உங்கள் நிறுவனத்துடன் இணைந்து பணியாற்ற ஆவலுடன் உள்ளேன்.",
+        "te": "మీ కంపెనీతో కలిసి పనిచేయడానికి నేను ఆసక్తిగా ఎదురుచూస్తున్నాను.",
+        "kn": "ನಾನು ನಿಮ್ಮ ಕಂಪನಿಯೊಂದಿಗೆ ಕೆಲಸ ಮಾಡಲು ಎದುರು ನೋಡುತ್ತಿದ್ದೇನೆ.",
+        "bn": "আমি আপনার কোম্পানির সাথে কাজ করার জন্য অধীর আগ্রহে অপেক্ষা করছি।",
+        "mr": "मी आपल्या कंपनीसोबत काम करण्यास उत्सुक आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please tell me about the salary structure.",
-        translation: "कृपया मुझे वेतन संरचना के बारे में बताएँ।",
-        question: "Repeat this workplace question",
-        options: [],
-        answerIndex: 0
+        "en": "Team collaboration is key to success.",
+        "hi": "टीम का सहयोग सफलता की कुंजी है।",
+        "ta": "குழு ஒத்துழைப்பே வெற்றிக்கான திறவுகோல்.",
+        "te": "బృంద సహకారమే విజయానికి కీలక మార్గం.",
+        "kn": "ತಂಡದ ಸಹಕಾರವೇ ಯಶಸ್ಸಿಗೆ ಮುಖ್ಯ ಕಾರಣ.",
+        "bn": "দলগত সহযোগিতাই সাফল্যের মূল চাবিকাঠি।",
+        "mr": "सांघिक सहकार्य हे यशाची गुरुकिल्ली आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I would like to apply for sick leave.",
-        translation: "मैं बीमारी की छुट्टी के लिए आवेदन करना चाहूँगा।",
-        question: "Repeat this leave request",
-        options: [],
-        answerIndex: 0
+        "en": "I can manage multiple deadlines effectively.",
+        "hi": "मैं कई समय-सीमाओं को प्रभावी ढंग से संभाल सकता हूँ।",
+        "ta": "என்னால் பல காலக்கெடுவை திறம்பட கையாள முடியும்.",
+        "te": "నేను సమయ పరిమితులను సమర్థవంతంగా నిర్వహించగలను.",
+        "kn": "ನಾನು ಕೆಲಸದ ಗಡುವುಗಳನ್ನು ಸಮರ್ಥವಾಗಿ ನಿರ್ವಹಿಸಬಲ್ಲೆ.",
+        "bn": "আমি দক্ষতার সাথে কাজের সময়সীমা সামলাতে পারি।",
+        "mr": "मी वेळेचे नियोजन प्रभावीपणे सांभाळू शकतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "My shift starts at eight in the morning.",
-        translation: "मेरी शिफ्ट सुबह आठ बजे शुरू होती है।",
-        question: "Repeat this work schedule sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Thank you for this valuable opportunity.",
+        "hi": "इस मूल्यवान अवसर के लिए आपका धन्यवाद।",
+        "ta": "இந்த மதிப்புமிக்க வாய்ப்பிற்கு நன்றி.",
+        "te": "ఈ విలువైన అవకాశానికి ధన్యవాదాలు.",
+        "kn": "ಈ ಅಮೂಲ್ಯವಾದ ಅವಕಾಶಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು.",
+        "bn": "এই মূল্যবান সুযোগের জন্য ধন্যবাদ।",
+        "mr": "या बहुमूल्य संधीबद्दल धन्यवाद."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Interview",
-        translation: "साक्षात्कार",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Interview",
+        "hi": "साक्षात्कार",
+        "ta": "நேர்காணல்",
+        "te": "ఇంటర్వ్యూ",
+        "kn": "ಸಂದರ್ಶನ",
+        "bn": "সাক্ষাৎকার",
+        "mr": "मुलाखत"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Salary",
-        translation: "वेतन",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Application",
+        "hi": "आवेदन",
+        "ta": "விண்ணப்பம்",
+        "te": "దరఖాస్తు",
+        "kn": "ಅರ್ಜಿ",
+        "bn": "আবেদন",
+        "mr": "अर्ज"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Attendance",
-        translation: "उपस्थिति",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Salary",
+        "hi": "वेतन",
+        "ta": "சம்பளம்",
+        "te": "జీతం",
+        "kn": "ವೇತನ",
+        "bn": "বেতন",
+        "mr": "पगार"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Probation",
-        translation: "परिवीक्षा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Manager",
+        "hi": "प्रबंधक",
+        "ta": "மேலாளர்",
+        "te": "మేనేజర్",
+        "kn": "ಮ್ಯಾನೇಜರ್",
+        "bn": "ম্যানেজার",
+        "mr": "व्यवस्थापक"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Department",
-        translation: "विभाग",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Experience",
+        "hi": "अनुभव",
+        "ta": "அனுபவம்",
+        "te": "అనుభవం",
+        "kn": "ಅನುಭವ",
+        "bn": "অভিজ্ঞতা",
+        "mr": "अनुभव"
       }
     ]
   },
-
-  // ── Unit 6: Health & Medicine ────────────────────────────────────
-  unit_health: {
-    reading: [
+  "unit_health": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "The doctor has prescribed medicine for three days.",
-        translation: "डॉक्टर ने तीन दिन की दवाई लिखी है।",
-        question: "For how many days has medicine been prescribed?",
-        options: ["One day", "Two days", "Three days", "Five days"],
-        answerIndex: 2,
-        explanation: "'Three days' is the prescription duration."
+        "en": "Take this antibiotic medicine twice a day after meals.",
+        "hi": "भोजन के बाद दिन में दो बार यह दवा लें।",
+        "ta": "உணவுக்குப் பிறகு தினமும் இரண்டு முறை இந்த மருந்தை உட்கொள்ளுங்கள்.",
+        "te": "భోజనం తర్వాత రోజుకు రెండుసార్లు ఈ మందు తీసుకోండి.",
+        "kn": "ಊಟದ ನಂತರ ದಿನಕ್ಕೆ ಎರಡು ಬಾರಿ ಈ ಔಷಧಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ.",
+        "bn": "খাবারের পর দিনে দুবার এই ওষুধটি খাবেন।",
+        "mr": "जेवणानंतर दिवसातून दोनदा हे औषध घ्या."
       },
       {
-        instruction: "Read and answer",
-        content: "Take this tablet after meals, twice a day.",
-        translation: "यह गोली दिन में दो बार खाने के बाद लें।",
-        question: "When should you take the tablet?",
-        options: ["Before meals", "After meals", "On an empty stomach", "At bedtime"],
-        answerIndex: 1,
-        explanation: "'After meals' is clearly stated."
+        "en": "Drink plenty of boiled water and rest well.",
+        "hi": "खूब उबला हुआ पानी पिएं और अच्छी तरह आराम करें।",
+        "ta": "நன்கு காய்ச்சிய நீரைக் குடித்து நன்றாக ஓய்வெடுங்கள்.",
+        "te": "కాచి చల్లార్చిన నీళ్లు ఎక్కువగా తాగి బాగా విశ్రాంతి తీసుకోండి.",
+        "kn": "ಸಾಕಷ್ಟು ಕಾಯಿಸಿ ಆರಿಸಿದ ನೀರನ್ನು ಕುಡಿಯಿರಿ ಮತ್ತು ಚೆನ್ನಾಗಿ ವಿಶ್ರಾಂತಿ ಪಡೆಯಿರಿ.",
+        "bn": "প্রচুর ফোটানো জল পান করুন এবং ভালো করে বিশ্রাম নিন।",
+        "mr": "भरपूर उकळलेले पाणी प्या आणि पुरेशी विश्रांती घ्या."
       },
       {
-        instruction: "Read and answer",
-        content: "The patient needs to rest for one week.",
-        translation: "मरीज़ को एक सप्ताह के लिए आराम करना है।",
-        question: "For how long does the patient need to rest?",
-        options: ["Two days", "Three days", "Five days", "One week"],
-        answerIndex: 3,
-        explanation: "'One week' is the resting period."
+        "en": "The clinic is open from nine to five daily.",
+        "hi": "क्लिनिक रोज़ाना नौ से पाँच बजे तक खुला रहता है।",
+        "ta": "மருத்துவமனை தினமும் ஒன்பது முதல் ஐந்து வரை திறந்திருக்கும்.",
+        "te": "క్లినిక్ రోజూ ఉదయం తొమ్మిది నుండి సాయంత్రం ఐదు వరకు తెరిచి ఉంటుంది.",
+        "kn": "ಕ್ಲಿನಿಕ್ ಪ್ರತಿದಿನ ಒಂಬತ್ತರಿಂದ ಐದು ಗಂಟೆಯವರೆಗೆ ತೆರೆದಿರುತ್ತದೆ.",
+        "bn": "ক্লিনিকটি প্রতিদিন নটা থেকে পাঁচটা পর্যন্ত খোলা থাকে।",
+        "mr": "दवाखाना रोज सकाळी नऊ ते पाच या वेळेत उघडा असतो."
       },
       {
-        instruction: "Read and answer",
-        content: "Drink at least eight glasses of water every day.",
-        translation: "हर दिन कम से कम आठ गिलास पानी पीएं।",
-        question: "How many glasses of water should you drink daily?",
-        options: ["Four", "Six", "Eight", "Ten"],
-        answerIndex: 2,
-        explanation: "'Eight glasses' is the recommended amount."
+        "en": "Please show your doctor prescription at the counter.",
+        "hi": "कृपया काउंटर पर अपने डॉक्टर का पर्चा दिखाएं।",
+        "ta": "தயவுசெய்து கவுண்டரில் மருத்துவரின் மருந்துச் சீட்டைக் காட்டுங்கள்.",
+        "te": "దయచేసి కౌంటర్ వద్ద మీ డాక్టర్ ప్రిస్క్రిప్షన్ చూపించండి.",
+        "kn": "ದಯವಿಟ್ಟು ಕೌಂಟರ್‌ನಲ್ಲಿ ವೈದ್ಯರ ಚೀಟಿ ತೋರಿಸಿ.",
+        "bn": "দয়া করে কাউন্টারে ডাক্তারের প্রেসক্রিপশন দেখান।",
+        "mr": "कृपया काउंटरवर डॉक्टरांची चिठ्ठी दाखवा."
       },
       {
-        instruction: "Read and answer",
-        content: "Please carry your previous medical reports to the appointment.",
-        translation: "कृपया अपनी पिछली चिकित्सा रिपोर्ट अपॉइंटमेंट पर लाएँ।",
-        question: "What should you carry to the appointment?",
-        options: ["Your ID card", "Your insurance card", "Your previous medical reports", "Your prescription"],
-        answerIndex: 2,
-        explanation: "'Previous medical reports' is what is needed."
+        "en": "Emergency ambulance service is available on dial 108.",
+        "hi": "108 डायल करने पर आपातकालीन एम्बुलेंस सेवा उपलब्ध है।",
+        "ta": "108 என்ற எண்ணை டயல் செய்வதன் மூலம் அவசர ஆம்புலன்ஸ் சேவை கிடைக்கும்.",
+        "te": "108 డయల్ చేస్తే అత్యవసర అంబులెన్స్ సేవ అందుబాటులో ఉంటుంది.",
+        "kn": "108 ಸಂಖ್ಯೆಗೆ ಕರೆ ಮಾಡಿದರೆ ತುರ್ತು ಆಂಬ್ಯುಲೆನ್ಸ್ ಸೇವೆ ಲಭ್ಯವಿದೆ.",
+        "bn": "১০৮ নম্বরে কল করলে জরুরি অ্যাম্বুলেন্স পরিষেবা পাওয়া যায়।",
+        "mr": "१०८ डायल केल्यास तातडीची रुग्णवाहिका सेवा उपलब्ध होते."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Telling a doctor you have a fever",
-        question: "I have a high fever",
-        options: ["high", "have", "I", "fever", "a"],
-        answerIndex: 0,
-        explanation: "Subject + 'have' + adjective + noun."
+        "en": "I have a mild fever and headache",
+        "hi": "मुझे हल्का बुखार और सिरदर्द है",
+        "ta": "எனக்கு லேசான காய்ச்சலும் தலைவலியும் உள்ளது",
+        "te": "నాకు స్వల్ప జ్వరం మరియు తలనొప్పి ఉంది",
+        "kn": "ನನಗೆ ಲಘು ಜ್ವರ ಮತ್ತು ತಲೆನೋವು ಇದೆ",
+        "bn": "আমার হালকা জ্বর এবং মাথাব্যথা আছে",
+        "mr": "मला थोडा ताप आणि डोकेदुखी आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking for a doctor's appointment",
-        question: "I need to see a doctor",
-        options: ["a", "need", "I", "doctor", "see", "to"],
-        answerIndex: 0,
-        explanation: "Subject + 'need to' + verb + object."
+        "en": "Please give me medicine for cough",
+        "hi": "कृपया मुझे खांसी की दवा दीजिए",
+        "ta": "தயவுசெய்து எனக்கு இருமலுக்கான மருந்து கொடுங்கள்",
+        "te": "దయచేసి నాకు దగ్గు మందు ఇవ్వండి",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಕೆಮ್ಮಿನ ಔಷಧಿಯನ್ನು ಕೊಡಿ",
+        "bn": "দয়া করে আমাকে কাশির ওষুধ দিন",
+        "mr": "कृपया मला खोकल्याचे औषध द्या"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying that you have stomach pain",
-        question: "My stomach is hurting badly",
-        options: ["hurting", "stomach", "My", "badly", "is"],
-        answerIndex: 0,
-        explanation: "Possessive + noun + 'is' + verb + adverb."
+        "en": "The doctor advised me complete bed rest",
+        "hi": "डॉक्टर ने मुझे पूरी तरह आराम करने की सलाह दी",
+        "ta": "மருத்துவர் என்னை முழு ஓய்வெடுக்குமாறு அறிவுறுத்தினார்",
+        "te": "వైద్యుడు నన్ను పూర్తి విశ్రాంతి తీసుకోమని సలహా ఇచ్చారు",
+        "kn": "ವೈದ್ಯರು ನನಗೆ ಸಂಪೂರ್ಣ ವಿಶ್ರಾಂತಿ ಪಡೆಯಲು ಸಲಹೆ ನೀಡಿದರು",
+        "bn": "ডাক্তার আমাকে সম্পূর্ণ বিশ্রামের পরামর্শ দিয়েছেন",
+        "mr": "डॉक्टरांनी मला पूर्ण विश्रांती घेण्याचा सल्ला दिला आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking where the nearest hospital is",
-        question: "Where is the nearest hospital",
-        options: ["hospital", "Where", "the", "nearest", "is"],
-        answerIndex: 0,
-        explanation: "Question word + verb + article + adjective + noun."
+        "en": "I feel much better after taking medicine",
+        "hi": "दवा लेने के बाद मुझे बहुत बेहतर लग रहा है",
+        "ta": "மருந்து சாப்பிட்ட பிறகு நான் நன்றாக உணர்கிறேன்",
+        "te": "మందులు వేసుకున్న తర్వాత నాకు చాలా బాగుంది",
+        "kn": "ಔಷಧಿ ತೆಗೆದುಕೊಂಡ ನಂತರ ನನಗೆ ತುಂಬಾ ಆರಾಮವಾಗಿದೆ",
+        "bn": "ওষুধ খাওয়ার পর আমি অনেকটাই সুস্থ বোধ করছি",
+        "mr": "औषध घेतल्यानंतर मला खूप बरे वाटत आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying you are allergic to a medicine",
-        question: "I am allergic to penicillin",
-        options: ["allergic", "am", "I", "penicillin", "to"],
-        answerIndex: 0,
-        explanation: "Subject + 'am allergic to' + noun."
+        "en": "Daily morning exercise keeps our body healthy",
+        "hi": "रोजाना सुबह का व्यायाम हमारे शरीर को स्वस्थ रखता है",
+        "ta": "தினசரி காலை உடற்பயிற்சி உடலை ஆரோக்கியமாக வைத்திருக்கும்",
+        "te": "రోజూ ఉదయం వ్యాయామం చేయడం వల్ల శరీరం ఆరోగ్యంగా ఉంటుంది",
+        "kn": "ಪ್ರತಿದಿನ ಬೆಳಿಗ್ಗೆ ವ್ಯಾಯಾಮ ಮಾಡುವುದು ದೇಹವನ್ನು ಆರೋಗ್ಯವಾಗಿರಿಸುತ್ತದೆ",
+        "bn": "প্রতিদিন সকালে ব্যায়াম শরীরকে সুস্থ রাখে",
+        "mr": "दररोज सकाळी व्यायाम केल्याने शरीर निरोगी राहते"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "Your blood pressure is slightly high. Please avoid salt.",
-        translation: "आपका रक्तचाप थोड़ा अधिक है। कृपया नमक से बचें।",
-        question: "What should the patient avoid?",
-        options: ["Sugar", "Oil", "Salt", "Spices"],
-        answerIndex: 2,
-        explanation: "'Avoid salt' is the doctor's advice."
+        "en": "The blood test report will be ready by tomorrow evening.",
+        "hi": "रक्त परीक्षण रिपोर्ट कल शाम तक तैयार हो जाएगी।",
+        "ta": "இரத்தப் பரிசோதனை அறிக்கை நாளை மாலைக்குள் தயாராகிவிடும்.",
+        "te": "రక్త పరీక్ష నివేదిక రేపు సాయంత్రానికి సిద్ధమవుతుంది.",
+        "kn": "ರಕ್ತ ಪರೀಕ್ಷಾ ವರದಿಯು ನಾಳೆ ಸಂಜೆಯೊಳಗೆ ಸಿದ್ಧವಾಗಲಿದೆ.",
+        "bn": "রক্ত পরীক্ষার রিপোর্ট কাল সন্ধ্যার মধ্যে তৈরি হয়ে যাবে।",
+        "mr": "रक्त तपासणीचा अहवाल उद्या संध्याकाळपर्यंत तयार होईल."
       },
       {
-        instruction: "Listen and answer",
-        content: "The clinic is open from nine to five on weekdays.",
-        translation: "क्लिनिक कार्यदिवसों में नौ से पाँच बजे तक खुला रहता है।",
-        question: "When is the clinic open?",
-        options: ["Nine to three", "Nine to five", "Ten to six", "Eight to four"],
-        answerIndex: 1,
-        explanation: "'Nine to five on weekdays' is the clinic timing."
+        "en": "Please drink warm water and avoid cold food items.",
+        "hi": "कृपया गुनगुना पानी पिएं और ठंडे खाद्य पदार्थों से बचें।",
+        "ta": "தயவுசெய்து வெதுவெதுப்பான நீரைக் குடிக்கவும், குளிர்ந்த உணவுகளைத் தவிர்க்கவும்.",
+        "te": "దయచేసి గోరువెచ్చని నీళ్లు తాగండి, చల్లని ఆహారాలను నివారించండి.",
+        "kn": "ದಯವಿಟ್ಟು ಉಗುರುಬೆಚ್ಚಗಿನ ನೀರನ್ನು ಕುಡಿಯಿರಿ ಮತ್ತು ತಣ್ಣನೆಯ ಆಹಾರವನ್ನು ತಪ್ಪಿಸಿ.",
+        "bn": "দয়া করে ঈষদুষ্ণ জল পান করুন এবং ঠান্ডা খাবার এড়িয়ে চলুন।",
+        "mr": "कृपया कोमट पाणी प्या आणि थंड पदार्थ खाणे टाळा."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please come for a follow-up after one week.",
-        translation: "कृपया एक सप्ताह बाद फॉलो-अप के लिए आएँ।",
-        question: "When should the patient come back?",
-        options: ["After two days", "After three days", "After five days", "After one week"],
-        answerIndex: 3,
-        explanation: "'After one week' is the follow-up timing."
+        "en": "Doctor appointment is confirmed for four in afternoon.",
+        "hi": "डॉक्टर से मिलने का समय दोपहर चार बजे तय हुआ है।",
+        "ta": "மருத்துவர் சந்திப்பு பிற்பகல் நான்கு மணிக்கு உறுதி செய்யப்பட்டுள்ளது.",
+        "te": "వైద్యుని అపాయింట్‌మెంట్ మధ్యాహ్నం నాలుగు గంటలకు ఖరారైంది.",
+        "kn": "ವೈದ್ಯರ ಭೇಟಿಯ ಸಮಯ ಮಧ್ಯಾಹ್ನ ನಾಲ್ಕು ಗಂಟೆಗೆ ದೃಢಪಟ್ಟಿದೆ.",
+        "bn": "ডাক্তারের সাথে সাক্ষাতের সময় বিকেল চারটেয় নিশ্চিত করা হয়েছে।",
+        "mr": "डॉक्टरांच्या भेटीची वेळ दुपारी चार वाजता निश्चित झाली आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Take the first tablet now and the next one after six hours.",
-        translation: "पहली गोली अभी लें और अगली छह घंटे बाद।",
-        question: "When should the next tablet be taken?",
-        options: ["After two hours", "After four hours", "After six hours", "After eight hours"],
-        answerIndex: 2,
-        explanation: "'After six hours' is stated clearly."
+        "en": "Maintain cleanliness to prevent dangerous infection spread.",
+        "hi": "संक्रमण के फैलाव को रोकने के लिए स्वच्छता बनाए रखें।",
+        "ta": "தொற்று பரவுவதைத் தடுக்க தூய்மையைப் பராமரிக்கவும்.",
+        "te": "ఇన్‌ఫెక్షన్ వ్యాప్తి చెందకుండా పరిశుభ్రత పాటించండి.",
+        "kn": "ಸೋಂಕು ಹರಡುವುದನ್ನು ತಡೆಯಲು ಸ್ವಚ್ಛತೆಯನ್ನು ಕಾಪಾಡಿಕೊಳ್ಳಿ.",
+        "bn": "সংক্রমণ রোধ করতে পরিচ্ছন্নতা বজায় রাখুন।",
+        "mr": "संसर्ग रोखण्यासाठी स्वच्छता राखा."
       },
       {
-        instruction: "Listen and answer",
-        content: "Your test reports will be ready by tomorrow morning.",
-        translation: "आपकी जाँच रिपोर्ट कल सुबह तक तैयार हो जाएगी।",
-        question: "When will the reports be ready?",
-        options: ["This evening", "Tonight", "Tomorrow morning", "Tomorrow evening"],
-        answerIndex: 2,
-        explanation: "'By tomorrow morning' is when reports will be ready."
+        "en": "These vitamin tablets should be taken once daily.",
+        "hi": "ये विटामिन की गोलियां दिन में एक बार लेनी चाहिए।",
+        "ta": "இந்த வைட்டமின் மாத்திரைகளை தினமும் ஒரு முறை உட்கொள்ள வேண்டும்.",
+        "te": "ఈ విటమిన్ మాత్రలు రోజుకు ఒకసారి వేసుకోవాలి.",
+        "kn": "ಈ ವಿಟಮಿನ್ ಮಾತ್ರೆಗಳನ್ನು ದಿನಕ್ಕೆ ಒಮ್ಮೆ ಸೇವಿಸಬೇಕು.",
+        "bn": "এই ভিটামিন ট্যাবলেটগুলি দিনে একবার খাওয়া উচিত।",
+        "mr": "या जीवनसत्वाच्या गोळ्या दिवसातून एकदा घेतल्या पाहिजेत."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I have a headache since this morning.",
-        translation: "मुझे सुबह से सिरदर्द है।",
-        question: "Repeat this symptom description",
-        options: [],
-        answerIndex: 0
+        "en": "I need to consult an eye specialist.",
+        "hi": "मुझे नेत्र रोग विशेषज्ञ से सलाह लेनी है।",
+        "ta": "நான் ஒரு கண் மருத்துவரை அணுக வேண்டும்.",
+        "te": "నేను నేత్ర నిపుణుడిని సంప్రదించాలి.",
+        "kn": "ನಾನು ನೇತ್ರ ತಜ್ಞರನ್ನು ಭೇಟಿ ಮಾಡಬೇಕಾಗಿದೆ.",
+        "bn": "আমার একজন চক্ষু বিশেষজ্ঞের পরামর্শ নেওয়া দরকার।",
+        "mr": "मला नेत्ररोग तज्ज्ञांचा सल्ला घ्यायचा आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I am allergic to dust.",
-        translation: "मुझे धूल से एलर्जी है।",
-        question: "Repeat this allergy sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Where is the nearest medical pharmacy?",
+        "hi": "सबसे नजदीकी मेडिकल फार्मेसी कहाँ है?",
+        "ta": "அருகிலுள்ள மருந்தகம் எங்கே உள்ளது?",
+        "te": "సమీపంలోని మెడికల్ షాప్ ఎక్కడ ఉంది?",
+        "kn": "ಹತ್ತಿರದ ಮೆಡಿಕಲ್ ಶಾಪ್ ಎಲ್ಲಿದೆ?",
+        "bn": "সবচেয়ে কাছের ওষুধের দোকান কোথায়?",
+        "mr": "जवळचे मेडिकल फार्मसी दुकान कुठे आहे?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Where is the nearest pharmacy?",
-        translation: "सबसे पास की दवाई की दुकान कहाँ है?",
-        question: "Repeat this question",
-        options: [],
-        answerIndex: 0
+        "en": "Health is the greatest wealth in life.",
+        "hi": "स्वास्थ्य ही जीवन का सबसे बड़ा धन है।",
+        "ta": "நோயற்ற வாழ்வே குறைவற்ற செல்வம்.",
+        "te": "ఆరోగ్యమే మహాభాగ్యం.",
+        "kn": "ಆರೋಗ್ಯವೇ ನಿಜವಾದ ಭಾಗ್ಯ.",
+        "bn": "স্বাস্থ্যই জীবনের সেরা সম্পদ।",
+        "mr": "आरोग्य हीच खरी संपत्ती आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I need an ambulance immediately.",
-        translation: "मुझे तुरंत एम्बुलेंस चाहिए।",
-        question: "Repeat this emergency sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I take regular balanced nutritious meals.",
+        "hi": "मैं नियमित रूप से संतुलित पौष्टिक आहार लेता हूँ।",
+        "ta": "நான் சீரான சத்தான உணவை உட்கொள்கிறேன்.",
+        "te": "నేను పోషకమైన సమతుల్య ఆహారాన్ని తీసుకుంటాను.",
+        "kn": "ನಾನು ಸಮತೋಲಿತ ಪೌಷ್ಟಿಕ ಆಹಾರವನ್ನು ಸೇವಿಸುತ್ತೇನೆ.",
+        "bn": "আমি নিয়মিত সুষম পুষ্টিকর খাবার খাই।",
+        "mr": "मी नियमित संतुलित आणि पौष्टिक आहार घेतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I want to book a doctor's appointment.",
-        translation: "मैं डॉक्टर की अपॉइंटमेंट बुक करना चाहता हूँ।",
-        question: "Repeat this request sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Please call emergency ambulance immediately.",
+        "hi": "कृपया तुरंत आपातकालीन एम्बुलेंस बुलाएं।",
+        "ta": "தயவுசெய்து உடனடியாக அவசர ஆம்புலன்ஸை அழைக்கவும்.",
+        "te": "దయచేసి వెంటనే అంబులెన్స్‌ను పిలవండి.",
+        "kn": "ದಯವಿಟ್ಟು ತಕ್ಷಣ ತುರ್ತು ಆಂಬ್ಯುಲೆನ್ಸ್ ಕರೆಯಿರಿ.",
+        "bn": "দয়া করে অবিলম্বে জরুরি অ্যাম্বুলেন্স ডাকুন।",
+        "mr": "कृपया तातडीने रुग्णवाहिका बोलवा."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Prescription",
-        translation: "नुस्खा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Hospital",
+        "hi": "अस्पताल",
+        "ta": "மருத்துவமனை",
+        "te": "ఆసుపత్రి",
+        "kn": "ಆಸ್ಪತ್ರೆ",
+        "bn": "হাসপাতাল",
+        "mr": "रुग्णालय"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Pharmacy",
-        translation: "दवाई की दुकान",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Medicine",
+        "hi": "दवा",
+        "ta": "மருந்து",
+        "te": "మందు",
+        "kn": "ಔಷಧಿ",
+        "bn": "ওষুধ",
+        "mr": "औषध"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Temperature",
-        translation: "तापमान",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Doctor",
+        "hi": "चिकित्सक",
+        "ta": "மருத்துவர்",
+        "te": "డాక్టర్",
+        "kn": "ವೈದ್ಯರು",
+        "bn": "ডাক্তার",
+        "mr": "डॉक्टर"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Appointment",
-        translation: "अपॉइंटमेंट",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Prescription",
+        "hi": "पर्चा",
+        "ta": "மருந்துச் சீட்டு",
+        "te": "ప్రిస్క్రిప్షన్",
+        "kn": "ವೈದ್ಯರ ಚೀಟಿ",
+        "bn": "প্রেসক্রিপশন",
+        "mr": "औषध चिठ्ठी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Emergency",
-        translation: "आपातकालीन",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Ambulance",
+        "hi": "एम्बुलेंस",
+        "ta": "ஆம்புலன்ஸ்",
+        "te": "అంబులెన్స్",
+        "kn": "ಆಂಬ್ಯುಲೆನ್ಸ್",
+        "bn": "অ্যাম্বুলেন্স",
+        "mr": "रुग्णवाहिका"
       }
     ]
   },
-
-  // ── Unit 7: Banking & Forms ──────────────────────────────────────
-  unit_banking: {
-    reading: [
+  "unit_banking": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "You need two passport-size photographs to open an account.",
-        translation: "खाता खोलने के लिए आपको दो पासपोर्ट आकार की फ़ोटो चाहिए।",
-        question: "How many photographs are required?",
-        options: ["One", "Two", "Three", "Four"],
-        answerIndex: 1,
-        explanation: "'Two passport-size photographs' is required."
+        "en": "Please fill this deposit slip with your account number.",
+        "hi": "कृपया अपने खाता नंबर के साथ यह जमा पर्ची भरें।",
+        "ta": "தயவுசெய்து உங்கள் கணக்கு எண்ணுடன் இந்த டெபாசிட் படிவத்தை நிரப்பவும்.",
+        "te": "దయచేసి మీ ఖాతా సంఖ్యతో ఈ డిపాజిట్ ఫారమ్‌ను పూరించండి.",
+        "kn": "ದಯವಿಟ್ಟು ನಿಮ್ಮ ಖಾತೆ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ಈ ಠೇವಣಿ ಚೀಟಿಯನ್ನು ಭರ್ತಿ ಮಾಡಿ.",
+        "bn": "দয়া করে আপনার অ্যাকাউন্ট নম্বর দিয়ে এই জমা স্লিপটি পূরণ করুন।",
+        "mr": "कृपया आपल्या खाते क्रमांकासह ही ठेव पावती भरा."
       },
       {
-        instruction: "Read and answer",
-        content: "The minimum balance for this account is five hundred rupees.",
-        translation: "इस खाते के लिए न्यूनतम शेष राशि पाँच सौ रुपये है।",
-        question: "What is the minimum balance required?",
-        options: ["₹200", "₹300", "₹400", "₹500"],
-        answerIndex: 3,
-        explanation: "'Five hundred rupees' is the minimum balance."
+        "en": "Never share your four digit ATM PIN with anyone.",
+        "hi": "अपना चार अंकों का एटीएम पिन कभी किसी के साथ साझा न करें।",
+        "ta": "உங்கள் நான்கு இலக்க ஏடிஎம் பின் எண்ணை யாரிடமும் பகிர வேண்டாம்.",
+        "te": "మీ నాలుగు అంకెల ATM పిన్‌ను ఎవరితోనూ పంచుకోవద్దు.",
+        "kn": "ನಿಮ್ಮ ನಾಲ್ಕು ಅಂಕಿಯ ಎಟಿಎಂ ಪಿನ್ ಸಂಖ್ಯೆಯನ್ನು ಯಾರೊಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.",
+        "bn": "আপনার চার অঙ্কের এটিএম পিন কখনই কারো সাথে শেয়ার করবেন না।",
+        "mr": "आपला चार अंकी एटीएम पिन कधीही कोणाशीही शेअर करू नका."
       },
       {
-        instruction: "Read and answer",
-        content: "Please enter your ATM PIN carefully. Three wrong attempts will block your card.",
-        translation: "कृपया अपना ATM PIN सावधानी से डालें। तीन गलत प्रयास आपका कार्ड ब्लॉक कर देंगे।",
-        question: "How many wrong attempts will block the card?",
-        options: ["Two", "Three", "Four", "Five"],
-        answerIndex: 1,
-        explanation: "'Three wrong attempts' will block the card."
+        "en": "The bank remains closed on Sundays and national holidays.",
+        "hi": "बैंक रविवार और राष्ट्रीय छुट्टियों पर बंद रहता है।",
+        "ta": "ஞாயிற்றுக்கிழமைகள் மற்றும் தேசிய விடுமுறை நாட்களில் வங்கி மூடப்பட்டிருக்கும்.",
+        "te": "ఆదివారాలు మరియు జాతీయ సెలవు దినాలలో బ్యాంక్ మూసివేయబడుతుంది.",
+        "kn": "ಭಾನುವಾರ ಮತ್ತು ಸಾರ್ವಜನಿಕ ರಜಾದಿನಗಳಲ್ಲಿ ಬ್ಯಾಂಕ್ ಮುಚ್ಚಿರುತ್ತದೆ.",
+        "bn": "রবিবার এবং সরকারি ছুটির দিনে ব্যাংক বন্ধ থাকে।",
+        "mr": "रविवार आणि राष्ट्रीय सुट्ट्यांच्या दिवशी बँक बंद असते."
       },
       {
-        instruction: "Read and answer",
-        content: "Your Aadhaar card is required for KYC verification.",
-        translation: "KYC सत्यापन के लिए आपका आधार कार्ड आवश्यक है।",
-        question: "What document is required for KYC?",
-        options: ["PAN card", "Voter ID", "Aadhaar card", "Driving licence"],
-        answerIndex: 2,
-        explanation: "'Aadhaar card is required for KYC' is stated."
+        "en": "You can check your account balance using the passbook machine.",
+        "hi": "आप पासबुक मशीन का उपयोग करके अपने खाते की शेष राशि जांच सकते हैं।",
+        "ta": "பாஸ்புக் இயந்திரத்தைப் பயன்படுத்தி உங்கள் கணக்கு இருப்பைச் சரிபார்க்கலாம்.",
+        "te": "మీరు పాస్‌బుక్ మెషిన్ ద్వారా మీ ఖాతా బ్యాలెన్స్‌ను తనిಖీ చేయవచ్చు.",
+        "kn": "ಪಾಸ್‌ಬುಕ್ ಯಂತ್ರವನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಖಾತೆಯ ಶಿಲ್ಕನ್ನು ಪರಿಶೀಲಿಸಬಹುದು.",
+        "bn": "আপনি পাসবুক মেশিনের সাহায্যে আপনার অ্যাকাউন্টের ব্যালেন্স দেখতে পারেন।",
+        "mr": "तुम्ही पासबुक मशीनद्वारे तुमच्या खात्यातील शिल्लक तपासू शकता."
       },
       {
-        instruction: "Read and answer",
-        content: "Transfer charges apply for amounts below five thousand rupees.",
-        translation: "पाँच हज़ार रुपये से कम राशि पर स्थानांतरण शुल्क लागू होते हैं।",
-        question: "For which transactions do transfer charges apply?",
-        options: ["Above ₹5000", "Below ₹5000", "Above ₹10000", "Below ₹1000"],
-        answerIndex: 1,
-        explanation: "'Below five thousand rupees' attracts transfer charges."
+        "en": "Interest is credited to savings accounts every quarter.",
+        "hi": "बचत खातों में हर तिमाही में ब्याज जमा किया जाता है।",
+        "ta": "சேமிப்புக் கணக்குகளுக்கு ஒவ்வொரு காலாண்டிலும் வட்டி வரவு வைக்கப்படுகிறது.",
+        "te": "పొదుపు ఖాతాలకు ప్రతి మూడు నెలలకు ఒకసారి వడ్డీ జమ చేయబడుతుంది.",
+        "kn": "ಉಳಿತಾಯ ಖಾತೆಗಳಿಗೆ ಪ್ರತಿ ತ್ರೈಮಾಸಿಕದಲ್ಲಿ ಬಡ್ಡಿಯನ್ನು ಜಮೆ ಮಾಡಲಾಗುತ್ತದೆ.",
+        "bn": "সঞ্চয়ী অ্যাকাউন্টে প্রতি তিন মাসে সুদ জমা হয়।",
+        "mr": "बचत खात्यात दर तिमाहीला व्याज जमा केले जाते."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking for a bank account form",
-        question: "I want to open a bank account",
-        options: ["open", "want", "I", "a", "account", "to", "bank"],
-        answerIndex: 0,
-        explanation: "Subject + 'want to' + verb + article + noun."
+        "en": "I want to open a new savings account",
+        "hi": "मैं एक नया बचत खाता खोलना चाहता हूँ",
+        "ta": "நான் ஒரு புதிய சேமிப்புக் கணக்கைத் திறக்க விரும்புகிறேன்",
+        "te": "నేను కొత్త పొదుపు ఖాతాను తెరవాలనుకుంటున్నాను",
+        "kn": "ನಾನು ಹೊಸ ಉಳಿತಾಯ ಖಾತೆಯನ್ನು ತೆರೆಯಲು ಬಯಸುತ್ತೇನೆ",
+        "bn": "আমি একটি নতুন সেভিংস অ্যাকাউন্ট খুলতে চাই",
+        "mr": "मला एक नवीन बचत खाते उघडायचे आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Reporting that your card is lost",
-        question: "My ATM card is lost",
-        options: ["is", "ATM", "My", "lost", "card"],
-        answerIndex: 0,
-        explanation: "Possessive + noun phrase + 'is' + adjective."
+        "en": "Please link my Aadhaar with bank account",
+        "hi": "कृपया मेरे आधार को बैंक खाते से लिंक करें",
+        "ta": "தயவுசெய்து எனது ஆதாரை வங்கிக் கணக்குடன் இணைக்கவும்",
+        "te": "దయచేసి నా ఆధార్‌ను బ్యాంక్ ఖాతాతో అనుసంధానించండి",
+        "kn": "ದಯವಿಟ್ಟು ನನ್ನ ಆಧಾರ್ ಕಾರ್ಡ್ ಅನ್ನು ಬ್ಯಾಂಕ್ ಖಾತೆಗೆ ಲಿಂಕ್ ಮಾಡಿ",
+        "bn": "দয়া করে আমার আধার ব্যাংক অ্যাকাউন্টের সাথে যুক্ত করুন",
+        "mr": "कृपया माझे आधार बँक खात्याशी लिंक करा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking what documents are needed",
-        question: "What documents do I need",
-        options: ["I", "What", "do", "need", "documents"],
-        answerIndex: 0,
-        explanation: "Question word + noun + auxiliary + subject + verb."
+        "en": "I deposited five thousand rupees today",
+        "hi": "मैंने आज पाँच हज़ार रुपये जमा किए",
+        "ta": "நான் இன்று ஐந்தாயிரம் ரூபாய் டெபாசிட் செய்தேன்",
+        "te": "నేను ఈరోజు ఐదు వేల రూపాయలు డిపాజిట్ చేశాను",
+        "kn": "ನಾನು ಇಂದು ಐದು ಸಾವಿರ ರೂಪಾಯಿಗಳನ್ನು ಠೇವಣಿ ಮಾಡಿದೆ",
+        "bn": "আমি আজ পাঁচ হাজার টাকা জমা করেছি",
+        "mr": "मी आज पाच हजार रुपये जमा केले"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying you want to check your balance",
-        question: "I want to check my balance",
-        options: ["check", "want", "I", "my", "to", "balance"],
-        answerIndex: 0,
-        explanation: "Subject + 'want to' + verb + possessive + noun."
+        "en": "Please give me a new cheque book",
+        "hi": "कृपया मुझे एक नई चेक बुक दीजिए",
+        "ta": "தயவுசெய்து எனக்கு ஒரு புதிய காசோலை புத்தகத்தை வழங்கவும்",
+        "te": "దయచేసి నాకు కొత్త చెక్ బుక్ ఇవ్వండి",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಹೊಸ ಚೆಕ್ ಪುಸ್ತಕ ಕೊಡಿ",
+        "bn": "দয়া করে আমাকে একটি নতুন চেক বই দিন",
+        "mr": "कृपया मला एक नवीन चेकबुक द्या"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking when the bank closes",
-        question: "What time does the bank close",
-        options: ["bank", "What", "the", "time", "does", "close"],
-        answerIndex: 0,
-        explanation: "Question word + auxiliary + subject + verb."
+        "en": "Online mobile banking is very safe and fast",
+        "hi": "ऑनलाइन मोबाइल बैंकिंग बहुत सुरक्षित और तेज़ है",
+        "ta": "இணைய மொபைல் வங்கி சேவை மிகவும் பாதுகாப்பானது மற்றும் விரைவானது",
+        "te": "ఆన్‌లైన్ మొబైల్ బ్యాంకింగ్ చాలా సురక్షితమైనది మరియు వేగవంతమైనది",
+        "kn": "ಆನ್‌ಲೈನ್ ಮೊಬೈಲ್ ಬ್ಯಾಂಕಿಂಗ್ ತುಂಬಾ ಸುರಕ್ಷಿತ ಮತ್ತು ವೇಗವಾಗಿದೆ",
+        "bn": "অনলাইন মোবাইল ব্যাংকিং অত্যন্ত নিরাপদ ও দ্রুত",
+        "mr": "ऑनलाइन मोबाईल बँकिंग अतिशय सुरक्षित आणि जलद आहे"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "Your account has been successfully opened. Here is your account number.",
-        translation: "आपका खाता सफलतापूर्वक खुल गया है। यह आपका खाता नंबर है।",
-        question: "What has just been done?",
-        options: ["The account was closed", "The account was opened", "The passbook was updated", "The cheque was cleared"],
-        answerIndex: 1,
-        explanation: "'Account has been successfully opened' is stated."
+        "en": "Your account has been credited with ten thousand rupees.",
+        "hi": "आपके खाते में दस हज़ार रुपये जमा कर दिए गए हैं।",
+        "ta": "உங்கள் கணக்கில் பத்தாயிரம் ரூபாய் வரவு வைக்கப்பட்டுள்ளது.",
+        "te": "మీ ఖాతాలో పది వేల రూపాయలు జమ చేయబడ్డాయి.",
+        "kn": "ನಿಮ್ಮ ಖಾತೆಗೆ ಹತ್ತು ಸಾವಿರ ರೂಪಾಯಿಗಳು ಜಮೆಯಾಗಿದೆ.",
+        "bn": "আপনার অ্যাকাউন্টে দশ হাজার টাকা জমা হয়েছে।",
+        "mr": "आपल्या खात्यात दहा हजार रुपये जमा झाले आहेत."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please fill in this deposit slip and go to counter number three.",
-        translation: "कृपया यह जमा पर्ची भरें और काउंटर नंबर तीन पर जाएँ।",
-        question: "Which counter should the customer go to?",
-        options: ["Counter one", "Counter two", "Counter three", "Counter four"],
-        answerIndex: 2,
-        explanation: "'Counter number three' is where to go."
+        "en": "Please update your KYC documents before month end.",
+        "hi": "कृपया महीने के अंत से पहले अपने केवाईसी दस्तावेज अपडेट करें।",
+        "ta": "மாத இறுதிக்குள் உங்கள் KYC ஆவணங்களைப் புதுப்பிக்கவும்.",
+        "te": "నెల చివరిలోపు మీ KYC పత్రాలను అప్‌డేట్ చేయండి.",
+        "kn": "ತಿಂಗಳ ಅಂತ್ಯದೊಳಗೆ ನಿಮ್ಮ ಕೆವೈಸಿ ದಾಖಲೆಗಳನ್ನು ನವೀಕರಿಸಿ.",
+        "bn": "মাসের শেষের আগে আপনার কেওয়াইসি নথি জমা দিন।",
+        "mr": "कृपया महिना संपण्यापूर्वी आपली केवायसी कागदपत्रे अपडेट करा."
       },
       {
-        instruction: "Listen and answer",
-        content: "The bank is closed on Sundays and public holidays.",
-        translation: "बैंक रविवार और सार्वजनिक अवकाश पर बंद रहता है।",
-        question: "When is the bank closed?",
-        options: ["Saturdays only", "Sundays only", "Sundays and public holidays", "All weekends"],
-        answerIndex: 2,
-        explanation: "'Sundays and public holidays' are when the bank is closed."
+        "en": "ATM cash withdrawal limit is twenty thousand daily.",
+        "hi": "एटीएम से नकद निकासी की सीमा प्रतिदिन बीस हज़ार है।",
+        "ta": "ஏடிஎம் மூலம் பணம் எடுக்கும் வரம்பு நாளொன்றுக்கு இருபதாயிரம் ஆகும்.",
+        "te": "రోజుకు ఏటీఎం నగదు ఉపసంహరణ పరిమితి ఇరవై వేలు.",
+        "kn": "ದಿನಕ್ಕೆ ಎಟಿಎಂ ನಗದು ಹಿಂಪಡೆಯುವ ಮಿತಿ ಇಪ್ಪತ್ತು ಸಾವಿರ ರೂಪಾಯಿಗಳು.",
+        "bn": "দৈনিক এটিএম থেকে টাকা তোলার সীমা বিশ হাজার টাকা।",
+        "mr": "दररोज एटीएममधून पैसे काढण्याची मर्यादा वीस हजार आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Your fixed deposit will mature after twelve months.",
-        translation: "आपकी सावधि जमा बारह महीने बाद परिपक्व होगी।",
-        question: "When will the fixed deposit mature?",
-        options: ["After six months", "After nine months", "After twelve months", "After twenty-four months"],
-        answerIndex: 2,
-        explanation: "'After twelve months' is the maturity period."
+        "en": "Fixed deposit gives higher guaranteed returns over time.",
+        "hi": "सावधि जमा समय के साथ अधिक सुनिश्चित लाभ देता है।",
+        "ta": "நிலையான வைப்புத்தொகை உத்தரவாதமான அதிக வருமானத்தை அளிக்கிறது.",
+        "te": "ఫిక్స్‌డ్ డిపాజిట్ ఎక్కువ రాబడిని అందిస్తుంది.",
+        "kn": "ಸ್ಥಿರ ಠೇವಣಿಯು ಹೆಚ್ಚು ಖಚಿತವಾದ ಲಾಭವನ್ನು ನೀಡುತ್ತದೆ.",
+        "bn": "ফিক্সড ডিপোজিটে ভালো নিশ্চিত মুনাফা পাওয়া যায়।",
+        "mr": "मुदत ठेव खात्यात खात्रीशीर चांगला परतावा मिळतो."
       },
       {
-        instruction: "Listen and answer",
-        content: "For any queries, call our helpline at one eight hundred.",
-        translation: "किसी भी जानकारी के लिए हमारी हेल्पलाइन 1800 पर कॉल करें।",
-        question: "How can you reach the bank for queries?",
-        options: ["Visit the branch", "Send an email", "Call the helpline", "Use the mobile app"],
-        answerIndex: 2,
-        explanation: "'Call our helpline' is the suggested contact method."
+        "en": "Do not share OTP messages with unknown callers.",
+        "hi": "अज्ञात कॉल करने वालों के साथ ओटीपी संदेश साझा न करें।",
+        "ta": "அறியாத நபர்களுடன் ஓடிபி எண்களைப் பகிர வேண்டாம்.",
+        "te": "తెలియని వ్యక్తులకు ఓటీపీ నంబర్లను చెప్పవద్దు.",
+        "kn": "ಅಪರಿಚಿತರಿಗೆ ಒಟಿಪಿ ಸಂಖ್ಯೆಯನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.",
+        "bn": "অচেনা কাউকে ওটিপি জানাবেন না।",
+        "mr": "अनोळखी व्यक्तींना ओटीपी सांगू नका."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I want to open a savings account.",
-        translation: "मैं बचत खाता खोलना चाहता हूँ।",
-        question: "Repeat this banking request",
-        options: [],
-        answerIndex: 0
+        "en": "I want to deposit cash into my account.",
+        "hi": "मैं अपने खाते में नकद जमा करना चाहता हूँ।",
+        "ta": "நான் எனது கணக்கில் பணம் செலுத்த விரும்புகிறேன்.",
+        "te": "నేను నా ఖాతాలో నగదు జమ చేయాలనుకుంటున్నాను.",
+        "kn": "ನಾನು ನನ್ನ ಖಾತೆಗೆ ನಗದು ಠೇವಣಿ ಮಾಡಲು ಬಯಸುತ್ತೇನೆ.",
+        "bn": "আমি আমার অ্যাকাউন্টে নগদ টাকা জমা করতে চাই।",
+        "mr": "मला माझ्या खात्यात रोख रक्कम भरायची आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please block my ATM card immediately.",
-        translation: "कृपया मेरा ATM कार्ड तुरंत ब्लॉक करें।",
-        question: "Repeat this emergency request",
-        options: [],
-        answerIndex: 0
+        "en": "Please check my current account balance.",
+        "hi": "कृपया मेरे चालू खाते की शेष राशि जांचें।",
+        "ta": "தயவுசெய்து எனது நடப்புக் கணக்கின் இருப்பைச் சரிபார்க்கவும்.",
+        "te": "దయచేసి నా ప్రస్తుత ఖాతా బ్యాలెన్స్‌ను తనిఖీ చేయండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನ್ನ ಖಾತೆಯ ಉಳಿಕೆ ಹಣವನ್ನು ಪರಿಶೀಲಿಸಿ.",
+        "bn": "দয়া করে আমার অ্যাকাউন্টের ব্যালেন্স দেখে দিন।",
+        "mr": "कृपया माझ्या खात्यातील शिल्लक तपासा."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "What is the interest rate for a fixed deposit?",
-        translation: "सावधि जमा पर ब्याज दर क्या है?",
-        question: "Repeat this banking question",
-        options: [],
-        answerIndex: 0
+        "en": "I need to apply for a new debit card.",
+        "hi": "मुझे नए डेबिट कार्ड के लिए आवेदन करना है।",
+        "ta": "நான் புதிய டெபிட் கார்டுக்கு விண்ணப்பிக்க வேண்டும்.",
+        "te": "నేను కొత్త డెబిట్ కార్డు కోసం దరఖాస్తు చేసుకోవాలి.",
+        "kn": "ನಾನು ಹೊಸ ಡೆಬಿಟ್ ಕಾರ್ಡ್‌ಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಬೇಕು.",
+        "bn": "আমাকে একটি নতুন ডেবিট কার্ডের জন্য আবেদন করতে হবে।",
+        "mr": "मला नवीन डेबिट कार्डसाठी अर्ज करायचा आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I want to transfer money to another account.",
-        translation: "मैं दूसरे खाते में पैसे भेजना चाहता हूँ।",
-        question: "Repeat this transfer request",
-        options: [],
-        answerIndex: 0
+        "en": "Where is the branch manager sitting?",
+        "hi": "शाखा प्रबंधक कहाँ बैठे हैं?",
+        "ta": "கிளை மேலாளர் எங்கே அமர்ந்துள்ளார்?",
+        "te": "బ్రాంచ్ మేనేజర్ ఎక్కడ కూర్చున్నారు?",
+        "kn": "ಶಾಖಾ ವ್ಯವಸ್ಥಾಪಕರು ಎಲ್ಲಿ ಕುಳಿತಿದ್ದಾರೆ?",
+        "bn": "ব্রাঞ্চ ম্যানেজার কোথায় বসেন?",
+        "mr": "शाखा व्यवस्थापक कुठे बसतात?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Can I get a mini statement please?",
-        translation: "क्या मुझे मिनी स्टेटमेंट मिल सकता है?",
-        question: "Repeat this banking request",
-        options: [],
-        answerIndex: 0
+        "en": "Thank you for assisting my transaction.",
+        "hi": "मेरे लेन-देन में सहायता के लिए धन्यवाद।",
+        "ta": "எனது பணப்பரிவர்த்தனைக்கு உதவியதற்கு நன்றி.",
+        "te": "నా లావాదేవీకి సహాయం చేసినందుకు ధన్యవాదాలు.",
+        "kn": "ನನ್ನ ಹಣಕಾಸಿನ ವಹಿವಾಟಿಗೆ ಸಹಾಯ ಮಾಡಿದ್ದಕ್ಕೆ ಧನ್ಯವಾದಗಳು.",
+        "bn": "আমার লেনদেনে সাহায্য করার জন্য ধন্যবাদ।",
+        "mr": "माझ्या व्यवहारात मदत केल्याबद्दल धन्यवाद."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Account",
-        translation: "खाता",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Deposit",
+        "hi": "जमा",
+        "ta": "வைப்புத்தொகை",
+        "te": "డిపాజిట్",
+        "kn": "ಠೇವಣಿ",
+        "bn": "জমা",
+        "mr": "ठेव"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Deposit",
-        translation: "जमा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Withdrawal",
+        "hi": "निकासी",
+        "ta": "பணம் எடுத்தல்",
+        "te": "ఉపసంహరణ",
+        "kn": "ಹಿಂಪಡೆಯುವಿಕೆ",
+        "bn": "উত্তোলন",
+        "mr": "पैसे काढणे"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Withdrawal",
-        translation: "निकासी",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Passbook",
+        "hi": "पासबुक",
+        "ta": "பாஸ்புக்",
+        "te": "పాస్‌బుక్",
+        "kn": "ಪಾಸ್‌ಬುಕ್",
+        "bn": "পাসবুক",
+        "mr": "पासबुक"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Passbook",
-        translation: "पासबुक",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Interest",
+        "hi": "ब्याज",
+        "ta": "வட்டி",
+        "te": "వడ్డీ",
+        "kn": "ಬಡ್ಡಿ",
+        "bn": "সুদ",
+        "mr": "व्याज"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Interest",
-        translation: "ब्याज",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Cheque",
+        "hi": "चेक",
+        "ta": "காசோலை",
+        "te": "చెక్",
+        "kn": "ಚೆಕ್",
+        "bn": "চেক",
+        "mr": "धनादेश"
       }
     ]
   },
-
-  // ── Unit 8: Transit & Travel ─────────────────────────────────────
-  unit_transit: {
-    reading: [
+  "unit_transit": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "The train to Bhopal departs from platform four at six-thirty.",
-        translation: "भोपाल की ट्रेन छह बजकर तीस मिनट पर प्लेटफॉर्म चार से जाती है।",
-        question: "From which platform does the train depart?",
-        options: ["Platform two", "Platform three", "Platform four", "Platform five"],
-        answerIndex: 2,
-        explanation: "'Platform four' is clearly stated."
+        "en": "Platform number three is for trains to Chennai.",
+        "hi": "प्लेटफॉर्म नंबर तीन चेन्नई जाने वाली ट्रेनों के लिए है।",
+        "ta": "சென்னை செல்லும் ரயில்களுக்கான தளம் எண் மூன்று.",
+        "te": "చెన్నై వెళ్లే రైళ్లకు ప్లాట్‌ఫారమ్ నంబర్ మూడు.",
+        "kn": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಸಂಖ್ಯೆ ಮೂರು ಚೆನ್ನೈ ರೈಲುಗಳಿಗೆ ಮೀಸಲಾಗಿದೆ.",
+        "bn": "তিন নম্বর প্ল্যাটফর্ম চেন্নাইগামী ট্রেনের জন্য।",
+        "mr": "प्लॅटफॉर्म क्रमांक तीन चेन्नईकडे जाणाऱ्या गाड्यांसाठी आहे."
       },
       {
-        instruction: "Read and answer",
-        content: "Please keep your ticket ready for checking.",
-        translation: "कृपया जाँच के लिए अपना टिकट तैयार रखें।",
-        question: "What should you keep ready?",
-        options: ["Your ID card", "Your ticket", "Your luggage", "Your phone"],
-        answerIndex: 1,
-        explanation: "'Keep your ticket ready' is the instruction."
+        "en": "The metro train arrives every four minutes.",
+        "hi": "मेट्रो ट्रेन हर चार मिनट में आती है।",
+        "ta": "மெட்ரோ ரயில் ஒவ்வொரு நான்கு நிமிடங்களுக்கும் வருகிறது.",
+        "te": "మెట్రో రైలు ప్రతి నాలుగు నిమిషాలకు వస్తుంది.",
+        "kn": "ಮೆಟ್ರೋ ರೈಲು ಪ್ರತಿ ನಾಲ್ಕು ನಿಮಿಷಕ್ಕೆ ಒಮ್ಮೆ ಬರುತ್ತದೆ.",
+        "bn": "মেট্রো ট্রেন প্রতি চার মিনিটে আসে।",
+        "mr": "मेट्रो ट्रेन दर चार मिनिटांनी येते."
       },
       {
-        instruction: "Read and answer",
-        content: "The bus fare from here to the city centre is twenty rupees.",
-        translation: "यहाँ से शहर के केंद्र तक बस का किराया बीस रुपये है।",
-        question: "What is the bus fare to the city centre?",
-        options: ["₹10", "₹15", "₹20", "₹25"],
-        answerIndex: 2,
-        explanation: "'Twenty rupees' is the stated fare."
+        "en": "Please stand behind the yellow security line.",
+        "hi": "कृपया पीली सुरक्षा रेखा के पीछे खड़े रहें।",
+        "ta": "தயவுசெய்து மஞ்சள் பாதுகாப்புக் கோட்டிற்குப் பின்னால் நிற்கவும்.",
+        "te": "దయచేసి పసుపు భద్రతా గీత వెనుక నిలబడండి.",
+        "kn": "ದಯವಿಟ್ಟು ಹಳದಿ ಸುರಕ್ಷತಾ ರೇಖೆಯ ಹಿಂದೆ ನಿಂತುಕೊಳ್ಳಿ.",
+        "bn": "দয়া করে হলুদ নিরাপত্তা রেখার পেছনে দাঁড়ান।",
+        "mr": "कृपया पिवळ्या सुरक्षा रेषेच्या मागे उभे रहा."
       },
       {
-        instruction: "Read and answer",
-        content: "No standing is allowed in the reserved coach.",
-        translation: "आरक्षित डिब्बे में खड़े होने की अनुमति नहीं है।",
-        question: "What is not allowed in the reserved coach?",
-        options: ["Eating", "Sleeping", "Standing", "Talking"],
-        answerIndex: 2,
-        explanation: "'No standing is allowed' is stated."
+        "en": "Bus number 335 goes directly to Airport.",
+        "hi": "बस संख्या 335 सीधे हवाई अड्डे तक जाती है।",
+        "ta": "பேருந்து எண் 335 நேரடியாக விமான நிலையத்திற்குச் செல்கிறது.",
+        "te": "బస్సు నంబర్ 335 నేరుగా విమానాశ్రయానికి వెళుతుంది.",
+        "kn": "ಬಸ್ ಸಂಖ್ಯೆ 335 ನೇರವಾಗಿ ವಿಮಾನ ನಿಲ್ದಾಣಕ್ಕೆ ಹೋಗುತ್ತದೆ.",
+        "bn": "৩৩৫ নম্বর বাসটি সরাসরি বিমানবন্দরে যায়।",
+        "mr": "बस क्रमांक ३३५ थेट विमानतळावर जाते."
       },
       {
-        instruction: "Read and answer",
-        content: "The last metro train runs at eleven-thirty at night.",
-        translation: "आखिरी मेट्रो ट्रेन रात ग्यारह बजकर तीस मिनट पर जाती है।",
-        question: "When does the last metro train run?",
-        options: ["Ten-thirty", "Eleven o'clock", "Eleven-thirty", "Midnight"],
-        answerIndex: 2,
-        explanation: "'Eleven-thirty at night' is the last train timing."
+        "en": "Keep your ticket safe until you exit the station.",
+        "hi": "स्टेशन से बाहर निकलने तक अपना टिकट सुरक्षित रखें।",
+        "ta": "நிலையத்தை விட்டு வெளியேறும் வரை உங்கள் பயணச்சீட்டைப் பாதுகாப்பாக வைத்திருங்கள்.",
+        "te": "స్టేషన్ నుండి బయటకు వచ్చే వరకు మీ టిక్కెట్‌ను భద్రంగా ఉంచుకోండి.",
+        "kn": "ನಿಲ್ದಾಣದಿಂದ ಹೊರಬರುವವರೆಗೆ ನಿಮ್ಮ ಟಿಕೆಟ್ ಸುರಕ್ಷಿತವಾಗಿರಲಿ.",
+        "bn": "স্টেশন থেকে বের না হওয়া পর্যন্ত টিকিটটি কাছে রাখুন।",
+        "mr": "स्थानकातून बाहेर पडेपर्यंत आपले तिकीट सांभाळून ठेवा."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking where the bus stop is",
-        question: "Where is the bus stop",
-        options: ["stop", "Where", "the", "bus", "is"],
-        answerIndex: 0,
-        explanation: "Question word + verb + article + noun."
+        "en": "I need two tickets to Central Railway Station",
+        "hi": "मुझे सेंट्रल रेलवे स्टेशन के लिए दो टिकट चाहिए",
+        "ta": "எனக்கு மத்திய ரயில் நிலையத்திற்கு இரண்டு பயணச்சீட்டுகள் வேண்டும்",
+        "te": "నాకు సెంట్రల్ రైల్వే స్టేషన్‌కు రెండు టిక్కెట్లు కావాలి",
+        "kn": "ನನಗೆ ಸೆಂಟ್ರಲ್ ರೈಲು ನಿಲ್ದಾಣಕ್ಕೆ ಎರಡು ಟಿಕೆಟ್‌ಗಳು ಬೇಕು",
+        "bn": "আমার সেন্ট্রাল রেলওয়ে স্টেশনের দুটি টিকিট দরকার",
+        "mr": "मला सेंट्रल रेल्वे स्टेशनसाठी दोन तिकिटे हवी आहेत"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Buying a train ticket",
-        question: "I want one ticket to Delhi",
-        options: ["Delhi", "want", "I", "to", "ticket", "one"],
-        answerIndex: 0,
-        explanation: "Subject + verb + quantity + noun + destination."
+        "en": "Which bus goes to City Hospital route",
+        "hi": "कौन सी बस सिटी अस्पताल मार्ग पर जाती है",
+        "ta": "எந்தப் பேருந்து நகர மருத்துவமனை வழித்தடத்திற்குச் செல்கிறது",
+        "te": "సిటీ ఆసుపత్రి మార్గంలో ఏ బస్సు వెళుతుంది",
+        "kn": "ಯಾವ ಬಸ್ ನಗರ ಆಸ್ಪತ್ರೆಯ ಮಾರ್ಗಕ್ಕೆ ಹೋಗುತ್ತದೆ",
+        "bn": "কোন বাসটি সিটি হাসপাতালের রুটে যায়",
+        "mr": "कोणती बस सिटी हॉस्पिटलच्या मार्गावर जाते"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking how much an auto fare is",
-        question: "How much to the railway station",
-        options: ["station", "How", "the", "much", "to", "railway"],
-        answerIndex: 0,
-        explanation: "'How much to [destination]?' is a standard fare inquiry."
+        "en": "The express train is running on time",
+        "hi": "एक्सप्रेस ट्रेन बिल्कुल समय पर चल रही है",
+        "ta": "எக்ஸ்பிரஸ் ரயில் சரியான நேரத்தில் இயங்குகிறது",
+        "te": "ఎక్స్‌ప్రెస్ రైలు సమయానికి నడుస్తోంది",
+        "kn": "ಎಕ್ಸ್‌ಪ್ರೆಸ್ ರೈಲು ಸಮಯಕ್ಕೆ ಸರಿಯಾಗಿ ಚಲಿಸುತ್ತಿದೆ",
+        "bn": "এক্সপ্রেস ট্রেনটি সঠিক সময়ে চলছে",
+        "mr": "जलद गाडी वेळेवर धावत आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking if a bus goes to a particular place",
-        question: "Does this bus go to the market",
-        options: ["market", "Does", "bus", "this", "go", "the", "to"],
-        answerIndex: 0,
-        explanation: "Yes/no question: auxiliary + subject + verb + destination."
+        "en": "Please tell me the correct bus stop",
+        "hi": "कृपया मुझे सही बस स्टॉप बताइए",
+        "ta": "தயவுசெய்து சரியான பேருந்து நிறுத்தத்தைக் கூறுங்கள்",
+        "te": "దయచేసి సరైన బస్టాప్ ఎక్కడో చెప్పండి",
+        "kn": "ದಯವಿಟ್ಟು ನನಗೆ ಸರಿಯಾದ ಬಸ್ ನಿಲ್ದಾಣವನ್ನು ತಿಳಿಸಿ",
+        "bn": "দয়া করে আমাকে সঠিক বাস স্টপটি বলুন",
+        "mr": "कृपया मला योग्य बस स्टॉप सांगा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying the train is late",
-        question: "The train is running late",
-        options: ["running", "train", "The", "late", "is"],
-        answerIndex: 0,
-        explanation: "Subject + 'is running' + adjective."
+        "en": "I bought a monthly smart travel card",
+        "hi": "मैंने एक मासिक स्मार्ट यात्रा कार्ड खरीदा",
+        "ta": "நான் ஒரு மாதாந்திர ஸ்மார்ட் பயண அட்டையை வாங்கினேன்",
+        "te": "నేను నెలవారీ స్మార్ట్ ట్రావెల్ కార్డును కొనుగోలు చేశాను",
+        "kn": "ನಾನು ಮಾಸಿಕ ಸ್ಮಾರ್ಟ್ ಪ್ರಯಾಣ ಕಾರ್ಡ್ ಖರೀದಿಸಿದೆ",
+        "bn": "আমি একটি মাসিক স্মার্ট ট্রাভেল কার্ড কিনেছি",
+        "mr": "मी एक मासिक स्मार्ट ट्रॅव्हल कार्ड विकत घेतले"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "The next bus to the hospital will arrive in ten minutes.",
-        translation: "अस्पताल के लिए अगली बस दस मिनट में आएगी।",
-        question: "When will the next bus arrive?",
-        options: ["In five minutes", "In ten minutes", "In fifteen minutes", "In twenty minutes"],
-        answerIndex: 1,
-        explanation: "'In ten minutes' is when the bus arrives."
+        "en": "The next metro station is MG Road.",
+        "hi": "अगला मेट्रो स्टेशन एमजी रोड है।",
+        "ta": "அடுத்த மெட்ரோ நிலையம் எம்.ஜி. ரோடு.",
+        "te": "తదుపరి మెట్రో స్టేషన్ ఎంజీ రోడ్.",
+        "kn": "ಮುಂದಿನ ಮೆಟ್ರೋ ನಿಲ್ದಾಣ ಎಂ.ಜಿ. ರಸ್ತೆ.",
+        "bn": "পরবর্তী মেট্রো স্টেশন এমজি রোড।",
+        "mr": "पुढील मेट्रो स्थानक एमजी रोड आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Your seat is in coach B, berth number forty-two.",
-        translation: "आपकी सीट कोच B में, बर्थ नंबर बयालीस पर है।",
-        question: "What is the berth number?",
-        options: ["Forty", "Forty-one", "Forty-two", "Forty-three"],
-        answerIndex: 2,
-        explanation: "'Berth number forty-two' is clearly stated."
+        "en": "Passengers are requested to maintain physical distance.",
+        "hi": "यात्रियों से अनुरोध है कि वे शारीरिक दूरी बनाए रखें।",
+        "ta": "பயணிகள் போதிய இடைவெளியைப் பராமரிக்குமாறு கேட்டுக்கொள்ளப்படுகிறார்கள்.",
+        "te": "ప్రయాణీకులు తగినంత దూరం పాటించాలని కోరడమైనది.",
+        "kn": "ಪ್ರಯಾಣಿಕರು ಅಂತರವನ್ನು ಕಾಯ್ದುಕೊಳ್ಳಲು ವಿನಂತಿಸಲಾಗಿದೆ.",
+        "bn": "যাত্রীদের সামাজিক দূরত্ব বজায় রাখার জন্য অনুরোধ করা হচ্ছে।",
+        "mr": "प्रवाशांनी अंतर राखण्याची विनंती केली जात आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please do not block the exit doors of the bus.",
-        translation: "कृपया बस के निकास द्वारों को अवरुद्ध न करें।",
-        question: "What should you not block?",
-        options: ["The windows", "The seats", "The exit doors", "The luggage area"],
-        answerIndex: 2,
-        explanation: "'Exit doors' should not be blocked."
+        "en": "Flight boarding starts forty minutes before departure.",
+        "hi": "उड़ान में चढ़ना प्रस्थान से चालीस मिनट पहले शुरू होता है।",
+        "ta": "விமானத்தில் ஏறுதல் புறப்படுவதற்கு நாற்பது நிமிடங்களுக்கு முன் தொடங்கும்.",
+        "te": "విమానం బయలుదేరడానికి నలభై నిమిషాల ముందు బోర్డింగ్ ప్రారంభమవుతుంది.",
+        "kn": "ವಿಮಾನ ಹತ್ತುವ ಪ್ರಕ್ರಿಯೆ ಹೊರಡುವ ಮುನ್ನ ನಲವತ್ತು ನಿಮಿಷ ಮುಂಚಿತವಾಗಿ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ.",
+        "bn": "বিমান ছাড়ার চল্লিশ মিনিট আগে বোর্ডিং শুরু হয়।",
+        "mr": "विमानात चढणे उड्डाणाच्या चाळीस मिनिटे आधी सुरू होते."
       },
       {
-        instruction: "Listen and answer",
-        content: "This is an express train and does not stop at small stations.",
-        translation: "यह एक्सप्रेस ट्रेन है और छोटे स्टेशनों पर नहीं रुकती।",
-        question: "Where does this train not stop?",
-        options: ["Major cities", "Junction stations", "Small stations", "Terminal stations"],
-        answerIndex: 2,
-        explanation: "'Small stations' — the train does not stop there."
+        "en": "Senior citizens have reserved seats near front door.",
+        "hi": "वरिष्ठ नागरिकों के लिए सामने के दरवाजे के पास सीटें आरक्षित हैं।",
+        "ta": "முதியவர்களுக்கு முன்பக்க கதவு அருகே இருக்கைகள் ஒதுக்கப்பட்டுள்ளன.",
+        "te": "వృద్ధులకు ముందు తలుపు వద్ద సీట్లు రిజర్వ్ చేయబడ్డాయి.",
+        "kn": "ಹಿರಿಯ ನಾಗರಿಕರಿಗೆ ಮುಂಭಾಗದ ಬಾಗಿಲಿನ ಬಳಿ ಆಸನಗಳು ಮೀಸಲಾಗಿವೆ.",
+        "bn": "বয়স্ক নাগরিকদের জন্য সামনের দরজার কাছে আসন সংরক্ষিত আছে।",
+        "mr": "ज्येष्ठ नागरिकांसाठी पुढील दरवाजाजवळ जागा राखीव आहेत."
       },
       {
-        instruction: "Listen and answer",
-        content: "Keep your luggage under the seat or in the overhead compartment.",
-        translation: "अपना सामान सीट के नीचे या ऊपरी डिब्बे में रखें।",
-        question: "Where should you keep your luggage?",
-        options: ["At the door", "On the seat", "Under the seat or in the overhead compartment", "On the floor of the aisle"],
-        answerIndex: 2,
-        explanation: "'Under the seat or overhead compartment' is where luggage goes."
+        "en": "The luggage limit for domestic flights is fifteen kilograms.",
+        "hi": "घरेलू उड़ानों के लिए सामान की सीमा पंद्रह किलोग्राम है।",
+        "ta": "உள்நாட்டு விமானங்களில் லக்கேஜ் வரம்பு பதினைந்து கிலோகிராம்.",
+        "te": "దేశీయ విమానాలలో లగేజీ పరిమితి పదిహేను కిలోలు.",
+        "kn": "ದೇಶೀಯ ವಿಮಾನಗಳಲ್ಲಿ ಲಗೇಜ್ ಮಿತಿ ಹದಿನೈದು ಕಿಲೋಗ್ರಾಂಗಳು.",
+        "bn": "অভ্যন্তরীণ বিমানের জন্য লাগেজের ওজন সীমা পনেরো কেজি।",
+        "mr": "देशांतर्गत उड्डाणांसाठी सामानाची मर्यादा पंधरा किलो आहे."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "One ticket to Nagpur please.",
-        translation: "कृपया एक टिकट नागपुर के लिए।",
-        question: "Repeat this ticket request",
-        options: [],
-        answerIndex: 0
+        "en": "Excuse me, where is platform number five?",
+        "hi": "क्षमा करें, प्लेटफॉर्म नंबर पाँच कहाँ है?",
+        "ta": "மன்னிக்கவும், தளம் எண் ஐந்து எங்கே உள்ளது?",
+        "te": "క్షమించండి, ప్లాట్‌ఫారమ్ నంబర్ ఐదు ఎక్కడ ఉంది?",
+        "kn": "ಕ್ಷಮಿಸಿ, ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಸಂಖ್ಯೆ ಐದು ಎಲ್ಲಿದೆ?",
+        "bn": "শুনুন, পাঁচ নম্বর প্ল্যাটফর্মটি কোথায়?",
+        "mr": "माफ करा, प्लॅटफॉर्म क्रमांक पाच कुठे आहे?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Does this bus go to the railway station?",
-        translation: "क्या यह बस रेलवे स्टेशन जाती है?",
-        question: "Repeat this travel question",
-        options: [],
-        answerIndex: 0
+        "en": "Does this bus go to the city center?",
+        "hi": "क्या यह बस शहर के केंद्र तक जाती है?",
+        "ta": "இந்தப் பேருந்து நகர மையத்திற்குச் செல்லுமா?",
+        "te": "ఈ బస్సు సిటీ సెంటర్‌కు వెళుతుందా?",
+        "kn": "ಈ ಬಸ್ ನಗರದ ಕೇಂದ್ರ ಭಾಗಕ್ಕೆ ಹೋಗುತ್ತದೆಯೇ?",
+        "bn": "এই বাসটি কি শহরের কেন্দ্রে যাবে?",
+        "mr": "ही बस शहराच्या मध्यवर्ती भागात जाते का?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "How far is the airport from here?",
-        translation: "यहाँ से हवाई अड्डा कितनी दूर है?",
-        question: "Repeat this distance question",
-        options: [],
-        answerIndex: 0
+        "en": "Please book an express taxi for me.",
+        "hi": "कृपया मेरे लिए एक एक्सप्रेस टैक्सी बुक करें।",
+        "ta": "தயவுசெய்து எனக்காக ஒரு டாக்ஸியை முன்பதிவு செய்யுங்கள்.",
+        "te": "దయచేసి నా కోసం ఒక టాక్సీని బుక్ చేయండి.",
+        "kn": "ದಯವಿಟ್ಟು ನನಗಾಗಿ ಒಂದು ಟ್ಯಾಕ್ಸಿ ಬುಕ್ ಮಾಡಿ.",
+        "bn": "দয়া করে আমার জন্য একটি ট্যাক্সি বুক করুন।",
+        "mr": "कृपया माझ्यासाठी एक टॅक्सी बुक करा."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "The train is twenty minutes late.",
-        translation: "ट्रेन बीस मिनट देर से है।",
-        question: "Repeat this delay announcement",
-        options: [],
-        answerIndex: 0
+        "en": "How much time to reach the airport?",
+        "hi": "हवाई अड्डे तक पहुँचने में कितना समय लगेगा?",
+        "ta": "விமான நிலையத்தை அடைய எவ்வளவு நேரம் ஆகும்?",
+        "te": "విమానాశ్రయానికి చేరుకోవడానికి ఎంత సమయం పడుతుంది?",
+        "kn": "ವಿಮಾನ ನಿಲ್ದಾಣವನ್ನು ತಲುಪಲು ಎಷ್ಟು ಸಮಯ ಬೇಕು?",
+        "bn": "বিমানবন্দরে পৌঁছাতে কতক্ষণ সময় লাগবে?",
+        "mr": "विमानतळावर पोहोचायला किती वेळ लागेल?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Can you drop me at the main road?",
-        translation: "क्या आप मुझे मुख्य सड़क पर छोड़ सकते हैं?",
-        question: "Repeat this auto/taxi request",
-        options: [],
-        answerIndex: 0
+        "en": "Have a safe and pleasant journey.",
+        "hi": "आपकी यात्रा सुखद और सुरक्षित हो।",
+        "ta": "உங்கள் பயணம் பாதுகாப்பாகவும் இனிமையாகவும் அமையட்டும்.",
+        "te": "మీ ప్రయాణం సురక్షితంగా మరియు ఆహ్లాదకరంగా సాగాలి.",
+        "kn": "ನಿಮ್ಮ ಪ್ರಯಾಣ ಸುರಕ್ಷಿತ ಮತ್ತು ಸುಖಕರವಾಗಿರಲಿ.",
+        "bn": "আপনার যাত্রা শুভ ও নিরাপদ হোক।",
+        "mr": "आपला प्रवास सुखकर आणि सुरक्षित होवो."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Platform",
-        translation: "प्लेटफॉर्म",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Platform",
+        "hi": "प्लेटफॉर्म",
+        "ta": "தளம்",
+        "te": "ప్లాట్‌ఫారమ్",
+        "kn": "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್",
+        "bn": "প্ল্যাটফর্ম",
+        "mr": "प्लॅटफॉर्म"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Reservation",
-        translation: "आरक्षण",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Passenger",
+        "hi": "यात्री",
+        "ta": "பயணி",
+        "te": "ప్రయాణీకుడు",
+        "kn": "ಪ್ರಯಾಣಿಕ",
+        "bn": "যাত্রী",
+        "mr": "प्रवासी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Departure",
-        translation: "प्रस्थान",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Luggage",
+        "hi": "सामान",
+        "ta": "சுமை",
+        "te": "లగేజీ",
+        "kn": "ಸಾಮಾನು",
+        "bn": "লাগেজ",
+        "mr": "सामान"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Destination",
-        translation: "गंतव्य",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Schedule",
+        "hi": "समय-सारणी",
+        "ta": "கால அட்டவணை",
+        "te": "సమయ పట్టిక",
+        "kn": "ವೇಳಾಪಟ್ಟಿ",
+        "bn": "সময়সূচী",
+        "mr": "वेळापत्रक"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Compartment",
-        translation: "डिब्बा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Destination",
+        "hi": "गंतव्य",
+        "ta": "சேருமிடம்",
+        "te": "గమ్యస్థానం",
+        "kn": "ಗಮ್ಯಸ್ಥಾನ",
+        "bn": "গন্তব্য",
+        "mr": "गंतव्यस्थान"
       }
     ]
   },
-
-  // ═══════════════════════════════════════════════════════════════
-  // ADVANCED
-  // ═══════════════════════════════════════════════════════════════
-
-  // ── Unit 9: Government & Legal ───────────────────────────────────
-  unit_government: {
-    reading: [
+  "unit_government": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "You must submit the application form along with a self-attested photocopy.",
-        translation: "आपको स्व-सत्यापित फोटोकॉपी के साथ आवेदन पत्र जमा करना होगा।",
-        question: "What must accompany the application form?",
-        options: ["An original certificate", "A notarised document", "A self-attested photocopy", "A reference letter"],
-        answerIndex: 2,
-        explanation: "'Self-attested photocopy' must accompany the form."
+        "en": "Submit your Aadhaar card and electricity bill for address verification.",
+        "hi": "पते के सत्यापन के लिए अपना आधार कार्ड और बिजली का बिल जमा करें।",
+        "ta": "முகவரி சரிபார்ப்பிற்கு உங்கள் ஆதார் அட்டை மற்றும் மின் கட்டண ரசீதை சமர்ப்பிக்கவும்.",
+        "te": "చిరునామా ధృవీకరణ కోసం మీ ఆధార్ కార్డు మరియు కరెంట్ బిల్లును సమర్పించండి.",
+        "kn": "ವಿಳಾಸ ಪರಿಶೀಲನೆಗಾಗಿ ನಿಮ್ಮ ಆಧಾರ್ ಕಾರ್ಡ್ ಮತ್ತು ವಿದ್ಯುತ್ ಬಿಲ್ ಸಲ್ಲಿಸಿ.",
+        "bn": "ঠিকানা যাচাইয়ের জন্য আপনার আধার কার্ড এবং বিদ্যুৎ বিল জমা দিন।",
+        "mr": "पत्ता पडताळणीसाठी आपले आधार कार्ड आणि विजेचे बिल सादर करा."
       },
       {
-        instruction: "Read and answer",
-        content: "The appeal must be filed within thirty days of the order.",
-        translation: "आदेश के तीस दिनों के भीतर अपील दायर की जानी चाहिए।",
-        question: "Within how many days must an appeal be filed?",
-        options: ["Fifteen days", "Twenty days", "Thirty days", "Sixty days"],
-        answerIndex: 2,
-        explanation: "'Within thirty days' is the deadline for appeal."
+        "en": "The public service counter opens at ten sharp.",
+        "hi": "जन सेवा काउंटर ठीक दस बजे खुलता है।",
+        "ta": "பொது சேவை கவுண்டர் சரியாக பத்து மணிக்கு திறக்கப்படும்.",
+        "te": "ప్రజా సేవా కౌంటర్ ఉదయం పది గంటలకు తెరుచుకుంటుంది.",
+        "kn": "ಸಾರ್ವಜನಿಕ ಸೇವಾ ಕೌಂಟರ್ ಬೆಳಿಗ್ಗೆ ಹತ್ತು ಗಂಟೆಗೆ ಸರಿಯಾಗಿ ತೆರೆಯುತ್ತದೆ.",
+        "bn": "জনসেবা কাউন্টারটি ঠিক দশটায় খোলে।",
+        "mr": "लोकसेवा केंद्र सकाळी ठीक दहा वाजता उघडते."
       },
       {
-        instruction: "Read and answer",
-        content: "Any citizen above eighteen years of age is eligible to vote.",
-        translation: "अठारह वर्ष से अधिक आयु का कोई भी नागरिक मतदान के लिए पात्र है।",
-        question: "Who is eligible to vote?",
-        options: ["Citizens above sixteen", "Citizens above eighteen", "Citizens above twenty-one", "Citizens above twenty-five"],
-        answerIndex: 1,
-        explanation: "'Above eighteen years of age' is the eligibility criterion."
+        "en": "You can download your digital voter ID card online.",
+        "hi": "आप अपना डिजिटल वोटर आईडी कार्ड ऑनलाइन डाउनलोड कर सकते हैं।",
+        "ta": "உங்கள் டிஜிட்டல் வாக்காளர் அடையாள அட்டையை இணையத்தில் பதிவிறக்கம் செய்யலாம்.",
+        "te": "మీరు మీ డిజిటల్ ఓటర్ గుర్తింపు కార్డును ఆన్‌లైన్‌లో డౌన్‌లోడ్ చేసుకోవచ్చు.",
+        "kn": "ನಿಮ್ಮ ಡಿಜಿಟಲ್ ಮತದಾರರ ಗುರುತಿನ ಚೀಟಿಯನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.",
+        "bn": "আপনি অনলাইনে আপনার ভোটার আইডি কার্ড ডাউনলোড করতে পারেন।",
+        "mr": "तुम्ही तुमचे डिजिटल मतदार ओळखपत्र ऑनलाइन डाउनलोड करू शकता."
       },
       {
-        instruction: "Read and answer",
-        content: "The Right to Information Act allows citizens to request government information.",
-        translation: "सूचना का अधिकार अधिनियम नागरिकों को सरकारी जानकारी माँगने की अनुमति देता है।",
-        question: "What does the Right to Information Act allow?",
-        options: ["Citizens to vote", "Citizens to request government information", "Citizens to appeal court orders", "Citizens to form unions"],
-        answerIndex: 1,
-        explanation: "'Request government information' is what the RTI Act allows."
+        "en": "Ration card provides subsidized food grains to families.",
+        "hi": "राशन कार्ड परिवारों को रियायती दर पर खाद्यान्न उपलब्ध कराता है।",
+        "ta": "ரேஷன் அட்டை குடும்பங்களுக்கு மானிய விலையில் உணவு தானியங்களை வழங்குகிறது.",
+        "te": "రేషన్ కార్డు ద్వారా కుటుంబాలకు రాయితీపై ఆహార ధాన్యాలు లభిస్తాయి.",
+        "kn": "ಪಡಿತರ ಚೀಟಿಯು ಕುಟುಂಬಗಳಿಗೆ ಸಬ್ಸಿಡಿ ದರದಲ್ಲಿ ಆಹಾರ ಧಾನ್ಯಗಳನ್ನು ಒದಗಿಸುತ್ತದೆ.",
+        "bn": "রেশন কার্ডের মাধ্যমে পরিবারকে ভর্তুকিযুক্ত খাদ্যশস্য দেওয়া হয়।",
+        "mr": "रेशन कार्डद्वारे कुटुंबांना सवलतीच्या दरात अन्नधान्य मिळते."
       },
       {
-        instruction: "Read and answer",
-        content: "Corruption in government service is punishable under the Prevention of Corruption Act.",
-        translation: "सरकारी सेवा में भ्रष्टाचार भ्रष्टाचार निवारण अधिनियम के तहत दंडनीय है।",
-        question: "Under which act is government corruption punishable?",
-        options: ["The IPC", "The CPC", "The Prevention of Corruption Act", "The RTI Act"],
-        answerIndex: 2,
-        explanation: "'Prevention of Corruption Act' governs this."
+        "en": "Register your grievance online on the official portal.",
+        "hi": "आधिकारिक पोर्टल पर अपनी शिकायत ऑनलाइन दर्ज करें।",
+        "ta": "அதிகாரப்பூர்வ தளத்தில் உங்கள் புகாரை இணையவழியில் பதிவு செய்யுங்கள்.",
+        "te": "అధికారిక పోర్టల్‌లో మీ ఫిర్యాదును ఆన్‌లైన్‌లో నమోదు చేయండి.",
+        "kn": "ಅಧಿಕೃತ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ನಿಮ್ಮ ದೂರನ್ನು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ನೋಂದಾಯಿಸಿ.",
+        "bn": "অফিসিয়াল পোর্টালে আপনার অভিযোগ নথিভুক্ত করুন।",
+        "mr": "अधिकृत पोर्टलवर आपली तक्रार ऑनलाइन नोंदवा."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Filing a complaint at a government office",
-        question: "I want to file a complaint",
-        options: ["file", "want", "I", "a", "to", "complaint"],
-        answerIndex: 0,
-        explanation: "Subject + 'want to' + verb + article + noun."
+        "en": "I want to apply for a caste certificate",
+        "hi": "मैं जाति प्रमाण पत्र के लिए आवेदन करना चाहता हूँ",
+        "ta": "நான் சாதிச் சான்றிதழுக்கு விண்ணப்பிக்க விரும்புகிறேன்",
+        "te": "నేను కుల ధృవీకరణ పత్రం కోసం దరఖాస్తు చేసుకోవాలనుకుంటున్నాను",
+        "kn": "ನಾನು ಜಾತಿ ಪ್ರಮಾಣಪತ್ರಕ್ಕಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಲು ಬಯಸುತ್ತೇನೆ",
+        "bn": "আমি একটি জাতিগত শংসাপত্রের জন্য আবেদন করতে চাই",
+        "mr": "मला जात प्रमाणपत्रासाठी अर्ज करायचा आहे"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Requesting a certified copy of a document",
-        question: "I need a certified copy of this document",
-        options: ["certified", "need", "I", "copy", "document", "of", "a", "this"],
-        answerIndex: 0,
-        explanation: "Subject + verb + article + adjective + noun + preposition + demonstrative + noun."
+        "en": "Please verify all my original official documents",
+        "hi": "कृपया मेरे सभी मूल आधिकारिक दस्तावेजों का सत्यापन करें",
+        "ta": "தயவுசெய்து எனது அனைத்து அசல் ஆவணங்களையும் சரிபார்க்கவும்",
+        "te": "దయచేసి నా అసలు పత్రాలన్నింటినీ ధృవీకరించండి",
+        "kn": "ದಯವಿಟ್ಟು ನನ್ನ ಎಲ್ಲಾ ಮೂಲ ಅಧಿಕೃತ ದಾಖಲೆಗಳನ್ನು ಪರಿಶೀಲಿಸಿ",
+        "bn": "দয়া করে আমার সমস্ত আসল নথিপত্র যাচাই করুন",
+        "mr": "कृपया माझी सर्व मूळ अधिकृत कागदपत्रे तपासा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking about the procedure for a government scheme",
-        question: "How do I apply for this scheme",
-        options: ["I", "How", "apply", "do", "this", "scheme", "for"],
-        answerIndex: 0,
-        explanation: "Question word + auxiliary + subject + verb + preposition + object."
+        "en": "The income certificate was issued successfully today",
+        "hi": "आय प्रमाण पत्र आज सफलतापूर्वक जारी कर दिया गया",
+        "ta": "வருமானச் சான்றிதழ் இன்று வெற்றிகரமாக வழங்கப்பட்டது",
+        "te": "ఆదాయ ధృవీకరణ పత్రం ఈరోజు విజయవంతంగా జారీ చేయబడింది",
+        "kn": "ಆದಾಯ ಪ್ರಮಾಣಪತ್ರವನ್ನು ಇಂದು ಯಶಸ್ವಿಯಾಗಿ ನೀಡಲಾಯಿತು",
+        "bn": "আয় শংসাপত্রটি আজ সফলভাবে প্রদান করা হয়েছে",
+        "mr": "उत्पन्नाचा दाखला आज यशस्वीपणे जारी करण्यात आला"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Saying that a document is missing from your file",
-        question: "The document is missing from my file",
-        options: ["missing", "document", "The", "from", "my", "is", "file"],
-        answerIndex: 0,
-        explanation: "Subject + verb + adjective + prepositional phrase."
+        "en": "Citizens can check government welfare scheme details",
+        "hi": "नागरिक सरकारी कल्याणकारी योजनाओं का विवरण देख सकते हैं",
+        "ta": "குடிமக்கள் அரசு நலத்திட்ட விவரங்களை சரிபார்க்கலாம்",
+        "te": "పౌరులు ప్రభుత్వ సంక్షేమ పథకాల వివరాలను చూడవచ్చు",
+        "kn": "ನಾಗರಿಕರು ಸರ್ಕಾರದ ಕಲ್ಯಾಣ ಯೋಜನೆಗಳ ವಿವರಗಳನ್ನು ಪರಿಶೀಲಿಸಬಹುದು",
+        "bn": "নাগরিকরা সরকারি কল্যাণমূলক প্রকল্পের বিবরণ জানতে পারেন",
+        "mr": "नागरिक शासकीय कल्याणकारी योजनांचे तपशील पाहू शकतात"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking for an official receipt of payment",
-        question: "Please give me an official receipt",
-        options: ["official", "Please", "me", "receipt", "give", "an"],
-        answerIndex: 0,
-        explanation: "Polite imperative: 'Please' + verb + pronoun + article + adjective + noun."
+        "en": "You will receive an acknowledgment SMS message",
+        "hi": "आपको एक पावती एसएमएस संदेश प्राप्त होगा",
+        "ta": "உங்களுக்கு ஒப்புதல் குறுஞ்செய்தி ஒன்று வரும்",
+        "te": "మీకు రసీదు SMS సందేశం వస్తుంది",
+        "kn": "ನಿಮಗೆ ಸ್ವೀಕೃತಿಯ SMS ಸಂದೇಶ ಬರುತ್ತದೆ",
+        "bn": "আপনি একটি স্বীকৃতি এসএমএস বার্তা পাবেন",
+        "mr": "तुम्हाला एक पोचपावती एसएमएस संदेश मिळेल"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "Your application has been accepted and is under review.",
-        translation: "आपका आवेदन स्वीकार कर लिया गया है और समीक्षाधीन है।",
-        question: "What is the current status of the application?",
-        options: ["Rejected", "Approved", "Under review", "Returned for correction"],
-        answerIndex: 2,
-        explanation: "'Is under review' is the current status."
+        "en": "Your passport verification will take seven working days.",
+        "hi": "आपके पासपोर्ट सत्यापन में सात कार्यदिवस लगेंगे।",
+        "ta": "உங்கள் பாஸ்போர்ட் சரிபார்ப்புக்கு ஏழு வேலை நாட்கள் ஆகும்.",
+        "te": "మీ పాస్‌పోర్ట్ ధృవీకరణకు ఏడు పని దినాలు పడుతుంది.",
+        "kn": "ನಿಮ್ಮ ಪಾಸ್‌ಪೋರ್ಟ್ ಪರಿಶೀಲನೆಗೆ ಏಳು ಕೆಲಸದ ದಿನಗಳು ಬೇಕಾಗುತ್ತವೆ.",
+        "bn": "আপনার পাসপোর্ট যাচাইকরণে সাত কার্যদিবস সময় লাগবে।",
+        "mr": "आपल्या पासपोर्ट पडताळणीसाठी सात कामकाजाचे दिवस लागतील."
       },
       {
-        instruction: "Listen and answer",
-        content: "You can track your application status online using your reference number.",
-        translation: "आप अपने संदर्भ नंबर का उपयोग करके ऑनलाइन आवेदन की स्थिति ट्रैक कर सकते हैं।",
-        question: "How can you track your application status?",
-        options: ["By visiting the office", "By calling", "Online using the reference number", "By sending a letter"],
-        answerIndex: 2,
-        explanation: "'Online using reference number' is the tracking method."
+        "en": "Please carry your original identity card for entry.",
+        "hi": "प्रवेश के लिए कृपया अपना मूल पहचान पत्र साथ रखें।",
+        "ta": "நுழைவுக்கு உங்கள் அசல் அடையாள அட்டையை எடுத்து வாருங்கள்.",
+        "te": "ప్రవేశం కోసం మీ అసలు గుర్తింపు కార్డును తీసుకురండి.",
+        "kn": "ಪ್ರವೇಶಕ್ಕಾಗಿ ದಯವಿಟ್ಟು ನಿಮ್ಮ ಮೂಲ ಗುರುತಿನ ಚೀಟಿಯನ್ನು ತನ್ನಿ.",
+        "bn": "প্রবেশের জন্য আপনার মূল পরিচয়পত্রটি সঙ্গে রাখুন।",
+        "mr": "प्रवेशासाठी कृपया आपले मूळ ओळखपत्र सोबत ठेवा."
       },
       {
-        instruction: "Listen and answer",
-        content: "The last date to submit the renewal form is the fifteenth of this month.",
-        translation: "नवीनीकरण फॉर्म जमा करने की अंतिम तारीख इस महीने की पंद्रहवीं है।",
-        question: "What is the last date for the renewal form?",
-        options: ["The tenth", "The twelfth", "The fifteenth", "The twentieth"],
-        answerIndex: 2,
-        explanation: "'The fifteenth of this month' is the deadline."
+        "en": "Free legal aid is available for eligible low-income families.",
+        "hi": "पात्र कम आय वाले परिवारों के लिए मुफ्त कानूनी सहायता उपलब्ध है।",
+        "ta": "தகுதியான எளிய குடும்பங்களுக்கு இலவச சட்ட உதவி கிடைக்கிறது.",
+        "te": "తక్కువ ఆదాయం ఉన్న కుటుంబాలకు ఉచిత న్యాయ సహాయం లభిస్తుంది.",
+        "kn": "ಅರ್ಹ ಬಡ ಕುಟುಂಬಗಳಿಗೆ ಉಚಿತ ಕಾನೂನು ನೆರವು ಲಭ್ಯವಿದೆ.",
+        "bn": "দরিদ্র পরিবারের জন্য বিনামূল্যে আইনি সহায়তা পাওয়া যায়।",
+        "mr": "पात्र अल्प उत्पन्न कुटुंबांसाठी मोफत कायदेशीर मदत उपलब्ध आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "An affidavit must be notarised by a gazetted officer.",
-        translation: "एक हलफनामे को राजपत्रित अधिकारी द्वारा नोटरी किया जाना चाहिए।",
-        question: "Who must notarise the affidavit?",
-        options: ["A bank manager", "A notary public", "A gazetted officer", "A lawyer"],
-        answerIndex: 2,
-        explanation: "'A gazetted officer' must notarise it."
+        "en": "Birth and death certificates can be applied online.",
+        "hi": "जन्म और मृत्यु प्रमाण पत्र के लिए ऑनलाइन आवेदन किया जा सकता है।",
+        "ta": "பிறப்பு மற்றும் இறப்பு சான்றிதழ்களுக்கு இணையத்தில் விண்ணப்பிக்கலாம்.",
+        "te": "జనన మరియు మరణ ధృవీకరణ పత్రాల కోసం ఆన్‌లైన్‌లో దరఖాస్తు చేసుకోవచ్చు.",
+        "kn": "ಜನನ ಮತ್ತು ಮರಣ ಪ್ರಮಾಣಪತ್ರಗಳಿಗೆ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಬಹುದು.",
+        "bn": "জন্ম ও মৃত্যু শংসাপত্রের জন্য অনলাইনে আবেদন করা যাবে।",
+        "mr": "जन्म आणि मृत्यू प्रमाणपत्रासाठी ऑनलाइन अर्ज करता येतो."
       },
       {
-        instruction: "Listen and answer",
-        content: "All grievances must be submitted in writing to the concerned authority.",
-        translation: "सभी शिकायतें लिखित रूप में संबंधित प्राधिकरण को प्रस्तुत की जानी चाहिए।",
-        question: "How must grievances be submitted?",
-        options: ["Verbally", "By email", "In writing", "By phone"],
-        answerIndex: 2,
-        explanation: "'Submitted in writing' is the required method."
+        "en": "The municipal office handles drinking water pipelines.",
+        "hi": "नगर निगम कार्यालय पेयजल पाइपलाइन की व्यवस्था देखता है।",
+        "ta": "நகராட்சி அலுவலகம் குடிநீர் விநியோகத்தைக் கையாள்கிறது.",
+        "te": "మున్సిపల్ కార్యాలయం తాగునీటి సరఫరాను నిర్వహిస్తుంది.",
+        "kn": "ನಗರಸಭೆಯ ಕಚೇರಿಯು ಕುಡಿಯುವ ನೀರಿನ ಪೈಪ್‌ಲೈನ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸುತ್ತದೆ.",
+        "bn": "পৌরসভা অফিস পানীয় জলের পাইপলাইনের দেখাশোনা করে।",
+        "mr": "महानगरपालिका कार्यालय पिण्याच्या पाण्याच्या पाईपलाईनची कामे पाहते."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I want to register a complaint against this decision.",
-        translation: "मैं इस निर्णय के खिलाफ शिकायत दर्ज करना चाहता हूँ।",
-        question: "Repeat this formal complaint sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Where can I submit this registration form?",
+        "hi": "मैं यह पंजीकरण फॉर्म कहाँ जमा कर सकता हूँ?",
+        "ta": "இந்த பதிவு படிவத்தை நான் எங்கே சமர்ப்பிக்கலாம்?",
+        "te": "నేను ఈ రిజిస్ట్రేషన్ ఫారమ్‌ను ఎక్కడ సమర్పించవచ్చు?",
+        "kn": "ನಾನು ಈ ನೋಂದಣಿ ಫಾರ್ಮ್ ಅನ್ನು ಎಲ್ಲಿ ಸಲ್ಲಿಸಬಹುದು?",
+        "bn": "আমি এই ফর্মটি কোথায় জমা দিতে পারি?",
+        "mr": "मी हा नोंदणी अर्ज कुठे सादर करू शकतो?"
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please provide a written acknowledgement of my application.",
-        translation: "कृपया मेरे आवेदन की लिखित पावती प्रदान करें।",
-        question: "Repeat this formal request",
-        options: [],
-        answerIndex: 0
+        "en": "I need information regarding pension schemes.",
+        "hi": "मुझे पेंशन योजनाओं के संबंध में जानकारी चाहिए।",
+        "ta": "எனக்கு ஓய்வூதியத் திட்டங்கள் பற்றிய தகவல் தேவை.",
+        "te": "నాకు పెన్షన్ పథకాలకు సంబంధించిన సమాచారం కావాలి.",
+        "kn": "ನನಗೆ ಪಿಂಚಣಿ ಯೋಜನೆಗಳ ಬಗ್ಗೆ ಮಾಹಿತಿ ಬೇಕು.",
+        "bn": "আমার পেনশন প্রকল্প সম্পর্কে তথ্য প্রয়োজন।",
+        "mr": "मला पेन्शन योजनांविषयी माहिती हवी आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "What documents are required for this scheme?",
-        translation: "इस योजना के लिए कौन से दस्तावेज़ चाहिए?",
-        question: "Repeat this formal inquiry",
-        options: [],
-        answerIndex: 0
+        "en": "Thank you for the official assistance today.",
+        "hi": "आज आधिकारिक सहायता के लिए धन्यवाद।",
+        "ta": "அதிகாரப்பூர்வ உதவிக்கு நன்றி.",
+        "te": "ఈరోజు చేసిన సహాయానికి ధన్యవాదాలు.",
+        "kn": "ಇಂದಿನ ಅಧಿಕೃತ ಸಹಾಯಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು.",
+        "bn": "আজকের সহায়তার জন্য ধন্যবাদ।",
+        "mr": "आज केलेल्या मदतीबद्दल धन्यवाद."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I have been waiting for my application approval for three months.",
-        translation: "मैं तीन महीने से अपने आवेदन की मंजूरी का इंतज़ार कर रहा हूँ।",
-        question: "Repeat this statement of grievance",
-        options: [],
-        answerIndex: 0
+        "en": "Citizens should follow civic rules properly.",
+        "hi": "नागरिकों को नागरिक नियमों का ठीक से पालन करना चाहिए।",
+        "ta": "குடிமக்கள் பொது விதிகளை முறையாகப் பின்பற்ற வேண்டும்.",
+        "te": "పౌరులు నిబంధనలను సక్రమంగా పాటించాలి.",
+        "kn": "ನಾಗರಿಕರು ಸಾರ್ವಜನಿಕ ನಿಯಮಗಳನ್ನು ಸರಿಯಾಗಿ ಪಾಲಿಸಬೇಕು.",
+        "bn": "নাগরিকদের নাগরিক নিয়ম মেনে চলা উচিত।",
+        "mr": "नागरिकांनी नियमांचे योग्य पालन केले पाहिजे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Under which section does this regulation fall?",
-        translation: "यह विनियमन किस धारा के अंतर्गत आता है?",
-        question: "Repeat this legal inquiry",
-        options: [],
-        answerIndex: 0
+        "en": "Transparency is important in public governance.",
+        "hi": "सार्वजनिक शासन में पारदर्शिता महत्वपूर्ण है।",
+        "ta": "பொது நிர்வாகத்தில் வெளிப்படைத்தன்மை முக்கியமானது.",
+        "te": "పరిపాలనలో పారదర్శకత చాలా ముఖ్యం.",
+        "kn": "ಸಾರ್ವಜನಿಕ ಆಡಳಿತದಲ್ಲಿ ಪಾರದರ್ಶಕತೆ ಮುಖ್ಯ.",
+        "bn": "প্রশাসনে স্বচ্ছতা অত্যন্ত গুরুত্বপূর্ণ।",
+        "mr": "सार्वजनिक प्रशासनात पारदर्शकता महत्त्वाची असते."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Affidavit",
-        translation: "हलफनामा",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Government",
+        "hi": "सरकार",
+        "ta": "அரசு",
+        "te": "ప్రభుత్వం",
+        "kn": "ಸರ್ಕಾರ",
+        "bn": "সরকার",
+        "mr": "शासन"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Jurisdiction",
-        translation: "अधिकार क्षेत्र",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Certificate",
+        "hi": "प्रमाण पत्र",
+        "ta": "சான்றிதழ்",
+        "te": "ధృవీకరణ పత్రం",
+        "kn": "ಪ್ರಮಾಣಪತ್ರ",
+        "bn": "শংসাপত্র",
+        "mr": "प्रमाणपत्र"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Notarised",
-        translation: "नोटरीकृत",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Verification",
+        "hi": "सत्यापन",
+        "ta": "சரிபார்ப்பு",
+        "te": "ధృవీకరణ",
+        "kn": "ಪರಿಶೀಲನೆ",
+        "bn": "যাচাইকরণ",
+        "mr": "पडताळणी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Legislation",
-        translation: "कानून",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Citizen",
+        "hi": "नागरिक",
+        "ta": "குடிமகன்",
+        "te": "పౌరుడు",
+        "kn": "ನಾಗರಿಕ",
+        "bn": "নাগরিক",
+        "mr": "नागरिक"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Grievance",
-        translation: "शिकायत",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Scheme",
+        "hi": "योजना",
+        "ta": "திட்டம்",
+        "te": "పథకం",
+        "kn": "ಯೋಜನೆ",
+        "bn": "প্রকল্প",
+        "mr": "योजना"
       }
     ]
   },
-
-  // ── Unit 10: Workplace Communication ─────────────────────────────
-  unit_workplace_comm: {
-    reading: [
+  "unit_workplace_comm": {
+    "reading": [
       {
-        instruction: "Read and answer",
-        content: "Please find attached the meeting minutes from yesterday's session.",
-        translation: "कृपया कल के सत्र की बैठक के कार्यवृत्त संलग्न पाएँ।",
-        question: "What is attached to this message?",
-        options: ["A report", "An invoice", "Meeting minutes", "A leave application"],
-        answerIndex: 2,
-        explanation: "'Meeting minutes' is what is attached."
+        "en": "Please find attached the quarterly business performance report.",
+        "hi": "कृपया त्रैमासिक व्यावसायिक प्रदर्शन रिपोर्ट संलग्न देखें।",
+        "ta": "காலாண்டு வணிக செயல்திறன் அறிக்கையை இணைப்பில் காண்க.",
+        "te": "దయచేసి త్రైమాసిక వ్యాపార పనితీరు నివేదికను చూడండి.",
+        "kn": "ದಯವಿಟ್ಟು ತ್ರೈಮಾಸಿಕ ವ್ಯವಹಾರ ಸಾಧನೆ ವರದಿಯನ್ನು ಪರಿಶೀಲಿಸಿ.",
+        "bn": "ত্রৈমাসিক ব্যবসায়িক কর্মক্ষমতা রিপোর্টটি সংযুক্তিতে দেখুন।",
+        "mr": "कृपया त्रैमासिक व्यावसायिक कामगिरी अहवाल जोडलेला पहा."
       },
       {
-        instruction: "Read and answer",
-        content: "The deadline for this project is extended by five working days.",
-        translation: "इस परियोजना की समयसीमा पाँच कार्य दिवसों के लिए बढ़ा दी गई है।",
-        question: "By how many days is the deadline extended?",
-        options: ["Three working days", "Four working days", "Five working days", "Seven working days"],
-        answerIndex: 2,
-        explanation: "'Five working days' is the extension granted."
+        "en": "We will have a client presentation on Monday morning.",
+        "hi": "सोमवार सुबह हमारी क्लाइंट प्रेजेंटेशन होगी।",
+        "ta": "திங்கட்கிழமை காலையில் வாடிக்கையாளர் விளக்கக்காட்சி நடைபெறும்.",
+        "te": "సోమవారం ఉదయం క్లయింట్ ప్రదర్శన ఉంటుంది.",
+        "kn": "ಸೋಮವಾರ ಬೆಳಿಗ್ಗೆ ಕ್ಲೈಂಟ್ ಪ್ರಸ್ತುತಿ ನಡೆಯಲಿದೆ.",
+        "bn": "সোমবার সকালে আমাদের একটি ক্লায়েন্ট প্রেজেন্টেশন আছে।",
+        "mr": "सोमवारी सकाळी आमचे क्लायंट सादरीकरण होईल."
       },
       {
-        instruction: "Read and answer",
-        content: "All team members must attend the briefing at ten o'clock sharp.",
-        translation: "सभी टीम सदस्यों को ठीक दस बजे ब्रीफिंग में उपस्थित होना होगा।",
-        question: "At what time is the briefing?",
-        options: ["Nine o'clock", "Ten o'clock", "Eleven o'clock", "Noon"],
-        answerIndex: 1,
-        explanation: "'At ten o'clock sharp' is the briefing time."
+        "en": "Please confirm your availability for the strategic meeting.",
+        "hi": "रणनीतिक बैठक के लिए अपनी उपलब्धता की पुष्टि करें।",
+        "ta": "வியூகக் கூட்டத்திற்கான உங்கள் இருப்பை உறுதிப்படுத்தவும்.",
+        "te": "వ్యూహాత్మక సమావేశం కోసం మీ సమయాన్ని నిర్ధారించండి.",
+        "kn": "ತಂತ್ರಜ್ಞಾನ ಸಭೆಯಲ್ಲಿ ನಿಮ್ಮ ಲಭ್ಯತೆಯನ್ನು ದೃಢೀಕರಿಸಿ.",
+        "bn": "কৌশলগত বৈঠকের জন্য আপনার উপস্থিতি নিশ্চিত করুন।",
+        "mr": "महत्त्वाच्या बैठकीसाठी आपल्या उपलब्धतेची पुष्टी करा."
       },
       {
-        instruction: "Read and answer",
-        content: "Please CC the department head on all external emails.",
-        translation: "सभी बाहरी ईमेल पर विभाग प्रमुख को CC करें।",
-        question: "Who should be CC'd on external emails?",
-        options: ["The HR manager", "The client", "The department head", "The finance team"],
-        answerIndex: 2,
-        explanation: "'Department head' should be CC'd on external emails."
+        "en": "Our company values innovation and honest teamwork.",
+        "hi": "हमारी कंपनी नवाचार और ईमानदार टीमवर्क को महत्व देती है।",
+        "ta": "எங்கள் நிறுவனம் புதுமை மற்றும் நேர்மையான குழுப்பணியை மதிக்கிறது.",
+        "te": "మా సంస్థ ఆవిష్కరణ మరియు నిజాయితీ బృంద కృషిని గౌరవిస్తుంది.",
+        "kn": "ನಮ್ಮ ಸಂಸ್ಥೆಯು ನಾವೀನ್ಯತೆ ಮತ್ತು ಪ್ರಾಮಾಣಿಕ ಸಹಯೋಗವನ್ನು ಗೌರವಿಸುತ್ತದೆ.",
+        "bn": "আমাদের কোম্পানি উদ্ভাবন এবং সততাকে মূল্য দেয়।",
+        "mr": "आमची कंपनी नावीन्य आणि प्रामाणिक सांघिक कार्याला महत्त्व देते."
       },
       {
-        instruction: "Read and answer",
-        content: "Confidential information must not be shared with unauthorised personnel.",
-        translation: "गोपनीय जानकारी अनधिकृत कर्मियों के साथ साझा नहीं की जानी चाहिए।",
-        question: "What must not be shared with unauthorised personnel?",
-        options: ["Project plans", "Budget reports", "Confidential information", "Meeting schedules"],
-        answerIndex: 2,
-        explanation: "'Confidential information' must not be shared."
+        "en": "Kindly submit your feedback regarding the new software tools.",
+        "hi": "नए सॉफ्टवेयर टूल्स के बारे में कृपया अपनी प्रतिक्रिया दें।",
+        "ta": "புதிய மென்பொருள் குறித்து உங்கள் கருத்துக்களைத் தெரிவிக்கவும்.",
+        "te": "కొత్త సాఫ్ట్‌వేర్ టూల్స్‌పై దయచేసి మీ అభిప్రాయాన్ని తెలపండి.",
+        "kn": "ಹೊಸ ಸಾಫ್ಟ್‌ವೇರ್ ಉಪಕರಣಗಳ ಕುರಿತು ನಿಮ್ಮ ಅನಿಸಿಕೆಯನ್ನು ತಿಳಿಸಿ.",
+        "bn": "নতুন সফটওয়্যার সম্পর্কে আপনার মতামত জানান।",
+        "mr": "नवीन सॉफ्टवेअर साधनांबद्दल कृपया आपला अभिप्राय द्या."
       }
     ],
-    writing: [
+    "writing": [
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Requesting a meeting with your manager",
-        question: "Can we schedule a meeting tomorrow",
-        options: ["meeting", "Can", "schedule", "tomorrow", "we", "a"],
-        answerIndex: 0,
-        explanation: "Modal + subject + verb + article + noun + time adverb."
+        "en": "Thank you for your constructive email response",
+        "hi": "आपके सकारात्मक ईमेल उत्तर के लिए धन्यवाद",
+        "ta": "உங்கள் ஆக்கப்பூர்வமான மின்னஞ்சல் பதிலுக்கு நன்றி",
+        "te": "మీ సానుకూల ఈమెయిల్ ప్రతిస్పందనకు ధన్యవాదాలు",
+        "kn": "ನಿಮ್ಮ ರಚನಾತ್ಮಕ ಇಮೇಲ್ ಪ್ರತಿಕ್ರಿಯೆಗೆ ಧನ್ಯವಾದಗಳು",
+        "bn": "আপনার ইতিবাচক ইমেলের জন্য ধন্যবাদ",
+        "mr": "आपल्या सकारात्मक ईमेल प्रतिसादाबद्दल धन्यवाद"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Asking for clarification on a task",
-        question: "Could you please clarify this task",
-        options: ["please", "Could", "task", "clarify", "you", "this"],
-        answerIndex: 0,
-        explanation: "Polite modal + subject + adverb + verb + object."
+        "en": "I will send the finalized proposal today",
+        "hi": "मैं आज अंतिम प्रस्ताव भेज दूँगा",
+        "ta": "நான் இறுதி செய்யப்பட்ட முன்மொழிவை இன்று அனுப்புவேன்",
+        "te": "నేను ఖరారైన ప్రతిపాదనను ఈరోజే పంపుతాను",
+        "kn": "ನಾನು ಅಂತಿಮಗೊಳಿಸಿದ ಪ್ರಸ್ತಾವನೆಯನ್ನು ಇಂದೇ ಕಳುಹಿಸುತ್ತೇನೆ",
+        "bn": "আমি আজ চূড়ান্ত প্রস্তাবটি পাঠিয়ে দেব",
+        "mr": "मी आज अंतिम प्रस्ताव पाठवीन"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Informing that a report is ready",
-        question: "The quarterly report is ready now",
-        options: ["now", "quarterly", "The", "ready", "report", "is"],
-        answerIndex: 0,
-        explanation: "Subject + verb + adjective + time adverb."
+        "en": "Let us schedule a quick video conference",
+        "hi": "आइए एक त्वरित वीडियो कॉन्फ्रेंस निर्धारित करें",
+        "ta": "ஒரு விரைவான வீடியோ மாநாட்டைத் திட்டமிடுவோம்",
+        "te": "మనం ఒక చిన్న వీడియో సమావేశాన్ని ఏర్పాటు చేద్దాం",
+        "kn": "ನಾವು ಒಂದು ತ್ವರಿತ ವೀಡಿಯೊ ಸಭೆಯನ್ನು ನಿಗದಿಪಡಿಸೋಣ",
+        "bn": "চলুন একটি সংক্ষিপ্ত ভিডিও মিটিং নির্ধারণ করি",
+        "mr": "चला एक छोटी व्हिडिओ कॉन्फरन्स आयोजित करूया"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Apologising for being late to a meeting",
-        question: "I apologise for being late today",
-        options: ["late", "I", "apologise", "being", "today", "for"],
-        answerIndex: 0,
-        explanation: "Subject + verb + preposition + gerund + time adverb."
+        "en": "Please review the project summary document carefully",
+        "hi": "कृपया परियोजना सारांश दस्तावेज़ की सावधानीपूर्वक समीक्षा करें",
+        "ta": "திட்டச் சுருக்க ஆவணத்தை கவனமாக மதிப்பாய்வு செய்யவும்",
+        "te": "ప్రాజెక్ట్ సారాంశ పత్రాన్ని జాగ్రత్తగా సమీక్షించండి",
+        "kn": "ಯೋಜನೆಯ ಸಾರಾಂಶ ದಾಖಲೆಯನ್ನು ದಯವಿಟ್ಟು ಎಚ್ಚರಿಕೆಯಿಂದ ಪರಿಶೀಲಿಸಿ",
+        "bn": "প্রকল্পের সংক্ষিপ্ত নথিটি মনোযোগ দিয়ে পর্যালোচনা করুন",
+        "mr": "कृपया प्रकल्प सारांश दस्तऐवजाचे काळजीपूर्वक पुनरावलोकन करा"
       },
       {
-        instruction: "Arrange the words to make a correct sentence",
-        content: "Confirming that you received an email",
-        question: "I have received your email with the attachment",
-        options: ["attachment", "have", "I", "the", "email", "received", "your", "with"],
-        answerIndex: 0,
-        explanation: "Subject + auxiliary + verb + possessive + noun + preposition + article + noun."
+        "en": "We appreciate your continued collaboration and trust",
+        "hi": "हम आपके निरंतर सहयोग और विश्वास की सराहना करते हैं",
+        "ta": "உங்கள் தொடர்ச்சியான ஒத்துழைப்பையும் நம்பிக்கையையும் பாராட்டுகிறோம்",
+        "te": "మీ నిరంతర సహకారాన్ని మరియు నమ్మకాన్ని మేము అభినందిస్తున్నాము",
+        "kn": "ನಿಮ್ಮ ನಿರಂತರ ಸಹಕಾರ ಮತ್ತು ನಂಬಿಕೆಯನ್ನು ನಾವು ಶ್ಲಾಘಿಸುತ್ತೇವೆ",
+        "bn": "আমরা আপনার ধারাবাহিক সহযোগিতাকে অত্যন্ত মূল্যবান মনে করি",
+        "mr": "आम्ही आपल्या निरंतर सहकार्याची आणि विश्वासाची कदर करतो"
       }
     ],
-    listening: [
+    "listening": [
       {
-        instruction: "Listen and answer",
-        content: "The client presentation has been rescheduled to Thursday.",
-        translation: "क्लाइंट प्रेज़ेंटेशन को गुरुवार के लिए पुनर्निर्धारित किया गया है।",
-        question: "When is the client presentation rescheduled to?",
-        options: ["Tuesday", "Wednesday", "Thursday", "Friday"],
-        answerIndex: 2,
-        explanation: "'Rescheduled to Thursday' is the new date."
+        "en": "The international client meeting is rescheduled to Thursday afternoon.",
+        "hi": "अंतर्राष्ट्रीय ग्राहक बैठक गुरुवार दोपहर के लिए पुनर्निर्धारित की गई है।",
+        "ta": "சர்வதேச வாடிக்கையாளர் கூட்டம் வியாழக்கிழமைக்கு மாற்றப்பட்டுள்ளது.",
+        "te": "అంతర్జాతీయ క్లయింట్ సమావేశం గురువారం మధ్యాహ్నానికి మార్చబడింది.",
+        "kn": "ಅಂತರರಾಷ್ಟ್ರೀಯ ಕ್ಲೈಂಟ್ ಸಭೆಯನ್ನು ಗುರುವಾರ ಮಧ್ಯಾಹ್ನಕ್ಕೆ ಮರುನಿಗದಿಪಡಿಸಲಾಗಿದೆ.",
+        "bn": "আন্তর্জাতিক ক্লায়েন্ট বৈঠকটি বৃহস্পতিবার বিকেলে পুনর্নির্ধারিত হয়েছে।",
+        "mr": "आंतरराष्ट्रीय ग्राहकाची बैठक गुरुवारी दुपारसाठी पुनर्नियोजित केली आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please ensure all action items from the meeting are completed by Friday.",
-        translation: "कृपया सुनिश्चित करें कि बैठक के सभी कार्य बिंदु शुक्रवार तक पूरे हों।",
-        question: "By when should action items be completed?",
-        options: ["Wednesday", "Thursday", "Friday", "Monday"],
-        answerIndex: 2,
-        explanation: "'By Friday' is the completion deadline."
+        "en": "All employees should complete the cybersecurity training module.",
+        "hi": "सभी कर्मचारियों को साइबर सुरक्षा प्रशिक्षण पूरा करना होगा।",
+        "ta": "அனைத்து ஊழியர்களும் இணையப் பாதுகாப்புப் பயிற்சியை முடிக்க வேண்டும்.",
+        "te": "ఉద్యోగులందరూ సైబర్ సెక్యూరిటీ శిక్షణను పూర్తి చేయాలి.",
+        "kn": "ಎಲ್ಲಾ ಉದ್ಯೋಗಿಗಳು ಸೈಬರ್ ಭದ್ರತಾ ತರಬೇತಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಬೇಕು.",
+        "bn": "সমস্ত কর্মচারীকে সাইবার নিরাপত্তা প্রশিক্ষণ শেষ করতে হবে।",
+        "mr": "सर्व कर्मचाऱ्यांनी सायबर सुरक्षा प्रशिक्षण पूर्ण करणे आवश्यक आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "We need to improve inter-departmental communication going forward.",
-        translation: "हमें आगे जाकर विभागों के बीच संचार को बेहतर बनाने की ज़रूरत है।",
-        question: "What needs to be improved?",
-        options: ["Technical skills", "Customer service", "Inter-departmental communication", "Project management"],
-        answerIndex: 2,
-        explanation: "'Inter-departmental communication' needs improvement."
+        "en": "Our quarterly revenue has grown by twenty-five percent.",
+        "hi": "हमारा त्रैमासिक राजस्व पच्चीस प्रतिशत बढ़ा है।",
+        "ta": "எங்கள் காலாண்டு வருவாய் இருபத்தைந்து சதவீதம் அதிகரித்துள்ளது.",
+        "te": "మా త్రైమాసిక ఆదాయం ఇరవై ఐదు శాతం పెరిగింది.",
+        "kn": "ನಮ್ಮ ತ್ರೈಮಾಸಿಕ ಆದಾಯವು ಶೇಕಡಾ ಇಪ್ಪತ್ತೈದರಷ್ಟು ಹೆಚ್ಚಾಗಿದೆ.",
+        "bn": "আমাদের ত্রৈমাসিক আয় পঁচিশ শতাংশ বৃদ্ধি পেয়েছে।",
+        "mr": "आमचा त्रैमासिक महसूल पंचवीस टक्क्यांनी वाढला आहे."
       },
       {
-        instruction: "Listen and answer",
-        content: "Your performance review is scheduled for next Monday at two PM.",
-        translation: "आपकी प्रदर्शन समीक्षा अगले सोमवार को दोपहर दो बजे निर्धारित है।",
-        question: "When is the performance review?",
-        options: ["This Friday at two PM", "Next Monday at two PM", "Next Wednesday at two PM", "This Monday at three PM"],
-        answerIndex: 1,
-        explanation: "'Next Monday at two PM' is when the review is scheduled."
+        "en": "Please submit your leaves on the human resources portal.",
+        "hi": "कृपया मानव संसाधन पोर्टल पर अपनी छुट्टियों का आवेदन दें।",
+        "ta": "தயவுசெய்து HR தளத்தில் உங்கள் விடுப்பை விண்ணப்பிக்கவும்.",
+        "te": "దయచేసి HR పోర్టల్‌లో మీ సెలవులను నమోదు చేయండి.",
+        "kn": "ದಯವಿಟ್ಟು ಮಾನವ ಸಂಪನ್ಮೂಲ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ರಜೆಗಾಗಿ ಅರ್ಜಿ ಸಲ್ಲಿಸಿ.",
+        "bn": "দয়া করে এইচআর পোর্টালে আপনার ছুটির আবেদন করুন।",
+        "mr": "कृपया मनुष्यबळ पोर्टलवर आपल्या सुट्ट्यांची नोंद करा."
       },
       {
-        instruction: "Listen and answer",
-        content: "Please copy the finance team on all vendor-related correspondence.",
-        translation: "सभी विक्रेता से संबंधित पत्राचार में वित्त टीम को कॉपी करें।",
-        question: "Who should be copied on vendor-related correspondence?",
-        options: ["The CEO", "The HR team", "The finance team", "The legal team"],
-        answerIndex: 2,
-        explanation: "'Finance team' should be copied on vendor correspondence."
+        "en": "High professional ethics build long-term business partnerships.",
+        "hi": "उच्च पेशेवर नैतिकता दीर्घकालिक व्यापार साझेदारी का निर्माण करती है।",
+        "ta": "உயர்ந்த தொழில்முறை நெறிமுறைகள் நீண்டகால வணிக உறவை உருவாக்குகின்றன.",
+        "te": "ఉన్నత వృత్తిపరమైన విలువలు దీర్ಘకాలిక భాగస్వామ్యాన్ని నిర్మిస్తాయి.",
+        "kn": "ಉತ್ತಮ ವೃತ್ತಿಪರ ನೈತಿಕತೆಯು ದೀರ್ಘಕಾಲೀನ ವ್ಯವಹಾರ ಸಂಬಂಧಗಳನ್ನು ನಿರ್ಮಿಸುತ್ತದೆ.",
+        "bn": "উচ্চ পেশাদার সততা দীর্ঘস্থায়ী ব্যবসায়িক অংশীদারিত্ব গড়ে তোলে।",
+        "mr": "उच्च व्यावसायिक मूल्ये दीर्घकालीन व्यावसायिक संबंध निर्माण करतात."
       }
     ],
-    speaking: [
+    "speaking": [
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I would like to discuss the project timeline.",
-        translation: "मैं परियोजना की समय-सीमा पर चर्चा करना चाहूँगा।",
-        question: "Repeat this formal workplace sentence",
-        options: [],
-        answerIndex: 0
+        "en": "I am pleased to present our business achievements.",
+        "hi": "मुझे हमारी व्यावसायिक उपलब्धियों को प्रस्तुत करते हुए प्रसन्नता हो रही है।",
+        "ta": "எங்கள் வணிக சாதனைகளை முன்வைப்பதில் மகிழ்ச்சி அடைகிறேன்.",
+        "te": "మా వ్యాపార విజయాలను ప్రదర్శించడం నాకు సంతోషంగా ఉంది.",
+        "kn": "ನಮ್ಮ ವ್ಯವಹಾರ ಸಾಧನೆಗಳನ್ನು ಪ್ರಸ್ತುತಪಡಿಸಲು ನನಗೆ ಸಂತೋಷವಾಗಿದೆ.",
+        "bn": "আমাদের ব্যবসায়িক সাফল্য উপস্থাপন করতে পেরে আনন্দিত।",
+        "mr": "आमचे व्यावसायिक यश सादर करताना मला आनंद होत आहे."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Could you please send me the updated report?",
-        translation: "क्या आप मुझे अपडेट की गई रिपोर्ट भेज सकते हैं?",
-        question: "Repeat this professional request",
-        options: [],
-        answerIndex: 0
+        "en": "Clear communication avoids unnecessary workplace confusion.",
+        "hi": "स्पष्ट संवाद कार्यस्थल में अनावश्यक भ्रम से बचाता है।",
+        "ta": "தெளிவான தொடர்பு தேவையற்ற குழப்பங்களைத் தவிர்க்கிறது.",
+        "te": "స్పష్టమైన సంభాషణ పనిలో అయోమయాన్ని తగ్గిస్తుంది.",
+        "kn": "ಸ್ಪಷ್ಟ ಸಂವಹನವು ಗೊಂದಲವನ್ನು ತಪ್ಪಿಸುತ್ತದೆ.",
+        "bn": "স্পষ্ট যোগাযোগ কর্মক্ষেত্রে বিভ্রান্তি এড়ায়।",
+        "mr": "स्पष्ट संवादामुळे कामाच्या ठिकाणी गोंधळ टळतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I will follow up on this by end of day.",
-        translation: "मैं दिन के अंत तक इस पर अनुवर्ती कार्रवाई करूँगा।",
-        question: "Repeat this commitment sentence",
-        options: [],
-        answerIndex: 0
+        "en": "We appreciate your prompt assistance on this issue.",
+        "hi": "हम इस मुद्दे पर आपकी त्वरित सहायता की सराहना करते हैं।",
+        "ta": "இந்த விஷயத்தில் உங்கள் விரைவான உதவிக்கு நன்றி.",
+        "te": "ఈ విషయంలో మీ తక్షణ సహాయాన్ని అభినందిస్తున్నాము.",
+        "kn": "ಈ ವಿಷಯದಲ್ಲಿ ನಿಮ್ಮ ತ್ವರಿತ ಸಹಾಯವನ್ನು ನಾವು ಪ್ರಶಂಸಿಸುತ್ತೇವೆ.",
+        "bn": "এই বিষয়ে আপনার দ্রুত সহায়তার প্রশংসা করছি।",
+        "mr": "या विषयातील आपल्या त्वरित मदतीबद्दल धन्यवाद."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "I apologise for the delay in responding.",
-        translation: "मुझे प्रतिक्रिया देने में देरी के लिए खेद है।",
-        question: "Repeat this professional apology",
-        options: [],
-        answerIndex: 0
+        "en": "Innovation and quality lead to sustainable growth.",
+        "hi": "नवाचार और गुणवत्ता निरंतर विकास की ओर ले जाते हैं।",
+        "ta": "புதுமையும் தரமும் நிலையான வளர்ச்சிக்கு வழிவகுக்கும்.",
+        "te": "ఆవిష్కరణ మరియు నాణ్యత స్థిరమైన వృద్ధికి దారితీస్తాయి.",
+        "kn": "ನಾವೀನ್ಯತೆ ಮತ್ತು ಗುಣಮಟ್ಟವು ಸುಸ್ಥಿರ ಬೆಳವಣಿಗೆಗೆ ಕಾರಣವಾಗುತ್ತದೆ.",
+        "bn": "উদ্ভাবন এবং গুণমান দীর্ঘস্থায়ী উন্নতির দিকে নিয়ে যায়।",
+        "mr": "नावीन्यता आणि गुणवत्ता यामुळे शाश्वत विकास होतो."
       },
       {
-        instruction: "Tap the mic and say this out loud",
-        content: "Please keep me updated on the progress.",
-        translation: "कृपया मुझे प्रगति के बारे में अपडेट रखें।",
-        question: "Repeat this delegation sentence",
-        options: [],
-        answerIndex: 0
+        "en": "Thank you for your active participation in today meeting.",
+        "hi": "आज की बैठक में आपकी सक्रिय भागीदारी के लिए धन्यवाद।",
+        "ta": "இன்றைய கூட்டத்தில் கலந்துகொண்டதற்கு நன்றி.",
+        "te": "సమావేశంలో పాల్గొన్నందుకు అందరికీ ధన్యవాದాలు.",
+        "kn": "ಇಂದಿನ ಸಭೆಯಲ್ಲಿ ಭಾಗವಹಿಸಿದ್ದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು.",
+        "bn": "আজকের মিটিংয়ে অংশগ্রহণের জন্য ধন্যবাদ।",
+        "mr": "आजच्या बैठकीत सहभागी झाल्याबद्दल धन्यवाद."
       }
     ],
-    pronunciation: [
+    "pronunciation": [
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Correspondence",
-        translation: "पत्राचार",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Communication",
+        "hi": "संचार",
+        "ta": "தொடர்பு",
+        "te": "సంభాషణ",
+        "kn": "ಸಂವಹನ",
+        "bn": "যোগাযোগ",
+        "mr": "संवाद"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Confidential",
-        translation: "गोपनीय",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Presentation",
+        "hi": "प्रस्तुति",
+        "ta": "விளக்கக்காட்சி",
+        "te": "ప్రదర్శన",
+        "kn": "ಪ್ರಸ್ತುತಿ",
+        "bn": "উপস্থাপনা",
+        "mr": "सादरीकरण"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Acknowledgement",
-        translation: "पावती",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Collaboration",
+        "hi": "सहयोग",
+        "ta": "ஒத்துழைப்பு",
+        "te": "సహకారం",
+        "kn": "ಸಹಯೋಗ",
+        "bn": "সহযোগিতা",
+        "mr": "सहकार्य"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Rescheduled",
-        translation: "पुनर्निर्धारित",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Performance",
+        "hi": "प्रदर्शन",
+        "ta": "செயல்திறன்",
+        "te": "పనితీరు",
+        "kn": "ಸಾಧನೆ",
+        "bn": "কর্মক্ষমতা",
+        "mr": "कामगिरी"
       },
       {
-        instruction: "Tap the mic and pronounce this word clearly",
-        content: "Compliance",
-        translation: "अनुपालन",
-        question: "Pronounce this word",
-        options: [],
-        answerIndex: 0
+        "en": "Strategy",
+        "hi": "रणनीति",
+        "ta": "வியூகம்",
+        "te": "వ్యూహం",
+        "kn": "ಕಾರ್ಯತಂತ್ರ",
+        "bn": "কৌশল",
+        "mr": "धोरण"
       }
     ]
   }
 };
+
+const UNIT_QUESTION_PROMPTS = {
+  reading: {
+    en: "What is the meaning of this sentence?",
+    hi: "इस वाक्य का सही अर्थ क्या है?",
+    kn: "ಈ ವಾಕ್ಯದ ಸರಿಯಾದ ಅರ್ಥವೇನು?",
+    ta: "இந்த வாக்கியத்தின் சரியான பொருள் என்ன?",
+    te: "ఈ వాక్యం యొక్క సరైన అర్థం ఏమిటి?",
+    bn: "এই বাক্যের সঠিক অর্থ কী?",
+    mr: "या वाक्याचा खरा अर्थ काय आहे?"
+  },
+  listening: {
+    en: "What did the speaker say?",
+    hi: "वक्ता ने क्या कहा?",
+    kn: "ಮಾತನಾಡಿದ ವಾಕ್ಯದ ಅರ್ಥವೇನು?",
+    ta: "பேசப்பட்ட வாக்கியத்தின் பொருள் என்ன?",
+    te: "వక్త చెప్పిన వాక్యం యొక్క అర్థం ఏమిటి?",
+    bn: "বক্তা কী বলেছেন?",
+    mr: "वक्त्याने काय म्हटले?"
+  },
+  speaking: {
+    en: "Speak clearly into your microphone",
+    hi: "माइक में स्पष्ट रूप से बोलें",
+    kn: "ಮೈಕ್ರೊಫೋನ್‌ನಲ್ಲಿ ಸ್ಪಷ್ಟವಾಗಿ ಮಾತನಾಡಿ",
+    ta: "மைக்ரோஃபோனில் தெளிவாகப் பேசுங்கள்",
+    te: "మైక్రోఫోన్‌లో స్పష్టంగా మాట్లాడండి",
+    bn: "মাইক্রোফোনে স্পষ্টভাবে বলুন",
+    mr: "मायक्रोफोनमध्ये स्पष्टपणे बोला"
+  },
+  pronunciation: {
+    en: "Pronounce this word clearly",
+    hi: "इस शब्द का स्पष्ट उच्चारण करें",
+    kn: "ಈ ಪದವನ್ನು ಸ್ಪಷ್ಟವಾಗಿ ಉಚ್ಚರಿಸಿ",
+    ta: "இந்த வார்த்தையை தெளிவாக உச்சரிக்கவும்",
+    te: "ఈ పదాన్ని స్పష్టంగా ఉచ్చరించండి",
+    bn: "এই শব্দটি স্পষ্টভাবে উচ্চারণ করুন",
+    mr: "या शब्दाचा स्पष्ट उच्चार करा"
+  }
+};
+
+/**
+ * getUnitExercises(unitId, skill, targetLang, preferredLang)
+ * Resolves 5 interactive exercises paired perfectly for targetLang and preferredLang.
+ */
+function getUnitExercises(unitId, skill, targetLang, preferredLang) {
+  const uData = UNITS_DATA_RAW[unitId];
+  if (!uData || !uData[skill]) return [];
+
+  const rawList = uData[skill];
+  const targetKey = (targetLang || "en").toLowerCase();
+  
+  let prefKey = (preferredLang || 
+                 (typeof selectedLang !== "undefined" ? selectedLang : null) || 
+                 (typeof localStorage !== "undefined" ? localStorage.getItem("akshar_user_lang") : null) || 
+                 "kn").toLowerCase();
+
+  if (targetKey === prefKey) {
+    prefKey = targetKey === "en" ? "kn" : "en";
+  }
+
+  return rawList.map((item, qIdx) => {
+    const targetText = item[targetKey] || item["en"];
+    const prefText   = item[prefKey]   || item["kn"] || item["en"];
+
+    // 1. Reading & Listening (Comprehension MCQ)
+    if (skill === "reading" || skill === "listening") {
+      const correctMeaning = prefText;
+      const questionPrompt = UNIT_QUESTION_PROMPTS[skill]?.[prefKey] || UNIT_QUESTION_PROMPTS[skill]?.["en"] || "What is the meaning of this sentence?";
+
+      const distIdx1 = (qIdx + 1) % rawList.length;
+      const distIdx2 = (qIdx + 2) % rawList.length;
+      const distIdx3 = (qIdx + 3) % rawList.length;
+
+      const dist1 = rawList[distIdx1][prefKey] || rawList[distIdx1]["en"];
+      const dist2 = rawList[distIdx2][prefKey] || rawList[distIdx2]["en"];
+      const dist3 = rawList[distIdx3][prefKey] || rawList[distIdx3]["en"];
+
+      const rawOpts = [correctMeaning, dist1, dist2, dist3];
+      const order = [(qIdx * 3 + 1) % 4, (qIdx * 3 + 2) % 4, (qIdx * 3 + 3) % 4, (qIdx * 3) % 4];
+      const seen = new Set();
+      const shuffled = [];
+      for (const idx of order) {
+        if (!seen.has(idx) && rawOpts[idx] !== undefined) {
+          seen.add(idx);
+          shuffled.push(rawOpts[idx]);
+        }
+      }
+      rawOpts.forEach((opt, idx) => {
+        if (!seen.has(idx)) shuffled.push(opt);
+      });
+
+      const ansIdx = Math.max(0, shuffled.indexOf(correctMeaning));
+
+      return {
+        instruction: skill === "reading" ? "Read and answer" : "Listen and answer",
+        content: targetText,
+        translation: correctMeaning,
+        question: questionPrompt,
+        options: shuffled,
+        answerIndex: ansIdx,
+        explanation: `The correct meaning is: '${correctMeaning}'.`
+      };
+    }
+
+    // 2. Writing (Sentence Builder)
+    if (skill === "writing") {
+      const promptSentence = prefText;
+      const targetSentence = targetText;
+      const wordBank = targetSentence.split(/\s+/);
+
+      return {
+        instruction: "Arrange the words to make a correct sentence",
+        content: promptSentence,
+        question: targetSentence,
+        options: wordBank,
+        translation: promptSentence,
+        answerIndex: 0,
+        explanation: `Correct sentence: '${targetSentence}'.`
+      };
+    }
+
+    // 3. Speaking & Pronunciation
+    return {
+      instruction: skill === "speaking" ? "Tap the mic and say this out loud" : "Tap the mic and pronounce this word clearly",
+      content: targetText,
+      translation: prefText,
+      question: UNIT_QUESTION_PROMPTS[skill]?.[prefKey] || UNIT_QUESTION_PROMPTS[skill]?.["en"] || "Speak clearly into your microphone",
+      options: [],
+      answerIndex: 0
+    };
+  });
+}
+
+// Backwards-compatibility wrapper
+const UNITS_CONTENT = new Proxy({}, {
+  get(target, unitId) {
+    if (!UNITS_DATA_RAW[unitId]) return undefined;
+    return new Proxy({}, {
+      get(targetSkill, skillName) {
+        const pref = (typeof selectedLang !== "undefined" ? selectedLang : null) || 
+                     (typeof localStorage !== "undefined" ? localStorage.getItem("akshar_user_lang") : null) || 
+                     "kn";
+        return getUnitExercises(unitId, skillName, "en", pref);
+      }
+    });
+  }
+});
+
+window.UNITS_CONTENT = UNITS_CONTENT;
+window.getUnitExercises = getUnitExercises;
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { getUnitExercises, UNITS_CONTENT, UNITS_DATA_RAW };
+}

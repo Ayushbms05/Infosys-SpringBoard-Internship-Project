@@ -8,8 +8,8 @@
   <meta name="description" content="AksharGyan Dashboard — Your Duolingo-style personalized literacy learning space." />
   <meta name="theme-color" content="#6366f1" />
   <title>AksharGyan — Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="landing.css" />
+  <link rel="stylesheet" href="style.css?v=2.2" />
+  <link rel="stylesheet" href="landing.css?v=2.2" />
   <link rel="manifest" href="/manifest.json" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -2053,60 +2053,48 @@
     }
 
     /* ═══════════════════════════════════════════════════════════════════
-         ENHANCED ANALYSIS & FEEDBACK SECTION UI
+         ENHANCED ANALYSIS & FEEDBACK SECTION UI (Compact & Modern)
          ═══════════════════════════════════════════════════════════════════ */
 
     .analysis-section-card {
-      background: rgba(255, 255, 255, 0.95) !important;
-      border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
-      border-radius: 28px !important;
-      box-shadow: 0 15px 35px -10px rgba(15, 23, 42, 0.06) !important;
-      padding: 2rem !important;
-      backdrop-filter: blur(16px) !important;
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 20px !important;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04) !important;
+      padding: 1.35rem 1.6rem !important;
     }
 
     .analysis-stat-card {
       background: #ffffff !important;
       border: 1.5px solid #e2e8f0 !important;
-      border-radius: 22px !important;
-      padding: 1.5rem !important;
-      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05) !important;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+      border-radius: 18px !important;
+      padding: 1.15rem 1rem !important;
+      min-height: auto !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03) !important;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
     }
 
     .analysis-stat-card:hover {
-      transform: translateY(-5px) !important;
-      border-color: #6366f1 !important;
-      box-shadow: 0 16px 36px -10px rgba(99, 102, 241, 0.2) !important;
-    }
-
-    .analysis-stat-icon {
-      width: 48px !important;
-      height: 48px !important;
-      border-radius: 14px !important;
-      background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
-      color: #ffffff !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      font-size: 1.25rem !important;
-      box-shadow: 0 8px 20px -4px rgba(99, 102, 241, 0.35) !important;
-      margin-bottom: 0.85rem !important;
+      transform: translateY(-3px) !important;
+      border-color: #c7d2fe !important;
+      box-shadow: 0 10px 24px -6px rgba(99, 102, 241, 0.15) !important;
     }
 
     .analysis-stat-value {
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 2rem !important;
+      font-size: 1.7rem !important;
       font-weight: 900 !important;
       color: #0f172a !important;
-      line-height: 1.1 !important;
+      line-height: 1.15 !important;
     }
 
     .analysis-stat-label {
-      font-size: 0.88rem !important;
+      font-size: 0.76rem !important;
       font-weight: 800 !important;
       color: #64748b !important;
-      margin-top: 0.35rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.04em !important;
+      margin-top: 0.2rem !important;
     }
 
     /* Feedback Card Styling */
@@ -5197,6 +5185,184 @@
       border-color: #6366f1 !important;
       box-shadow: 0 18px 40px -8px rgba(99, 102, 241, 0.22) !important;
     }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       ANALYSIS PAGE — COMPACT, BEAUTIFUL & PROPORTIONAL CARDS
+       ═════════════════════════════════════════════════════════════════════ */
+    #section-analysis .analysis-stats-row {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 1.25rem !important;
+      margin-bottom: 1.75rem !important;
+    }
+
+    #section-analysis .analysis-stat-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 18px !important;
+      padding: 1.15rem 1rem !important;
+      min-height: 120px !important;
+      max-height: 135px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03) !important;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+    }
+
+    #section-analysis .analysis-stat-card:hover {
+      transform: translateY(-3px) !important;
+      border-color: #c7d2fe !important;
+      box-shadow: 0 10px 24px -6px rgba(99, 102, 241, 0.15) !important;
+    }
+
+    #section-analysis .analysis-grid {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1.25rem !important;
+      align-items: stretch !important;
+    }
+
+    #section-analysis .analysis-section-card {
+      background: #ffffff !important;
+      border: 1.5px solid #e2e8f0 !important;
+      border-radius: 20px !important;
+      padding: 1.25rem 1.5rem !important;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04) !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      height: 100% !important;
+      min-height: auto !important;
+      max-height: none !important;
+      box-sizing: border-box !important;
+    }
+
+    #section-analysis .analysis-section-card .dash-card-header {
+      margin-bottom: 0.85rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    #section-analysis .dash-card-title {
+      font-size: 1.15rem !important;
+      font-weight: 900 !important;
+      color: #0f172a !important;
+      display: flex !important;
+      align-items: center !important;
+      gap: 0.5rem !important;
+      margin-bottom: 0.2rem !important;
+    }
+
+    #section-analysis .dash-card-subtitle {
+      font-size: 0.82rem !important;
+      color: #64748b !important;
+      font-weight: 600 !important;
+      margin: 0 !important;
+    }
+
+    /* Left Card: Skill Breakdown */
+    #section-analysis .skill-bd-bars {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.5rem !important;
+      flex: 1 !important;
+      justify-content: flex-start !important;
+    }
+
+    #section-analysis .skill-bar-item {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.25rem !important;
+      padding: 0.35rem 0.65rem !important;
+      border-radius: 10px !important;
+      background: #f8fafc !important;
+      border: 1px solid #f1f5f9 !important;
+    }
+
+    #section-analysis .skill-bar-label {
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      color: #1e293b !important;
+    }
+
+    #section-analysis .skill-bar-status-tag {
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      padding: 0.15rem 0.45rem !important;
+      border-radius: 6px !important;
+    }
+
+    #section-analysis .skill-bar-track {
+      height: 6px !important;
+      background: #e2e8f0 !important;
+      border-radius: 4px !important;
+    }
+
+    /* Right Card: Accuracy Trend */
+    #section-analysis .weekly-chart-container {
+      background: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      box-shadow: none !important;
+      flex: 1 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: flex-start !important;
+      gap: 0.6rem !important;
+    }
+
+    #section-analysis #accuracy-trend-chart {
+      height: 175px !important;
+      min-height: 175px !important;
+      max-height: 175px !important;
+      width: 100% !important;
+      position: relative !important;
+    }
+
+    #section-analysis #accuracy-trend-chart canvas {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 175px !important;
+    }
+
+    #section-analysis .weekly-chart-summary {
+      background: #f8fafc !important;
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 10px !important;
+      padding: 0.45rem 0.75rem !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      color: #475569 !important;
+      text-align: center !important;
+      margin-top: auto !important;
+    }
+
+    /* Calendar */
+    #section-analysis .full-calendar {
+      max-width: 290px !important;
+      margin: 0 auto !important;
+    }
+
+    #section-analysis .cal-header {
+      margin-bottom: 0.35rem !important;
+      font-size: 0.7rem !important;
+    }
+
+    #section-analysis .cal-grid {
+      gap: 4px !important;
+    }
+
+    #section-analysis .cal-cell {
+      width: 30px !important;
+      height: 30px !important;
+      font-size: 0.76rem !important;
+    }
+
+    #section-analysis .progress-items {
+      gap: 0.65rem !important;
+    }
   </style>
 </head>
 
@@ -5553,6 +5719,98 @@
                       <span data-i18n="exploreOnLearningPath">Explore on Learning Path</span>
                       <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
                     </button>
+                  </div>
+                </div>
+
+                <!-- ════ ✨ Akshar AI Performance & Growth Advisor Card ════ -->
+                <div class="dash-card ai-growth-advisor-card" id="ai-growth-advisor-card" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(245, 243, 255, 0.95)); border: 1.5px solid #c7d2fe; border-radius: 24px; padding: 1.6rem 1.8rem; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.08); margin-bottom: 1.5rem; position: relative; overflow: hidden;">
+                  <!-- Header with Live Pulse + Refresh -->
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <div style="width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35); flex-shrink: 0;">
+                        <i data-lucide="sparkles" style="width: 22px; height: 22px;"></i>
+                      </div>
+                      <div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.18rem; font-weight: 900; color: #0f172a; margin: 0;" data-i18n="aiAdvisorTitle">
+                            AI Performance & Growth Advisor
+                          </h3>
+                          <span style="background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 0.3rem;">
+                            <span style="width: 6px; height: 6px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+                            Gemini AI
+                          </span>
+                        </div>
+                        <p id="ai-advisor-subtitle" style="font-size: 0.84rem; color: #64748b; font-weight: 600; margin: 0.2rem 0 0;" data-i18n="aiAdvisorSubtitle">
+                          Real-time diagnostic analysis based on your accuracy & progress
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <button id="ai-advisor-refresh-btn" type="button" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 0.45rem 0.9rem; font-size: 0.82rem; font-weight: 800; color: #4f46e5; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: all 0.2s ease; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+                      <i data-lucide="refresh-cw" id="ai-advisor-refresh-icon" style="width: 14px; height: 14px;"></i>
+                      <span data-i18n="aiAdvisorReanalyze">Re-Analyze</span>
+                    </button>
+                  </div>
+
+                  <!-- Loading Shimmer State -->
+                  <div id="ai-advisor-loading" class="hidden" style="padding: 1.5rem 0;">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; color: #6366f1; font-weight: 800; font-size: 0.92rem; margin-bottom: 1rem;">
+                      <i data-lucide="loader-2" class="spin-icon" style="width: 18px; height: 18px;"></i>
+                      <span data-i18n="dashGeminiAnalyzing">Gemini is evaluating your recent exercises and calculating growth opportunities…</span>
+                    </div>
+                    <div class="ai-shimmer-bar" style="height: 12px; border-radius: 6px; background: #e2e8f0; margin-bottom: 0.6rem; width: 95%;"></div>
+                    <div class="ai-shimmer-bar" style="height: 12px; border-radius: 6px; background: #e2e8f0; margin-bottom: 0.6rem; width: 80%;"></div>
+                    <div class="ai-shimmer-bar" style="height: 12px; border-radius: 6px; background: #e2e8f0; width: 60%;"></div>
+                  </div>
+
+                  <!-- Advisor Content Body -->
+                  <div id="ai-advisor-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                    <!-- 1. What's Going Great -->
+                    <div style="background: #ffffff; border: 1.5px solid #dcfce7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.04);">
+                      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;">
+                        <div style="width: 28px; height: 28px; border-radius: 8px; background: #dcfce7; color: #15803d; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
+                          <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <h4 style="font-size: 0.92rem; font-weight: 900; color: #166534; margin: 0; text-transform: uppercase; letter-spacing: 0.04em;" data-i18n="aiAdvisorGreat">
+                          What's Going Great
+                        </h4>
+                      </div>
+                      <ul id="ai-advisor-strengths-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; color: #334155; font-weight: 700; line-height: 1.5;">
+                        <li>Analyzing recent progress…</li>
+                      </ul>
+                    </div>
+
+                    <!-- 2. What Needs Focus / To Improve -->
+                    <div style="background: #ffffff; border: 1.5px solid #fef3c7; border-radius: 18px; padding: 1.2rem 1.4rem; box-shadow: 0 4px 12px rgba(217, 119, 6, 0.04);">
+                      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem;">
+                        <div style="width: 28px; height: 28px; border-radius: 8px; background: #fef3c7; color: #b45309; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
+                          <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                        </div>
+                        <h4 style="font-size: 0.92rem; font-weight: 900; color: #92400e; margin: 0; text-transform: uppercase; letter-spacing: 0.04em;" data-i18n="aiAdvisorFocus">
+                          Areas to Focus & Improve
+                        </h4>
+                      </div>
+                      <ul id="ai-advisor-focus-list" style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem; color: #334155; font-weight: 700; line-height: 1.5;">
+                        <li>Analyzing growth areas…</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- Personalized Actionable Recommendation Banner -->
+                  <div id="ai-advisor-action-banner" style="margin-top: 1rem; background: linear-gradient(135deg, #eef2ff, #f5f3ff); border: 1.5px solid #c7d2fe; border-radius: 16px; padding: 1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                      <i data-lucide="zap" style="width: 20px; height: 20px; color: #6366f1; flex-shrink: 0;"></i>
+                      <div>
+                        <span style="font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; color: #4f46e5;" data-i18n="aiAdvisorAction">Recommended Action</span>
+                        <p id="ai-advisor-action-text" style="font-size: 0.92rem; font-weight: 800; color: #0f172a; margin: 0.1rem 0 0;">
+                          Continue your daily practice to level up your accuracy
+                        </p>
+                      </div>
+                    </div>
+                    <a id="ai-advisor-action-link" href="lesson.html?level=beginner&unit=alphabets&type=reading" class="btn-primary" style="padding: 0.55rem 1.2rem !important; font-size: 0.85rem !important; border-radius: 12px !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 0.4rem !important;">
+                      <span data-i18n="aiAdvisorPracticeBtn">Start Targeted Practice</span>
+                      <i data-lucide="arrow-right" style="width: 14px; height: 14px;"></i>
+                    </a>
                   </div>
                 </div>
 
@@ -6637,54 +6895,76 @@
             </div>
             <!-- ═══ ANALYSIS SECTION ═══ -->
             <div id="section-analysis" class="dash-main-section hidden">
-              <div class="dash-topbar" style="margin-bottom: 2rem">
+              <div class="dash-topbar" style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                 <div class="dash-topbar-title">
-                  <h1 data-i18n="analysisTitle" style="margin: 0; font-size: 1.8rem">
-                    Analysis
-                  </h1>
-                  <p class="dash-topbar-sub" data-i18n="analysisSubtitle"
-                    style="margin: 0; color: var(--color-text-secondary)">
-                    Your learning insights, all in one place
+                  <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.25rem;">
+                    <h1 data-i18n="analysisTitle" style="margin: 0; font-size: 1.75rem; font-weight: 900; color: #0f172a;">
+                      Learning Analytics & Insights
+                    </h1>
+                    <span class="badge-premium" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; font-size: 0.72rem; font-weight: 800; padding: 0.2rem 0.6rem; border-radius: 9999px;">AI Powered</span>
+                  </div>
+                  <p class="dash-topbar-sub" id="analysis-track-pill"
+                    style="margin: 0; color: var(--color-text-secondary); font-size: 0.88rem; font-weight: 600;">
+                    Your personalized skill progression and accuracy metrics
                   </p>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.6rem;">
+                  <button class="btn-primary" onclick="document.querySelector('[data-section=\'learn\']')?.click()"
+                    style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.15rem; font-size: 0.85rem; font-weight: 800; border-radius: 12px; box-shadow: 0 4px 14px rgba(99, 102, 241, 0.3);">
+                    <i data-lucide="play" style="width: 15px; height: 15px;"></i>
+                    <span>Practice Next Lesson</span>
+                  </button>
                 </div>
               </div>
 
               <!-- Overview stat cards -->
               <div class="analysis-stats-row" id="analysis-stats-row">
                 <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon"><i data-lucide="book-open"></i></div>
+                  <div class="analysis-stat-icon-wrap stat-icon-purple"><i data-lucide="book-open"></i></div>
                   <div class="analysis-stat-value" id="stat-total-lessons">
                     0
                   </div>
                   <div class="analysis-stat-label" data-i18n="statLessonsCompleted">
                     Lessons Completed
                   </div>
+                  <div class="analysis-stat-subtag" style="font-size: 0.72rem; font-weight: 700; color: #10b981; margin-top: 0.25rem;">
+                    Active Progress
+                  </div>
                 </div>
                 <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon"><i data-lucide="target"></i></div>
+                  <div class="analysis-stat-icon-wrap stat-icon-green"><i data-lucide="target"></i></div>
                   <div class="analysis-stat-value" id="stat-avg-accuracy">
                     —
                   </div>
                   <div class="analysis-stat-label" data-i18n="statAvgAccuracy">
                     Average Accuracy
                   </div>
+                  <div class="analysis-stat-subtag" style="font-size: 0.72rem; font-weight: 700; color: #6366f1; margin-top: 0.25rem;">
+                    Overall Benchmark
+                  </div>
                 </div>
                 <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon"><i data-lucide="star"></i></div>
+                  <div class="analysis-stat-icon-wrap stat-icon-violet"><i data-lucide="star"></i></div>
                   <div class="analysis-stat-value" id="stat-best-skill">
                     —
                   </div>
                   <div class="analysis-stat-label" data-i18n="statStrongestSkill">
                     Strongest Skill
                   </div>
+                  <div class="analysis-stat-subtag" style="font-size: 0.72rem; font-weight: 700; color: #8b5cf6; margin-top: 0.25rem;">
+                    Top Competency
+                  </div>
                 </div>
                 <div class="analysis-stat-card">
-                  <div class="analysis-stat-icon"><i data-lucide="flame"></i></div>
+                  <div class="analysis-stat-icon-wrap stat-icon-amber"><i data-lucide="flame"></i></div>
                   <div class="analysis-stat-value" id="stat-current-streak">
                     0
                   </div>
                   <div class="analysis-stat-label" data-i18n="statDayStreak">
                     Day Streak
+                  </div>
+                  <div class="analysis-stat-subtag" style="font-size: 0.72rem; font-weight: 700; color: #f59e0b; margin-top: 0.25rem;">
+                    Streak Active 🔥
                   </div>
                 </div>
               </div>
@@ -6692,59 +6972,67 @@
               <div class="analysis-grid">
                 <!-- Skill Breakdown -->
                 <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon"><i data-lucide="puzzle"></i></span>
-                      <span data-i18n="skillBreakdownTitle">Skill Breakdown</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="skillBreakdownDesc">
-                      Average accuracy per skill, based on every lesson you've
-                      completed
-                    </p>
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon" style="background: #eef2ff; color: #6366f1;"><i data-lucide="puzzle"></i></span>
+                        <span data-i18n="skillBreakdownTitle">Skill Breakdown</span>
+                      </h3>
+                      <p class="dash-card-subtitle" data-i18n="skillBreakdownDesc">
+                        Accuracy per skill track based on lesson completions
+                      </p>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #f1f5f9; color: #475569; padding: 0.2rem 0.55rem; border-radius: 6px;">5 Skills</span>
                   </div>
                   <div id="skill-breakdown-bars" class="skill-bd-bars"></div>
                   <div id="skill-breakdown-empty" class="analysis-empty-state hidden" data-i18n="skillBreakdownEmpty">
-                    Complete a few lessons across different skills (Reading,
-                    Writing, Listening, Speaking, Pronunciation) to see your
-                    breakdown here.
+                    Complete lessons across Reading, Writing, Listening, Speaking, and Pronunciation to track your skills.
                   </div>
                 </div>
 
                 <!-- Accuracy Trend -->
                 <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon"><i data-lucide="trending-up"></i></span>
-                      <span data-i18n="accuracyTrendTitle">Accuracy Trend</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="accuracyTrendDesc">
-                      Your last 12 lesson attempts, most recent on the right
-                    </p>
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon" style="background: #ecfdf5; color: #10b981;"><i data-lucide="trending-up"></i></span>
+                        <span data-i18n="accuracyTrendTitle">Accuracy Trend</span>
+                      </h3>
+                      <p class="dash-card-subtitle" data-i18n="accuracyTrendDesc">
+                        Historical progression across your lesson attempts
+                      </p>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #ecfdf5; color: #059669; padding: 0.2rem 0.55rem; border-radius: 6px;">Live Trend</span>
                   </div>
                   <div class="weekly-chart-container">
                     <div id="accuracy-trend-chart" class="chart-container weekly-chart-inner"></div>
                     <div class="weekly-chart-summary" id="accuracy-trend-summary"></div>
                   </div>
                   <div id="accuracy-trend-empty" class="analysis-empty-state hidden" data-i18n="accuracyTrendEmpty">
-                    No lesson attempts yet — finish a lesson and your accuracy
-                    trend will start appearing here.
+                    Finish your next lesson to unlock real-time trend analytics.
                   </div>
                 </div>
 
                 <!-- Activity Calendar -->
                 <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon"><i data-lucide="calendar"></i></span>
-                      <span data-i18n="practiceActivityTitle">Practice Activity</span>
-                    </h3>
-                    <div class="calendar-streak-badge">
-                      <i data-lucide="flame" class="inline-icon"></i> <span id="analysis-cal-streak-count">0</span> Day
-                      Streak
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon" style="background: #fffbeb; color: #f59e0b;"><i data-lucide="calendar"></i></span>
+                        <span data-i18n="practiceActivityTitle">Practice Activity</span>
+                      </h3>
+                      <p class="dash-card-subtitle">Consistency calendar</p>
+                    </div>
+                    <div class="calendar-streak-badge" style="background: #fff7ed; border: 1px solid #ffedd5; color: #ea580c; font-weight: 800; font-size: 0.75rem; padding: 0.25rem 0.6rem; border-radius: 9999px; display: inline-flex; align-items: center; gap: 0.3rem;">
+                      <i data-lucide="flame" style="width: 14px; height: 14px; color: #ea580c;"></i> <span id="analysis-cal-streak-count">0</span> Day Streak
                     </div>
                   </div>
-                  <div id="analysis-cal-month-year" class="calendar-month-year">
-                    Month 202X
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                    <button class="cal-nav-btn" id="cal-prev-btn" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #64748b;">◀</button>
+                    <div id="analysis-cal-month-year" class="calendar-month-year" style="font-weight: 800; font-size: 0.88rem; color: #1e293b;">
+                      Month 202X
+                    </div>
+                    <button class="cal-nav-btn" id="cal-next-btn" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #64748b;">▶</button>
                   </div>
                   <div class="full-calendar">
                     <div class="cal-header">
@@ -6756,35 +7044,61 @@
 
                 <!-- Curriculum Progress -->
                 <div class="dash-card analysis-section-card">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon"><i data-lucide="map"></i></span>
-                      <span data-i18n="curriculumProgressTitle">Curriculum Progress</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="curriculumProgressDesc">
-                      How far you've come across every level and unit
-                    </p>
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div>
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon" style="background: #f5f3ff; color: #8b5cf6;"><i data-lucide="map"></i></span>
+                        <span data-i18n="curriculumProgressTitle">Curriculum Progress</span>
+                      </h3>
+                      <p class="dash-card-subtitle" data-i18n="curriculumProgressDesc">
+                        Stage completion across Beginner, Intermediate & Advanced
+                      </p>
+                    </div>
+                    <span style="font-size: 0.72rem; font-weight: 800; background: #f5f3ff; color: #7c3aed; padding: 0.2rem 0.55rem; border-radius: 6px;">3 Stages</span>
                   </div>
                   <div id="curriculum-progress-list" class="progress-items"></div>
                 </div>
 
                 <!-- Initial Assessment Snapshot -->
                 <div class="dash-card analysis-section-card analysis-card-full">
-                  <div class="dash-card-header">
-                    <h3 class="dash-card-title">
-                      <span class="dash-card-title-icon"><i data-lucide="sparkles"></i></span>
-                      <span data-i18n="assessmentSnapshotTitle">Initial Assessment Snapshot</span>
-                    </h3>
-                    <p class="dash-card-subtitle" data-i18n="assessmentSnapshotDesc">
-                      A one-time snapshot from the day you took your
-                      assessment — not updated since
-                    </p>
+                  <div class="dash-card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                      <h3 class="dash-card-title">
+                        <span class="dash-card-title-icon" style="background: #eef2ff; color: #6366f1;"><i data-lucide="sparkles"></i></span>
+                        <span data-i18n="assessmentSnapshotTitle">Initial Assessment Snapshot</span>
+                      </h3>
+                      <p class="dash-card-subtitle" data-i18n="assessmentSnapshotDesc">
+                        Diagnostic analysis from placement assessment
+                      </p>
+                    </div>
+                    <span style="font-size: 0.75rem; font-weight: 800; background: #eef2ff; color: #4f46e5; padding: 0.25rem 0.65rem; border-radius: 8px;">Diagnostic Report</span>
                   </div>
                   <div id="assessment-snapshot-content"></div>
                   <div id="assessment-snapshot-empty" class="analysis-empty-state hidden"
                     data-i18n="assessmentSnapshotEmpty">
                     No assessment analysis available for this account yet.
                   </div>
+                </div>
+
+                <!-- AI Learning Recommendation Action Banner -->
+                <div class="dash-card analysis-section-card analysis-card-full" id="analysis-ai-recommendation-card"
+                  style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(16, 185, 129, 0.05)); border: 1.5px solid rgba(99, 102, 241, 0.2); border-radius: 20px; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                  <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);">
+                      💡
+                    </div>
+                    <div>
+                      <h4 style="margin: 0 0 0.2rem 0; font-size: 1rem; font-weight: 800; color: #0f172a;">AI Focus Recommendation</h4>
+                      <p id="analysis-ai-rec-text" style="margin: 0; font-size: 0.85rem; font-weight: 600; color: #475569;">
+                        Practice writing and listening exercises to build balanced fluency across all skills.
+                      </p>
+                    </div>
+                  </div>
+                  <button class="btn-primary" onclick="document.querySelector('[data-section=\'learn\']')?.click()"
+                    style="padding: 0.55rem 1.15rem; font-size: 0.85rem; font-weight: 800; border-radius: 10px; display: inline-flex; align-items: center; gap: 0.4rem;">
+                    <span>Start Focused Practice</span>
+                    <i data-lucide="arrow-right" style="width: 15px; height: 15px;"></i>
+                  </button>
                 </div>
               </div>
               <!-- /.analysis-grid -->

@@ -13,89 +13,55 @@
  */
 
 // ── State ─────────────────────────────────────────────────────────
-let ulExercises        = [];
-let ulCurrentIndex     = 0;
-let ulScore            = 0;
-let ulTotalExercises   = 0;
-let ulSelectedAnswer   = null;
-let ulParams           = {};
-let ulUserProfile      = null;
-let ulLessonStartTime  = Date.now();
+let ulExercises = [];
+let ulCurrentIndex = 0;
+let ulScore = 0;
+let ulTotalExercises = 0;
+let ulSelectedAnswer = null;
+let ulParams = {};
+let ulUserProfile = null;
+let ulLessonStartTime = Date.now();
 
 // ── Parse URL params ──────────────────────────────────────────────
 function ulParseParams() {
   const p = new URLSearchParams(window.location.search);
   return {
-    level:      p.get("level")     || "beginner",
-    unitId:     p.get("unit")      || "",
-    unitTitle:  decodeURIComponent(p.get("unitTitle") || "Unit Lesson"),
-    skill:      p.get("type")      || "reading",
+    level: p.get("level") || "beginner",
+    unitId: p.get("unit") || "",
+    unitTitle: decodeURIComponent(p.get("unitTitle") || "Unit Lesson"),
+    skill: p.get("type") || "reading",
   };
 }
 
 // ── Skill icons ───────────────────────────────────────────────────
 const UL_SKILL_ICONS = {
-  reading:       "📖",
-  writing:       "✍️",
-  listening:     "🎧",
-  speaking:      "🎤",
+  reading: "📖",
+  writing: "✍️",
+  listening: "🎧",
+  speaking: "🎤",
   pronunciation: "🔤",
+};
+
+// ── Unit to Curriculum Mapping ─────────────────────────────────────
+const UNIT_INDEX_MAP = {
+  unit_greetings_numbers: { level: "beginner", lessonIndex: 1 },
+  unit_daily_life: { level: "beginner", lessonIndex: 2 },
+  unit_family: { level: "beginner", lessonIndex: 3 },
+  unit_shopping: { level: "beginner", lessonIndex: 4 },
+  unit_work: { level: "intermediate", lessonIndex: 1 },
+  unit_health: { level: "intermediate", lessonIndex: 2 },
+  unit_banking: { level: "intermediate", lessonIndex: 3 },
+  unit_transit: { level: "advanced", lessonIndex: 1 },
+  unit_government: { level: "advanced", lessonIndex: 2 },
+  unit_workplace_comm: { level: "advanced", lessonIndex: 3 }
 };
 
 // ── Translation visibility based on level ─────────────────────────
 function ulTranslationClass() {
-  if (ulParams.level === "beginner")     return "translation-prominent";
+  if (ulParams.level === "beginner") return "translation-prominent";
   if (ulParams.level === "intermediate") return "translation-muted";
   return "translation-hidden";
 }
-
-// ── Instruction Translation Map ───────────────────────────────────
-const UL_INSTRUCTION_MAP = {
-  hi: {
-    "Read and answer": "पढ़ें और उत्तर दें",
-    "Listen and answer": "सुनें और उत्तर दें",
-    "Arrange the words to make a correct sentence": "शब्दों को सही क्रम में व्यवस्थित करें",
-    "Arrange the words": "शब्दों को सही क्रम में व्यवस्थित करें",
-    "Tap the mic and say this out loud": "माइक टैप करके इसे ज़ोर से बोलें",
-    "Tap the mic and pronounce this word clearly": "माइक टैप करके इस शब्द का स्पष्ट उच्चारण करें"
-  }
-};
-
-// ── Question Translation Map ─────────────────────────────────────
-const UL_QUESTION_MAP = {
-  hi: {
-    "What is the person's name?": "व्यक्ति का नाम क्या है?",
-    "What is the speaker asking about?": "वक्ता किस बारे में पूछ रहा है?",
-    "How many students are there?": "वहाँ कितने छात्र हैं?",
-    "When does the shop open?": "दुकान कब खुलती है?",
-    "What is the speaker asking the person to do?": "वक्ता व्यक्ति को क्या करने के लिए कह रहा है?",
-    "Where is Anita from?": "अनिता कहाँ से है?",
-    "What is the price?": "कीमत क्या है?",
-    "What time of day is it?": "दिन का कौन सा समय है?",
-    "How many brothers does the speaker have?": "वक्ता के कितने भाई हैं?",
-    "What should you write?": "आपको क्या लिखना चाहिए?",
-    "What time does this person wake up?": "यह व्यक्ति कितने बजे उठता है?",
-    "What does she cook?": "वह क्या पकाती है?",
-    "When is the electricity bill due?": "बिजली के बिल की देय तिथि क्या है?",
-    "How does he get to the bus stop?": "वह बस स्टॉप तक कैसे पहुँचता है?",
-    "How long is the water supply cut?": "पानी की आपूर्ति कितने समय के लिए बंद है?",
-    "When does the market open?": "बाज़ार कब खुलता है?",
-    "When should you pay the rent?": "आपको किराया कब देना चाहिए?",
-    "What does she buy?": "वह क्या खरीदती है?",
-    "How often does the bus arrive?": "बस कितनी बार आती है?",
-    "When does the speaker take a bath?": "वक्ता कब नहाता है?",
-    "Where does the father work?": "पिताजी कहाँ काम करते हैं?",
-    "Who got married last year?": "पिछले साल किसकी शादी हुई?",
-    "How many daughters do they have?": "उनकी कितनी बेटियाँ हैं?",
-    "Who lives in the same house?": "उसी घर में कौन रहता है?",
-    "Which class is the son studying in?": "बेटा किस कक्षा में पढ़ रहा है?",
-    "Where does the husband work?": "पति कहाँ काम करते हैं?",
-    "How many family members are there?": "परिवार में कितने सदस्य हैं?",
-    "What is the younger brother doing?": "छोटा भाई क्या कर रहा है?",
-    "What do they do together as a family?": "वे एक परिवार के रूप में एक साथ क्या करते हैं?",
-    "Who does the mother take care of?": "माँ किसकी देखभाल करती हैं?"
-  }
-};
 
 // ── Render current exercise ───────────────────────────────────────
 function ulRenderExercise() {
@@ -108,41 +74,19 @@ function ulRenderExercise() {
   ulSelectedAnswer = null;
 
   const targetLang = ulUserProfile?.targetLanguage || "en";
-  const knownLang  = ulUserProfile?.preferredLanguage || "hi";
+  const knownLang = ulUserProfile?.preferredLanguage || "en";
+  const targetLangName = (typeof getLanguageName === "function" ? getLanguageName(targetLang) : targetLang.toUpperCase());
 
   // Progress
   const pct = ((ulCurrentIndex + 1) / ulTotalExercises) * 100;
   const fillEl = document.getElementById("ul-progress-fill");
   if (fillEl) fillEl.style.width = `${pct}%`;
 
-  // Translated instruction if available in learner's known language
+  // Instruction display
   const rawInstruction = ex.instruction || "Complete the exercise";
-  const translatedInstruction = (knownLang === "hi" || targetLang === "hi")
-    ? (UL_INSTRUCTION_MAP.hi[rawInstruction] || rawInstruction)
-    : rawInstruction;
-
   const instEl = document.getElementById("ul-instruction-text");
   if (instEl) {
-    instEl.innerHTML = `<i data-lucide="help-circle" style="width: 18px; height: 18px; color: #6366f1;"></i> <span>${translatedInstruction}</span>`;
-  }
-
-  let mainContent = ex.content;
-  let supportTranslation = ex.translation || "";
-
-  if (targetLang === "hi" && ex.translation) {
-    mainContent = ex.translation;
-    supportTranslation = ex.content;
-  }
-
-  let questionMain = ex.question;
-  let questionSub  = "";
-  if ((knownLang === "hi" || targetLang === "hi") && UL_QUESTION_MAP.hi[ex.question]) {
-    if (targetLang === "hi") {
-      questionMain = UL_QUESTION_MAP.hi[ex.question];
-      questionSub  = ex.question;
-    } else {
-      questionSub  = UL_QUESTION_MAP.hi[ex.question];
-    }
+    instEl.innerHTML = `<i data-lucide="help-circle" style="width: 18px; height: 18px; color: #6366f1;"></i> <span>${rawInstruction}</span>`;
   }
 
   const body = document.getElementById("ul-exercise-body");
@@ -155,11 +99,9 @@ function ulRenderExercise() {
         <button id="ul-listen-btn" style="width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: 4px solid #ffffff; box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1); margin: 0 auto;">
           <i data-lucide="volume-2" style="width: 38px; height: 38px;"></i>
         </button>
-        <p style="margin-top: 0.85rem; color: #6366f1; font-weight: 800; font-size: 0.95rem;">${knownLang === "hi" ? "सुनने के लिए टैप करें" : "Tap to Listen"}</p>
+        <p style="margin-top: 0.85rem; color: #6366f1; font-weight: 800; font-size: 0.95rem;">Tap to Listen</p>
       </div>
-      ${supportTranslation ? `<p class="translation-text ${ulTranslationClass()}">${supportTranslation}</p>` : ''}
-      <h3 class="exercise-question-text">${questionMain}</h3>
-      ${questionSub ? `<p style="font-size: 0.95rem; color: #64748b; margin: -0.5rem 0 1rem; font-style: italic; font-weight: 600;">${questionSub}</p>` : ''}
+      <h3 class="exercise-question-text">${ex.question}</h3>
       <div class="exercise-options-grid" id="ul-mcq-options"></div>
     `;
   }
@@ -168,29 +110,34 @@ function ulRenderExercise() {
   else if (ulParams.skill === "speaking" || ulParams.skill === "pronunciation") {
     html += `
       <div style="text-align: center; margin-bottom: 2rem; padding: 2rem 1.5rem; background: linear-gradient(135deg, #f8fafc, #eef2ff); border-radius: 24px; border: 2px solid #c7d2fe;">
-        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 900; color: #4f46e5; margin: 0 0 0.5rem;">${mainContent}</h2>
-        ${supportTranslation ? `<p class="translation-text ${ulTranslationClass()}" style="margin: 0.5rem 0;">${supportTranslation}</p>` : ''}
-        <p style="color: #64748b; font-size: 1.05rem; font-weight: 700; margin: 0;">"${questionMain}"</p>
+        <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 2.2rem; font-weight: 900; color: #4f46e5; margin: 0 0 0.5rem;">${ex.content}</h2>
+        ${ex.translation ? `<p class="translation-text ${ulTranslationClass()}" style="margin: 0.5rem 0;">${ex.translation}</p>` : ''}
+        <p style="color: #64748b; font-size: 1.05rem; font-weight: 700; margin: 0;">"${ex.question}"</p>
       </div>
       <div style="text-align: center; margin-bottom: 1rem;">
         <button id="ul-mic-btn" style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #ffffff; border: 4px solid #ffffff; box-shadow: 0 10px 28px rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto; transition: all 0.3s;">
           <i data-lucide="mic" style="width: 32px; height: 32px;"></i>
         </button>
-        <p id="ul-stt-result" style="color: #475569; margin-top: 1rem; font-weight: 800; font-size: 0.95rem; min-height: 24px;">${knownLang === "hi" ? "आवाज़ का इंतज़ार है..." : "Waiting for audio..."}</p>
+        <p id="ul-stt-result" style="color: #475569; margin-top: 1rem; font-weight: 800; font-size: 0.95rem; min-height: 24px;">Tap microphone to speak...</p>
       </div>
     `;
   }
 
   // 3. Writing (Sentence Builder)
   else if (ulParams.skill === "writing") {
+    const promptSentence = ex.content || ex.questionTranslation || ex.translation || ex.question;
+
     html += `
-      <div style="margin-bottom: 1.5rem; padding: 1.25rem; background: #f0fdf4; border-radius: 20px; border: 1.5px solid #86efac;">
-        ${supportTranslation ? `<p class="translation-text ${ulTranslationClass()}" style="margin-bottom: 0.35rem; color: #16a34a;">${supportTranslation}</p>` : ''}
-        <p style="font-weight: 800; font-size: 1.15rem; color: #15803d; margin: 0;">${mainContent}</p>
+      <div style="margin-bottom: 1.5rem; padding: 1.25rem 1.5rem; background: #f0fdf4; border-radius: 20px; border: 1.5px solid #86efac; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.08);">
+        <div style="font-size: 0.8rem; font-weight: 800; color: #16a34a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.4rem;">
+          <i data-lucide="languages" style="width: 15px; height: 15px;"></i>
+          <span>Translate into ${targetLangName}:</span>
+        </div>
+        <p style="font-weight: 800; font-size: 1.25rem; color: #15803d; margin: 0; line-height: 1.4;">${promptSentence}</p>
       </div>
       <div class="sentence-builder-area">
-        <div id="ul-dropzone" style="min-height: 64px; padding: 1rem; border: 2px dashed #6366f1; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #eef2ff; margin-bottom: 1.25rem; align-items: center;"></div>
-        <div id="ul-wordbank" style="min-height: 64px; padding: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.6rem; background: #f8fafc; align-items: center;"></div>
+        <div id="ul-dropzone" style="min-height: 68px; padding: 1rem; border: 2px dashed #6366f1; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.65rem; background: #eef2ff; margin-bottom: 1.25rem; align-items: center;"></div>
+        <div id="ul-wordbank" style="min-height: 68px; padding: 1rem; border: 1.5px solid #e2e8f0; border-radius: 20px; display: flex; flex-wrap: wrap; gap: 0.65rem; background: #f8fafc; align-items: center;"></div>
       </div>
     `;
   }
@@ -199,11 +146,9 @@ function ulRenderExercise() {
   else {
     html += `
       <div class="exercise-passage-card">
-        <p class="exercise-passage-text">${mainContent}</p>
+        <p class="exercise-passage-text">${ex.content}</p>
       </div>
-      ${supportTranslation ? `<p class="translation-text ${ulTranslationClass()}">${supportTranslation}</p>` : ''}
-      <h3 class="exercise-question-text">${questionMain}</h3>
-      ${questionSub ? `<p style="font-size: 0.95rem; color: #64748b; margin: -0.5rem 0 1rem; font-style: italic; font-weight: 600;">${questionSub}</p>` : ''}
+      <h3 class="exercise-question-text">${ex.question}</h3>
       <div class="exercise-options-grid" id="ul-mcq-options"></div>
     `;
   }
@@ -217,7 +162,7 @@ function ulRenderExercise() {
     ulTopTtsBtn.onclick = () => {
       ulTopTtsBtn.style.transform = "scale(0.92)";
       setTimeout(() => (ulTopTtsBtn.style.transform = "scale(1)"), 150);
-      const textToSpeak = mainContent || questionMain || "";
+      const textToSpeak = ex.content || ex.question || "";
       if (typeof speakText === "function") {
         speakText(textToSpeak, targetLang);
       }
@@ -253,7 +198,7 @@ function ulRenderExercise() {
     ulRenderMCQ(ex.options);
 
   } else if (ulParams.skill === "writing") {
-    const bank     = document.getElementById("ul-wordbank");
+    const bank = document.getElementById("ul-wordbank");
     const dropzone = document.getElementById("ul-dropzone");
     const shuffled = [...ex.options].sort(() => Math.random() - 0.5);
     shuffled.forEach(word => {
@@ -269,6 +214,44 @@ function ulRenderExercise() {
       bank.appendChild(chip);
     });
     ulSelectedAnswer = 0;
+
+  } else if (ulParams.skill === "speaking" || ulParams.skill === "pronunciation") {
+    const micBtn = document.getElementById("ul-mic-btn");
+    const resultEl = document.getElementById("ul-stt-result");
+    if (micBtn) {
+      micBtn.onclick = () => {
+        micBtn.style.background = "linear-gradient(135deg, #ef4444, #dc2626)";
+        if (resultEl) resultEl.textContent = "Listening...";
+
+        if (typeof startSpeechToText === "function") {
+          startSpeechToText(
+            targetLang,
+            (transcript) => {
+              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
+
+              if (transcript) {
+                if (resultEl) resultEl.textContent = `You said: "${transcript}"`;
+                const isPronunciation = ulParams.skill === "pronunciation";
+                const isMatch = ulEvaluateSpeechTranscript(ex.content, transcript, isPronunciation);
+                ulSelectedAnswer = isMatch ? "CORRECT" : "INCORRECT";
+                if (checkBtn) checkBtn.disabled = false;
+              } else {
+                if (resultEl) resultEl.textContent = "Didn't catch that. Tap mic to try again.";
+              }
+            },
+            (err) => {
+              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
+              if (resultEl) resultEl.textContent = "Speech recognition issue — tap mic to try again.";
+              console.error("STT error:", err);
+            }
+          );
+        }
+      };
+    }
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
 
 // ── Speech Evaluation Utilities ──────────────────────────────────
 function ulCleanSpeechText(text) {
@@ -336,44 +319,6 @@ function ulEvaluateSpeechTranscript(expectedText, spokenText, isPronunciation = 
   return true;
 }
 
-  } else if (ulParams.skill === "speaking" || ulParams.skill === "pronunciation") {
-    const micBtn    = document.getElementById("ul-mic-btn");
-    const resultEl  = document.getElementById("ul-stt-result");
-    if (micBtn) {
-      micBtn.onclick = () => {
-        micBtn.style.background = "linear-gradient(135deg, #ef4444, #dc2626)";
-        if (resultEl) resultEl.textContent = "Listening...";
-
-        if (typeof startSpeechToText === "function") {
-          startSpeechToText(
-            targetLang,
-            (transcript) => {
-              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
-
-              if (transcript) {
-                if (resultEl) resultEl.textContent = `You said: "${transcript}"`;
-                const isPronunciation = ulParams.skill === "pronunciation";
-                const isMatch = ulEvaluateSpeechTranscript(ex.content, transcript, isPronunciation);
-                ulSelectedAnswer = isMatch ? "CORRECT" : "INCORRECT";
-                if (checkBtn) checkBtn.disabled = false;
-              } else {
-                if (resultEl) resultEl.textContent = "Didn't catch that. Tap mic to try again.";
-              }
-            },
-            (err) => {
-              micBtn.style.background = "linear-gradient(135deg, #6366f1, #4f46e5)";
-              if (resultEl) resultEl.textContent = "Speech recognition issue — tap mic to try again.";
-              console.error("STT error:", err);
-            }
-          );
-        }
-      };
-    }
-  }
-
-  if (window.lucide) lucide.createIcons();
-}
-
 // ── Render MCQ buttons ────────────────────────────────────────────
 function ulRenderMCQ(options) {
   const container = document.getElementById("ul-mcq-options");
@@ -399,8 +344,8 @@ function ulRenderMCQ(options) {
 
 // ── Check answer ──────────────────────────────────────────────────
 function ulCheckAnswer() {
-  const ex        = ulExercises[ulCurrentIndex];
-  let   isCorrect = false;
+  const ex = ulExercises[ulCurrentIndex];
+  let isCorrect = false;
 
   if (ulParams.skill === "writing") {
     const built = Array.from(document.getElementById("ul-dropzone").children)
@@ -414,8 +359,8 @@ function ulCheckAnswer() {
   } else {
     isCorrect = ulSelectedAnswer === ex.answerIndex;
     document.querySelectorAll("#ul-mcq-options .exercise-option-btn").forEach((btn, idx) => {
-      if (idx === ex.answerIndex)                          btn.classList.add("correct");
-      else if (idx === ulSelectedAnswer && !isCorrect)     btn.classList.add("incorrect");
+      if (idx === ex.answerIndex) btn.classList.add("correct");
+      else if (idx === ulSelectedAnswer && !isCorrect) btn.classList.add("incorrect");
       btn.disabled = true;
     });
   }
@@ -486,16 +431,29 @@ async function ulShowComplete() {
     try {
       const fieldPath = `unitProgress.${ulParams.level}.${ulParams.unitId}.${ulParams.skill}`;
       const scoreFieldPath = `unitProgressScores.${ulParams.level}.${ulParams.unitId}.${ulParams.skill}`;
+      const lessonKey = `unit_${ulParams.level}_${ulParams.unitId}_${ulParams.skill}`;
+
       await db.collection("users").doc(user.uid).update({
         [fieldPath]: true,
-        [scoreFieldPath]: accuracy
+        [scoreFieldPath]: accuracy,
+        completedLessons: firebase.firestore.FieldValue.arrayUnion(lessonKey)
       });
 
-      const unitScoreKey = `unit_${ulParams.level}_${ulParams.unitId}_${ulParams.skill}`;
+      const durationSeconds = Math.round((Date.now() - ulLessonStartTime) / 1000);
+      await db.collection("users").doc(user.uid).collection("lessonHistory").add({
+        type: ulParams.skill,
+        level: ulParams.level,
+        unit: ulParams.unitId,
+        accuracy: accuracy,
+        xpEarned: xpEarned,
+        durationSeconds: durationSeconds,
+        completedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+
       const localMap = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
-      localMap[unitScoreKey] = accuracy;
+      localMap[lessonKey] = accuracy;
       localStorage.setItem("akshar_lesson_scores", JSON.stringify(localMap));
-      console.log(`[unit-lesson.js] ✅ Marked complete: ${fieldPath} with score ${accuracy}%`);
+      console.log(`[unit-lesson.js] ✅ Marked complete & logged history: ${fieldPath} with score ${accuracy}%`);
     } catch (e) {
       console.warn("[unit-lesson.js] Could not mark unit lesson complete:", e);
     }
@@ -552,20 +510,23 @@ async function ulSetupLesson() {
     ulUserProfile = {};
   }
 
-  if (typeof UNITS_CONTENT === "undefined" || !UNITS_CONTENT[ulParams.unitId]) {
-    const overlay = document.getElementById("ul-loading-overlay");
-    if (overlay) overlay.style.display = "none";
-    const bodyEl = document.getElementById("ul-exercise-body");
-    if (bodyEl) {
-      bodyEl.innerHTML =
-        `<p style="text-align:center;color:#64748b;padding:2rem;font-weight:700;">
-           No content found for this unit. Please check back soon.
-         </p>`;
-    }
-    return;
+  const targetLang = ulUserProfile?.targetLanguage || (typeof selectedLang !== "undefined" ? selectedLang : "en");
+  const prefLang   = ulUserProfile?.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : null) || localStorage.getItem("akshar_user_lang") || "kn";
+
+  ulExercises = [];
+
+  // 1. Direct Dedicated Units Content Provider (units-content.js)
+  if (typeof getUnitExercises === "function") {
+    ulExercises = getUnitExercises(ulParams.unitId, ulParams.skill, targetLang, prefLang) || [];
+    ulTotalExercises = ulExercises.length;
   }
 
-  ulExercises      = UNITS_CONTENT[ulParams.unitId][ulParams.skill] || [];
+  // 2. Fallback to UNITS_CONTENT if not resolved
+  if (ulExercises.length === 0 && typeof UNITS_CONTENT !== "undefined" && UNITS_CONTENT[ulParams.unitId]) {
+    ulExercises = UNITS_CONTENT[ulParams.unitId][ulParams.skill] || [];
+    ulTotalExercises = ulExercises.length;
+  }
+
   ulTotalExercises = ulExercises.length;
   ulLessonStartTime = Date.now();
 
@@ -576,7 +537,7 @@ async function ulSetupLesson() {
     if (bodyEl) {
       bodyEl.innerHTML =
         `<p style="text-align:center;color:#64748b;padding:2rem;font-weight:700;">
-           No exercises available for this skill yet.
+           No content found for this unit. Please check back soon.
          </p>`;
     }
     return;
@@ -604,7 +565,7 @@ async function ulSetupLesson() {
 
   const overlay = document.getElementById("ul-loading-overlay");
   if (overlay) overlay.style.display = "none";
-  
+
   ulRenderExercise();
 }
 

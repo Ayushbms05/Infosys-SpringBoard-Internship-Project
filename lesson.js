@@ -116,9 +116,9 @@ async function generateExercises() {
   }
 
   // 2. Direct Window Registry Fallback
-  const pack = window.CURRICULUM_LESSONS_CONTENT?.[targetLang] || 
-               window[`CURRICULUM_LESSONS_${targetLang.toUpperCase()}`] || 
-               window.CURRICULUM_LESSONS_EN || {};
+  const pack = window.CURRICULUM_LESSONS_CONTENT?.[targetLang] ||
+    window[`CURRICULUM_LESSONS_${targetLang.toUpperCase()}`] ||
+    window.CURRICULUM_LESSONS_EN || {};
   const exercises = pack[level]?.[skill]?.[lessonIndex];
   if (exercises && Array.isArray(exercises) && exercises.length > 0) {
     return exercises;
@@ -205,10 +205,10 @@ function renderExercise() {
 
   const instEl = document.getElementById("exercise-instruction-text");
   if (instEl) {
-    const instructionText = localizedInstructions[lessonParams.type]?.[knownLang] || 
-                            localizedInstructions[lessonParams.type]?.["en"] || 
-                            ex.instruction || 
-                            "Answer the question to continue";
+    const instructionText = localizedInstructions[lessonParams.type]?.[knownLang] ||
+      localizedInstructions[lessonParams.type]?.["en"] ||
+      ex.instruction ||
+      "Answer the question to continue";
     instEl.innerHTML = `<i data-lucide="help-circle" style="width: 18px; height: 18px; color: #6366f1;"></i> <span>${instructionText}</span>`;
   }
 
@@ -343,75 +343,75 @@ function renderExercise() {
     });
 
     selectedAnswer = 0;
-// ─── Speech Evaluation Utilities ────────────────────────
-function cleanSpeechText(text) {
-  if (!text) return "";
-  return text
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
+    // ─── Speech Evaluation Utilities ────────────────────────
+    function cleanSpeechText(text) {
+      if (!text) return "";
+      return text
+        .normalize("NFC")
+        .toLowerCase()
+        .replace(/[.,?!।॥:;"'`—\-_/\\]/gu, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
 
-function levenshteinDistance(s1, s2) {
-  const m = s1.length;
-  const n = s2.length;
-  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+    function levenshteinDistance(s1, s2) {
+      const m = s1.length;
+      const n = s2.length;
+      const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
 
-  for (let i = 0; i <= m; i++) dp[i][0] = i;
-  for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 0; i <= m; i++) dp[i][0] = i;
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
 
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (s1[i - 1] === s2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1];
-      } else {
-        dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          if (s1[i - 1] === s2[j - 1]) {
+            dp[i][j] = dp[i - 1][j - 1];
+          } else {
+            dp[i][j] = 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+          }
+        }
       }
+      return dp[m][n];
     }
-  }
-  return dp[m][n];
-}
 
-function isWordMatch(w1, w2) {
-  if (w1 === w2) return true;
-  // Short words (<= 3 chars, e.g. 'का', 'से', 'की', 'to', 'in') require exact match!
-  if (w1.length <= 3 || w2.length <= 3) return false;
-  // Allow at most 1 character variation for longer words due to STT phonetic transcription variations
-  const dist = levenshteinDistance(w1, w2);
-  return dist <= 1;
-}
-
-function evaluateSpeechTranscript(expectedText, spokenText, isPronunciation = false) {
-  const cleanExpected = cleanSpeechText(expectedText);
-  const cleanSpoken = cleanSpeechText(spokenText);
-
-  if (!cleanSpoken || !cleanExpected) return false;
-
-  const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
-  const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
-
-  if (isPronunciation) {
-    // For single word pronunciation, target is usually 1 word
-    if (expectedWords.length === 1 && spokenWords.length >= 1) {
-      return spokenWords.some(w => isWordMatch(expectedWords[0], w));
+    function isWordMatch(w1, w2) {
+      if (w1 === w2) return true;
+      // Short words (<= 3 chars, e.g. 'का', 'से', 'की', 'to', 'in') require exact match!
+      if (w1.length <= 3 || w2.length <= 3) return false;
+      // Allow at most 1 character variation for longer words due to STT phonetic transcription variations
+      const dist = levenshteinDistance(w1, w2);
+      return dist <= 1;
     }
-  }
 
-  // For speaking sentences: every word must be present in exact order without missing any words!
-  if (expectedWords.length !== spokenWords.length) {
-    return false;
-  }
+    function evaluateSpeechTranscript(expectedText, spokenText, isPronunciation = false) {
+      const cleanExpected = cleanSpeechText(expectedText);
+      const cleanSpoken = cleanSpeechText(spokenText);
 
-  for (let i = 0; i < expectedWords.length; i++) {
-    if (!isWordMatch(expectedWords[i], spokenWords[i])) {
-      return false;
+      if (!cleanSpoken || !cleanExpected) return false;
+
+      const expectedWords = cleanExpected.split(/\s+/).filter(Boolean);
+      const spokenWords = cleanSpoken.split(/\s+/).filter(Boolean);
+
+      if (isPronunciation) {
+        // For single word pronunciation, target is usually 1 word
+        if (expectedWords.length === 1 && spokenWords.length >= 1) {
+          return spokenWords.some(w => isWordMatch(expectedWords[0], w));
+        }
+      }
+
+      // For speaking sentences: every word must be present in exact order without missing any words!
+      if (expectedWords.length !== spokenWords.length) {
+        return false;
+      }
+
+      for (let i = 0; i < expectedWords.length; i++) {
+        if (!isWordMatch(expectedWords[i], spokenWords[i])) {
+          return false;
+        }
+      }
+
+      return true;
     }
-  }
-
-  return true;
-}
 
   } else if (
     lessonParams.type === "speaking" ||
@@ -596,7 +596,7 @@ async function showLessonComplete() {
         const localMap = JSON.parse(localStorage.getItem("akshar_lesson_scores") || "{}");
         localMap[lessonId] = Math.round(accuracy || 0);
         localStorage.setItem("akshar_lesson_scores", JSON.stringify(localMap));
-      } catch (e) {}
+      } catch (e) { }
 
       if (levelResult && levelResult.leveledUp) {
         const modal = document.getElementById("level-up-modal");

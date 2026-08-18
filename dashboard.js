@@ -109,6 +109,7 @@ function initDashboard(profile) {
 
   manageDailyQuests(profile); // 🌟 ADD THIS EXACT LINE RIGHT HERE!
   initPhraseOfDay(profile);
+  initAIGrowthAdvisor(profile);
 
   setupDashboardEvents(profile);
 
@@ -3071,3 +3072,399 @@ function initLeaderboard(profile) {
       }
     });
 }
+
+// ════════════════════════════════════════════════════════════════════
+// ✨ Akshar AI Performance & Growth Advisor (Gemini AI Engine)
+// ════════════════════════════════════════════════════════════════════
+
+let isAdvisorAnalyzing = false;
+
+/**
+ * initAIGrowthAdvisor(profile)
+ * Initializes the AI Performance Advisor card and checks for cached analysis.
+ */
+async function initAIGrowthAdvisor(profile) {
+  const cardEl = document.getElementById("ai-growth-advisor-card");
+  if (!cardEl) return;
+
+  const refreshBtn = document.getElementById("ai-advisor-refresh-btn");
+  if (refreshBtn) {
+    refreshBtn.onclick = () => runAIGrowthAdvisor(profile, true);
+  }
+
+  const user = auth.currentUser;
+  const cacheKey = user ? `akshar_ai_advisor_${user.uid}` : "akshar_ai_advisor_guest";
+  let cached = profile.geminiAdvisorAdvice || null;
+
+  if (!cached) {
+    try {
+      const stored = localStorage.getItem(cacheKey);
+      if (stored) cached = JSON.parse(stored);
+    } catch (e) {}
+  }
+
+  const completedCount = (profile.completedLessons || []).length;
+  const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : null) || localStorage.getItem("akshar_user_lang") || "kn";
+
+  // If cache is fresh (same completed lessons count & < 30 minutes old), render immediately
+  if (cached && cached.completedCount === completedCount && (Date.now() - (cached.timestamp || 0) < 1800000)) {
+    renderAdvisorAdvice(cached, profile, prefLang);
+    return;
+  }
+
+  // Otherwise run automated background analysis
+  runAIGrowthAdvisor(profile, false);
+}
+
+/**
+ * showAdvisorLoading(show)
+ * Toggles loading state & spinning refresh icon.
+ */
+function showAdvisorLoading(show) {
+  const loadingEl = document.getElementById("ai-advisor-loading");
+  const contentEl = document.getElementById("ai-advisor-content");
+  const actionBanner = document.getElementById("ai-advisor-action-banner");
+  const refreshIcon = document.getElementById("ai-advisor-refresh-icon");
+
+  if (loadingEl) loadingEl.classList.toggle("hidden", !show);
+  if (contentEl) contentEl.style.opacity = show ? "0.35" : "1";
+  if (actionBanner) actionBanner.style.opacity = show ? "0.35" : "1";
+
+  if (refreshIcon) {
+    if (show) {
+      refreshIcon.style.animation = "spin 1s linear infinite";
+    } else {
+      refreshIcon.style.animation = "none";
+    }
+  }
+}
+
+/**
+ * runAIGrowthAdvisor(profile, forceRefresh)
+ * Evaluates performance metrics and requests analysis from Gemini or graceful local advisor.
+ */
+async function runAIGrowthAdvisor(profile, forceRefresh) {
+  if (isAdvisorAnalyzing) return;
+  isAdvisorAnalyzing = true;
+  showAdvisorLoading(true);
+
+  const targetLang = profile.targetLanguage || "en";
+  const prefLang = profile.preferredLanguage || (typeof selectedLang !== "undefined" ? selectedLang : null) || localStorage.getItem("akshar_user_lang") || "kn";
+  const level = profile.level || "beginner";
+  const streak = profile.streak || 0;
+  const xp = profile.xp || 0;
+  const completedLessons = profile.completedLessons || [];
+  const completedCount = completedLessons.length;
+  const assessmentScore = profile.assessmentScore || 0;
+
+  // Gather skill accuracy metrics from lesson history
+  const baseAcc = assessmentScore > 0 ? assessmentScore : 80;
+  let skillScores = { 
+    reading: baseAcc, 
+    writing: baseAcc, 
+    listening: baseAcc, 
+    speaking: Math.max(30, baseAcc - 5), 
+    pronunciation: baseAcc 
+  };
+
+  const user = auth.currentUser;
+  if (user) {
+    try {
+      const snap = await db.collection("users").doc(user.uid).collection("lessonHistory").orderBy("completedAt", "desc").limit(25).get();
+      if (!snap.empty) {
+        const counts = {};
+        const sums = {};
+        snap.forEach(doc => {
+          const d = doc.data();
+          const t = d.type || "reading";
+          const acc = typeof d.accuracy === "number" ? d.accuracy : (assessmentScore || 80);
+          counts[t] = (counts[t] || 0) + 1;
+          sums[t] = (sums[t] || 0) + acc;
+        });
+        Object.keys(counts).forEach(k => {
+          if (counts[k] > 0) {
+            skillScores[k] = Math.round(sums[k] / counts[k]);
+          }
+        });
+      }
+    } catch (e) {
+      console.warn("History fetch for advisor (continuing):", e);
+    }
+  }
+
+  const metrics = {
+    targetLang,
+    prefLang,
+    level,
+    streak,
+    xp,
+    completedCount,
+    assessmentScore,
+    skillScores
+  };
+
+  let advice = null;
+
+  // 1. Try calling Gemini AI via Cloud Function or Direct Endpoint
+  try {
+    advice = await fetchGeminiAdvisorAnalysis(profile, prefLang, metrics);
+  } catch (err) {
+    console.warn("Gemini API Advisor (smoothly switching to rule-based engine):", err?.message || err);
+  }
+
+  // 2. Seamless Fallback: Generate intelligent deterministic advice with ZERO errors
+  if (!advice || !advice.strengths || !advice.improvements) {
+    advice = generateLocalAIAdvisorAdvice(profile, prefLang, metrics);
+  }
+
+  advice.timestamp = Date.now();
+  advice.completedCount = completedCount;
+
+  // Cache to Firestore & localStorage
+  if (user) {
+    try {
+      db.collection("users").doc(user.uid).update({
+        geminiAdvisorAdvice: advice,
+        geminiAdvisorAnalyzedAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).catch(() => {});
+      localStorage.setItem(`akshar_ai_advisor_${user.uid}`, JSON.stringify(advice));
+    } catch (e) {}
+  }
+
+  // Render advice
+  renderAdvisorAdvice(advice, profile, prefLang);
+  showAdvisorLoading(false);
+  isAdvisorAnalyzing = false;
+}
+
+/**
+ * fetchGeminiAdvisorAnalysis(profile, prefLang, metrics)
+ * Queries Gemini for personalized performance feedback in the learner's preferred language.
+ */
+async function fetchGeminiAdvisorAnalysis(profile, prefLang, metrics) {
+  const user = auth.currentUser;
+  if (!user) throw new Error("No user logged in");
+
+  const token = await user.getIdToken();
+  const prompt = `You are an expert language pedagogy growth coach on AksharGyan.
+Analyze this learner:
+- Target Language: ${metrics.targetLang}
+- Native/UI Language: ${prefLang}
+- Current Level: ${metrics.level}
+- Completed Lessons: ${metrics.completedCount}
+- Overall Benchmark: ${metrics.assessmentScore}%
+- Streak: ${metrics.streak} days
+- Skill Accuracies: Reading: ${metrics.skillScores.reading}%, Writing: ${metrics.skillScores.writing}%, Listening: ${metrics.skillScores.listening}%, Speaking: ${metrics.skillScores.speaking}%, Pronunciation: ${metrics.skillScores.pronunciation}%
+
+Return a strict JSON object with:
+{
+  "strengths": ["2 concise, encouraging bullet points celebrating what they are doing great"],
+  "improvements": ["2 concise, constructive bullet points on specific skills to improve"],
+  "actionText": "1 concise sentence recommending their next practice step",
+  "targetSkill": "one of: reading, writing, listening, speaking, pronunciation",
+  "targetUnit": "alphabets or words or sentences or paragraphs",
+  "targetLevel": "${metrics.level}"
+}
+
+IMPORTANT: Write all text in "strengths", "improvements", and "actionText" fluently in the learner's preferred language (${prefLang}).
+Output ONLY valid JSON.`;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 7000); // 7s timeout for snappy UX
+
+  const res = await fetch("/api/callGemini", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { response_mime_type: "application/json" }
+    }),
+    signal: controller.signal
+  });
+
+  clearTimeout(timeoutId);
+
+  if (!res.ok) {
+    throw new Error(`Gemini response status: ${res.status}`);
+  }
+
+  const data = await res.json();
+  const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!rawText) throw new Error("Empty Gemini response");
+
+  const cleanJson = rawText.replace(/```json/g, "").replace(/```/g, "").trim();
+  return JSON.parse(cleanJson);
+}
+
+/**
+ * generateLocalAIAdvisorAdvice(profile, prefLang, metrics)
+ * Intelligent mathematical diagnostic generator supporting all 7 languages.
+ */
+function generateLocalAIAdvisorAdvice(profile, prefLang, metrics) {
+  const scores = metrics.skillScores;
+  const skillsList = ["reading", "writing", "listening", "speaking", "pronunciation"];
+  
+  // Find highest & lowest scoring skills
+  let highestSkill = "reading";
+  let lowestSkill = "speaking";
+  let maxScore = -1;
+  let minScore = 999;
+
+  skillsList.forEach(s => {
+    const sc = scores[s] || 75;
+    if (sc > maxScore) { maxScore = sc; highestSkill = s; }
+    if (sc < minScore) { minScore = sc; lowestSkill = s; }
+  });
+
+  const skillNames = {
+    en: { reading: "Reading Comprehension", writing: "Sentence Writing", listening: "Listening Skills", speaking: "Oral Expression", pronunciation: "Pronunciation" },
+    hi: { reading: "पठन समझ", writing: "वाक्य लेखन", listening: "श्रवण कौशल", speaking: "मौखिक अभिव्यक्ति", pronunciation: "उच्चारण" },
+    ta: { reading: "வாசிப்புப் புரிதல்", writing: "வாக்கிய எழுத்து", listening: "கேட்கும் திறன்", speaking: "பேச்சுத் திறன்", pronunciation: "உச்சரிப்பு" },
+    te: { reading: "పఠన అవగాహన", writing: "వాక్య రచన", listening: "వినే నైపుణ్యం", speaking: "మౌఖిక సంభాషణ", pronunciation: "ఉచ్చారణ" },
+    kn: { reading: "ಓದುವ ಗ್ರಹಿಕೆ", writing: "ವಾಕ್ಯ ರಚನೆ", listening: "ಆಲಿಸುವ ಕೌಶಲ್ಯ", speaking: "ಮೌಖಿಕ ಅಭಿವ್ಯಕ್ತಿ", pronunciation: "ಉಚ್ಚಾರಣೆ" },
+    bn: { reading: "পঠন বোধগম্যতা", writing: "বাক্য গঠন", listening: "শোনার দক্ষতা", speaking: "মৌখিক অভিব্যক্তি", pronunciation: "উচ্চারণ শৈলী" },
+    mr: { reading: "वाचन आकलन", writing: "वाक्य लेखन", listening: "ऐकण्याचे कौशल्य", speaking: "मौखिक संभाषण", pronunciation: "उच्चार" }
+  };
+
+  const langMap = skillNames[prefLang] || skillNames.en;
+  const strongName = langMap[highestSkill] || highestSkill;
+  const weakName = langMap[lowestSkill] || lowestSkill;
+
+  const templates = {
+    en: {
+      strengths: [
+        `High accuracy and mastery in ${strongName} (${maxScore}%).`,
+        metrics.streak > 0 ? `Impressive consistency with an active ${metrics.streak}-day learning streak!` : `Completed ${metrics.completedCount} lessons with dedication.`
+      ],
+      improvements: [
+        `Focus more practice on ${weakName} to strengthen your overall fluency.`,
+        `Review sentence structures daily to build long-term retention.`
+      ],
+      actionText: `Practice ${weakName} now to achieve balanced mastery.`
+    },
+    hi: {
+      strengths: [
+        `${strongName} में उच्च सटीकता और मजबूत पकड़ (${maxScore}%)।`,
+        metrics.streak > 0 ? `${metrics.streak} दिनों की सक्रिय अध्ययन निरंतरता अत्यंत सराहनीय है!` : `लगन से ${metrics.completedCount} पाठ सफलतापूर्वक पूरे किए।`
+      ],
+      improvements: [
+        `${weakName} में अधिक अभ्यास करें ताकि आपकी भाषा में पूर्ण प्रवाह आ सके।`,
+        `वाक्य विन्यास और दैनिक शब्दावली का नियमित पुनरावलोकन करें।`
+      ],
+      actionText: `संतुलित प्रवीणता के लिए अभी ${weakName} का अभ्यास करें।`
+    },
+    ta: {
+      strengths: [
+        `${strongName} பிரிவில் மிகச் சிறந்த துல்லியம் மற்றும் தேர்ச்சி (${maxScore}%).`,
+        metrics.streak > 0 ? `${metrics.streak} நாட்கள் தொடர் கற்றல் முயற்சி பாராட்டுக்குரியது!` : `${metrics.completedCount} பாடங்களை வெற்றிகரமாக முடித்துள்ளீர்கள்.`
+      ],
+      improvements: [
+        `${weakName} பிரிவில் கூடுதல் பயிற்சி செய்து உங்கள் முழுமையான திறனை மேம்படுத்துங்கள்.`,
+        `தினசரி புதிய வாக்கிய அமைப்புகளைப் பயிற்சி செய்யுங்கள்.`
+      ],
+      actionText: `முழுமையான தேர்ச்சி பெற இப்போது ${weakName} பயிற்சியைத் தொடங்குங்கள்.`
+    },
+    te: {
+      strengths: [
+        `${strongName} లో అత్యధిక ఖచ్చితత్వం మరియు పట్టు (${maxScore}%).`,
+        metrics.streak > 0 ? `${metrics.streak} రోజుల నిరంతర సాధన అద్భుతంగా ఉంది!` : `${metrics.completedCount} పాఠాలను అంకితభావంతో పూర్తి చేశారు.`
+      ],
+      improvements: [
+        `మంచి ప్రావీణ్యం కోసం ${weakName} పై మరింత దృష్టి పెట్టండి.`,
+        `రోజువారీ వాక్య నిర్మాణాలను పునఃసమీక్షించండి.`
+      ],
+      actionText: `సంపూర్ణ నైపుణ్యం కోసం ఇప్పుడే ${weakName} అభ్యాసాన్ని ప్రారంభించండి.`
+    },
+    kn: {
+      strengths: [
+        `${strongName} ವಿಭಾಗದಲ್ಲಿ ಅತ್ಯುನ್ನತ ನಿಖರತೆ ಮತ್ತು ಪ್ರಾವೀಣ್ಯತೆ (${maxScore}%).`,
+        metrics.streak > 0 ? `${metrics.streak} ದಿನಗಳ ನಿರಂತರ ಕಲಿಕೆಯ ಸರಣಿ ಅತ್ಯಂತ ಶ್ಲಾಘನೀಯ!` : `${metrics.completedCount} ಪಾಠಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಪೂರ್ಣಗೊಳಿಸಿದ್ದೀರಿ.`
+      ],
+      improvements: [
+        `ನಿರರ್ಗಳ ಕಲಿಕೆಗಾಗಿ ${weakName} ವಿಭಾಗದಲ್ಲಿ ಹೆಚ್ಚಿನ ಅಭ್ಯಾಸದ ಅಗತ್ಯವಿದೆ.`,
+        `ದೈನಂದಿನ ವಾಕ್ಯ ರಚನೆ ಮತ್ತು ಶಬ್ದಕೋಶವನ್ನು ಪುನರಾವರ್ತಿಸಿ.`
+      ],
+      actionText: `ಸಮಗ್ರ ಪ್ರಾವೀಣ್ಯತೆಗಾಗಿ ಈಗಲೇ ${weakName} ಅಭ್ಯಾಸವನ್ನು ಪ್ರಾರಂಭಿಸಿ.`
+    },
+    bn: {
+      strengths: [
+        `${strongName}-এ চমৎকার নির্ভুলতা এবং দক্ষতা (${maxScore}%)।`,
+        metrics.streak > 0 ? `${metrics.streak} দিনের ধারাবাহিক অনুশীলনের ধারা দুর্দান্ত!` : `${metrics.completedCount}টি পাঠ নিষ্ঠার সাথে শেষ করেছেন।`
+      ],
+      improvements: [
+        `ভাষার সাবলীলতার জন্য ${weakName}-এ আরও অনুশীলন করুন।`,
+        `প্রতিদিন বাক্য গঠন এবং নতুন শব্দ পুনরাবৃত্তি করুন।`
+      ],
+      actionText: `সার্বিক উন্নতির জন্য এখনই ${weakName} অনুশীলন শুরু করুন।`
+    },
+    mr: {
+      strengths: [
+        `${strongName} मध्ये उत्कृष्ट अचूकता आणि उत्तम प्रभुत्व (${maxScore}%)।`,
+        metrics.streak > 0 ? `${metrics.streak} दिवसांचे सातत्य अत्यंत कौतुकास्पद आहे!` : `${metrics.completedCount} धडे यशाने पूर्ण केले आहेत.`
+      ],
+      improvements: [
+        `${weakName} मध्ये अधिक सराव करून आपला भाषिक प्रवाह वाढवा.`,
+        `वाक्यरचना आणि शब्दसंग्रहाचा रोज सराव करा.`
+      ],
+      actionText: `समग्र कौशल्यासाठी आत्ताच ${weakName} चा सराव सुरू करा.`
+    }
+  };
+
+  const selectedTemplate = templates[prefLang] || templates.en;
+
+  return {
+    strengths: selectedTemplate.strengths,
+    improvements: selectedTemplate.improvements,
+    actionText: selectedTemplate.actionText,
+    targetSkill: lowestSkill,
+    targetUnit: "alphabets",
+    targetLevel: metrics.level
+  };
+}
+
+/**
+ * renderAdvisorAdvice(advice, profile, prefLang)
+ * Renders the strengths, focus areas, and next recommendation button into the AI Advisor card.
+ */
+function renderAdvisorAdvice(advice, profile, prefLang) {
+  if (!advice) return;
+
+  const strengthsList = document.getElementById("ai-advisor-strengths-list");
+  if (strengthsList && Array.isArray(advice.strengths)) {
+    strengthsList.innerHTML = advice.strengths.map(s => `
+      <li style="display: flex; align-items: flex-start; gap: 0.5rem; text-align: left;">
+        <span style="color: #16a34a; font-weight: 900; font-size: 0.95rem; line-height: 1.4;">✓</span>
+        <span style="color: #14532d; font-weight: 700; font-size: 0.88rem; line-height: 1.45;">${s}</span>
+      </li>
+    `).join("");
+  }
+
+  const focusList = document.getElementById("ai-advisor-focus-list");
+  if (focusList && Array.isArray(advice.improvements)) {
+    focusList.innerHTML = advice.improvements.map(f => `
+      <li style="display: flex; align-items: flex-start; gap: 0.5rem; text-align: left;">
+        <span style="color: #d97706; font-weight: 900; font-size: 0.95rem; line-height: 1.4;">•</span>
+        <span style="color: #78350f; font-weight: 700; font-size: 0.88rem; line-height: 1.45;">${f}</span>
+      </li>
+    `).join("");
+  }
+
+  const actionText = document.getElementById("ai-advisor-action-text");
+  if (actionText && advice.actionText) {
+    actionText.textContent = advice.actionText;
+  }
+
+  const actionLink = document.getElementById("ai-advisor-action-link");
+  if (actionLink) {
+    const level = advice.targetLevel || profile.level || "beginner";
+    const skill = advice.targetSkill || "reading";
+    const unit = advice.targetUnit || "alphabets";
+    actionLink.href = `lesson.html?level=${level}&unit=${unit}&type=${skill}`;
+  }
+
+  if (window.lucide) lucide.createIcons();
+}
+
