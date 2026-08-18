@@ -141,7 +141,7 @@ function renderHandwritingUI() {
             </button>
           `).join('')}
         </div>
-        <div style="font-size: 0.82rem; font-weight: 700; color: #64748b;">
+        <div style="font-size: 0.8rem; font-weight: 700; color: #64748b; width: 100%; text-align: center; overflow-wrap: break-word; margin-top: 0.25rem;">
           <span data-i18n="hwStrokeHint">${getHwText("hwStrokeHint", "Follow the dotted guidelines with your finger or stylus")}</span>
         </div>
       </div>

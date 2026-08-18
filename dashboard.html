@@ -1508,13 +1508,16 @@
     .hw-studio-card {
       background: #ffffff !important;
       border: 1.5px solid rgba(226, 232, 240, 0.9) !important;
-      border-radius: 28px !important;
-      padding: 2.25rem !important;
+      border-radius: 24px !important;
+      padding: clamp(0.85rem, 3vw, 2rem) !important;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02) !important;
       max-width: 900px !important;
+      width: 100% !important;
       margin: 0 auto !important;
       position: relative !important;
       overflow: hidden !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-studio-hero {
@@ -1522,20 +1525,25 @@
       justify-content: space-between !important;
       align-items: flex-start !important;
       flex-wrap: wrap !important;
-      gap: 1.25rem !important;
-      margin-bottom: 1.75rem !important;
+      gap: 1rem !important;
+      margin-bottom: 1.25rem !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
     }
 
     .hw-hero-title-row {
       display: flex !important;
       align-items: center !important;
-      gap: 0.85rem !important;
-      margin-bottom: 0.4rem !important;
+      gap: 0.75rem !important;
+      margin-bottom: 0.35rem !important;
+      width: 100% !important;
+      min-width: 0 !important;
     }
 
     .hw-hero-icon {
-      width: 46px !important;
-      height: 46px !important;
+      width: 44px !important;
+      height: 44px !important;
       border-radius: 14px !important;
       background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
       color: #ffffff !important;
@@ -1548,19 +1556,22 @@
 
     .hw-hero-title {
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 1.6rem !important;
+      font-size: clamp(1.2rem, 3vw, 1.55rem) !important;
       font-weight: 900 !important;
       color: #0f172a !important;
       margin: 0 !important;
-      line-height: 1.2 !important;
+      line-height: 1.25 !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
 
     .hw-hero-subtitle {
-      font-size: 0.95rem !important;
+      font-size: clamp(0.82rem, 2vw, 0.92rem) !important;
       color: #64748b !important;
       font-weight: 600 !important;
       margin: 0 !important;
       line-height: 1.45 !important;
+      overflow-wrap: break-word !important;
     }
 
     .hw-progress-chip {
@@ -1569,28 +1580,34 @@
       gap: 0.45rem !important;
       background: linear-gradient(135deg, #f0fdf4, #ecfdf5) !important;
       border: 1.5px solid #a7f3d0 !important;
-      padding: 0.5rem 1.15rem !important;
+      padding: 0.45rem 1rem !important;
       border-radius: 9999px !important;
-      font-size: 0.88rem !important;
+      font-size: 0.85rem !important;
       font-weight: 800 !important;
       color: #059669 !important;
       box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12) !important;
+      flex-shrink: 0 !important;
     }
 
     /* Script Selector Section */
     .hw-script-section {
       background: #f8fafc !important;
       border: 1.5px solid #e2e8f0 !important;
-      border-radius: 20px !important;
-      padding: 0.95rem 1.25rem !important;
-      margin-bottom: 1.5rem !important;
+      border-radius: 18px !important;
+      padding: clamp(0.6rem, 2vw, 0.95rem) !important;
+      margin-bottom: 1.25rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
     }
 
     .hw-script-header {
       display: flex !important;
       justify-content: space-between !important;
       align-items: center !important;
-      margin-bottom: 0.75rem !important;
+      margin-bottom: 0.65rem !important;
+      width: 100% !important;
     }
 
     .hw-script-title {
@@ -1617,19 +1634,29 @@
     .hw-script-strip {
       display: flex !important;
       align-items: center !important;
-      gap: 0.5rem !important;
-      flex-wrap: wrap !important;
-      padding: 0 !important;
+      gap: 0.4rem !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      scrollbar-width: none !important;
+      padding: 0.2rem 0 !important;
       margin: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+    }
+
+    .hw-script-strip::-webkit-scrollbar {
+      display: none !important;
     }
 
     .hw-script-pill {
-      padding: 0.45rem 0.95rem !important;
+      padding: 0.4rem 0.85rem !important;
       border-radius: 12px !important;
       border: 1.5px solid #cbd5e1 !important;
       background: #ffffff !important;
       color: #334155 !important;
-      font-size: 0.85rem !important;
+      font-size: clamp(0.78rem, 2vw, 0.84rem) !important;
       font-weight: 800 !important;
       cursor: pointer !important;
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
@@ -1638,6 +1665,7 @@
       align-items: center !important;
       gap: 0.35rem !important;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04) !important;
+      flex-shrink: 0 !important;
     }
 
     .hw-script-pill:hover {
@@ -1668,33 +1696,46 @@
       justify-content: space-between !important;
       align-items: center !important;
       flex-wrap: wrap !important;
-      gap: 1rem !important;
-      margin-bottom: 1.5rem !important;
-      padding-bottom: 1.25rem !important;
+      gap: 0.75rem !important;
+      margin-bottom: 1.25rem !important;
+      padding-bottom: 0.85rem !important;
       border-bottom: 1px solid #f1f5f9 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-mode-tabs {
-      display: inline-flex !important;
+      display: flex !important;
       background: #f1f5f9 !important;
-      padding: 0.35rem !important;
-      border-radius: 16px !important;
-      gap: 0.35rem !important;
+      padding: 0.3rem !important;
+      border-radius: 14px !important;
+      gap: 0.3rem !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-mode-tab {
-      padding: 0.5rem 1.15rem !important;
+      flex: 1 1 0 !important;
+      min-width: 0 !important;
+      padding: 0.45rem 0.35rem !important;
       border: none !important;
-      border-radius: 12px !important;
+      border-radius: 10px !important;
       background: transparent !important;
       color: #64748b !important;
-      font-size: 0.86rem !important;
+      font-size: clamp(0.74rem, 2vw, 0.84rem) !important;
       font-weight: 800 !important;
       cursor: pointer !important;
       transition: all 0.2s ease !important;
       display: inline-flex !important;
       align-items: center !important;
-      gap: 0.4rem !important;
+      justify-content: center !important;
+      text-align: center !important;
+      gap: 0.35rem !important;
+      white-space: nowrap !important;
+      box-sizing: border-box !important;
     }
 
     .hw-mode-tab.active {
@@ -1707,22 +1748,31 @@
     .hw-workspace-box {
       background: #f8fafc !important;
       border: 1.5px solid #e2e8f0 !important;
-      border-radius: 24px !important;
-      padding: 1.75rem !important;
-      margin-bottom: 1.75rem !important;
+      border-radius: 20px !important;
+      padding: clamp(0.65rem, 2.5vw, 1.4rem) !important;
+      margin-bottom: 1.25rem !important;
       position: relative !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
+      overflow: hidden !important;
     }
 
     .hw-nav-strip {
       display: flex !important;
       justify-content: space-between !important;
       align-items: center !important;
-      margin-bottom: 1.25rem !important;
+      gap: 0.4rem !important;
+      margin-bottom: 0.85rem !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
     }
 
     .hw-nav-circle-btn {
-      width: 44px !important;
-      height: 44px !important;
+      width: 40px !important;
+      height: 40px !important;
+      min-width: 40px !important;
       border-radius: 50% !important;
       background: #ffffff !important;
       border: 1.5px solid #cbd5e1 !important;
@@ -1731,10 +1781,11 @@
       align-items: center !important;
       justify-content: center !important;
       cursor: pointer !important;
-      font-size: 1.1rem !important;
+      font-size: 1.05rem !important;
       font-weight: 900 !important;
       transition: all 0.2s ease !important;
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
+      flex-shrink: 0 !important;
     }
 
     .hw-nav-circle-btn:hover:not(:disabled) {
@@ -1752,24 +1803,27 @@
     .hw-target-center {
       display: flex !important;
       align-items: center !important;
-      gap: 0.75rem !important;
+      gap: 0.5rem !important;
+      min-width: 0 !important;
     }
 
     .hw-target-badge {
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 1.15rem !important;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem) !important;
       font-weight: 900 !important;
       color: #0f172a !important;
       background: #ffffff !important;
       border: 1.5px solid #e2e8f0 !important;
-      padding: 0.4rem 1.15rem !important;
+      padding: 0.35rem 0.85rem !important;
       border-radius: 9999px !important;
       box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+      white-space: nowrap !important;
     }
 
     .hw-tts-circle-btn {
-      width: 40px !important;
-      height: 40px !important;
+      width: 38px !important;
+      height: 38px !important;
+      min-width: 38px !important;
       border-radius: 50% !important;
       background: #eef2ff !important;
       border: 1.5px solid #c7d2fe !important;
@@ -1779,6 +1833,7 @@
       justify-content: center !important;
       cursor: pointer !important;
       transition: all 0.2s ease !important;
+      flex-shrink: 0 !important;
     }
 
     .hw-tts-circle-btn:hover {
@@ -1790,49 +1845,66 @@
     .hw-canvas-wrapper {
       position: relative !important;
       width: 100% !important;
-      max-width: 520px !important;
-      height: 320px !important;
-      margin: 0 auto !important;
+      max-width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 520 / 320 !important;
+      margin: 0 auto 0.85rem !important;
       background: #ffffff !important;
-      border-radius: 20px !important;
+      border-radius: 18px !important;
       border: 1.5px solid #cbd5e1 !important;
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08), inset 0 2px 4px rgba(0, 0, 0, 0.02) !important;
       overflow: hidden !important;
       touch-action: none !important;
+      box-sizing: border-box !important;
+      display: block !important;
+      min-width: 0 !important;
     }
 
     #hw-canvas {
       width: 100% !important;
-      height: 100% !important;
+      height: auto !important;
+      aspect-ratio: 520 / 320 !important;
+      max-width: 100% !important;
       cursor: crosshair !important;
       display: block !important;
+      box-sizing: border-box !important;
     }
 
     /* Controls Bar */
     .hw-toolbar {
       display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      flex-wrap: wrap !important;
-      gap: 1rem !important;
-      margin-top: 1.5rem !important;
-      padding: 0.5rem 0.25rem 0 !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 0.65rem !important;
+      margin-top: 0.75rem !important;
+      padding: 0 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
-    .hw-colors-group {
+    .hw-colors-group,
+    .hw-sizes-group,
+    .hw-aux-actions {
       display: flex !important;
+      flex-wrap: wrap !important;
       align-items: center !important;
-      gap: 0.45rem !important;
+      justify-content: center !important;
+      gap: 0.35rem !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-color-circle {
       width: 26px !important;
       height: 26px !important;
       border-radius: 50% !important;
-      border: 2.5px solid #ffffff !important;
+      border: 2px solid #ffffff !important;
       cursor: pointer !important;
       transition: all 0.2s ease !important;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15) !important;
+      flex-shrink: 0 !important;
     }
 
     .hw-color-circle:hover {
@@ -1840,27 +1912,24 @@
     }
 
     .hw-color-circle.active {
-      transform: scale(1.2) !important;
+      transform: scale(1.18) !important;
       outline: 2.5px solid #6366f1 !important;
     }
 
     .hw-sizes-group {
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.35rem !important;
       background: #ffffff !important;
-      padding: 0.25rem !important;
-      border-radius: 12px !important;
+      padding: 0.2rem !important;
+      border-radius: 10px !important;
       border: 1px solid #e2e8f0 !important;
     }
 
     .hw-size-btn-pill {
-      padding: 0.3rem 0.75rem !important;
+      padding: 0.3rem 0.6rem !important;
       border-radius: 8px !important;
       border: none !important;
       background: transparent !important;
       color: #64748b !important;
-      font-size: 0.8rem !important;
+      font-size: 0.76rem !important;
       font-weight: 800 !important;
       cursor: pointer !important;
       transition: all 0.2s ease !important;
@@ -1871,25 +1940,20 @@
       color: #ffffff !important;
     }
 
-    .hw-aux-actions {
-      display: flex !important;
-      align-items: center !important;
-      gap: 0.5rem !important;
-    }
-
     .hw-btn-tool {
       background: #ffffff !important;
       border: 1.5px solid #cbd5e1 !important;
       color: #475569 !important;
-      padding: 0.4rem 0.85rem !important;
-      border-radius: 12px !important;
-      font-size: 0.82rem !important;
+      padding: 0.35rem 0.65rem !important;
+      border-radius: 10px !important;
+      font-size: clamp(0.72rem, 2vw, 0.78rem) !important;
       font-weight: 800 !important;
       cursor: pointer !important;
       display: inline-flex !important;
       align-items: center !important;
       gap: 0.35rem !important;
       transition: all 0.2s ease !important;
+      box-sizing: border-box !important;
     }
 
     .hw-btn-tool:hover {
@@ -1903,18 +1967,21 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
-      gap: 0.85rem !important;
+      gap: 0.65rem !important;
       text-align: center !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-check-btn {
       background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
       color: #ffffff !important;
       border: none !important;
-      border-radius: 18px !important;
-      padding: 0.95rem 3rem !important;
+      border-radius: 16px !important;
+      padding: 0.85rem 1.5rem !important;
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 1.1rem !important;
+      font-size: clamp(0.92rem, 2.5vw, 1.05rem) !important;
       font-weight: 800 !important;
       cursor: pointer !important;
       box-shadow: 0 10px 24px rgba(99, 102, 241, 0.35) !important;
@@ -1923,8 +1990,10 @@
       align-items: center !important;
       gap: 0.5rem !important;
       width: 100% !important;
-      max-width: 360px !important;
+      max-width: 100% !important;
       justify-content: center !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     .hw-check-btn:hover {
@@ -3970,10 +4039,14 @@
        ═══════════════════════════════════════════════════════════════════ */
     .hero-dual-grid {
       display: grid !important;
-      grid-template-columns: repeat(2, 1fr) !important;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
       gap: 1.25rem !important;
       margin-bottom: 1.5rem !important;
       align-items: stretch !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      min-width: 0 !important;
     }
 
     @media (max-width: 900px) {
@@ -3987,18 +4060,21 @@
     .daily-milestone-hero-card {
       background: #ffffff !important;
       border: 1.5px solid #e2e8f0 !important;
-      border-radius: 28px !important;
-      padding: 1.75rem !important;
+      border-radius: 24px !important;
+      padding: clamp(0.85rem, 2.5vw, 1.6rem) !important;
       box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.05) !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: space-between !important;
-      gap: 1.15rem !important;
-      height: 100% !important;
-      min-height: 290px !important;
+      gap: 1rem !important;
+      height: auto !important;
+      min-height: unset !important;
       box-sizing: border-box !important;
       position: relative !important;
       overflow: hidden !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
     }
 
     .phrase-header,
@@ -4006,20 +4082,24 @@
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      gap: 0.75rem !important;
+      gap: 0.5rem !important;
       min-height: 32px !important;
+      flex-wrap: wrap !important;
+      width: 100% !important;
+      min-width: 0 !important;
     }
 
     .phrase-header h3,
     .milestone-header h3 {
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 1.15rem !important;
+      font-size: clamp(1.05rem, 2.5vw, 1.18rem) !important;
       font-weight: 900 !important;
       color: #0f172a !important;
       margin: 0 !important;
       display: flex !important;
       align-items: center !important;
       gap: 0.5rem !important;
+      overflow-wrap: break-word !important;
     }
 
     .phrase-xp-badge {
@@ -4034,6 +4114,7 @@
       align-items: center !important;
       gap: 0.3rem !important;
       box-shadow: 0 2px 8px rgba(245, 158, 11, 0.15) !important;
+      flex-shrink: 0 !important;
     }
 
     .milestone-status-badge {
@@ -4048,6 +4129,7 @@
       letter-spacing: 0.4px !important;
       display: inline-flex !important;
       align-items: center !important;
+      flex-shrink: 0 !important;
     }
 
     /* Content Boxes - IDENTICAL HEIGHT & PADDING */
@@ -4055,30 +4137,37 @@
     .milestone-info-box {
       background: #f8fafc !important;
       border: 1.5px solid #e2e8f0 !important;
-      border-radius: 20px !important;
-      padding: 1.25rem 1.4rem !important;
+      border-radius: 18px !important;
+      padding: clamp(0.65rem, 2vw, 1.2rem) !important;
       flex: 1 !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
       box-sizing: border-box !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
     }
 
     .phrase-text {
       font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-size: 1.35rem !important;
+      font-size: clamp(1.15rem, 3.5vw, 1.35rem) !important;
       font-weight: 900 !important;
       color: #0f172a !important;
       line-height: 1.35 !important;
       margin: 0 0 0.35rem !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
 
     .phrase-translation {
-      font-size: 0.95rem !important;
+      font-size: clamp(0.82rem, 2vw, 0.95rem) !important;
       font-weight: 700 !important;
       color: #4f46e5 !important;
       margin: 0 !important;
       font-style: italic !important;
+      overflow-wrap: break-word !important;
+      word-break: break-word !important;
     }
 
     .milestone-info-box {
@@ -5667,83 +5756,40 @@
         min-height: 38px !important;
       }
 
-      /* ─── Learn: Results View (Zero Horizontal Overflow Protection) ─── */
+      /* ─── Universal Shrink & Fluid Flow Reset for Results and Handwriting ─── */
+      #view-results,
+      #view-results *,
+      #section-handwriting,
+      #section-handwriting * {
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+      }
+
+      /* ─── Learn: Results View (Ultra-Fluid Shrinkable Architecture) ─── */
       #view-results {
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow-x: hidden !important;
       }
 
       #view-results .hero-dual-grid {
+        display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 1rem !important;
+        gap: 0.85rem !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .phrase-of-day-card {
-        padding: 1.15rem 0.95rem !important;
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
+        height: auto !important;
+        min-height: unset !important;
       }
 
-      .phrase-of-day-card .phrase-text {
-        font-size: clamp(1.15rem, 4.5vw, 1.45rem) !important;
-        line-height: 1.35 !important;
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-      }
-
-      .phrase-of-day-card .phrase-translation {
-        font-size: 0.88rem !important;
-        overflow-wrap: break-word !important;
-        word-break: break-word !important;
-      }
-
-      .phrase-actions {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 0.6rem !important;
-        width: 100% !important;
-      }
-
-      .phrase-listen-btn,
-      .phrase-speak-btn {
-        width: 100% !important;
-        justify-content: center !important;
-        height: 44px !important;
-        min-height: 44px !important;
-        box-sizing: border-box !important;
-      }
-
-      .daily-milestone-hero-card {
-        padding: 1.15rem 0.95rem !important;
-        border-radius: 20px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-      }
-
-      .daily-milestone-hero-card .milestone-header {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        flex-wrap: wrap !important;
-        gap: 0.5rem !important;
-        width: 100% !important;
-      }
-
-      .daily-milestone-hero-card .milestone-info-box {
-        padding: 0.95rem 0.85rem !important;
-        width: 100% !important;
-        box-sizing: border-box !important;
-      }
-
-      .daily-milestone-hero-card .milestone-reward-row {
+      .phrase-header {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -5752,20 +5798,97 @@
         width: 100% !important;
       }
 
+      .phrase-header h3 {
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem) !important;
+        overflow-wrap: break-word !important;
+      }
+
+      .phrase-content-box {
+        padding: clamp(0.55rem, 2vw, 0.95rem) !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+      }
+
+      .phrase-of-day-card .phrase-text {
+        font-size: clamp(1.1rem, 3.2vw, 1.35rem) !important;
+        line-height: 1.3 !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+      }
+
+      .phrase-of-day-card .phrase-translation {
+        font-size: clamp(0.8rem, 2vw, 0.9rem) !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+      }
+
+      .phrase-actions {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        width: 100% !important;
+      }
+
+      .phrase-listen-btn,
+      .phrase-speak-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        font-size: clamp(0.78rem, 2vw, 0.88rem) !important;
+      }
+
+      .daily-milestone-hero-card {
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
+        border-radius: 20px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: unset !important;
+      }
+
+      .daily-milestone-hero-card .milestone-header {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+      }
+
+      .daily-milestone-hero-card .milestone-header h3 {
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem) !important;
+        overflow-wrap: break-word !important;
+      }
+
+      .daily-milestone-hero-card .milestone-info-box {
+        padding: clamp(0.55rem, 2vw, 0.95rem) !important;
+        border-radius: 16px !important;
+        width: 100% !important;
+      }
+
+      .daily-milestone-hero-card .milestone-reward-row {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 0.35rem !important;
+        width: 100% !important;
+      }
+
       .milestone-path-cta {
         width: 100% !important;
-        height: 44px !important;
+        height: 42px !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
+        font-size: clamp(0.78rem, 2vw, 0.88rem) !important;
       }
 
       /* AI Growth Advisor Card */
       .ai-growth-advisor-card {
-        padding: 1.15rem 0.95rem !important;
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow: hidden !important;
       }
 
@@ -5773,57 +5896,60 @@
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
         width: 100% !important;
+      }
+
+      .ai-growth-advisor-card h3 {
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem) !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
       }
 
       #ai-advisor-refresh-btn {
         width: 100% !important;
         justify-content: center !important;
         height: 38px !important;
+        font-size: clamp(0.78rem, 2vw, 0.84rem) !important;
       }
 
       #ai-advisor-content,
       .ai-advisor-cards-grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 0.85rem !important;
+        gap: 0.75rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       #ai-advisor-content > div {
-        padding: 1rem 0.9rem !important;
+        padding: clamp(0.6rem, 2vw, 0.95rem) !important;
         border-radius: 16px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       #ai-advisor-action-banner {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.75rem !important;
-        padding: 0.95rem 0.85rem !important;
-        border-radius: 16px !important;
+        gap: 0.65rem !important;
+        padding: clamp(0.6rem, 2vw, 0.95rem) !important;
+        border-radius: 14px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       #ai-advisor-action-link {
         width: 100% !important;
         height: 42px !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
+        font-size: clamp(0.78rem, 2vw, 0.85rem) !important;
       }
 
       /* Diagnostic Recommendation Card */
       .recommendation-card {
-        padding: 1.15rem 0.95rem !important;
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .rec-score-row {
@@ -5831,8 +5957,14 @@
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        gap: 0.85rem !important;
+        gap: 0.75rem !important;
         width: 100% !important;
+      }
+
+      .rec-score-ring-wrap {
+        width: clamp(80px, 25vw, 115px) !important;
+        height: clamp(80px, 25vw, 115px) !important;
+        margin: 0 auto !important;
       }
 
       .rec-score-meta {
@@ -5842,30 +5974,31 @@
       }
 
       .rec-score-headline {
-        font-size: 1.1rem !important;
+        font-size: clamp(0.95rem, 2.8vw, 1.15rem) !important;
         line-height: 1.3 !important;
+        overflow-wrap: break-word !important;
       }
 
       .rec-diag-pills {
         display: flex !important;
         flex-wrap: wrap !important;
         justify-content: center !important;
-        gap: 0.35rem !important;
+        gap: 0.3rem !important;
         width: 100% !important;
       }
 
       .rec-cta-block {
-        padding: 1rem 0.85rem !important;
+        padding: clamp(0.6rem, 2vw, 0.95rem) !important;
         border-radius: 16px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
+        margin-top: 0.85rem !important;
       }
 
       .rec-cta-row {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.85rem !important;
+        gap: 0.75rem !important;
         width: 100% !important;
       }
 
@@ -5873,58 +6006,69 @@
         width: 100% !important;
       }
 
+      .rec-cta-lesson-title {
+        font-size: clamp(0.95rem, 2.8vw, 1.1rem) !important;
+        overflow-wrap: break-word !important;
+      }
+
+      .rec-cta-lesson-sub {
+        font-size: clamp(0.75rem, 2vw, 0.85rem) !important;
+        overflow-wrap: break-word !important;
+      }
+
       #rec-start-btn {
         width: 100% !important;
         height: 44px !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
+        font-size: clamp(0.85rem, 2vw, 0.95rem) !important;
       }
 
       /* Recommended for You Adaptive Grid */
       .recommended-scroll-card {
-        padding: 1.15rem 0.95rem !important;
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .recommended-grid {
         display: grid !important;
         grid-template-columns: 1fr !important;
-        gap: 0.85rem !important;
+        gap: 0.75rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .recommended-card {
-        padding: 1.1rem 0.95rem !important;
-        border-radius: 18px !important;
+        padding: clamp(0.6rem, 2vw, 0.95rem) !important;
+        border-radius: 16px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       /* 7-Day Heatmap & Streak Card */
       #activity-heatmap-card.heatmap-card {
-        padding: 1.15rem 0.95rem !important;
+        padding: clamp(0.75rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .activity-card-header {
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 0.75rem !important;
+        gap: 0.65rem !important;
         width: 100% !important;
+      }
+
+      .activity-card-header h3 {
+        font-size: clamp(1rem, 2.8vw, 1.2rem) !important;
+        overflow-wrap: break-word !important;
       }
 
       .activity-header-left {
         display: flex !important;
         align-items: center !important;
-        gap: 0.65rem !important;
+        gap: 0.5rem !important;
         width: 100% !important;
       }
 
@@ -5935,32 +6079,41 @@
       .activity-streak-badge {
         width: 100% !important;
         justify-content: center !important;
+        font-size: clamp(0.78rem, 2vw, 0.88rem) !important;
       }
 
       .activity-stats-row {
         display: flex !important;
         flex-direction: column !important;
-        gap: 0.5rem !important;
+        gap: 0.45rem !important;
         width: 100% !important;
       }
 
       .act-stat-box {
-        padding: 0.65rem 0.85rem !important;
-        border-radius: 14px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
+        padding: clamp(0.45rem, 2vw, 0.75rem) !important;
+        border-radius: 12px !important;
+      }
+
+      .act-stat-num {
+        font-size: clamp(0.95rem, 2.8vw, 1.2rem) !important;
+      }
+
+      .act-stat-label {
+        font-size: clamp(0.65rem, 1.8vw, 0.72rem) !important;
+        overflow-wrap: break-word !important;
       }
 
       .heatmap-strip {
         display: flex !important;
         justify-content: space-between !important;
-        gap: 4px !important;
+        gap: 3px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
         scrollbar-width: none !important;
-        padding: 0.25rem 0 !important;
+        padding: 0.2rem 0 !important;
       }
 
       .heatmap-strip::-webkit-scrollbar {
@@ -5969,30 +6122,28 @@
 
       .heatmap-day {
         flex: 1 1 0 !important;
-        min-width: 38px !important;
-        padding: 0.6rem 0.2rem !important;
-        border-radius: 12px !important;
-        gap: 0.35rem !important;
-        box-sizing: border-box !important;
+        min-width: 0 !important;
+        padding: clamp(0.35rem, 1.5vw, 0.55rem) 1px !important;
+        border-radius: 10px !important;
+        font-size: clamp(0.65rem, 1.8vw, 0.76rem) !important;
       }
 
       .activity-footer-banner {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.75rem !important;
-        padding: 0.95rem 0.85rem !important;
-        border-radius: 16px !important;
+        gap: 0.65rem !important;
+        padding: clamp(0.6rem, 2vw, 0.95rem) !important;
+        border-radius: 14px !important;
         width: 100% !important;
-        box-sizing: border-box !important;
         text-align: center !important;
       }
 
       .act-practice-cta {
         width: 100% !important;
-        height: 42px !important;
+        height: 40px !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
+        font-size: clamp(0.78rem, 2vw, 0.88rem) !important;
       }
 
       /* ─── Learn: Learning Path View ─── */
@@ -6119,22 +6270,20 @@
         width: 100% !important;
       }
 
-      /* ─── Handwriting Studio (Zero Overflow Protection) ─── */
+      /* ─── Handwriting Studio (Ultra-Fluid Shrinkable Architecture) ─── */
       #section-handwriting {
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow-x: hidden !important;
         padding: 0 !important;
         margin: 0 !important;
       }
 
       .hw-studio-card {
-        padding: 1.1rem 0.75rem !important;
+        padding: clamp(0.65rem, 2.5vw, 1.25rem) !important;
         border-radius: 20px !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         margin: 0 !important;
         overflow: hidden !important;
       }
@@ -6143,41 +6292,42 @@
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        gap: 0.65rem !important;
-        margin-bottom: 1rem !important;
+        gap: 0.55rem !important;
+        margin-bottom: 0.85rem !important;
         width: 100% !important;
       }
 
       .hw-hero-title-row {
         display: flex !important;
         align-items: center !important;
-        gap: 0.65rem !important;
+        gap: 0.5rem !important;
         width: 100% !important;
       }
 
       .hw-hero-title {
-        font-size: 1.18rem !important;
+        font-size: clamp(1.1rem, 3.5vw, 1.35rem) !important;
         line-height: 1.25 !important;
         overflow-wrap: break-word !important;
+        word-break: break-word !important;
       }
 
       .hw-hero-subtitle {
-        font-size: 0.84rem !important;
-        line-height: 1.4 !important;
+        font-size: clamp(0.78rem, 2vw, 0.86rem) !important;
+        line-height: 1.35 !important;
+        overflow-wrap: break-word !important;
       }
 
       .hw-progress-chip {
-        padding: 0.35rem 0.85rem !important;
-        font-size: 0.78rem !important;
+        padding: 0.35rem 0.75rem !important;
+        font-size: clamp(0.72rem, 1.8vw, 0.8rem) !important;
       }
 
       .hw-script-section {
-        padding: 0.75rem 0.65rem !important;
-        border-radius: 16px !important;
-        margin-bottom: 1rem !important;
+        padding: clamp(0.5rem, 2vw, 0.75rem) !important;
+        border-radius: 14px !important;
+        margin-bottom: 0.85rem !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow: hidden !important;
       }
 
@@ -6185,7 +6335,7 @@
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.45rem !important;
         width: 100% !important;
       }
 
@@ -6195,10 +6345,9 @@
         overflow-x: auto !important;
         -webkit-overflow-scrolling: touch !important;
         scrollbar-width: none !important;
-        gap: 0.4rem !important;
+        gap: 0.35rem !important;
         width: 100% !important;
-        padding: 0.2rem 0 !important;
-        box-sizing: border-box !important;
+        padding: 0.15rem 0 !important;
       }
 
       .hw-script-strip::-webkit-scrollbar {
@@ -6207,8 +6356,8 @@
 
       .hw-script-pill {
         flex-shrink: 0 !important;
-        padding: 0.38rem 0.75rem !important;
-        font-size: 0.8rem !important;
+        padding: 0.35rem 0.65rem !important;
+        font-size: clamp(0.74rem, 1.8vw, 0.8rem) !important;
         border-radius: 10px !important;
       }
 
@@ -6216,40 +6365,37 @@
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.5rem !important;
-        margin-bottom: 1rem !important;
-        padding-bottom: 0.75rem !important;
+        gap: 0.45rem !important;
+        margin-bottom: 0.85rem !important;
+        padding-bottom: 0.65rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .hw-mode-tabs {
         display: flex !important;
         width: 100% !important;
-        gap: 0.25rem !important;
-        padding: 0.25rem !important;
+        gap: 0.2rem !important;
+        padding: 0.2rem !important;
         border-radius: 12px !important;
-        box-sizing: border-box !important;
       }
 
       .hw-mode-tab {
         flex: 1 1 0 !important;
         min-width: 0 !important;
-        padding: 0.45rem 0.2rem !important;
-        font-size: 0.76rem !important;
+        padding: 0.4rem 0.15rem !important;
+        font-size: clamp(0.7rem, 1.8vw, 0.78rem) !important;
         text-align: center !important;
         justify-content: center !important;
-        border-radius: 10px !important;
+        border-radius: 8px !important;
         white-space: nowrap !important;
       }
 
       .hw-workspace-box {
-        padding: 0.85rem 0.55rem !important;
-        border-radius: 18px !important;
-        margin-bottom: 1rem !important;
+        padding: clamp(0.5rem, 2vw, 0.95rem) !important;
+        border-radius: 16px !important;
+        margin-bottom: 0.85rem !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-sizing: border-box !important;
         overflow: hidden !important;
       }
 
@@ -6257,36 +6403,36 @@
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
-        gap: 0.4rem !important;
-        margin-bottom: 0.85rem !important;
+        gap: 0.35rem !important;
+        margin-bottom: 0.65rem !important;
         width: 100% !important;
       }
 
       .hw-nav-circle-btn {
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
-        font-size: 0.95rem !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        font-size: 0.9rem !important;
         flex-shrink: 0 !important;
       }
 
       .hw-target-center {
         display: flex !important;
         align-items: center !important;
-        gap: 0.4rem !important;
+        gap: 0.35rem !important;
         min-width: 0 !important;
       }
 
       .hw-target-badge {
-        font-size: 0.88rem !important;
-        padding: 0.35rem 0.75rem !important;
+        font-size: clamp(0.8rem, 2vw, 0.95rem) !important;
+        padding: 0.3rem 0.65rem !important;
         white-space: nowrap !important;
       }
 
       .hw-tts-circle-btn {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 34px !important;
         flex-shrink: 0 !important;
       }
 
@@ -6296,10 +6442,9 @@
         max-width: 100% !important;
         height: auto !important;
         aspect-ratio: 520 / 320 !important;
-        margin: 0 auto 0.85rem !important;
-        border-radius: 16px !important;
+        margin: 0 auto 0.65rem !important;
+        border-radius: 14px !important;
         overflow: hidden !important;
-        box-sizing: border-box !important;
         display: block !important;
       }
 
@@ -6309,17 +6454,15 @@
         aspect-ratio: 520 / 320 !important;
         max-width: 100% !important;
         display: block !important;
-        box-sizing: border-box !important;
       }
 
       .hw-toolbar {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 0.65rem !important;
+        gap: 0.5rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
-        margin-top: 0.75rem !important;
+        margin-top: 0.5rem !important;
         padding: 0 !important;
       }
 
@@ -6330,42 +6473,39 @@
         flex-wrap: wrap !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.35rem !important;
+        gap: 0.3rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .hw-color-circle {
-        width: 28px !important;
-        height: 28px !important;
+        width: 24px !important;
+        height: 24px !important;
         flex-shrink: 0 !important;
       }
 
       .hw-size-btn-pill {
-        padding: 0.3rem 0.6rem !important;
-        font-size: 0.76rem !important;
-        border-radius: 8px !important;
+        padding: 0.25rem 0.5rem !important;
+        font-size: 0.74rem !important;
+        border-radius: 6px !important;
       }
 
       .hw-btn-tool {
-        padding: 0.35rem 0.6rem !important;
-        font-size: 0.76rem !important;
-        border-radius: 10px !important;
+        padding: 0.3rem 0.55rem !important;
+        font-size: 0.74rem !important;
+        border-radius: 8px !important;
       }
 
       .hw-footer-cta {
-        margin-top: 0.5rem !important;
+        margin-top: 0.4rem !important;
         width: 100% !important;
-        box-sizing: border-box !important;
       }
 
       .hw-check-btn {
         width: 100% !important;
-        height: 48px !important;
-        font-size: 0.95rem !important;
-        border-radius: 14px !important;
+        height: 46px !important;
+        font-size: clamp(0.88rem, 2.2vw, 0.98rem) !important;
+        border-radius: 12px !important;
         justify-content: center !important;
-        box-sizing: border-box !important;
       }
 
       /* ─── Leagues ─── */
