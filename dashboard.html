@@ -19,6 +19,17 @@
     }
   </script>
   <style>
+    /* Global Viewport & Mobile Protection */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* Single Unified Landing Theme for Dashboard */
     html,
     body#page-dashboard {
@@ -514,8 +525,11 @@
       height: 16px !important;
     }
 
-    .learn-sub-tab.active .sub-tab-icon {
+    .learn-sub-tab.active .sub-tab-icon,
+    .learn-sub-tab.active .sub-tab-icon i,
+    .learn-sub-tab.active .sub-tab-icon svg {
       color: #4f46e5 !important;
+      stroke: #4f46e5 !important;
     }
 
     @media (max-width: 640px) {
@@ -4124,11 +4138,15 @@
       gap: 0.3rem !important;
     }
 
-    /* Action Buttons - IDENTICAL HEIGHT (44px) */
+    /* Action Buttons - Stacked Vertically with Comfortable Tap Targets */
     .phrase-actions {
       display: flex !important;
-      gap: 0.75rem !important;
-      height: 44px !important;
+      flex-direction: column !important;
+      gap: 0.65rem !important;
+      height: auto !important;
+      min-height: auto !important;
+      width: 100% !important;
+      margin-top: 0.75rem !important;
     }
 
     .phrase-listen-btn {
@@ -4140,14 +4158,16 @@
       font-weight: 800 !important;
       font-size: 0.88rem !important;
       height: 44px !important;
+      min-height: 44px !important;
       padding: 0 1rem !important;
       cursor: pointer !important;
-      display: inline-flex !important;
+      display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 0.45rem !important;
       transition: all 0.2s ease !important;
-      flex: 1 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
 
     .phrase-listen-btn:hover {
@@ -4165,15 +4185,17 @@
       font-weight: 900 !important;
       font-size: 0.88rem !important;
       height: 44px !important;
+      min-height: 44px !important;
       padding: 0 1.15rem !important;
       cursor: pointer !important;
-      display: inline-flex !important;
+      display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       gap: 0.45rem !important;
       box-shadow: 0 6px 16px -3px rgba(99, 102, 241, 0.35) !important;
       transition: all 0.2s ease !important;
-      flex: 1.3 !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
     }
 
     .phrase-speak-btn:hover {
@@ -5363,10 +5385,530 @@
     #section-analysis .progress-items {
       gap: 0.65rem !important;
     }
+
+    /* ═════════════════════════════════════════════════════════════════════
+       ULTRA-RESPONSIVE MOBILE & TABLET OVERHAUL SYSTEM (DASHBOARD)
+       ═════════════════════════════════════════════════════════════════════ */
+
+    /* ─── Base Fluid Utilities ─── */
+    .dashboard-layout,
+    .dash-shell,
+    .dash-main-wrap,
+    .dash-content-grid,
+    .dash-main-col,
+    .dash-side-col,
+    .dash-main-section {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* ─── Learn Tab Only: Show side widgets (Word of the Day, Goal, Quests) ONLY on Learn tab ─── */
+    body:not([data-active-section="learn"]) .dash-side-col {
+      display: none !important;
+    }
+
+    body:not([data-active-section="learn"]) .dash-content-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* ─── Tablet & Below (<= 1024px) ─── */
+    @media (max-width: 1024px) {
+      .dash-shell {
+        padding-top: 80px !important;
+      }
+
+      .dash-content-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.75rem !important;
+      }
+
+      .dash-side-col {
+        position: static !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+      }
+
+      .dash-side-col .dash-card {
+        margin-bottom: 0 !important;
+      }
+
+      .hero-dual-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.25rem !important;
+      }
+    }
+
+    /* ─── Standard Mobile (<= 899px) ─── */
+    @media (max-width: 899px) {
+      .dash-top-navbar {
+        display: none !important;
+      }
+
+      .dash-shell {
+        padding-top: 0 !important;
+      }
+
+      .mobile-topbar {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        height: 62px !important;
+        padding: 0.5rem 1rem !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1.5px solid #e2e8f0 !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 990 !important;
+        box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05) !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .mobile-topbar-brand .nav-logo {
+        font-size: 1.25rem !important;
+        gap: 0.5rem !important;
+      }
+
+      .mobile-topbar-brand .nav-logo-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1.1rem !important;
+        border-radius: 11px !important;
+      }
+
+      .dash-main-wrap {
+        padding: 1rem 0.85rem 6.5rem 0.85rem !important;
+      }
+
+      /* Fixed Bottom Navigation Bar */
+      .mobile-bottom-nav {
+        display: flex !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 64px !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        backdrop-filter: blur(24px) saturate(180%) !important;
+        border-top: 1.5px solid #e2e8f0 !important;
+        box-shadow: 0 -6px 24px rgba(15, 23, 42, 0.08) !important;
+        z-index: 1000 !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+        padding: 0 0.5rem !important;
+        padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex: 1 1 0 !important;
+        height: 100% !important;
+        padding: 0.35rem 0.25rem !important;
+        border-radius: 12px !important;
+        background: transparent !important;
+        border: none !important;
+        color: #64748b !important;
+        gap: 0.2rem !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        cursor: pointer !important;
+        box-shadow: none !important;
+        text-decoration: none !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item .dash-nav-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item .dash-nav-icon i,
+      .mobile-bottom-nav .dash-nav-item .dash-nav-icon svg {
+        width: 20px !important;
+        height: 20px !important;
+        color: #64748b !important;
+        stroke: #64748b !important;
+        transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item .mobile-nav-label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.68rem !important;
+        font-weight: 700 !important;
+        line-height: 1 !important;
+        white-space: nowrap !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item.active {
+        color: #4f46e5 !important;
+        background: #eef2ff !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon,
+      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon i,
+      .mobile-bottom-nav .dash-nav-item.active .dash-nav-icon svg {
+        color: #4f46e5 !important;
+        stroke: #4f46e5 !important;
+        transform: translateY(-1px) scale(1.1) !important;
+      }
+
+      .mobile-bottom-nav .dash-nav-item.active .mobile-nav-label {
+        font-weight: 800 !important;
+        color: #4f46e5 !important;
+      }
+
+      /* Slide-up "More" Bottom Sheet */
+      .mobile-more-backdrop {
+        position: fixed !important;
+        inset: 0 !important;
+        background: rgba(15, 23, 42, 0.45) !important;
+        -webkit-backdrop-filter: blur(4px) !important;
+        backdrop-filter: blur(4px) !important;
+        z-index: 1010 !important;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s ease !important;
+      }
+
+      .mobile-more-backdrop.open,
+      .mobile-more-backdrop.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+
+      .mobile-more-sheet {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        -webkit-backdrop-filter: blur(24px) !important;
+        backdrop-filter: blur(24px) !important;
+        border-top: 1.5px solid #e2e8f0 !important;
+        border-top-left-radius: 28px !important;
+        border-top-right-radius: 28px !important;
+        box-shadow: 0 -15px 45px rgba(15, 23, 42, 0.16) !important;
+        z-index: 1020 !important;
+        padding: 0.85rem 1rem calc(2rem + env(safe-area-inset-bottom, 0px)) 1rem !important;
+        max-height: 85vh !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        box-sizing: border-box !important;
+      }
+
+      .mobile-more-sheet.open,
+      .mobile-more-sheet.active {
+        transform: translateY(0) !important;
+      }
+
+      .mobile-more-sheet-handle {
+        width: 44px !important;
+        height: 5px !important;
+        background: #cbd5e1 !important;
+        border-radius: 9999px !important;
+        margin: 0 auto 0.85rem auto !important;
+      }
+
+      .mobile-more-sheet .dash-nav-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.85rem !important;
+        padding: 0.85rem 1rem !important;
+        border-radius: 14px !important;
+        color: #334155 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 0.92rem !important;
+        font-weight: 700 !important;
+        border: none !important;
+        background: transparent !important;
+        width: 100% !important;
+        text-align: left !important;
+        cursor: pointer !important;
+        transition: all 0.18s ease !important;
+        box-sizing: border-box !important;
+      }
+
+      .mobile-more-sheet .dash-nav-item:hover,
+      .mobile-more-sheet .dash-nav-item:active {
+        background: #f1f5f9 !important;
+        color: #6366f1 !important;
+        transform: translateX(3px) !important;
+      }
+
+      /* ─── Learn Sub-Tabs Bar ─── */
+      .learn-sub-tabs {
+        display: flex !important;
+        gap: 0.45rem !important;
+        overflow-x: auto !important;
+        scrollbar-width: none !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding: 0.35rem 0.15rem 0.65rem !important;
+        margin-bottom: 1.15rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+
+      .learn-sub-tabs::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      .learn-sub-tab {
+        padding: 0.55rem 1rem !important;
+        font-size: 0.85rem !important;
+        border-radius: 9999px !important;
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        min-height: 38px !important;
+      }
+
+      /* ─── Cards & Grids Responsiveness ─── */
+      .dash-card {
+        padding: 1.35rem 1.15rem !important;
+        border-radius: 22px !important;
+      }
+
+      .phrase-of-day-card .phrase-text {
+        font-size: clamp(1.2rem, 4.5vw, 1.55rem) !important;
+      }
+
+      .phrase-actions {
+        flex-direction: column !important;
+        gap: 0.6rem !important;
+      }
+
+      .phrase-listen-btn,
+      .phrase-speak-btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+
+      /* ─── Practice Section ─── */
+      #section-practice .practice-grid,
+      #section-practice .scenario-grid,
+      #section-games .games-grid,
+      #section-games .scenario-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.15rem !important;
+      }
+
+      /* ─── Handwriting Canvas Tracing ─── */
+      .hw-canvas-wrapper {
+        width: 100% !important;
+        max-width: 520px !important;
+        margin: 0 auto 1.15rem !important;
+        box-sizing: border-box !important;
+      }
+
+      #hw-canvas {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 520 / 320 !important;
+        max-width: 100% !important;
+        border-radius: 18px !important;
+        touch-action: none !important;
+        display: block !important;
+        background: #ffffff !important;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05) !important;
+      }
+
+      .hw-toolbar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.75rem !important;
+      }
+
+      .hw-colors-group,
+      .hw-sizes-group,
+      .hw-aux-actions {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+      }
+
+      /* ─── Chat Simulator ─── */
+      #section-chat .chat-messages-container {
+        max-height: 55vh !important;
+        padding: 0.75rem 0.4rem !important;
+      }
+
+      #section-chat .chat-bubble {
+        max-width: 88% !important;
+        padding: 0.8rem 0.95rem !important;
+        font-size: 0.9rem !important;
+      }
+
+      /* ─── Leaderboard ─── */
+      #leaderboard-podium {
+        gap: 0.65rem !important;
+        margin-bottom: 1.5rem !important;
+      }
+
+      .leaderboard-podium-item {
+        min-width: 90px !important;
+      }
+
+      .leaderboard-card {
+        padding: 1.15rem 0.85rem !important;
+        border-radius: 22px !important;
+      }
+
+      .leaderboard-table th,
+      .leaderboard-table td {
+        padding: 0.6rem 0.5rem !important;
+        font-size: 0.82rem !important;
+      }
+
+      /* ─── Diagnostic & Analysis ─── */
+      #section-analysis .analysis-stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.75rem !important;
+      }
+
+      #section-analysis .analysis-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.15rem !important;
+      }
+
+      /* ─── Profile & Forms ─── */
+      .profile-grid,
+      .profile-header-card,
+      .profile-edit-grid,
+      .edit-form-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .profile-hero-top-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+      }
+
+      .profile-hero-actions {
+        width: 100% !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+      }
+
+      .profile-action-btn {
+        flex: 1 1 auto !important;
+        justify-content: center !important;
+        min-height: 40px !important;
+      }
+
+      .profile-tags-strip {
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+      }
+
+      .badges-grid {
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr)) !important;
+        gap: 0.6rem !important;
+      }
+
+      /* ─── Leagues & Study Groups ─── */
+      .leagues-card,
+      .studygroups-card {
+        padding: 1.25rem 1rem !important;
+        border-radius: 22px !important;
+      }
+
+      .league-tier-banner {
+        padding: 1.25rem 1rem !important;
+        border-radius: 20px !important;
+        margin-bottom: 1.25rem !important;
+      }
+
+      .league-member-row,
+      .sg-group-card,
+      .sg-post-card {
+        padding: 0.85rem 0.95rem !important;
+        border-radius: 16px !important;
+      }
+
+      .sg-sub-tabs {
+        flex-wrap: wrap !important;
+        gap: 0.4rem !important;
+      }
+
+      .sg-reply-form {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+      }
+
+      /* ─── Modals (Lesson, Market/Shop, Certificate) ─── */
+      .modal-card,
+      .lesson-modal-dialog,
+      .shop-modal-card {
+        width: 94vw !important;
+        max-width: 560px !important;
+        max-height: 90vh !important;
+        padding: 1.35rem 1.1rem !important;
+        border-radius: 24px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        box-sizing: border-box !important;
+      }
+
+      /* ─── Form Inputs: 16px to prevent iOS Safari auto-zoom ─── */
+      input[type="text"],
+      input[type="email"],
+      input[type="password"],
+      input[type="number"],
+      select,
+      textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    /* ─── Small / Narrow Phones (<= 480px) ─── */
+    @media (max-width: 480px) {
+      .dash-main-wrap {
+        padding: 0.75rem 0.65rem 6.5rem 0.65rem !important;
+      }
+
+      .dash-card {
+        padding: 1.2rem 1rem !important;
+        border-radius: 20px !important;
+      }
+
+      .mobile-topbar {
+        padding: 0.45rem 0.75rem !important;
+      }
+
+      .mobile-topbar-brand .nav-logo {
+        font-size: 1.15rem !important;
+      }
+
+      .dash-stat-pill {
+        padding: 0.35rem 0.55rem !important;
+        font-size: 0.76rem !important;
+      }
+
+      .sidebar-stats-row {
+        gap: 0.35rem !important;
+      }
+
+      #section-analysis .analysis-stat-card {
+        padding: 0.85rem 0.65rem !important;
+        min-height: 105px !important;
+      }
+    }
   </style>
 </head>
 
-<body id="page-dashboard" class="fade-in-up light-theme">
+<body id="page-dashboard" class="fade-in-up light-theme" data-active-section="learn">
   <div id="loading-overlay" class="loading-overlay">
     <div class="loading-spinner"></div>
     <div class="loading-text" data-i18n="loadingText">Loading...</div>

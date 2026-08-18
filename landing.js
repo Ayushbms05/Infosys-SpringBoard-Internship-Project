@@ -30,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
   // 5. Floating Back-to-Top Button
   initBackToTop();
 
-  // 6. Optional Auth Redirection (Safely Wrapped)
+  // 6. Mobile Navigation Drawer Controller
+  initMobileNav();
+
+  // 7. Optional Auth Redirection (Safely Wrapped)
   try {
     if (typeof firebase !== "undefined" && firebase.auth) {
       firebase.auth().onAuthStateChanged(function (user) {
@@ -565,3 +568,59 @@ function initScrollListeners() {
     }
   });
 }
+
+// ── Mobile Navigation Drawer Controller ───────────────────────────
+function initMobileNav() {
+  const toggleBtn = document.getElementById("mobile-nav-toggle");
+  const closeBtn = document.getElementById("mobile-nav-close");
+  const backdrop = document.getElementById("mobile-nav-backdrop");
+  const drawer = document.getElementById("mobile-nav-drawer");
+
+  if (!toggleBtn || !drawer) return;
+
+  function openDrawer() {
+    drawer.classList.add("active");
+    if (backdrop) backdrop.classList.add("active");
+    document.body.style.overflow = "hidden";
+    drawer.setAttribute("aria-hidden", "false");
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove("active");
+    if (backdrop) backdrop.classList.remove("active");
+    document.body.style.overflow = "";
+    drawer.setAttribute("aria-hidden", "true");
+  }
+
+  toggleBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    openDrawer();
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      closeDrawer();
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", closeDrawer);
+  }
+
+  // Close when clicking any nav link
+  const drawerLinks = drawer.querySelectorAll("a");
+  drawerLinks.forEach(link => {
+    link.addEventListener("click", function () {
+      closeDrawer();
+    });
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && drawer.classList.contains("active")) {
+      closeDrawer();
+    }
+  });
+}
+

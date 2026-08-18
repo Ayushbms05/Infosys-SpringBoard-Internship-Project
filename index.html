@@ -31,43 +31,76 @@
   <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
+    /* Global Viewport & Mobile Protection */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* Force Light Theme Background matching landing.html */
     html,
     body#page-index {
       background-color: #f8fafc !important;
       background: #f8fafc !important;
       color: #0f172a !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     body#page-index::before {
       display: none !important;
     }
 
+    .hero-portal-wrapper {
+      min-height: calc(100vh - 72px);
+      padding-top: 6.5rem;
+      padding-bottom: 3.5rem;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     /* High-Contrast, High-Visibility Language Selection Grid */
     .index-lang-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.15rem;
       max-width: 1050px;
-      margin: 0 auto 2.5rem auto;
+      margin: 0 auto 2.25rem auto;
       width: 100%;
+      box-sizing: border-box;
     }
 
     .index-lang-card {
       background: #ffffff !important;
       border: 2px solid #cbd5e1 !important;
       border-radius: 20px;
-      padding: 1.25rem 1.4rem;
+      padding: 1.15rem 1.35rem;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1.15rem;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08) !important;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06) !important;
       position: relative;
       overflow: hidden;
       opacity: 1 !important;
       visibility: visible !important;
+      box-sizing: border-box;
+      width: 100%;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .index-lang-card::before {
@@ -77,17 +110,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.06), rgba(0, 212, 170, 0.06));
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(0, 212, 170, 0.08));
       opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.3s ease;
       z-index: 0;
     }
 
     .index-lang-card:hover {
-      transform: translateY(-6px) scale(1.02);
+      transform: translateY(-4px) scale(1.015);
       background: #ffffff !important;
       border-color: #6366f1 !important;
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.25) !important;
+      box-shadow: 0 16px 36px rgba(99, 102, 241, 0.2) !important;
     }
 
     .index-lang-card:hover::before,
@@ -98,19 +131,19 @@
     .index-lang-card.active {
       background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%) !important;
       border-color: #6366f1 !important;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3), 0 20px 40px rgba(99, 102, 241, 0.2) !important;
+      box-shadow: 0 0 0 3.5px rgba(99, 102, 241, 0.3), 0 16px 36px rgba(99, 102, 241, 0.18) !important;
     }
 
     .ilc-flag {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       line-height: 1;
       position: relative;
       z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 14px;
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -119,28 +152,35 @@
 
     .ilc-info {
       flex: 1;
+      min-width: 0;
       position: relative;
       z-index: 1;
     }
 
     .ilc-native {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 800;
       color: #0f172a !important;
       line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .ilc-english {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #475569 !important;
       font-weight: 600;
-      margin-top: 0.2rem;
+      margin-top: 0.15rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .ilc-check {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: #f1f5f9;
       color: #64748b;
@@ -148,8 +188,8 @@
       align-items: center;
       justify-content: center;
       font-weight: 900;
-      font-size: 1rem;
-      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      transition: all 0.25s ease;
       opacity: 0.7;
       position: relative;
       z-index: 1;
@@ -162,14 +202,139 @@
       background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
       color: #ffffff !important;
       opacity: 1 !important;
-      transform: scale(1.15) rotate(5deg);
+      transform: scale(1.1) rotate(5deg);
       box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
       border-color: #6366f1 !important;
+    }
+
+    .index-action-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    .index-action-group .lp-btn {
+      min-height: 48px;
+      padding: 0.85rem 1.8rem;
+      font-size: 0.98rem;
+      box-sizing: border-box;
     }
 
     .fade-out {
       opacity: 0;
       transition: opacity 0.25s ease;
+    }
+
+    /* ── RESPONSIVE MOBILE BREAKPOINTS ────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero-portal-wrapper {
+        padding-top: 5.5rem;
+        padding-bottom: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .landing-nav {
+        padding: 0.75rem 1rem !important;
+      }
+
+      .nav-container {
+        gap: 0.5rem;
+      }
+
+      .nav-actions {
+        gap: 0.45rem;
+      }
+
+      .nav-actions .lp-btn {
+        padding: 0.45rem 0.85rem !important;
+        font-size: 0.82rem !important;
+        min-height: 38px;
+      }
+
+      .index-lang-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+        margin-bottom: 1.8rem;
+      }
+
+      .index-lang-card {
+        padding: 1rem 1.1rem;
+        border-radius: 16px;
+        gap: 0.85rem;
+      }
+
+      .ilc-flag {
+        width: 42px;
+        height: 42px;
+        font-size: 1.85rem;
+        border-radius: 12px;
+      }
+
+      .ilc-native {
+        font-size: 1.15rem;
+      }
+
+      .ilc-english {
+        font-size: 0.82rem;
+      }
+
+      .ilc-check {
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .index-lang-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .hero-portal-wrapper {
+        padding-top: 5rem;
+        padding-bottom: 2rem;
+      }
+
+      .index-action-group {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+
+      .index-action-group .lp-btn {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.85rem 1.25rem !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .nav-logo {
+        font-size: 1.15rem;
+      }
+
+      .nav-logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+
+      .nav-actions .lp-btn {
+        padding: 0.4rem 0.65rem !important;
+        font-size: 0.76rem !important;
+      }
+
+      .index-lang-card {
+        padding: 0.85rem 0.95rem;
+      }
     }
   </style>
 </head>
@@ -189,16 +354,12 @@
 
       <div class="nav-actions">
         <a href="login.html" class="lp-btn lp-btn-outline" data-i18n="navLogin">Login</a>
-        <a href="landing.html" class="lp-btn lp-btn-secondary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
-          <span data-i18n="continueToLanding">Explore Platform →</span>
-        </a>
       </div>
     </div>
   </nav>
 
   <!-- ── HERO / LANGUAGE SELECTION PORTAL ───────────────────────── -->
-  <section class="hero-section" id="hero-portal"
-    style="min-height: 100vh; padding-top: 8rem; padding-bottom: 5rem; display: flex; flex-direction: column; justify-content: center; position: relative;">
+  <section class="hero-section hero-portal-wrapper" id="hero-portal">
     <!-- Ambient Background Glow Orbs -->
     <div class="bg-orb bg-orb-purple" style="top: -5%; left: -5%;"></div>
     <div class="bg-orb bg-orb-emerald" style="bottom: 10%; right: -5%;"></div>
@@ -207,19 +368,19 @@
     <div class="section-container" style="position: relative; z-index: 10; width: 100%;">
 
       <!-- Header Banner -->
-      <div style="text-align: center; margin-bottom: 3rem;">
+      <div style="text-align: center; margin-bottom: 2.25rem;">
         <div class="hero-badge"
-          style="margin: 0 auto 1.2rem auto; display: inline-flex; align-items: center; gap: 0.5rem;">
-          <i data-lucide="globe" style="width: 16px; height: 16px; color: #6366f1;"></i>
+          style="margin: 0 auto 1rem auto; display: inline-flex; align-items: center; gap: 0.5rem;">
+          <i data-lucide="globe" style="width: 15px; height: 15px; color: #6366f1;"></i>
           <span data-i18n="selectLangBadge">CHOOSE YOUR PREFERRED LANGUAGE</span>
         </div>
 
-        <h1 class="hero-title" style="font-size: clamp(2.2rem, 5vw, 3.5rem); margin-bottom: 1rem; line-height: 1.2;">
+        <h1 class="hero-title" style="font-size: clamp(1.75rem, 5.5vw, 3.2rem); margin-bottom: 0.85rem; line-height: 1.25;">
           <span data-i18n="langScreenTitle">Welcome to AksharGyan</span><br />
           <span class="brand-gradient" data-i18n="langScreenSubtitle">Choose your preferred language to continue</span>
         </h1>
 
-        <p class="hero-subtitle" style="max-width: 640px; margin: 0 auto; font-size: 1.1rem;" data-i18n="indexSubtitle">
+        <p class="hero-subtitle" style="max-width: 600px; margin: 0 auto; font-size: clamp(0.92rem, 2.5vw, 1.08rem); line-height: 1.6;" data-i18n="indexSubtitle">
           Select the language you want to read and learn in. You can change this anytime later.
         </p>
       </div>
@@ -293,15 +454,13 @@
       </div>
 
       <!-- Action Navigation Buttons -->
-      <div
-        style="display: flex; gap: 1.2rem; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 1rem;">
-        <a href="login.html" class="lp-btn lp-btn-outline" style="padding: 0.9rem 2rem; font-size: 1rem;"
-          data-i18n="goToLogin">
+      <div class="index-action-group">
+        <a href="login.html" class="lp-btn lp-btn-outline" data-i18n="goToLogin">
           Already have an account? Login
         </a>
-        <a href="landing.html" class="lp-btn lp-btn-primary" style="padding: 0.9rem 2.2rem; font-size: 1rem;">
+        <a href="landing.html" class="lp-btn lp-btn-primary">
           <span data-i18n="continueToLanding">Explore AksharGyan Platform →</span>
-          <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+          <i data-lucide="arrow-right" style="width: 17px; height: 17px;"></i>
         </a>
       </div>
 

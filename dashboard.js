@@ -91,6 +91,7 @@ const SKILL_CONFIG = [
 // ─── Dashboard Initialization ─────────────────────────────────
 
 function initDashboard(profile) {
+  document.body.dataset.activeSection = "learn";
   renderTopBar(profile);
   renderRecommendation(profile);
   renderRecommendedScroll(profile);

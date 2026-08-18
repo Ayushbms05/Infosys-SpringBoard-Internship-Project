@@ -53,14 +53,48 @@
       </ul>
 
       <div class="nav-actions">
-        <a href="login.html" class="lp-btn lp-btn-outline" data-i18n="navLogin">Login</a>
+        <a href="login.html" class="lp-btn lp-btn-outline nav-desktop-only" data-i18n="navLogin">Login</a>
         <a href="register.html" class="lp-btn lp-btn-primary">
           <span data-i18n="navGetStarted">Get Started</span>
           <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
         </a>
+        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Open Navigation Menu">
+          <i data-lucide="menu" style="width: 22px; height: 22px;"></i>
+        </button>
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">📖</div>
+        <span>Akshar<span class="brand-gradient">Gyan</span></span>
+      </a>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close Navigation">
+        <i data-lucide="x" style="width: 22px; height: 22px;"></i>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#mission" data-i18n="navMission"><i data-lucide="compass" style="width: 18px; height: 18px;"></i> Mission</a></li>
+      <li><a href="#how-it-works" data-i18n="navHowItWorks"><i data-lucide="zap" style="width: 18px; height: 18px;"></i> How It Works</a></li>
+      <li><a href="#features" data-i18n="navFeatures"><i data-lucide="sparkles" style="width: 18px; height: 18px;"></i> Features</a></li>
+      <li><a href="#interactive-demo" data-i18n="navAudioLab"><i data-lucide="volume-2" style="width: 18px; height: 18px;"></i> Audio Lab</a></li>
+      <li><a href="#curriculum" data-i18n="navCurriculum"><i data-lucide="book-open" style="width: 18px; height: 18px;"></i> Curriculum</a></li>
+      <li><a href="#languages" data-i18n="navLanguages"><i data-lucide="globe" style="width: 18px; height: 18px;"></i> Languages</a></li>
+      <li><a href="#testimonials" data-i18n="navImpact"><i data-lucide="star" style="width: 18px; height: 18px;"></i> Impact</a></li>
+      <li><a href="#faq" data-i18n="navFAQ"><i data-lucide="help-circle" style="width: 18px; height: 18px;"></i> FAQ</a></li>
+    </ul>
+    <div class="mobile-nav-actions">
+      <a href="login.html" class="lp-btn lp-btn-outline" style="width: 100%; text-align: center; justify-content: center;" data-i18n="navLogin">Login</a>
+      <a href="register.html" class="lp-btn lp-btn-primary" style="width: 100%; text-align: center; justify-content: center;">
+        <span data-i18n="navGetStarted">Get Started Free</span>
+        <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+      </a>
+    </div>
+  </div>
 
   <!-- ── 1. HERO SECTION ─────────────────────────────────────────── -->
   <section class="hero-section" id="hero">

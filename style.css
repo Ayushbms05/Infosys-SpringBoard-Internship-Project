@@ -10284,8 +10284,14 @@ body#page-register {
   transition: color 0.22s ease;
 }
 
-.dash-nav-item.active .dash-nav-icon svg {
+.desktop-nav .dash-nav-item.active .dash-nav-icon svg {
   color: #ffffff;
+}
+
+.mobile-bottom-nav .dash-nav-item.active .dash-nav-icon svg,
+.mobile-bottom-nav .dash-nav-item.active .dash-nav-icon i {
+  color: var(--color-primary, #6366f1) !important;
+  stroke: var(--color-primary, #6366f1) !important;
 }
 
 .dash-nav-item:not(.active):hover .dash-nav-icon svg {

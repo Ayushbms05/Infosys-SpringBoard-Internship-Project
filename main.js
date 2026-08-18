@@ -201,11 +201,13 @@ function setupRegistrationForm() {
       literacyLevel ? literacyLevel.value : ""
     )
       .then(function () {
-        showStatus(statusMsg, "success", getTranslation(selectedLang, "successRegister"));
-        // Auto-login and redirect to assessment (not login page)
-        setTimeout(function () {
-          smoothNavigateTo("assessment.html");
-        }, 1500);
+        // Sign out newly registered user so they can log in cleanly on login.html
+        return auth.signOut().catch(function () {}).then(function () {
+          showStatus(statusMsg, "success", getTranslation(selectedLang, "successRegister"));
+          setTimeout(function () {
+            smoothNavigateTo("login.html");
+          }, 1500);
+        });
       })
       .catch(function (error) {
         var msg = mapFirebaseError(error.code, selectedLang);

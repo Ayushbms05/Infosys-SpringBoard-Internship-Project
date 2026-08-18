@@ -30,12 +30,26 @@
   <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }</script>
 
   <style>
+    /* Global Viewport & Mobile Protection */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     /* Force Light Theme Background matching landing.html & index.html */
     html,
     body#page-register {
       background-color: #f8fafc !important;
       background: #f8fafc !important;
       color: #0f172a !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     body#page-register::before {
@@ -43,28 +57,28 @@
     }
 
     .auth-hero-section {
-      min-height: 100vh;
-      padding-top: 7.5rem;
-      padding-bottom: 4rem;
+      min-height: calc(100vh - 72px);
+      padding-top: 6.5rem;
+      padding-bottom: 3.5rem;
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       position: relative;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .auth-container-grid-reg {
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
-      gap: 2.5rem;
+      gap: 2.25rem;
       align-items: flex-start;
       max-width: 1150px;
       margin: 0 auto;
       width: 100%;
-    }
-
-    @media (max-width: 960px) {
-      .auth-container-grid-reg {
-        grid-template-columns: 1fr;
-      }
+      box-sizing: border-box;
     }
 
     .auth-card-modern {
@@ -75,6 +89,8 @@
       box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08) !important;
       position: relative;
       z-index: 10;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .auth-card-modern .logo-area {
@@ -84,14 +100,14 @@
 
     .auth-card-modern .logo-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.85rem;
+      font-size: clamp(1.45rem, 5vw, 1.85rem);
       font-weight: 900;
       color: #0f172a;
       line-height: 1.25;
     }
 
     .auth-card-modern .logo-subtitle {
-      font-size: 1rem;
+      font-size: clamp(0.88rem, 2.5vw, 1rem);
       color: #64748b;
       margin-top: 0.3rem;
       font-weight: 600;
@@ -101,16 +117,12 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.25rem;
-    }
-
-    @media (max-width: 640px) {
-      .reg-form-2col {
-        grid-template-columns: 1fr;
-      }
+      width: 100%;
     }
 
     .auth-card-modern .form-group {
       margin-bottom: 1.15rem;
+      width: 100%;
     }
 
     .auth-card-modern label {
@@ -126,6 +138,7 @@
       position: relative;
       display: flex;
       align-items: center;
+      width: 100%;
     }
 
     .auth-card-modern .input-icon {
@@ -135,6 +148,7 @@
       height: 18px;
       color: #64748b;
       pointer-events: none;
+      z-index: 2;
     }
 
     .auth-card-modern input[type="text"],
@@ -143,13 +157,15 @@
       width: 100%;
       padding: 0.8rem 1rem 0.8rem 2.7rem;
       font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
+      font-size: 16px !important;
       color: #0f172a;
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
       border-radius: 14px;
       outline: none;
       transition: all 0.25s ease;
+      min-height: 48px;
+      box-sizing: border-box;
     }
 
     .auth-card-modern input[type="password"],
@@ -157,7 +173,7 @@
       width: 100%;
       padding: 0.8rem 2.85rem 0.8rem 2.7rem !important;
       font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
+      font-size: 16px !important;
       color: #0f172a;
       background: #f8fafc;
       border: 1.5px solid #cbd5e1;
@@ -165,6 +181,8 @@
       outline: none;
       transition: all 0.25s ease;
       text-overflow: ellipsis;
+      min-height: 48px;
+      box-sizing: border-box;
     }
 
     /* Suppress browser native password reveal buttons (Edge, Safari, Chrome) */
@@ -189,7 +207,7 @@
     }
 
     .auth-card-modern select {
-      padding-left: 1rem;
+      padding-left: 1rem !important;
       appearance: none;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
@@ -201,25 +219,27 @@
     .auth-card-modern select:focus {
       background: #ffffff;
       border-color: #6366f1;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+      box-shadow: 0 0 0 3.5px rgba(99, 102, 241, 0.15);
     }
 
     .auth-card-modern .password-toggle {
       position: absolute;
-      right: 0.75rem;
+      right: 0.65rem;
       top: 50%;
       transform: translateY(-50%);
       background: transparent;
       border: none;
       color: #64748b;
       cursor: pointer;
-      padding: 0.35rem;
+      padding: 0.45rem;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 8px;
       transition: color 0.2s;
       z-index: 2;
+      min-width: 36px;
+      min-height: 36px;
     }
 
     .auth-card-modern .password-toggle:hover {
@@ -228,6 +248,7 @@
 
     .auth-card-modern .btn-primary {
       width: 100%;
+      min-height: 50px;
       padding: 0.95rem 1.5rem;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1.05rem;
@@ -240,6 +261,9 @@
       transition: all 0.3s ease;
       box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
       margin-top: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .auth-card-modern .btn-primary:hover {
@@ -276,13 +300,15 @@
       box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
       position: sticky;
       top: 8rem;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .auth-brand-showcase h2 {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 1.85rem;
+      font-size: clamp(1.4rem, 4.5vw, 1.85rem);
       font-weight: 900;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
       line-height: 1.25;
     }
 
@@ -291,6 +317,169 @@
       color: rgba(255, 255, 255, 0.75);
       line-height: 1.6;
       margin-bottom: 1.5rem;
+    }
+
+    /* ── Desktop vs Mobile Nav Dropdown ── */
+    .nav-actions-desktop {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav-mobile-menu-wrap {
+      display: none;
+      position: relative;
+    }
+
+    .nav-menu-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-menu-btn:hover,
+    .nav-menu-btn.active {
+      background: #f1f5f9;
+      color: #6366f1;
+      border-color: #6366f1;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.2);
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 220px;
+      background: rgba(255, 255, 255, 0.98);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border: 1.5px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 0.6rem;
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px) scale(0.95);
+      transform-origin: top right;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+    }
+
+    .nav-dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .nav-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 0.9rem;
+      border-radius: 12px;
+      color: #334155;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.18s ease;
+    }
+
+    .nav-dropdown-item:hover,
+    .nav-dropdown-item:active {
+      background: #f1f5f9;
+      color: #6366f1;
+      transform: translateX(3px);
+    }
+
+    .nav-dropdown-highlight {
+      background: #eef2ff;
+      color: #4f46e5;
+    }
+
+    .nav-dropdown-highlight:hover {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    /* ── RESPONSIVE MOBILE BREAKPOINTS ────────────────────────────── */
+    @media (max-width: 960px) {
+      .auth-container-grid-reg {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .auth-brand-showcase {
+        position: relative !important;
+        top: auto !important;
+        margin-top: 0.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-actions-desktop {
+        display: none !important;
+      }
+
+      .nav-mobile-menu-wrap {
+        display: block !important;
+      }
+
+      .auth-hero-section {
+        padding-top: 5.5rem;
+        padding-bottom: 2.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+
+      .reg-form-2col {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .landing-nav {
+        padding: 0.75rem 1rem !important;
+      }
+
+      .nav-container {
+        gap: 0.4rem;
+      }
+
+      .nav-logo {
+        font-size: 1.2rem;
+        gap: 0.45rem;
+      }
+
+      .nav-logo-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.05rem;
+        border-radius: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .auth-card-modern {
+        padding: 1.5rem 1.15rem !important;
+        border-radius: 20px !important;
+      }
+
+      .auth-brand-showcase {
+        padding: 1.5rem 1.15rem !important;
+        border-radius: 20px !important;
+      }
     }
   </style>
 </head>
@@ -308,10 +497,34 @@
         <span>Akshar<span class="brand-gradient">Gyan</span></span>
       </a>
 
-      <div class="nav-actions">
+      <!-- Desktop Action Buttons (visible on tablets/desktop > 768px) -->
+      <div class="nav-actions-desktop">
         <a href="index.html" class="lp-btn lp-btn-outline" data-i18n="ctaBtnLang">Select Language</a>
         <a href="login.html" class="lp-btn lp-btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;"
           data-i18n="navLogin">Login</a>
+      </div>
+
+      <!-- Mobile 3-Horizontal-Line Dropdown Toggle (visible on mobile <= 768px) -->
+      <div class="nav-mobile-menu-wrap">
+        <button class="nav-menu-btn" id="nav-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+          <i data-lucide="menu" style="width: 22px; height: 22px;"></i>
+        </button>
+
+        <!-- Dropdown Popup Card -->
+        <div class="nav-dropdown-menu" id="nav-dropdown-menu" aria-hidden="true">
+          <a href="index.html" class="nav-dropdown-item">
+            <i data-lucide="globe" style="width: 18px; height: 18px; color: #6366f1;"></i>
+            <span data-i18n="ctaBtnLang">Select Language</span>
+          </a>
+          <a href="login.html" class="nav-dropdown-item nav-dropdown-highlight">
+            <i data-lucide="log-in" style="width: 18px; height: 18px; color: #6366f1;"></i>
+            <span data-i18n="navLogin">Login</span>
+          </a>
+          <a href="landing.html" class="nav-dropdown-item">
+            <i data-lucide="compass" style="width: 18px; height: 18px; color: #8b5cf6;"></i>
+            <span>Explore Platform</span>
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -615,6 +828,44 @@
     if (typeof lucide !== "undefined") {
       lucide.createIcons();
     }
+
+    // Mobile Navbar Dropdown Toggle Controller
+    (function () {
+      const menuBtn = document.getElementById("nav-menu-btn");
+      const dropdownMenu = document.getElementById("nav-dropdown-menu");
+
+      if (menuBtn && dropdownMenu) {
+        menuBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const isActive = dropdownMenu.classList.contains("active");
+          if (isActive) {
+            dropdownMenu.classList.remove("active");
+            menuBtn.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
+          } else {
+            dropdownMenu.classList.add("active");
+            menuBtn.classList.add("active");
+            menuBtn.setAttribute("aria-expanded", "true");
+          }
+        });
+
+        document.addEventListener("click", function (e) {
+          if (!dropdownMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+            dropdownMenu.classList.remove("active");
+            menuBtn.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            dropdownMenu.classList.remove("active");
+            menuBtn.classList.remove("active");
+            menuBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    })();
   </script>
 </body>
 
